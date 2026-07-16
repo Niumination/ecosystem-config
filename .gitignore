@@ -27,6 +27,9 @@ brain/
 rekap/
 tools/
 
+# Archive — historical backup, not tracked in root repo
+archive/
+
 # Build artifacts
 node_modules/
 .next/
