@@ -1,0 +1,233 @@
+[
+  {
+    "name": "NIU-DASH",
+    "path": "/Users/zaryu/Documents/Niu-Dash",
+    "type": "web/pwa",
+    "has_git": true,
+    "description": "Three-panel nexus dashboard with PWA support, icons, and service worker"
+  },
+  {
+    "name": "obsidian-ai-os",
+    "path": "/Users/zaryu/Documents/obsidian-ai-os",
+    "type": "obsidian/node",
+    "has_git": false,
+    "description": "Turn Obsidian vault into AI Operating System using OpenCode"
+  },
+  {
+    "name": "Flame ADE",
+    "path": "/Users/zaryu/Documents/GitHub/Flame ADE",
+    "type": "tauri/react",
+    "has_git": true,
+    "description": "Open-source lightweight cross-platform AI-native terminal (ADE) on Tauri 2 + Rust + React 19"
+  },
+  {
+    "name": "Maze 3D Game - Web Based",
+    "path": "/Users/zaryu/Documents/GitHub/Maze 3D Game - Web Based",
+    "type": "web/html",
+    "has_git": true,
+    "description": "3D maze game built with HTML/JS"
+  },
+  {
+    "name": "free-vps",
+    "path": "/Users/zaryu/Documents/GitHub/free-vps",
+    "type": "project",
+    "has_git": true,
+    "description": "Free VPS project containing Flame terminal emulator"
+  },
+  {
+    "name": "Flame",
+    "path": "/Users/zaryu/Documents/GitHub/free-vps/Flame",
+    "type": "tauri/react",
+    "has_git": false,
+    "description": "AI-native terminal emulator - Tauri 2 + Rust + React 19, multi-tab terminal, code editor, AI side-panel"
+  },
+  {
+    "name": "terax-ai",
+    "path": "/Users/zaryu/Documents/GitHub/terax-ai",
+    "type": "tauri/rust",
+    "has_git": true,
+    "description": "Lightweight Terminal-first AI-native dev workspace"
+  },
+  {
+    "name": "acehtengah-web",
+    "path": "/Users/zaryu/Documents/GitHub/zen-/acehtengah-web",
+    "type": "web/html",
+    "has_git": false,
+    "description": "Portal resmi Pemerintah Kabupaten Aceh Tengah — Layanan publik, informasi, dan partisipasi masyarakat"
+  },
+  {
+    "name": "ultra-automation-system",
+    "path": "/Users/zaryu/Documents/arena.ai/ultra-automation-system",
+    "type": "node",
+    "has_git": false,
+    "description": "Ultra automation dashboard system with environment config"
+  },
+  {
+    "name": "PemdiAcehTengah",
+    "path": "/Users/zaryu/Desktop/Niumination/JHcode/PemdiAcehTengah",
+    "type": "nextjs",
+    "has_git": true,
+    "description": "Portal Digital Pemerintah Daerah Kabupaten Aceh Tengah — Next.js with Vercel deploy"
+  },
+  {
+    "name": "JHermUSB-portable",
+    "path": "/Users/zaryu/Desktop/Niumination/JHermUSB-portable",
+    "type": "portable-app",
+    "has_git": true,
+    "description": "Paket portable Hermes Agent yang bisa dijalankan langsung dari USB drive"
+  },
+  {
+    "name": "Niu-Flow",
+    "path": "/Users/zaryu/Desktop/Niumination/Niu-Flow",
+    "type": "orchestrator",
+    "has_git": true,
+    "description": "Multi-Agent Orchestrasi Hermes Agent ↔ JCode AI untuk kolaborasi proyek"
+  },
+  {
+    "name": "TEDEO",
+    "path": "/Users/zaryu/Desktop/Niumination/TEDEO",
+    "type": "expo/react",
+    "has_git": true,
+    "description": "Delivery Service Kabupaten Aceh Tengah — Expo mobile + web + backend"
+  },
+  {
+    "name": "TEDEO-Kanban",
+    "path": "/Users/zaryu/Desktop/Niumination/TEDEO-Kanban",
+    "type": "web/vite",
+    "has_git": true,
+    "description": "Kanban Board for tracking TEDEO Delivery Service progress with drag-and-drop, PWA"
+  },
+  {
+    "name": "VirtualAssistance",
+    "path": "/Users/zaryu/Desktop/Niumination/web3/VirtualAssistance",
+    "type": "nextjs",
+    "has_git": true,
+    "description": "PiAssistant — Web3 Virtual Assistant untuk Pi Network"
+  },
+  {
+    "name": "street-racer-offline",
+    "path": "/Users/zaryu/Desktop/Niumination/aistudio-google/street-racer-offline",
+    "type": "android/kotlin",
+    "has_git": false,
+    "description": "AI Studio app — Street Racer offline game built with Android/Kotlin & Gemini API"
+  },
+  {
+    "name": "zaryu-terminal-dotfiles",
+    "path": "/Users/zaryu/Desktop/rekap/zaryu-terminal-dotfiles",
+    "type": "dotfiles",
+    "has_git": false,
+    "description": "Konfigurasi terminal pribadi untuk macOS dengan Zsh, Starship, Tmux, dan plugin produktivitas"
+  },
+  {
+    "name": "Flame ADE",
+    "path": "/Users/zaryu/Documents/ZMP/Flame ADE",
+    "type": "tauri/node",
+    "has_git": true,
+    "description": "Open-source lightweight cross-platform AI-native terminal (ADE) on Tauri 2 + Rust + React 19 (ZMP copy)"
+  },
+  {
+    "name": "Flame-ADE-Desain",
+    "path": "/Users/zaryu/Documents/ZMP/Flame-ADE-Desain",
+    "type": "web",
+    "has_git": false,
+    "description": "Desain assets and HTML/CSS/JS for Flame ADE"
+  },
+  {
+    "name": "Flame-V2",
+    "path": "/Users/zaryu/Documents/ZMP/Flame-V2",
+    "type": "tauri/react",
+    "has_git": true,
+    "description": "AI-Native Terminal & Development Environment V2 — React 19, TypeScript, Vite 8, Tauri 2"
+  },
+  {
+    "name": "Maze 3D Game",
+    "path": "/Users/zaryu/Documents/ZMP/Maze 3D Game",
+    "type": "web/html",
+    "has_git": true,
+    "description": "3D maze game with HTML/JS"
+  },
+  {
+    "name": "NiuTUI",
+    "path": "/Users/zaryu/Documents/ZMP/NiuTUI",
+    "type": "rust/cargo",
+    "has_git": true,
+    "description": "Terminal UI app in Rust using Cargo"
+  },
+  {
+    "name": "NiuTerm",
+    "path": "/Users/zaryu/Documents/ZMP/NiuTerm",
+    "type": "tauri/react",
+    "has_git": true,
+    "description": "Terminal emulator with Tauri 2 + React + TypeScript + xterm.js"
+  },
+  {
+    "name": "Orchestrator",
+    "path": "/Users/zaryu/Documents/ZMP/Orchestrator",
+    "type": "python",
+    "has_git": false,
+    "description": "Python task orchestrator with config, scheduling, and task management"
+  },
+  {
+    "name": "niude",
+    "path": "/Users/zaryu/Documents/ZMP/niude",
+    "type": "tauri/react",
+    "has_git": false,
+    "description": "Tauri + React desktop app with pnpm"
+  },
+  {
+    "name": "skills-main",
+    "path": "/Users/zaryu/Documents/ZMP/skills-main",
+    "type": "skills/agent",
+    "has_git": false,
+    "description": "Agent skills collection from Matt Pocock for real engineering work"
+  },
+  {
+    "name": "Hermes-USB-Portable-main",
+    "path": "/Users/zaryu/Music/Devs/Hermes-USB-Portable-main",
+    "type": "portable-app",
+    "has_git": false,
+    "description": "Hermes Agent portable USB launcher — original from Nous Research"
+  },
+  {
+    "name": "Flame ADE",
+    "path": "/Users/zaryu/Desktop/Flame ADE",
+    "type": "tauri/rust",
+    "has_git": true,
+    "description": "Lightweight AI-native terminal emulator (ADE) — Tauri 2 + Rust + React 19, ~7 MB"
+  },
+  {
+    "name": "jcode-docs",
+    "path": "/Users/zaryu/Desktop/jcode-docs",
+    "type": "docs",
+    "has_git": false,
+    "description": "Dokumentasi instalasi, penggunaan, dan kustomisasi jcode Coding Agent Harness"
+  },
+  {
+    "name": "komik-seksual",
+    "path": "/Users/zaryu/Desktop/komik-seksual",
+    "type": "web/html",
+    "has_git": false,
+    "description": "Komik HTML with ASCII text content"
+  },
+  {
+    "name": "niu-studio",
+    "path": "/Users/zaryu/Desktop/niu-studio",
+    "type": "tauri/react",
+    "has_git": false,
+    "description": "Tauri + React + Vite + TypeScript studio app v0.1.0"
+  },
+  {
+    "name": "terax-ai-analysis",
+    "path": "/Users/zaryu/Desktop/terax-ai-analysis",
+    "type": "docs",
+    "has_git": false,
+    "description": "Terax AI summary and analysis document"
+  },
+  {
+    "name": "xero-dotfiles-docs",
+    "path": "/Users/zaryu/Desktop/xero-dotfiles-docs",
+    "type": "docs",
+    "has_git": false,
+    "description": "Dokumentasi dotfiles dari xero — Neovim, ZSH, tmux configs adapted for macOS"
+  }
+]
