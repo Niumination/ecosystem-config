@@ -19,6 +19,14 @@ credentials-backup.zip
 secrets.zsh
 api-key.md
 
+# Sub-project directories (each has its own git repo)
+Production/
+projects/
+incubator/
+brain/
+rekap/
+tools/
+
 # Build artifacts
 node_modules/
 .next/
@@ -37,16 +45,12 @@ __pycache__/
 *.swo
 *~
 
-# Archive — only .md files tracked
-archive/Belum disentuh/
-archive/backup/
-archive/labs/
-archive/media-lib/
-archive/ocmux/
-archive/skills-main/
-archive/terax-ai-analysis/
-archive/xero-dotfiles-docs/
-archive/jcode-docs/
+# Archive — binary files only
 *.zip
 *.gz
 *.tar
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico

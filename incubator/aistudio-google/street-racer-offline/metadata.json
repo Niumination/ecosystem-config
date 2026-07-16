@@ -1,6 +1,0 @@
-{
-  "name": "Street Racer Offline",
-  "description": "Game balap mobil offline 3D Low-Poly di Android dengan Jetpack Compose, AI Musuh, Mode Karir, Garasi Mobil, koin, nitro, dan sound synthesizer prosedural.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
