@@ -66,6 +66,7 @@ Desktop/Niumination/
 | **ai-file-manager-android** | 🟢 Active | Device | Published & tested |
 | **ai-first-os** | ⚪ Minor | GitHub | Build kit |
 | **Niumination** | ⚪ Minor | GitHub | Profile config |
+| **niu-mission-control** | 🟢 New 🆕 | GitHub | Ecosystem dashboard — repo baru |
 
 ### 🔧 projects/ — 16 Proyek Aktif Dikerjakan
 
@@ -208,10 +209,10 @@ Flame-ADE            ██████████ 93% P2     ✅   ✅ SSH    
 Niu-Dash             ██████████ 95% P2     ✅   ✅ SSH    🟢 GH Page  Production/ 🏭
 niu-cast             ██████████ 95% P2     ✅   ✅ HTTPS  ⚪ macOS    projects/
 brain                ██████░░░░ 60% P3     ✅   ✅ SSH    ❌ local    root/
-AuditTI-AT           ████████░░ 80% P3     ✅   ✅ SSH    🟢 GH Page  projects/
-joy-connect-for-mac  ██████░░░░ 60% P2 🆕 ✅   ✅ SSH    ❌ local    projects/
-didong-code          ██████░░░░ 50% P2 🆕 ✅   ✅ SSH    ✅ GitHub   projects/
 x-downloader         ██████████ 100% P3   ✅   ✅ SSH    🟢 GitHub   projects/
+joy-connect-for-mac  ██████░░░░ 60% P2 🆕 ✅   ✅ SSH    ❌ local    projects/
+niu-mission-control  █████░░░░░ 40% P3 🆕 ✅   ✅ SSH    ✅ GitHub   projects/
+didong-code          ██████░░░░ 50% P2 🆕 ✅   ✅ SSH    ✅ GitHub   projects/
 ```
 
 ### incubator/ (Dormant)
@@ -252,13 +253,12 @@ rekap/                     1    Terminal dotfiles
 ─────────────────────────────────────────
 Total filesystem items    ~44    (30 git + 14 non-git)
 Remote-only monitoring   ~20    Forks, stale repos
-Git status:              34 clean ✅, 3 dirty ⚠️
+Git status:              34 clean ✅, 2 dirty ⚠️
 ```
 
-### ⚠️ Dirty Repos (3)
-1. **Production/niu-dash** — 1 file (ecosystem-status.json)
-2. **projects/niu-mission-control** — .DS_Store (trivial)
-3. **brain** (Root) — 8 files (inbox harian + divergence logs — normal)
+### ⚠️ Dirty Repos (2)
+1. **Production/niu-dash** — 1 file (ecosystem-status.json, auto-generated — normal)
+2. **brain** (Root) — 8 files (inbox harian + divergence logs — normal)
 
 ---
 
@@ -280,6 +280,9 @@ Git status:              34 clean ✅, 3 dirty ⚠️
 | **Claude Code** | ANTHROPIC_API_KEY | claude-sonnet-4 | ✅ **Live** |
 | **JCode** | OPENCODE_API_KEY | — | ✅ **Live** |
 | **Delegation** | gemini | gemini-2.5-flash | ✅ Off (concurrent=1, depth=0) |
+| **AI-Memory-Collection** | 12 AI tools | Snapshot ~1.7GB | ✅ **Referenced** |
+
+> **🧠 AI-Memory-Collection** — Kompilasi memori dari 12 AI tools (Claude, JCode, Codex, OpenCode, Copilot, Orca, Cursor, dll). Berisi `memory.md` (510 baris — knowledge unified), hooks, config, cache, dan 2 model GGUF lokal. Berlokasi di `~/Desktop/AI-Memory-Collection/`. Lihat `docs/ai-memory-collection.md` untuk detail.
 
 ---
 
@@ -291,5 +294,11 @@ Git status:              34 clean ✅, 3 dirty ⚠️
 - ✅ **projects/niu-dash** — Dihapus (duplikat dari Production/niu-dash)
 - ✅ **Root Niu-Flow** — Logs/output diarsipkan (canonical di projects/Niu-Flow/)
 - ✅ **BACKLOG.md** — Diupdate dengan struktur baru
+- ✅ **Root ecosystem-config dibersihkan** — Hapus sub-project gitlinks, cuma track config/docs/scripts
+- ✅ **joy-connect-for-mac** — Remote GitHub dibuat & push
+- ✅ **niu-mission-control** — Remote GitHub dibuat & push
+- ✅ **.gitignore root** — Exclude sub-projects, archive, PI/; .DS_Store removed from MC
+- ✅ **Scoreboard** — Add niu-mission-control entry
+- ✅ **AI-Memory-Collection** — Referensi dimasukkan ke AI ECOSYSTEM
 
 *Dokumen ini diverifikasi langsung dari filesystem Jul 17, 2026.*
