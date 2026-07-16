@@ -37,5 +37,16 @@ __pycache__/
 *.swo
 *~
 
-# OS files
-.DS_Store
+# Archive — only .md files tracked
+archive/Belum disentuh/
+archive/backup/
+archive/labs/
+archive/media-lib/
+archive/ocmux/
+archive/skills-main/
+archive/terax-ai-analysis/
+archive/xero-dotfiles-docs/
+archive/jcode-docs/
+*.zip
+*.gz
+*.tar
