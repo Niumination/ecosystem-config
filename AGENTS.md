@@ -2,7 +2,7 @@
 
 **Lokasi:** `~/Desktop/Niumination/`
 **Pengguna:** Afrizal Munthe (Niumination) — Pranata Komputer, Diskominfo Aceh Tengah
-**DOX Version:** 2.9
+**DOX Version:** 3.0
 ||| **Total Projek Lokal:** 44 item (35 git + 9 non-git)
 |||||| | **Kanban Board:** "Niumination Ecosystem" — terupdate 16 Jul 2026 ✅
 | | **Model aktif:** `opencode/big-pickle` — paid ($1/M in, $5/M out)
@@ -94,14 +94,19 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
 │   ├── kune-ya.com/           ← AI Chat RAG — 🟢 Vercel (moved 24 Jun)
 │   ├── niu-vermilion/         ← Second Brain — 🟢 Vercel (moved 24 Jun)
 │   └── mac-web-dashboard/     ← macOS Dashboard v1.0.0 — ✅ GitHub (moved 24 Jun)
-├── archive/                   ← Arsip dokumen lama
-├── backup/                    ← Cadangan konfigurasi & data
-├── brain/                     ← Obsidian vault (git)
+├── archive/                   ← Arsip — ~25MB (labs, skills, logs, backup)
+│   ├── 01-updates/
+│   ├── Belum disentuh/         ← Arsip ZIP belum diproses (~18MB)
+│   ├── backup/                 ← Cadangan konfigurasi (2026-06-27)
+│   ├── jcode-docs/             ← Dokumentasi JCode CLI
+│   ├── labs/                   ← Eksperimen lama
+│   ├── niu-flow-logs/          ← Log pipeline Niu-Flow
+│   ├── skills-main/            ← Skill backup
+│   └── ...
 ├── labs/                      ← Eksperimen (obsidian-ai-os, html, dll)
 ├── rekap/                     ← Terminal dotfiles & rekap
 ├── scripts/                   ← Cron & maintenance scripts (changelog, heartbeat, kanban-sync, dll)
 ├── tools/                     ← Ponytail MCP server & utilities
-├── Belum disentuh/            ← Arsip ZIP belum diproses
 │
 └── projects/                  ← Projek Eksperimen, Tools, & Aktif
     ├── arena.ai/              ← AI Arena — dashboard.html
@@ -116,7 +121,7 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
     ├── maze-3d/               ← 3D web maze game (GH Pages)
     ├── niu-cast/              ← Android ADB Tool & Screen Mirror — Gaming Edition v1.1.1 (PyQt5, ADB)
     ├── niu-dash-fullstack/    ← Next.js 16 Fullstack Dashboard — ✅ github.com/Niumination/niu-dash-fullstack
-    ├── niu-kanban-dash/       ← React/Vite dashboard — ✅ github.com/Niumination/niu-kanban-dash
+    ├── niu-kanban-dash/       ← React/Vite dashboard — ✅ github.com/Niumination/niu-kanban-dash (port 5199)
     ├── niu-studio/            ← Tauri/React creative studio
     ├── niumination-workspace/    ← Active — 4 commits, Prisma, Three.js — ✅ github.com/Niumination/niumination-workspace
     ├── niude/                 ← Tauri app
@@ -258,11 +263,37 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 
 ## AI Ecosystem
 
-| Komponen | Provider | Model | Status |
-|:---------|:---------|:------|:------:|
-| **Hermes (main)** | opencode-zen | opencode/big-pickle | ✅ **Live** — $1/M input, $5/M output |
-| **Claude Code** | ANTHROPIC_API_KEY | claude-sonnet-4 | ✅ **Live** — `claude -p "..."` |
-| **JCode** | OPENCODE_API_KEY | — | ✅ **Live** — pipeline via Niu-Flow |
+| # | Agent | Role | Provider/Model | Status |
+|:-:|-------|------|----------------|:------:|
+| 1 | **Hermes Agent** | Main orchestrator | Opencode Zen — `opencode/big-pickle` | ✅ **Live** — $1/M in, $5/M out |
+| 2 | **Claude Code CLI** | Side coding agent | Anthropic — `claude-sonnet-4` | ✅ **Live** — `claude -p "..."` |
+| 3 | **JCode** | Hermes↔OpenCode bridge | `OPENCODE_API_KEY` via Niu-Flow pipeline | ✅ **Live** — 5 commits |
+| 4 | **Codex CLI** | OpenAI coding agent | OpenAI — Codex CLI | ✅ **Live** — goals DB, logs |
+| 5 | **OpenCode CLI** | Standalone coding agent | OpenCode config — 146 skills | ✅ **Live** — ACP headless |
+| 6 | **GitHub Copilot** | IDE assistant | GitHub Copilot | ✅ **Live** — VS Code |
+
+### 🧠 AI-Memory-Collection
+
+**Lokasi:** `~/Desktop/AI-Memory-Collection/` (~1.73 GB)
+**Sumber:** Snapshot 12 AI tools dari seluruh sistem macOS (16 Jul 2026)
+
+| Tool | Ukuran | Isi Penting |
+|------|--------|-------------|
+| 01 — Claude Code CLI | 1.8 MB | History, project sessions |
+| 02 — Claude Desktop | 7.8 MB | Konfigurasi desktop agent |
+| 03 — JCode | 69 MB | **499 sessions**, memory events |
+| 04 — Codex | 3.0 MB | Goals DB, logs, memories |
+| 05 — OpenCode | 17 MB | Config, **146 skills**, plugins |
+| 06 — GitHub Copilot | 8 KB | Apps & versions |
+| 07 — Continue.dev | 8 KB | Config (OpenCode Zen provider) |
+| 08 — AionUI | 24 KB | Skills, assistants, cron |
+| 09 — Niu-Odysseus Models | **1.4 GB** | GGUF: LFM2-350M, Qwen3.5-2B |
+| 10 — Orca Hooks | 52 KB | 12 hook scripts ✅ dicopy ke `scripts/hooks/` |
+| 11 — Cursor | 8 KB | hooks.json, herdr-agent-state |
+| 12 — DuetExpertCenter | 235 MB | macOS system AI |
+
+**Dokumen kunci:** `memory.md` (510 baris) — unified knowledge dari seluruh 12 tools.
+**Referensi di ekosistem:** `docs/ai-memory-collection.md`, `scripts/hooks/` (12 hooks di-copy).
 
 ---
 
@@ -362,9 +393,11 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | Sumber | Path/Link |
 |--------|-----------|
 | **BACKLOG Master** | `BACKLOG.md` |
-| **Personal Inventory** | `PI/` — API keys, credentials — **RAHASIA** |
+| **Personal Inventory** | `PI/` — API keys, credentials — **RAHASIA** (chmod 600 ✅) |
 | **Obsidian Vault** | `brain/` |
 | **Niu-Flow Pipeline** | `projects/Niu-Flow/` — Bridge Hermes↔JCode |
+| **AI Agent Hooks** | `scripts/hooks/` — 12 hook scripts (claude, codex, copilot, dll) |
+| **AI-Memory-Collection** | `docs/ai-memory-collection.md` — unified knowledge 12 AI tools |
 
 ---
 
@@ -436,5 +469,5 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 ---
 
 > **Dibuat:** 11 Juni 2026
-> **Diperbarui:** 15 Jul 2026 — v2.8 — **Gitiumination profile repo + Niumination README**
+> **Diperbarui:** 17 Jul 2026 — v3.0 — **6 AI Agents + AI-Memory-Collection expanded**
 > **Oleh:** Niumination (Afrizal Munthe) — Aceh Tengah
