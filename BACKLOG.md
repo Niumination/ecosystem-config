@@ -12,7 +12,7 @@
 
 ```
 Desktop/Niumination/
-├── Production/          🏭 11 proyek — aktif & deployed
+├── Production/          🏭 12 proyek — aktif & deployed
 ├── projects/            🔧 16 proyek — aktif dikerjakan
 ├── incubator/           💤 9 proyek — dormant / belum dikerjakan
 ├── archive/             📦 File usang, backup, eksperimen
@@ -51,7 +51,7 @@ Desktop/Niumination/
 **Board:** Niumination Ecosystem
 **Note:** TEDEO dipromosikan ke **MATURE ✅** — dihapus dari lokal, catatan "butuh VPS untuk production"
 
-### 🏭 Production — 11 Proyek Aktif
+### 🏭 Production — 12 Proyek Aktif
 
 | Proyek | Status | Deploy | Notes |
 |--------|--------|--------|-------|
@@ -66,7 +66,8 @@ Desktop/Niumination/
 | **ai-file-manager-android** | 🟢 Active | Device | Published & tested |
 | **ai-first-os** | ⚪ Minor | GitHub | Build kit |
 | **Niumination** | ⚪ Minor | GitHub | Profile config |
-| **niu-mission-control** | 🟢 New 🆕 | GitHub | Ecosystem dashboard — repo baru |
+|| **niu-mission-control** | 🟢 New 🆕 | GitHub | Ecosystem dashboard — repo baru |
+|| **cc-switch** | 🟢 Active | GitHub | Tauri 2 multi-CLI switcher — v3.17.0 release |
 
 ### 🔧 projects/ — 16 Proyek Aktif Dikerjakan
 

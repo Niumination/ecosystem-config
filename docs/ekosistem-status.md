@@ -12,7 +12,7 @@
 | Metrik | Value |
 |--------|-------|
 | Total Git Repos | 33 (incl. 4 tmux plugins) |
-| Production/ 🏭 | 10 ✅ |
+| Production/ 🏭 | 11 ✅ |
 | Projects/ 🟡 | 20 |
 | Non-Git Dirs | 9 |
 | Dirty Repos | 2 (+1 ponytail ⏭️) |
@@ -30,8 +30,9 @@ Niumination/
 ├── BACKLOG.md                         ← v3.1 redesigned
 ├── docs/                              ← 🔸 Missing from DOX tree
 ├── PI/                                ← API keys & credentials
-├── Production/                        ← 10 repos — mature & deployed
+├── Production/                        ← 11 repos — mature & deployed
 │   ├── ai-file-manager-android/       ← Kotlin/Jetpack Compose ✅
+│   ├── CC.Switch/                     ← Tauri 2 multi-CLI v3.17.0 🟢
 │   ├── JHermUSB-portable/             ← Shell ✅
 │   ├── Niu-LKH/                       ← v3.1.1 GH Pages ✅
 │   ├── PemdiAcehTengah/               ← Next.js 14 Vercel 🟢
@@ -80,7 +81,7 @@ Niumination/
 
 ---
 
-## 🏭 Production/ — Mature & Deployed (10)
+## 🏭 Production/ — Mature & Deployed (11)
 
 | Project | Stack | Deploy | HEAD | Last Push | Status |
 |---------|-------|--------|------|-----------|--------|
@@ -94,6 +95,7 @@ Niumination/
 | **kune-ya.com** | Next.js 15 | 🟢 Vercel | `52f432e` | 24 Jun | ✅ K1-K5 |
 | **niu-vermilion** | Next.js 16 | 🟢 Vercel | `6f2f036` | 24 Jun | ✅ V1-V5 |
 | **mac-web-dashboard** | Next.js 14 | GitHub | `1fd937c` | 24 Jun | ✅ v1.0.0 |
+| **cc-switch** | Tauri 2/Rust | GitHub | `0a98f8b` | 20 Jul | ✅ v3.17.0 |
 
 ---
 

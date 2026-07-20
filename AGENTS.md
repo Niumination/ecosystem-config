@@ -83,8 +83,9 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
 │
 ├── Niumination/               ← GitHub Profile README — Gitiumination 🆕
 ├── PI/                        ← Personal Inventory — API keys, rahasia
-├── Production/                 ← Projek matang & selesai (🏭) — 10 dir
+├── Production/                 ← Projek matang & selesai (🏭) — 11 dir
 │   ├── ai-file-manager-android/ ← AI File Organizer (Kotlin/Gemini) ✅ GitHub
+│   ├── CC.Switch/              ← Tauri 2 multi-CLI — 🟢 GitHub release v3.17.0
 │   ├── JHermUSB-portable/     ← Hermes Agent portable (652K) ✅
 │   ├── Niu-LKH/               ← LKH v3.1.1 — 100% Done — GH Pages live ✅
 │   ├── PemdiAcehTengah/       ← Portal Pemda — 52 OPD, 70 pages — 🟢 Vercel
@@ -202,8 +203,9 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 | Projek | Path | Stack | GitHub | Deploy | Last Push | Status |
 |--------|------|-------|--------|--------|-----------|--------|
 ||| **arch-web-dashboard** | `Production/arch-web-dashboard/` 🏭 | Next.js 14, React 18, TypeScript, Tailwind | `github.com/Niumination/arch-web-dashboard` | 🟢 GitHub | 22 Jun 2026 | ✅ v1.0.0 — **Production/ 🏭** |
-| **mac-web-dashboard** | `Production/mac-web-dashboard/` 🏭 | Next.js 14, React 18, TypeScript, Tailwind | `github.com/Niumination/mac-web-dashboard` | 🟢 GitHub | 11 Jul 2026 | ✅ v1.1.0 — **+AI Workspace (6 tabs), Hermes+Ollama+Agent Discovery** |
-| **AI-First-OS** | `Production/ai-first-os/` 🏭 | Arch Linux ISO, archiso, Hyprland, Hermes Agent | `github.com/Niumination/AI-First-OS` | 🟢 GitHub | 22 Jun 2026 | ✅ v1.0.0 — **Production/ 🏭** |
+|| **mac-web-dashboard** | `Production/mac-web-dashboard/` 🏭 | Next.js 14, React 18, TypeScript, Tailwind | `github.com/Niumination/mac-web-dashboard` | 🟢 GitHub | 11 Jul 2026 | ✅ v1.1.0 — **+AI Workspace (6 tabs), Hermes+Ollama+Agent Discovery** |
+|| **CC.Switch** | `Production/cc-switch/` 🏭 | Tauri 2, React, Rust, multi-CLI switcher | `github.com/Niumination/cc-switch` | 🟢 GitHub | 20 Jul 2026 | ✅ v3.17.0 — **release DMG ready** |
+|| **AI-First-OS**
 | **Niumination** (Profile) | `Production/Niumination/` 🆕 | README, config, scripts | `github.com/Niumination/Niumination` | 🟢 GitHub | 15 Jul 2026 | ✅ **GitHub Profile — Gitiumination v1.0.0** |
 | **niu-vermilion** | `Production/niu-vermilion/` 🏭 | Next.js 16, React 19, Supabase, TipTap | `github.com/Niumination/Niu-Vermilion` | 🟢 Vercel | 24 Jun 2026 | ✅ V1-V5 fixed — **Production/ 🏭** |
 || **niu-cast** | `projects/niu-cast/` | Python 3, PyQt5, ADB | `github.com/Niumination/niu-cast` | ⚪ macOS Desktop | 18 Jun 2026 | ✅ v1.1.1 |
