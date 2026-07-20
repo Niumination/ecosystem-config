@@ -120,7 +120,7 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
     ├── aistudio-google/       ← Game files (street-racer-offline)
     ├── flame-ade/             ← Tauri 2/Rust desktop app (v1.3.0)
     ├── maze-3d/               ← 3D web maze game (GH Pages)
-    ├── niu-cast/              ← Android ADB Tool & Screen Mirror — Gaming Edition v1.1.1 (PyQt5, ADB)
+    ├── niu-cast/              ← Android ADB Tool & Screen Mirror — Gaming Edition v1.2.0 (PyQt5, ADB) 🆕 File Browser
     ├── niu-dash-fullstack/    ← Next.js 16 Fullstack Dashboard — ✅ github.com/Niumination/niu-dash-fullstack
     ├── niu-kanban-dash/       ← React/Vite dashboard — ✅ github.com/Niumination/niu-kanban-dash (port 5199)
     ├── niu-studio/            ← Tauri/React creative studio
@@ -208,7 +208,7 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 || **AI-First-OS**
 | **Niumination** (Profile) | `Production/Niumination/` 🆕 | README, config, scripts | `github.com/Niumination/Niumination` | 🟢 GitHub | 15 Jul 2026 | ✅ **GitHub Profile — Gitiumination v1.0.0** |
 | **niu-vermilion** | `Production/niu-vermilion/` 🏭 | Next.js 16, React 19, Supabase, TipTap | `github.com/Niumination/Niu-Vermilion` | 🟢 Vercel | 24 Jun 2026 | ✅ V1-V5 fixed — **Production/ 🏭** |
-|| **niu-cast** | `projects/niu-cast/` | Python 3, PyQt5, ADB | `github.com/Niumination/niu-cast` | ⚪ macOS Desktop | 18 Jun 2026 | ✅ v1.1.1 |
+|| **niu-cast** | `projects/niu-cast/` | Python 3, PyQt5, ADB | `github.com/Niumination/niu-cast` | ⚪ macOS Desktop | 20 Jul 2026 | ✅ v1.2.0 — 🆕 File Browser, tabbed UI |
 | **cc-acehtengah** | `projects/cc-acehtengah/` | Next.js 16, Prisma 7, LLM (Ollama), RAG (Qdrant) | `github.com/Niumination/cc-acehtengah` | ⚪ Local | 13 Jul 2026 | 🔜 **Fase 1 — Foundation ✅** |
 || **niu-dash-fullstack** | `projects/niu-dash-fullstack/` | Next.js 16, React 19, Prisma 7, TanStack Query, next-auth | `github.com/Niumination/niu-dash-fullstack` | ⚪ Local | 13 Jul 2026 | ✅ **3D scene removed — performance improved** |
 || **niu-dash** | `Production/niu-dash/` 🏭 | HTML/CSS/JS Vanilla | `github.com/Niumination/niu-dash` | 🟢 GH Pages — v2.16.8 | 22 Jun 2026 | 🟢 **Audit 27/27 ✅** |
@@ -452,7 +452,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 |----------|--------|
 | 🔥 **Sekarang** | **TEDEO** — T1-T4 ✅ — butuh test plan + deploy — **PemdiAcehTengah** — 🟢 aktif di Production/ |
 | 🟢 **1-2 minggu** | niutui (init remote), brain-capture cron fix, TEDEO deploy test |
-| 🔄 **4-7 hari** | Niu-Flow maintenance, niu-cast live preview test |
+| 🔄 **4-7 hari** | Niu-Flow maintenance, File Browser polish for niu-cast |
 | ⚪ **Bulan ini** | Flame-ADE, niu-studio, niude, niuterm, polish x-downloader |
 | 🗄️ **No rush** | Maze-3D, SPBE tools, Startpages, Dotfiles, Forks, archive/labs cleanup |
 
