@@ -120,7 +120,7 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
     ├── aistudio-google/       ← Game files (street-racer-offline)
     ├── flame-ade/             ← Tauri 2/Rust desktop app (v1.3.0)
     ├── maze-3d/               ← 3D web maze game (GH Pages)
-    ├── niu-cast/              ← Android ADB Tool & Screen Mirror — Gaming Edition v1.2.0 (PyQt5, ADB) 🆕 File Browser
+    ├── niu-cast/              ← Android Device Manager via ADB — v2.0.0 (refactor, -58% LOC)
     ├── niu-dash-fullstack/    ← Next.js 16 Fullstack Dashboard — ✅ github.com/Niumination/niu-dash-fullstack
     ├── niu-kanban-dash/       ← React/Vite dashboard — ✅ github.com/Niumination/niu-kanban-dash (port 5199)
     ├── niu-studio/            ← Tauri/React creative studio
@@ -452,7 +452,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 |----------|--------|
 | 🔥 **Sekarang** | **TEDEO** — T1-T4 ✅ — butuh test plan + deploy — **PemdiAcehTengah** — 🟢 aktif di Production/ |
 | 🟢 **1-2 minggu** | niutui (init remote), brain-capture cron fix, TEDEO deploy test |
-| 🔄 **4-7 hari** | Niu-Flow maintenance, File Browser polish for niu-cast |
+| 🔄 **4-7 hari** | Niu-Flow maintenance, app management UI untuk niu-cast |
 | ⚪ **Bulan ini** | Flame-ADE, niu-studio, niude, niuterm, polish x-downloader |
 | 🗄️ **No rush** | Maze-3D, SPBE tools, Startpages, Dotfiles, Forks, archive/labs cleanup |
 

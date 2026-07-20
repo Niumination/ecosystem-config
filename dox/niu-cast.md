@@ -1,8 +1,8 @@
 # 📘 DOX — niu-cast
 
-> **NIU CAST** — Universal Android ADB Tool & Screen Mirroring (Gaming Edition)
-> **Stack:** Python 3.8+, PyQt5, OpenCV, ADB + scrcpy
-> **Versi:** v1.1.1
+> **NIU CAST** — Android device manager via ADB
+> **Stack:** Python 3.8+, PyQt5, ADB
+> **Versi:** v2.0.0 (refactor)
 > **Repo:** `projects/niu-cast/` → `github.com/Niumination/niu-cast`
 
 ---
