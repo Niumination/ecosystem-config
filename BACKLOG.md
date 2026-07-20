@@ -57,8 +57,8 @@ Desktop/Niumination/
 |--------|--------|--------|-------|
 | **PemdiAcehTengah** | 🟢 Active | Vercel | 52 OPD, 70 pages |
 | **Niu-LKH** | ✅ Done | GH Pages | v3.1.1 |
-| **niu-vermilion** | 🟢 Active | Vercel | 65% |
-| **kune-ya.com** | 🟢 Active | Vercel | 80% |
+| **niu-vermilion** | 🟢 Active | Vercel | V1-V5 |
+| **kune-ya.com** | 🟢 Active | Vercel | K1-K5 fixed |
 | **niu-dash** | 🟢 Active | GH Pages | v2.16.8 |
 | **JHermUSB-portable** | ✅ Done | GitHub | 100% |
 | **mac-web-dashboard** | ✅ Done | GitHub | v1.0.0 |
@@ -66,8 +66,7 @@ Desktop/Niumination/
 | **ai-file-manager-android** | 🟢 Active | Device | Published & tested |
 | **ai-first-os** | ⚪ Minor | GitHub | Build kit |
 | **Niumination** | ⚪ Minor | GitHub | Profile config |
-|| **niu-mission-control** | 🟢 New 🆕 | GitHub | Ecosystem dashboard — repo baru |
-|| **cc-switch** | 🟢 Active | GitHub | Tauri 2 multi-CLI switcher — v3.17.0 release |
+| **CC.Switch** | 🟢 Active | GitHub | Tauri 2 multi-CLI v3.17.0 |
 
 ### 🔧 projects/ — 16 Proyek Aktif Dikerjakan
 
@@ -191,29 +190,30 @@ Desktop/Niumination/
 
 ---
 
-## 📊 SCOREBOARD EKOSISTEM — Jul 17, 2026
+## 📊 SCOREBOARD EKOSISTEM — 20 Jul 2026
 
 ```
 Proyek               Kematangan  Priority   Git  Remote    Deploy      Lokasi
 ────────────────────────────────────────────────────────────────────────────────
 PemdiAcehTengah      ██████████ 95% P1     ✅   ✅ SSH    🟢 Vercel   Production/
-Niu-LKH              ██████████ 100% ✅ P2     ✅   ✅ SSH    🟢 GH Page  Production/
-niu-vermilion        ██████░░░░ 65% P1     ✅   ✅ SSH    🟢 Vercel   Production/
-kune-ya.com          ████████░░ 80% P1     ✅   ✅ SSH    🟢 Vercel   Production/
-TEDEO                ██████████ 85% ✅ **MATURE** ✅   ✅ SSH    ✅ GitHub   ❌ local — remote only
+Niu-LKH              ██████████ 100% ✅ P2  ✅   ✅ SSH    🟢 GH Page  Production/
+niu-vermilion        ██████████ V1-V5 P1  ✅   ✅ SSH    🟢 Vercel   Production/
+kune-ya.com          ██████████ K1-K5 P1  ✅   ✅ SSH    🟢 Vercel   Production/
+TEDEO                ██████████ 85% ✅ **MATURE** ✅ ✅ SSH    ✅ GitHub   ❌ local — remote only
 TEDEO-Kanban         ██████████ 95% P2     ✅   ✅ SSH    ✅ GitHub   projects/
-JHermUSB-portable    ██████████ 100% ✅   P2     ✅   ✅ SSH    🟢 GitHub   Production/
+JHermUSB-portable    ██████████ 100% ✅ P2  ✅   ✅ SSH    🟢 GitHub   Production/
 Niu-Flow             ██████████ 90% P2     ✅   ✅ SSH    ❌ local    projects/
-arch-web-dashboard   ██████░░░░ 60% P2     ✅   ✅ HTTPS  🟢 GitHub   Production/
-mac-web-dashboard    ██████████ 95% P2     ✅   ✅ SSH    🟢 GitHub   Production/
-Flame-ADE            ██████████ 93% P2     ✅   ✅ SSH    ✅ GitHub   projects/
-Niu-Dash             ██████████ 95% P2     ✅   ✅ SSH    🟢 GH Page  Production/ 🏭
-niu-cast             ██████████ 95% P2     ✅   ✅ HTTPS  ⚪ macOS    projects/
+arch-web-dashboard   ████████░░ v1.0.0 P2  ✅   ✅ SSH    🟢 GitHub   Production/
+mac-web-dashboard    ██████████ v1.0.0 P2  ✅   ✅ SSH    🟢 GitHub   Production/
+Flame-ADE            ██████████ v1.3.0 P2  ✅   ✅ SSH    ✅ GitHub   projects/
+Niu-Dash             ██████████ v2.16.8 P2 ✅   ✅ SSH    🟢 GH Page  Production/ 🏭
+niu-cast             ██████████ v1.1.1 P2  ✅   ✅ SSH    ⚪ macOS    projects/
 brain                ██████░░░░ 60% P3     ✅   ✅ SSH    ❌ local    root/
 x-downloader         ██████████ 100% P3   ✅   ✅ SSH    🟢 GitHub   projects/
 joy-connect-for-mac  ██████░░░░ 60% P2 🆕 ✅   ✅ SSH    ❌ local    projects/
 niu-mission-control  █████░░░░░ 40% P3 🆕 ✅   ✅ SSH    ✅ GitHub   projects/
 didong-code          ██████░░░░ 50% P2 🆕 ✅   ✅ SSH    ✅ GitHub   projects/
+CC.Switch            ██████████ v3.17.0 P2 ✅   ✅ SSH    🟢 GitHub   Production/
 ```
 
 ### incubator/ (Dormant)
@@ -229,29 +229,31 @@ zen                  ██░░░░░░░░ 20% P3     ✅   ✅ SSH    
 niutui               ██░░░░░░░░ 20% P3     ✅   ❌       ❌ local    incubator/
 aistudio-google      ██░░░░░░░░ 10% P3     ❌   ❌       ❌ local    incubator/
 arena.ai             ██░░░░░░░░ 10% P3     ❌   ❌       ❌ local    incubator/
-x-downloader-backup  —            —        ✅   ✅ SSH    ❌ local    incubator/
+x-downloader-backup  ░░░░░░░░░░ —          ✅   ✅ SSH    ❌ local    incubator/
 ```
 
 ---
 
-## 📊 FILESYSTEM AUDIT — Real Count (Jul 17, 2026)
+## 📊 FILESYSTEM AUDIT — Real Count (20 Jul 2026)
 
 ```
 Kategori                 Count  Notes
 ─────────────────────────────────────────
 Production/               11    Aktif & deployed
 projects/ (active)        16    Aktif dikerjakan
-incubator/ (dormant)       9    Belum dikerjakan
+incubator/ (dormant)      9    Belum dikerjakan
 archive/                  ~30    File/folder usang
-brain/                     1    Obsidian vault
-characters/                5    herdr agents
+brain/                     1    Obsidian vault (git)
+characters/                5    herdr agents (git)
 docs/                      8    Documentation dirs
 dox/                       3    Project DOX
 scripts/                  11    Ecosystem scripts
-tools/                     1    Ponytail
+tools/                     1    Ponytail (git)
 PI/                        3    Sensitive configs
 rekap/                     1    Terminal dotfiles
-─────────────────────────────────────────
+Niu-Flow/                  1    Root leftover (logs)
+reports/                   1    Root reports
+```
 Total filesystem items    ~44    (30 git + 14 non-git)
 Remote-only monitoring   ~20    Forks, stale repos
 Git status:              34 clean ✅, 2 dirty ⚠️
