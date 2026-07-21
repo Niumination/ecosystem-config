@@ -2,7 +2,7 @@
 
 > **NIU CAST** — Android device manager via ADB
 > **Stack:** Python 3.8+, PyQt5, ADB
-> **Versi:** v2.0.0 (refactor)
+> **Versi:** v3.5.0 (TCCP Server — Joy Connect mode)
 > **Repo:** `projects/niu-cast/` → `github.com/Niumination/niu-cast`
 
 ---
