@@ -1,9 +1,10 @@
 # 01 — Inventory Lengkap Aset Hermes Portable
 
 > **Source:** `/Volumes/HermesAgent/HermesAgentUSB/data/`
-> **Total size:** 15 GB
+> **Total size:** ~20 GB (termasuk home/, kanban/, lsp/)
 > **Hermes version:** v0.16.0 (2026.6.5)
 > **Config version:** `_config_version: 27`
+> **Last verified:** 2026-07-18
 
 ---
 
@@ -23,125 +24,46 @@
 
 | File | Ukuran | Isi |
 |------|--------|-----|
-| `state.db` | **239 MB** | Session DB — 49 sessions, memories, user profile |
-| `kanban.db` | 734 KB | Kanban board — tasks, status, lanes |
+| `state.db` | **366 MB** | Session DB — 81 session files, memories, user profile |
+| `kanban.db` | 1.1 MB | Kanban board — tasks, status, lanes |
 | `models_dev_cache.json` | 2.9 MB | Cache model catalog dari model-catalog.json |
 
 ## 3. Skills
 
-**Total: 28 skills** (di `/Volumes/HermesAgent/HermesAgentUSB/data/skills/`)
+**Total: 29 skill categories** (direktori) dengan **107 file SKILL.md** di `/Volumes/HermesAgent/HermesAgentUSB/data/skills/`
 
 | # | Skill | Kategori | Status |
 |---|-------|----------|--------|
-| 1 | apple-services | apple | ✅ |
-| 2 | macos-battery-diagnostics | apple | ✅ |
-| 3 | macos-computer-use | apple | ✅ |
-| 4 | macos-disk-cleanup | apple | ✅ |
-| 5 | macos-disk-maintenance | apple | ✅ |
-| 6 | macos-security-scan | apple | ✅ |
-| 7 | claude-code | autonomous-ai-agents | ✅ |
-| 8 | codex | autonomous-ai-agents | ✅ |
-| 9 | discord-gateway | autonomous-ai-agents | ✅ |
-| 10 | hermes-agent | autonomous-ai-agents | ✅ |
-| 11 | hermes-configuration-tuning | autonomous-ai-agents | ✅ |
-| 12 | hermes-cross-platform-setup | autonomous-ai-agents | ✅ |
-| 13 | hermes-fullstack-architect | autonomous-ai-agents | ✅ |
-| 14 | hermes-mcp-plugin-management | autonomous-ai-agents | ✅ |
-| 15 | hermes-skills-setup | autonomous-ai-agents | ✅ |
-| 16 | hermes-zero-defect-architect | autonomous-ai-agents | ✅ |
-| 17 | jcode | autonomous-ai-agents | ✅ |
-| 18 | kanban-codex-lane | autonomous-ai-agents | ✅ |
-| 19 | niu-flow | autonomous-ai-agents | ✅ |
-| 20 | opencode | autonomous-ai-agents | ✅ |
-| 21 | ui-ux-pro-max-setup | autonomous-ai-agents | ✅ |
-| 22 | architecture-diagram | creative | ✅ |
-| 23 | ascii-art | creative | ✅ |
-| 24 | ascii-video | creative | ✅ |
-| 25 | baoyu-article-illustrator | creative | ✅ |
-| 26 | baoyu-comic | creative | ✅ |
-| 27 | baoyu-infographic | creative | ✅ |
-| 28 | claude-design | creative | ✅ |
-| 29 | comfyui | creative | ✅ |
-| 30 | creative-ideation | creative | ✅ |
-| 31 | design-md | creative | ✅ |
-| 32 | excalidraw | creative | ✅ |
-| 33 | humanizer | creative | ✅ |
-| 34 | manim-video | creative | ✅ |
-| 35 | p5js | creative | ✅ |
-| 36 | pixel-art | creative | ✅ |
-| 37 | popular-web-designs | creative | ✅ |
-| 38 | pretext | creative | ✅ |
-| 39 | sketch | creative | ✅ |
-| 40 | songwriting-and-ai-music | creative | ✅ |
-| 41 | touchdesigner-mcp | creative | ✅ |
+| 1-6 | apple-services, macos-battery-diagnostics, macos-computer-use, macos-disk-cleanup, macos-disk-maintenance, macos-security-scan | apple | ✅ |
+| 7-21 | claude-code, codex, discord-gateway, hermes-agent, hermes-configuration-tuning, hermes-cross-platform-setup, hermes-fullstack-architect, hermes-mcp-plugin-management, hermes-skills-setup, hermes-zero-defect-architect, jcode, kanban-codex-lane, niu-flow, opencode, ui-ux-pro-max-setup | autonomous-ai-agents | ✅ |
+| 22-41 | architecture-diagram, ascii-art, ascii-video, baoyu-article-illustrator, baoyu-comic, baoyu-infographic, claude-design, comfyui, creative-ideation, design-md, excalidraw, humanizer, manim-video, p5js, pixel-art, popular-web-designs, pretext, sketch, songwriting-and-ai-music, touchdesigner-mcp | creative | ✅ |
 | 42 | jupyter-live-kernel | data-science | ✅ |
-| 43 | kanban-orchestrator | devops | ✅ |
-| 44 | kanban-worker | devops | ✅ |
-| 45 | webhook-subscriptions | devops | ✅ |
-| 46 | lkh-excel-generator | documentation | ✅ |
-| 47 | project-docs-sync | documentation | ✅ |
+| 43-45 | kanban-orchestrator, kanban-worker, webhook-subscriptions | devops | ✅ |
+| 46-47 | lkh-excel-generator, project-docs-sync | documentation | ✅ |
 | 48 | dogfood | dogfood | ✅ |
 | 49 | himalaya | email | ✅ |
-| 50 | minecraft-modpack-server | gaming | ✅ |
-| 51 | pokemon-player | gaming | ✅ |
+| 50-51 | minecraft-modpack-server, pokemon-player | gaming | ✅ |
 | 52 | github | github | ✅ |
-| 53 | ekosistem-scaffold | hermes | ✅ |
-| 54 | kanban-ecosystem-management | hermes | ✅ |
-| 55 | gif-search | media | ✅ |
-| 56 | heartmula | media | ✅ |
-| 57 | songsee | media | ✅ |
-| 58 | spotify | media | ✅ |
+| 53-54 | ekosistem-scaffold, kanban-ecosystem-management | hermes | ✅ |
+| 55-58 | gif-search, heartmula, songsee, spotify | media | ✅ |
 | 59 | youtube-content | media | ✅ |
-| 60 | lm-evaluation-harness | mlops/evaluation | ✅ |
-| 61 | weights-and-biases | mlops/evaluation | ✅ |
+| 60-61 | lm-evaluation-harness, weights-and-biases | mlops/evaluation | ✅ |
 | 62 | huggingface-hub | mlops | ✅ |
-| 63 | llama-cpp | mlops/inference | ✅ |
-| 64 | obliteratus | mlops/inference | ✅ |
-| 65 | vllm | mlops/inference | ✅ |
-| 66 | audiocraft | mlops/models | ✅ |
-| 67 | segment-anything | mlops/models | ✅ |
+| 63-65 | llama-cpp, obliteratus, vllm | mlops/inference | ✅ |
+| 66-67 | audiocraft, segment-anything | mlops/models | ✅ |
 | 68 | dspy | mlops/research | ✅ |
 | 69 | obsidian | note-taking | ✅ |
-| 70 | airtable | productivity | ✅ |
-| 71 | google-workspace | productivity | ✅ |
-| 72 | linear | productivity | ✅ |
-| 73 | maps | productivity | ✅ |
-| 74 | nano-pdf | productivity | ✅ |
-| 75 | notion | productivity | ✅ |
-| 76 | ocr-and-documents | productivity | ✅ |
-| 77 | powerpoint | productivity | ✅ |
-| 78 | teams-meeting-pipeline | productivity | ✅ |
+| 70-78 | airtable, google-workspace, linear, maps, nano-pdf, notion, ocr-and-documents, powerpoint, teams-meeting-pipeline | productivity | ✅ |
 | 79 | godmode | red-teaming | ✅ |
-| 80 | arxiv | research | ✅ |
-| 81 | blogwatcher | research | ✅ |
-| 82 | llm-wiki | research | ✅ |
-| 83 | polymarket | research | ✅ |
-| 84 | research-paper-writing | research | ✅ |
+| 80-84 | arxiv, blogwatcher, llm-wiki, polymarket, research-paper-writing | research | ✅ |
 | 85 | openhue | smart-home | ✅ |
 | 86 | xurl | social-media | ✅ |
-| 87 | android-ci-build | software-development | ✅ |
-| 88 | android-jetpack-compose | software-development | ✅ |
-| 89 | codebase-audit | software-development | ✅ |
-| 90 | data-migration-seeding | software-development | ✅ |
-| 91 | hermes-agent-skill-authoring | software-development | ✅ |
-| 92 | hermes-s6-container-supervision | software-development | ✅ |
-| 93 | plan-compliance-audit | software-development | ✅ |
-| 94 | ponytail | software-development | ✅ |
-| 95 | portfolio-data-maintenance | software-development | ✅ |
-| 96 | project-migration | software-development | ✅ |
-| 97 | project-orientation | software-development | ✅ |
-| 98 | requesting-code-review | software-development | ✅ |
-| 99 | spike | software-development | ✅ |
-| 100 | subagent-driven-development | software-development | ✅ |
-| 101 | systematic-debugging | software-development | ✅ |
-| 102 | tauri-fullstack | software-development | ✅ |
-| 103 | test-driven-development | software-development | ✅ |
-| 104 | writing-plans | software-development | ✅ |
+| 87-104 | android-ci-build, android-jetpack-compose, codebase-audit, data-migration-seeding, hermes-agent-skill-authoring, hermes-s6-container-supervision, plan-compliance-audit, **codebase-intelligence**, ponytail, portfolio-data-maintenance, project-migration, project-orientation, requesting-code-review, spike, subagent-driven-development, systematic-debugging, tauri-fullstack, test-driven-development, writing-plans | software-development | ✅ |
 | 105 | ui-ux-pro-max | ui-ux-pro-max | ✅ |
 | 106 | operational-dashboard | web-development | ✅ |
 | 107 | yuanbao | yuanbao | ✅ |
 
-**Total: ~107 skill files (SKILL.md) di 28 kategori + 1 skill ekstra**
+**Total: 29 direktori skill, 107 file SKILL.md**
 
 ## 4. Plugins
 
@@ -152,6 +74,7 @@ Di `/Volumes/HermesAgent/HermesAgentUSB/data/plugins/`:
 | `spotify` | ✅ Enabled (dari `known_plugin_toolsets`) |
 | `rtk-rewrite` | ✅ Enabled |
 | `hermes-achievements` | ❓ Installed tapi tidak di enable list |
+| `codebase-intelligence` | ✅ Installed (skill + 3 scripts) |
 
 ## 5. MCP Servers (6 total)
 
@@ -172,9 +95,9 @@ Semua dikelola oleh Hermes cron system (bukan crontab macOS).
 
 | Job ID | Nama | Schedule | Script | Status |
 |--------|------|----------|--------|--------|
-| `2e98df211aaa` | brain-daily-capture | 0 21 * * * | `scripts/brain-capture.py` | ⚠️ Error (script path?) |
-| `663b902a9ce5` | memory-checkpoint | 0 */6 * * * | `scripts/checkpoint.py` | ✅ OK |
-| `22a2fb847f4d` | niu-flow-weekly-audit | 0 8 * * 1 | (LLM-driven, skill niu-flow) | ✅ OK |
+| `2e98df211aaa` | brain-daily-capture | 0 21 * * * | `scripts/brain-capture.py` | ✅ Active |
+| `663b902a9ce5` | memory-checkpoint | 0 */6 * * * | `scripts/checkpoint.py` | ✅ Active |
+| `22a2fb847f4d` | niu-flow-weekly-audit | 0 8 * * 1 | (LLM-driven, skill niu-flow) | ✅ Active |
 
 Script path: Script di `data/scripts/` menggunakan relative path ke `$HERMES_HOME/scripts/`.
 
@@ -210,11 +133,11 @@ Note: Sebelumnya ada `com.niumination.kanban-server` plist — mungkin sudah dih
 
 | Komponen | Lokasi | Size | Catatan |
 |----------|--------|------|---------|
-| **Session DB** | `data/state.db` | 239 MB | **Kritis** — 49 sessions, riwayat chat |
-| **Kanban DB** | `data/kanban.db` | 734 KB | Semua task, status, lanes |
+| **Session DB** | `data/state.db` | 366 MB | **Kritis** — 81 session files, riwayat chat |
+| **Kanban DB** | `data/kanban.db` | 1.1 MB | Semua task, status, lanes |
 | **Memories** | `data/memories/MEMORY.md` | 2.2 KB | Persistent memory |
 | **User profile** | `data/memories/USER.md` | 1.4 KB | User preferences |
-| **Sessions** | `data/sessions/` | 11 MB | 49 session files |
+| **Sessions** | `data/sessions/` | 11 MB | 81 session files |
 | **Checkpoints** | `data/checkpoints/` | 1.1 MB | State snapshots |
 | **Gateway state** | `data/gateway_state.json` | 700 B | PID + platform status |
 | **Auth** | `data/auth.json` | 2.6 KB | Kredensial layanan |
@@ -229,7 +152,7 @@ Note: Sebelumnya ada `com.niumination.kanban-server` plist — mungkin sudah dih
 | `data/logs/` | 34 MB | `agent.log`, `errors.log` (4 rotasi) |
 | `data/backup/` | 341 MB | Auto-backup (1 backup: 2026-06-26) |
 | `data/bin/tirith` | — | Tirith security binary |
-| `data/scripts/` | 416 KB | 12 script files |
+| `data/scripts/` | 416 KB | 13 script files (termasuk codebase/ intelligence) |
 | `data/cron/` | 1.5 MB | Cron job outputs (per-job dir) |
 | `data/plugins/` | 896 KB | Plugin files |
 | `data/sandboxes/` | — | Execution sandboxes |

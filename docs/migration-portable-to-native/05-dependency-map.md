@@ -67,7 +67,8 @@
 | **sessions/** | state.db (index) | Session history |
 | **memories/** | state.db (index) | Memory injection |
 | **skills/** | SKILL.md files | Agent behavior |
-| **scripts/** | PATH config | Cron jobs |
+| **scripts/** | PATH config | Cron jobs, codebase intelligence |
+| **codebase/** | scripts/codebase/*.py | Graphify + Serena for agent code understanding |
 | **plugins/** | Hermes plugin API | Agent toolsets |
 | **bin/tirith** | Binary file | Security enforcement |
 | **MCP servers** | Python/Node/Brew | Agent tools |
@@ -85,7 +86,7 @@ STEP 1:  Install Hermes binary (native)                ← independent
 STEP 2:  Copy config.yaml + .env + auth.json           ← independent files
 STEP 3:  Copy state.db + kanban.db                     ← independent DB files
 STEP 4:  Copy memories/                                ← depends on state.db
-STEP 5:  Copy skills/ + scripts/ + plugins/            ← independent
+STEP 5:  Copy skills/ + scripts/ + codebase/ + plugins/ ← independent
 STEP 6:  Copy sessions/ + checkpoints/                 ← nice-to-have
 STEP 7:  Update paths di config.yaml                   ← depends on STEP 1-2
 STEP 8:  Install/verify MCP servers                    ← depends on STEP 2,7

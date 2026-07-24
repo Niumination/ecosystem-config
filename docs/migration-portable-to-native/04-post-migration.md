@@ -20,7 +20,7 @@
 - [ ] `hermes doctor --check-db` → ✅
 
 ### Skills & Memory
-- [ ] `hermes skills list \| wc -l` → 28+ (harus sama dengan portable)
+- [ ] `hermes skills list \| wc -l` → 29+ (harus sama dengan portable, realitas: 29 direktori, 107 file SKILL.md)
 - [ ] `hermes skills list` → nama-nama skill familiar
 - [ ] `hermes memory list` → MEMORY.md + USER.md terbaca
 - [ ] Test: minta agent pakai skill tertentu → response sesuai skill

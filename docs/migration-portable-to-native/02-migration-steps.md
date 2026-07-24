@@ -11,6 +11,8 @@
 
 **Rekomendasi:** Skenario A — migrasi v0.16.0 → v0.16.0 native dulu. Setelah native stabil, baru upgrade ke v0.18.0.
 
+> **Note (2026-07-18):** Codebase Intelligence Layer (`skills/codebase-intelligence` + `scripts/codebase/`) sudah terpasang di portable. Migrasi harus memindahkan skill ini juga.
+
 ---
 
 ## Phase 0: Persiapan (Waktu: ~30 menit)
@@ -19,14 +21,15 @@
 ```bash
 # Cek disk space di Mac internal
 df -h / | head -2
-# Harus ≥ 20 GB free (15 GB data + overhead)
+# Harus ≥ 20 GB free (realitas sekarang: 21 GB free)
+
+# Cek Hermes portable
+ls /Volumes/HermesAgent/HermesAgentUSB/data/config.yaml
+# Harus mounted
 
 # Cek versi Hermes yang akan diinstall
-hermes --version
-# Harus ≥ 0.16.0
-
-# Pastikan pip/uv tersedia
-which uv
+/Users/zaryu/.hermes-portable/venv/bin/hermes --version
+# Harus ≥ 0.16.0 (realitas: v0.16.0)
 ```
 
 ### 0.2 — Backup Total Portable Hermes

@@ -31,9 +31,15 @@ dox/notebooklm/
 - **Lain:** Jumlah Perangkat Daerah (DOCX), README, CONTRIBUTING, AGENTS
 
 ## Cara Update
+## 🔌 Status Koneksi (24 Jul 2026)
 
+> ❌ **PUTUS** — `nlm login --check` bilang `Profile 'default': not found`
+> Penyebab: migrasi portable→native / token expired.
+> **Panduan reconnect:** lihat `RECONNECT_GUIDE.md`
+
+## Cara Update
 Via Hermes agent:
 ```bash
-nlm login --check       # verify auth
+nlm login --check       # verify auth (❌ saat ini — lihat RECONNECT_GUIDE.md)
 nlm source add <notebook-id> --url <url> --wait
 ```
