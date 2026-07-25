@@ -3,7 +3,7 @@
 **Lokasi:** `~/Desktop/Niumination/`
 **Pengguna:** Afrizal Munthe (Niumination) — Pranata Komputer, Diskominfo Aceh Tengah
 **DOX Version:** 3.0
-||| **Total Projek Lokal:** 44 item (35 git + 9 non-git)
+||| **Total Projek Lokal:** ~40 git repos
 |||||| | **Kanban Board:** "Niumination Ecosystem" — terupdate 16 Jul 2026 ✅
 | | **Model aktif:** `opencode/big-pickle` — paid ($1/M in, $5/M out)
 
@@ -110,29 +110,24 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
 ├── tools/                     ← Ponytail MCP server & utilities
 │
 └── projects/                  ← Projek Eksperimen, Tools, & Aktif
-    ├── arena.ai/              ← AI Arena — dashboard.html
     ├── AuditTI-AT/            ← GH Pages Live ✅ — JS/HTML
     ├── cc-acehtengah/         ← Command Center AI — SAPA→SPLP→CC — ✅ github.com/Niumination/cc-acehtengah
-    ├── Niu-Flow/              ← JCode bridge — pipeline paralel, 6 commits
-    ├── TEDEO/                 ← Delivery Service (Express/React/PostgreSQL)
-    ├── TEDEO-Kanban/          ← Kanban untuk TEDEO
-    ├── Ultra/                 ← Ultra Automation (Puppeteer) — ✅ github.com/Niumination/ultra-automation
-    ├── aistudio-google/       ← Game files (street-racer-offline)
+    ├── didong-code/           ← Electron AI coding agent — Gayo Aceh tradisi
     ├── flame-ade/             ← Tauri 2/Rust desktop app (v1.3.0)
+    ├── joy-connect-for-mac/   ← Swift macOS app — Infinix device bridge 🆕
+    ├── latticesend/           ← P2P device transfer — Rust/WASM/Flutter (spec phase) 🆕
     ├── maze-3d/               ← 3D web maze game (GH Pages)
-    ├── niu-cast/              ← Android Device Manager via ADB — v2.0.0 (refactor, -58% LOC)
-    ├── niu-dash-fullstack/    ← Next.js 16 Fullstack Dashboard — ✅ github.com/Niumination/niu-dash-fullstack
-    ├── niu-kanban-dash/       ← React/Vite dashboard — ✅ github.com/Niumination/niu-kanban-dash (port 5199)
-    ├── niu-studio/            ← Tauri/React creative studio
-    ├── niumination-workspace/    ← Active — 4 commits, Prisma, Three.js — ✅ github.com/Niumination/niumination-workspace
-    ├── niude/                 ← Tauri app
-    ├── niuterm/               ← Tauri terminal tool
-    ├── niutui/                ← Rust/Cargo TUI — ✅ Git
-    ├── orchestrator/          ← Python multi-agent — ✅ github.com/Niumination/orchestrator
-    ├── terax-ai/              ← Lightweight ADE fork (TS)
-    ├── didong-code/           ← Electron AI coding agent — Gayo Aceh tradisi (new)
-    ├── x-downloader/          ← Tauri 2 desktop — yt-dlp GUI (batch, format preview)
-    └── zen/                   ← acehtengah-web/
+    ├── niu-cast/              ← Android Device Manager via ADB — v1.2.0
+    ├── niu-dash-fullstack/    ← Next.js 16 Fullstack Dashboard
+    ├── niu-kanban-dash/       ← React/Vite dashboard (port 5199)
+    ├── niu-mission-control/   ← Agent Swarm — FastAPI + WebSocket 🆕
+    ├── niumination-workspace/ ← Next.js 16, Prisma, Three.js
+    ├── Niu-Flow/              ← JCode bridge — pipeline paralel
+    ├── orchestrator/          ← Python multi-agent
+    ├── spatial-vision/        ← Full-stack Rust/WASM — gesture+canvas 🆕
+    ├── TEDEO-Kanban/          ← Kanban untuk TEDEO
+    ├── Ultra/                 ← Ultra Automation (Puppeteer)
+    └── x-downloader/          ← Tauri 2 desktop — yt-dlp GUI
 ```
 
 ---
@@ -187,7 +182,10 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 | **JHermUSB-portable** | `Production/JHermUSB-portable/` | Shell, Hermes Agent v25+v27 | `github.com/Niumination/JHermUSB-portable` | 🟢 GitHub (🏭) | 22 Jun 2026 | ✅ Production |
 | **Niu-Flow** | `projects/Niu-Flow/` | Python, JCode bridge | `github.com/Niumination/niu-flow` | ⚪ Local | 20 Jun 2026 | 🟢 **Active** — 5 commits |
 | **VirtualAssistance** | — (remote only) | TS | `github.com/Niumination/VirtualAssistance` | 🟢 Vercel | 3 Jun 2026 | ✅ Live |
-| **terax-ai** (fork) | `projects/terax-ai/` | TS | `github.com/niumination/terax-ai` | ⚪ Fork | 31 Mei 2026 | 🔄 Fork |
+| **Joy-Connect-for-Mac** | `projects/joy-connect-for-mac/` | Swift 5.9, macOS 13+, scrcpy | lokal | ⚪ macOS Desktop | 25 Jul 2026 | 🆕 **Infinix device bridge** |
+| **LatticeSend** | `projects/latticesend/` | Rust, Flutter, QUIC, E2EE | lokal | ⚪ Spec phase | 22 Jul 2026 | 🆕 **P2P transfer — blueprint only** |
+| **Niu-MissionControl** | `projects/niu-mission-control/` | Python, FastAPI, WebSocket, aiosqlite | lokal | ⚪ Local | 25 Jul 2026 | 🆕 **Agent Swarm dashboard** |
+| **Spatial Vision** | `projects/spatial-vision/` | Rust, WASM, Axum, pinch gesture | lokal | ⚪ Prototype | 22 Jul 2026 | 🆕 **Full-stack Rust/WASM** |
 || **orchestrator** | `projects/orchestrator/` | Python | `github.com/Niumination/orchestrator` | ⚪ Local | 24 Jun 2026 | ✅ **Pushed** |
 || **didong-code** | `projects/didong-code/` | Electron, React 18, TypeScript, Vite, Tailwind CSS | `github.com/Niumination/didong-code` | ⚪ Desktop app | 08 Jul 2026 | 🆕 **New — Gayo Heritage ADE** |
 || **Ultra** | `projects/Ultra/` | Node.js, Puppeteer, Express | `github.com/Niumination/ultra-automation` | ⚪ Local | 25 Jun 2026 | ✅ **Pushed** |
@@ -213,14 +211,8 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 || **niu-dash-fullstack** | `projects/niu-dash-fullstack/` | Next.js 16, React 19, Prisma 7, TanStack Query, next-auth | `github.com/Niumination/niu-dash-fullstack` | ⚪ Local | 13 Jul 2026 | ✅ **3D scene removed — performance improved** |
 || **niu-dash** | `Production/niu-dash/` 🏭 | HTML/CSS/JS Vanilla | `github.com/Niumination/niu-dash` | 🟢 GH Pages — v2.16.8 | 22 Jun 2026 | 🟢 **Audit 27/27 ✅** |
 ||| **niumination-workspace** | `projects/niumination-workspace/` | Next.js 16, Prisma, Three.js, TanStack Query | `github.com/Niumination/niumination-workspace` | ⚪ Local | 24 Jun 2026 | ✅ **4 commits — pushed to GitHub** |
-| **niu-studio** | `projects/niu-studio/` | Tauri/React | `github.com/Niumination/niu-studio` | ⚪ Local | ✅ Git | 🟡 Dual lockfile |
-| **niude** | `projects/niude/` | Tauri | `github.com/Niumination/niude` | ⚪ Local | ✅ Git | 🟡 Dual lockfile |
-| **niuterm** | `projects/niuterm/` | Tauri | `github.com/niumination/NiuTerm` | ⚪ Local | ✅ Git | 🟡 |
-| **niutui** | `projects/niutui/` | Rust/Cargo | lokal | ⚪ TUI | ✅ Git | 🟡 **No remote (0 commits)** |
-| **zen** | `projects/zen/` | acehtengah-web/ | `github.com/Niumination/zen` | ⚪ Local | ✅ Git | 🟡 |
 | **niu-kanban-dash** | `projects/niu-kanban-dash/` | React 19, Vite, Tailwind v4 | `github.com/Niumination/niu-kanban-dash` | localhost:5199 | 24 Jun 2026 | ✅ **Pushed to GitHub** |
 | **maze-3d** | `projects/maze-3d/` | HTML, JS | `github.com/Niumination/Maze-3D-Game---Web-Based` | 🟢 GH Pages | 21 Mei 2026 | ✅ Live |
-| **arena.ai** | `projects/arena.ai/` | HTML dashboard | lokal | ⚪ Local | — | 🟡 AI Arena dashboard |
 | **x-downloader** | `projects/x-downloader/` | Tauri 2 (Rust) + Vite 5 + React 18 + Three.js 3D orb | `github.com/Niumination/x-downloader` | 🟢 GitHub | 06 Jul 2026 | ✅ **v2.0.0 — P3: playlist, conversion, clipboard, pause/resume, DMG release** |
 | **niu-private** | — (remote only) | TS | `github.com/Niumination/niu-private` | 🟢 GH Pages | 8 Jun 2026 | ✅ Live |
 | **ai-file-manager-android** | `Production/ai-file-manager-android/` | Android (Kotlin, Jetpack Compose, Gradle), Google Gemini 1.5 Flash, ML Kit OCR | `github.com/Niumination/ai-file-organizer-android` | 🟢 GitHub | 23 Jun 2026 | ✅ **Production** — tested on device, CI green |
@@ -249,7 +241,6 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 |--------|------|--------|-----------|
 | **brain** | `brain/` | `github.com/Niumination/brain` | Obsidian vault — catatan harian, knowledge base |
 | **PI** | `PI/` | lokal | **Personal Inventory** — API keys, credentials — **RAHASIA** |
-| **aistudio-google** | `projects/aistudio-google/` | lokal | Game files |
 | **archive** | `archive/` | lokal | Arsip proyek lama |
 | **labs** | `labs/` | lokal | Lab eksperimen |
 | **rekap** | `rekap/` | lokal | Terminal dotfiles & rekap |
@@ -258,7 +249,6 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 
 | Projek | Path | Deskripsi |
 |--------|------|-----------|
-| **TEDEO** | `projects/TEDEO/` | Delivery Service (Express, Prisma, PostgreSQL, Socket.IO) — **✅ Web deployed: https://tedeo-web.vercel.app** — T1-T4 ✅ ALL FIXED |
 | **TEDEO-Kanban** | `projects/TEDEO-Kanban/` | Kanban board untuk TEDEO — ✅ pushed ke GitHub |
 
 ---
@@ -370,13 +360,10 @@ AGENTS.md (root — ~/Desktop/Niumination/)
   ├── Production/kune-ya.com/AGENTS.md                              ✅
   ├── Production/niu-vermilion/AGENTS.md                            ✅
   ├── projects/Niu-Flow/AGENTS.md                                   ✅
-  ├── projects/TEDEO/AGENTS.md                                      ✅
   ├── projects/Ultra/AGENTS.md                                      ✅
   ├── projects/flame-ade/AGENTS.md                                  ✅
   ├── projects/niu-cast/AGENTS.md                                   ✅
   ├── projects/niumination-workspace/AGENTS.md                      ✅
-  ├── projects/niuterm/AGENTS.md                                    ✅
-  ├── projects/terax-ai/AGENTS.md                                   ✅
   ├── projects/x-downloader/AGENTS.md                               ✅
   ├── Niumination/AGENTS.md                                       ✅ (profile DOX)
   └── brain/projects/*/AGENTS.md (10 files)                         ✅ (mirror docs)
@@ -450,10 +437,10 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 
 | Timeline | Projek |
 |----------|--------|
-| 🔥 **Sekarang** | **TEDEO** — T1-T4 ✅ — butuh test plan + deploy — **PemdiAcehTengah** — 🟢 aktif di Production/ |
-| 🟢 **1-2 minggu** | niutui (init remote), brain-capture cron fix, TEDEO deploy test |
-| 🔄 **4-7 hari** | Niu-Flow maintenance, app management UI untuk niu-cast |
-| ⚪ **Bulan ini** | Flame-ADE, niu-studio, niude, niuterm, polish x-downloader |
+| 🔥 **Sekarang** | **PemdiAcehTengah** — 🟢 aktif di Production/ — **cc-switch** — v3.17.0 release |
+| 🟢 **1-2 minggu** | brain-capture cron fix, joy-connect-for-mac dev, spatial-vision prototyping |
+| 🔄 **4-7 hari** | Niu-Flow maintenance, app management UI untuk niu-cast, latticesend spec review |
+| ⚪ **Bulan ini** | Flame-ADE, niu-mission-control dev, didong-code polish, x-downloader |
 | 🗄️ **No rush** | Maze-3D, SPBE tools, Startpages, Dotfiles, Forks, archive/labs cleanup |
 
 ---
@@ -471,5 +458,5 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 ---
 
 > **Dibuat:** 11 Juni 2026
-> **Diperbarui:** 17 Jul 2026 — v3.0 — **6 AI Agents + AI-Memory-Collection expanded**
+> **Diperbarui:** 25 Jul 2026 — v3.1 — **Ecosystem cleanup: -9 stale projects, +4 new projects**
 > **Oleh:** Niumination (Afrizal Munthe) — Aceh Tengah
