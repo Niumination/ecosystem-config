@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Niumination Ecosystem · v4.0</title>
+<style>
+  :root {
+    --bg: #0f0f14;
+    --surface: #1a1a24;
+    --surface2: #22223a;
+    --text: #e4e4f0;
+    --text2: #9090b0;
+    --accent: #f0c060;
+    --green: #7ecc7e;
+    --red: #e06060;
+    --yellow: #e0c060;
+    --gray: #606080;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg); color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* Header */
+  header {
+    text-align: center; margin-bottom: 2.5rem;
+    padding: 2rem; border-radius: 16px;
+    background: linear-gradient(135deg, #1a1a30 0%, #222240 50%, #1a1a30 100%);
+    border: 1px solid #333350;
+  }
+  header h1 {
+    font-size: 2.4rem; font-weight: 700;
+    background: linear-gradient(135deg, #f0c060, #e0a030);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  header p { color: var(--text2); margin-top: 0.5rem; font-size: 1.05rem; }
+  .stats {
+    display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center;
+    margin-top: 1.2rem;
+  }
+  .stat {
+    background: var(--surface); padding: 0.5rem 1rem; border-radius: 20px;
+    font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem;
+  }
+  .stat strong { color: var(--accent); }
+
+  /* Filters */
+  .filters {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .filter-btn {
+    background: var(--surface); color: var(--text2);
+    border: 1px solid #333; padding: 0.4rem 1rem;
+    border-radius: 20px; cursor: pointer; font-size: 0.85rem;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+  .filter-btn.active {
+    background: var(--accent); color: #111; font-weight: 600;
+    border-color: var(--accent);
+  }
+
+  /* Category Section */
+  .category { margin-bottom: 1.5rem; }
+  .category-header {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.6rem 0; border-bottom: 1px solid #333;
+    margin-bottom: 0.8rem; cursor: pointer;
+  }
+  .category-header .icon { font-size: 1.3rem; }
+  .category-header h2 { font-size: 1.1rem; font-weight: 600; }
+  .category-header .count {
+    background: var(--surface2); padding: 0.1rem 0.6rem;
+    border-radius: 10px; font-size: 0.75rem; color: var(--text2);
+  }
+  .category-header .badge { margin-left: auto; font-size: 0.75rem; color: var(--text2); }
+
+  /* Project Cards */
+  .projects {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.6rem;
+  }
+  .card {
+    background: var(--surface); border: 1px solid #2a2a3a;
+    border-radius: 10px; padding: 0.8rem 1rem;
+    transition: all 0.15s; opacity: 1;
+  }
+  .card.hidden { display: none; }
+  .card:hover { border-color: #444460; background: var(--surface2); transform: translateY(-1px); }
+  .card-header {
+    display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem;
+  }
+  .card-title { font-weight: 600; font-size: 0.95rem; }
+  .card-title a { color: var(--text); text-decoration: none; }
+  .card-title a:hover { color: var(--accent); }
+  .pill {
+    font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 10px;
+    font-weight: 600;
+  }
+  .pill-live { background: #1a3a1a; color: var(--green); }
+  .pill-active { background: #1a3a2a; color: #7ecc9e; }
+  .pill-done { background: #1a2a3a; color: #7eb0cc; }
+  .pill-stale { background: #3a2a1a; color: var(--yellow); }
+  .pill-dormant { background: #2a1a1a; color: #cc7e7e; }
+  .pill-minor { background: #2a2a3a; color: var(--text2); }
+  .card-desc {
+    font-size: 0.8rem; color: var(--text2);
+    display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center;
+  }
+  .card-desc .tag {
+    background: #2a2a3a; padding: 0.1rem 0.4rem; border-radius: 8px;
+    font-size: 0.7rem;
+  }
+
+  /* Pipeline bar */
+  .pipeline {
+    display: flex; gap: 0; margin: 1.5rem 0;
+    border-radius: 10px; overflow: hidden;
+    border: 1px solid #2a2a3a;
+  }
+  .pipeline-step {
+    flex: 1; padding: 0.6rem; text-align: center;
+    font-size: 0.75rem; color: var(--text2);
+    background: var(--surface);
+    border-right: 1px solid #2a2a3a; transition: all 0.2s;
+  }
+  .pipeline-step:last-child { border-right: none; }
+  .pipeline-step .symbol { font-size: 1.1rem; display: block; }
+  .pipeline-step .label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  .pipeline-step:hover { background: var(--surface2); color: var(--text); }
+
+  footer {
+    text-align: center; margin-top: 2rem; padding: 1rem;
+    color: var(--text2); font-size: 0.8rem;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    .projects { grid-template-columns: 1fr; }
+    header h1 { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>🏔️ Niumination Ecosystem</h1>
+  <p>~40 git repos · 18 GB · Maturity-based pipeline</p>
+  <div class="stats">
+    <div class="stat">🏭 <strong id="c-apps">0</strong> apps</div>
+    <div class="stat">🔧 <strong id="c-services">0</strong> services</div>
+    <div class="stat">🌐 <strong id="c-sites">0</strong> sites</div>
+    <div class="stat">🖥️ <strong id="c-desktop">0</strong> desktop</div>
+    <div class="stat">🤖 <strong id="c-agents">0</strong> agents</div>
+    <div class="stat">🔬 <strong id="c-labs">0</strong> labs</div>
+    <div class="stat">🧪 <strong id="c-sandbox">0</strong> sandbox</div>
+    <div class="stat">📦 <strong id="c-archived">0</strong> archived</div>
+  </div>
+</header>
+
+<div class="filters" id="filters">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter=".cat-apps">🏭 Apps</button>
+  <button class="filter-btn" data-filter=".cat-services">🔧 Services</button>
+  <button class="filter-btn" data-filter=".cat-sites">🌐 Sites</button>
+  <button class="filter-btn" data-filter=".cat-desktop">🖥️ Desktop</button>
+  <button class="filter-btn" data-filter=".cat-agents">🤖 Agents</button>
+  <button class="filter-btn" data-filter=".cat-labs">🔬 Labs</button>
+  <button class="filter-btn" data-filter=".cat-sandbox">🧪 Sandbox</button>
+  <button class="filter-btn" data-filter=".cat-archived">📦 Archived</button>
+</div>
+
+<div class="pipeline">
+  <div class="pipeline-step"><span class="symbol">🧪</span><span class="label">Sandbox</span><small>dormant</small></div>
+  <div class="pipeline-step"><span class="symbol">🔬</span><span class="label">Labs</span><small>research</small></div>
+  <div class="pipeline-step"><span class="symbol">🔧</span><span class="label">Services</span><small>backend</small></div>
+  <div class="pipeline-step"><span class="symbol">🌐</span><span class="label">Sites</span><small>frontend</small></div>
+  <div class="pipeline-step"><span class="symbol">🖥️</span><span class="label">Desktop</span><small>native</small></div>
+  <div class="pipeline-step"><span class="symbol">🤖</span><span class="label">Agents</span><small>AI</small></div>
+  <div class="pipeline-step"><span class="symbol">🏭</span><span class="label">Apps</span><small>production</small></div>
+  <div class="pipeline-step"><span class="symbol">📦</span><span class="label">Archive</span><small>cold</small></div>
+</div>
+
+<div id="ecosystem"></div>
+
+<footer>
+  <a href="https://github.com/Niumination/ecosystem-config">ecosystem-config</a>
+  · v4.0 · Jul 2026
+</footer>
+</div>
+
+<script>
+const data = [
+  // 🏭 apps
+  { cat:'apps', name:'PemdiAcehTengah', url:'https://github.com/Niumination/PemdiAcehTengah', desc:'Portal Pemda 52 OPD', status:'live', stack:'Next.js/Prisma', deploy:'Vercel' },
+  { cat:'apps', name:'niu-dash', url:'https://github.com/Niumination/niu-dash', desc:'Ecosystem Dashboard', status:'live', stack:'Next.js', deploy:'GH Pages' },
+  { cat:'apps', name:'kune-ya.com', url:'https://github.com/Niumination/kune-ya.com', desc:'AI Chat RAG', status:'live', stack:'Next.js/Postgres', deploy:'Vercel' },
+  { cat:'apps', name:'Niu-Vermilion', url:'https://github.com/Niumination/Niu-Vermilion', desc:'Second Brain', status:'live', stack:'Next.js', deploy:'Vercel' },
+  { cat:'apps', name:'Niu-LKH', url:'https://github.com/Niumination/Niu-LKH', desc:'Laporan Keuangan Hijau', status:'done', stack:'Next.js', deploy:'GH Pages' },
+  { cat:'apps', name:'mac-web-dashboard', url:'https://github.com/Niumination/mac-web-dashboard', desc:'macOS Dashboard', status:'done', stack:'HTML/CSS', deploy:'GitHub' },
+  { cat:'apps', name:'arch-web-dashboard', url:'https://github.com/Niumination/arch-web-dashboard', desc:'Arch Linux Dashboard', status:'done', stack:'HTML/CSS', deploy:'GitHub' },
+  { cat:'apps', name:'ai-file-organizer-android', url:'https://github.com/Niumination/ai-file-organizer-android', desc:'Android File Organizer', status:'live', stack:'Kotlin', deploy:'Device' },
+  { cat:'apps', name:'cc-switch', url:'https://github.com/Niumination/cc-switch', desc:'Multi-CLI Switcher', status:'active', stack:'Tauri 2/Rust', deploy:'GitHub' },
+  { cat:'apps', name:'JHermUSB-portable', url:'https://github.com/Niumination/JHermUSB-portable', desc:'Hermes Portable USB', status:'done', stack:'Python', deploy:'GitHub' },
+  { cat:'apps', name:'AI-First-OS', url:'https://github.com/Niumination/AI-First-OS', desc:'Arch ISO Builder', status:'minor', stack:'Shell', deploy:'GitHub' },
+  // 🔧 services
+  { cat:'services', name:'cc-acehtengah', url:'https://github.com/Niumination/cc-acehtengah', desc:'AI Command Center', status:'active', stack:'Next.js/Prisma/GIS', deploy:'Cloudflare' },
+  { cat:'services', name:'niu-mission-control', url:'https://github.com/Niumination/niu-mission-control', desc:'Agent Swarm Gateway', status:'active', stack:'FastAPI/WebSocket', deploy:'GitHub' },
+  { cat:'services', name:'niu-cast', url:'https://github.com/Niumination/niu-cast', desc:'Android ADB Bridge', status:'active', stack:'PyQt5/ADB', deploy:'macOS' },
+  { cat:'services', name:'niu-flow', url:'https://github.com/Niumination/niu-flow', desc:'Pipeline Hermes↔JCode', status:'active', stack:'Python', deploy:'Remote' },
+  { cat:'services', name:'latticesend', url:'https://github.com/Niumination/latticesend', desc:'P2P File Transfer', status:'active', stack:'Rust/Flutter', deploy:'GitHub' },
+  // 🌐 sites
+  { cat:'sites', name:'niu-dash-fullstack', url:'https://github.com/Niumination/niu-dash-fullstack', desc:'Fullstack Dashboard', status:'stale', stack:'Next.js 16', deploy:'Vercel' },
+  { cat:'sites', name:'niu-kanban-dash', url:'https://github.com/Niumination/niu-kanban-dash', desc:'Kanban Board', status:'stale', stack:'React/Vite', deploy:'—' },
+  { cat:'sites', name:'TEDEO-Kanban', url:'https://github.com/Niumination/TEDEO-Kanban', desc:'TEDEO Board', status:'stale', stack:'Vite/React/Zustand', deploy:'GitHub' },
+  { cat:'sites', name:'AuditTI-AT', url:'https://github.com/Niumination/AuditTI-AT', desc:'Audit TI Pages', status:'done', stack:'GH Pages', deploy:'GH Pages' },
+  { cat:'sites', name:'spatial-vision', url:'https://github.com/Niumination/spatial-vision', desc:'3D Vision WASM', status:'active', stack:'Rust/WASM', deploy:'GitHub' },
+  // 🖥️ desktop
+  { cat:'desktop', name:'Flame-ADE', url:'https://github.com/Niumination/Flame-ADE', desc:'AI Terminal', status:'stale', stack:'Tauri 2/Rust', deploy:'GitHub' },
+  { cat:'desktop', name:'didong-code', url:'https://github.com/Niumination/didong-code', desc:'Coding Agent Electron', status:'active', stack:'Electron', deploy:'GitHub' },
+  { cat:'desktop', name:'joy-connect-for-mac', url:'https://github.com/Niumination/joy-connect-for-mac', desc:'macOS Device Bridge', status:'active', stack:'Swift/ADB', deploy:'Local' },
+  { cat:'desktop', name:'x-downloader', url:'https://github.com/Niumination/x-downloader', desc:'yt-dlp GUI', status:'done', stack:'Tauri 2', deploy:'GitHub' },
+  // 🤖 agents
+  { cat:'agents', name:'Niumination (profile)', url:'https://github.com/Niumination/Niumination', desc:'Animated terminal README', status:'live', stack:'Markdown/SVG', deploy:'GitHub' },
+  { cat:'agents', name:'orchestrator', url:'https://github.com/Niumination/orchestrator', desc:'Multi-agent orchestration', status:'stale', stack:'Python', deploy:'GitHub' },
+  { cat:'agents', name:'ultra-automation', url:'https://github.com/Niumination/ultra-automation', desc:'Puppeteer automation', status:'stale', stack:'Node.js', deploy:'GitHub' },
+  { cat:'agents', name:'characters/', url:'', desc:'herdr agents (4 chars)', status:'live', stack:'AGENTS.md', deploy:'Root' },
+  // 🔬 labs
+  { cat:'labs', name:'Maze-3D-Game---Web-Based', url:'https://github.com/Niumination/Maze-3D-Game---Web-Based', desc:'3D Web Maze', status:'done', stack:'Three.js', deploy:'GH Pages' },
+  { cat:'labs', name:'niumination-workspace', url:'https://github.com/Niumination/niumination-workspace', desc:'Next.js playground', status:'stale', stack:'Next.js 16', deploy:'GitHub' },
+  // 🧪 sandbox
+  { cat:'sandbox', name:'niu-studio', url:'https://github.com/Niumination/niu-studio', desc:'Dual lockfile issues', status:'dormant', stack:'Node.js', deploy:'—' },
+  { cat:'sandbox', name:'niude', url:'https://github.com/Niumination/niude', desc:'Low priority', status:'dormant', stack:'—', deploy:'—' },
+  { cat:'sandbox', name:'niutui', url:'https://github.com/Niumination/niutui', desc:'TUI experiment', status:'dormant', stack:'Go', deploy:'—' },
+  { cat:'sandbox', name:'zen', url:'https://github.com/Niumination/zen', desc:'acehtengah-web related', status:'dormant', stack:'—', deploy:'—' },
+  { cat:'sandbox', name:'aistudio-google', desc:'Game files only', status:'dormant', stack:'—', deploy:'—' },
+  { cat:'sandbox', name:'arena.ai', desc:'AI experiment', status:'dormant', stack:'—', deploy:'—' },
+  { cat:'sandbox', name:'x-downloader-backup', desc:'Backup of x-downloader', status:'dormant', stack:'—', deploy:'—' },
+  // 📦 archived
+  { cat:'archived', name:'niuterm', url:'https://github.com/niumination/NiuTerm', desc:'Archived — stale 64d', status:'archived', stack:'Rust', deploy:'—' },
+  { cat:'archived', name:'terax-ai', url:'https://github.com/niumination/terax-ai', desc:'Archived — stale 58d', status:'archived', stack:'Python', deploy:'—' },
+];
+
+const statuses = {
+  live:'🟢 Live', active:'🟢 Active', done:'✅ Done',
+  stale:'⏸️ Stale', dormant:'💤 Dormant', minor:'⚪ Minor', archived:'📦 Archived'
+};
+const statusPills = {
+  live:'pill-live', active:'pill-active', done:'pill-done',
+  stale:'pill-stale', dormant:'pill-dormant', minor:'pill-minor', archived:'pill-dormant'
+};
+const catIcons = {
+  apps:'🏭', services:'🔧', sites:'🌐', desktop:'🖥️',
+  agents:'🤖', labs:'🔬', sandbox:'🧪', archived:'📦'
+};
+
+function render() {
+  const container = document.getElementById('ecosystem');
+  const cats = [...new Set(data.map(d => d.cat))];
+  let html = '';
+  let counts = {};
+
+  cats.forEach(cat => {
+    const items = data.filter(d => d.cat === cat);
+    counts[cat] = items.length;
+    html += `<div class="category"><div class="category-header">`;
+    html += `<span class="icon">${catIcons[cat]||'📁'}</span>`;
+    html += `<h2>${cat.charAt(0).toUpperCase()+cat.slice(1)}</h2>`;
+    html += `<span class="count">${items.length}</span>`;
+    html += `<span class="badge">maturity: ${cat}</span></div>`;
+    html += `<div class="projects" data-category="${cat}">`;
+    items.forEach(p => {
+      const pillClass = statusPills[p.status] || 'pill-stale';
+      let cardClass = `card cat-${cat}`;
+      html += `<div class="${cardClass}"><div class="card-header">`;
+      html += `<span class="card-title">${p.url ? `<a href="${p.url}" target="_blank">${p.name}</a>` : p.name}</span>`;
+      html += `<span class="pill ${pillClass}">${statuses[p.status]||p.status}</span>`;
+      html += `</div><div class="card-desc">`;
+      html += `<span>${p.desc}</span>`;
+      if (p.stack) html += `<span class="tag">${p.stack}</span>`;
+      if (p.deploy && p.deploy !== '—') html += `<span class="tag">📡 ${p.deploy}</span>`;
+      html += `</div></div>`;
+    });
+    html += `</div></div>`;
+  });
+  container.innerHTML = html;
+
+  // Update stats
+  document.getElementById('c-apps').textContent = counts.apps||0;
+  document.getElementById('c-services').textContent = counts.services||0;
+  document.getElementById('c-sites').textContent = counts.sites||0;
+  document.getElementById('c-desktop').textContent = counts.desktop||0;
+  document.getElementById('c-agents').textContent = counts.agents||0;
+  document.getElementById('c-labs').textContent = counts.labs||0;
+  document.getElementById('c-sandbox').textContent = counts.sandbox||0;
+  document.getElementById('c-archived').textContent = counts.archived||0;
+}
+
+// Filter
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.card').forEach(card => {
+      if (filter === 'all') card.classList.remove('hidden');
+      else if (card.classList.contains(filter)) card.classList.remove('hidden');
+      else card.classList.add('hidden');
+    });
+    // Show/hide empty categories
+    document.querySelectorAll('.category').forEach(cat => {
+      const visible = cat.querySelectorAll('.card:not(.hidden)').length > 0;
+      cat.style.display = visible ? '' : 'none';
+    });
+  });
+});
+
+render();
+</script>
+</body>
+</html>
