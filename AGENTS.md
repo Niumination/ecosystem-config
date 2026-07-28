@@ -111,7 +111,7 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
 │
 └── projects/                  ← Projek Eksperimen, Tools, & Aktif
     ├── AuditTI-AT/            ← GH Pages Live ✅ — JS/HTML
-    ├── cc-acehtengah/         ← Command Center AI — SAPA→SPLP→CC — ✅ github.com/Niumination/cc-acehtengah
+    ├── cc-acehtengah/         ← 🟢 P2 ACTIVE — Next.js 16 AI Command Center — 27 commit (14 hari)
     ├── didong-code/           ← Electron AI coding agent — Gayo Aceh tradisi
     ├── flame-ade/             ← Tauri 2/Rust desktop app (v1.3.0)
     ├── joy-connect-for-mac/   ← Swift macOS app — Infinix device bridge 🆕
@@ -162,7 +162,7 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 
 | Projek | Path | Stack | GitHub | Deploy | Last Push | Status |
 |--------|------|-------|--------|--------|-----------|--------|
-|| **PemdiAcehTengah** | `Production/PemdiAcehTengah/` | Next.js 14, React 18, pure CSS (Gayo Civic Digital v3) | `github.com/Niumination/PemdiAcehTengah` | 🟢 Vercel — 52 OPD SSG, 70 pages, 6 Quick Win ✅ | 16 Jul 2026 | 🟢 **Active — Production dir** |
+||| **PemdiAcehTengah** | `Production/PemdiAcehTengah/` | Next.js 14, React 18, pure CSS (Gayo Civic Digital v3) | `github.com/Niumination/PemdiAcehTengah` | 🟢 Vercel — 52 OPD SSG, 70 pages, **57 bukti dukung + preview** | 28 Jul 2026 | 🟢 **Active — Production dir** |
 | **kms-spbe** | — (remote only) | TS, Next.js | `github.com/Niumination/kms-spbe` | 🟢 Vercel | 26 Okt 2025 | ✅ Live |
 || **LKH** | `Production/Niu-LKH/` 🏭 | React 19, Vite 6, Tailwind v4, Supabase | `github.com/Niumination/Niu-LKH` | 🟢 GH Pages — v3.1.1 | 20 Jun 2026 | ✅ **100% Done 🎉 — Production/ 🏭** |
 | **DiskominfoAT** | — (remote only) | HTML, CSS | `github.com/Niumination/DiskominfoAT` | 🟢 GH Pages | 13 Okt 2025 | ✅ Live |
