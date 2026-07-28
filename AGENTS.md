@@ -343,7 +343,9 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 
 ### 📁 Struktur Repo
 - `main` branch utama
-- Remote: `origin` = GitHub
+- **Remote root repo (index):** `origin` = `git@github.com:Niumination/ecosystem-config.git`
+- **Remote profile README:** `Production/Niumination/` → `git@github.com:Niumination/Niumination.git`
+- ⚠️ Dua repo berbeda — jangan tertukar
 - `.gitignore` standar: `node_modules`, `.next`, `.env`, `*.old`, build artifacts
 
 ---
