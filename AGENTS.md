@@ -122,7 +122,6 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
     ├── niu-kanban-dash/       ← React/Vite dashboard (port 5199)
     ├── niu-mission-control/   ← Agent Swarm — FastAPI + WebSocket 🆕
     ├── niumination-workspace/ ← Next.js 16, Prisma, Three.js
-    ├── Niu-Flow/              ← JCode bridge — pipeline paralel
     ├── orchestrator/          ← Python multi-agent
     ├── spatial-vision/        ← Full-stack Rust/WASM — gesture+canvas 🆕
     ├── TEDEO-Kanban/          ← Kanban untuk TEDEO

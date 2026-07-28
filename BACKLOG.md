@@ -10,7 +10,7 @@
 ```
 Desktop/Niumination/
 ├── Production/          🏭 12 proyek — aktif & deployed
-├── projects/            🔧 19 proyek — aktif dikerjakan
+├── projects/            🔧 18 proyek — aktif dikerjakan
 ├── incubator/           💤 9 proyek — dormant / belum dikerjakan
 ├── archive/             📦 File usang, backup, eksperimen
 ├── brain/               🧠 Obsidian vault (git)
@@ -44,7 +44,7 @@ Desktop/Niumination/
 
 **Data source:** `kanban.db` (43 scratch tasks) + filesystem audit
 **Board:** Niumination Ecosystem
-**Status:** 11 proyek Production aktif, 19 proyek projects/, 9 incubator dormant
+**Status:** 12 proyek Production aktif, 18 proyek projects/, 9 incubator dormant
 
 ### 🏭 Production — 12 Proyek Aktif
 
@@ -63,7 +63,7 @@ Desktop/Niumination/
 | **Niumination** | ⚪ Minor | GitHub | **+7 commit** | Profile config |
 | **CC.Switch** | 🟢 **Active** | GitHub | **+8 commit** | Tauri 2 multi-CLI |
 
-### 🔧 projects/ — 19 Proyek Aktif Dikerjakan
+### 🔧 projects/ — 18 Proyek Aktif Dikerjakan
 
 | Proyek | Priority | Status | Aktivitas 14 Hari | Notes |
 |--------|:--------:|:------:|:------------------:|-------|
@@ -71,7 +71,7 @@ Desktop/Niumination/
 | **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **+33 commit** 🏆 | v2.6.0 — Ecosystem scanner, sidebar toggle, gateway monitoring |
 | **niu-cast** | P2 | 🟢 **Active** | **+27 commit** | v3.6.0 — Mac Connect Bridge, macOS native install |
 | **TEDEO-Kanban** | P2 | 🟡 95% | +1 | Vite/React/Zustand |
-| **Niu-Flow** | P2 | 🟡 90% | 0 | Python/JCode bridge |
+| **Niu-Flow** | P2 | 🟢 **Remote only** — dihapus dari lokal 28 Jul | ✅ GitHub | github.com/Niumination/niu-flow |
 | **Flame-ADE** | P2 | 🟡 93% | 0 | Tauri/Rust |
 | **didong-code** | P2 | 🟢 Active | 0 | Electron ADE Gayo |
 | **joy-connect-for-mac** | P2 🆕 | 🟢 Active | 0 | Swift/ADB bridge |
@@ -118,7 +118,7 @@ kune-ya.com          ██████████ K1-K5 P1   🟢 Active ✅  
 TEDEO                ██████████ 85% ✅✅✅ **MATURE**   ✅ ✅ SSH    ✅ GitHub    ❌ local
 TEDEO-Kanban         ██████████ 95% P2     🟡 95%     ✅   ✅ SSH    ✅ GitHub    projects/
 CC.Switch            ██████████ v3.17.0 P2 🟢 Active  ✅   ✅ SSH    🟢 GitHub    Production/
-Niu-Flow             ██████████ 90% P2     ⏸️ Stale   ✅   ✅ SSH    ❌ local     projects/
+Niu-Flow             ██████████ 90% P2     🟢 Remote  ✅   ✅ SSH    🟢 GitHub    ❌ local (dihapus)
 Flame-ADE            ██████████ v1.3.0 P2  ⏸️ Stale   ✅   ✅ SSH    ✅ GitHub    projects/
 niu-dash             ██████████ v2.16.8 P2 🟢 Active  ✅   ✅ SSH    🟢 GH Page   Production/
 JHermUSB-portable    ██████████ 100% ✅ P2 ✅ Done    ✅   ✅ SSH    🟢 GitHub    Production/
@@ -156,7 +156,7 @@ x-downloader-backup   ░░░░░░░░░░ —          Stale
 Kategori                 Count  Notes
 ─────────────────────────────────────────
 Production/               12    Aktif & deployed
-projects/ (active)        19    Aktif dikerjakan
+|projects/ (active)        18    Aktif dikerjakan
 incubator/ (dormant)      9    Belum dikerjakan
 archive/                  ~30    File/folder usang
 brain/                     1    Obsidian vault (git)
@@ -224,6 +224,8 @@ Ultra, AuditTI-AT, Niu-Flow, didong-code, x-downloader, flame-ade, niu-vermilion
 - ✅ **cc-acehtengah** — Dipromosikan P3 → P2 (aktivitas tinggi)
 - ✅ **niu-mission-control** — Dipromosikan P3 → P2 (aktivitas tinggi)
 - ✅ **Scoreboard** — Update semua kematangan & status
+- ✅ **Niu-Flow** — Dihapus dari lokal (848K), remote-only di github.com/Niumination/niu-flow ✅
+- ✅ **BACKLOG.md & AGENTS.md** — Update count 19→18 projects, hapus Niu-Flow dari daftar
 - ✅ **Aktivitas 14 hari** — Ditambahkan tracking
 - ✅ **AI ECOSYSTEM** — Update model (Kimi K2.6)
 
