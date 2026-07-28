@@ -10,7 +10,7 @@
 ```
 Desktop/Niumination/
 ├── apps/               🏭 12 proyek — deployed & battle-tested
-├── services/           🔧 5 proyek — backend & engines
+├── services/           🔧 6 proyek — backend & engines
 ├── sites/              🌐 5 proyek — frontend apps
 ├── desktop/            🖥️ 4 proyek — native apps
 ├── agents/             🤖 4 proyek — AI agents + characters + profile
@@ -74,6 +74,7 @@ Desktop/Niumination/
 | **niu-cast** | P2 | 🟢 **Active** | **+27 commit** | v3.6.0 — Mac Connect Bridge, macOS native install |
 | **Niu-Flow** | P2 | 🟢 **Remote only** | ✅ GitHub | github.com/Niumination/niu-flow |
 | **latticesend** | P3 | 🟢 Active | +1 | P2P file transfer — ⚠️ NO REMOTE |
+| **uacc** | P2 🆕 | 🟢 Active | +new | Universal AI Computer Control — MCP server |
 
 ### 🌐 sites/ — 5 Frontend
 
