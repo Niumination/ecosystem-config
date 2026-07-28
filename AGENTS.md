@@ -341,52 +341,61 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 - Terstruktur (tabel, layer breakdown, data-driven)
 - 🔴🟡🟢 priorities
 
-### 📁 Struktur Repo
+### 📁 Struktur Repo — Niumination Ecosystem v4.0
 - `main` branch utama
 - **Remote root repo (index):** `origin` = `git@github.com:Niumination/ecosystem-config.git`
-- **Remote profile README:** `Production/Niumination/` → `git@github.com:Niumination/Niumination.git`
+- **Remote profile README:** `agents/profile/` → `git@github.com:Niumination/Niumination.git`
 - ⚠️ Dua repo berbeda — jangan tertukar
-- `.gitignore` standar: `node_modules`, `.next`, `.env`, `*.old`, build artifacts
+- **Ecosystem maturity pipeline:** `sandbox💤 → labs🔬 → services/sites/desktop/agents🔧 → apps🏭 → archive📦`
+- `.gitignore` melindungi: `apps/`, `services/`, `sites/`, `desktop/`, `labs/`, `sandbox/`, `vault/`, `brain/`, `rekap/`, `tools/`, `archive/`
+- `agents/characters/` dan `docs/` di-track di root repo 🔄
 
 ---
 
-## DOX Chain Rules
+## DOX Chain Rules — Niumination Ecosystem v4.0
 
 ```
 AGENTS.md (root — ~/Desktop/Niumination/)
-  ├── brain/AGENTS.md                                              ✅ (project docs, stats, version)
-  ├── Production/Niu-LKH/AGENTS.md                                  ✅
-  ├── Production/PemdiAcehTengah/AGENTS.md                          ✅ + 5 sub-DOX
-  ├── Production/niu-dash/AGENTS.md                                 ✅
-  ├── Production/kune-ya.com/AGENTS.md                              ✅
-  ├── Production/niu-vermilion/AGENTS.md                            ✅
-  ├── projects/Niu-Flow/AGENTS.md                                   ✅
-  ├── projects/Ultra/AGENTS.md                                      ✅
-  ├── projects/flame-ade/AGENTS.md                                  ✅
-  ├── projects/niu-cast/AGENTS.md                                   ✅
-  ├── projects/niumination-workspace/AGENTS.md                      ✅
-  ├── projects/x-downloader/AGENTS.md                               ✅
-  ├── Niumination/AGENTS.md                                       ✅ (profile DOX)
-  └── brain/projects/*/AGENTS.md (10 files)                         ✅ (mirror docs)
+  ├── brain/AGENTS.md                                                    ✅ (project docs, stats, version)
+  ├── apps/Niu-LKH/AGENTS.md                                             ✅
+  ├── apps/PemdiAcehTengah/AGENTS.md                                     ✅ + 5 sub-DOX
+  ├── apps/niu-dash/AGENTS.md                                            ✅
+  ├── apps/kune-ya.com/AGENTS.md                                         ✅
+  ├── apps/niu-vermilion/AGENTS.md                                       ✅
+  ├── services/niu-cast/AGENTS.md                                        ✅
+  ├── labs/niumination-workspace/AGENTS.md                               ✅
+  ├── desktop/x-downloader/AGENTS.md                                     ✅
+  ├── agents/Ultra/AGENTS.md                                             ✅
+  ├── desktop/flame-ade/AGENTS.md                                        ✅
+  ├── agents/profile/AGENTS.md                                           ✅ (profile DOX)
+  ├── agents/characters/arsitek/AGENTS.md                                ✅ (herdr character)
+  ├── agents/characters/pembangun/AGENTS.md                              ✅
+  ├── agents/characters/pengawas/AGENTS.md                               ✅
+  ├── agents/characters/penjaga/AGENTS.md                                ✅
+  └── brain/projects/*/AGENTS.md (10 files)                              ✅ (mirror docs)
 ```
 
 **Cara navigasi:**
 1. Mau kerja di proyek X → baca AGENTS.md induk (ini) → cari proyek X di catalog
-2. Baca AGENTS.md proyek X (jika ada) untuk detail teknis
-3. Jika proyek X tidak punya AGENTS.md, baca README.md atau direktori utamanya
-4. Selesai kerja → update DOX yang relevan sebelum commit
+2. Navigasi ke folder baru sesuai maturity: `apps/`, `services/`, `sites/`, `desktop/`, `agents/`, `labs/`, `sandbox/`
+3. Baca AGENTS.md proyek X (jika ada) untuk detail teknis
+4. Jika proyek X tidak punya AGENTS.md, baca README.md atau direktori utamanya
+5. Selesai kerja → update DOX yang relevan sebelum commit
 
 ---
 
-## Quick Links
+## Quick Links — Niumination Ecosystem v4.0
 
 | Sumber | Path/Link |
 |--------|-----------|
 | **BACKLOG Master** | `BACKLOG.md` |
-| **Personal Inventory** | `PI/` — API keys, credentials — **RAHASIA** (chmod 600 ✅) |
+| **Ecosystem Map** | `README.md` |
+| **Secrets & Credentials** | `vault/` — **RAHASIA** (chmod 600 ✅) |
 | **Obsidian Vault** | `brain/` |
-| **Niu-Flow Pipeline** | `projects/Niu-Flow/` — Bridge Hermes↔JCode |
-| **AI Agent Hooks** | `scripts/hooks/` — 12 hook scripts (claude, codex, copilot, dll) |
+| **Niu-Flow Pipeline** | Ke remote: `github.com/Niumination/niu-flow` (tidak di lokal) |
+| **AI Agent Hooks** | `scripts/hooks/` — 13 hook scripts (claude, codex, copilot, dll) |
+| **Profile README** | `agents/profile/` → `gh:Niumination/Niumination` |
+| **Agent Characters** | `agents/characters/` — 4 herdr agents (arsitek, pembangun, pengawas, penjaga) |
 | **AI-Memory-Collection** | `docs/ai-memory-collection.md` — unified knowledge 12 AI tools |
 
 ---

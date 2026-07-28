@@ -9,8 +9,8 @@
 Icon?
 
 # Secrets & credentials
-PI/
-**/PI/
+vault/
+**/vault/
 credentials-backup.zip
 *.env
 *.env.local
@@ -20,15 +20,28 @@ secrets.zsh
 api-key.md
 
 # Sub-project directories (each has its own git repo)
-Production/
-projects/
-incubator/
+apps/
+services/
+sites/
+desktop/
+labs/
+sandbox/
+
+# Agents with own git repos (but NOT characters/ — tracked in root)
+agents/profile/
+agents/orchestrator/
+agents/ultra/
+
+# Private dirs (each has own git repo or is local-only)
 brain/
 rekap/
 tools/
 
 # Archive — historical backup, not tracked in root repo
 archive/
+
+# Niu-Flow — remote-only, dihapus dari lokal Jul 2026
+Niu-Flow/
 
 # Build artifacts
 node_modules/
@@ -48,7 +61,7 @@ __pycache__/
 *.swo
 *~
 
-# Archive — binary files only
+# Binary files only
 *.zip
 *.gz
 *.tar
@@ -57,4 +70,3 @@ __pycache__/
 *.jpeg
 *.gif
 *.ico
-dox/notebooklm/cookies.txt
