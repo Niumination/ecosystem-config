@@ -105,7 +105,7 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
 │   ├── skills-main/            ← Skill backup
 │   └── ...
 ├── labs/                      ← Eksperimen (obsidian-ai-os, html, dll)
-├── rekap/                     ← Terminal dotfiles & rekap
+├── dotfiles/                     ← Terminal dotfiles & rekap
 ├── scripts/                   ← Cron & maintenance scripts (changelog, heartbeat, kanban-sync, dll)
 ├── tools/                     ← Ponytail MCP server & utilities
 │
@@ -242,7 +242,7 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 | **PI** | `PI/` | lokal | **Personal Inventory** — API keys, credentials — **RAHASIA** |
 | **archive** | `archive/` | lokal | Arsip proyek lama |
 | **labs** | `labs/` | lokal | Lab eksperimen |
-| **rekap** | `rekap/` | lokal | Terminal dotfiles & rekap |
+| **dotfiles** | `dotfiles/` | lokal | Terminal dotfiles & rekap |
 
 ### 🚚 Delivery Service
 
@@ -347,7 +347,7 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 - **Remote profile README:** `agents/profile/` → `git@github.com:Niumination/Niumination.git`
 - ⚠️ Dua repo berbeda — jangan tertukar
 - **Ecosystem maturity pipeline:** `sandbox💤 → labs🔬 → services/sites/desktop/agents🔧 → apps🏭 → archive📦`
-- `.gitignore` melindungi: `apps/`, `services/`, `sites/`, `desktop/`, `labs/`, `sandbox/`, `vault/`, `brain/`, `rekap/`, `tools/`, `archive/`
+- `.gitignore` melindungi: `apps/`, `services/`, `sites/`, `desktop/`, `labs/`, `sandbox/`, `vault/`, `brain/`, `dotfiles/`, `tools/`, `archive/`
 - `agents/characters/` dan `docs/` di-track di root repo 🔄
 
 ---
@@ -411,6 +411,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | **filesystem** | ✅ Active | File read/write/search | scoped `/Users/zaryu` |
 | **postgres** (Supabase) | ✅ Active | `query` — read-only | Wrapper bash + `.env` |
 | **hermes-sqlite** | ✅ Active | `query_sqlite`, `get_schema`, `list_tables` | kanban.db (READ ONLY) |
+| **uacc** 🆕 | ✅ Active | 68 tools — screen, mouse, keyboard, window, browser CDP, OCR, workflow | `services/uacc/` — Python MCP server |
 
 ### Plugins
 
@@ -468,5 +469,5 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 ---
 
 > **Dibuat:** 11 Juni 2026
-> **Diperbarui:** 25 Jul 2026 — v3.1 — **Ecosystem cleanup: -9 stale projects, +4 new projects**
+> **Diperbarui:** 28 Jul 2026 — v3.2 — **+UACC MCP server integrated, ecosystem filesystem audit**
 > **Oleh:** Niumination (Afrizal Munthe) — Aceh Tengah

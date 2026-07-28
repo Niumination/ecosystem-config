@@ -47,7 +47,7 @@ Niumination/
 ├── brain/                             ← Obsidian vault (git)
 ├── labs/
 ├── Niu-Flow/                          ← 🔸 Not in DOX (log/output dir)
-├── rekap/                             ← Terminal dotfiles
+├── dotfiles/                             ← Terminal dotfiles
 ├── scripts/                           ← Cron & maintenance
 ├── tools/                             ← Ponytail MCP (⏭️ excluded)
 ├── Belum disentuh/

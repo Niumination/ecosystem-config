@@ -122,7 +122,7 @@ grep -oE '@[a-z0-9_-]+' "$BACKLOG" | sort -u | sed 's/@//' | while read -r tag; 
     brain) dir_name="brain" ;;
     audit) dir_name="AuditTI-AT" ;;
     jhermusb) dir_name="JHermUSB-portable" ;;
-    rekap) dir_name="rekap" ;;
+    dotfiles) dir_name="dotfiles" ;;
     labs) dir_name="labs" ;;
     pi) dir_name="PI" ;;
     aistudio) dir_name="aistudio-google" ;;

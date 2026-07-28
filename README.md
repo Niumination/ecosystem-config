@@ -31,7 +31,7 @@ Niumination/
 ├── tools/             🛠️ Dev tools (ponytail MCP)
 ├── vault/             🔐 Secrets (gitignored)
 ├── brain/             🧠 Obsidian vault (gitignored, repo terpisah)
-├── rekap/             🐚 Terminal dotfiles (gitignored)
+├── dotfiles/             🐚 Terminal dotfiles (gitignored)
 ├── archive/           📦 Cold storage
 │   ├── projects/      ← Archived repos (niuterm, terax-ai)
 │   ├── resources/     ← ZIP downloads, assets

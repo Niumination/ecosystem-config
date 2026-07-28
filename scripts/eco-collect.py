@@ -31,7 +31,7 @@ NON_GIT_DIRS = [
     "PI",
     "archive",
     "labs",
-    "rekap",
+    "dotfiles",
     "Belum disentuh",
     "Production",
     "scripts",

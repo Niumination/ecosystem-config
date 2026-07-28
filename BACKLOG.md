@@ -22,7 +22,7 @@ Desktop/Niumination/
 ├── tools/              🛠️ Ponytail MCP
 ├── vault/              🔐 Secrets & credentials (gitignored)
 ├── brain/              🧠 Obsidian vault (git, terpisah)
-├── rekap/              🐚 Terminal dotfiles (gitignored)
+├── dotfiles/              🐚 Terminal dotfiles (gitignored)
 ├── AGENTS.md           📋 Root DOX — AI orchestration rules
 ├── BACKLOG.md          📋 Master doc ini
 └── .gitleaks.toml      🔒 Security config
@@ -193,7 +193,7 @@ scripts/                  21   128 KB   Automation scripts
 tools/                     1   25 MB    Ponytail MCP
 vault/                     3   10 KB    Secrets (gitignored)
 brain/                     1   25 MB    Obsidian vault (git, terpisah)
-rekap/                     1   7.3 MB   Terminal dotfiles
+dotfiles/                     1   7.3 MB   Terminal dotfiles
 ─────────────────────────────────────────────
 Total git repos           ~40   18 GB
 ```
