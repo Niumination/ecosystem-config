@@ -552,23 +552,29 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 |-------|--------|--------|-------------|
 | `document-content-pipeline` | software-development | Bank Pusat | High-accuracy PDF extraction (opendataloader-pdf / ODL-PDF), batch markdown cleanup, and content pipeline for website injection. Covers PPT→PDF→Markdown→JSON→Next.js page workflows. |
 | `ekosistem-scaffold` | ecosystem | Bank Pusat | Scaffold new or missing projects in the Niumination ecosystem. Creates AGENTS.md + BACKLOG.md + brain/projects/ entry with standardized templates. Validates git, deploy, and DOX completeness. |
-| `ghost` | creative | Bank Pusat | AI text humanizer — bypass AI detection untuk publikasi |
+| `ghost` | creative | Bank Pusat | Rewrite AI-generated or stilted text so it reads naturally and human — stripping common AI writing tells while preserving all factual content. |
 | `optimization` | software-development | Bank Pusat | Improve performance, latency, and throughput of code and systems. Systematic profiling → bottleneck detection → targeted optimization. |
 | `ponytail-audit` | software-development | Bank Pusat | Whole-repo audit for over-engineering. Like ponytail-review, but scans the entire codebase instead of a diff: a ranked list of what to delete, simplify, or replace with stdlib/native equivalents. Use when the user says "audit this codebase", "audit for over-engineering", "what can I delete from this repo", "find bloat", "ponytail-audit", or "/ponytail-audit". One-shot report, does not apply fixes. |
 | `ponytail-core` | software-development | Bank Pusat | Forces the laziest solution that actually works, simplest, shortest, most minimal. Channels a senior dev who has seen everything: question whether the task needs to exist at all (YAGNI), reach for the standard library before custom code, native platform features before dependencies, one line before fifty. Supports intensity levels: lite, full (default), ultra. Use whenever the user says "ponytail", "be lazy", "lazy mode", "simplest solution", "minimal solution", "yagni", "do less", or "shortest path", and whenever they complain about over-engineering, bloat, boilerplate, or unnecessary dependencies. |
+| `premortem` | software-development | Bank Pusat | Assume a project or plan has already failed, then work backward to identify the most likely causes before committing to it. Catches failure modes that forward-looking planning misses. |
 | `project-orientation` | software-development | Bank Pusat | Establish situational awareness before working on any user-referenced project. Verify project existence, state, location, and documentation against primary sources — not memory or compressed summaries. |
-| `redteam` | security | Bank Pusat | 32 agen adversarial untuk security pentest |
+| `redteam` | security | Bank Pusat | Stress-test a plan, project, or system by assuming an adversarial perspective and identifying specific attack surfaces, failure modes, and blind spots before they're exploited in production. |
 | `systematic-debugging` | software-development | Bank Pusat | 4-phase root cause debugging: understand bugs before fixing. |
+| `tripwire` | software-development | Bank Pusat | Identify the single most critical risk that could derail a project — forcing prioritization down to one thing when a full risk analysis has produced too many findings to act on all at once. |
+| `ultrathink` | software-development | Bank Pusat | Force deep architectural and system-level reasoning before writing code — channels a master craftsman who thinks in trade-offs, invariants, and long-term maintainability rather than rushing to implementation. |
 | `up-eco` | ecosystem | Bank Pusat | Ecosystem status check & sync workflow. Triggered via Telegram /up-eco command. Checks git status, detects unknown/foreign folders, syncs BACKLOG/docs with filesystem, and recommends actions to align local ecosystem with GitHub. |
 
-_Last sync: 2026-07-29 22:38:17_
+_Last sync: 2026-07-30 00:28:46_
 
 <!-- SKILL_REGISTRY_END -->
+
+
+
 
 
 
 ---
 
 > **Dibuat:** 11 Juni 2026
-> **Diperbarui:** 29 Jul 2026 — v4.4 — **Layer 4 — Skill Mission-Control Dashboard:** Tambah skill monitor backend (modules/skill_monitor.py), 5 API endpoints (event, stats, stale, conflicts, list), WebSocket skill_event push, halaman Skill Monitor di dashboard Mission Control v2.6. Integrasi sync-to-agents.sh → POST skill event ke mission-control. Semua Layer 1-4 selesai ✅.
+> **Diperbarui:** 29 Jul 2026 — v4.5 — **Hermes integration verified ✅** — 13/13 skill sync ke Hermes (USB + local), path resolution fix di sync script, DOX injection running. Semua layer 1-4 terkoneksi penuh.
 > **Oleh:** Niumination (Afrizal Munthe) — Aceh Tengah
