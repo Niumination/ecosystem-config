@@ -17,9 +17,11 @@ crontab -e
 Tambahkan baris ini (akan jalan setiap 6 jam):
 
 ```cron
-# Layer 2: Sync skill bank ke Jcode + Hermes (every 6h)
-0 */6 * * * cd ~/Desktop/Niumination && bash skills/sync-to-agents.sh
+# Layer 2: Sync skill bank ke Jcode + Hermes + Hermes USB (every 6h)
+0 */6 * * * cd ~/Desktop/Niumination && bash skills/sync-to-agents.sh > /dev/null 2>&1
 ```
+
+**✅ Sudah aktif** — cron sudah terinstall sejak 29 Jul 2026. Cek dengan `crontab -l`.
 
 ## 3. Testing
 

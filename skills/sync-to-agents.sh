@@ -5,7 +5,8 @@
 # Path:    ~/Desktop/Niumination/skills/sync-to-agents.sh
 # Source:  ~/Desktop/Niumination/skills/ (bank pusat — single source of truth)
 # Target:  ~/.jcode/skills/        → Jcode flat structure
-#          ~/.hermes/skills/       → Hermes domain structure
+#          ~/.hermes/skills/       → Hermes domain structure (local)
+#          /Volumes/HermesAgent/   → Hermes USB domain structure (portable)
 #          AGENTS.md               → DOX injection (skill registry update)
 #
 # Safety:  Non-destructive (copy/add only, never delete)
@@ -16,12 +17,20 @@
 set -euo pipefail
 
 # ── Config ──────────────────────────────────────────────────────────────────
-BANK_DIR="$HOME/Desktop/Niumination/skills"
-JCODE_DIR="$HOME/.jcode/skills"
-HERMES_DIR="$HOME/.hermes/skills"
-AGENTS_MD="$HOME/Desktop/Niumination/AGENTS.md"
-LOCK_DIR="$HOME/Desktop/Niumination/.sync-lock"
-LOG_FILE="$HOME/Desktop/Niumination/.sync-log"
+# Resolve real user home (Hermes env may set HOME to cache path)
+_REAL_HOME="$HOME"
+if [ ! -d "$_REAL_HOME/Desktop/Niumination/skills" ]; then
+  if [ -d "/Users/${USER:-zaryu}/Desktop/Niumination/skills" ]; then
+    _REAL_HOME="/Users/${USER:-zaryu}"
+  fi
+fi
+BANK_DIR="$_REAL_HOME/Desktop/Niumination/skills"
+JCODE_DIR="$_REAL_HOME/.jcode/skills"
+HERMES_DIR="$_REAL_HOME/.hermes/skills"
+HERMES_USB_DIR="/Volumes/HermesAgent/HermesAgentUSB/data/skills"
+AGENTS_MD="$_REAL_HOME/Desktop/Niumination/AGENTS.md"
+LOCK_DIR="$_REAL_HOME/Desktop/Niumination/.sync-lock"
+LOG_FILE="$_REAL_HOME/Desktop/Niumination/.sync-log"
 
 DRY_RUN=false
 VERBOSE=false
@@ -42,6 +51,8 @@ for arg in "$@"; do
 done
 
 # ── Lock (mkdir-based) ───────────────────────────────────────────────────────
+LOCK_PARENT="$(dirname "$LOCK_DIR")"
+mkdir -p "$LOCK_PARENT" 2>/dev/null || true
 if mkdir "$LOCK_DIR" 2>/dev/null; then
   trap 'rm -rf "$LOCK_DIR"' EXIT
 else
@@ -143,6 +154,45 @@ done <<< "$SKILL_FILES"
 
 log "   ↑ Hermes: $hermes_copied copied, $hermes_skipped up-to-date"
 
+# ── 2b. Sync ke Hermes USB (portable) ──────────────────────────────────────────
+usb_copied=0
+usb_skipped=0
+
+if [ -d "$HERMES_USB_DIR" ]; then
+  log "→ Hermes USB: $HERMES_USB_DIR"
+
+  while IFS= read -r src_file; do
+    rel_path="${src_file#$BANK_DIR/}"
+    domain_dir="${rel_path%%/*}"
+    skill_dir="${rel_path#*/}"
+    skill_name="${skill_dir%/*}"
+    skill_file="${skill_dir##*/}"
+
+    usb_target="$HERMES_USB_DIR/$domain_dir/$skill_name"
+    usb_file="$usb_target/$skill_file"
+
+    if [ -f "$usb_file" ] && [ "$src_file" -ot "$usb_file" ]; then
+      ((usb_skipped++)) || true
+      vlog "  ⏭  $domain_dir/$skill_name (up to date)"
+      continue
+    fi
+
+    if $DRY_RUN; then
+      echo "  [COPY] → Hermes USB: $domain_dir/$skill_name"
+      ((usb_copied++)) || true
+    else
+      mkdir -p "$usb_target"
+      cp "$src_file" "$usb_file"
+      ((usb_copied++)) || true
+      vlog "  ✅ $domain_dir/$skill_name"
+    fi
+  done <<< "$SKILL_FILES"
+
+  log "   ↑ Hermes USB: $usb_copied copied, $usb_skipped up-to-date"
+else
+  log "   ⚠️  Hermes USB path not found: $HERMES_USB_DIR (skipped)"
+fi
+
 # ── 3. Update AGENTS.md — Skill Registry ────────────────────────────────────
 if ! $DRY_RUN; then
   # Build the skill registry block
@@ -193,8 +243,20 @@ _Last sync: $(date '+%Y-%m-%d %H:%M:%S')_"
 import os
 from datetime import datetime
 
-bank = os.path.expanduser('~/Desktop/Niumination/skills')
-agents = os.path.expanduser('~/Desktop/Niumination/AGENTS.md')
+def _resolve_home():
+    """Resolve real user home — handles Hermes env where HOME != /Users/user."""
+    home = os.path.expanduser('~')
+    if os.path.isdir(os.path.join(home, 'Desktop', 'Niumination', 'skills')):
+        return home
+    user = os.environ.get('USER', 'zaryu')
+    alt = f'/Users/{user}'
+    if os.path.isdir(os.path.join(alt, 'Desktop', 'Niumination', 'skills')):
+        return alt
+    return home
+
+_real_home = _resolve_home()
+bank = os.path.join(_real_home, 'Desktop', 'Niumination', 'skills')
+agents = os.path.join(_real_home, 'Desktop', 'Niumination', 'AGENTS.md')
 
 # Build registry table
 rows = []
@@ -291,8 +353,8 @@ fi
 
 # ── 4. Write log ─────────────────────────────────────────────────────────────
 if ! $DRY_RUN; then
-  total="$((jcode_copied + hermes_copied))"
-  echo "[$(date '+%Y-%m-%d %H:%M:%S')] Sync selesai: Jcode +${jcode_copied}, Hermes +${hermes_copied}, AGENTS.md ✅" >> "$LOG_FILE"
+  total="$((jcode_copied + hermes_copied + usb_copied))"
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] Sync selesai: Jcode +${jcode_copied}, Hermes +${hermes_copied}, USB +${usb_copied}, AGENTS.md ✅" >> "$LOG_FILE"
   log "✅ Sync selesai — $total perubahan"
   
   # Notify mission-control (fire-and-forget, non-blocking)

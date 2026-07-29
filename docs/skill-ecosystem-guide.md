@@ -998,6 +998,6 @@ Bank pusat akan berisi file dari berbagai sumber — Hermes, Jcode, Agentpedia. 
 ---
 
 > **Dibuat:** 29 Juli 2026
-> **Diperbarui:** 29 Juli 2026 v7 — +Layer 4 Skill Mission-Control Dashboard ✅ oleh Jcode. Semua 4 layer selesai 🎯.
+> **Diperbarui:** 29 Juli 2026 v8 — +Hermes integration verified: 13 skill sync ke USB + local Hermes, path resolution fix di sync script + Python inline, DOX injection running ✅.
 > **Oleh:** Jcode + Hermes Agent — Niumination Ecosystem
 > **Tujuan:** Dokumentasi referensi — bisa di-copy ke NotebookLM untuk query lebih lanjut
