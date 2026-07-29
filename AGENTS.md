@@ -2,8 +2,8 @@
 
 **Lokasi:** `~/Desktop/Niumination/`
 **Pengguna:** Afrizal Munthe (Niumination) — Pranata Komputer, Diskominfo Aceh Tengah
-**DOX Version:** 3.0
-||| **Total Projek Lokal:** ~40 git repos
+**DOX Version:** 4.0
+|| **Total Projek Lokal:** ~40 git repos
 |||||| | **Kanban Board:** "Niumination Ecosystem" — terupdate 16 Jul 2026 ✅
 | | **Model aktif:** `opencode/big-pickle` — paid ($1/M in, $5/M out)
 
@@ -75,58 +75,79 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
 ---
 
 ## Directory Structure — Real Filesystem (16 Jul 2026)
+## Directory Structure — Real Filesystem (29 Jul 2026 — v4.0)
+
+> ⚠️ **Perubahan dari v3.0:** `Production/` → `apps/`, `projects/` terdistribusi ke `services/`, `sites/`, `desktop/`, `labs/`, `sandbox/`, `PI/` → `vault/`, `rekap/` → `dotfiles/`.
 
 ```
 ~/Desktop/Niumination/
 ├── AGENTS.md                  ← FILE INI — DOX induk
 ├── BACKLOG.md                 ← Prioritas master semua proyek
+├── README.md                  ← Root overview & maturity pipeline
 │
-├── Niumination/               ← GitHub Profile README — Gitiumination 🆕
-├── PI/                        ← Personal Inventory — API keys, rahasia
-├── Production/                 ← Projek matang & selesai (🏭) — 12 dir
-│   ├── ai-file-manager-android/ ← AI File Organizer (Kotlin/Gemini) ✅ GitHub
-│   ├── CC.Switch/              ← Tauri 2 multi-CLI — 🟢 GitHub release v3.17.0
+├── apps/                      🏭 11 proyek — deployed, battle-tested
 │   ├── JHermUSB-portable/     ← Hermes Agent portable (652K) ✅
 │   ├── Niu-LKH/               ← LKH v3.1.1 — 100% Done — GH Pages live ✅
 │   ├── PemdiAcehTengah/       ← Portal Pemda — 52 OPD, 70 pages — 🟢 Vercel
-│   ├── ai-first-os/           ← Arch Linux ISO builder ✅ GitHub
-│   ├── arch-web-dashboard/    ← Arch Linux Dashboard v1.0.0 ✅ GitHub
+│   ├── ai-file-manager-android/
+│   ├── ai-first-os/
+│   ├── arch-web-dashboard/
+│   ├── cc-switch/             ← Tauri 2 multi-CLI — 🟢 v3.17.0
+│   ├── kune-ya.com/           ← AI Chat RAG — 🟢 Vercel
+│   ├── mac-web-dashboard/
 │   ├── niu-dash/              ← v2.16.8 GH Pages — Audit 27/27 ✅
-│   ├── kune-ya.com/           ← AI Chat RAG — 🟢 Vercel (moved 24 Jun)
-│   ├── niu-vermilion/         ← Second Brain — 🟢 Vercel (moved 24 Jun)
-│   └── mac-web-dashboard/     ← macOS Dashboard v1.0.0 — ✅ GitHub (moved 24 Jun)
-├── archive/                   ← Arsip — ~25MB (labs, skills, logs, backup)
-│   ├── 01-updates/
-│   ├── Belum disentuh/         ← Arsip ZIP belum diproses (~18MB)
-│   ├── backup/                 ← Cadangan konfigurasi (2026-06-27)
-│   ├── jcode-docs/             ← Dokumentasi JCode CLI
-│   ├── labs/                   ← Eksperimen lama
-│   ├── niu-flow-logs/          ← Log pipeline Niu-Flow
-│   ├── skills-main/            ← Skill backup
-│   └── ...
-├── labs/                      ← Eksperimen (obsidian-ai-os, html, dll)
-├── dotfiles/                     ← Terminal dotfiles & rekap
-├── scripts/                   ← Cron & maintenance scripts (changelog, heartbeat, kanban-sync, dll)
-├── tools/                     ← Ponytail MCP server & utilities
+│   └── niu-vermilion/         ← Second Brain — 🟢 Vercel ✅
 │
-└── projects/                  ← Projek Eksperimen, Tools, & Aktif
-    ├── AuditTI-AT/            ← GH Pages Live ✅ — JS/HTML
-    ├── cc-acehtengah/         ← 🟢 P2 ACTIVE — Next.js 16 AI Command Center — 27 commit (14 hari)
-    ├── didong-code/           ← Electron AI coding agent — Gayo Aceh tradisi
-    ├── flame-ade/             ← Tauri 2/Rust desktop app (v1.3.0)
-    ├── joy-connect-for-mac/   ← Swift macOS app — Infinix device bridge 🆕
-    ├── latticesend/           ← P2P device transfer — Rust/WASM/Flutter (spec phase) 🆕
-    ├── maze-3d/               ← 3D web maze game (GH Pages)
-    ├── niu-cast/              ← Android Device Manager via ADB — v1.2.0
-    ├── niu-dash-fullstack/    ← Next.js 16 Fullstack Dashboard
-    ├── niu-kanban-dash/       ← React/Vite dashboard (port 5199)
-    ├── niu-mission-control/   ← Agent Swarm — FastAPI + WebSocket 🆕
-    ├── niumination-workspace/ ← Next.js 16, Prisma, Three.js
-    ├── orchestrator/          ← Python multi-agent
-    ├── spatial-vision/        ← Full-stack Rust/WASM — gesture+canvas 🆕
-    ├── TEDEO-Kanban/          ← Kanban untuk TEDEO
-    ├── Ultra/                 ← Ultra Automation (Puppeteer)
-    └── x-downloader/          ← Tauri 2 desktop — yt-dlp GUI
+├── services/                  🔧 5 proyek — backend & engines
+│   ├── cc-acehtengah/         ← AI Command Center — Next.js 16
+│   ├── latticesend/           ← P2P device transfer
+│   ├── niu-cast/              ← Android Device Manager via ADB
+│   ├── niu-mission-control/   ← Agent Swarm — FastAPI + WebSocket
+│   └── uacc/                  ← Universal AI Computer Control — 68 MCP tools ✅
+│
+├── sites/                     🌐 5 proyek — frontend apps
+│   ├── AuditTI-AT/            ← GH Pages Live ✅
+│   ├── TEDEO-Kanban/          ← 95% — Vite/React/Zustand
+│   ├── niu-dash-fullstack/    ← Next.js 16 Fullstack
+│   ├── niu-kanban-dash/       ← React/Vite (port 5199)
+│   └── spatial-vision/        ← Rust/WASM — gesture+canvas
+│
+├── desktop/                   🖥️ 4 proyek — native apps
+│   ├── didong-code/           ← Electron AI coding — Gayo
+│   ├── flame-ade/             ← Tauri 2/Rust
+│   ├── joy-connect-for-mac/   ← macOS native — Infinix bridge
+│   └── x-downloader/          ← Tauri 2 — yt-dlp GUI
+│
+├── agents/                    🤖 4 proyek — AI + automation
+│   ├── Ultra/                 ← Puppeteer automation
+│   ├── characters/            ← 4 herdr personas
+│   ├── orchestrator/          ← Python multi-agent
+│   └── profile/               ← GitHub Profile README
+│
+├── labs/                      🔬 2 proyek — experimental
+│   ├── maze-3d/
+│   └── niumination-workspace/
+│
+├── sandbox/                   💤 7 proyek — playground
+│   ├── aistudio-google/
+│   ├── arena.ai/
+│   ├── niu-studio/
+│   ├── niude/
+│   ├── niutui/
+│   ├── x-downloader-backup/
+│   └── zen/
+│
+├── vault/                     🔐 RAHASIA — API keys, credentials (chmod 600)
+├── brain/                     📚 Obsidian vault — knowledge base
+├── dotfiles/                  🐚 Terminal dotfiles (standalone repo)
+├── docs/                      📚 Dokumentasi, guide, referensi
+├── scripts/                   ⚙️ Cron & maintenance scripts
+├── tools/                     🛠️ Ponytail MCP & utilities
+│   └── ponytail/              ← SKILL.md + MCP server code
+├── archive/                   📦 Arsip proyek lama (~25MB)
+├── skills/                    🧠 (PLANNED) Bank skill terpusat untuk semua agent
+│
+└── .gitignore                 — Semua folder proyek child di-ignore
 ```
 
 ---
@@ -161,9 +182,8 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 
 | Projek | Path | Stack | GitHub | Deploy | Last Push | Status |
 |--------|------|-------|--------|--------|-----------|--------|
-||| **PemdiAcehTengah** | `Production/PemdiAcehTengah/` | Next.js 14, React 18, pure CSS (Gayo Civic Digital v3) | `github.com/Niumination/PemdiAcehTengah` | 🟢 Vercel — 52 OPD SSG, 70 pages, **57 bukti dukung + preview** | 28 Jul 2026 | 🟢 **Active — Production dir** |
-| **kms-spbe** | — (remote only) | TS, Next.js | `github.com/Niumination/kms-spbe` | 🟢 Vercel | 26 Okt 2025 | ✅ Live |
-|| **LKH** | `Production/Niu-LKH/` 🏭 | React 19, Vite 6, Tailwind v4, Supabase | `github.com/Niumination/Niu-LKH` | 🟢 GH Pages — v3.1.1 | 20 Jun 2026 | ✅ **100% Done 🎉 — Production/ 🏭** |
+|| **PemdiAcehTengah** | `apps/PemdiAcehTengah/` | Next.js 14, React 18, pure CSS (Gayo Civic Digital v3) | `github.com/Niumination/PemdiAcehTengah` | 🟢 Vercel — 52 OPD SSG, 70 pages, **57 bukti dukung + preview**, **+Modul Indikator** | 29 Jul 2026 | 🟢 **Active — apps/ 🏭** |
+||| **LKH** | `apps/Niu-LKH/` 🏭 | React 19, Vite 6, Tailwind v4, Supabase | `github.com/Niumination/Niu-LKH` | 🟢 GH Pages — v3.1.1 | 20 Jun 2026 | ✅ **100% Done 🎉 — apps/ 🏭** |
 | **DiskominfoAT** | — (remote only) | HTML, CSS | `github.com/Niumination/DiskominfoAT` | 🟢 GH Pages | 13 Okt 2025 | ✅ Live |
 | **Diskominfo-Web** | — (remote only) | HTML, CSS | `github.com/Niumination/Diskominfo-Web` | 🟢 GH Pages | 9 Okt 2025 | ✅ Live |
 | **SPBE-DevOps-Academy** | — (remote only) | JS, HTML | `github.com/Niumination/SPBE-DevOps-Academy` | 🟢 GH Pages | 5 Nov 2025 | ✅ Live |
@@ -177,17 +197,17 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 
 | Projek | Path | Stack | GitHub | Deploy | Last Push | Status |
 |--------|------|-------|--------|--------|-----------|--------|
-| **Flame-ADE** | `projects/flame-ade/` | Tauri 2, Rust, React 19, TS | `github.com/Niumination/Flame-ADE` | ⚪ Desktop app | 20 Jun 2026 | ✅ v1.3.0 |
-| **JHermUSB-portable** | `Production/JHermUSB-portable/` | Shell, Hermes Agent v25+v27 | `github.com/Niumination/JHermUSB-portable` | 🟢 GitHub (🏭) | 22 Jun 2026 | ✅ Production |
-| **Niu-Flow** | `projects/Niu-Flow/` | Python, JCode bridge | `github.com/Niumination/niu-flow` | ⚪ Local | 20 Jun 2026 | 🟢 **Active** — 5 commits |
-| **VirtualAssistance** | — (remote only) | TS | `github.com/Niumination/VirtualAssistance` | 🟢 Vercel | 3 Jun 2026 | ✅ Live |
-| **Joy-Connect-for-Mac** | `projects/joy-connect-for-mac/` | Swift 5.9, macOS 13+, scrcpy | lokal | ⚪ macOS Desktop | 25 Jul 2026 | 🆕 **Infinix device bridge** |
-| **LatticeSend** | `projects/latticesend/` | Rust, Flutter, QUIC, E2EE | lokal | ⚪ Spec phase | 22 Jul 2026 | 🆕 **P2P transfer — blueprint only** |
-| **Niu-MissionControl** | `projects/niu-mission-control/` | Python, FastAPI, WebSocket, aiosqlite | lokal | ⚪ Local | 25 Jul 2026 | 🆕 **Agent Swarm dashboard** |
-| **Spatial Vision** | `projects/spatial-vision/` | Rust, WASM, Axum, pinch gesture | lokal | ⚪ Prototype | 22 Jul 2026 | 🆕 **Full-stack Rust/WASM** |
-|| **orchestrator** | `projects/orchestrator/` | Python | `github.com/Niumination/orchestrator` | ⚪ Local | 24 Jun 2026 | ✅ **Pushed** |
-|| **didong-code** | `projects/didong-code/` | Electron, React 18, TypeScript, Vite, Tailwind CSS | `github.com/Niumination/didong-code` | ⚪ Desktop app | 08 Jul 2026 | 🆕 **New — Gayo Heritage ADE** |
-|| **Ultra** | `projects/Ultra/` | Node.js, Puppeteer, Express | `github.com/Niumination/ultra-automation` | ⚪ Local | 25 Jun 2026 | ✅ **Pushed** |
+|| **Flame-ADE** | `desktop/flame-ade/` | Tauri 2, Rust, React 19, TS | `github.com/Niumination/Flame-ADE` | ⚪ Desktop app | 20 Jun 2026 | ✅ v1.3.0 |
+|| **JHermUSB-portable** | `apps/JHermUSB-portable/` | Shell, Hermes Agent v25+v27 | `github.com/Niumination/JHermUSB-portable` | 🟢 GitHub (🏭) | 22 Jun 2026 | ✅ apps/ 🏭 |
+|| **Niu-Flow** | — (remote only) | Python, JCode bridge | `github.com/Niumination/niu-flow` | ⚪ Local | 20 Jun 2026 | 🟢 **Active** — 5 commits |
+|| **VirtualAssistance** | — (remote only) | TS | `github.com/Niumination/VirtualAssistance` | 🟢 Vercel | 3 Jun 2026 | ✅ Live |
+|| **Joy-Connect-for-Mac** | `desktop/joy-connect-for-mac/` | Swift 5.9, macOS 13+, scrcpy | lokal | ⚪ macOS Desktop | 25 Jul 2026 | 🆕 **Infinix device bridge** |
+|| **LatticeSend** | `services/latticesend/` | Rust, Flutter, QUIC, E2EE | lokal | ⚪ Spec phase | 22 Jul 2026 | 🆕 **P2P transfer — blueprint only** |
+|| **Niu-MissionControl** | `services/niu-mission-control/` | Python, FastAPI, WebSocket, aiosqlite | lokal | ⚪ Local | 25 Jul 2026 | 🆕 **Agent Swarm dashboard** |
+|| **Spatial Vision** | `sites/spatial-vision/` | Rust, WASM, Axum, pinch gesture | lokal | ⚪ Prototype | 22 Jul 2026 | 🆕 **Full-stack Rust/WASM** |
+||| **orchestrator** | `agents/orchestrator/` | Python | `github.com/Niumination/orchestrator` | ⚪ Local | 24 Jun 2026 | ✅ **Pushed** |
+||| **didong-code** | `desktop/didong-code/` | Electron, React 18, TypeScript, Vite, Tailwind CSS | `github.com/Niumination/didong-code` | ⚪ Desktop app | 08 Jul 2026 | 🆕 **Gayo Heritage ADE** |
+||| **Ultra** | `agents/Ultra/` | Node.js, Puppeteer, Express | `github.com/Niumination/ultra-automation` | ⚪ Local | 25 Jun 2026 | ✅ **Pushed** |
 | **flame-code** | — (remote only) | TS | `github.com/Niumination/flame-code` | ⚪ Not deployed | 31 Mei 2026 | ⚪ Stale |
 | **free-vps** | — (remote only) | TS | `github.com/Niumination/free-vps` | ⚪ Not deployed | 29 Mei 2026 | ⚪ Stale |
 | **Devs-Niu** | — (remote only) | — | `github.com/Niumination/Devs-Niu` | ⚪ Not deployed | 8 Nov 2025 | ⚪ Stale |
@@ -199,23 +219,23 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 
 | Projek | Path | Stack | GitHub | Deploy | Last Push | Status |
 |--------|------|-------|--------|--------|-----------|--------|
-||| **arch-web-dashboard** | `Production/arch-web-dashboard/` 🏭 | Next.js 14, React 18, TypeScript, Tailwind | `github.com/Niumination/arch-web-dashboard` | 🟢 GitHub | 22 Jun 2026 | ✅ v1.0.0 — **Production/ 🏭** |
-|| **mac-web-dashboard** | `Production/mac-web-dashboard/` 🏭 | Next.js 14, React 18, TypeScript, Tailwind | `github.com/Niumination/mac-web-dashboard` | 🟢 GitHub | 11 Jul 2026 | ✅ v1.1.0 — **+AI Workspace (6 tabs), Hermes+Ollama+Agent Discovery** |
-|| **CC.Switch** | `Production/cc-switch/` 🏭 | Tauri 2, React, Rust, multi-CLI switcher | `github.com/Niumination/cc-switch` | 🟢 GitHub | 20 Jul 2026 | ✅ v3.17.0 — **release DMG ready** |
+|| **arch-web-dashboard** | `apps/arch-web-dashboard/` 🏭 | Next.js 14, React 18, TypeScript, Tailwind | `github.com/Niumination/arch-web-dashboard` | 🟢 GitHub | 22 Jun 2026 | ✅ v1.0.0 — **apps/ 🏭** |
+||| **mac-web-dashboard** | `apps/mac-web-dashboard/` 🏭 | Next.js 14, React 18, TypeScript, Tailwind | `github.com/Niumination/mac-web-dashboard` | 🟢 GitHub | 11 Jul 2026 | ✅ v1.1.0 — **+AI Workspace (6 tabs)** |
+||| **CC.Switch** | `apps/cc-switch/` 🏭 | Tauri 2, React, Rust, multi-CLI switcher | `github.com/Niumination/cc-switch` | 🟢 GitHub | 20 Jul 2026 | ✅ v3.17.0 — **release DMG ready** |
 || **AI-First-OS**
-| **Niumination** (Profile) | `Production/Niumination/` 🆕 | README, config, scripts | `github.com/Niumination/Niumination` | 🟢 GitHub | 15 Jul 2026 | ✅ **GitHub Profile — Gitiumination v1.0.0** |
-| **niu-vermilion** | `Production/niu-vermilion/` 🏭 | Next.js 16, React 19, Supabase, TipTap | `github.com/Niumination/Niu-Vermilion` | 🟢 Vercel | 24 Jun 2026 | ✅ V1-V5 fixed — **Production/ 🏭** |
-|| **niu-cast** | `projects/niu-cast/` | Python 3, PyQt5, ADB | `github.com/Niumination/niu-cast` | ⚪ macOS Desktop | 20 Jul 2026 | ✅ v1.2.0 — 🆕 File Browser, tabbed UI |
-| **cc-acehtengah** | `projects/cc-acehtengah/` | Next.js 16, Prisma 7, LLM (Ollama), RAG (Qdrant) | `github.com/Niumination/cc-acehtengah` | ⚪ Local | 13 Jul 2026 | 🔜 **Fase 1 — Foundation ✅** |
-|| **niu-dash-fullstack** | `projects/niu-dash-fullstack/` | Next.js 16, React 19, Prisma 7, TanStack Query, next-auth | `github.com/Niumination/niu-dash-fullstack` | ⚪ Local | 13 Jul 2026 | ✅ **3D scene removed — performance improved** |
-|| **niu-dash** | `Production/niu-dash/` 🏭 | HTML/CSS/JS Vanilla | `github.com/Niumination/niu-dash` | 🟢 GH Pages — v2.16.8 | 22 Jun 2026 | 🟢 **Audit 27/27 ✅** |
-||| **niumination-workspace** | `projects/niumination-workspace/` | Next.js 16, Prisma, Three.js, TanStack Query | `github.com/Niumination/niumination-workspace` | ⚪ Local | 24 Jun 2026 | ✅ **4 commits — pushed to GitHub** |
-| **niu-kanban-dash** | `projects/niu-kanban-dash/` | React 19, Vite, Tailwind v4 | `github.com/Niumination/niu-kanban-dash` | localhost:5199 | 24 Jun 2026 | ✅ **Pushed to GitHub** |
-| **maze-3d** | `projects/maze-3d/` | HTML, JS | `github.com/Niumination/Maze-3D-Game---Web-Based` | 🟢 GH Pages | 21 Mei 2026 | ✅ Live |
-| **x-downloader** | `projects/x-downloader/` | Tauri 2 (Rust) + Vite 5 + React 18 + Three.js 3D orb | `github.com/Niumination/x-downloader` | 🟢 GitHub | 06 Jul 2026 | ✅ **v2.0.0 — P3: playlist, conversion, clipboard, pause/resume, DMG release** |
+| **Niumination** (Profile) | `agents/profile/` | README, config, scripts | `github.com/Niumination/Niumination` | 🟢 GitHub | 15 Jul 2026 | ✅ **GitHub Profile** |
+|| **niu-vermilion** | `apps/niu-vermilion/` 🏭 | Next.js 16, React 19, Supabase, TipTap | `github.com/Niumination/Niu-Vermilion` | 🟢 Vercel | 29 Jul 2026 | ✅ **+Modul Indikator page, seeded ecosystem data** |
+||| **niu-cast** | `services/niu-cast/` | Python 3, ADB mac-connect | `github.com/Niumination/niu-cast` | ⚪ macOS Desktop | 20 Jul 2026 | ✅ v3.6.0 — Mac Connect Bridge |
+| **cc-acehtengah** | `services/cc-acehtengah/` | Next.js 16, Supabase | `github.com/Niumination/cc-acehtengah` | 🟢 Vercel | 29 Jul 2026 | 🔜 **AI Command Center — Aceh Tengah** |
+|| **niu-dash-fullstack** | `sites/niu-dash-fullstack/` | Next.js 16, React 19, Prisma 7, TanStack Query | `github.com/Niumination/niu-dash-fullstack` | ⚪ Local | 13 Jul 2026 | ✅ **Active** |
+|| **niu-dash** | `apps/niu-dash/` 🏭 | HTML/CSS/JS Vanilla | `github.com/Niumination/niu-dash` | 🟢 GH Pages — v2.16.8 | 22 Jun 2026 | 🟢 **Audit 27/27 ✅** |
+||| **niumination-workspace** | `labs/niumination-workspace/` | Next.js 16, Prisma, Three.js, TanStack Query | `github.com/Niumination/niumination-workspace` | ⚪ Local | 24 Jun 2026 | ✅ **4 commits — pushed** |
+|| **niu-kanban-dash** | `sites/niu-kanban-dash/` | React 19, Vite, Tailwind v4 | `github.com/Niumination/niu-kanban-dash` | localhost:5199 | 24 Jun 2026 | ✅ **Pushed** |
+|| **maze-3d** | `labs/maze-3d/` | HTML, JS | `github.com/Niumination/Maze-3D-Game---Web-Based` | 🟢 GH Pages | 21 Mei 2026 | ✅ Live |
+|| **x-downloader** | `desktop/x-downloader/` | Tauri 2 (Rust) + Vite 5 + React 18 + Three.js 3D orb | `github.com/Niumination/x-downloader` | 🟢 GitHub | 06 Jul 2026 | ✅ **v2.0.0 — DMG release** |
 | **niu-private** | — (remote only) | TS | `github.com/Niumination/niu-private` | 🟢 GH Pages | 8 Jun 2026 | ✅ Live |
-| **ai-file-manager-android** | `Production/ai-file-manager-android/` | Android (Kotlin, Jetpack Compose, Gradle), Google Gemini 1.5 Flash, ML Kit OCR | `github.com/Niumination/ai-file-organizer-android` | 🟢 GitHub | 23 Jun 2026 | ✅ **Production** — tested on device, CI green |
-| **kune-ya.com** | `Production/kune-ya.com/` 🏭 | TS, Next.js 15 | `github.com/Niumination/kune-ya.com` | 🟢 Vercel | 24 Jun 2026 | ✅ K1-K5 fixed — **Production/ 🏭** |
+| **ai-file-manager-android** | `apps/ai-file-manager-android/` 🏭 | Android (Kotlin, Jetpack Compose, Gradle), Google Gemini | `github.com/Niumination/ai-file-organizer-android` | 🟢 GitHub | 23 Jun 2026 | ✅ **apps/ 🏭** |
+|| **kune-ya.com** | `apps/kune-ya.com/` 🏭 | TS, Next.js 15 | `github.com/Niumination/kune-ya.com` | 🟢 Vercel | 29 Jul 2026 | ✅ **apps/ 🏭** |
 | **Niu-Startpage** | — (remote only) | HTML, CSS | `github.com/Niumination/Niu-Startpage` | 🟢 GH Pages | 22 Okt 2025 | ✅ Live |
 | **NiuHomePage** (fork) | — (remote only) | CSS | `github.com/Niumination/NiuHomePage` | 🟢 GH Pages | 13 Okt 2025 | ✅ Live |
 | **zaryu.startpage** (fork) | — (remote only) | JS | `github.com/Niumination/zaryu.startpage` | 🟢 GH Pages | 13 Okt 2025 | ✅ Live |
@@ -238,11 +258,11 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 
 | Projek | Path | GitHub | Deskripsi |
 |--------|------|--------|-----------|
-| **brain** | `brain/` | `github.com/Niumination/brain` | Obsidian vault — catatan harian, knowledge base |
-| **PI** | `PI/` | lokal | **Personal Inventory** — API keys, credentials — **RAHASIA** |
-| **archive** | `archive/` | lokal | Arsip proyek lama |
-| **labs** | `labs/` | lokal | Lab eksperimen |
-| **dotfiles** | `dotfiles/` | lokal | Terminal dotfiles & rekap |
+|| **brain** | `brain/` | lokal | Obsidian vault — catatan harian, knowledge base |
+|| **vault** | `vault/` | lokal | 🔐 **Personal Inventory** — API keys, credentials — **RAHASIA** |
+|| **archive** | `archive/` | lokal | Arsip proyek lama |
+|| **labs** | `labs/` | lokal | Lab eksperimen |
+|| **dotfiles** | `dotfiles/` | lokal | Terminal dotfiles (standalone repo) |
 
 ### 🚚 Delivery Service
 
@@ -266,7 +286,8 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 ### 🧠 AI-Memory-Collection
 
 **Lokasi:** `~/Desktop/AI-Memory-Collection/` (~1.73 GB)
-**Sumber:** Snapshot 12 AI tools dari seluruh sistem macOS (16 Jul 2026)
+**Status:** ⚪ **BELUM DIVERIFIKASI** — Hermes tidak kenal folder ini. Referensi di `docs/ai-memory-collection.md` dan DOX chain butuh verifikasi langsung.
+**Sumber (klaim):** Snapshot 12 AI tools dari seluruh sistem macOS (16 Jul 2026)
 
 | Tool | Ukuran | Isi Penting |
 |------|--------|-------------|
@@ -356,23 +377,25 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 
 ```
 AGENTS.md (root — ~/Desktop/Niumination/)
-  ├── brain/AGENTS.md                                                    ✅ (project docs, stats, version)
   ├── apps/Niu-LKH/AGENTS.md                                             ✅
-  ├── apps/PemdiAcehTengah/AGENTS.md                                     ✅ + 5 sub-DOX
+  ├── apps/PemdiAcehTengah/AGENTS.md                                     ✅ + data/ + components/ sub-DOX
   ├── apps/niu-dash/AGENTS.md                                            ✅
   ├── apps/kune-ya.com/AGENTS.md                                         ✅
   ├── apps/niu-vermilion/AGENTS.md                                       ✅
+  ├── services/cc-acehtengah/AGENTS.md                                   ✅
   ├── services/niu-cast/AGENTS.md                                        ✅
   ├── labs/niumination-workspace/AGENTS.md                               ✅
+  ├── desktop/didong-code/AGENTS.md                                      ✅
+  ├── desktop/flame-ade/AGENTS.md                                        ✅
   ├── desktop/x-downloader/AGENTS.md                                     ✅
   ├── agents/Ultra/AGENTS.md                                             ✅
-  ├── desktop/flame-ade/AGENTS.md                                        ✅
-  ├── agents/profile/AGENTS.md                                           ✅ (profile DOX)
-  ├── agents/characters/arsitek/AGENTS.md                                ✅ (herdr character)
+  ├── agents/profile/AGENTS.md                                           ✅
+  ├── agents/orchestrator/AGENTS.md                                      ❌ (belum ada)
+  ├── agents/characters/arsitek/AGENTS.md                                ✅
   ├── agents/characters/pembangun/AGENTS.md                              ✅
   ├── agents/characters/pengawas/AGENTS.md                               ✅
   ├── agents/characters/penjaga/AGENTS.md                                ✅
-  └── brain/projects/*/AGENTS.md (10 files)                              ✅ (mirror docs)
+  └── docs/skill-ecosystem-guide.md                                      ✅ (panduan skill ecosystem)
 ```
 
 **Cara navigasi:**
@@ -393,10 +416,10 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | **Secrets & Credentials** | `vault/` — **RAHASIA** (chmod 600 ✅) |
 | **Obsidian Vault** | `brain/` |
 | **Niu-Flow Pipeline** | Ke remote: `github.com/Niumination/niu-flow` (tidak di lokal) |
-| **AI Agent Hooks** | `scripts/hooks/` — 13 hook scripts (claude, codex, copilot, dll) |
-| **Profile README** | `agents/profile/` → `gh:Niumination/Niumination` |
-| **Agent Characters** | `agents/characters/` — 4 herdr agents (arsitek, pembangun, pengawas, penjaga) |
-| **AI-Memory-Collection** | `docs/ai-memory-collection.md` — unified knowledge 12 AI tools |
+|| **AI Agent Hooks** | `scripts/hooks/` — 13 hook scripts (claude, codex, copilot, dll) |
+|| **Profile README** | `agents/profile/` → `gh:Niumination/Niumination` |
+|| **Agent Characters** | `agents/characters/` — 4 herdr agents (arsitek, pembangun, pengawas, penjaga) |
+|| **Skill Ecosystem Guide** | `docs/skill-ecosystem-guide.md` — Panduan lengkap sistem skill (Hermes, Jcode, Claude Code, OpenCode, Orca, Herdr) |
 
 ---
 
@@ -469,5 +492,5 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 ---
 
 > **Dibuat:** 11 Juni 2026
-> **Diperbarui:** 28 Jul 2026 — v3.2 — **+UACC MCP server integrated, ecosystem filesystem audit**
+> **Diperbarui:** 29 Jul 2026 — v4.0 — **Sync struktur v4.0:** `Production/`→`apps/`, `projects/` terdistribusi ke `services/sites/desktop/labs/sandbox/`, `PI/`→`vault/`. +UACC MCP, +Modul Indikator PemdiAcehTengah, +Skill Ecosystem Guide, +DOX chain diverifikasi. AI-Memory-Collection ⚪ belum diverifikasi.
 > **Oleh:** Niumination (Afrizal Munthe) — Aceh Tengah
