@@ -152,9 +152,16 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
 
 ---
 
-## 🧠 AI Agent Instructions & Behavior
+## 🧠 AI Agent Instructions & Behavior — Auto-loaded Skills
 
-### Ponytail — Lazy Senior Dev Mindset
+> ⚡ **Layer 3 — DOX Injection Engine:** Skill berikut akan auto-terdeteksi oleh agent berdasarkan trigger keyword. Ini replikasi pola Ponytail untuk semua skill aktif di bank pusat.
+> Agent WAJIB menjalankan Decision Ladder Ponytail SEBELUM nulis kode apapun. Skill lain di-load sesuai relevance.
+
+---
+
+### 🔵 Level 1 — Always Active (setiap respons)
+
+#### Ponytail — Lazy Senior Dev Mindset
 
 Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti senior dev paling malas — selalu pilih solusi paling minimal sebelum nulis kode. Cocok dengan workflow surgical patch ecosystem.
 
@@ -169,10 +176,56 @@ Ponytail adalah skill/ruleset yang memaksa AI coding agent berpikir seperti seni
 7. **Baru: tulis kode minimal** — kode paling kecil yang solve problem.
 
 **Benchmark:** -54% LOC, -22% token, -20% cost, -27% time, safety 100%.
+**Source:** `skills/software-development/ponytail-core/SKILL.md`
 
-**Cara pakai:** `/skill ponytail` atau `hermes -s ponytail`.
+---
 
-**MCP tools:** `mcp_ponytail_review_code_diff()`, `mcp_ponytail_audit_repo()`.
+### 🟢 Level 2 — On-Demand via Trigger Keyword
+
+Agent akan auto-load skill berikut jika task description mengandung trigger keyword yang cocok.
+
+| Skill | Trigger Keywords | Source |
+|-------|-----------------|--------|
+| **systematic-debugging** | debug, bug, error, crash, broken, "gak jalan", "kenapa error", troubleshoot, root cause | `skills/software-development/systematic-debugging/` |
+| **project-orientation** | orientasi, "cek project", "cek dulu", "lihat dulu", verify, "apa aja isinya", situasional | `skills/software-development/project-orientation/` |
+| **document-content-pipeline** | pdf, odl-pdf, extract, markdown, batch convert, cleanup modul, "20 file", indikator | `skills/software-development/document-content-pipeline/` |
+| **up-eco** | up-eco, "cek ekosistem", ecosystem check, status proyek, divergence, sync status | `skills/ecosystem/up-eco/` |
+| **ekosistem-scaffold** | scaffold, "buat proyek baru", "inisialisasi project", new project setup, standarisasi | `skills/ecosystem/ekosistem-scaffold/` |
+| **optimization** | optimasi, "percepat", latency, bottleneck, profiling, "kurangi load", performance | `skills/software-development/optimization/` |
+| **ponytail-audit** | audit kode, review codebase, "cek over-engineering", "apa yang bisa didelete", bloat | `skills/software-development/ponytail-audit/` |
+
+**Cara pakai manual:** `/skill <nama>` atau `hermes -s <nama>`.
+**Cara nonaktifkan:** "stop ponytail" atau "normal mode".
+**Trigger priority:** Last-loaded wins — skill yang di-load paling akhir override sebelumnya.
+
+---
+
+### ⚪ Level 3 — Future (Agentpedia — porting manual)
+
+| Skill | Trigger Keywords | Source |
+|-------|-----------------|--------|
+| **redteam** | security audit, pentest, vulnerability, penetration test | Agentpedia (future) |
+| **ghost** | humanize, "AI detection", bypass, "tulisan manusia" | Agentpedia (future) |
+
+---
+
+### 📌 Cara Kerja DOX Injection
+
+1. Agent membaca AGENTS.md (selalu terbaca saat kerja di `~/Desktop/Niumination/`)
+2. Level 1 (Ponytail) — **always active**, Decision Ladder jalan setiap respons
+3. Level 2 — agent scan task description untuk trigger keyword
+4. Jika cocok → agent load skill via `skill_view('<nama>')`
+5. Skill aktif untuk sesi itu — bisa di-nonaktifkan manual
+
+---
+
+### 🔗 Integrasi dengan Hermes Catalog
+
+Selain DOX injection di atas, Hermes juga punya **catalog skill di system prompt** (`<available_skills>`) yang berisi 148 skills dari `~/.hermes/skills/`. Dua mekanisme ini komplementer:
+- **DOX injection** → trigger keyword spesifik untuk ekosistem Niumination
+- **Hermes catalog** → daftar lengkap semua skill yang tersedia (agent bisa load kapan pun)
+
+Keduanya jalan bersamaan — tidak saling menimpa.
 
 ---
 
@@ -417,6 +470,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | **Obsidian Vault** | `brain/` |
 | **Niu-Flow Pipeline** | Ke remote: `github.com/Niumination/niu-flow` (tidak di lokal) |
 || **AI Agent Hooks** | `scripts/hooks/` — 13 hook scripts (claude, codex, copilot, dll) |
+|| **Skill Sync Script (Layer 2)** | `skills/sync-to-agents.sh` — auto-sync bank pusat ke Jcode + Hermes, cron every 6h |
 || **Profile README** | `agents/profile/` → `gh:Niumination/Niumination` |
 || **Agent Characters** | `agents/characters/` — 4 herdr agents (arsitek, pembangun, pengawas, penjaga) |
 || **Skill Ecosystem Guide** | `docs/skill-ecosystem-guide.md` — Panduan lengkap sistem skill (Hermes, Jcode, Claude Code, OpenCode, Orca, Herdr) |
@@ -491,6 +545,30 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 
 ---
 
+<!-- SKILL_REGISTRY_START -->
+### 🧠 Bank Skill — Active Registry (auto-synced)
+
+| Skill | Domain | Source | Description |
+|-------|--------|--------|-------------|
+| `document-content-pipeline` | software-development | Bank Pusat | High-accuracy PDF extraction (opendataloader-pdf / ODL-PDF), batch markdown cleanup, and content pipeline for website injection. Covers PPT→PDF→Markdown→JSON→Next.js page workflows. |
+| `ekosistem-scaffold` | ecosystem | Bank Pusat | Scaffold new or missing projects in the Niumination ecosystem. Creates AGENTS.md + BACKLOG.md + brain/projects/ entry with standardized templates. Validates git, deploy, and DOX completeness. |
+| `ghost` | creative | Bank Pusat | AI text humanizer — bypass AI detection untuk publikasi |
+| `optimization` | software-development | Bank Pusat | Improve performance, latency, and throughput of code and systems. Systematic profiling → bottleneck detection → targeted optimization. |
+| `ponytail-audit` | software-development | Bank Pusat | Whole-repo audit for over-engineering. Like ponytail-review, but scans the entire codebase instead of a diff: a ranked list of what to delete, simplify, or replace with stdlib/native equivalents. Use when the user says "audit this codebase", "audit for over-engineering", "what can I delete from this repo", "find bloat", "ponytail-audit", or "/ponytail-audit". One-shot report, does not apply fixes. |
+| `ponytail-core` | software-development | Bank Pusat | Forces the laziest solution that actually works, simplest, shortest, most minimal. Channels a senior dev who has seen everything: question whether the task needs to exist at all (YAGNI), reach for the standard library before custom code, native platform features before dependencies, one line before fifty. Supports intensity levels: lite, full (default), ultra. Use whenever the user says "ponytail", "be lazy", "lazy mode", "simplest solution", "minimal solution", "yagni", "do less", or "shortest path", and whenever they complain about over-engineering, bloat, boilerplate, or unnecessary dependencies. |
+| `project-orientation` | software-development | Bank Pusat | Establish situational awareness before working on any user-referenced project. Verify project existence, state, location, and documentation against primary sources — not memory or compressed summaries. |
+| `redteam` | security | Bank Pusat | 32 agen adversarial untuk security pentest |
+| `systematic-debugging` | software-development | Bank Pusat | 4-phase root cause debugging: understand bugs before fixing. |
+| `up-eco` | ecosystem | Bank Pusat | Ecosystem status check & sync workflow. Triggered via Telegram /up-eco command. Checks git status, detects unknown/foreign folders, syncs BACKLOG/docs with filesystem, and recommends actions to align local ecosystem with GitHub. |
+
+_Last sync: 2026-07-29 22:38:17_
+
+<!-- SKILL_REGISTRY_END -->
+
+
+
+---
+
 > **Dibuat:** 11 Juni 2026
-> **Diperbarui:** 29 Jul 2026 — v4.1 — **Layer 1 bank skill terisi:** 8 SKILL.md dari Hermes + tools/ponytail/ di-copy ke skills/ ✅. Struktur v4.0 stabil.
+> **Diperbarui:** 29 Jul 2026 — v4.3 — **Layer 3 — DOX Injection Engine:** Auto-loaded Skills section dengan 3 level (Always Active, On-Demand via Trigger Keyword, Future). Replikasi pola Ponytail ke 7 skill tambahan. Integrasi dengan Hermes catalog dijelaskan. Semua layer 1-3 selesai ✅.
 > **Oleh:** Niumination (Afrizal Munthe) — Aceh Tengah

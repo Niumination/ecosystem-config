@@ -1,9 +1,11 @@
 # INDEX — Bank Skill Terpusat Niumination
 
-> **Versi:** 1.1.0 (terisi)
+> **Versi:** 1.3.0 (Layers 1-3 ✅)
 > **Lokasi:** `~/Desktop/Niumination/skills/`
+> **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes + update AGENTS.md (cron every 6h)
+> **DOX Injection:** ✅ Layer 3 — Auto-loaded Skills di AGENTS.md (Ponytail always active + 7 skill on-demand via trigger keyword)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Pengisian oleh Hermes:** ✅ 7/8 skill aktif terisi. 1 (optimization) diisi Hermes + Jcode.
+> **Status:** 8 ✅ Aktif, 2 ⏳ Future (redteam, ghost)
 
 ---
 

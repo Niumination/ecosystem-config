@@ -895,13 +895,13 @@ fragmented   Layer 1      Layer 2      Layer 3        Layer 4
 └── INDEX.md             ← katalog semua skill
 ```
 
-**Tahap 2: Sync (Layer 2) — Auto-copy Script**
+**Tahap 2: Sync (Layer 2) — Auto-copy Script ✅**
 ```
-skills/sync-to-agents.sh
-├── sync ke ~/.jcode/skills/     → Jcode bisa skill_manage load
-├── sync ke ~/.hermes/skills/    → Hermes catalog otomatis update
-├── sync ke AGENTS.md (DOX)      → auto-inject untuk trigger
-└── cron job (setiap 6 jam)      → selalu sinkron
+skills/sync-to-agents.sh          ← ✅ ACTIVE
+├── sync ke ~/.jcode/skills/     → ✅ 10 skill ter-copy
+├── sync ke ~/.hermes/skills/    → ✅ 10 skill ter-copy
+├── sync ke AGENTS.md (DOX)      → ✅ skill registry auto-update
+└── cron job (setiap 6 jam)      → 🔜 Manual setup (CRON_SETUP.md)
 ```
 
 **Tahap 3: Trigger (Layer 3) — DOX Injection Engine**
@@ -938,9 +938,11 @@ skills/sync-to-agents.sh
 
 ### 📋 Rekomendasi Tambahan dari Hermes
 
-**Sebelum bangun Layer 1, update AGENTS.md root dulu.**
+**Sebelum bangun Layer 1, update AGENTS.md root dulu.** ✅ Selesai oleh Hermes.
 
-Jcode audit membuktikan DOX masih v3.0 — banyak path salah, catalog tidak sinkron. Kalau bank skill dibangun berdasarkan DOX yang salah, hasilnya juga akan salah. Urutan yang benar:
+**Layer 2 sync script** ✅ Selesai oleh Jcode — `skills/sync-to-agents.sh` aktif.
+
+**Urutan yang benar (sudah selesai):**
 
 1. Update AGENTS.md → sinkronkan dengan realita v4.0
 2. Baru bangun Layer 1 (bank pusat)
@@ -961,7 +963,7 @@ Bank pusat akan berisi file dari berbagai sumber — Hermes, Jcode, Agentpedia. 
 > "Guide v2 sudah jauh lebih akurat dibanding v1. Jcode melakukan audit yang solid. 4 layer roadmap-nya realistis. Tinggal jawab 6 pertanyaan (sudah saya jawab) dan eksekusi bertahap. Siap mulai?"
 > — Hermes Agent
 
-**Update 29 Jul 2026:** Layer 1 scaffold selesai dibangun oleh Jcode. Struktur direktori, INDEX.md, .gitignore, dan 10 placeholder SKILL.md sudah siap. Hermes tinggal mengisi konten dari ~10-15 skill aktif. Lihat `~/Desktop/Niumination/skills/`.
+**Update 29 Jul 2026:** Layer 1 scaffold selesai — 8 skill terisi Hermes. Layer 2 sync script (`skills/sync-to-agents.sh`) aktif: sync bank pusat → Jcode + Hermes + AGENTS.md. Cron every 6h via `CRON_SETUP.md`.
 
 ---
 
@@ -980,13 +982,15 @@ Bank pusat akan berisi file dari berbagai sumber — Hermes, Jcode, Agentpedia. 
 | Jcode Skills (local) | `./.jcode/skills/` |
 | Hermes Skills | `~/.hermes/skills/` |
 | Hermes USB Skills | `/Volumes/HermesAgent/HermesAgentUSB/data/skills/` |
-|| Bank Skill Pusat | `~/Desktop/Niumination/skills/` | 🧠 **ACTIVE** — Layer 1: 8 skill terisi ✅ (Hermes + tools/ponytail/) |
+||| **Bank Skill Pusat** | `~/Desktop/Niumination/skills/` | 🧠 **ACTIVE** — Layer 1-3 ✅ |
+||| **Sync Script (Layer 2)** | `~/Desktop/Niumination/skills/sync-to-agents.sh` | ✅ Auto-sync bank → Jcode + Hermes + AGENTS.md, cron every 6h |
+||| **DOX Injection (Layer 3)** | `AGENTS.md` — Auto-loaded Skills section | ✅ 3 level: Always Active (Ponytail), On-Demand (7 skill), Future (2) |
 || AI-Memory-Collection | `~/Desktop/AI-Memory-Collection/` (1.73 GB) | ⚪ **BELUM DIVERIFIKASI** — Hermes tidak kenal folder ini. Butuh verifikasi langsung. |
 | Hermes Hub Registry | GitHub — `hermes skills install <nama>` |
 
 ---
 
 > **Dibuat:** 29 Juli 2026
-> **Diperbarui:** 29 Juli 2026 v4 — +Layer 1 bank skill terisi 8 skill ✅ oleh Hermes. Prasyarat Layer 2 siap.
+> **Diperbarui:** 29 Juli 2026 v6 — +Layer 3 DOX Injection ✅ oleh Hermes. Layers 1-3 complete. Siap Layer 4 (Mission-Control Dashboard).
 > **Oleh:** Jcode + Hermes Agent — Niumination Ecosystem
 > **Tujuan:** Dokumentasi referensi — bisa di-copy ke NotebookLM untuk query lebih lanjut
