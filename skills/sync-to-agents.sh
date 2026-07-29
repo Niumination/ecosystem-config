@@ -359,6 +359,17 @@ if ! $DRY_RUN; then
   
   # Notify mission-control (fire-and-forget, non-blocking)
   if command -v curl &>/dev/null; then
+    # Seed each skill as loaded
+    while IFS= read -r src_file; do
+      rel_path="${src_file#$BANK_DIR/}"
+      skill_dir="${rel_path#*/}"
+      skill_name="${skill_dir%/*}"
+      curl -s -X POST "http://localhost:5200/api/mc/skills/event" \
+        -H "Content-Type: application/json" \
+        -d '{"skill_name":"'"$skill_name"'","agent":"sync-to-agents.sh","event_type":"load"}' \
+        --connect-timeout 2 --max-time 3 >/dev/null 2>&1 &
+    done <<< "$SKILL_FILES"
+    # Also record sync meta-event
     curl -s -X POST "http://localhost:5200/api/mc/skills/event" \
       -H "Content-Type: application/json" \
       -d '{"skill_name":"__sync__","agent":"system","event_type":"sync","metadata":{"source":"sync-to-agents.sh","files_synced":'$total'}}' \

@@ -19,6 +19,7 @@ Desktop/Niumination/
 ├── archive/projects/   📦 2 proyek — archived (niuterm, terax-ai)
 ├── docs/               📚 Dokumentasi terpadu (reference/, reports/, notebooklm/, dox/)
 ├── scripts/            ⚙️ 21 ecosystem automation scripts
+├── skills/             🧠 13 skill terpusat (Layer 1-4)
 ├── tools/              🛠️ Ponytail MCP
 ├── vault/              🔐 Secrets & credentials (gitignored)
 ├── brain/              🧠 Obsidian vault (git, terpisah)
@@ -46,7 +47,7 @@ Desktop/Niumination/
 
 **Data source:** `kanban.db` + filesystem audit
 **Board:** Niumination Ecosystem
-**Status:** 12 apps, 5 services, 5 sites, 4 desktop, 4 agents, 2 labs, 7 sandbox, 2 archived
+**Status:** 12 apps, 5 services, 5 sites, 4 desktop, 4 agents, 2 labs, 7 sandbox, 2 archived, 13 skills
 
 ### 🏭 apps/ — 12 Proyek Production
 
