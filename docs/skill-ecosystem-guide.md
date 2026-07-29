@@ -3,7 +3,7 @@
 > **Audiens:** Afrizal Munthe (Niumination)
 > **Tujuan:** Memahami bagaimana skill AI bekerja di ekosistem — mana yang auto-load, mana yang manual, mana yang terintegrasi
 > **Catatan Revisi v3:** Koreksi setelah tanggapan Hermes. Perubahan: (1) 148 skills → dibedakan "total installed" vs "~10-15 actively used", (2) Catalog injection dijelaskan lebih teknis — loading isi skill tetap manual via `skill_view()`, (3) Ditambahkan skill `document-content-pipeline` + UACC MCP server, (4) AI-Memory-Collection ditandai ⚪ belum diverifikasi, (5) Section 14 diisi jawaban Hermes untuk 6 pertanyaan, (6) Ditambahkan rekomendasi Hermes: update AGENTS.md dulu sebelum Layer 1.
-> **Update 29 Jul 2026 — AGENTS.md sudah diupdate ke v4.0.** Root DOX sekarang sinkron dengan realita: `Production/`→`apps/`, path catalog diperbaiki, DOX chain diverifikasi ✅. Prasyarat Layer 1 terpenuhi.
+> **Update 29 Jul 2026 — AGENTS.md sync v4.0 ✅ + Layer 1 bank skill terisi 8 skill ✅.** Semua prasyarat Layer 1 terpenuhi. Siap lanjut ke Layer 2 (sync script).
 
 ---
 
@@ -956,10 +956,12 @@ Bank pusat akan berisi file dari berbagai sumber — Hermes, Jcode, Agentpedia. 
 - File binary (gambar, PDF) di-ignore
 - Hanya SKILL.md + markdown references yang di-track
 
-### 🎯 Kesimpulan Hermes
+### 🎯 Kesimpulan Hermes + Status Terkini
 
 > "Guide v2 sudah jauh lebih akurat dibanding v1. Jcode melakukan audit yang solid. 4 layer roadmap-nya realistis. Tinggal jawab 6 pertanyaan (sudah saya jawab) dan eksekusi bertahap. Siap mulai?"
 > — Hermes Agent
+
+**Update 29 Jul 2026:** Layer 1 scaffold selesai dibangun oleh Jcode. Struktur direktori, INDEX.md, .gitignore, dan 10 placeholder SKILL.md sudah siap. Hermes tinggal mengisi konten dari ~10-15 skill aktif. Lihat `~/Desktop/Niumination/skills/`.
 
 ---
 
@@ -978,12 +980,13 @@ Bank pusat akan berisi file dari berbagai sumber — Hermes, Jcode, Agentpedia. 
 | Jcode Skills (local) | `./.jcode/skills/` |
 | Hermes Skills | `~/.hermes/skills/` |
 | Hermes USB Skills | `/Volumes/HermesAgent/HermesAgentUSB/data/skills/` |
-| AI-Memory-Collection | `~/Desktop/AI-Memory-Collection/` (1.73 GB) | ⚪ **BELUM DIVERIFIKASI** — Hermes tidak kenal folder ini. Butuh verifikasi langsung. |
+|| Bank Skill Pusat | `~/Desktop/Niumination/skills/` | 🧠 **ACTIVE** — Layer 1: 8 skill terisi ✅ (Hermes + tools/ponytail/) |
+|| AI-Memory-Collection | `~/Desktop/AI-Memory-Collection/` (1.73 GB) | ⚪ **BELUM DIVERIFIKASI** — Hermes tidak kenal folder ini. Butuh verifikasi langsung. |
 | Hermes Hub Registry | GitHub — `hermes skills install <nama>` |
 
 ---
 
 > **Dibuat:** 29 Juli 2026
-> **Diperbarui:** 29 Juli 2026 v3 — +Koreksi dari Hermes (148 skills → ~10-15 aktif, catalog injection clarify, document-content-pipeline, UACC, AI-Memory-Collection ⚪, 6 pertanyaan dijawab)
+> **Diperbarui:** 29 Juli 2026 v4 — +Layer 1 bank skill terisi 8 skill ✅ oleh Hermes. Prasyarat Layer 2 siap.
 > **Oleh:** Jcode + Hermes Agent — Niumination Ecosystem
 > **Tujuan:** Dokumentasi referensi — bisa di-copy ke NotebookLM untuk query lebih lanjut

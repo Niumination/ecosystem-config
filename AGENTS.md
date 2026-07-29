@@ -145,7 +145,7 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
 ├── tools/                     🛠️ Ponytail MCP & utilities
 │   └── ponytail/              ← SKILL.md + MCP server code
 ├── archive/                   📦 Arsip proyek lama (~25MB)
-├── skills/                    🧠 (PLANNED) Bank skill terpusat untuk semua agent
+├── skills/                    🧠 **ACTIVE** Bank skill terpusat — 8 skill terisi ✅
 │
 └── .gitignore                 — Semua folder proyek child di-ignore
 ```
@@ -471,7 +471,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 
 | Timeline | Projek |
 |----------|--------|
-| 🔥 **Sekarang** | **PemdiAcehTengah** — 🟢 aktif di Production/ — **cc-switch** — v3.17.0 release |
+| 🔥 **Sekarang** | **Bank Skill Pusat** — Layer 1 scaffold siap, menunggu isian Hermes → Layer 2 sync script |
 | 🟢 **1-2 minggu** | brain-capture cron fix, joy-connect-for-mac dev, spatial-vision prototyping |
 | 🔄 **4-7 hari** | Niu-Flow maintenance, app management UI untuk niu-cast, latticesend spec review |
 | ⚪ **Bulan ini** | Flame-ADE, niu-mission-control dev, didong-code polish, x-downloader |
@@ -492,5 +492,5 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 ---
 
 > **Dibuat:** 11 Juni 2026
-> **Diperbarui:** 29 Jul 2026 — v4.0 — **Sync struktur v4.0:** `Production/`→`apps/`, `projects/` terdistribusi ke `services/sites/desktop/labs/sandbox/`, `PI/`→`vault/`. +UACC MCP, +Modul Indikator PemdiAcehTengah, +Skill Ecosystem Guide, +DOX chain diverifikasi. AI-Memory-Collection ⚪ belum diverifikasi.
+> **Diperbarui:** 29 Jul 2026 — v4.1 — **Layer 1 bank skill terisi:** 8 SKILL.md dari Hermes + tools/ponytail/ di-copy ke skills/ ✅. Struktur v4.0 stabil.
 > **Oleh:** Niumination (Afrizal Munthe) — Aceh Tengah

@@ -1,0 +1,45 @@
+# Bank Skill Terpusat — Niumination Ecosystem
+# Hanya track SKILL.md + markdown references.
+# File binary, dependencies, dan artifacts di-ignore.
+
+# Dependencies
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.virtual_documents/
+
+# Binary & media
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+*.svg
+*.pdf
+*.zip
+*.tar
+*.gz
+*.tgz
+*.dmg
+*.pkg
+*.app
+*.iso
+
+# IDE & OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Build artifacts
+dist/
+build/
+*.log
+
+# Environment
+.env
+.env.*
