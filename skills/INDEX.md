@@ -1,9 +1,10 @@
 # INDEX — Bank Skill Terpusat Niumination
 
-> **Versi:** 1.3.0 (Layers 1-3 ✅)
+> **Versi:** 1.4.0 (Layers 1-4 ✅ ALL COMPLETE)
 > **Lokasi:** `~/Desktop/Niumination/skills/`
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes + update AGENTS.md (cron every 6h)
 > **DOX Injection:** ✅ Layer 3 — Auto-loaded Skills di AGENTS.md (Ponytail always active + 7 skill on-demand via trigger keyword)
+> **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
 > **Status:** 8 ✅ Aktif, 2 ⏳ Future (redteam, ghost)
 
