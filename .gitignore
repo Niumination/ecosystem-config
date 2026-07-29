@@ -28,6 +28,7 @@ labs/
 sandbox/
 
 # Agents with own git repos (but NOT characters/ — tracked in root)
+dotfiles/
 agents/profile/
 agents/orchestrator/
 agents/ultra/
@@ -70,3 +71,7 @@ __pycache__/
 *.jpeg
 *.gif
 *.ico
+
+# Sync artifacts (Layer 2)
+.sync-lock/
+.sync-log

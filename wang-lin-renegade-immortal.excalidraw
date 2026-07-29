@@ -1,0 +1,123 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "hermes-agent",
+  "elements": [
+    {
+      "type": "rectangle",
+      "id": "bg_frame",
+      "x": 0,
+      "y": 0,
+      "width": 700,
+      "height": 800,
+      "roundness": { "type": 3 },
+      "backgroundColor": "#1a1a2e",
+      "fillStyle": "solid",
+      "strokeColor": "#a5d8ff",
+      "strokeWidth": 3,
+      "roughness": 2,
+      "opacity": 100
+    },
+    {
+      "type": "text",
+      "id": "title_t",
+      "x": 140,
+      "y": 30,
+      "width": 420,
+      "height": 40,
+      "text": "Wang Lin — Renegade Immortal",
+      "fontSize": 28,
+      "fontFamily": 1,
+      "strokeColor": "#a5d8ff",
+      "textAlign": "center",
+      "originalText": "Wang Lin — Renegade Immortal",
+      "autoResize": true
+    },
+    {
+      "type": "text",
+      "id": "subtitle_t",
+      "x": 220,
+      "y": 65,
+      "width": 260,
+      "height": 25,
+      "text": "(Xian Ni — 仙逆)",
+      "fontSize": 18,
+      "fontFamily": 1,
+      "strokeColor": "#748ffc",
+      "textAlign": "center",
+      "originalText": "(Xian Ni — 仙逆)",
+      "autoResize": true
+    },
+    {
+      "type": "line",
+      "id": "div_top",
+      "x": 100,
+      "y": 95,
+      "width": 500,
+      "height": 0,
+      "points": [[0,0],[500,0]],
+      "strokeColor": "#4a4a6a",
+      "strokeWidth": 1,
+      "roughness": 1
+    },
+
+    {"type":"ellipse","id":"face","x":275,"y":140,"width":150,"height":180,"backgroundColor":"#f5e6d3","fillStyle":"solid","strokeColor":"#d4a574","strokeWidth":2,"roughness":2},
+
+    {"type":"ellipse","id":"hair_bg","x":260,"y":110,"width":180,"height":200,"backgroundColor":"#1a1a1a","fillStyle":"solid","strokeColor":"#000000","strokeWidth":2,"roughness":3},
+
+    {"type":"ellipse","id":"face_overlay","x":280,"y":150,"width":140,"height":140,"backgroundColor":"#f5e6d3","fillStyle":"solid","strokeColor":"#d4a574","strokeWidth":2,"roughness":2},
+
+    {"type":"ellipse","id":"l_eye","x":305,"y":195,"width":22,"height":14,"backgroundColor":"#1a1a1a","fillStyle":"solid","strokeColor":"#000000","strokeWidth":1,"roughness":1},
+    {"type":"ellipse","id":"r_eye","x":373,"y":195,"width":22,"height":14,"backgroundColor":"#1a1a1a","fillStyle":"solid","strokeColor":"#000000","strokeWidth":1,"roughness":1},
+
+    {"type":"ellipse","id":"l_eye_highlight","x":310,"y":194,"width":6,"height":5,"backgroundColor":"#ffffff","fillStyle":"solid","strokeColor":"#ffffff","strokeWidth":0,"roughness":0},
+    {"type":"ellipse","id":"r_eye_highlight","x":378,"y":194,"width":6,"height":5,"backgroundColor":"#ffffff","fillStyle":"solid","strokeColor":"#ffffff","strokeWidth":0,"roughness":0},
+
+    {"type":"line","id":"mouth","x":320,"y":245,"width":60,"height":0,"points":[[0,0],[30,-5],[60,0]],"strokeColor":"#c47f5a","strokeWidth":2,"roughness":2},
+
+    {"type":"line","id":"l_eyebrow","x":302,"y":188,"width":30,"height":0,"points":[[0,0],[15,-4],[30,0]],"strokeColor":"#1a1a1a","strokeWidth":2,"roughness":2},
+    {"type":"line","id":"r_eyebrow","x":368,"y":188,"width":30,"height":0,"points":[[0,0],[15,-4],[30,0]],"strokeColor":"#1a1a1a","strokeWidth":2,"roughness":2},
+
+    {"type":"line","id":"nose","x":350,"y":210,"width":0,"height":28,"points":[[0,0],[0,28]],"strokeColor":"#d4a574","strokeWidth":1.5,"roughness":2},
+
+    {"type":"line","id":"hair_left","x":280,"y":150,"width":60,"height":180,"points":[[0,0],[-30,30],[-45,80],[-40,140],[-20,170]],"strokeColor":"#1a1a1a","strokeWidth":4,"roughness":3},
+    {"type":"line","id":"hair_right","x":420,"y":150,"width":60,"height":180,"points":[[0,0],[30,30],[45,80],[40,140],[20,170]],"strokeColor":"#1a1a1a","strokeWidth":4,"roughness":3},
+    {"type":"line","id":"hair_top","x":290,"y":145,"width":120,"height":0,"points":[[0,0],[20,-20],[60,-25],[100,-20],[120,0]],"strokeColor":"#1a1a1a","strokeWidth":4,"roughness":3},
+
+    {"type":"ellipse","id":"neck","x":335,"y":300,"width":30,"height":30,"backgroundColor":"#f0dcc8","fillStyle":"solid","strokeColor":"#d4a574","strokeWidth":1,"roughness":2},
+
+    {"type":"rectangle","id":"robe_body","x":260,"y":325,"width":180,"height":220,"roundness":{"type":3},"backgroundColor":"#1a2744","fillStyle":"solid","strokeColor":"#2a3a6a","strokeWidth":2,"roughness":2},
+    {"type":"rectangle","id":"robe_collar","x":275,"y":325,"width":150,"height":40,"roundness":{"type":3},"backgroundColor":"#2a3a6a","fillStyle":"solid","strokeColor":"#3a4a8a","strokeWidth":2,"roughness":2},
+
+    {"type":"line","id":"collar_left","x":305,"y":325,"width":30,"height":50,"points":[[0,0],[15,25],[30,50]],"strokeColor":"#c9a84c","strokeWidth":2,"roughness":2},
+    {"type":"line","id":"collar_right","x":365,"y":325,"width":30,"height":50,"points":[[0,0],[-15,25],[-30,50]],"strokeColor":"#c9a84c","strokeWidth":2,"roughness":2},
+
+    {"type":"line","id":"belt","x":260,"y":440,"width":180,"height":0,"points":[[0,0],[90,8],[180,0]],"strokeColor":"#c9a84c","strokeWidth":4,"roughness":2},
+
+    {"type":"rectangle","id":"l_arm","x":240,"y":340,"width":25,"height":140,"roundness":{"type":3},"backgroundColor":"#1a2744","fillStyle":"solid","strokeColor":"#2a3a6a","strokeWidth":2,"roughness":2},
+    {"type":"rectangle","id":"r_arm","x":435,"y":340,"width":25,"height":140,"roundness":{"type":3},"backgroundColor":"#1a2744","fillStyle":"solid","strokeColor":"#2a3a6a","strokeWidth":2,"roughness":2},
+
+    {"type":"ellipse","id":"l_hand","x":240,"y":470,"width":25,"height":18,"backgroundColor":"#f0dcc8","fillStyle":"solid","strokeColor":"#d4a574","strokeWidth":1,"roughness":2},
+    {"type":"ellipse","id":"r_hand","x":435,"y":470,"width":25,"height":18,"backgroundColor":"#f0dcc8","fillStyle":"solid","strokeColor":"#d4a574","strokeWidth":1,"roughness":2},
+
+    {"type":"rectangle","id":"robe_bot","x":"260","y":540,"width":180,"height":120,"roundness":{"type":3},"backgroundColor":"#1a2744","fillStyle":"solid","strokeColor":"#2a3a6a","strokeWidth":2,"roughness":2},
+
+    {"type":"line","id":"robe_bot_line1","x":290,"y":550,"width":60,"height":100,"points":[[0,0],[15,30],[30,70],[10,100]],"strokeColor":"#2a3a6a","strokeWidth":2,"roughness":3},
+    {"type":"line","id":"robe_bot_line2","x":350,"y":550,"width":60,"height":100,"points":[[0,0],[15,30],[30,70],[10,100]],"strokeColor":"#2a3a6a","strokeWidth":2,"roughness":3},
+    {"type":"line","id":"robe_bot_line3","x":410,"y":550,"width":60,"height":100,"points":[[0,0],[15,30],[30,70],[10,100]],"strokeColor":"#2a3a6a","strokeWidth":2,"roughness":3},
+
+    {"type":"line","id":"cultivation_glow1","x":240,"y":330,"width":220,"height":240,"points":[[0,0],[110,-30],[220,0],[110,240],[0,240]],"strokeColor":"#748ffc","strokeWidth":1.5,"roughness":3,"opacity":40,"strokeStyle":"dashed"},
+
+    {"type":"ellipse","id":"cultivation_orb","x":345,"y":415,"width":10,"height":10,"backgroundColor":"#748ffc","fillStyle":"solid","strokeColor":"#a5d8ff","strokeWidth":1,"roughness":1,"opacity":70},
+
+    {"type":"text","id":"desc_t","x":80,"y":690,"width":540,"height":50,"text":"A young cultivator from the State of Zhao. Killed his first demon at 15.\nBecame the most feared cultivator of his generation. \"Heaven Defying\" — 逆仙",
+    "fontSize":14,"fontFamily":1,"strokeColor":"#9ca3af","textAlign":"center","originalText":"A young cultivator from the State of Zhao. Killed his first demon at 15.\nBecame the most feared cultivator of his generation. \"Heaven Defying\" — 逆仙","autoResize":true},
+
+    {"type":"line","id":"div_bot","x":100,"y":680,"width":500,"height":0,"points":[[0,0],[500,0]],"strokeColor":"#4a4a6a","strokeWidth":1,"roughness":1},
+
+    {"type":"text","id":"footer_t","x":180,"y":755,"width":340,"height":20,"text":"— Excalidraw by Hermes Agent —","fontSize":14,"fontFamily":1,"strokeColor":"#4a4a6a","textAlign":"center","originalText":"— Excalidraw by Hermes Agent —","autoResize":true}
+  ],
+  "appState": {
+    "viewBackgroundColor": "#0a0a0f"
+  }
+}

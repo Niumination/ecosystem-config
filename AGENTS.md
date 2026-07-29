@@ -570,5 +570,5 @@ _Last sync: 2026-07-29 22:38:17_
 ---
 
 > **Dibuat:** 11 Juni 2026
-> **Diperbarui:** 29 Jul 2026 — v4.3 — **Layer 3 — DOX Injection Engine:** Auto-loaded Skills section dengan 3 level (Always Active, On-Demand via Trigger Keyword, Future). Replikasi pola Ponytail ke 7 skill tambahan. Integrasi dengan Hermes catalog dijelaskan. Semua layer 1-3 selesai ✅.
+> **Diperbarui:** 29 Jul 2026 — v4.4 — **Layer 4 — Skill Mission-Control Dashboard:** Tambah skill monitor backend (modules/skill_monitor.py), 5 API endpoints (event, stats, stale, conflicts, list), WebSocket skill_event push, halaman Skill Monitor di dashboard Mission Control v2.6. Integrasi sync-to-agents.sh → POST skill event ke mission-control. Semua Layer 1-4 selesai ✅.
 > **Oleh:** Niumination (Afrizal Munthe) — Aceh Tengah
