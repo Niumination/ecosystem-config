@@ -186,6 +186,15 @@ Agent akan auto-load skill berikut jika task description mengandung trigger keyw
 
 | Skill | Trigger Keywords | Source |
 |-------|-----------------|--------|
+| **impeccable** | design, redesain, "cek ui/ux", "perbaiki desain", craft, critique, polish, animate, "frontend design" | `skills/design/impeccable/` |
+| **ui-ux-pro-max** | palette, "font pairing", "design system", "pilih warna", typography, "style guide", "color palette" | `skills/design/ui-ux-pro-max/` |
+| **hermes-zero-defect-architect** | zero-defect, "bug fix", rollback, "fix error", "betulin sekarang", "diagnosa dulu" | `skills/software-development/hermes-zero-defect-architect/` |
+| **simplify-code** | simplify, sederhanakan, "rapikan kode", "code cleanup", "refactor kode" | `skills/software-development/simplify-code/` |
+| **ponytail-review** | "review kode", "over-engineering", "simplify review", "apa yang bisa didelete" | `skills/software-development/ponytail-review/` |
+| **ponytail-debt** | "utang teknis", "technical debt", "ponytail defer", "shortcut tracking" | `skills/software-development/ponytail-debt/` |
+| **ponytail-gain** | "ponytail gain", "what does ponytail save", "ponytail impact", "ponytail scoreboard" | `skills/software-development/ponytail-gain/` |
+| **ponytail-help** | "ponytail help", "ponytail commands", "how to use ponytail" | `skills/software-development/ponytail-help/` |
+| **hermes-agent-skill-authoring** | "buat skill", "skill baru", "skill authoring", "tambah skill", "SKILL.md" | `skills/ecosystem/hermes-agent-skill-authoring/` |
 | **systematic-debugging** | debug, bug, error, crash, broken, "gak jalan", "kenapa error", troubleshoot, root cause | `skills/software-development/systematic-debugging/` |
 | **project-orientation** | orientasi, "cek project", "cek dulu", "lihat dulu", verify, "apa aja isinya", situasional | `skills/software-development/project-orientation/` |
 | **document-content-pipeline** | pdf, odl-pdf, extract, markdown, batch convert, cleanup modul, "20 file", indikator | `skills/software-development/document-content-pipeline/` |
@@ -202,10 +211,10 @@ Agent akan auto-load skill berikut jika task description mengandung trigger keyw
 
 ### ⚪ Level 3 — Future (Agentpedia — porting manual)
 
+_(Kosong — semua skill yang relevan sudah di Level 2 atau sudah di bank pusat.)_
+
 | Skill | Trigger Keywords | Source |
 |-------|-----------------|--------|
-| **redteam** | security audit, pentest, vulnerability, penetration test | Agentpedia (future) |
-| **ghost** | humanize, "AI detection", bypass, "tulisan manusia" | Agentpedia (future) |
 
 ---
 
@@ -553,20 +562,30 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `document-content-pipeline` | software-development | Bank Pusat | High-accuracy PDF extraction (opendataloader-pdf / ODL-PDF), batch markdown cleanup, and content pipeline for website injection. Covers PPT→PDF→Markdown→JSON→Next.js page workflows. |
 | `ekosistem-scaffold` | ecosystem | Bank Pusat | Scaffold new or missing projects in the Niumination ecosystem. Creates AGENTS.md + BACKLOG.md + brain/projects/ entry with standardized templates. Validates git, deploy, and DOX completeness. |
 | `ghost` | creative | Bank Pusat | Rewrite AI-generated or stilted text so it reads naturally and human — stripping common AI writing tells while preserving all factual content. |
+| `hermes-agent-skill-authoring` | ecosystem | Bank Pusat | Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles. |
+| `hermes-zero-defect-architect` | software-development | Bank Pusat | Sistem resolusi bug absolut dengan toleransi kegagalan 0% (Zero-Defect Protocol). Mengeksekusi perbaikan full-stack (Rust, Python, React) dan arsitektur agen (MCP, n8n) melalui pipeline terisolasi: Diagnosa -> Eksekusi Idempotent -> Verifikasi -> Rollback otomatis jika gagal. Terintegrasi dengan JCode AI untuk parallel task dengan jaring pengaman. |
+| `impeccable` | design | Bank Pusat | Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks. |
 | `optimization` | software-development | Bank Pusat | Improve performance, latency, and throughput of code and systems. Systematic profiling → bottleneck detection → targeted optimization. |
 | `ponytail-audit` | software-development | Bank Pusat | Whole-repo audit for over-engineering. Like ponytail-review, but scans the entire codebase instead of a diff: a ranked list of what to delete, simplify, or replace with stdlib/native equivalents. Use when the user says "audit this codebase", "audit for over-engineering", "what can I delete from this repo", "find bloat", "ponytail-audit", or "/ponytail-audit". One-shot report, does not apply fixes. |
 | `ponytail-core` | software-development | Bank Pusat | Forces the laziest solution that actually works, simplest, shortest, most minimal. Channels a senior dev who has seen everything: question whether the task needs to exist at all (YAGNI), reach for the standard library before custom code, native platform features before dependencies, one line before fifty. Supports intensity levels: lite, full (default), ultra. Use whenever the user says "ponytail", "be lazy", "lazy mode", "simplest solution", "minimal solution", "yagni", "do less", or "shortest path", and whenever they complain about over-engineering, bloat, boilerplate, or unnecessary dependencies. |
+| `ponytail-debt` | software-development | Bank Pusat | Harvest every `ponytail:` comment in the codebase into a debt ledger, so the deliberate shortcuts and deferrals ponytail leaves behind get tracked instead of rotting into "later means never". Use when the user says "ponytail debt", "/ponytail-debt", "what did ponytail defer", "list the shortcuts", "ponytail ledger", or "what did we mark to do later". One-shot report, changes nothing. |
+| `ponytail-gain` | software-development | Bank Pusat | Show ponytail's measured impact as a compact scoreboard: less code, less cost, more speed, from the benchmark medians. One-shot display, not a persistent mode, and not a per-repo number. Trigger: /ponytail-gain, "ponytail gain", "what does ponytail save", "show ponytail impact", "ponytail scoreboard". |
+| `ponytail-help` | software-development | Bank Pusat | Quick-reference card for all ponytail modes, skills, and commands. One-shot display, not a persistent mode. Trigger: /ponytail-help, "ponytail help", "what ponytail commands", "how do I use ponytail". |
+| `ponytail-review` | software-development | Bank Pusat | Code review focused exclusively on over-engineering. Finds what to delete: reinvented standard library, unneeded dependencies, speculative abstractions, dead flexibility. One line per finding: location, what to cut, what replaces it. Use when the user says "review for over-engineering", "what can we delete", "is this over-engineered", "simplify review", or invokes /ponytail-review. Complements correctness-focused review, this one only hunts complexity. |
 | `premortem` | software-development | Bank Pusat | Assume a project or plan has already failed, then work backward to identify the most likely causes before committing to it. Catches failure modes that forward-looking planning misses. |
 | `project-orientation` | software-development | Bank Pusat | Establish situational awareness before working on any user-referenced project. Verify project existence, state, location, and documentation against primary sources — not memory or compressed summaries. |
 | `redteam` | security | Bank Pusat | Stress-test a plan, project, or system by assuming an adversarial perspective and identifying specific attack surfaces, failure modes, and blind spots before they're exploited in production. |
+| `simplify-code` | software-development | Bank Pusat | Parallel 3-agent cleanup of recent code changes. |
 | `systematic-debugging` | software-development | Bank Pusat | 4-phase root cause debugging: understand bugs before fixing. |
 | `tripwire` | software-development | Bank Pusat | Identify the single most critical risk that could derail a project — forcing prioritization down to one thing when a full risk analysis has produced too many findings to act on all at once. |
+| `ui-ux-pro-max` | design | Bank Pusat | UI/UX design intelligence. 67 styles, 96 palettes, 57 font pairings, 25 charts, 13 stacks (React, Next.js, Vue, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui). Actions: plan, build, create, design, implement, review, fix, improve, optimize, enhance, refactor, check UI/UX code. Projects: website, landing page, dashboard, admin panel, e-commerce, SaaS, portfolio, blog, mobile app, .html, .tsx, .vue, .svelte. Elements: button, modal, navbar, sidebar, card, table, form, chart. Styles: glassmorphism, claymorphism, minimalism, brutalism, neumorphism, bento grid, dark mode, responsive, skeuomorphism, flat design. Topics: color palette, accessibility, animation, layout, typography, font pairing, spacing, hover, shadow, gradient. Integrations: shadcn/ui MCP for component search and examples. |
 | `ultrathink` | software-development | Bank Pusat | Force deep architectural and system-level reasoning before writing code — channels a master craftsman who thinks in trade-offs, invariants, and long-term maintainability rather than rushing to implementation. |
 | `up-eco` | ecosystem | Bank Pusat | Ecosystem status check & sync workflow. Triggered via Telegram /up-eco command. Checks git status, detects unknown/foreign folders, syncs BACKLOG/docs with filesystem, and recommends actions to align local ecosystem with GitHub. |
 
-_Last sync: 2026-07-30 00:28:46_
+_Last sync: 2026-07-30 16:35:41_
 
 <!-- SKILL_REGISTRY_END -->
+
 
 
 
@@ -576,5 +595,5 @@ _Last sync: 2026-07-30 00:28:46_
 ---
 
 > **Dibuat:** 11 Juni 2026
-> **Diperbarui:** 29 Jul 2026 — v4.5 — **Hermes integration verified ✅** — 13/13 skill sync ke Hermes (USB + local), path resolution fix di sync script, DOX injection running. Semua layer 1-4 terkoneksi penuh.
+> **Diperbarui:** 30 Jul 2026 — v4.6 — **Bank Skill diperluas 13→22 ✅** — 9 skill baru: impeccable, ui-ux-pro-max, zero-defect-architect, 4 ponytail variants, simplify-code, skill-authoring. Domain baru: design/. INDEX.md updated, DOX injection trigger table diperluas.
 > **Oleh:** Niumination (Afrizal Munthe) — Aceh Tengah

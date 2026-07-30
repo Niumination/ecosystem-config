@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# ────────────────────────────────────────────────────────
+# uiux-search — UI/UX Pro Max design search wrapper
+# Usage: uiux-search "query" [options]
+#        uiux-search "saas dashboard dark" --design-system
+#        uiux-search "animation accessibility" --domain ux
+#        uiux-search "fintech crypto" --design-system -f markdown
+# ────────────────────────────────────────────────────────
+
+# Auto-detect script location (works from any directory, any symlink)
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+SKILL_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+# Find Python
+PYTHON=""
+for cmd in python3 python; do
+  if command -v "$cmd" &>/dev/null; then
+    PYTHON="$cmd"
+    break
+  fi
+done
+
+if [ -z "$PYTHON" ]; then
+  echo "❌ Python tidak ditemukan. Install dulu: brew install python3"
+  exit 1
+fi
+
+# Check search.py exists
+SEARCH_PY="$SKILL_DIR/scripts/search.py"
+if [ ! -f "$SEARCH_PY" ]; then
+  echo "❌ search.py tidak ditemukan di: $SEARCH_PY"
+  exit 1
+fi
+
+# Execute
+exec "$PYTHON" "$SEARCH_PY" "$@"
