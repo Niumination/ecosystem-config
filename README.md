@@ -47,7 +47,7 @@ Niumination/
 
 | Project | Stack | Deploy | Status |
 |---------|-------|--------|:------:|
-| **PemdiAcehTengah** | Next.js/Prisma | [Vercel](https://pemdi-acehtengah.vercel.app) | 🟢 Live |
+| **PemdiAcehTengah** | Next.js/Prisma | [Vercel](https://pemdi-aceh-tengah.vercel.app) | 🟢 Live |
 | **niu-dash** | Next.js | [GH Pages](https://niumination.github.io/niu-dash) | 🟢 Live |
 | **kune-ya** | Next.js/Postgres | [Vercel](https://kune-ya.com) | 🟢 Live |
 | **niu-vermilion** | Next.js | Vercel | 🟢 Live |
