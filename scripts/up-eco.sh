@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # =============================================================================
-# up-eco.sh — Ecosystem Status & Sync Checker v1.0
+# up-eco.sh — Ecosystem Status & Sync Checker v2.0
 # =============================================================================
 # Usage: ./scripts/up-eco.sh
 #
@@ -10,12 +10,19 @@
 #   - Kesenjangan dengan GitHub remote
 #   - Update dokumentasi (BACKLOG, AGENTS, README)
 #   - Sinkronisasi dengan status GH Pages
+#   - 🆕 Manajemen Skill Bank (integritas, sync, INDEX)
+#   - 🆕 Dashboard Mission Control (skill monitor API)
 # =============================================================================
 
 set -euo pipefail
 
 NIUMINATION="/Users/zaryu/Desktop/Niumination"
 PROFILE="$NIUMINATION/agents/profile"
+SKILLS_DIR="$NIUMINATION/skills"
+INDEX_FILE="$SKILLS_DIR/INDEX.md"
+SYNC_SCRIPT="$SKILLS_DIR/sync-to-agents.sh"
+SYNC_LOG="$NIUMINATION/.sync-log"
+MC_URL="http://localhost:5200"
 NOW=$(date "+%Y-%m-%d %H:%M:%S WIB")
 DIVERGE_FILE=$(mktemp)
 REPORT_FILE=$(mktemp)
@@ -226,12 +233,296 @@ check_gh_pages() {
   done
 }
 
+# ═══════════════════════════════════════════════════════════════════════════
+# 🆕 Phase 6: Skill Bank Integrity
+# ═══════════════════════════════════════════════════════════════════════════
+check_skill_bank() {
+  section "🧠 Skill Bank — Integritas"
+
+  # ── 6a: Verifikasi SKILL.md files
+  if [ ! -d "$SKILLS_DIR" ]; then
+    fail "Direktori skills/ tidak ditemukan!"
+    rec "→ Buat skills/ dengan struktur standar"
+    return
+  fi
+
+  # Count all SKILL.md files by domain (portable: no associative arrays)
+  local total_skills=0
+  local skills_without_frontmatter=0
+  local domain_list_file
+  domain_list_file=$(mktemp)
+
+  while IFS= read -r -d '' sk; do
+    local rel="${sk#$SKILLS_DIR/}"
+    local domain="${rel%%/*}"
+    total_skills=$((total_skills + 1))
+    echo "$domain" >> "$domain_list_file"
+
+    # Quick frontmatter check (must start with ---)
+    if ! head -1 "$sk" | grep -q '^---$' 2>/dev/null; then
+      warn "$rel: SKILL.md tanpa frontmatter YAML"
+      skills_without_frontmatter=$((skills_without_frontmatter + 1))
+      rec "→ $rel: tambahkan frontmatter YAML (name, description, version, tags)"
+    fi
+  done < <(find "$SKILLS_DIR" -name SKILL.md -type f -not -path '*/\.*' -print0 2>/dev/null || true)
+
+  # Report domain distribution
+  if [ "$total_skills" -gt 0 ]; then
+    local domain_report
+    domain_report=$(sort "$domain_list_file" | uniq -c | sort -rn | awk '{printf "%s:%d ", $2, $1}')
+    info "Total: $total_skills SKILL.md di bank pusat"
+    info "Domain: $domain_report"
+  fi
+  rm -f "$domain_list_file"
+
+  if [ "$skills_without_frontmatter" -gt 0 ]; then
+    fail "$skills_without_frontmatter SKILL.md tanpa frontmatter"
+  else
+    pass "Semua SKILL.md punya frontmatter YAML"
+  fi
+
+  # ── 6b: Verifikasi INDEX.md vs filesystem
+  if [ ! -f "$INDEX_FILE" ]; then
+    fail "INDEX.md tidak ditemukan di skills/"
+    rec "→ Buat INDEX.md dengan daftar semua skill"
+    return
+  fi
+
+  # Skills listed in INDEX.md — count `| **name**` entries in domain tables
+  # (skips Ringkasan, conflict tables, and other metadata rows)
+  local index_skills=0
+  while IFS= read -r line; do
+    # Match table rows in domain tables: | **skill-name** |
+    if echo "$line" | grep -qE '^\| \*\*[a-z]' 2>/dev/null; then
+      index_skills=$((index_skills + 1))
+    fi
+  done < "$INDEX_FILE"
+
+  # Compare filesystem count vs INDEX count
+  if [ "$total_skills" -eq "$index_skills" ]; then
+    pass "INDEX.md sinkron dengan filesystem ($total_skills skills)"
+  else
+    warn "Filesystem: $total_skills skills, INDEX.md: $index_skills skills — mismatch!"
+    rec "→ Update INDEX.md: tambah/hapus entri yang tidak sinkron"
+
+    # Find skills on disk not in INDEX
+    while IFS= read -r -d '' sk; do
+      local rel="${sk#$SKILLS_DIR/}"
+      local skill_name
+      skill_name=$(echo "$rel" | cut -d/ -f2)
+      if ! grep -qi "\*\*${skill_name}\*\*" "$INDEX_FILE" 2>/dev/null; then
+        warn "  '${skill_name}' ada di filesystem tapi TIDAK di INDEX.md"
+        rec "→ INDEX.md: tambah baris untuk \`$skill_name\`"
+      fi
+    done < <(find "$SKILLS_DIR" -name SKILL.md -type f -not -path '*/\.*' -print0 2>/dev/null || true)
+  fi
+
+  # ── 6c: Cek duplikasi / konflik naming
+  local name_check_file
+  name_check_file=$(mktemp)
+  local dup_found=false
+  while IFS= read -r -d '' sk; do
+    local rel="${sk#$SKILLS_DIR/}"
+    local skill_name
+    skill_name=$(echo "$rel" | cut -d/ -f2)
+    if grep -q "^${skill_name}|" "$name_check_file" 2>/dev/null; then
+      local prev_path
+      prev_path=$(grep "^${skill_name}|" "$name_check_file" | cut -d'|' -f2)
+      warn "Konflik: skill '$skill_name' muncul di 2 path!"
+      info "  $prev_path dan $rel"
+      rec "→ Hapus atau rename skill '$skill_name' yang duplikat"
+      dup_found=true
+    fi
+    echo "${skill_name}|${rel}" >> "$name_check_file"
+  done < <(find "$SKILLS_DIR" -name SKILL.md -type f -not -path '*/\.*' -print0 2>/dev/null || true)
+  rm -f "$name_check_file"
+
+  $dup_found || pass "Tidak ada duplikasi skill name"
+}
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 🆕 Phase 7: Skill Sync Status
+# ═══════════════════════════════════════════════════════════════════════════
+check_skill_sync() {
+  section "🔄 Skill Sync — Bank Pusat → Agent Targets"
+
+  # ── 7a: Cek sync-to-agents.sh exists
+  if [ ! -f "$SYNC_SCRIPT" ]; then
+    fail "sync-to-agents.sh tidak ditemukan!"
+    rec "→ Buat sync-to-agents.sh di skills/"
+    return
+  fi
+  pass "sync-to-agents.sh tersedia"
+
+  # ── 7b: Cek sync log (last run time)
+  if [ -f "$SYNC_LOG" ]; then
+    local last_sync
+    last_sync=$(tail -1 "$SYNC_LOG" 2>/dev/null || echo "unknown")
+    info "Sync terakhir: $last_sync"
+
+    # Check if last sync was today
+    local last_sync_date
+    last_sync_date=$(echo "$last_sync" | grep -oE '^\[[0-9-]{10}' | tr -d '[]' || echo "")
+    local today
+    today=$(date "+%Y-%m-%d")
+    if [ -n "$last_sync_date" ] && [ "$last_sync_date" = "$today" ]; then
+      pass "Sync sudah berjalan hari ini"
+    else
+      warn "Sync terakhir bukan hari ini ($last_sync_date vs $today)"
+      rec "→ Jalankan skills/sync-to-agents.sh untuk sync skill terbaru"
+    fi
+  else
+    warn "Belum ada sync log — sync-to-agents.sh belum pernah dijalankan"
+    rec "→ Pertama: jalankan skills/sync-to-agents.sh"
+  fi
+
+  # ── 7c: Cek divergence dengan target Jcode
+  local jcode_skill_count=0
+  local jcode_dir="$HOME/.jcode/skills"
+  if [ -d "$jcode_dir" ]; then
+    jcode_skill_count=$(find "$jcode_dir" -name SKILL.md -type f 2>/dev/null | wc -l | tr -d ' ')
+    local bank_count
+    bank_count=$(find "$SKILLS_DIR" -name SKILL.md -type f 2>/dev/null | wc -l | tr -d ' ')
+
+    if [ "$jcode_skill_count" -ge "$bank_count" ]; then
+      pass "Jcode: $jcode_skill_count skills (up to date)"
+    else
+      warn "Jcode: $jcode_skill_count of $bank_count skills — ada $((bank_count - jcode_skill_count)) belum tersync"
+      rec "→ Jalankan sync-to-agents.sh untuk update Jcode"
+    fi
+  else
+    warn "Jcode skill dir ($jcode_dir) tidak ditemukan"
+  fi
+
+  # ── 7d: Cek divergence dengan Hermes target
+  local hermes_skill_count=0
+  local hermes_dir="$HOME/.hermes/skills"
+  if [ -d "$hermes_dir" ]; then
+    hermes_skill_count=$(find "$hermes_dir" -name SKILL.md -type f 2>/dev/null | wc -l | tr -d ' ')
+    info "Hermes: $hermes_skill_count skills"
+  else
+    info "Hermes dir ($hermes_dir) tidak ditemukan (optional)"
+  fi
+
+  # ── 7e: Cek Hermes USB
+  local usb_dir="/Volumes/HermesAgent/HermesAgentUSB/data/skills"
+  if [ -d "$usb_dir" ]; then
+    local usb_count
+    usb_count=$(find "$usb_dir" -name SKILL.md -type f 2>/dev/null | wc -l | tr -d ' ')
+    pass "Hermes USB: $usb_count skills (terhubung)"
+  else
+    info "Hermes USB tidak terhubung (normal jika USB tidak dipasang)"
+  fi
+}
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 🆕 Phase 8: Mission Control Dashboard (Skill Monitor)
+# ═══════════════════════════════════════════════════════════════════════════
+check_mission_control() {
+  section "🎛️ Mission Control — Skill Monitor Dashboard"
+
+  # ── 8a: Cek apakah server MC berjalan
+  local mc_health
+  mc_health=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 3 "$MC_URL/health" 2>/dev/null || echo "000")
+  mc_health="${mc_health:0:3}"  # Trim to 3 chars (curl may repeat digits on some macOS versions)
+
+  if [ "$mc_health" = "000" ]; then
+    warn "Mission Control server tidak merespon di port 5200"
+    rec "→ Start MC: cd services/niu-mission-control && python3 server.py"
+    return
+  fi
+  pass "MC Server: HTTP $mc_health"
+
+  # ── 8b: Skill API — total skills & active
+  local skills_json
+  skills_json=$(curl -s --connect-timeout 3 "$MC_URL/api/mc/skills" 2>/dev/null || echo "{}")
+  local total_skills_api
+  total_skills_api=$(echo "$skills_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('total','?'))" 2>/dev/null || echo "?")
+  local active_skills_api
+  active_skills_api=$(echo "$skills_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('active','?'))" 2>/dev/null || echo "?")
+
+  if [ "$total_skills_api" != "?" ]; then
+    pass "Skill API: $total_skills_api total, $active_skills_api aktif"
+  else
+    warn "Skill API tidak bisa diakses"
+    rec "→ Periksa log MC: cek apakah skill_monitor terinisialisasi"
+  fi
+
+  # ── 8c: Stale skills (>30 hari)
+  local stale_json
+  stale_json=$(curl -s --connect-timeout 3 "$MC_URL/api/mc/skills/stale" 2>/dev/null || echo "{}")
+  local stale_count
+  stale_count=$(echo "$stale_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('count',0))" 2>/dev/null || echo "0")
+
+  if [ "$stale_count" != "?" ] && [ "$stale_count" -gt 0 ]; then
+    warn "$stale_count stale skills (>30 hari tidak dipakai)"
+    # Show top stale skills
+    echo "$stale_json" | python3 -c "
+import sys, json
+d = json.load(sys.stdin)
+for s in d.get('stale', [])[:5]:
+    tag = '\U0001f195 never loaded' if s.get('never_loaded') else f'{s.get(\"days_since_last_load\",0)} days'
+    print(f'  \u23f3 {s[\"name\"]} ({s.get(\"domain\",\"?\")}) \u2014 {tag}')
+" 2>/dev/null || true
+    rec "→ Cek /api/mc/skills/stale untuk detail — review skill yang jarang dipakai"
+  else
+    pass "Tidak ada stale skills"
+  fi
+
+  # ── 8d: Skill conflicts
+  local conflict_json
+  conflict_json=$(curl -s --connect-timeout 3 "$MC_URL/api/mc/skills/conflicts" 2>/dev/null || echo "{}")
+  local conflict_count
+  conflict_count=$(echo "$conflict_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('count',0))" 2>/dev/null || echo "0")
+
+  if [ "$conflict_count" != "?" ] && [ "$conflict_count" -gt 0 ]; then
+    warn "$conflict_count skill conflict(s) terdeteksi"
+    echo "$conflict_json" | python3 -c "
+import sys, json
+d = json.load(sys.stdin)
+for c in d.get('conflicts', []):
+    if c.get('both_active'):
+        print(f'  🔴 Conflict: {c[\"skills\"][0]} vs {c[\"skills\"][1]} — {c.get(\"reason\",\"\")}')
+    elif 'not in bank pusat' in c.get('reason',''):
+        print(f'  ⚠️  Orphan: {c[\"skills\"][0]} — {c.get(\"reason\",\"\")}')
+" 2>/dev/null || true
+    rec "→ Cek /api/mc/skills/conflicts — resolve active skill conflicts"
+  else
+    pass "Tidak ada skill conflicts"
+  fi
+
+  # ── 8e: Cek dashboard UI bisa diakses
+  local dash_code
+  dash_code=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 3 "$MC_URL/" 2>/dev/null || echo "000")
+  if [ "$dash_code" != "000" ]; then
+    pass "Dashboard UI: HTTP $dash_code"
+  else
+    warn "Dashboard UI tidak bisa diakses"
+    rec "→ Cek dashboard/ folder di niu-mission-control"
+  fi
+
+  # ── 8f: Skill usage stats (hari ini)
+  local stats_json
+  stats_json=$(curl -s --connect-timeout 3 "$MC_URL/api/mc/skills/stats" 2>/dev/null || echo "{}")
+  local today_loaded
+  today_loaded=$(echo "$stats_json" | python3 -c "
+import sys, json
+d = json.load(sys.stdin)
+total = sum(s.get('today', 0) for s in d.get('stats', []))
+print(total)
+" 2>/dev/null || echo "?")
+
+  if [ "$today_loaded" != "?" ]; then
+    info "Skill loads hari ini: $today_loaded"
+  fi
+}
+
 # ── Main ───────────────────────────────────────────────────────────────────
 main() {
   printf "${BOLD}${CYAN}"
   echo "╔══════════════════════════════════════════════════════╗"
   echo "║              🔄 UP-ECO — Ecosystem Check             ║"
-  echo "║         Niumination v4.0  •  $NOW        ║"
+  echo "║         Niumination v5.0  •  $NOW        ║"
   echo "╚══════════════════════════════════════════════════════╝"
   printf "${NC}"
 
@@ -267,6 +558,15 @@ main() {
 
   # ── Phase 5: GitHub Pages ──
   check_gh_pages
+
+  # ── Phase 6: Skill Bank Integrity 🆕 ──
+  check_skill_bank
+
+  # ── Phase 7: Skill Sync Status 🆕 ──
+  check_skill_sync
+
+  # ── Phase 8: Mission Control Dashboard 🆕 ──
+  check_mission_control
 
   # ── Summary ──
   header

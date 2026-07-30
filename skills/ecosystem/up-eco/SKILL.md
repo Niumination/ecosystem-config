@@ -7,7 +7,12 @@ tags:
   - git
   - status
   - niumination
-last_updated: "2026-07-29"
+last_updated: "2026-07-30"
+version: 2.0.0
+changes:
+  - Added Phase 6: Skill Bank Integrity (frontmatter, INDEX sync, duplicates)
+  - Added Phase 7: Skill Sync Status (sync-to-agents.sh, Jcode/Hermes/USB targets)
+  - Added Phase 8: Mission Control Dashboard (Skill Monitor API, stale, conflicts, stats)
 ---
 
 # 🔄 /up-eco — Ecosystem Status & Sync Check
@@ -28,6 +33,9 @@ Output will show:
 - **Unknown/foreign folders** (detected on filesystem but not in BACKLOG.md)
 - **BACKLOG sync** (projects referenced but missing from disk)
 - **GitHub Pages** health check
+- **🧠 Skill Bank Integrity** — SKILL.md count vs INDEX.md, frontmatter validation, duplicate detection
+- **🔄 Skill Sync Status** — sync-to-agents.sh last run, Jcode/Hermes/USB divergence
+- **🎛️ Mission Control Dashboard** — Skill Monitor API reachable, stale skills, conflicts, usage stats
 - **Recommendations list** (numbered)
 
 ### Step 2: Interpret results for the user

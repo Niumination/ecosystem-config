@@ -3,11 +3,11 @@
 > **Versi:** 4.0.0 (Superpowers Integration — 6 SDLC skills added from obra/superpowers)
 > **Lokasi:** `~/Desktop/Niumination/skills/`
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local + USB) + AGENTS.md (cron every 6h)
-> **DOX Injection:** ✅ Layer 3 — 28 skill auto-loaded via trigger keyword di AGENTS.md
+> **DOX Injection:** ✅ Layer 3 — 29 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 28 skill tersedia di Hermes catalog (USB: 150+ total, ~/.hermes/: up-to-date)
+> **Hermes Integration:** ✅ Semua 29 skill tersedia di Hermes catalog (USB: 150+ total, ~/.hermes/: up-to-date)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 28 ✅ Aktif
+> **Status:** 29 ✅ Aktif
 
 ---
 
@@ -62,7 +62,8 @@
 
 | Skill | Status | Source | Deskripsi |
 |-------|:------:|--------|-----------|
-| **ghost** | ✅ Aktif | sisi-tarak + Niumination | 3.2 KB | AI text humanizer — rewrite AI-generated text to read naturally |
+|| **ghost** | ✅ Aktif | sisi-tarak + Niumination | 3.2 KB | AI text humanizer — rewrite AI-generated text to read naturally |
+| **hyperframes** | ✅ Aktif | heygen-com/hyperframes | 4.0 KB | HTML-to-video framework — 'Write HTML. Render video. Built for agents.' |
 
 ---
 
@@ -70,8 +71,8 @@
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **28** |
-| **Total** | **28** |
+| ✅ Aktif | **29** |
+| **Total** | **29** |
 
 ## Catatan Penting — Potensi Konflik
 

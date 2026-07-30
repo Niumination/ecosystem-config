@@ -579,6 +579,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `ghost` | creative | Bank Pusat | Rewrite AI-generated or stilted text so it reads naturally and human — stripping common AI writing tells while preserving all factual content. |
 | `hermes-agent-skill-authoring` | ecosystem | Bank Pusat | Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles. |
 | `hermes-zero-defect-architect` | software-development | Bank Pusat | Sistem resolusi bug absolut dengan toleransi kegagalan 0% (Zero-Defect Protocol). Mengeksekusi perbaikan full-stack (Rust, Python, React) dan arsitektur agen (MCP, n8n) melalui pipeline terisolasi: Diagnosa -> Eksekusi Idempotent -> Verifikasi -> Rollback otomatis jika gagal. Terintegrasi dengan JCode AI untuk parallel task dengan jaring pengaman. |
+| `hyperframes` | creative | Bank Pusat | HyperFrames — open-source framework dari HeyGen untuk mengubah HTML + CSS + animasi menjadi video MP4. 'Write HTML. Render video. Built for agents.' |
 | `impeccable` | design | Bank Pusat | Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks. |
 | `optimization` | software-development | Bank Pusat | Improve performance, latency, and throughput of code and systems. Systematic profiling → bottleneck detection → targeted optimization. |
 | `ponytail-audit` | software-development | Bank Pusat | Whole-repo audit for over-engineering. Like ponytail-review, but scans the entire codebase instead of a diff: a ranked list of what to delete, simplify, or replace with stdlib/native equivalents. Use when the user says "audit this codebase", "audit for over-engineering", "what can I delete from this repo", "find bloat", "ponytail-audit", or "/ponytail-audit". One-shot report, does not apply fixes. |
@@ -601,9 +602,11 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `verification-before-completion` | software-development | Bank Pusat | Use when ABOUT to claim work is complete, fixed, or passing — before committing or creating PRs. Requires running verification commands and confirming output before any success claims. |
 | `writing-plans` | software-development | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-07-30 17:26:00_
+_Last sync: 2026-07-30 18:33:37_
 
 <!-- SKILL_REGISTRY_END -->
+
+
 
 
 
