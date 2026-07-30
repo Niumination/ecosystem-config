@@ -1,13 +1,13 @@
 # INDEX — Bank Skill Terpusat Niumination
 
-> **Versi:** 3.0.0 (Expanded — 9 new skills added from Hermes USB + Jcode)
+> **Versi:** 4.0.0 (Superpowers Integration — 6 SDLC skills added from obra/superpowers)
 > **Lokasi:** `~/Desktop/Niumination/skills/`
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local + USB) + AGENTS.md (cron every 6h)
-> **DOX Injection:** ✅ Layer 3 — 22 skill auto-loaded via trigger keyword di AGENTS.md
+> **DOX Injection:** ✅ Layer 3 — 28 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 22 skill tersedia di Hermes catalog (USB: 150+ total, ~/.hermes/: up-to-date)
+> **Hermes Integration:** ✅ Semua 28 skill tersedia di Hermes catalog (USB: 150+ total, ~/.hermes/: up-to-date)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 22 ✅ Aktif
+> **Status:** 28 ✅ Aktif
 
 ---
 
@@ -30,6 +30,12 @@
 | **premortem** | ✅ Aktif | sisi-tarak | 2.5 KB | Failure pre-mortem — asumsikan gagal, cari penyebab sebelum mulai |
 | **hermes-zero-defect-architect** | ✅ Aktif | Hermes USB | 11.8 KB | Zero-defect debugging — snapshot, rollback, JCode parallel, full pipeline |
 | **simplify-code** | ✅ Aktif | Hermes USB | 10.9 KB | Parallel 3-agent cleanup — simplify, refactor, deduplicate recent changes |
+| **brainstorming** | ✅ Aktif | superpowers | 10.0 KB | Design refinement sebelum coding — hard gate: jangan nulis kode tanpa desain disetujui |
+| **writing-plans** | ✅ Aktif | superpowers | 7.0 KB | Implementation plan granular — tiap task 2-5 menit, bite-sized steps, no placeholders |
+| **verification-before-completion** | ✅ Aktif | superpowers | 3.6 KB | Iron law verification — no completion claims tanpa fresh verification evidence |
+| **subagent-driven-development** | ✅ Aktif | superpowers | 28.0 KB | Parallel agent execution — dispatch subagent per task, 2-stage review, fix loop max 5 rounds |
+| **finishing-a-development-branch** | ✅ Aktif | superpowers | 7.0 KB | Post-implementation workflow — verify tests, present merge/PR/keep/discard options |
+| **requesting-code-review** | ✅ Aktif | superpowers | 3.0 KB | Dispatch code reviewer subagent — spec compliance + code quality assessment |
 
 ## Domain: Design
 
@@ -64,8 +70,8 @@
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **22** |
-| **Total** | **22** |
+| ✅ Aktif | **28** |
+| **Total** | **28** |
 
 ## Catatan Penting — Potensi Konflik
 
@@ -85,6 +91,14 @@
 | `ponytail-core` ↔ `simplify-code` | core = mental model sebelum nulis, simplify-code = refactor kode existing |
 | `impeccable` ↔ `ghost` | Beda domain: UI/UX design vs text humanizer |
 | `hermes-agent-skill-authoring` ↔ semua | Meta-skill — justru membantu maintain skill lain |
+| `brainstorming` ↔ `ultrathink` | Komplementer: brainstorming = "apa yang dibangun", ultrathink = "gimana arsitekturnya" |
+| `brainstorming` ↔ `ponytail-core` | Sama-sama YAGNI — brainstorming cegah fitur tidak perlu sebelum coding |
+| `verification-before-completion` ↔ `ponytail-core` | Komplementer: ponytail minimal code, verification buktikan kode beneran jalan |
+| `verification-before-completion` ↔ `systematic-debugging` | Verification adalah fase final debugging — cocok berurutan |
+| `subagent-driven-development` ↔ semua | Layer orchestration — tidak konflik, menjalankan skill lain via subagent |
+| `requesting-code-review` ↔ `ponytail-review` | Beda fokus: ponytail = over-engineering check, requesting = spec compliance + quality |
+| `writing-plans` ↔ `brainstorming` | **Pipeline:** brainstorming → writing-plans → subagent-driven-development → requesting-code-review → finishing-a-development-branch |
+| `finishing-a-development-branch` ↔ `up-eco` | finishing = cleanup satu branch, up-eco = sync seluruh ekosistem
 
 ### 📌 Catatan Lain
 

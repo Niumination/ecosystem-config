@@ -145,7 +145,7 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
 ├── tools/                     🛠️ Ponytail MCP & utilities
 │   └── ponytail/              ← SKILL.md + MCP server code
 ├── archive/                   📦 Arsip proyek lama (~25MB)
-├── skills/                    🧠 **ACTIVE** Bank skill terpusat — 8 skill terisi ✅
+├── skills/                    🧠 **ACTIVE** Bank skill terpusat — 28 skill terisi ✅
 │
 └── .gitignore                 — Semua folder proyek child di-ignore
 ```
@@ -202,6 +202,12 @@ Agent akan auto-load skill berikut jika task description mengandung trigger keyw
 | **ekosistem-scaffold** | scaffold, "buat proyek baru", "inisialisasi project", new project setup, standarisasi | `skills/ecosystem/ekosistem-scaffold/` |
 | **optimization** | optimasi, "percepat", latency, bottleneck, profiling, "kurangi load", performance | `skills/software-development/optimization/` |
 | **ponytail-audit** | audit kode, review codebase, "cek over-engineering", "apa yang bisa didelete", bloat | `skills/software-development/ponytail-audit/` |
+| **brainstorming** | brainstorming, "buat desain dulu", "fikir dulu sebelum nulis", "spek dulu", "rencana sebelum kode", "hard gate design" | `skills/software-development/brainstorming/` |
+| **writing-plans** | "buat plan", "implementation plan", "task breakdown", "bagi tugas", "langkah-langkah", "tulis plan" | `skills/software-development/writing-plans/` |
+| **verification-before-completion** | verifikasi, "cek dulu", "buktikan", "test dulu", "jangan asal claim", "evidence before claims", "run test" | `skills/software-development/verification-before-completion/` |
+| **subagent-driven-development** | subagent, "parallel agent", "orchestrasi", "swarm execution", "dispatch agent", "multi-agent coding", sdd | `skills/software-development/subagent-driven-development/` |
+| **finishing-a-development-branch** | merge, "selesaiin branch", "pull request", PR, "cleanup branch", "finish branch", "branch selesai" | `skills/software-development/finishing-a-development-branch/` |
+| **requesting-code-review** | "minta review", "code review", "review PR", "cek kualitas", "review sebelum merge" | `skills/software-development/requesting-code-review/` |
 
 **Cara pakai manual:** `/skill <nama>` atau `hermes -s <nama>`.
 **Cara nonaktifkan:** "stop ponytail" atau "normal mode".
@@ -559,8 +565,10 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 
 | Skill | Domain | Source | Description |
 |-------|--------|--------|-------------|
+| `brainstorming` | software-development | Bank Pusat | Use BEFORE any creative work — creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation. |
 | `document-content-pipeline` | software-development | Bank Pusat | High-accuracy PDF extraction (opendataloader-pdf / ODL-PDF), batch markdown cleanup, and content pipeline for website injection. Covers PPT→PDF→Markdown→JSON→Next.js page workflows. |
 | `ekosistem-scaffold` | ecosystem | Bank Pusat | Scaffold new or missing projects in the Niumination ecosystem. Creates AGENTS.md + BACKLOG.md + brain/projects/ entry with standardized templates. Validates git, deploy, and DOX completeness. |
+| `finishing-a-development-branch` | software-development | Bank Pusat | Use when implementation is complete, all tests pass, and you need to decide how to integrate the work — merge, PR, keep, or discard. |
 | `ghost` | creative | Bank Pusat | Rewrite AI-generated or stilted text so it reads naturally and human — stripping common AI writing tells while preserving all factual content. |
 | `hermes-agent-skill-authoring` | ecosystem | Bank Pusat | Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles. |
 | `hermes-zero-defect-architect` | software-development | Bank Pusat | Sistem resolusi bug absolut dengan toleransi kegagalan 0% (Zero-Defect Protocol). Mengeksekusi perbaikan full-stack (Rust, Python, React) dan arsitektur agen (MCP, n8n) melalui pipeline terisolasi: Diagnosa -> Eksekusi Idempotent -> Verifikasi -> Rollback otomatis jika gagal. Terintegrasi dengan JCode AI untuk parallel task dengan jaring pengaman. |
@@ -575,16 +583,21 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `premortem` | software-development | Bank Pusat | Assume a project or plan has already failed, then work backward to identify the most likely causes before committing to it. Catches failure modes that forward-looking planning misses. |
 | `project-orientation` | software-development | Bank Pusat | Establish situational awareness before working on any user-referenced project. Verify project existence, state, location, and documentation against primary sources — not memory or compressed summaries. |
 | `redteam` | security | Bank Pusat | Stress-test a plan, project, or system by assuming an adversarial perspective and identifying specific attack surfaces, failure modes, and blind spots before they're exploited in production. |
+| `requesting-code-review` | software-development | Bank Pusat | Use when completing tasks, implementing major features, or before merging to verify work meets requirements — dispatches code reviewer with precise context. |
 | `simplify-code` | software-development | Bank Pusat | Parallel 3-agent cleanup of recent code changes. |
+| `subagent-driven-development` | software-development | Bank Pusat | Use when executing implementation plans with independent tasks in the current session — dispatches fresh subagent per task with two-stage review. |
 | `systematic-debugging` | software-development | Bank Pusat | 4-phase root cause debugging: understand bugs before fixing. |
 | `tripwire` | software-development | Bank Pusat | Identify the single most critical risk that could derail a project — forcing prioritization down to one thing when a full risk analysis has produced too many findings to act on all at once. |
 | `ui-ux-pro-max` | design | Bank Pusat | UI/UX design intelligence. 67 styles, 96 palettes, 57 font pairings, 25 charts, 13 stacks (React, Next.js, Vue, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui). Actions: plan, build, create, design, implement, review, fix, improve, optimize, enhance, refactor, check UI/UX code. Projects: website, landing page, dashboard, admin panel, e-commerce, SaaS, portfolio, blog, mobile app, .html, .tsx, .vue, .svelte. Elements: button, modal, navbar, sidebar, card, table, form, chart. Styles: glassmorphism, claymorphism, minimalism, brutalism, neumorphism, bento grid, dark mode, responsive, skeuomorphism, flat design. Topics: color palette, accessibility, animation, layout, typography, font pairing, spacing, hover, shadow, gradient. Integrations: shadcn/ui MCP for component search and examples. |
 | `ultrathink` | software-development | Bank Pusat | Force deep architectural and system-level reasoning before writing code — channels a master craftsman who thinks in trade-offs, invariants, and long-term maintainability rather than rushing to implementation. |
 | `up-eco` | ecosystem | Bank Pusat | Ecosystem status check & sync workflow. Triggered via Telegram /up-eco command. Checks git status, detects unknown/foreign folders, syncs BACKLOG/docs with filesystem, and recommends actions to align local ecosystem with GitHub. |
+| `verification-before-completion` | software-development | Bank Pusat | Use when ABOUT to claim work is complete, fixed, or passing — before committing or creating PRs. Requires running verification commands and confirming output before any success claims. |
+| `writing-plans` | software-development | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-07-30 16:35:41_
+_Last sync: 2026-07-30 17:01:07_
 
 <!-- SKILL_REGISTRY_END -->
+
 
 
 
@@ -595,5 +608,5 @@ _Last sync: 2026-07-30 16:35:41_
 ---
 
 > **Dibuat:** 11 Juni 2026
-> **Diperbarui:** 30 Jul 2026 — v4.6 — **Bank Skill diperluas 13→22 ✅** — 9 skill baru: impeccable, ui-ux-pro-max, zero-defect-architect, 4 ponytail variants, simplify-code, skill-authoring. Domain baru: design/. INDEX.md updated, DOX injection trigger table diperluas.
+> **Diperbarui:** 30 Jul 2026 — v4.7 — **Bank Skill diperluas 22→28 ✅** — 6 skill baru dari superpowers (obra): brainstorming, writing-plans, verification-before-completion, subagent-driven-development, finishing-a-development-branch, requesting-code-review. Domain software-development/sdlc. INDEX.md v4.0, DOX injection trigger table diperluas 16→22 baris. SKILL_REGISTRY 22→28.
 > **Oleh:** Niumination (Afrizal Munthe) — Aceh Tengah
