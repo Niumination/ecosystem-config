@@ -25,6 +25,7 @@ Tags:
 - `native:` dependency or code doing what the platform already does. Name the feature.
 - `yagni:` abstraction with one implementation, config nobody sets, layer with one caller.
 - `shrink:` same logic, fewer lines. Show the shorter form.
+- `fallback:` undocumented fallback chain with > 2 sources. Each branch must explain why it exists and why it has that priority.
 
 ## Examples
 

@@ -430,6 +430,13 @@ Keduanya jalan bersamaan — tidak saling menimpa.
 - Terstruktur (tabel, layer breakdown, data-driven)
 - 🔴🟡🟢 priorities
 
+### 📝 Comment Conventions
+Gunakan marker berikut untuk melacak technical debt dan konteks penting di kode:
+
+- `ponytail:` — Deliberate shortcut dengan ceiling dan upgrade path yang diketahui. Format: `ponytail: <ceiling>, <upgrade path>` (dilacak oleh ponytail-debt).
+- `NOTICE:` — Workaround dengan removal condition. Format multi-line: `NOTICE: why needed, root cause, source, removal condition`.
+- `REVIEW:` — Concern atau keputusan yang perlu second opinion. Tidak ada format baku, tapi harus jelas apa yang direview.
+
 ### 📁 Struktur Repo — Niumination Ecosystem v4.0
 - `main` branch utama
 - **Remote root repo (index):** `origin` = `git@github.com:Niumination/ecosystem-config.git`
@@ -576,7 +583,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `optimization` | software-development | Bank Pusat | Improve performance, latency, and throughput of code and systems. Systematic profiling → bottleneck detection → targeted optimization. |
 | `ponytail-audit` | software-development | Bank Pusat | Whole-repo audit for over-engineering. Like ponytail-review, but scans the entire codebase instead of a diff: a ranked list of what to delete, simplify, or replace with stdlib/native equivalents. Use when the user says "audit this codebase", "audit for over-engineering", "what can I delete from this repo", "find bloat", "ponytail-audit", or "/ponytail-audit". One-shot report, does not apply fixes. |
 | `ponytail-core` | software-development | Bank Pusat | Forces the laziest solution that actually works, simplest, shortest, most minimal. Channels a senior dev who has seen everything: question whether the task needs to exist at all (YAGNI), reach for the standard library before custom code, native platform features before dependencies, one line before fifty. Supports intensity levels: lite, full (default), ultra. Use whenever the user says "ponytail", "be lazy", "lazy mode", "simplest solution", "minimal solution", "yagni", "do less", or "shortest path", and whenever they complain about over-engineering, bloat, boilerplate, or unnecessary dependencies. |
-| `ponytail-debt` | software-development | Bank Pusat | Harvest every `ponytail:` comment in the codebase into a debt ledger, so the deliberate shortcuts and deferrals ponytail leaves behind get tracked instead of rotting into "later means never". Use when the user says "ponytail debt", "/ponytail-debt", "what did ponytail defer", "list the shortcuts", "ponytail ledger", or "what did we mark to do later". One-shot report, changes nothing. |
+| `ponytail-debt` | software-development | Bank Pusat | Harvest every `ponytail:` and `NOTICE:` comment in the codebase into a debt ledger, so deliberate shortcuts, deferrals, and workarounds get tracked instead of rotting into "later means never". Use when the user says "ponytail debt", "/ponytail-debt", "what did ponytail defer", "list the shortcuts", "ponytail ledger", or "what did we mark to do later". One-shot report, changes nothing. |
 | `ponytail-gain` | software-development | Bank Pusat | Show ponytail's measured impact as a compact scoreboard: less code, less cost, more speed, from the benchmark medians. One-shot display, not a persistent mode, and not a per-repo number. Trigger: /ponytail-gain, "ponytail gain", "what does ponytail save", "show ponytail impact", "ponytail scoreboard". |
 | `ponytail-help` | software-development | Bank Pusat | Quick-reference card for all ponytail modes, skills, and commands. One-shot display, not a persistent mode. Trigger: /ponytail-help, "ponytail help", "what ponytail commands", "how do I use ponytail". |
 | `ponytail-review` | software-development | Bank Pusat | Code review focused exclusively on over-engineering. Finds what to delete: reinvented standard library, unneeded dependencies, speculative abstractions, dead flexibility. One line per finding: location, what to cut, what replaces it. Use when the user says "review for over-engineering", "what can we delete", "is this over-engineered", "simplify review", or invokes /ponytail-review. Complements correctness-focused review, this one only hunts complexity. |
@@ -594,9 +601,10 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `verification-before-completion` | software-development | Bank Pusat | Use when ABOUT to claim work is complete, fixed, or passing — before committing or creating PRs. Requires running verification commands and confirming output before any success claims. |
 | `writing-plans` | software-development | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-07-30 17:01:07_
+_Last sync: 2026-07-30 17:26:00_
 
 <!-- SKILL_REGISTRY_END -->
+
 
 
 
@@ -608,5 +616,5 @@ _Last sync: 2026-07-30 17:01:07_
 ---
 
 > **Dibuat:** 11 Juni 2026
-> **Diperbarui:** 30 Jul 2026 — v4.7 — **Bank Skill diperluas 22→28 ✅** — 6 skill baru dari superpowers (obra): brainstorming, writing-plans, verification-before-completion, subagent-driven-development, finishing-a-development-branch, requesting-code-review. Domain software-development/sdlc. INDEX.md v4.0, DOX injection trigger table diperluas 16→22 baris. SKILL_REGISTRY 22→28.
+> **Diperbarui:** 30 Jul 2026 — v4.8 — **Comment Conventions** standard (ponytail:, NOTICE:, REVIEW). Ponytail-debt now scans both `ponytail:` and `NOTICE:` markers. Ponytail-review gains `fallback:` tag for undocumented precedence chains. UACC AGENTS.md gets improvement roadmap from AIRI computer-use-mcp insights.
 > **Oleh:** Niumination (Afrizal Munthe) — Aceh Tengah
