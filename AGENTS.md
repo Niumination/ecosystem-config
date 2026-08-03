@@ -272,7 +272,7 @@ Keduanya jalan bersamaan — tidak saling menimpa.
 || **Joy-Connect-for-Mac** | `desktop/joy-connect-for-mac/` | Swift 5.9, macOS 13+, scrcpy | lokal | ⚪ macOS Desktop | 25 Jul 2026 | 🆕 **Infinix device bridge** |
 || **LatticeSend** | `services/latticesend/` | Rust, Flutter, QUIC, E2EE | lokal | ⚪ Spec phase | 22 Jul 2026 | 🆕 **P2P transfer — blueprint only** |
 || **Niu-MissionControl** | `services/niu-mission-control/` | Python, FastAPI, WebSocket, aiosqlite | lokal | ⚪ Local | 25 Jul 2026 | 🆕 **Agent Swarm dashboard** |
-|| **Spatial Vision** | `sites/spatial-vision/` | Rust, WASM, Axum, pinch gesture | lokal | ⚪ Prototype | 22 Jul 2026 | 🆕 **Full-stack Rust/WASM** |
+|| **Spatial Vision** | `sites/spatial-vision/` | Rust, WASM, Axum, pinch gesture | `github.com/Niumination/spatial-vision` | ⚪ Prototype — localhost:3000 | 3 Aug 2026 | 🟢 **Active — spatial launcher + app modal + dwell-to-select** |
 ||| **orchestrator** | `agents/orchestrator/` | Python | `github.com/Niumination/orchestrator` | ⚪ Local | 24 Jun 2026 | ✅ **Pushed** |
 ||| **didong-code** | `desktop/didong-code/` | Electron, React 18, TypeScript, Vite, Tailwind CSS | `github.com/Niumination/didong-code` | ⚪ Desktop app | 08 Jul 2026 | 🆕 **Gayo Heritage ADE** |
 ||| **Ultra** | `agents/Ultra/` | Node.js, Puppeteer, Express | `github.com/Niumination/ultra-automation` | ⚪ Local | 25 Jun 2026 | ✅ **Pushed** |
@@ -603,9 +603,10 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `verification-before-completion` | software-development | Bank Pusat | Use when ABOUT to claim work is complete, fixed, or passing — before committing or creating PRs. Requires running verification commands and confirming output before any success claims. |
 | `writing-plans` | software-development | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-08-02 00:00:01_
+_Last sync: 2026-08-03 12:00:00_
 
 <!-- SKILL_REGISTRY_END -->
+
 
 
 
