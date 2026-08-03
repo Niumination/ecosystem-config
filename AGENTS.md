@@ -98,7 +98,8 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
 │   ├── niu-dash/              ← v2.16.8 GH Pages — Audit 27/27 ✅
 │   └── niu-vermilion/         ← Second Brain — 🟢 Vercel ✅
 │
-├── services/                  🔧 5 proyek — backend & engines
+├── services/                  🔧 6 proyek — backend & engines
+│   ├── camofox-browser/       ← Stealth headless browser (Camoufox) — REST :9377
 │   ├── cc-acehtengah/         ← AI Command Center — Next.js 16
 │   ├── latticesend/           ← P2P device transfer
 │   ├── niu-cast/              ← Android Device Manager via ADB
@@ -269,9 +270,10 @@ Keduanya jalan bersamaan — tidak saling menimpa.
 || **JHermUSB-portable** | `apps/JHermUSB-portable/` | Shell, Hermes Agent v25+v27 | `github.com/Niumination/JHermUSB-portable` | 🟢 GitHub (🏭) | 22 Jun 2026 | ✅ apps/ 🏭 |
 || **Niu-Flow** | — (remote only) | Python, JCode bridge | `github.com/Niumination/niu-flow` | ⚪ Local | 20 Jun 2026 | 🟢 **Active** — 5 commits |
 || **VirtualAssistance** | — (remote only) | TS | `github.com/Niumination/VirtualAssistance` | 🟢 Vercel | 3 Jun 2026 | ✅ Live |
-|| **Joy-Connect-for-Mac** | `desktop/joy-connect-for-mac/` | Swift 5.9, macOS 13+, scrcpy | lokal | ⚪ macOS Desktop | 25 Jul 2026 | 🆕 **Infinix device bridge** |
+|| **Joy-Connect-for-Mac** | `desktop/joy-connect-for-mac/` | Swift 5.9, macOS 13+, ADB, scrcpy | `github.com/Niumination/joy-connect-for-mac` | ⚪ macOS Desktop | 3 Aug 2026 | 🟢 **Infinix device bridge — DOX pass done** |
 || **LatticeSend** | `services/latticesend/` | Rust, Flutter, QUIC, E2EE | lokal | ⚪ Spec phase | 22 Jul 2026 | 🆕 **P2P transfer — blueprint only** |
 || **Niu-MissionControl** | `services/niu-mission-control/` | Python, FastAPI, WebSocket, aiosqlite | lokal | ⚪ Local | 25 Jul 2026 | 🆕 **Agent Swarm dashboard** |
+|| **Camofox-Browser** | `services/camofox-browser/` | Node.js >= 22, Express, camoufox-js (Firefox fork C++ anti-detection) | upstream: `github.com/jo-inc/camofox-browser` | ⚪ Local — REST :9377 | 3 Agu 2026 | 🆕 **Stealth headless browser server — bypass Cloudflare/bot detection** |
 || **Spatial Vision** | `sites/spatial-vision/` | Rust, WASM, Axum, pinch gesture | `github.com/Niumination/spatial-vision` | ⚪ Prototype — localhost:3000 | 3 Aug 2026 | 🟢 **Active — spatial launcher + app modal + dwell-to-select** |
 ||| **orchestrator** | `agents/orchestrator/` | Python | `github.com/Niumination/orchestrator` | ⚪ Local | 24 Jun 2026 | ✅ **Pushed** |
 ||| **didong-code** | `desktop/didong-code/` | Electron, React 18, TypeScript, Vite, Tailwind CSS | `github.com/Niumination/didong-code` | ⚪ Desktop app | 08 Jul 2026 | 🆕 **Gayo Heritage ADE** |
@@ -459,11 +461,13 @@ AGENTS.md (root — ~/Desktop/Niumination/)
   ├── apps/niu-vermilion/AGENTS.md                                       ✅
   ├── services/cc-acehtengah/AGENTS.md                                   ✅
   ├── services/niu-cast/AGENTS.md                                        ✅
+  ├── services/camofox-browser/DOX.md                                     ✅ (3 Agu 2026 — clone upstream, AGENTS.md milik upstream)
   ├── sites/spatial-vision/AGENTS.md                                     ✅ (3 Aug 2026)
   ├── labs/niumination-workspace/AGENTS.md                               ✅
   ├── desktop/didong-code/AGENTS.md                                      ✅
   ├── desktop/flame-ade/AGENTS.md                                        ✅
   ├── desktop/x-downloader/AGENTS.md                                     ✅
+  ├── desktop/joy-connect-for-mac/AGENTS.md                              ✅ (3 Aug 2026)
   ├── agents/Ultra/AGENTS.md                                             ✅
   ├── agents/profile/AGENTS.md                                           ✅
   ├── agents/orchestrator/AGENTS.md                                      ❌ (belum ada)
