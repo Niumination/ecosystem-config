@@ -157,7 +157,7 @@ ai-file-manager      ██████████ 100% P1    🟢 Active ✅  
 ai-first-os          █████░░░░░ 45%        ⚪ Minor   ✅   ✅ SSH    🟢 GitHub   apps/
 brain                ██████░░░░ 60% P3     🟢 Active  ✅   ✅ SSH    ❌ local     root/
 didong-code          ██████░░░░ 50% P2     🟢 Active  ✅   ✅ SSH    ✅ GitHub   desktop/
-joy-connect-for-mac  ██████░░░░ 60% P2     🟢 Active  ✅   ✅ SSH    ❌ local     desktop/
+joy-connect-for-mac  ██████░░░░ 60% P2     🟢 Active  ✅   ✅ SSH    🟢 GitHub   desktop/
 x-downloader         ██████████ 100% P3    ✅ Phase 3  ✅   ✅ SSH    🟢 GitHub   desktop/
 orchestrator         ██████░░░░ 40% P3     ⏸️ Stale   ✅   ✅ SSH    ✅ GitHub   agents/
 Ultra                ████████░░ 80% P3     ⏸️ Stale   ✅   ✅ SSH    ✅ GitHub   agents/
