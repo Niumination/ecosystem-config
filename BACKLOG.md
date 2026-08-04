@@ -10,7 +10,7 @@
 ```
 Desktop/Niumination/
 ├── apps/               🏭 12 proyek — deployed & battle-tested
-├── services/           🔧 6 proyek — backend & engines
+├── services/           🔧 7 proyek — backend & engines
 ├── sites/              🌐 5 proyek — frontend apps
 ├── desktop/            🖥️ 4 proyek — native apps
 ├── agents/             🤖 4 proyek — AI agents + characters + profile
@@ -66,7 +66,7 @@ Desktop/Niumination/
 | **Niumination** | ⚪ Minor | GitHub | **+7 commit** | Profile config |
 | **CC.Switch** | 🟢 **Active** | GitHub | **+8 commit** | Tauri 2 multi-CLI |
 
-### 🔧 services/ — 5 Backend & API
+### 🔧 services/ — 7 Backend & API
 
 | Proyek | Priority | Status | Aktivitas 14 Hari | Notes |
 |--------|:--------:|:------:|:------------------:|-------|
@@ -76,6 +76,7 @@ Desktop/Niumination/
 | **Niu-Flow** | P2 | 🟢 **Remote only** | ✅ GitHub | github.com/Niumination/niu-flow |
 | **latticesend** | P3 | 🟢 Active | +1 | P2P file transfer — ⚠️ NO REMOTE |
 | **uacc** | P2 🆕 | 🟢 Active | +new | Universal AI Computer Control — MCP server |
+| **camofox-browser** | P3 🆕 | ⚪ Third-party | 0 | Anti-detection browser (jo-inc/camofox-browser) — dependency browser toolset |
 
 ### 🌐 sites/ — 5 Frontend
 

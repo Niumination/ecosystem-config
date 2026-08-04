@@ -98,7 +98,7 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
 │   ├── niu-dash/              ← v2.16.8 GH Pages — Audit 27/27 ✅
 │   └── niu-vermilion/         ← Second Brain — 🟢 Vercel ✅
 │
-├── services/                  🔧 6 proyek — backend & engines
+├── services/                  🔧 7 proyek — backend & engines
 │   ├── camofox-browser/       ← Stealth headless browser (Camoufox) — REST :9377
 │   ├── cc-acehtengah/         ← AI Command Center — Next.js 16
 │   ├── latticesend/           ← P2P device transfer
@@ -607,9 +607,10 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `verification-before-completion` | software-development | Bank Pusat | Use when ABOUT to claim work is complete, fixed, or passing — before committing or creating PRs. Requires running verification commands and confirming output before any success claims. |
 | `writing-plans` | software-development | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-08-03 12:00:00_
+_Last sync: 2026-08-04 11:23:13_
 
 <!-- SKILL_REGISTRY_END -->
+
 
 
 
