@@ -516,6 +516,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | **postgres** (Supabase) | ✅ Active | `query` — read-only | Wrapper bash + `.env` |
 | **hermes-sqlite** | ✅ Active | `query_sqlite`, `get_schema`, `list_tables` | kanban.db (READ ONLY) |
 | **uacc** 🆕 | ✅ Active | 68 tools — screen, mouse, keyboard, window, browser CDP, OCR, workflow | `services/uacc/` — Python MCP server |
+| **context7** 🆕 | ✅ Active | `resolve-library-id`, `query-docs` — up-to-date library docs | `https://mcp.context7.com/mcp` — Streamable HTTP |
 
 ### Plugins
 
