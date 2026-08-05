@@ -15,10 +15,11 @@ echo "🌅 Niumination Daily Digest — $(date '+%Y-%m-%d %H:%M WIB')"
 echo ""
 
 # 1. Task overview from BACKLOG
-total=$(grep -cE '^- \[.\]' "$BACKLOG" 2>/dev/null || echo 0)
-done_tasks=$(grep -cE '^- \[x\]' "$BACKLOG" 2>/dev/null || echo 0)
-active=$(grep -cE '^- \[~\]' "$BACKLOG" 2>/dev/null || echo 0)
-cancelled=$(grep -cE '^- \[-\]' "$BACKLOG" 2>/dev/null || echo 0)
+total=$(grep -cE '^- \[.\]' "$BACKLOG" 2>/dev/null)
+done_tasks=$(grep -cE '^- \[x\]' "$BACKLOG" 2>/dev/null)
+active=$(grep -cE '^- \[~\]' "$BACKLOG" 2>/dev/null)
+cancelled=$(grep -cE '^- \[-\]' "$BACKLOG" 2>/dev/null)
+total=${total:-0}; done_tasks=${done_tasks:-0}; active=${active:-0}; cancelled=${cancelled:-0}
 pending=$((total - done_tasks - active - cancelled))
 echo "📋 Tasks: $total total | $done_tasks ✅ | $active 🔄 | $pending ⏳ | $cancelled ⏸"
 
@@ -35,7 +36,7 @@ done
 echo ""
 echo "📦 Git Status:"
 dirty=0
-for repo in projects/TEDEO Production/kune-ya.com projects/Niu-Flow Production/niu-vermilion Production/PemdiAcehTengah Production/niu-dash projects/flame-ade projects/niu-cast Production/Niu-LKH brain; do
+for repo in apps/kune-ya.com apps/niu-vermilion apps/PemdiAcehTengah apps/niu-dash desktop/flame-ade services/niu-cast apps/Niu-LKH brain; do
   d="$NIUMINATION/$repo"
   [ -d "$d/.git" ] || continue
   cd "$d" 2>/dev/null

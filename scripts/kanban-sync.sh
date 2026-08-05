@@ -100,38 +100,34 @@ grep -oE '@[a-z0-9_-]+' "$BACKLOG" | sort -u | sed 's/@//' | while read -r tag; 
   # Map common tags to directory names
   dir_name="$tag"
   case "$tag" in
-    tedeo) dir_name="TEDEO" ;;
-    niu-lkh) dir_name="Niu-LKH" ;;
-    niu-flow) dir_name="Niu-Flow" ;;
-    niu-vermilion) dir_name="niu-vermilion" ;;
-    niu-dash) dir_name="projects/niu-dash" ;;
-    niu-kanban-dash) dir_name="projects/niu-kanban-dash" ;;
-    niu-studio) dir_name="projects/niu-studio" ;;
-    niude) dir_name="projects/niude" ;;
-    niuterm) dir_name="projects/niuterm" ;;
-    niutui) dir_name="projects/niutui" ;;
-    orchestrator) dir_name="projects/orchestrator" ;;
-    terax-ai) dir_name="projects/terax-ai" ;;
-    maze-3d) dir_name="projects/maze-3d" ;;
-    zen) dir_name="projects/zen" ;;
-    pemdi-aceh-tengah) dir_name="PemdiAcehTengah" ;;
-    flame-ade) dir_name="projects/flame-ade" ;;
-    kune-ya) dir_name="kune-ya.com" ;;
-    niu-cast) dir_name="niu-cast" ;;
-    tedeo-kanban) dir_name="TEDEO-Kanban" ;;
+    tedeo|niu-flow|niuterm|terax-ai) continue ;;  # repo tidak ada di local
+    niu-lkh) dir_name="apps/Niu-LKH" ;;
+    niu-vermilion) dir_name="apps/niu-vermilion" ;;
+    niu-dash) dir_name="apps/niu-dash" ;;
+    niu-kanban-dash) dir_name="sites/niu-kanban-dash" ;;
+    niu-studio) dir_name="sandbox/niu-studio" ;;
+    niude) dir_name="sandbox/niude" ;;
+    niutui) dir_name="sandbox/niutui" ;;
+    orchestrator) dir_name="agents/orchestrator" ;;
+    maze-3d) dir_name="labs/maze-3d" ;;
+    zen) dir_name="sandbox/zen" ;;
+    pemdi-aceh-tengah) dir_name="apps/PemdiAcehTengah" ;;
+    flame-ade) dir_name="desktop/flame-ade" ;;
+    kune-ya) dir_name="apps/kune-ya.com" ;;
+    niu-cast) dir_name="services/niu-cast" ;;
+    tedeo-kanban) dir_name="sites/TEDEO-Kanban" ;;
     brain) dir_name="brain" ;;
-    audit) dir_name="AuditTI-AT" ;;
-    jhermusb) dir_name="JHermUSB-portable" ;;
+    audit|audit-ti) dir_name="sites/AuditTI-AT" ;;
+    jhermusb) dir_name="apps/JHermUSB-portable" ;;
     dotfiles) dir_name="dotfiles" ;;
     labs) dir_name="labs" ;;
     pi) dir_name="PI" ;;
-    aistudio) dir_name="aistudio-google" ;;
+    aistudio) dir_name="sandbox/aistudio-google" ;;
     archive) dir_name="archive" ;;
-    audit-ti) dir_name="AuditTI-AT" ;;
     jhcode) dir_name="JHcode" ;;
-    mac-web-dashboard) dir_name="Production/mac-web-dashboard" ;;
-    arch-web-dashboard) dir_name="Production/arch-web-dashboard" ;;
-    ai-first-os) dir_name="Production/ai-first-os" ;;
+    mac-web-dashboard) dir_name="apps/mac-web-dashboard" ;;
+    arch-web-dashboard) dir_name="apps/arch-web-dashboard" ;;
+    ai-first-os) dir_name="apps/ai-first-os" ;;
     # Remote-only repos — skip (no local dir expected)
     agent-router|automata|continue-agent|db-diskominfo|devs-niu|diskominfo-at) continue ;;
     diskominfo-web|dnd-kit|flame-code|forks|free-vps|hermes-v) continue ;;
@@ -151,12 +147,12 @@ log_entries=$(cat "$LOG_TMP")
 rm -f "$DIVERGE_TMP" "$LOG_TMP"
 
 # 2. Detect git repos with no @project in BACKLOG
-for repo_dir in "$NIUMINATION"/projects/TEDEO "$NIUMINATION"/Production/kune-ya.com "$NIUMINATION"/projects/Niu-Flow \
-  "$NIUMINATION"/Production/niu-vermilion "$NIUMINATION"/Production/PemdiAcehTengah "$NIUMINATION"/Production/Niu-LKH \
-  "$NIUMINATION"/Production/niu-dash "$NIUMINATION"/projects/flame-ade "$NIUMINATION"/brain \
-  "$NIUMINATION"/projects/niu-cast "$NIUMINATION"/projects/TEDEO-Kanban \
-  "$NIUMINATION"/projects/niutui "$NIUMINATION"/Production/arch-web-dashboard \
-  "$NIUMINATION"/Production/mac-web-dashboard "$NIUMINATION"/Production/ai-first-os; do
+for repo_dir in "$NIUMINATION"/apps/kune-ya.com "$NIUMINATION"/\
+  "$NIUMINATION"/apps/niu-vermilion "$NIUMINATION"/apps/PemdiAcehTengah "$NIUMINATION"/apps/Niu-LKH \
+  "$NIUMINATION"/apps/niu-dash "$NIUMINATION"/desktop/flame-ade "$NIUMINATION"/brain \
+  "$NIUMINATION"/services/niu-cast "$NIUMINATION"/sites/TEDEO-Kanban \
+  "$NIUMINATION"/sandbox/niutui "$NIUMINATION"/apps/arch-web-dashboard \
+  "$NIUMINATION"/apps/mac-web-dashboard "$NIUMINATION"/apps/ai-first-os; do
   [ -d "$repo_dir/.git" ] || continue
   repo_name=$(basename "$repo_dir")
   # Check if repo appears in BACKLOG

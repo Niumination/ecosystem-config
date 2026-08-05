@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # generate-ecosystem-json.py — Generate ecosystem-status.json for Niu-Dash
 # Cron: (idealnya dipanggil health-checker.sh)
-# Output: projects/niu-dash/public/data/ecosystem-status.json
+# Output: apps/niu-dash/public/data/ecosystem-status.json
 # Data source: BACKLOG.md parsing + kanban.db query
 
 import json
@@ -16,7 +16,7 @@ WIB = timezone(timedelta(hours=7))
 NIUMINATION = "/Users/zaryu/Desktop/Niumination"
 BACKLOG = os.path.join(NIUMINATION, "BACKLOG.md")
 DB = "/Volumes/HermesAgent/HermesAgentUSB/data/kanban.db"
-OUTPUT = os.path.join(NIUMINATION, "Production/niu-dash/public/data/ecosystem-status.json")
+OUTPUT = os.path.join(NIUMINATION, "apps/niu-dash/public/data/ecosystem-status.json")
 
 os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
 

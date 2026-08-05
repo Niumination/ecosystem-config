@@ -21,7 +21,7 @@ df -h / | tail -1 | awk '{printf "  Used: %s / %s (%s)\n", $3, $2, $5}'
 echo ""
 echo "## 📦 Git Status (dirty = uncommitted changes)"
 dirty=0
-for repo in projects/TEDEO Production/kune-ya.com projects/Niu-Flow Production/niu-vermilion Production/PemdiAcehTengah Production/niu-dash projects/flame-ade projects/niu-cast Production/Niu-LKH brain projects/TEDEO-Kanban projects/x-downloader projects/Ultra projects/niuterm projects/terax-ai projects/niumination-workspace; do
+for repo in apps/kune-ya.com apps/niu-vermilion apps/PemdiAcehTengah apps/niu-dash desktop/flame-ade services/niu-cast apps/Niu-LKH brain sites/TEDEO-Kanban desktop/x-downloader agents/Ultra labs/niumination-workspace; do
   d="$NIUMINATION/$repo"
   if [ -d "$d/.git" ]; then
     cd "$d" 2>/dev/null

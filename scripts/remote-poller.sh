@@ -11,10 +11,10 @@ NIUMINATION="/Users/zaryu/Desktop/Niumination"
 HAS_CHANGES=0
 
 # Repositori dengan remote GitHub — fetch dengan timeout 10s
-for repo_dir in "$NIUMINATION"/projects/TEDEO "$NIUMINATION"/Production/kune-ya.com "$NIUMINATION"/projects/Niu-Flow \
-  "$NIUMINATION"/Production/niu-vermilion "$NIUMINATION"/Production/PemdiAcehTengah "$NIUMINATION"/Production/Niu-LKH \
-  "$NIUMINATION"/Production/niu-dash "$NIUMINATION"/projects/flame-ade "$NIUMINATION"/brain \
-  "$NIUMINATION"/projects/x-downloader "$NIUMINATION"/projects/Ultra "$NIUMINATION"/projects/niuterm; do
+for repo_dir in "$NIUMINATION"/apps/kune-ya.com "$NIUMINATION"/\
+  "$NIUMINATION"/apps/niu-vermilion "$NIUMINATION"/apps/PemdiAcehTengah "$NIUMINATION"/apps/Niu-LKH \
+  "$NIUMINATION"/apps/niu-dash "$NIUMINATION"/desktop/flame-ade "$NIUMINATION"/brain \
+  "$NIUMINATION"/desktop/x-downloader "$NIUMINATION"/agents/Ultra; do
 
   [ -d "$repo_dir/.git" ] || continue
   cd "$repo_dir" 2>/dev/null || continue

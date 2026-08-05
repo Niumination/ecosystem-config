@@ -35,8 +35,8 @@ NON_GIT_DIRS = [
     "Belum disentuh",
     "Production",
     "scripts",
-    "projects/aistudio-google",
-    "projects/arena.ai",
+    "sandbox/aistudio-google",
+    "sandbox/arena.ai",
 ]
 
 
@@ -98,10 +98,10 @@ def scan_git_repo(path):
 def auto_discover_git_repos():
     """Auto-discover all git repos under Niumination root."""
     repos = []
-    # Scan root-level dirs (brain/, etc.) + projects/ subdirs
+    # Scan root-level dirs (brain/, etc.) + struktur baru (apps/, sites/, desktop/, labs/, services/, sandbox/, agents/, tools/)
     scan_dirs = [d for d in NIUMINATION.iterdir() if d.is_dir() and not d.name.startswith(".")]
-    scan_dirs += sorted(NIUMINATION.glob("projects/*"))
-    scan_dirs += sorted(NIUMINATION.glob("Production/*"))
+    for sub in ["apps", "sites", "desktop", "labs", "services", "sandbox", "agents", "tools", "dotfiles"]:
+        scan_dirs += sorted(NIUMINATION.glob(f"{sub}/*"))
     seen = set()
     for d in scan_dirs:
         if d in seen:
