@@ -1,8 +1,8 @@
 # 🌐 Ekosistem Niumination — Status Keseluruhan
 
-**Audit:** 20 Jul 2026, 13:17 WIB
-**Filesystem:** 29 git + 6 non-git = **35 total item** (DOX: 29)
-**Disk:** 8.1 GB
+**Audit:** 5 Agu 2026
+**Filesystem:** 39 git repos (struktur baru: apps/ sites/ desktop/ labs/ services/ sandbox/ agents/ tools/)
+**Scheduler aktif:** 4 lapisan (cron Hermes 1 + crontab macOS 1 + GitHub Actions 2)
 🚫 **Ponytail excluded** per user instruction
 
 ---
@@ -11,14 +11,17 @@
 
 | Metrik | Value |
 |--------|-------|
-| Total Git Repos | 29 |
-| Production/ 🏭 | 11 ✅ |
-| Projects/ 🟡 | 17 |
-| Non-Git Dirs | 6 |
-| Dirty Repos | 1 |
-| Cron Jobs | 3 (1 errored ❌) |
-| Services | Gateway ✅, Kanban ✅ |
-| Eco JSON | ⚠️ Stale — 5 Jul (4 hari) |
+| Total Git Repos | 39 |
+| Apps/ 🏭 | 12 ✅ |
+| Sites/ 🟡 | 5 |
+| Desktop/ | 3 |
+| Layanan & Labs | 11 |
+| Cron Hermes | 1 (memory-checkpoint ✅) |
+| Crontab macOS | 1 (sync-to-agents ✅) |
+| GitHub Actions | 2 (update-activity, generate-readme) |
+| Launchd niumation | 0 (semua dihapus 5 Agu) |
+| Services | Gateway ✅ (kanban-server mati) |
+| Eco JSON | regenerated (39 repos) |
 
 ---
 
@@ -129,9 +132,10 @@ Niumination/
 
 | Job | Schedule | Last Run | Status |
 |-----|----------|----------|--------|
-| **brain-daily-capture** | Setiap 21:00 | 8 Jul 21:54 | ❌ **Error** — script error |
-| **memory-checkpoint** | Setiap 6 jam | 9 Jul 00:00 | ✅ OK |
-| **niu-flow-weekly-audit** | Setiap Senin 08:00 | 6 Jul 09:59 | ✅ OK |
+| **memory-checkpoint** (cron Hermes) | Setiap 6 jam | 5 Agu 21:42 | ✅ OK — backup BACKLOG.md (dedup + retensi 14) |
+| **sync-to-agents** (crontab macOS) | Setiap 6 jam | 5 Agu 12:00 | ✅ OK — sync skill bank ke Jcode + Hermes + USB |
+| **update-activity** (GH Actions) | Harian 08:00 UTC | — | ✅ Cloud |
+| **generate-readme** (GH Actions) | Senin 09:00 UTC | — | ✅ Cloud |
 
 ---
 
@@ -139,13 +143,11 @@ Niumination/
 
 | Service | Status | PID | Notes |
 |---------|--------|-----|-------|
-| **Gateway** (ai.hermes.gateway) | ✅ Running | 2331 | KeepAlive via launchd |
-| **Kanban Server** (com.niumination.kanban-server) | ✅ Running | 2332 | launchd |
-| **Ecosystem JSON** | ⚠️ Stale | — | `generated_at`: 5 Jul (4 hari) |
-| **eco-collect** | — | — | launchd loaded, no PID |
-| **health-checker** | — | — | launchd loaded, no PID |
-| **changelog-writer** | — | — | launchd loaded, no PID |
-| **kanban-sync** | — | — | launchd loaded, no PID |
+| **Gateway** (ai.hermes.gateway) | ✅ Running | — | KeepAlive via launchd |
+| **Kanban Server** (com.niumination.kanban-server) | ❌ Mati | — | Dihapus 5 Agu (exit 78 EX_CONFIG) |
+| **Ecosystem JSON** | ✅ Regenerated | — | 39 repos (5 Agu) |
+| **Launchd niumation** | ❌ 0 agent | — | Semua plist dihapus 5 Agu |
+| **Mission Control** (port 5200) | ❌ Mati | — | Server tidak jalan |
 
 ---
 
@@ -158,7 +160,7 @@ Niumination/
 | **Model** | big-pickle |
 | **Profile** | default (active) |
 | **Gateway** | ✅ launchd KeepAlive |
-| **Cron Active** | 3 jobs |
+| **Cron Active** | 1 job (memory-checkpoint) |
 | **MCP Servers** | postgres, sqlite, ponytail, github, time, filesystem |
 | **Migration** | ⏸️ Ditunda — portable→native belum dieksekusi |
 | **Upgrade** | ⏸️ v0.18.0 — tunggu ekosistem matang |
@@ -199,8 +201,8 @@ Niumination/
 
 ## ✅ Catatan
 
-1. **brain-daily-capture cron error** — script error kemarin (8 Jul 21:54). Perlu dicek `brain-capture.py`
-2. **Ecosystem JSON** — perlu di-regenerate (stale since 5 Jul). `npm run sync-data` di niu-dash-fullstack
+1. ~~**brain-daily-capture cron error**~~ — **Resolved 5 Agu:** job & script dihapus (bikin 34 file template kosong)
+2. **Ecosystem JSON** — ✅ Regenerated 5 Agu (39 repos) via eco-collect auto-discover
 3. **niu-dash-fullstack dirty** — `DashboardClient.tsx` modified, belum di-commit
 4. **x-downloader-backup** — 995 MB, cek apakah masih diperlukan
 5. **Ponytail** — excluded per user instruction ✅

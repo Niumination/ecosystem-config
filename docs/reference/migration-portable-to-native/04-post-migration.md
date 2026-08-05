@@ -26,9 +26,9 @@
 - [ ] Test: minta agent pakai skill tertentu → response sesuai skill
 
 ### Cron Jobs
-- [ ] `hermes cron list` → 3 jobs (brain-daily-capture, memory-checkpoint, niu-flow-weekly-audit)
-- [ ] Script path: `brain-capture.py`, `checkpoint.py` → file exists di ~/.hermes/scripts/
-- [ ] Test run job: `hermes cron run 2e98df211aaa` → sukses
+- [ ] `hermes cron list` → 1 job aktif (memory-checkpoint) — brain-daily-capture DIHAPUS 5 Agu 2026
+- [ ] Script path: `checkpoint.py` → file exists di data/scripts/
+- [ ] Test run job: `hermes cron run 663b902a9ce5` → sukses
 
 ### MCP Servers
 - [ ] `hermes tools` atau `hermes mcp list` → 6 servers connected:

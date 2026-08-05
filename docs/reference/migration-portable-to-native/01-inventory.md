@@ -95,9 +95,9 @@ Semua dikelola oleh Hermes cron system (bukan crontab macOS).
 
 | Job ID | Nama | Schedule | Script | Status |
 |--------|------|----------|--------|--------|
-| `2e98df211aaa` | brain-daily-capture | 0 21 * * * | `scripts/brain-capture.py` | ✅ Active |
+| ~~`2e98df211aaa`~~ | ~~brain-daily-capture~~ | ~~0 21 * * *~~ | ~~`scripts/brain-capture.py`~~ | ❌ Dihapus 5 Agu 2026 |
 | `663b902a9ce5` | memory-checkpoint | 0 */6 * * * | `scripts/checkpoint.py` | ✅ Active |
-| `22a2fb847f4d` | niu-flow-weekly-audit | 0 8 * * 1 | (LLM-driven, skill niu-flow) | ✅ Active |
+| ~~`22a2fb847f4d`~~ | ~~niu-flow-weekly-audit~~ | ~~0 8 * * 1~~ | ~~(LLM-driven, skill niu-flow)~~ | ❌ Tidak ada di jobs.json |
 
 Script path: Script di `data/scripts/` menggunakan relative path ke `$HERMES_HOME/scripts/`.
 

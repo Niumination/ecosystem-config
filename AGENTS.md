@@ -38,19 +38,26 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
 |------|-----------|:------:|
 | 0 | Foundation (14/14) — gitleaks, hooks, creds, dll | ✅ Done |
 | 1 | Tier 1 Setup — 10 proyek AGENTS.md + BACKLOG.md | ✅ Done |
-| 2.1 | health-checker.sh + cron (every 6h, local) | ✅ Done |
-| 2.2 | daily-heartbeat.sh + cron (08:00, deliver=telegram) | ✅ Done |
-| 2.3 | remote-poller.sh + cron (every 6h, silent when clean) | ✅ Done |
-| 2.4 | changelog-writer.sh + cron (20:00, local) | ✅ Done |
-| 2.5 | kanban-sync.sh + cron (every 1h, local) + divergence detection | ✅ Done |
-| 2.7 | gitleaks-weekly.sh + cron (Sun 08:00) | ✅ Done |
+| 2.1 | health-checker.sh (script) | ✅ Done — script ada, TIDAK dijadwalkan |
+| 2.2 | daily-heartbeat.sh (script) | ✅ Done — script ada, TIDAK dijadwalkan |
+| 2.3 | remote-poller.sh (script) | ✅ Done — script ada, TIDAK dijadwalkan |
+| 2.4 | changelog-writer.sh (script) | ✅ Done — script ada, TIDAK dijadwalkan |
+| 2.5 | kanban-sync.sh + divergence detection (script) | ✅ Done — script ada, TIDAK dijadwalkan |
+| 2.7 | gitleaks-weekly.sh (script) | ✅ Done — script DIHAPUS 5 Agu (CPU 721%) |
 | 2.8 | Ecosystem page — Vanilla HTML + React (port 5199) | ✅ Done |
-| 2.6 | issue-bridge.sh — BACKLOG→GitHub Issues sync | ✅ Done (cron every 6h) |
+| 2.6 | issue-bridge.sh — BACKLOG→GitHub Issues sync | ✅ Done — script DIHAPUS 5 Agu |
 | 2.9 | Skill Hermes ekosistem-scaffold | ✅ Done |
 | 2.10 | Divergence detection (in kanban-sync.sh) | ✅ Done |
 | 2.11 | generate-ecosystem-json.sh — Niu-Dash data source | ✅ Done |
 | 3 | Phase 3 — Hardening validasi (6/7 ✅, 1 ⏩ skip) | ✅ Done |
 | 🎯 | **Goal Besar — TEDEO T1-T4** (4 critical bugs ✅ ALL FIXED 24 Jun) | ✅ Done — committed & pushed |
+
+> 📌 **Update Scheduler — 5 Agu 2026:** Semua launchd agents `com.niumation.*` (8 plist) **dihapus** — gitleaks (CPU overload), brain-daily-capture (file kosong), eco-collect (LOCK macet), kanban-server & mission-control (mati EX_CONFIG), health-checker/kanban-sync/changelog-writer (duplikat). Scheduler yang AKTIF sekarang:
+> 1. **Cron Hermes** — `memory-checkpoint` (tiap 6 jam) → backup BACKLOG.md
+> 2. **Crontab macOS** — `skills/sync-to-agents.sh` (tiap 6 jam) → sync skill bank ke Jcode + Hermes + USB
+> 3. **GitHub Actions** — `update-activity.yml` (harian 08:00 UTC), `generate-readme.yml` (Senin 09:00 UTC)
+>
+> Script lain (`health-checker.sh`, `kanban-sync.sh`, `changelog-writer.sh`, `daily-heartbeat.sh`, `remote-poller.sh`, `eco-collect.py`) **masih ada di `scripts/` dengan path sudah diupdate** ke struktur baru, tapi **tidak terjadwal** — siap dipasang ulang jika dibutuhkan. (`gitleaks-weekly.sh` & `issue-bridge.sh` dihapus.)
 
 ### Eksekusi Selanjutnya
 1. **TEDEO — ✅ T1-T4 ALL FIXED + ✅ Web deployed: https://tedeo-web.vercel.app** (13 Jul)
@@ -608,9 +615,11 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `verification-before-completion` | software-development | Bank Pusat | Use when ABOUT to claim work is complete, fixed, or passing — before committing or creating PRs. Requires running verification commands and confirming output before any success claims. |
 | `writing-plans` | software-development | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-08-04 18:00:01_
+_Last sync: 2026-08-05 12:00:01_
 
 <!-- SKILL_REGISTRY_END -->
+
+
 
 
 

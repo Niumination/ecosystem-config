@@ -109,12 +109,14 @@ telegram:
 
 ### 2.5 Cron Jobs
 
+> 📌 **Update 5 Agu 2026:** Laporan historis (17 Jul). Realita sekarang: brain-daily-capture & niu-flow-weekly-audit **dihapus**; memory-checkpoint satu-satunya cron Hermes aktif.
+
 | Nama | Schedule | Status | Last Run |
 |------|----------|:------:|:--------:|
-| **brain-daily-capture** | 21:00 daily | ✅ OK | Today 21:00 |
-| **memory-checkpoint** | Every 6h | ✅ OK | Today 18:00 |
-| **niu-flow-weekly-audit** | Mon 08:00 | ✅ OK | 13 Jul |
-| **mc-health-check** | Every 120m | ⚠️ **Error** | Connection error |
+| ~~**brain-daily-capture**~~ | ~~21:00 daily~~ | ❌ Dihapus 5 Agu | — |
+| **memory-checkpoint** | Every 6h | ✅ OK | 5 Agu 21:42 |
+| ~~**niu-flow-weekly-audit**~~ | ~~Mon 08:00~~ | ❌ Tidak ada | — |
+| ~~**mc-health-check**~~ | ~~Every 120m~~ | ❌ Tidak ada | — |
 
 > ⚠️ **Delivery issue:** 3 cron jobs gagal kirim ke Telegram karena DNS error (`nodename nor servname provided`)
 
