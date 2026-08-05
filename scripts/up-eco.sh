@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # =============================================================================
-# up-eco.sh — Ecosystem Status & Sync Checker v2.0
+# up-eco.sh — Ecosystem Status & Sync Checker v5.1
 # =============================================================================
 # Usage: ./scripts/up-eco.sh
 #
@@ -231,6 +231,118 @@ check_gh_pages() {
       *)   warn "$url → HTTP $code" ;;
     esac
   done
+}
+
+# ═══════════════════════════════════════════════════════════════════════════
+# 🆕 Phase 5b: GitHub Pull Requests
+# ═══════════════════════════════════════════════════════════════════════════
+check_gh_prs() {
+  section "🔀 GitHub Pull Requests"
+
+  # ── 5b-1: Cek gh CLI tersedia
+  if ! command -v gh &>/dev/null; then
+    warn "gh CLI tidak terinstall — skip PR check"
+    rec "→ Install gh: brew install gh"
+    return
+  fi
+
+  # ── 5b-2: Resolve real home (Hermes env may set HOME ke cache path)
+  local gh_home="$HOME"
+  if [ ! -d "$gh_home/.config/gh" ]; then
+    if [ -d "/Users/${USER:-zaryu}/.config/gh" ]; then
+      gh_home="/Users/${USER:-zaryu}"
+    fi
+  fi
+
+  # ── 5b-3: Cek auth gh
+  if ! HOME="$gh_home" timeout 8 gh auth status &>/dev/null; then
+    warn "gh CLI belum authenticated — skip PR check"
+    rec "→ gh auth login (atau set GH_TOKEN)"
+    return
+  fi
+
+  # ── 5b-4: Satu query — semua open PR di org Niumination
+  local prs_json
+  prs_json=$(HOME="$gh_home" timeout 20 gh search prs --owner Niumination --state open --limit 50 \
+    --json number,title,repository,isDraft,author,createdAt,updatedAt 2>/dev/null || echo "[]")
+
+  local total
+  total=$(echo "$prs_json" | python3 -c "import sys,json; print(len(json.load(sys.stdin)))" 2>/dev/null || echo "0")
+
+  if [ "$total" -eq 0 ]; then
+    pass "Tidak ada open pull request di org Niumination"
+    return
+  fi
+
+  warn "$total open pull request di GitHub"
+
+  # ── 5b-5: Tampilkan detail tiap PR
+  echo "$prs_json" | python3 -c "
+import sys, json
+from datetime import datetime, timezone
+
+prs = json.load(sys.stdin)
+now = datetime.now(timezone.utc)
+prs.sort(key=lambda p: p.get('updatedAt', ''))
+
+def repo_name(p):
+    r = p.get('repository')
+    if isinstance(r, dict):
+        return r.get('nameWithOwner', '?')
+    return str(r) if r else '?'
+
+def author_login(p):
+    a = p.get('author')
+    if isinstance(a, dict):
+        return a.get('login', '?')
+    return str(a) if a else '?'
+
+for p in prs:
+    repo = repo_name(p)
+    num = p.get('number', '?')
+    title = (p.get('title') or '?')[:75]
+    draft = ' [DRAFT]' if p.get('isDraft') else ''
+    author = author_login(p)
+    updated = p.get('updatedAt', '')
+    try:
+        age_days = (now - datetime.fromisoformat(updated.replace('Z', '+00:00'))).days
+    except Exception:
+        age_days = 0
+    age = 'baru' if age_days == 0 else f'{age_days} hari'
+    stale = ' ⚠️ STALE' if age_days > 14 else ''
+    print(f'  🔀 {repo}#{num}{draft} — {title}')
+    print(f'     👤 {author} | update: {age}{stale} | url: https://github.com/{repo}/pull/{num}')
+" 2>/dev/null || true
+
+  # ── 5b-6: Hitung draft & stale untuk rekomendasi
+  local draft_count stale_count
+  draft_count=$(echo "$prs_json" | python3 -c "
+import sys, json
+from datetime import datetime, timezone
+prs = json.load(sys.stdin)
+print(sum(1 for p in prs if p.get('isDraft')))
+" 2>/dev/null || echo "0")
+  stale_count=$(echo "$prs_json" | python3 -c "
+import sys, json
+from datetime import datetime, timezone
+prs = json.load(sys.stdin)
+now = datetime.now(timezone.utc)
+def ts(p):
+    u = p.get('updatedAt', '')
+    try: return datetime.fromisoformat(u.replace('Z', '+00:00'))
+    except Exception: return now
+print(sum(1 for p in prs if (now - ts(p)).days > 14))
+" 2>/dev/null || echo "0")
+
+  rec "→ Review & merge $total open PR — gh pr list --owner Niumination --state open"
+  if [ "${draft_count:-0}" -gt 0 ]; then
+    warn "$draft_count PR masih draft — perlu finalisasi"
+    rec "→ $draft_count PR draft: selesaikan & ready-for-review"
+  fi
+  if [ "${stale_count:-0}" -gt 0 ]; then
+    warn "$stale_count PR stale (>14 hari tanpa update)"
+    rec "→ $stale_count PR stale: review / close / update branch"
+  fi
 }
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -522,7 +634,7 @@ main() {
   printf "${BOLD}${CYAN}"
   echo "╔══════════════════════════════════════════════════════╗"
   echo "║              🔄 UP-ECO — Ecosystem Check             ║"
-  echo "║         Niumination v5.0  •  $NOW        ║"
+  echo "║         Niumination v5.1  •  $NOW        ║"
   echo "╚══════════════════════════════════════════════════════╝"
   printf "${NC}"
 
@@ -558,6 +670,9 @@ main() {
 
   # ── Phase 5: GitHub Pages ──
   check_gh_pages
+
+  # ── Phase 5b: GitHub Pull Requests 🆕 ──
+  check_gh_prs
 
   # ── Phase 6: Skill Bank Integrity 🆕 ──
   check_skill_bank
