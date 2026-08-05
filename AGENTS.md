@@ -155,7 +155,8 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
 ├── archive/                   📦 Arsip proyek lama (~25MB)
 ├── skills/                    🧠 **ACTIVE** Bank skill terpusat — 28 skill terisi ✅
 │
-└── .gitignore                 — Semua folder proyek child di-ignore
+├── .folder-icons/             🖼️ Custom Finder folder icons (PNG + @2x) — lokal, tidak di-track git
+├── .gitignore                 — Semua folder proyek child di-ignore
 ```
 
 ---
@@ -340,6 +341,7 @@ Keduanya jalan bersamaan — tidak saling menimpa.
 || **archive** | `archive/` | lokal | Arsip proyek lama |
 || **labs** | `labs/` | lokal | Lab eksperimen |
 || **dotfiles** | `dotfiles/` | lokal | Terminal dotfiles (standalone repo) |
+| **Folder Icons** | `.folder-icons/` | lokal | 🖼️ Custom Finder icons (PNG + @2x) — 16 folder root, untuk tampilan Finder, tidak di-track git |
 
 ### 🚚 Delivery Service
 

@@ -72,6 +72,9 @@ __pycache__/
 *.gif
 *.ico
 
+# Custom Finder folder icons (lokal — tidak di-track git)
+.folder-icons/
+
 # Sync artifacts (Layer 2)
 .sync-lock/
 .sync-log
