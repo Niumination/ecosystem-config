@@ -132,9 +132,10 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
 │   ├── orchestrator/          ← Python multi-agent
 │   └── profile/               ← GitHub Profile README
 │
-├── labs/                      🔬 2 proyek — experimental
+├── labs/                      🔬 3 proyek — experimental
 │   ├── maze-3d/
-│   └── niumination-workspace/
+│   ├── niumination-workspace/
+│   └── eKinerja-AfrizalMunthe/  ← Bukti dukung eKinerja Sem 1 2026 🔒 private
 │
 ├── sandbox/                   💤 7 proyek — playground
 │   ├── aistudio-google/
@@ -313,6 +314,7 @@ Keduanya jalan bersamaan — tidak saling menimpa.
 ||| **niumination-workspace** | `labs/niumination-workspace/` | Next.js 16, Prisma, Three.js, TanStack Query | `github.com/Niumination/niumination-workspace` | ⚪ Local | 24 Jun 2026 | ✅ **4 commits — pushed** |
 || **niu-kanban-dash** | `sites/niu-kanban-dash/` | React 19, Vite, Tailwind v4 | `github.com/Niumination/niu-kanban-dash` | localhost:5199 | 24 Jun 2026 | ✅ **Pushed** |
 || **maze-3d** | `labs/maze-3d/` | HTML, JS | `github.com/Niumination/Maze-3D-Game---Web-Based` | 🟢 GH Pages | 21 Mei 2026 | ✅ Live |
+|| **eKinerja-AfrizalMunthe** | `labs/eKinerja-AfrizalMunthe/` | Dokumen (DOCX/PDF/TXT) | `github.com/Niumination/eKinerja-AfrizalMunthe` | 🔒 Private | 6 Agu 2026 | 🆕 **Bukti dukung eKinerja Sem 1 2026 — SKP/DEKP/PAK** |
 || **x-downloader** | `desktop/x-downloader/` | Tauri 2 (Rust) + Vite 5 + React 18 + Three.js 3D orb | `github.com/Niumination/x-downloader` | 🟢 GitHub | 06 Jul 2026 | ✅ **v2.0.0 — DMG release** |
 | **niu-private** | — (remote only) | TS | `github.com/Niumination/niu-private` | 🟢 GH Pages | 8 Jun 2026 | ✅ Live |
 | **ai-file-manager-android** | `apps/ai-file-manager-android/` 🏭 | Android (Kotlin, Jetpack Compose, Gradle), Google Gemini | `github.com/Niumination/ai-file-organizer-android` | 🟢 GitHub | 23 Jun 2026 | ✅ **apps/ 🏭** |

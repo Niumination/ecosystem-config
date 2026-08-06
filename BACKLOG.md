@@ -14,7 +14,7 @@ Desktop/Niumination/
 ├── sites/              🌐 5 proyek — frontend apps
 ├── desktop/            🖥️ 4 proyek — native apps
 ├── agents/             🤖 4 proyek — AI agents + characters + profile
-├── labs/               🔬 2 proyek — experiments
+├── labs/               🔬 3 proyek — experiments
 ├── sandbox/            🧪 7 proyek — dormant (ex-incubator)
 ├── archive/projects/   📦 2 proyek — archived (niuterm, terax-ai)
 ├── docs/               📚 Dokumentasi terpadu (reference/, reports/, notebooklm/, dox/)
@@ -106,12 +106,13 @@ Desktop/Niumination/
 | **Ultra** | P3 | ⏸️ Stale | Puppeteer automation |
 | **characters/** | ⚪ | 🟢 Active | 4 herdr agents (arsitek, pembangun, pengawas, penjaga) |
 
-### 🔬 labs/ — 2 Experiments
+### 🔬 labs/ — 3 Experiments
 
 | Proyek | Priority | Status | Notes |
 |--------|:--------:|:------:|-------|
 | **maze-3d** | P3 | ✅ Live | GH Pages |
 | **niumination-workspace** | P3 | ⏸️ Stale | Next.js 16 |
+| **eKinerja-AfrizalMunthe** | ⚪ Minor | 🟢 Active | Bukti dukung eKinerja Sem 1 2026 (SKP/DEKP/PAK) — 🔒 private repo |
 
 ### 🧪 sandbox/ — 7 Dormant (ex-incubator)
 
@@ -188,7 +189,7 @@ services/                  5   2.1 GB   Backend engines
 sites/                     5   1.3 GB   Frontend apps
 desktop/                   4   949 MB   Native apps
 agents/                    4   33 MB    AI agents + profile + characters
-labs/                      2   1.2 GB   Experiments
+labs/                      3   1.2 GB   Experiments
 sandbox/                   7   600 MB   Dormant (ex-incubator)
 archive/projects/          2   837 MB   Archived (niuterm, terax-ai)
 docs/                     24   240 KB   Documentation (merged from docs/dox/reports)
@@ -198,7 +199,7 @@ vault/                     3   10 KB    Secrets (gitignored)
 brain/                     1   25 MB    Obsidian vault (git, terpisah)
 dotfiles/                     1   7.3 MB   Terminal dotfiles
 ─────────────────────────────────────────────
-Total git repos           ~40   18 GB
+Total git repos           ~41   18 GB
 ```
 
 ### ⚠️ Dirty Repos (3)
