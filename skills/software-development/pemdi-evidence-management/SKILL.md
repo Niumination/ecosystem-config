@@ -545,3 +545,57 @@ User bertanya "apakah semua bukti dukung yang ditampilkan punya 1 sumber atau ba
 | CSIRT | `csirt.acehtengahkab.go.id` | Keamanan siber |
 | Pemdi Portal | `pemdi-aceh-tengah.vercel.app` | Dashboard Pemdi |
 | GitHub | `github.com/Niumination/PemdiAcehTengah` | Repositori publik |
+
+### 23. Audit Excel Daftar Lengkap vs Modul — level naming & sinkronisasi (verified 6 Agu 2026)
+
+Saat user minta "sesuaikan bukti dukung dengan modul (bahasa umum) dulu, lalu dengan Excel Daftar Lengkap (sheet 2, breakdown Aceh Tengah)": Excel = `docs/pemdi-evaluasi-2026/Daftar_Lengkap_Bukti_Dukung_PEMDI_Aceh_Tengah.xlsx` — sheet `02_Daftar_Lengkap_Bukti_Dukung` (177 item: 173 upload manual + 4 eksternal I5/I6/I7/I18). Header sheet 2 di **row 4** (No | No. Ind. | Aspek | Indikator | Level Kematangan | No. Level | Item Bukti Dukung (sesuai modul) | Jenis Output | Bentuk Output Nyata | PJ | Unit Pendukung | Keterangan); data mulai row 5.
+
+**⚠️ Level naming Excel pakai skema LAMA PermenPANRB 59/2020, modul pakai skema BARU 8/2026:**
+| Excel (lama) | Modul (baru) |
+|---|---|
+| Initiate/Kurang | Initiate (L1) |
+| Emerging/Cukup | Emerging (L2) |
+| **Developing/Baik** | **Established (L3)** |
+| **Embedded/Sangat Baik** | **Leading (L4)** |
+| **Leading/Memuaskan** | **Transformative (L5)** |
+
+Koreksi di Excel: rename `Developing/Baik`→`Established/Baik`, `Embedded/Sangat Baik`→`Leading/Sangat Baik`, `Leading/Memuaskan`→`Transformative/Memuaskan` di SEMUA sheet (02 col5, 01 catatan #6 + legend, 05 checklist R13 "Initiate → Emerging → Developing", 06 col5 "Developing–Leading"→"Established–Leading", "Embedded & Leading"→"Leading & Transformative"), plus deskripsi "level Developing/Embedded" di col9 → Established/Leading. ⚠️ Jangan global-replace string pendek (`"Developing"` tanpa `/Baik`) — kena kata di teks lain; dan global replace `"Keterpaduan Layanan Digital"` bisa kena **konten item** (bukan hanya kolom aspek) — R15C7 item_modul I1 ikut berubah, harus revert dari backup. Sel R36C1 (catatan 6) resisten terhadap replace bertahap — assign nilai penuh langsung.
+
+**Temuan koreksi lain (semua sudah dieksekusi):**
+- **I9 L3↔L4 tertukar**: Excel L3="Tindak Lanjut Audit (internal)", L4="Audit Eksternal" — modul: L3=Eksternal, L4=Tindak lanjut atas audit eksternal. Swap label level kedua baris (R98↔R99 sheet 2).
+- **I18 salah**: "Interoperabilitas Data **(Indeks Satu Data Indonesia)**" — suffix itu milik I5; modul I18 = "Tingkat Kematangan Interoperabilitas Data". I6 sheet 2 juga beda dengan sheet 1 ("(Indeks Simpul Jaringan Informasi Geospasial)" vs "(Indeks SJIG)") — seragamkan ke "(Indeks SJIG)".
+- **I20**: "Tingkat Kepuasan Pengguna" → modul "Tingkat Kematangan **Pengelolaan** Kepuasan Pengguna".
+- **I15-I19**: tambah prefix "Tingkat Kematangan" (sheet 2 col4 + sheet 1 col4).
+- **Aspek**: "Keterpaduan Layanan Digital Pemerintah" (Excel) → "Keterpaduan" (modul/pemdi.json) — sheet 1/2/4.
+
+**pemdi.json sinkronisasi (backup dulu):**
+- **P1.\* (bukti 2026) semua L1 tapi isinya level lain** — 8 item naik L1→L2: DPA/RKA & RKA (I1 L2 "Perencanaan & Anggaran sebagian substansi"), Undangan/Rapat konsolidasi (I1/I4 L2 "konsolidasi kolaboratif"), Renstra/Renja/RPJMD (I1 L2 "dokumen perencanaan sebagian substansi"), DPA-SKPD 97 hal (I1 L2). SK Tim Koordinasi tetap L1 (I4 L1 "Penetapan Tim").
+- **`target_item_bukti` = 177** (bukan 178 — selisih 1 dari aspek Keterpaduan yang tadinya 26): samakan dengan Excel; `aspek.total_item` per aspek = 20/32/38/25/18/25/19 (sum 177). UI modul-indikator & pemdi otomatis baca dari data ("134/177", "Gap: 43").
+- Verifikasi: `sum(a.total_item) == target_item_bukti == 177`, level bukti ⊆ level_kriteria modul, `npx next build` 0 error, browser check stat + catatan mandiri per indikator.
+
+⚠️ **Level lama di `docs/modul-indikator/*.md` (hasil ODL) JANGAN diubah** — itu ground-truth mentah dari PDF asli. "178" di `.next/` = build artifacts, regenerated otomatis.
+
+### 24. Kanonisasi Bukti Eksternal → Lokal (preview modal rusak) — verified 6 Agu 2026
+
+User: "bukti dari link eksternal tidak bisa dibuka di preview — download semua bukti eksternal ke public/bukti-dukung, goal semua bukti punya 1 sumber (lokal)."
+
+**Sumber eksternal & cara download (19 dokumen unik):**
+- **JDIH (11 PDF)**: `https://jdih.acehtengahkab.go.id/dih/download/produk-hukum/<uuid>` — langsung PDF (6MB-38MB). ⚠️ Download beruntun kena HTTPError transien (rate-limit) — retry per-file dengan delay 0.5-1s; UUID diekstrak dari URL preview/sumber (`[0-9a-f]{8}-...-{12}`), 1 UUID = 1 dokumen walau dipakai banyak bukti (Perbup 48/2025 → 8+ bukti).
+- **OpenData (6)**: URL `/dataset/<slug>` = halaman, BUKAN file. Query CKAN API `https://opendata.acehtengahkab.go.id/api/3/action/package_show?id=<slug>` → `result.resources[].url` = file asli. ⚠️ 4 dari 6 resource = **XLSX** (magic `PK\x03\x04`), bukan PDF — simpan dengan ekstensi benar, jangan paksa PDF.
+- **raw GitHub (2)**: sudah ada lokal (`public/bukti-dukung/04-layanan/pedoman_pengaduan_rsud.pdf`, `skm_kebayakan_2025.pdf`) — cukup update JSON.
+
+**Lokasi**: `public/bukti-dukung/07-eksternal/` (folder baru). Nama: `jdih-{uuid8}-{slug}.pdf` / `opendata-{tag}-{resource-slug}.{ext}`. Total 129MB — OK untuk GitHub.
+
+**Update `data/pemdi.json`**: semua bukti lengkap (57) — `url_preview` http → path lokal `/bukti-dukung/07-eksternal/...` + `_ext: 'pdf'|'xlsx'` (yang tadinya cuma `url_sumber` http juga dapat preview lokal). `url_sumber` DIPERTAHANKAN sebagai atribusi (bukan "2 sumber" — itu metadata asal, preview/akses = 1 sumber lokal). Verifikasi: 0 url_preview http, 0 bukti lengkap tanpa preview, 0 file hilang.
+
+**Fix kode (2 halaman):**
+- `pages/modul-indikator.js` — `toProxyUrl()`: `if (url.startsWith('/')) return url;` (lokal langsung, same-origin bebas XFO) sebelum fallback ke `/api/proxy-pdf?url=...` (proxy tetap untuk URL http masa depan). Tanpa fix ini modal preview nunjuk proxy → "URL tidak diizinkan" (403) karena proxy hanya izinkan jdih.*.
+- `pages/pemdi.js` — iframe langsung pakai `url_preview` (tanpa proxy) → otomatis jalan setelah JSON lokal.
+
+**Preview**: PDF (`_ext:'pdf'`) → iframe render (browser PDF viewer); XLSX (`_ext:'xlsx'`) → link "Buka/Unduh" (bukan iframe). Verifikasi di browser: klik 👁️ → iframe src `/bukti-dukung/07-eksternal/...pdf` + `contentDocument.contentType === 'application/pdf'`.
+
+**Screenshot bukti → section "Bukti Dukung Dokumen Pendukung"** (lanjutan, user: "semua bukti dukung dibuatkan dengan metode yang sama & ditambahkan ke section screenshot"):
+- PDF (13): PyMuPDF `get_pixmap(dpi=150)` halaman pertama yang mengandung judul (`PERATURAN BUPATI`/`SOP`/`LITERASI`/dll — scan 3 hal pertama) → `public/docs/bukti/{tag}.png` (tag: `perbup-48-arsitektur-spbe`, `perbup-6-sistem-pemdi`, `literasi-digital-2023`, `sop-epss`, `pedoman-pengaduan-rsud`, `skm-kebayakan-2025`, dst).
+- XLSX (4): render tabel PNG via PIL (`ImageDraw.rectangle` grid + `ImageFont.truetype('/System/Library/Fonts/Helvetica.ttc', 18)`, header biru muda, 40 baris max) → `public/docs/bukti/{data-peta-rdtr,hasil-survei-kepuasan,laporan-pengawasan-kinerja,laporan-reviu-kinerja}.png`.
+- JSX: array screenshot eksternal (19 item: src/title/desc dengan indikator terkait) ditambahkan sebagai grid kedua di bawah grid dokumen pendukung existing (7 item) — reuse pola yang sama (`setPreviewDoc({url,title})` modal perbesar via iframe — iframe render PNG juga valid). Total 26 screenshot di `public/docs/bukti/`.
+- Build + verifikasi browser: scroll bawah → header "Bukti Visual Dokumen Eksternal (JDIH & OpenData)" + 19 kartu; klik → modal iframe src `/docs/bukti/<file>.png`.

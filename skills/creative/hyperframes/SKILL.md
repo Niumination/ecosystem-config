@@ -19,6 +19,20 @@ platforms: [macos, linux]
 - Chromium (Puppeteer bundled, tidak perlu install manual)
 - npm package: `npm install hyperframes` (already in root Niumination)
 
+## ⚠️ PITFALL: JANGAN init project di dalam ekosistem Niumination
+
+Proyek video HyperFrames adalah **artefak kerja sementara** — jangan pernah `npx hyperframes init` di dalam `~/Desktop/Niumination/` (root ekosistem) atau folder proyek lain. Folder `cc-ai-video/` di root ekosistem = **polusi struktur** (user menegur: "ini bakal ngerusak struktur ekosistem"). Video jadi & file render bersih, lalu HAPUS folder kerja atau simpan di luar ekosistem.
+
+**Lokasi kerja yang benar:** `~/Downloads/` atau `~/Desktop/` (luar Niumination), contoh:
+```bash
+cd ~/Downloads
+npx hyperframes init cc-ai-video --example blank
+cd cc-ai-video
+# ... tulis index.html ...
+npx hyperframes render   # → renders/cc-ai-video_*.mp4
+```
+Hasil akhir MP4 bisa di-copy ke mana saja (kirim ke user), folder kerja bisa dihapus setelahnya. Verifikasi ekosistem bersih setelah selesai: `ls -d ~/Desktop/Niumination/*/` harus berisi 15 folder standar (agents apps archive brain desktop docs dotfiles labs sandbox scripts services sites skills tools vault) — tidak ada folder video asing.
+
 ## Quick Start
 
 ```bash
