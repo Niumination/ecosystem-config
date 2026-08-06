@@ -599,3 +599,15 @@ User: "bukti dari link eksternal tidak bisa dibuka di preview — download semua
 - XLSX (4): render tabel PNG via PIL (`ImageDraw.rectangle` grid + `ImageFont.truetype('/System/Library/Fonts/Helvetica.ttc', 18)`, header biru muda, 40 baris max) → `public/docs/bukti/{data-peta-rdtr,hasil-survei-kepuasan,laporan-pengawasan-kinerja,laporan-reviu-kinerja}.png`.
 - JSX: array screenshot eksternal (19 item: src/title/desc dengan indikator terkait) ditambahkan sebagai grid kedua di bawah grid dokumen pendukung existing (7 item) — reuse pola yang sama (`setPreviewDoc({url,title})` modal perbesar via iframe — iframe render PNG juga valid). Total 26 screenshot di `public/docs/bukti/`.
 - Build + verifikasi browser: scroll bawah → header "Bukti Visual Dokumen Eksternal (JDIH & OpenData)" + 19 kartu; klik → modal iframe src `/docs/bukti/<file>.png`.
+
+### 25. Kriteria per Level → Ringkasan + Bukti Dukung (dari Excel) — verified 6 Agu 2026
+
+User: "section kriteria per level perlu diperbaiki — dari setiap level cukup ringkasan singkat, kemudian daftar bukti dukungnya, sesuai Excel Daftar Lengkap sheet 2 yang sudah diperbarui. Jangan push dulu."
+
+**Data (`data/modul-indikator.json`) — 102 level_kriteria diperkaya (kriteria asli TIDAK dihapus):**
+- `ringkasan`: 1-2 kalimat inti kriteria (maks ~160 char). Generator: strip `#{1,6}`/label `Kriteria|Kondisi|Data Dukung`/`<br>`/emoji, buang duplikasi kalimat beruntun (artefak concat), ambil kalimat pertama >40 char. Lalu override manual untuk yang kasar: level eksternal I5/I6/I7/I18 (hilangkan "Kabupaten X" simulasi → teks maturity), I13 L2 artefak, I20 L2-L4 campur data dukung, L5 panjang (431ch). Total 50 override manual.
+- `bukti_dukung`: array `[{item, output}]` dari Excel sheet 2 kolom 7 (item sesuai modul) + kolom 9 (output nyata), dipetakan per `I{no}_L{lvl}` (level naming sudah skema baru). Level tanpa item: I5/I6/I7/I18 (eksternal — ditambah item penjelas "nilai otomatis sistem nasional"), I4 L0 & I8 L0 (Baseline — kosong).
+
+**UI (`pages/modul-indikator.js` kartu level)**: ganti `formatKriteria(lk.kriteria)` (render penuh) dengan: `{lk.ringkasan}` (paragraf) + label `📎 BUKTI DUKUNG (N)` + `<ul>` item bukti (font 0.73rem muted); level tanpa bukti → italic "— indikator eksternal / belum ada item bukti di Daftar Lengkap". Kriteria asli tetap di JSON (tidak dihapus dari data).
+
+**Verifikasi**: `next build` 0 error; browser: buka modul → kartu L1-L5 tampil ringkasan pendek + daftar bukti sesuai Excel; cek semua ringkasan ≤160 char via script. Jangan push sebelum user setuju.
