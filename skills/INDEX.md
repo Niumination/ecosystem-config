@@ -1,13 +1,13 @@
 # INDEX — Bank Skill Terpusat Niumination
 
-> **Versi:** 4.0.0 (Superpowers Integration — 6 SDLC skills added from obra/superpowers)
+> **Versi:** 4.0.1 (Superpowers Integration — 6 SDLC skills added from obra/superpowers)
 > **Lokasi:** `~/Desktop/Niumination/skills/`
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local + USB) + AGENTS.md (cron every 6h)
-> **DOX Injection:** ✅ Layer 3 — 29 skill auto-loaded via trigger keyword di AGENTS.md
+> **DOX Injection:** ✅ Layer 3 — 32 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 29 skill tersedia di Hermes catalog (USB: 150+ total, ~/.hermes/: up-to-date)
+> **Hermes Integration:** ✅ Semua 32 skill tersedia di Hermes catalog (USB: 150+ total, ~/.hermes/: up-to-date)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 29 ✅ Aktif
+> **Status:** 32 ✅ Aktif
 
 ---
 
@@ -23,7 +23,7 @@
 | **ponytail-help** | ✅ Aktif | tools/ponytail/ | 2.6 KB | Quick-reference card for all ponytail modes, skills, and commands |
 | **systematic-debugging** | ✅ Aktif | Hermes | 25.6 KB | 4-phase debugging workflow — isolate, root cause, fix, verify |
 | **project-orientation** | ✅ Aktif | Hermes | 64.0 KB | Verify from source — jangan asumsi, baca direktori & file dulu |
-| **document-content-pipeline** | ✅ Aktif | Hermes | 13.6 KB | ODL-PDF batch convert → Markdown → cleanup → JSON → website |
+| **document-content-pipeline** | ✅ Aktif | Hermes | 30.1 KB | ODL-PDF batch convert → Markdown → cleanup → JSON → website. Termasuk rebuild ground-truth (2d) + post-rebuild cleanup (2e) + ROOT CAUSE PPT→PDF |
 | **optimization** | ✅ Aktif | Jcode + Hermes | 2.1 KB | Profiling, bottleneck detection, targeted optimization |
 | **ultrathink** | ✅ Aktif | HaydenLundin | 4.5 KB | Deep architectural reasoning — trade-offs, invariants, craftsmanship |
 | **tripwire** | ✅ Aktif | sisi-tarak | 2.8 KB | Single-risk prioritization — satu hal paling kritis untuk dipantau |
@@ -36,6 +36,9 @@
 | **subagent-driven-development** | ✅ Aktif | superpowers | 28.0 KB | Parallel agent execution — dispatch subagent per task, 2-stage review, fix loop max 5 rounds |
 | **finishing-a-development-branch** | ✅ Aktif | superpowers | 7.0 KB | Post-implementation workflow — verify tests, present merge/PR/keep/discard options |
 | **requesting-code-review** | ✅ Aktif | superpowers | 3.0 KB | Dispatch code reviewer subagent — spec compliance + code quality assessment |
+| **pemdi-evidence-management** | ✅ Aktif | Hermes USB | 50.8 KB | Kelola bukti dukung Pemdi (PermenPANRB 8/2026) — cross-ref PemdiArena CSV, Excel master, modul JSON, JDIH/OpenData API → inject ke dashboard dengan inline PDF preview |
+| **compliance-checklist-dashboard** | ✅ Aktif | Hermes USB | 11.0 KB | Build compliance/checklist dashboards (Pemdi, SPBE, IKD) — parse checklist → JSON → Next.js dashboard + embedded previews |
+| **plan-compliance-audit** | ✅ Aktif | Hermes USB | 21.0 KB | Audit ekosistem/proyek terhadap spesifikasi tertulis — layer scripts/crons/configs/credentials/docs, gap by severity |
 
 ## Domain: Design
 
@@ -71,8 +74,8 @@
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **29** |
-| **Total** | **29** |
+| ✅ Aktif | **32** |
+| **Total** | **32** |
 
 ## Catatan Penting — Potensi Konflik
 

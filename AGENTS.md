@@ -217,6 +217,9 @@ Agent akan auto-load skill berikut jika task description mengandung trigger keyw
 | **subagent-driven-development** | subagent, "parallel agent", "orchestrasi", "swarm execution", "dispatch agent", "multi-agent coding", sdd | `skills/software-development/subagent-driven-development/` |
 | **finishing-a-development-branch** | merge, "selesaiin branch", "pull request", PR, "cleanup branch", "finish branch", "branch selesai" | `skills/software-development/finishing-a-development-branch/` |
 | **requesting-code-review** | "minta review", "code review", "review PR", "cek kualitas", "review sebelum merge" | `skills/software-development/requesting-code-review/` |
+| **pemdi-evidence-management** | bukti dukung, "bukti pemdi", evidence, PemdiArena, "modul indikator", PermenPANRB, "cek bukti", "update bukti", "inject bukti", "cross-ref bukti" | `skills/software-development/pemdi-evidence-management/` |
+| **compliance-checklist-dashboard** | checklist, compliance dashboard, "dashboard kepatuhan", "status checklist", SPBE checklist, "eval dashboard" | `skills/software-development/compliance-checklist-dashboard/` |
+| **plan-compliance-audit** | "audit kepatuhan", "compliance audit", "audit plan", "cek spek", "kepatuhan spek", "plan vs reality", "audit ekosistem" | `skills/software-development/plan-compliance-audit/` |
 
 **Cara pakai manual:** `/skill <nama>` atau `hermes -s <nama>`.
 **Cara nonaktifkan:** "stop ponytail" atau "normal mode".
@@ -588,6 +591,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | Skill | Domain | Source | Description |
 |-------|--------|--------|-------------|
 | `brainstorming` | software-development | Bank Pusat | Use BEFORE any creative work — creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation. |
+| `compliance-checklist-dashboard` | software-development | Bank Pusat | Build compliance/evaluation checklist dashboards from structured documents (Markdown, Excel, PermenPANRB instruments). End-to-end: parse checklist → JSON with status tracking → Next.js dashboard with filters, progress bars, grouped expandable items, and embedded document previews (iframe for HTML, PDF viewer). Covers document-to-indicator mapping, batch status updates from verified sources, and the 'lampiran' pattern for linking evidence files. Use when building dashboards for government compliance (Pemdi, SPBE, IKD, RB), audit tracking, or any scenario where a checklist of items needs status visualization with embedded source documents. |
 | `document-content-pipeline` | software-development | Bank Pusat | High-accuracy PDF extraction (opendataloader-pdf / ODL-PDF), batch markdown cleanup, and content pipeline for website injection. Covers PPT→PDF→Markdown→JSON→Next.js page workflows. |
 | `ekosistem-scaffold` | ecosystem | Bank Pusat | Scaffold new or missing projects in the Niumination ecosystem. Creates AGENTS.md + BACKLOG.md + brain/projects/ entry with standardized templates. Validates git, deploy, and DOX completeness. |
 | `finishing-a-development-branch` | software-development | Bank Pusat | Use when implementation is complete, all tests pass, and you need to decide how to integrate the work — merge, PR, keep, or discard. |
@@ -597,6 +601,8 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `hyperframes` | creative | Bank Pusat | HyperFrames — open-source framework dari HeyGen untuk mengubah HTML + CSS + animasi menjadi video MP4. 'Write HTML. Render video. Built for agents.' |
 | `impeccable` | design | Bank Pusat | Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks. |
 | `optimization` | software-development | Bank Pusat | Improve performance, latency, and throughput of code and systems. Systematic profiling → bottleneck detection → targeted optimization. |
+| `pemdi-evidence-management` | software-development | Bank Pusat | >- |
+| `plan-compliance-audit` | software-development | Bank Pusat | Audit a running ecosystem against its written specification/plan document — check each layer (scripts, crons, hooks, configs, DB, credentials, docs) for compliance, categorize gaps by severity, and produce actionable fix recommendations. |
 | `ponytail-audit` | software-development | Bank Pusat | Whole-repo audit for over-engineering. Like ponytail-review, but scans the entire codebase instead of a diff: a ranked list of what to delete, simplify, or replace with stdlib/native equivalents. Use when the user says "audit this codebase", "audit for over-engineering", "what can I delete from this repo", "find bloat", "ponytail-audit", or "/ponytail-audit". One-shot report, does not apply fixes. |
 | `ponytail-core` | software-development | Bank Pusat | Forces the laziest solution that actually works, simplest, shortest, most minimal. Channels a senior dev who has seen everything: question whether the task needs to exist at all (YAGNI), reach for the standard library before custom code, native platform features before dependencies, one line before fifty. Supports intensity levels: lite, full (default), ultra. Use whenever the user says "ponytail", "be lazy", "lazy mode", "simplest solution", "minimal solution", "yagni", "do less", or "shortest path", and whenever they complain about over-engineering, bloat, boilerplate, or unnecessary dependencies. |
 | `ponytail-debt` | software-development | Bank Pusat | Harvest every `ponytail:` and `NOTICE:` comment in the codebase into a debt ledger, so deliberate shortcuts, deferrals, and workarounds get tracked instead of rotting into "later means never". Use when the user says "ponytail debt", "/ponytail-debt", "what did ponytail defer", "list the shortcuts", "ponytail ledger", or "what did we mark to do later". One-shot report, changes nothing. |
@@ -617,9 +623,13 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `verification-before-completion` | software-development | Bank Pusat | Use when ABOUT to claim work is complete, fixed, or passing — before committing or creating PRs. Requires running verification commands and confirming output before any success claims. |
 | `writing-plans` | software-development | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-08-05 12:00:01_
+_Last sync: 2026-08-06 10:17:52_
 
 <!-- SKILL_REGISTRY_END -->
+
+
+
+
 
 
 
