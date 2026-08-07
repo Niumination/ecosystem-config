@@ -58,6 +58,7 @@ Desktop/Niumination/
 | **niu-vermilion** | 🟢 Active | Vercel | 0 | Stable — V1-V5 fixed |
 | **kune-ya.com** | 🟢 Active | Vercel | 0 | Stable — K1-K5 fixed |
 | **niu-dash** | 🟢 Active | GH Pages | **+2 commit** | v2.16.8 — ⚠️ Dirty 3 file |
+| **kopi-aceh-app-android** | ⚪ Sandbox | GitHub | 0 | Rancangan & source app Android Gerobak Kopi Keliling Aceh Tengah — peta gerobak, pesan QRIS, antar/jemput. Repo belum dibuat (butuh gh auth) — remote sementara ke ecosystem-config. |
 | **JHermUSB-portable** | ✅ Done | GitHub | 0 | ⚠️ **Dirty 8 file** — config & docs |
 | **mac-web-dashboard** | ✅ Done | GitHub | +1 | v1.0.0 |
 | **arch-web-dashboard** | ✅ Done | GitHub | 0 | v1.0.0 |
