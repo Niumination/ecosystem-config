@@ -611,3 +611,18 @@ User: "section kriteria per level perlu diperbaiki — dari setiap level cukup r
 **UI (`pages/modul-indikator.js` kartu level)**: ganti `formatKriteria(lk.kriteria)` (render penuh) dengan: `{lk.ringkasan}` (paragraf) + label `📎 BUKTI DUKUNG (N)` + `<ul>` item bukti (font 0.73rem muted); level tanpa bukti → italic "— indikator eksternal / belum ada item bukti di Daftar Lengkap". Kriteria asli tetap di JSON (tidak dihapus dari data).
 
 **Verifikasi**: `next build` 0 error; browser: buka modul → kartu L1-L5 tampil ringkasan pendek + daftar bukti sesuai Excel; cek semua ringkasan ≤160 char via script. Jangan push sebelum user setuju.
+
+### 26. Contoh Bukti Dukung (Modul) → kondisi Aceh Tengah per level — verified 6 Agu 2026
+
+User: "perbaiki section contoh bukti dukung (modul) di bawah kriteria per level — harus sesuai dengan item bukti per level di atas; kriteria pakai bahasa umum KemenPanRB, tapi Contoh Bukti Dukung harus kondisi PemKab Aceh Tengah."
+
+**Data**: `data_dukung_modul` diubah dari flat list string (bahasa umum nasional, mis. "(1) Bab/uraian khusus PEMERINTAH DIGITAL...", "(5) Struktur Tim...") menjadi **array per level**:
+```json
+[{"level": 1, "label": "Initiate", "items": ["output nyata excel (ringkas)", "📄 Dokumen Aceh Tengah: ..."]}, ...]
+```
+- `items` = 1-2 output nyata dari Excel sheet 2 kolom 9 (Bentuk Output Nyata — sudah kondisi Aceh Tengah oleh user) + 1 baris "📄 Dokumen Aceh Tengah: <dokumen asli>" dari DOC_MAP manual per indikator-level (nama dokumen asli: Qanun RPJMD 2025-2029, Perbup 48/2025 Arsitektur SPBE, Perbup 60/2022 Satu Data, SK Bupati 555/395/2026 Tim Koordinasi, DPA/RKA Diskominfo 2026 Sub Keg. 0037, Renstra/Renja Diskominfo, Indeks KAMI 5.0, Perbup 1-2/2025 Persandian, SK Forum Satu Data, KAK/Laporan Bapokting 2026, Hasil SKM, SKM Kebayakan 2025, dll).
+- DOC_MAP 20 indikator × 5 level ditulis manual (teliti — nama dokumen asli dari pemdi.json bukti nyata + file 07-eksternal; judul resmi sebagian diverifikasi dari PDF via PyMuPDF, mis. Perbup 126/2019 = Standar Pelayanan, Perbup 70/2019 = Pedoman SPBE, Perbup 137/2019 = Pedoman PDP).
+
+**UI**: section render per level — badge solid `L{n}` (LEVEL_WARNA) + label + `<ul>` items; subteks "Disusun sesuai kondisi Pemkab Aceh Tengah — cocokkan dengan item bukti per level di atas."
+
+**Verifikasi**: `next build` 0 error; browser buka modul → Contoh Bukti Dukung tampil per level dengan dokumen Aceh Tengah yang cocok dengan kartu kriteria di atas. Jangan push sebelum user setuju.

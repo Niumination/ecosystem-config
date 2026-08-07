@@ -597,6 +597,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `document-content-pipeline` | software-development | Bank Pusat | High-accuracy PDF extraction (opendataloader-pdf / ODL-PDF), batch markdown cleanup, and content pipeline for website injection. Covers PPT→PDF→Markdown→JSON→Next.js page workflows. |
 | `ekosistem-scaffold` | ecosystem | Bank Pusat | Scaffold new or missing projects in the Niumination ecosystem. Creates AGENTS.md + BACKLOG.md + brain/projects/ entry with standardized templates. Validates git, deploy, and DOX completeness. |
 | `finishing-a-development-branch` | software-development | Bank Pusat | Use when implementation is complete, all tests pass, and you need to decide how to integrate the work — merge, PR, keep, or discard. |
+| `gdpr-compliance` | governance | Bank Pusat | Expert GDPR compliance assistant covering all four core workflows: (1) auditing code and systems for GDPR violations, (2) drafting GDPR-compliant documents such as privacy policies, Data Processing Agreements (DPAs), and consent notices, (3) answering GDPR compliance questions with authoritative article citations, and (4) reviewing data flows and PII handling practices. Use this skill whenever the user mentions GDPR, data protection, privacy compliance, lawful basis, data subject rights, DPA, privacy notices, consent management, data breaches, DPIAs, controller/ processor relationships, cross-border data transfers, or any EU/UK data privacy topic. Also trigger for questions like "is this GDPR compliant?", "how do I handle personal data?", "what does a privacy policy need?", or any request involving PII, personal data, or data retention in a regulatory context. |
 | `ghost` | creative | Bank Pusat | Rewrite AI-generated or stilted text so it reads naturally and human — stripping common AI writing tells while preserving all factual content. |
 | `hermes-agent-skill-authoring` | ecosystem | Bank Pusat | Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles. |
 | `hermes-zero-defect-architect` | software-development | Bank Pusat | Sistem resolusi bug absolut dengan toleransi kegagalan 0% (Zero-Defect Protocol). Mengeksekusi perbaikan full-stack (Rust, Python, React) dan arsitektur agen (MCP, n8n) melalui pipeline terisolasi: Diagnosa -> Eksekusi Idempotent -> Verifikasi -> Rollback otomatis jika gagal. Terintegrasi dengan JCode AI untuk parallel task dengan jaring pengaman. |
@@ -625,9 +626,13 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `verification-before-completion` | software-development | Bank Pusat | Use when ABOUT to claim work is complete, fixed, or passing — before committing or creating PRs. Requires running verification commands and confirming output before any success claims. |
 | `writing-plans` | software-development | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-08-06 15:43:30_
+_Last sync: 2026-08-08 03:29:36_
 
 <!-- SKILL_REGISTRY_END -->
+
+
+
+
 
 
 
