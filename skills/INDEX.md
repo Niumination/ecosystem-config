@@ -37,6 +37,7 @@
 | **finishing-a-development-branch** | ✅ Aktif | superpowers | 7.0 KB | Post-implementation workflow — verify tests, present merge/PR/keep/discard options |
 | **requesting-code-review** | ✅ Aktif | superpowers | 3.0 KB | Dispatch code reviewer subagent — spec compliance + code quality assessment |
 | **pemdi-evidence-management** | ✅ Aktif | Hermes USB | 50.8 KB | Kelola bukti dukung Pemdi (PermenPANRB 8/2026) — cross-ref PemdiArena CSV, Excel master, modul JSON, JDIH/OpenData API → inject ke dashboard dengan inline PDF preview |
+| **gdpr-compliance** | ✅ Aktif | GitHub (Sushegaad GRC) | 14.4 KB | Expert GDPR compliance — audit kode/sistem, draft privacy policy/DPA/consent, jawab dengan sitasi pasal. **Adaptasi Indonesia**: kerangka untuk finalisasi bukti I8 PDP (UU 27/2022) — uraian 7 kondisi PDP, kebijakan, hak subjek data, privacy notice, awareness. |
 | **compliance-checklist-dashboard** | ✅ Aktif | Hermes USB | 11.0 KB | Build compliance/checklist dashboards (Pemdi, SPBE, IKD) — parse checklist → JSON → Next.js dashboard + embedded previews |
 | **plan-compliance-audit** | ✅ Aktif | Hermes USB | 21.0 KB | Audit ekosistem/proyek terhadap spesifikasi tertulis — layer scripts/crons/configs/credentials/docs, gap by severity |
 
