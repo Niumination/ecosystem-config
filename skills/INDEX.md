@@ -45,7 +45,7 @@
 
 | Skill | Status | Source | Ukuran | Deskripsi |
 |-------|:------:|--------|-------:|-----------|
-| **impeccable** | ✅ Aktif | Claude Code / Jcode | 19.9 KB | Production-grade UI/UX design — 23 sub-commands, OKLCH, anti-pattern AI slop |
+| **impeccable** | ✅ Aktif | Claude Code / Jcode | 3.2 MB | Production-grade UI/UX design — v4.0.4: 23 sub-commands, detector anti-pattern, live iterate mode, OKLCH, craft-floor |
 | **ui-ux-pro-max** | ✅ Aktif | Hermes USB | 29.5 KB | UI/UX design intelligence — 67 styles, 96 palettes, 57 font pairings, Python search |
 
 ## Domain: Ecosystem
