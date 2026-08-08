@@ -3,11 +3,11 @@
 > **Versi:** 4.0.1 (Superpowers Integration — 6 SDLC skills added from obra/superpowers)
 > **Lokasi:** `~/Desktop/Niumination/skills/`
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local + USB) + AGENTS.md (cron every 6h)
-> **DOX Injection:** ✅ Layer 3 — 32 skill auto-loaded via trigger keyword di AGENTS.md
+> **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 32 skill tersedia di Hermes catalog (USB: 150+ total, ~/.hermes/: up-to-date)
+> **Hermes Integration:** ✅ Semua 34 skill tersedia di Hermes catalog (USB: 150+ total, ~/.hermes/: up-to-date)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 32 ✅ Aktif
+> **Status:** 34 ✅ Aktif
 
 ---
 
@@ -55,6 +55,7 @@
 | **up-eco** | ✅ Aktif | Hermes | 3.0 KB | Ecosystem status check — git, divergence, health |
 | **ekosistem-scaffold** | ✅ Aktif | Hermes | 40.6 KB | Membuat struktur proyek baru sesuai standar Niumination |
 | **hermes-agent-skill-authoring** | ✅ Aktif | Hermes USB | 10.7 KB | Author in-repo SKILL.md — frontmatter, validator, structure, quality principles |
+| **hermes-uiux-technical** | ✅ Aktif | Niu-MissionControl | 4.2 KB | Capability profile UI/UX & technical Hermes Agent — routing, workflow automation, API/multi-agent, fast NLP, event-driven, conversational UX, agentic transparency, tone matching |
 
 ## Domain: Security
 
@@ -75,8 +76,8 @@
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **32** |
-| **Total** | **32** |
+| ✅ Aktif | **34** |
+| **Total** | **34** |
 
 ## Catatan Penting — Potensi Konflik
 
