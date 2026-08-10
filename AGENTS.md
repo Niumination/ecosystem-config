@@ -279,7 +279,7 @@ Keduanya jalan bersamaan — tidak saling menimpa.
 | Projek | Path | Stack | GitHub | Deploy | Last Push | Status |
 |--------|------|-------|--------|--------|-----------|--------|
 || **Flame-ADE** | `desktop/flame-ade/` | Tauri 2, Rust, React 19, TS | `github.com/Niumination/Flame-ADE` | ⚪ Desktop app | 20 Jun 2026 | ✅ v1.3.0 |
-|| **JHermUSB-portable** | `apps/JHermUSB-portable/` | Shell, Hermes Agent v25+v27 | `github.com/Niumination/JHermUSB-portable` | 🟢 GitHub (🏭) | 10 Agu 2026 | ✅ **Backup DR penuh — snapshot 10 Agu, RESTORE.md + snapshot-from-usb.sh** |
+|| **JHermUSB-portable** | `apps/JHermUSB-portable/` | Shell, Hermes Agent v25+v27 | `github.com/Niumination/JHermUSB-portable` 🔒 **PRIVATE** | 🟢 GitHub (🏭) | 10 Agu 2026 | ✅ **Backup DR penuh + kredensial — snapshot 10 Agu, RESTORE.md + snapshot-from-usb.sh** |
 || **Niu-Flow** | — (remote only) | Python, JCode bridge | `github.com/Niumination/niu-flow` | ⚪ Local | 20 Jun 2026 | 🟢 **Active** — 5 commits |
 || **VirtualAssistance** | — (remote only) | TS | `github.com/Niumination/VirtualAssistance` | 🟢 Vercel | 3 Jun 2026 | ✅ Live |
 || **Joy-Connect-for-Mac** | `desktop/joy-connect-for-mac/` | Swift 5.9, macOS 13+, ADB, scrcpy | `github.com/Niumination/joy-connect-for-mac` | ⚪ macOS Desktop | 3 Aug 2026 | 🟢 **Infinix device bridge — DOX pass done** |
