@@ -36,6 +36,7 @@ Output will show:
 - **🧠 Skill Bank Integrity** — SKILL.md count vs INDEX.md, frontmatter validation, duplicate detection
 - **🔄 Skill Sync Status** — sync-to-agents.sh last run, Jcode/Hermes/USB divergence
 - **🎛️ Mission Control Dashboard** — Skill Monitor API reachable, stale skills, conflicts, usage stats
+- **💬 Telegram Thread Status** — 5 mission-control thread activity, model/provider mapping, last error
 - **Recommendations list** (numbered)
 
 ### Step 2: Interpret results for the user
