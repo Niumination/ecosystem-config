@@ -72,7 +72,7 @@ Desktop/Niumination/
 | Proyek | Priority | Status | Aktivitas 14 Hari | Notes |
 |--------|:--------:|:------:|:------------------:|-------|
 | **cc-acehtengah** | **P2 ⬆** | 🟢 **Active** | **+27 commit** 🏆 | Tema Gayo Highlands, Analytics, GIS, AI orchestrator, QueryBar |
-| **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **+33 commit** 🏆 | v2.6.0 — Ecosystem scanner, sidebar toggle, gateway monitoring |
+| **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **+33 commit** 🏆 | v2.6.2 — Agent Konten Kreator (topic 1172), ecosystem scanner, config preservasi |
 | **niu-cast** | P2 | 🟢 **Active** | **+27 commit** | v3.6.0 — Mac Connect Bridge, macOS native install |
 | **Niu-Flow** | P2 | 🟢 **Remote only** | ✅ GitHub | github.com/Niumination/niu-flow |
 | **latticesend** | P3 | 🟢 Active | +1 | P2P file transfer — ⚠️ NO REMOTE |
