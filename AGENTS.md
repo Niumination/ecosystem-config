@@ -592,6 +592,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 
 | Skill | Domain | Source | Description |
 |-------|--------|--------|-------------|
+| `agent-reach` | software-development | Bank Pusat | Internet capability layer for AI agents. Use when the agent needs to read/search web pages, YouTube, GitHub, RSS, or other platforms. Trigger words: search the web, read this URL, check GitHub repo, get YouTube transcript, monitor RSS, internet research. |
 | `brainstorming` | software-development | Bank Pusat | Use BEFORE any creative work — creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation. |
 | `compliance-checklist-dashboard` | software-development | Bank Pusat | Build compliance/evaluation checklist dashboards from structured documents (Markdown, Excel, PermenPANRB instruments). End-to-end: parse checklist → JSON with status tracking → Next.js dashboard with filters, progress bars, grouped expandable items, and embedded document previews (iframe for HTML, PDF viewer). Covers document-to-indicator mapping, batch status updates from verified sources, and the 'lampiran' pattern for linking evidence files. Use when building dashboards for government compliance (Pemdi, SPBE, IKD, RB), audit tracking, or any scenario where a checklist of items needs status visualization with embedded source documents. |
 | `document-content-pipeline` | software-development | Bank Pusat | High-accuracy PDF extraction (opendataloader-pdf / ODL-PDF), batch markdown cleanup, and content pipeline for website injection. Covers PPT→PDF→Markdown→JSON→Next.js page workflows. |
@@ -629,9 +630,12 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `verification-before-completion` | software-development | Bank Pusat | Use when ABOUT to claim work is complete, fixed, or passing — before committing or creating PRs. Requires running verification commands and confirming output before any success claims. |
 | `writing-plans` | software-development | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-08-10 21:02:35_
+_Last sync: 2026-08-11 01:36:32_
 
 <!-- SKILL_REGISTRY_END -->
+
+
+
 
 
 
