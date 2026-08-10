@@ -23,6 +23,7 @@ INDEX_FILE="$SKILLS_DIR/INDEX.md"
 SYNC_SCRIPT="$SKILLS_DIR/sync-to-agents.sh"
 SYNC_LOG="$NIUMINATION/.sync-log"
 MC_URL="http://localhost:5200"
+HERMES_HOME="/Volumes/HermesAgent/HermesAgentUSB/data"
 NOW=$(date "+%Y-%m-%d %H:%M:%S WIB")
 DIVERGE_FILE=$(mktemp)
 REPORT_FILE=$(mktemp)
@@ -629,6 +630,12 @@ print(total)
   fi
 }
 
+# ── Phase 9: Telegram Thread Status 🆕 ─────────────────────────────────────
+check_telegram_threads() {
+  section "💬 Telegram Thread Status — Mission Control (5 thread)"
+  python3 /tmp/telegram_threads.py 2>/dev/null || warn "telegram_threads.py tidak tersedia"
+}
+
 # ── Main ───────────────────────────────────────────────────────────────────
 main() {
   printf "${BOLD}${CYAN}"
@@ -680,10 +687,13 @@ main() {
   # ── Phase 7: Skill Sync Status 🆕 ──
   check_skill_sync
 
-  # ── Phase 8: Mission Control Dashboard 🆕 ──
+  # ── Phase 8: Mission Control Dashboard 🆕 ─────────────────────────────────
   check_mission_control
 
-  # ── Summary ──
+  # ── Phase 9: Telegram Thread Status 🆕 ────────────────────────────────────
+  check_telegram_threads
+
+  # ── Summary ───────────────────────────────────────────────────────────────
   header
   printf "${BOLD}${CYAN}◆ Rekomendasi${NC}\n"
   if [ -s "$REPORT_FILE" ]; then
