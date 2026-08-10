@@ -41,6 +41,7 @@
 | **gdpr-compliance** | ✅ Aktif | GitHub (Sushegaad GRC) | 14.4 KB | Expert GDPR compliance — audit kode/sistem, draft privacy policy/DPA/consent, jawab dengan sitasi pasal. **Adaptasi Indonesia**: kerangka untuk finalisasi bukti I8 PDP (UU 27/2022) — uraian 7 kondisi PDP, kebijakan, hak subjek data, privacy notice, awareness. |
 | **compliance-checklist-dashboard** | ✅ Aktif | Hermes USB | 11.0 KB | Build compliance/checklist dashboards (Pemdi, SPBE, IKD) — parse checklist → JSON → Next.js dashboard + embedded previews |
 | **plan-compliance-audit** | ✅ Aktif | Hermes USB | 21.0 KB | Audit ekosistem/proyek terhadap spesifikasi tertulis — layer scripts/crons/configs/credentials/docs, gap by severity |
+| **agent-reach** | ✅ Aktif | Panniantong/Agent-Reach | 2.3 KB | Internet capability layer — read/search web, YouTube, GitHub, RSS via zero-config CLI with fallbacks |
 
 ## Domain: Design
 
@@ -78,7 +79,7 @@
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **36** |
+| ✅ Aktif | **37** |
 | **Total** | **36** |
 
 ## Catatan Penting — Potensi Konflik
