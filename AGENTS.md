@@ -621,6 +621,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `simplify-code` | software-development | Bank Pusat | Parallel 3-agent cleanup of recent code changes. |
 | `subagent-driven-development` | software-development | Bank Pusat | Use when executing implementation plans with independent tasks in the current session — dispatches fresh subagent per task with two-stage review. |
 | `systematic-debugging` | software-development | Bank Pusat | 4-phase root cause debugging: understand bugs before fixing. |
+| `telegram-router-orchestration` | autonomous-ai-agents | Bank Pusat | Mengelola persona, skills, dan model override per-thread Telegram di Hermes Gateway, termasuk integrasi dengan ekosistem Niumination. |
 | `tripwire` | software-development | Bank Pusat | Identify the single most critical risk that could derail a project — forcing prioritization down to one thing when a full risk analysis has produced too many findings to act on all at once. |
 | `ui-ux-pro-max` | design | Bank Pusat | UI/UX design intelligence. 67 styles, 96 palettes, 57 font pairings, 25 charts, 13 stacks (React, Next.js, Vue, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui). Actions: plan, build, create, design, implement, review, fix, improve, optimize, enhance, refactor, check UI/UX code. Projects: website, landing page, dashboard, admin panel, e-commerce, SaaS, portfolio, blog, mobile app, .html, .tsx, .vue, .svelte. Elements: button, modal, navbar, sidebar, card, table, form, chart. Styles: glassmorphism, claymorphism, minimalism, brutalism, neumorphism, bento grid, dark mode, responsive, skeuomorphism, flat design. Topics: color palette, accessibility, animation, layout, typography, font pairing, spacing, hover, shadow, gradient. Integrations: shadcn/ui MCP for component search and examples. |
 | `ultrathink` | software-development | Bank Pusat | Force deep architectural and system-level reasoning before writing code — channels a master craftsman who thinks in trade-offs, invariants, and long-term maintainability rather than rushing to implementation. |
@@ -628,9 +629,11 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `verification-before-completion` | software-development | Bank Pusat | Use when ABOUT to claim work is complete, fixed, or passing — before committing or creating PRs. Requires running verification commands and confirming output before any success claims. |
 | `writing-plans` | software-development | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-08-10 18:00:01_
+_Last sync: 2026-08-10 21:02:35_
 
 <!-- SKILL_REGISTRY_END -->
+
+
 
 
 
