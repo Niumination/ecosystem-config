@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local + USB) + AGENTS.md (cron every 6h)
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 34 skill tersedia di Hermes catalog (USB: 150+ total, ~/.hermes/: up-to-date)
+> **Hermes Integration:** ✅ Semua 36 skill tersedia di Hermes catalog (USB: 150+ total, ~/.hermes/: up-to-date)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 34 ✅ Aktif
+> **Status:** 36 ✅ Aktif
 
 ---
 
@@ -57,6 +57,7 @@
 | **ekosistem-scaffold** | ✅ Aktif | Hermes | 40.6 KB | Membuat struktur proyek baru sesuai standar Niumination |
 | **hermes-agent-skill-authoring** | ✅ Aktif | Hermes USB | 10.7 KB | Author in-repo SKILL.md — frontmatter, validator, structure, quality principles |
 | **hermes-uiux-technical** | ✅ Aktif | Niu-MissionControl | 4.2 KB | Capability profile UI/UX & technical Hermes Agent — routing, workflow automation, API/multi-agent, fast NLP, event-driven, conversational UX, agentic transparency, tone matching |
+| **telegram-router-orchestration** | ✅ Aktif | Hermes USB | 7.6 KB | Persona + model override per-thread Telegram (1/802/803/804/1172) — sync semua layer: Hermes config, gateway, mission-control swarm_config, dashboard |
 
 ## Domain: Security
 
@@ -77,8 +78,8 @@
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **34** |
-| **Total** | **34** |
+| ✅ Aktif | **36** |
+| **Total** | **36** |
 
 ## Catatan Penting — Potensi Konflik
 
