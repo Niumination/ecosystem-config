@@ -633,7 +633,7 @@ print(total)
 # ── Phase 9: Telegram Thread Status 🆕 ─────────────────────────────────────
 check_telegram_threads() {
   section "💬 Telegram Thread Status — Mission Control (5 thread)"
-  python3 /tmp/telegram_threads.py 2>/dev/null || warn "telegram_threads.py tidak tersedia"
+  python3 "$(dirname "$0")/telegram_threads.py" 2>/dev/null || warn "telegram_threads.py tidak tersedia"
 }
 
 # ── Main ───────────────────────────────────────────────────────────────────
