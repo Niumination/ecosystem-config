@@ -81,3 +81,11 @@ If `agent-reach` CLI fails:
 - Login-required platforms (Twitter, Reddit, etc.) are NOT configured yet
 - Agent should parse JSON output and present results to user in natural language
 - For long content, summarize key points rather than dumping full text
+
+## Installation (done 2026-08-12)
+- Installed at `~/.agent-reach-venv/` (Python venv)
+- CLI: `~/.agent-reach-venv/bin/agent-reach` (v1.5.0)
+- `agent-reach` CLI = selector/installer/doctor/router, NOT content wrapper
+- Content via upstream tools directly: curl+Jina (web), yt-dlp (YouTube), gh (GitHub), feedparser (RSS)
+- Doctor status: 5/15 channels (web, YouTube, RSS, V2EX, B站 search)
+- Cron: `agent-reach-watch` daily 08:00 (job id c6ec80ed633f) — runs `agent-reach watch`
