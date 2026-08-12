@@ -75,12 +75,20 @@
 
 ---
 
+## Domain: Note-taking
+
+| Skill | Status | Source | Deskripsi |
+|-------|:------:|--------|-----------|
+| **second-brain** | ✅ Aktif | Hermes USB | 2.2 KB | Second Brain PKM — simpan catatan ke brain/inbox + cari dengan ranking (recency + keyword) |
+
+---
+
 ## Ringkasan
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **37** |
-| **Total** | **36** |
+| ✅ Aktif | **38** |
+| **Total** | **38** |
 
 ## Catatan Penting — Potensi Konflik
 
