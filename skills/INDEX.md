@@ -79,6 +79,7 @@
 
 | Skill | Status | Source | Deskripsi |
 |-------|:------:|--------|-----------|
+| **routines** | ✅ Aktif | Hermes USB | 1.8 KB | Routine workflows — morning brief, daily report, project sync via /routine command |
 | **second-brain** | ✅ Aktif | Hermes USB | 2.2 KB | Second Brain PKM — simpan catatan ke brain/inbox + cari dengan ranking (recency + keyword) |
 
 ---
@@ -87,8 +88,8 @@
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **38** |
-| **Total** | **38** |
+| ✅ Aktif | **39** |
+| **Total** | **39** |
 
 ## Catatan Penting — Potensi Konflik
 

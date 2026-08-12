@@ -619,6 +619,8 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `project-orientation` | software-development | Bank Pusat | Establish situational awareness before working on any user-referenced project. Verify project existence, state, location, and documentation against primary sources — not memory or compressed summaries. |
 | `redteam` | security | Bank Pusat | Stress-test a plan, project, or system by assuming an adversarial perspective and identifying specific attack surfaces, failure modes, and blind spots before they're exploited in production. |
 | `requesting-code-review` | software-development | Bank Pusat | Use when completing tasks, implementing major features, or before merging to verify work meets requirements — dispatches code reviewer with precise context. |
+| `routines` | note-taking | Bank Pusat | Routine workflows — morning brief, daily report, project sync. Use when user says: /routine, morning brief, laporan harian, rekap harian, update status proyek, daily report. Trigger words: routine, brief, laporan harian, rekap, status proyek. |
+| `second-brain` | note-taking | Bank Pusat | Second Brain PKM — simpan catatan ke brain/inbox dan cari pengetahuan lama. Use when user says: simpan ini, catat ini, ingat ini, capture, cari di brain, apa yang kita bahas, knowledge base. Trigger words: simpan, catat, capture, brain, knowledge, recall. |
 | `simplify-code` | software-development | Bank Pusat | Parallel 3-agent cleanup of recent code changes. |
 | `subagent-driven-development` | software-development | Bank Pusat | Use when executing implementation plans with independent tasks in the current session — dispatches fresh subagent per task with two-stage review. |
 | `systematic-debugging` | software-development | Bank Pusat | 4-phase root cause debugging: understand bugs before fixing. |
@@ -630,9 +632,14 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `verification-before-completion` | software-development | Bank Pusat | Use when ABOUT to claim work is complete, fixed, or passing — before committing or creating PRs. Requires running verification commands and confirming output before any success claims. |
 | `writing-plans` | software-development | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-08-11 01:36:32_
+_Last sync: 2026-08-12 10:37:39_
 
 <!-- SKILL_REGISTRY_END -->
+
+
+
+
+
 
 
 
