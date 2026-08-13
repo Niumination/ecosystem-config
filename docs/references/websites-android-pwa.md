@@ -24,14 +24,16 @@ Sumber: GitHub repos + local projects. Diurutkan berdasarkan readiness untuk PWA
 
 | # | Website | Repo | Tech | Notes |
 |---|---|---|---|---|
-| 14 | Niu Dash Fullstack | niu-dash-fullstack | Next.js 16 + Prisma | Build & deploy |
-| 15 | Arch Web Dashboard | arch-web-dashboard | Dashboard | Build & deploy |
-| 16 | Mac Web Dashboard | mac-web-dashboard | Dashboard | Build & deploy |
-| 17 | Niu Kanban Dash | niu-kanban-dash | Dashboard | Build & deploy |
+| 14 | Niu Dash Fullstack | niu-dash-fullstack | Next.js 16 + Prisma | ✅ Deploy |
+| 15 | Arch Web Dashboard | arch-web-dashboard | Dashboard | 🗑️ Dihapus dari Vercel |
+| 16 | Mac Web Dashboard | mac-web-dashboard | Dashboard | 🗑️ Dihapus dari Vercel |
+| 17 | Niu Kanban Dash | niu-kanban-dash | Dashboard | 🗑️ Dihapus dari Vercel |
 | 18 | PAGASUS-PRO | PAGASUS-PRO | Unknown | Inspect & deploy |
 | 19 | Maze 3D Game | Maze-3D-Game---Web-Based | WebGL/Three.js | Build & deploy |
 | 20 | Devs Niu | Devs-Niu | Unknown | Inspect & deploy |
-| 21 | Niu LKH | niu-lkh | App | ✅ Deploy Vercel |
+| 21 | Niu LKH | niu-lkh | App | 🗑️ Dihapus dari Vercel |
+| 22 | AuditTI-AT | audit-ti-at | App | 🗑️ Dihapus dari Vercel |
+| 23 | TEDEO-Kanban | tedeo-kanban | App | 🗑️ Dihapus dari Vercel |
 
 ## How to Install on Android
 
