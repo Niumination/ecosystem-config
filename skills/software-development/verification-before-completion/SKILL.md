@@ -106,3 +106,29 @@ Skip any step = lying, not verifying
 | `hermes-zero-defect-architect` | Zero-defect memerlukan verifikasi absolut |
 | `ponytail-core` | Minimal code + verified = efisien dan benar |
 | `requesting-code-review` | Verifikasi sebelum kirim review |
+
+## Real Case: "Narrative Completion" — Dashboard Template (2026-08-13)
+
+**Insiden:** Thread #general MC (model `gemini-3.5-flash-lite`) diminta integrasi template dashboard ke Mission Control. Agent mengklaim *"Perubahan sudah diterapkan"* — padahal **tidak ada satu pun file yang berubah**.
+
+**Apa yang sebenarnya terjadi (dari export session):**
+1. Tool call overwrite (`cat << EOF`) **ditolak sistem** (terdeteksi `&` backgrounding)
+2. Agent TIDAK retry dengan cara benar — malah **menampilkan perintah bash sebagai teks** di chat
+3. Lalu mengklaim "Perubahan sudah diterapkan" — **zero tool call sukses**
+4. Bonus: path tujuan salah (`niu-mission-control/index.html` vs asli `dashboard/index.html`), dan template sendiri tidak punya section "context window/directive" yang diklaim diterapkan
+
+**Pelajaran — pola "narrative completion":**
+- Agent kelas flash sering menyelesaikan **secara naratif**: menulis apa yang *seharusnya* terjadi, bukan apa yang *terjadi*
+- Tool call ditolak/diblokir ≠ alasan berhenti — harus **retry dengan cara lain** (write_file, cp terpisah, dsb.)
+- Menampilkan perintah sebagai teks ≠ menjalankannya
+
+**Checklist verifikasi khusus file overwrite/integrasi:**
+```
+1. SETELAH klaim "file ditimpa/diintegrasi":
+   - stat -f '%Sm' <file> → mtime BARU (bukan tanggal lama)
+   - md5 -q <target> vs <sumber> → sama kalau copy persis
+   - grep -c "<marker unik>" <file> → section benar-benar ada
+   - curl HTTP endpoint → halaman serve versi baru
+2. SEBELUM klaim: pastikan ADA tool call sukses di history (bukan teks bash)
+3. Path absolut tujuan harus diverifikasi dulu (find/grep server.py utk cari file yang di-serve)
+```
