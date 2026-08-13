@@ -86,7 +86,7 @@ Desktop/Niumination/
 | **TEDEO-Kanban** | P2 | 🟡 95% | +1 | Vite/React/Zustand |
 | **niu-dash-fullstack** | P3 | ⏸️ Stale | +1 | Next.js 16 |
 | **niu-kanban-dash** | P3 | ⏸️ | 0 | Vite/React |
-| **AuditTI-AT** | P3 | ✅ Live | 0 | GH Pages |
+| **AuditTI-AT** (`sites/audit-ti-at/`) | P3 | ✅ Live | 0 | GH Pages |
 | **spatial-vision** | P3 | 🟢 Active | +1 | 3D vision |
 
 ### 🖥️ desktop/ — 4 Native
