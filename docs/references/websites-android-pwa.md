@@ -34,6 +34,8 @@ Sumber: GitHub repos + local projects. Diurutkan berdasarkan readiness untuk PWA
 | 21 | Niu LKH | niu-lkh | App | 🗑️ Dihapus dari Vercel |
 | 22 | AuditTI-AT | audit-ti-at | App | 🗑️ Dihapus dari Vercel |
 | 23 | TEDEO-Kanban | tedeo-kanban | App | 🗑️ Dihapus dari Vercel |
+| 22 | AuditTI-AT | audit-ti-at | App | 🗑️ Dihapus dari Vercel |
+| 23 | TEDEO-Kanban | tedeo-kanban | App | 🗑️ Dihapus dari Vercel |
 
 ## How to Install on Android
 
