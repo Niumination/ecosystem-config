@@ -37,7 +37,7 @@ Niumination/
 │   ├── ai-file-manager-android/       ← Kotlin/Jetpack Compose ✅
 │   ├── CC.Switch/                     ← Tauri 2 multi-CLI v3.17.0 🟢
 │   ├── JHermUSB-portable/             ← Shell ✅
-│   ├── Niu-LKH/                       ← v3.1.1 GH Pages ✅
+│   ├── niu-lkh/                       ← v3.1.1 Vercel ✅
 │   ├── PemdiAcehTengah/               ← Next.js 14 Vercel 🟢
 │   ├── ai-first-os/                   ← Arch ISO builder ✅
 │   ├── arch-web-dashboard/            ← Next.js 14 🟢
@@ -55,9 +55,9 @@ Niumination/
 ├── tools/                             ← Ponytail MCP (⏭️ excluded)
 ├── Belum disentuh/
 └── projects/                          ← 16 dirs
-    ├── AuditTI-AT/                    ← GH Pages ✅
+    ├── audit-ti-at/                    ← Vercel ✅
     ├── Niu-Flow/                      ← JCode bridge
-    ├── TEDEO-Kanban/                  ← 95% ✅
+    ├── tedeo-kanban/                   ← 95% ✅ Vercel
     ├── Ultra/                         ← Puppeteer ✅ GitHub
     ├── cc-acehtengah/                 ← Next.js + Prisma
     ├── didong-code/                   ← 🆕 Electron ADE
@@ -84,7 +84,7 @@ Niumination/
 | **ai-file-manager-android** | Kotlin/Gemini | GitHub | `8b441da` | 25 Jun | ✅ Production |
 | **CC.Switch** | Tauri 2/Rust | GitHub | `0a98f8b` | 20 Jul | ✅ v3.17.0 |
 | **JHermUSB-portable** | Shell | GitHub | `f5fa50b` | 22 Jun | ✅ Production |
-| **Niu-LKH** | React/Vite/Supabase | 🟢 GH Pages | `e7f3454` | 27 Jun | ✅ 100% Done |
+|| **niu-lkh** | React/Vite/Supabase | 🟢 Vercel | `e7f3454` | 27 Jun | ✅ 100% Done |
 | **PemdiAcehTengah** | Next.js 14 | 🟢 Vercel | `575af70` | 16 Jul | 🟢 Active |
 | **ai-first-os** | Arch ISO | GitHub | `5e722eb` | 27 Jun | ✅ v1.0.0 |
 | **arch-web-dashboard** | Next.js 14 | GitHub | `e432161` | 9 Jul | ✅ v1.0.0 |
@@ -100,7 +100,7 @@ Niumination/
 | Project | Stack | HEAD | Remote | Status |
 |---------|-------|------|--------|--------|
 | **TEDEO** | Express/React/PostgreSQL | `8c0f6a0` | ✅ SSH | 🔴 **Remote only — butuh VPS** |
-| **TEDEO-Kanban** | Vite/React/Zustand | `a6535d4` | ✅ SSH | 🟡 95% |
+|| **tedeo-kanban** | Vite/React/Zustand | `a6535d4` | ✅ SSH | 🟡 95% — ✅ Vercel |
 | **Niu-Flow** | Python/JCode | `0a52845` | ✅ SSH | 🟡 90% |
 | **Flame-ADE** | Tauri 2/Rust | `ba9101c` | ✅ SSH | 🟡 v1.3.0 |
 | **cc-acehtengah** | Next.js + Prisma | `4b96598` | ✅ SSH | 🟢 Phase 2-3 |
@@ -115,7 +115,7 @@ Niumination/
 | **orchestrator** | Python | `17aeb97` | ✅ SSH | 🟡 |
 | **Ultra** | Puppeteer | `bc8fd35` | ✅ SSH | 🟡 |
 | **x-downloader** | Tauri 2/Rust | `0b990ec` | ✅ SSH | ✅ Phase 3 Done |
-| **AuditTI-AT** | JS/HTML | `c266c40` | ✅ SSH | 🟢 GH Pages |
+|| **AuditTI-AT** | JS/HTML | `c266c40` | ✅ SSH | 🟢 Vercel |
 | **maze-3d** | HTML/JS | `a0a69af` | ✅ SSH | 🟢 GH Pages |
 
 ---

@@ -31,7 +31,7 @@ Sumber: GitHub repos + local projects. Diurutkan berdasarkan readiness untuk PWA
 | 18 | PAGASUS-PRO | PAGASUS-PRO | Unknown | Inspect & deploy |
 | 19 | Maze 3D Game | Maze-3D-Game---Web-Based | WebGL/Three.js | Build & deploy |
 | 20 | Devs Niu | Devs-Niu | Unknown | Inspect & deploy |
-| 21 | Niu LKH | Niu-LKH | App | Deploy |
+| 21 | Niu LKH | niu-lkh | App | ✅ Deploy Vercel |
 
 ## How to Install on Android
 

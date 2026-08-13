@@ -64,7 +64,7 @@
   - PAGASUS-PRO
   - Maze-3D-Game
   - Devs-Niu
-  - Niu-LKH
+  - niu-lkh
 - **Action:** Bisa dikerjakan batch (build + deploy)
 
 ---

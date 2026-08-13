@@ -94,7 +94,7 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
 │
 ├── apps/                      🏭 11 proyek — deployed, battle-tested
 │   ├── JHermUSB-portable/     ← Backup DR Hermes Portable (21MB+ skills) ✅
-│   ├── Niu-LKH/               ← LKH v3.1.1 — 100% Done — GH Pages live ✅
+│   ├── niu-lkh/               ← LKH v3.1.1 — 100% Done — Vercel live ✅
 │   ├── PemdiAcehTengah/       ← Portal Pemda — 52 OPD, 70 pages — 🟢 Vercel
 │   ├── ai-file-manager-android/
 │   ├── ai-first-os/
@@ -114,8 +114,8 @@ Protocol ini adalah kerangka eksekusi master untuk seluruh ekosistem Niumination
 │   └── uacc/                  ← Universal AI Computer Control — 68 MCP tools ✅
 │
 ├── sites/                     🌐 5 proyek — frontend apps
-│   ├── AuditTI-AT/            ← GH Pages Live ✅
-│   ├── TEDEO-Kanban/          ← 95% — Vite/React/Zustand
+│   ├── audit-ti-at/            ← Vercel Live ✅
+│   ├── tedeo-kanban/           ← 95% — Vite/React/Zustand — Vercel ✅
 │   ├── niu-dash-fullstack/    ← Next.js 16 Fullstack
 │   ├── niu-kanban-dash/       ← React/Vite (port 5199)
 │   └── spatial-vision/        ← Rust/WASM — gesture+canvas
@@ -264,11 +264,11 @@ Keduanya jalan bersamaan — tidak saling menimpa.
 | Projek | Path | Stack | GitHub | Deploy | Last Push | Status |
 |--------|------|-------|--------|--------|-----------|--------|
 || **PemdiAcehTengah** | `apps/PemdiAcehTengah/` | Next.js 14, React 18, pure CSS (Gayo Civic Digital v3) | `github.com/Niumination/PemdiAcehTengah` | 🟢 Vercel — 52 OPD SSG, 70 pages, **57 bukti dukung + preview**, **+Modul Indikator** | 29 Jul 2026 | 🟢 **Active — apps/ 🏭** |
-||| **LKH** | `apps/Niu-LKH/` 🏭 | React 19, Vite 6, Tailwind v4, Supabase | `github.com/Niumination/Niu-LKH` | 🟢 GH Pages — v3.1.1 | 20 Jun 2026 | ✅ **100% Done 🎉 — apps/ 🏭** |
+||| **LKH** | `apps/niu-lkh/` 🏭 | React 19, Vite 6, Tailwind v4, Supabase | `github.com/Niumination/Niu-LKH` | 🟢 Vercel — v3.1.1 | 20 Jun 2026 | ✅ **100% Done 🎉 — apps/ 🏭** |
 | **DiskominfoAT** | — (remote only) | HTML, CSS | `github.com/Niumination/DiskominfoAT` | 🟢 GH Pages | 13 Okt 2025 | ✅ Live |
 | **Diskominfo-Web** | — (remote only) | HTML, CSS | `github.com/Niumination/Diskominfo-Web` | 🟢 GH Pages | 9 Okt 2025 | ✅ Live |
 | **SPBE-DevOps-Academy** | — (remote only) | JS, HTML | `github.com/Niumination/SPBE-DevOps-Academy` | 🟢 GH Pages | 5 Nov 2025 | ✅ Live |
-| **AuditTI-AT** | `projects/AuditTI-AT/` | JS | `github.com/Niumination/AuditTI-AT` | 🟢 GH Pages — Live | 24 Jun 2026 | ✅ Live |
+| **AuditTI-AT** | `sites/audit-ti-at/` | JS | `github.com/Niumination/AuditTI-AT` | 🟢 Vercel — Live | 24 Jun 2026 | ✅ Live |
 | **Rekapitulasi-SPBE** | — (remote only) | JS | `github.com/Niumination/Rekapitulasi-SPBE` | ⚪ Not deployed | 1 Nov 2025 | ⚪ Stale |
 | **Database-DiskominfoAT** | — (remote only) | — | `github.com/Niumination/Database-DiskominfoAT` | ⚪ Not deployed | 13 Okt 2025 | ⚪ Stale |
 | **Automata** | — (remote only) | — | `github.com/Niumination/Automata` | ⚪ Not deployed | 8 Okt 2025 | ⚪ Stale |
@@ -352,7 +352,7 @@ Keduanya jalan bersamaan — tidak saling menimpa.
 
 | Projek | Path | Deskripsi |
 |--------|------|-----------|
-| **TEDEO-Kanban** | `projects/TEDEO-Kanban/` | Kanban board untuk TEDEO — ✅ pushed ke GitHub |
+| **TEDEO-Kanban** | `sites/tedeo-kanban/` | Kanban board untuk TEDEO — ✅ Vercel deployed |
 
 ---
 
@@ -468,7 +468,7 @@ Gunakan marker berikut untuk melacak technical debt dan konteks penting di kode:
 
 ```
 AGENTS.md (root — ~/Desktop/Niumination/)
-  ├── apps/Niu-LKH/AGENTS.md                                             ✅
+  ├── apps/niu-lkh/AGENTS.md                                             ✅
   ├── apps/PemdiAcehTengah/AGENTS.md                                     ✅ + data/ + components/ sub-DOX
   ├── apps/niu-dash/AGENTS.md                                            ✅
   ├── apps/kune-ya.com/AGENTS.md                                         ✅
