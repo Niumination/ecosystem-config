@@ -633,9 +633,11 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `verification-before-completion` | software-development | Bank Pusat | Use when ABOUT to claim work is complete, fixed, or passing — before committing or creating PRs. Requires running verification commands and confirming output before any success claims. |
 | `writing-plans` | software-development | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-08-15 12:00:02_
+_Last sync: 2026-08-16 01:19:37_
 
 <!-- SKILL_REGISTRY_END -->
+
+
 
 
 
