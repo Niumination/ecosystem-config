@@ -592,6 +592,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 
 | Skill | Domain | File | Source | Description |
 |-------|--------|-----:|--------|-------------|
+| `accessibility` | design | 3 | Bank Pusat | Audit and improve web accessibility following WCAG 2.2 guidelines. Use when asked to "improve accessibility", "a11y audit", "WCAG compliance", "screen reader support", "keyboard navigation", or "make accessible". |
 | `agent-reach` | software-development | 2 | Bank Pusat | Internet capability layer for AI agents. Use when the agent needs to read/search web pages, YouTube, GitHub, RSS, or other platforms. Trigger words: search the web, read this URL, check GitHub repo, get YouTube transcript, monitor RSS, internet research. |
 | `ai-agency` | note-taking | 1 | Bank Pusat | AI Agency — generate laporan otomatis, draft konten, data mining dari brain. Use when user says: buat laporan, draft konten, tulis artikel, mining data, ekstrak informasi, agency. Trigger words: laporan otomatis, draft, artikel, mining, ekstrak, agency. |
 | `brainstorming` | software-development | 1 | Bank Pusat | Use BEFORE any creative work — creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation. |
@@ -599,6 +600,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `document-content-pipeline` | software-development | 9 | Bank Pusat | High-accuracy PDF extraction (opendataloader-pdf / ODL-PDF), batch markdown cleanup, and content pipeline for website injection. Covers PPT→PDF→Markdown→JSON→Next.js page workflows. |
 | `ekosistem-scaffold` | ecosystem | 1 | Bank Pusat | Scaffold new or missing projects in the Niumination ecosystem. Creates AGENTS.md + BACKLOG.md + brain/projects/ entry with standardized templates. Validates git, deploy, and DOX completeness. |
 | `finishing-a-development-branch` | software-development | 1 | Bank Pusat | Use when implementation is complete, all tests pass, and you need to decide how to integrate the work — merge, PR, keep, or discard. |
+| `frontend-design` | design | 2 | Bank Pusat | Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates creative, polished code and UI design that avoids generic AI aesthetics. |
 | `gdpr-compliance` | governance | 5 | Bank Pusat | Expert GDPR compliance assistant covering all four core workflows: (1) auditing code and systems for GDPR violations, (2) drafting GDPR-compliant documents such as privacy policies, Data Processing Agreements (DPAs), and consent notices, (3) answering GDPR compliance questions with authoritative article citations, and (4) reviewing data flows and PII handling practices. Use this skill whenever the user mentions GDPR, data protection, privacy compliance, lawful basis, data subject rights, DPA, privacy notices, consent management, data breaches, DPIAs, controller/ processor relationships, cross-border data transfers, or any EU/UK data privacy topic. Also trigger for questions like "is this GDPR compliant?", "how do I handle personal data?", "what does a privacy policy need?", or any request involving PII, personal data, or data retention in a regulatory context. |
 | `ghost` | creative | 1 | Bank Pusat | Rewrite AI-generated or stilted text so it reads naturally and human — stripping common AI writing tells while preserving all factual content. |
 | `hermes-agent-skill-authoring` | ecosystem | 1 | Bank Pusat | Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles. |
@@ -633,9 +635,10 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `verification-before-completion` | software-development | 1 | Bank Pusat | Use when ABOUT to claim work is complete, fixed, or passing — before committing or creating PRs. Requires running verification commands and confirming output before any success claims. |
 | `writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-08-16 23:30:50_
+_Last sync: 2026-08-16 23:57:44_
 
 <!-- SKILL_REGISTRY_END -->
+
 
 
 

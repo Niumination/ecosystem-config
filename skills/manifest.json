@@ -1,8 +1,17 @@
 {
-  "fileCount": 250,
-  "generatedAt": "2026-08-16T16:30:45.240162+00:00",
-  "skillCount": 40,
+  "fileCount": 255,
+  "generatedAt": "2026-08-16T16:57:38.422294+00:00",
+  "skillCount": 42,
   "skills": {
+    "accessibility": {
+      "bundleHash": "f6196fb22b2e6bcf97ef5b048651abd02e08d056537bdd8fa3fb333fe91aec18",
+      "domain": "design",
+      "files": {
+        "SKILL.md": "9adc41cf26aa0afb32af4f3a58b7ef3c3cb38cf38b29f54b4c6c5f8727879e1d",
+        "references/A11Y-PATTERNS.md": "f10e238dd4dd3c4f51134c2056bc02d3dd4f8fb6ccc9145c2c1ba7aab4d58140",
+        "references/WCAG.md": "16683e025e3833d931c9d880645d98a448827f97e10189b6c8f12c832e7a2361"
+      }
+    },
     "agent-reach": {
       "bundleHash": "21edd8587fa19fe01d73da79c8eed5065b757fb0f21b718bcaaab0a9258d4090",
       "domain": "software-development",
@@ -61,6 +70,14 @@
       "domain": "software-development",
       "files": {
         "SKILL.md": "284d73bf734a76b97f7664ca604b30050b175fa5d67a40cf799fdd0a9122db2f"
+      }
+    },
+    "frontend-design": {
+      "bundleHash": "1d2544dd7743b6eba75d3429bee31d310472cf9192e322dce79f854e9716b95a",
+      "domain": "design",
+      "files": {
+        "LICENSE.txt": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+        "SKILL.md": "c28bc7eaef6d3e66be25b8455ffa1ce56c9f15f3cceeecdb50ee53fa9cc5f8cc"
       }
     },
     "gdpr-compliance": {

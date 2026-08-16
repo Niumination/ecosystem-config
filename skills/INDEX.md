@@ -7,7 +7,7 @@
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
 > **Hermes Integration:** ✅ Semua 36 skill tersedia di Hermes catalog (USB: 150+ total, ~/.hermes/: up-to-date)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 36 ✅ Aktif
+> **Status:** 42 ✅ Aktif
 
 ---
 
@@ -49,6 +49,8 @@
 |-------|:------:|--------|-------:|-----------|
 | **impeccable** | ✅ Aktif | Claude Code / Jcode | 3.2 MB | Production-grade UI/UX design — v4.0.4: 23 sub-commands, detector anti-pattern, live iterate mode, OKLCH, craft-floor |
 | **ui-ux-pro-max** | ✅ Aktif | Hermes USB | 29.5 KB | UI/UX design intelligence — 67 styles, 96 palettes, 57 font pairings, Python search |
+| **accessibility** | ✅ Aktif | autoskills (MIT) | 12.3 KB | Audit web accessibility WCAG 2.2 — screen reader, keyboard nav, A11Y patterns, Lighthouse |
+| **frontend-design** | ✅ Aktif | autoskills (Apache-2.0) | 4.4 KB | Anti-AI-slop frontend design — bold aesthetic direction, tipografi berkarakter, motion, komposisi spasial |
 
 ## Domain: Ecosystem
 
