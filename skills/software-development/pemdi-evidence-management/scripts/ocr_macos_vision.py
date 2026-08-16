@@ -2,8 +2,10 @@
 """OCR a rendered PNG via macOS Vision framework (pyobjc) — offline, free.
 
 Usage:
-    python3 ocr_macos_vision.py <image.png>
-    # batch: render PDF pages first with pymupdf:
+    /Users/zaryu/.hermes-portable/venv/bin/python ocr_macos_vision.py <image.png>
+    # ⚠️ WAJIB pakai venv Hermes — system python3 TIDAK punya pyobjc
+    # (ModuleNotFoundError: No module named 'Vision'). Bukan bug script.
+    # batch: render PDF pages first with pymupdf (juga dari venv):
     #   import fitz; pix = fitz.open(pdf)[i].get_pixmap(dpi=150); pix.save(f'p{i}.png')
 
 Verified 5 Agu 2026 on scanned Indonesian gov PDFs (SK, perbup, surat undangan).

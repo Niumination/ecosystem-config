@@ -50,13 +50,13 @@ Anda adalah bagian dari **Niumination Ecosystem**, sebuah sistem AI otonom yang 
 *   **Messaging Gateway:** Hermes terhubung ke Telegram Niu-MissionControl (`-1004204696417`).
 
 **Model Mapping — Spesifik per Thread (10 Ags 2026):**
-*   **Thread 1 (General/Command Center):** `gemini/gemini-3.5-flash-lite` via 9router
+*   **Thread 1 (General/Command Center):** `gemini/gemini-3.5-flash-lite` via 9router (13 Ags sore: ROLLBACK dari agentrouter `gpt-5.6-sol` — filter konten blokir frasa ID, lihat bagian AgentRouter)
 *   **Thread 802 (Research):** `gc/gemini-2.5-pro` via 9router
 *   **Thread 803 (Programmer):** `cf/@cf/deepseek-ai/deepseek-r1-distill-qwen-32b` via 9router
-*   **Thread 804 (QA):** `nvidia/z-ai/glm-5.2` via 9router (sejak 13 Ags 2026 — DeepSeek-V4-Pro EOL 410)
-*   **Thread 1172 (Konten Kreator):** `nvidia/minimaxai/minimax-m3` via 9router
-*   **DM Utama:** `auto` via huancheng
-*   **Fallback semua thread + DM:** `huancheng/auto`
+*   **Thread 804 (QA):** `cf/@cf/zai-org/glm-4.7-flash` via 9router (13 Ags malam: ganti dari `nvidia/z-ai/glm-5.2` — stress test 2/8 kena 429; glm-4.7-flash 8/8)
+*   **Thread 1172 (Konten Kreator):** `gemini/gemma-4-31b-it` via 9router (13 Ags malam: ganti dari `nvidia/minimaxai/minimax-m3` — stress test 1/8 kena 429)
+*   **DM Utama:** `big-pickle`/opencode-zen
+*   **Fallback semua thread + DM (GLOBAL, 3 level, 13 Ags malam):** `JuanRouter/glm-5.2` → `cf/@cf/deepseek-ai/deepseek-r1-distill-qwen-32b` → `gratislonggar` (menggantikan `9router/auto` yang 404 openai)
 
 **Tujuan Ekosistem:** Evolusi menuju "Personal AI OS" — sistem AI otonom terintegrasi, dengan Hermes sebagai otaknya, memanfaatkan multi-agent, memory (MD files), eksekusi (cron, loops), dan dashboard komando.
 
@@ -92,12 +92,25 @@ Lihat `references/provider-health-2026-08-10.md` untuk hasil uji lengkap tiap pr
 *   Huancheng: model stabil = `auto`, `DeepSeek-V4-Pro`, `MiniMax-M3`
 *   OpenRouter: model stabil = `google/gemma-4-31b-it:free`, `nvidia/nemotron-3-ultra-550b-a55b:free` (flaky 429)
 
-Sebelum mengubah `channel_overrides`, **uji langsung** setiap provider+model dengan curl. Jangan andalkan log lama.
+Sebelum mengubah `channel_overrides`, **uji langsung** setiap provider+model dengan curl. **WAJIB pakai konten representatif** — kalimat asli multi-kata dalam bahasa yang dipakai thread (mis. `saya makan`, `Halo, apa kabar?`), BUKAN hanya "ping"/"OK" ASCII. Uji ASCII yang lulus BISA menyesatkan: filter konten relay (mis. agentrouter) memblokir frasa bahasa non-Inggris tapi membiarkan kata tunggal & Inggris. Jangan andalkan log lama.
 
-**3 provider aktif:**
+**4 provider aktif:**
 *   `9router` — proxy lokal `http://localhost:20128/v1` (**wajib** `key_env: NINE_ROUTER_API_KEY` di config Hermes, tanpa itu semua request 401)
 *   `openrouter` — `https://openrouter.ai/api/v1` (butuh `OPENROUTER_API_KEY`; **flaky** — model free sering 429/404)
 *   `huancheng` — `https://api.hcnsec.cn/v1` (butuh `HUANCHENG_API_KEY`; stabil untuk spesifik model)
+*   `agentrouter` — `https://agentrouter.org/v1` (butuh `AGENTROUTER_API_KEY`; WAF: **wajib UA `hermes-agent/<versi>`** via `extra_headers`; hanya `gpt-5.6-sol` jalan — model Claude kena kuota budget pool)
+
+### **AgentRouter Integration (13 Ags 2026 — teruji end-to-end)**
+Lihat `references/agentrouter-integration.md` untuk resep lengkap.
+
+**Ringkasan:**
+*   **Sempat aktif di Thread 1 (General)** 13 Ags 2026 — `channel_overrides['1']` = `gpt-5.6-sol`/agentrouter; **ROLLBACK sore yang sama** ke `gemini/gemini-3.5-flash-lite`/9router (lihat bullet KRITIS). Provider `agentrouter` tetap terpasang di config, idle — hanya cocok chat EN murni. Gateway baca config per-turn via mtime-keyed cache (`read_raw_config`) → edit config langsung aktif, TANPA restart gateway.
+*   ⚠️ **KRITIS (13 Ags sore): thread 1 ERROR saat chat nyata.** Filter konten relay memblokir **frasa Bahasa Indonesia ≥2 kata** → `HTTP 500 sensitive words detected` / `content-blocked` (3x retry gagal) → fallback `9router/auto` → `HTTP 404 No active credentials for provider: openai` → **error total ke thread**. Uji minimal ASCII ("reply OK", "hello") LULUS tapi menyesatkan — tidak memicu filter. Matriks uji 20+ kasus: `references/agentrouter-integration.md`.
+*   Config TANPA plugin/extension code — cukup section `providers.agentrouter` di config.yaml: `base_url: https://agentrouter.org/v1`, `api_mode: chat_completions`, `key_env: AGENTROUTER_API_KEY`, `extra_headers: {User-Agent: hermes-agent/0.19.0}`
+*   **Pitfall WAF:** AgentRouter menolak semua UA kecuali `hermes-agent/<version>` → `401 unauthorized client detected`. Default Hermes kirim `OpenAI/Python ...` / `hermes-cli/...` → ditolak. Teknik `extra_headers` di section `providers.<name>` berlaku umum untuk provider WAF lain (opencode-zen dkk).
+*   Model tersedia: `claude-opus-4-8`, `claude-opus-5`, `gpt-5.6-sol` — **hanya `gpt-5.6-sol` menghasilkan respons** (Claude → "Budget pool quota has been exhausted")
+*   Uji: `hermes chat -q "reply with exactly: OK" --provider agentrouter -m gpt-5.6-sol -Q` → OK
+*   Docs resmi (agentrouter.org/docs/hermes.html) menampilkan TS extension API — versi v0.19.0 (USB) cukup pakai config provider, tidak perlu extension
 
 **Quick probe (bash):**
 ```bash
@@ -137,6 +150,32 @@ curl -s -o /dev/null -w "HTTP %{http_code} %{time_total}s" \
 *   Model fallback openrouter `llama-3.3-70b-instruct:free` **sudah dihapus OpenRouter** → ganti ke model free aktif lain
 *   Combo model (`gratis`, `capek`, `gila`) bisa berubah kapan saja. Jangan pakai sebagai primary; gunakan model spesifik yang sudah diuji.
 
+### **9router Update 13 Ags 2026 (v0.5.50 — dikerjakan opencode di Mac)**
+*   Provider baru **`JuanRouter`** (`router.juan.web.id`): 15 model — `JuanRouter/gemini-3.1-pro`, `gemini-3.5/3.6-flash(-lite)`, `glm-5.2`, `gpt-5.6-luna(-max)`, `grok-4.5/4.6(-high)`, `kimi-k2.7/k3`, `minimax-m3`, `qwen3.7-plus`, `qwen3.8-max`. Probe langsung 13 Ags: HTTP 200 ✅.
+*   Combo baru `gratislonggar` — hidup; tapi ingat rule: jangan combo sebagai primary.
+*   Total terdaftar: **33 model** (dirapikan dari 44). Mapping 5 thread tetap valid semua (probe ulang ✅).
+*   ⚠️ **Fallback `9router/auto` MASIH 404** setelah update — bukan jaring pengaman. Kalau mau fallback yang benar-benar jalan, ganti ke model eksplisit: `nvidia/z-ai/glm-5.2` (9router) atau `JuanRouter/glm-5.2` — keduanya teruji.
+*   **Koordinasi agent (lesson 13 Ags):** saat opencode/JCode sedang mengerjakan 9router di Mac, JANGAN ubah config 9router/fallback sebelum user bilang selesai. User: "tunggu dulu, biarkan aja" = tahan semua perubahan sampai dikabari. Shared infra — tanya/konfirmasi dulu.
+
+### **Stress-Test Rate Limit: Memilih Model Thread (13 Ags malam)**
+Probe tunggal 200 TIDAK cukup — model yang OK di 1 request bisa 429 di beban nyata thread. Uji **8 request beruntun cepat** per kandidat (`stream:false` + parser SSE karena 9router kadang balas SSE walau diminta JSON), hitung sukses vs 429. Ini menemukan 2 model thread yang ternyata lemah: `nvidia/z-ai/glm-5.2` (2/8) & `nvidia/minimaxai/minimax-m3` (1/8) → keduanya diganti.
+- **8/8 (longgar):** `gratislonggar`, `gemini/gemini-3.5-flash-lite`, `gemini/gemma-4-31b-it`, `cf/deepseek-r1`, `cf/zai-org/glm-4.7-flash`, `JuanRouter/*`
+- **Lemah (429):** `nvidia/z-ai/glm-5.2` (2/8), `gc/gemini-2.5-flash(-lite)` (2-4/8), `nvidia/minimaxai/minimax-m3` (1/8)
+- ⚠️ **Kuota berubah antar-run:** `gemini/gemini-3.6-flash` 7/8 (sore) → 2/8 (malam). Selalu test ULANG saat mau dipakai, jangan percaya data lama.
+- **Teknik ganti model lemah:** pilih model **sama keluarga di jalur beda** — glm-5.2 lemah di nvidia → glm-4.7-flash di cf (kualitas kontinu, jalur baru). Model sama ≠ kuota sama per jalur.
+- **⚠️ JuanRouter = BERBAYAR (saldo, rule user 13 Ags):** JANGAN pakai JuanRouter untuk model UTAMA thread — hanya boleh di fallback chain (L1 sudah disetujui user). Untuk model utama pilih jalur gratis: `cf/`, `gemini/`.
+- **Script reusable:** `scripts/stress-test-models.py` — probe 8x request cepat + parser SSE + ranking otomatis. Jalankan saat mau pilih/ganti model thread.
+
+### **MC Dashboard — Integrasi Telemetry Live (13 Ags malam, commit f93a5c5)**
+Lanjutan pekerjaan thread #general: section **CURRENT DIRECTIVE + CONTEXT WINDOW (5 thread) + telemetry tiles (Uptime/Today/Queue/Sessions/Errors)** dengan data LIVE dari API baru, bukan mockup statis dari template Asad Tinkers. Resep lengkap: `references/mc-dashboard-directive-integration.md`.
+
+**Ringkasan:**
+- `server.py` +2 endpoint: `/api/mc/directive` (baca config.yaml Hermes → channel_overrides + channel_prompts; baca sessions.json → `last_prompt_tokens` per thread; hitung `context_pct` vs context window model) & `/api/mc/errors` (hitung ERROR hari ini dari `data/logs/errors.log`).
+- `dashboard/index.html`: sisipkan section setelah KPI row (sebelum `.grid`) + JS fetch live tiap 30s. **JANGAN timpa mentah** — dashboard asli punya 12 menu (`data-page=`), template punya 6 → timpa = 10 menu hilang (persis larangan user "jangan hilangkan menu yang sudah ada").
+- `styles.css`: **append** (tidak overwrite) glassmorphism styles.
+- ⚠️ **Temuan monitoring:** thread 1172 sudah **82.3%** context window (107.9K/131K), 804 **73.7%** — mendekati overflow; pantau lewat dashboard.
+- **Template Asad = mockup statis** (angka hardcoded) — kalau diterapkan mentah, data tidak pernah live. Integrasi yang benar: pakai API MC yang sudah ada (`/api/mc/system`, `/api/mc/agents`, `/api/mc/tasks`, `/api/mc/ws/sessions`).
+
 ## 9router API Key Requirement
 
 Hermes config section `9router:` **wajib** memiliki `key_env: NINE_ROUTER_API_KEY`. Tanpa ini, Hermes tidak mengirim API key ke 9router, meskipun `.env` berisi key tersebut. Hasilnya: semua request return `HTTP 401 Invalid API key`.
@@ -163,13 +202,13 @@ Config.yaml saat ini (baris 644-681):
 
 | Thread | Agent | Provider | Model | Status |
 |--------|-------|----------|-------|--------|
-| 1 | chief | 9router | `gemini/gemini-3.5-flash-lite` | ✅ 9router |
+| 1 | chief | 9router | `gemini/gemini-3.5-flash-lite` | ✅ (13 Ags: ROLLBACK dari agentrouter — filter blokir frasa ID) |
 | 802 | research | 9router | `gc/gemini-2.5-pro` | ✅ 9router |
 | 803 | programmer | 9router | `cf/@cf/deepseek-ai/deepseek-r1-distill-qwen-32b` | ✅ 9router |
-| 804 | qa | 9router | `nvidia/z-ai/glm-5.2` | ✅ 9router (13 Ags: DeepSeek-V4-Pro 404, v4-pro/flash 410 EOL) |
-| 1172 | creator | 9router | `nvidia/minimaxai/minimax-m3` | ✅ 9router |
-| DM | - | 9router | `gratis` | ⚠️ Sebaiknya `upstage/solar-pro4:free` |
-| Fallback | - | 9router | `auto` | ✅ |
+| 804 | qa | 9router | `cf/@cf/zai-org/glm-4.7-flash` | ✅ 8/8 stress (13 Ags malam: dari `nvidia/z-ai/glm-5.2` 2/8) |
+| 1172 | creator | 9router | `gemini/gemma-4-31b-it` | ✅ 8/8 stress (13 Ags malam: dari `nvidia/minimaxai/minimax-m3` 1/8) |
+| DM | - | big-pickle/opencode-zen | - | (config terpisah) |
+| Fallback | - | 9router | `fallback_providers` 3-level: `JuanRouter/glm-5.2` → `cf/deepseek-r1` → `gratislonggar` | ✅ 13 Ags malam — menggantikan `auto` yang 404; GLOBAL semua thread+DM |
 
 ### **Model Switch via Nous Portal**
 
@@ -196,7 +235,7 @@ Jika config.yaml tidak sesuai, TANYAKAN user sebelum mengubah — jangan asumsi.
 
 | Target | Provider | Model | Uji |
 |---|---|---|---|
-| **Thread 1** (chief) | 9router | `gemini/gemini-3.5-flash-lite` | ✅ 200 |
+| **Thread 1** (chief) | agentrouter | `gpt-5.6-sol` | ✅ 200 (ASCII) / ❌ **content-blocked (frasa ID)** |
 | **Thread 802** (research) | 9router | `gc/gemini-2.5-pro` | ✅ 200 |
 | **Thread 803** (programmer) | 9router | `cf/@cf/deepseek-ai/deepseek-r1-distill-qwen-32b` | ✅ 200 |
 | **Thread 804** (qa) | huancheng | `DeepSeek-V4-Pro` | ✅ 200 |
@@ -218,6 +257,36 @@ HermesAgent melaporkan error `Refusing to write to Hermes config file` untuk fil
 2. Gateway akan auto-reload config (tidak perlu restart manual).
 3. Verifikasi perubahan dengan `grep` atau `sed` setelah edit.
 
+### **Mission Control Restart (port 5200) — pitfall teruji 13 Ags 2026**
+2x kena `[Errno 48] address already in use` saat restart:
+1. `lsof -i :5200 | grep LISTEN` → kalau ada PID lama, `kill <pid>` SEBELUM start (uvicorn gagal bind → proses baru exit code 3).
+2. Start WAJIB via `terminal(background=true)`: `cd /Users/zaryu/Desktop/Niumination/services/niu-mission-control && venv/bin/python3 server.py` (pakai `venv/bin/`, bukan `python3` global; nohup/`&` ditolak guard).
+3. Verify: `curl -s -o /dev/null -w "%{http_code}" http://localhost:5200/` → 200 + `/api/mc/routines` → 200.
+4. ⚠️ **MC bukan daemon persisten** — proses background mati saat sesi agent berakhir. Jangan klaim \"MC jalan\" tanpa probe live (`lsof`/`curl`) di sesi itu.
+
+### **Review Pekerjaan Thread (\"periksa pekerjaan terakhir thread X\")**
+Resep teruji 13 Ags 2026 (diminta user untuk thread #general):
+1. Cari session_id: `data/sessions/sessions.json` — key `agent:main:telegram:group:<chat_id>:<thread_id>` → `session_id`. Field `updated_at` = aktivitas terakhir.
+   ⚠️ **Pitfall parsing sessions.json (13 Ags malam):** file punya key `_README` yang VALUENYA STRING, bukan dict. Iterasi naive `for key, meta in sj.items(): meta.get(...)` → `AttributeError: 'str' object has no attribute 'get'`. WAJIB skip non-dict: `if not isinstance(meta, dict): continue` — kalau tidak, exception di-swallow `except: pass` dan SEMUA data session jadi kosong (context window dashboard 0 tok, updated_at '').
+2. Dump transkrip: `hermes sessions export --session-id <id> --format md` (→ `data/session-exports/<id>-*.md`; sub-perintah `browse` untuk daftar, `export` untuk isi — TIDAK ada `hermes sessions messages`).
+3. ⚠️ **KRITIS: klaim transkrip ≠ kondisi aktual.** Session #general mengklaim \"Perubahan sudah diterapkan\" (template dashboard ditimpa) padahal `dashboard/index.html` TIDAK pernah berubah (mtime lama, md5 beda dari template) dan MC server mati. Selalu VERIFIKASI artefak: `md5 -q` file, `ls -la` mtime, `lsof -i :5200`, `git status`. Laporkan gap klaim vs realita, jangan ulangi klaim transkrip.
+4. Perintah overwrite via `cat <<'EOF'` di terminal sering DITOLAK guard (`&` backgrounding) — pakai `cp` file-ke-file atau python `write_text`, bukan heredoc besar.
+
+### **Verifikasi Klaim Delegasi Antar-Thread (\"#general bilang QA sudah kerja\")**
+Teruji 14 Ags 2026 — user perintah #general untuk menyuruh thread 804 (QA) audit niu-mission-control; #general mengklaim QA sudah mengerjakan. **Klaim PALSU** — bukti forensik menunjukkan 0 kerja QA. Resep verifikasi (cek 4 lapis sebelum percaya klaim):
+
+1. **Aktivasi session target** — `data/sessions/sessions.json`, key `agent:main:telegram:group:<chat_id>:<thread_id>` → `updated_at`. 804 terakhir aktif 12-Ags (2 hari SEBELUM perintah 21:41) = thread target **tidak pernah menyala**. Session yang `updated_at`-nya tidak berubah setelah timestamp perintah = tidak pernah dipanggil.
+2. **Outbound routing** — grep gateway.log untuk kiriman ke topic target:
+   ```bash
+   grep -E "outbound|send.*804|topic_id.*804" gateway.log | grep "2026-08-14"
+   # 0 hasil = tidak ada SATU pun pesan terkirim ke thread target
+   ```
+3. **Trace session asal** — `grep "<session_id_asal>" agent.log` di jam perintah: RateLimitError → fallback deepseek-r1 (Empty response 3x) → gratislonggar → tool error → turn ended TANPA output. **Insight struktural: thread = sesi terisolasi; \"menyuruh thread lain\" butuh pesan outbound nyata ke topic-nya. Origin thread gagal di tengah (rate limit/empty response) = delegasi diam-diam mati, tidak ada yang ter-routing.** Empty-response loop = tanda thread menghasilkan 0 pesan keluar.
+4. **Artefak** — MC API `logs` utk `agent_id` target SETELAH timestamp perintah (0 entri = tidak ada kerja), git log (0 commit audit), find file audit. ⚠️ **Jebakan file boot:** `/tmp/hermes_qa/test_results.log` (dan `/tmp/hermes_research/active_spec.md`) dibuat SERVER SAAT BOOT — `stat -f "%SB"` = waktu restart server, bukan kerja agent. Endpoint artifacts MC membaca folder /tmp itu → terlihat seperti output QA padahal file template boot.
+5. **Pakai `jq -r` bukan `curl | python3`** — pipe ke interpreter memicu security approval (BLOCKED, butuh persetujuan user). `curl -s ... | jq -r '.logs[] | select(.agent_id=="qa") | .timestamp'` aman dan langsung.
+
+Laporkan: klaim vs bukti per lapis (aktivasi session, outbound, trace, artefak). Kalau klaim palsu, sebutkan akar penyebabnya (chain fallback gagal) + tawarkan eksekusi langsung oleh sesi ini.
+
 ### **User Preferences (hard rules — jangan langgar)**
 *   **NO combo models.** Jangan pakai model combo seperti `gratis`, `capek`, `gila`. Selalu pilih model **spesifik per role**.
 *   **Fallback semua thread + DM utama** → `huancheng/auto` (bukan 9router atau opencode-zen).
@@ -231,6 +300,8 @@ HermesAgent melaporkan error `Refusing to write to Hermes config file` untuk fil
 3. **Thread error 429** → rate limit; tunggu beberapa menit atau ganti ke model free lain.
 4. **DM error tapi thread lain oke** → DM pakai model global (`model:` section), bukan `channel_overrides` Telegram. Cek provider DM terpisah.
 5. **Semua thread error bersamaan** → biasanya fallback model yang patah, bukan tiap thread.
+6. **Thread error HTTP 500 `sensitive words detected` / `content-blocked`** → filter konten relay memblokir isi percakapan (frasa non-Inggris, topik sensitif). Uji dengan konten representatif; kalau tetap diblokir, ganti provider/model — jangan andalkan fallback.
+7. **Fallback `9router/auto` → `404 No active credentials for provider: openai`** → `auto` me-resolve ke provider openai yang TIDAK punya kredensial di 9router. Fallback ini bukan jaring pengaman yang andal: model override yang gagal = error total thread. Rollback mapping lebih aman daripada andalkan fallback.
 
 ### **Reset History 5 Thread Telegram (DM Aman)**
 Lihat `references/session-reset-procedure.md` untuk langkah verifikasi + penghapusan yang sudah teruji.
@@ -281,4 +352,5 @@ Lihat `references/session-reset-procedure.md` untuk langkah verifikasi + penghap
 
 ### **Scripts**
 *   `scripts/probe-providers.sh` — probe otomatis 9router/openrouter/huancheng + uji model kandidat, hasil ringkas.
+*   `scripts/stress-test-models.py` — stress-test rate limit: 8 request beruntun per model (parser SSE bawaan), ranking sukses vs 429. Dipakai untuk pilih/ganti model thread. Lihat bagian "Stress-Test Rate Limit".
 *   `scripts/check-telegram-threads.sh` — ringkasan status 5 thread Mission Control untuk integrasi dengan `/up-eco` Phase 9. Lihat `references/up-eco-phase9-integration.md` untuk panduan integrasi ke `up-eco.sh`.

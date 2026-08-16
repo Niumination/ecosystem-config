@@ -280,6 +280,46 @@ for root, dirs, files in os.walk(base_dir):
 
 For PDFs, use `pymupdf` or `marker-pdf` (see `ocr-and-documents` skill) rather than raw file reading.
 
+## Phase 6: Indeks Aktual dari Bukti + Checklist Kiri-Kanan
+
+When the dashboard must reflect the **actual current score from verified evidence** (not a static baseline) and the checklist grows too long for one-column expandables, apply `references/indeks-aktual-split-checklist.md`. Quick rules:
+
+- **Nilai indikator** = level tertinggi yang SEMUA item buktinya `lengkap` (progresif; level N belum penuh → nilai N-1); aspek = rata-rata tertimbang indikator; indeks = tertimbang bobot aspek. Simpan `indeks_aktual` + `nilai_aktual` di data, label UI jujur ("Dihitung dari X bukti lengkap · Y item").
+- **Checklist kiri-kanan**: grid `minmax(240px,300px) 1fr` — kiri = sticky nav indikator (filter aspek select + progress per baris), kanan = detail indikator terpilih (level 1-5, preview, rekomendasi, catatan). Stack ke 1 kolom di <860px via `<style jsx>`.
+- **Bug umum**: filter select type-mismatch (`a.id` number vs value string → `String()` compare); gap = `total - lengkap`, BUKAN `target - total`; verifikasi media query jsx via atribut `jsx-<hash>` di elemen, bukan source css; **`data-reveal`/scroll-reveal pada konten dinamis (state-driven) → elemen baru invisible (`opacity:0`)** karena IntersectionObserver hanya scan saat mount — reveal HANYA untuk konten statis.
+- Verifikasi production Next.js client-render via DOM, bukan grep HTML — dan **WAJIB klik interaksi pasca-deploy** (filter select, accordion item, preview): bug interaksi tidak muncul di render statis.
+
+## Mobile Web App (PWA) & Motion Polish
+
+When the dashboard must also behave as an **installed mobile web app** (Android "Add to Home
+Screen", iOS PWA) and get desktop motion polish, apply the checklist in
+`references/mobile-pwa-hardening.md`. Quick rules:
+
+- Sync `manifest.json` `theme_color`/`background_color` to the CURRENT palette — stale colors
+  (e.g. old brand blue) ship silently and break the install splash/status bar.
+- `viewport-fit=cover` + `env(safe-area-inset-*)` on EVERY `position: fixed/sticky` element (top
+  strip, sticky header, sidebar, FAB, toast, scroll-top) + shell `paddingTop`.
+- iOS metas (`apple-mobile-web-app-*`), dual `theme-color` for light/dark, `-webkit-tap-highlight-
+  color: transparent`, `touch-action: manipulation`, 16px form inputs (iOS auto-zoom), 44px touch
+  targets.
+- Entrance-only animations (fade-up + `:nth-child` stagger), hover lift (translateY, not scale),
+  `:focus-visible` ring, `prefers-reduced-motion` kill-switch.
+- Accent used as TEXT needs a dedicated darker token in light mode (`--gold` #C6A75E decor vs
+  `--gold-deep` #8A6A1D text) to pass WCAG AA.
+
+**Workflow pitfalls:** (1) killing/restarting the running server may be BLOCKED pending user
+consent — ask first or preview on a second port; verify UI changes via build-output grep
+(`.next/server/pages/*.html` for meta, `.next/static/css/*.css` for selectors). (2) After large UI
+changes, offer preview-in-browser vs commit explicitly — this user prefers to check first.
+(3) **Widget fixed di sudut sama bertabrakan** — dua elemen `position:fixed` bottom-right (mis.
+rating-widget & FAB Lapor) saling tumpuk di mobile; pisahkan ke sudut berbeda (rating kiri,
+FAB kanan) dan verifikasi via `getBoundingClientRect()` semua widget fixed saat audit mobile.
+(4) **PDF preview blur ≠ kompresi script**: cek resolusi sumber dulu (`page.get_images` →
+`fitz.Pixmap` width); kalau sumber scan aslinya rendah (<500px) itu masalah dokumen OPD, bukan
+build script — lihat `pemdi-evidence-management` → `references/pdf-quality-rebuild.md` untuk
+fix 72dpi blur & prosedur rebuild aman.
+
 ## References
 - `references/pemdi-data-structure.md` — full JSON schema for Pemdi Aceh Tengah
 - `references/document-mapping-pattern.md` — how to analyze and map document sets to indicators
+- `references/mobile-pwa-hardening.md` — PWA install/mobile hardening + motion + contrast checklist (worked on PemdiAcehTengah)

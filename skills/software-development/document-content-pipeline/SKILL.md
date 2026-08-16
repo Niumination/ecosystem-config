@@ -284,7 +284,17 @@ for i, page in enumerate(doc):
 **Pitfalls (learned 5 Agu 2026):**
 - Naive pyobjc Vision calls can **hang indefinitely** — wrap with `signal.alarm(50)` timeout; keep recognition level **fast** (`VNRequestTextRecognitionLevelFast`) and **one language** (`en-US`). First attempt with `id-ID` + accurate level hung at 60s; `en-US` + fast returned text in seconds (Indonesian text still OCRs acceptably).
 - Always test `page.get_text()` (pymupdf) first — OCR only when the text layer is empty.
-- swiftc-based OCR compile takes minutes — prefer pyobjc (no compile step).
+- **swiftc-compiled Vision OCR is the reliable path for Indonesian official docs** (verified 8 Agu 2026 on Perbup 48, SK CSIRT, KAK/BAST): compile ONCE (`swiftc ocr.swift -o ocr_bin`, ~30s) then reuse the binary for the whole batch — fast and accurate. Use `req.recognitionLevel = .accurate` + `req.recognitionLanguages = ["id-ID", "en-US"]`; swiftc handles id-ID+accurate fine where pyobjc hangs. Template:
+  ```swift
+  import Vision; import AppKit
+  let req = VNRecognizeTextRequest(); req.recognitionLevel = .accurate
+  req.recognitionLanguages = ["id-ID", "en-US"]
+  let handler = VNImageRequestHandler(cgImage: cg, options: [:])
+  try handler.perform([req])
+  for obs in req.results ?? [] { if let top = obs.topCandidates(1).first { print(top.string) } }
+  ```
+  Batch: render pages `page.get_pixmap(matrix=fitz.Matrix(2.2, 2.2))` → PNG → `for i in 01..11; do ./ocr_bin hal$i.png; done`.
+- OCR result is for **validation, not transcription**: use it to confirm a scan is what its filename claims (Perbup number/title, TTD name/NIP, "DRAFT" vs final) — e.g. confirmed SK CSIRT 2026 = "Penunjukan/Penetapan TTIS" (valid L2-1 evidence) and KAK/BAST Bapokting = resmi bernomor. Check for placeholder markers `[LAMBANG]`, `(Paraf)`, `xxx` → doc is a draft, not eligible evidence.
 
 ### 2d: ODL Re-extraction as Ground Truth — Audit JSON Content Against the Source
 
@@ -318,6 +328,15 @@ When user suspects page content is "kacau" (garbled) after many stacked edits, *
 
 ⚠️ **ROOT CAUSE (verified 6 Agu 2026) — READ FIRST**: the source files (`~/Documents/Modul Indikator 1-20/`) are **PPT→PDF exports** (`1 20260602 Revamp Modul Indikator 1.pptx.pdf` — real PPT decks saved-as-PDF), NOT native PDFs. ODL-PDF's table/reading-order heuristics mangle absolute-positioned PPT text boxes → garbled output. **Artifact cleanup on such output is polishing garbage — the real fix is extracting from the original `.pptx` via python-pptx (see "Alternative: PPT Source" below)**, or if only PDFs exist, position-based extraction: PyMuPDF `page.get_text("blocks")` sorted by `(y0, x0)` reconstructs slide reading order far better than ODL. Use cleanup (this section) only as a stopgap, never as the final answer.
 
+- **DEPLOYED-FIRST CHECK (verified 6 Agu 2026 — user correction)**: hours of cleanup can be wasted when the committed+deployed data is cleaner than the local mess. User: "periksa versi commit yang di deploy di vercel... disana masih pakai yang lama dan lebih rapi dari pada yang di lokal" — deployed JSON (75KB, 85 ddm bullets) beat our cleaned local (151KB, 261 ddm bullets). BEFORE rebuilding/cleaning, compare against what's live:
+  ```bash
+  git fetch origin && git show origin/main:data/modul-indikator.json > /tmp/deployed.json
+  # compare: size KB, level_kriteria count, data_dukung_modul count, '|', '<br', imageFile, ^#{1,6} lines
+  ```
+  If deployed is cleaner → `git checkout HEAD -- data/<file>.json pages/<file>.js` to restore, then apply ONLY the minimal fix on top. **Do not redo data work that git already has right.**
+- **`<br>` is NOT a data-quality metric**: deployed data carries 352 `<br>` + `## Kriteria` markers and renders fine — `formatKriteria()` converts `<br>`→newlines and heading markers→labels. Judging a JSON "kacau" by `<br>` count is wrong; judge by actual rendering. The cleanup pass that removed every `<br>` produced a LARGER, worse JSON (joined wrapped fragments into over-long bullets).
+- **Grid-only UI fix**: when deployed renders level criteria as a vertical table and the user says "kriterianya pakai vertical bukan grid", keep deployed data untouched and swap ONLY the table JSX → grid cards (see 2d UI PREFERENCE). Verify via `getBoundingClientRect()` in browser console: same-row cards share `y`, `x` increases, equal card heights per row. Works on text-only models when vision analysis fails.
+
 Even after the 2d rebuild, `data/modul-indikator.json` still showed raw-extraction artifacts on the page ("hasil yang kulihat masih kacau"). Final cleanup lives in `apps/PemdiAcehTengah/scripts/cleanup-modul-indikator.py` — idempotent, backs up to `data/modul-indikator.json.bak-clean`:
 
 - **Scale**: 102 level_kriteria items — 15 patched manually from verified `.md` text (I1 L1/L5, I4 L0, I8 L0, I17 L1/L5, I19 L1-5, I20 L2-5 — worst-corrupted), 87 auto-cleaned. `data_dukung_modul` went 498 fragments → 261 clean bullets; `deskripsi` tables stripped.
@@ -329,7 +348,14 @@ Even after the 2d rebuild, `data/modul-indikator.json` still showed raw-extracti
   - ODL paired italic markers `*teks*` → strip, but NEVER across newlines (cross-line match merges two bullets into one); leftover bare `*` before a capital → strip.
   - Wrapped list items (bullet ends mid-sentence, continuation starts lowercase) → join into the bullet; but never join bullet→bullet.
   - Duplicate/substring phrases (normalized fragment ≥40 chars appears inside another bullet) → keep the longer, drop the shorter. Beware false positives: L1..L3 across modules legitimately share RAN-Pemdi phrasing — dedup is per-level only.
-- **Verification gates**: after cleanup the JSON must have 0 `|`, 0 `<br`, 0 `![](`/`imageFile`, 0 `^#{1,6}` lines, 0 levels < 60 chars, and no leading `Kriteria `/`Kondisi `. Then `next build` (expect 0 errors) + restart `next start` + verify in browser via `document.querySelector('main').innerText` slices per module (works on text-only models; vision may be unavailable).
+  - **Numbered list items extracted as headings**: `#### 2 Telah...`, `###### 1 Persentase...` → demote to `2. Telah...` / `1. Persentase...` via `re.sub(r'#{2,6}\s*(\d+)\s*([A-Z])', r'\1. \2', t)` + a trailing variant `#{2,6}\s*(\d+)\s*$`. The extractor turned ordered-list markers into headings; the renderer then shows them as label blocks instead of list items.
+  - **Heading + pipe glued from a table cell**: `Kondisi|` → `Kondisi:`, `Data Dukung:|` → `Data Dukung:`; pipe before bullet `| - 1.` → `- 1.`; then drop any leftover `|` in the field. (I11 L4, I12 L1/L2, I13 L5, I14 L5 all had this.)
+  - **camelCase word concatenation** (extractor joined table-cell words): `sesuaiSubstansi` → `sesuai Substansi`, `perencanaanInstansi`, `RepositoriPemerintahaplikasiDigital` → split at the lowercase→uppercase boundary; only split when both halves are real words (verify), else leave.
+  - **Bare heading with only a word/number**: `###### 2026`, `###### pemasangan` → demote to plain text (heading adds no structure).
+  - **`tindaklanjut` → `tindak lanjut`** (baku) BUT **`ditindaklanjuti` is valid KBBI — never blanket-replace the bare stem** (`\btindaklanjut\b` only, 3 hits in 105k chars, 1 real fix). Also normalize app names: `siCantik` → `SICANTIK` in catatan/detail fields.
+  - **`.DS_Store` inside `public/`** — delete (`rm -f public/<dir>/.DS_Store`); it breaks "0 yatim file" audits.
+  - These were caught by the reusable scan: `scripts/scan-content-typos.py <file.json>` (kata-ganda, spasi-ganda, di/ke+kerja, slang, punct-ganda, spasi-sebelum-punct, camelCase-concat, hash-only lines, pipes; whitelists CSS-like strings and valid prepositions like "ke proses kerja", "pemangku"). See also `references/typo-artifact-scan.md`.
+- **Verification gates (with caveat)**: the cleanup script's own output should have 0 `|`, 0 `<br`, 0 `![](`/`imageFile`, 0 `^#{1,6}` lines, 0 levels < 60 chars, and no leading `Kriteria `/`Kondisi ` — BUT do NOT use these counts to declare DEPLOYED data dirty: the deployed JSON (75KB) had 8 pipes + 352 `<br>` and rendered perfectly because `formatKriteria()` handles them. Judge data by rendering, not raw counts. Then `next build` (expect 0 errors) + restart `next start` + verify in browser via `document.querySelector('main').innerText` slices per module (works on text-only models; vision may be unavailable).
 - **Data completeness**: add `label: LEVEL_LABEL[lv]` (Baseline/Initiate/Emerging/Established/Leading/Transformative) to every level_kriteria item — cheap, harmless, consumed by downstream scripts.
 
 ---

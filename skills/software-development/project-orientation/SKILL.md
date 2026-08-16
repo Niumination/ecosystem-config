@@ -46,6 +46,51 @@ Relying on memory or context-compressed summaries alone causes **real harm** to 
 - **Making stale claims about project status** → contradictory information
 - **Forgetting past work** → user has to repeat context
 
+### ⚠️ Cross-Agent Claims — Verify Before Trusting
+
+When another agent (Jcode, Claude Code, Codex, subagent) claims work is done — or the user asks you to verify another agent's output — **do NOT trust the claim alone**. Agents in long-running sessions can hallucinate completion, spawn fake sessions, or report success without committing anything.
+
+**Systematic cross-agent verification protocol:**
+
+1. **Filesystem check** `ls /path/to/claimed/file` — does the directory/file actually exist?
+2. **Git status** `git status --short; git diff --stat` — are there uncommitted changes matching the claim?
+3. **Git log** `git log --oneline -3` — was the work actually committed? If not, the agent may claim completion without committing.
+4. **Read actual code** — don't trust "module X has features A, B, C." Open the file and verify: does it parse? Do the API endpoints/function names match what was claimed?
+5. **Process check** `ps aux | grep <service>; lsof -i :<port>` — if the claim involves servers or daemons.
+6. **Cross-reference with docs** — does AGENTS.md, INDEX.md, or the guide already document this work? If so, it was from a prior session.
+
+**Red flags that warrant deep checking:**
+- Agent says "session baru sudah di-spawn" but no new process or session file exists
+- Agent reports commit hash but `git log` shows different HEAD
+- Agent claims files were written but `ls` shows nothing
+- User says the agent is in a "risky session" with degraded reliability
+
+**Self-check before every "yes it's done" response:** Have I checked the filesystem directly? Git diff? Read at least the first 20 lines of the claimed output? If no → run the protocol.
+
+**Real failure (29 Jul 2026):** Jcode claimed Layer 4 was complete and a new session was spawned. Filesystem showed the code was real but uncommitted, and no new session existed. The "spawned session" was hallucinated.
+
+### Session Freshness — When to Start Fresh vs Continue
+
+Complex multi-step builds (full-stack dashboards, multi-layer architecture, >10 file changes spread across directories) degrade in reliability as a session ages. After ~50+ tool calls and context compaction, the agent's response quality drops due to:
+
+- **Context window bloat** — compression loses nuance, earlier decisions get forgotten
+- **Tool call history weight** — each new call is evaluated against a growing pile of prior output
+- **Hallucination risk** — the agent starts inventing completions ("session baru sudah di-spawn") when it can't reliably reconstruct what happened
+
+**Decision rule for session freshness:**
+
+| Factor | Continue in current session | Start fresh session |
+|--------|---------------------------|-------------------|
+| Scope | Single fix, 1-2 files, already in-progress | Full-stack feature, >10 files, new architecture layer |
+| Session age | <30 tool calls, no compaction yet | 50+ tool calls, context compaction has occurred |
+| Dependency | You have critical ephemeral state (live ports, DB handles) | State is persisted (files, git, DB) — nothing lost by restart |
+| Reliability | Agent has been accurate, no hallucination signs | Agent has hallucinated session spawns, file writes, or commits |
+| Time pressure | "Lanjut malam ini" | Can defer to next session |
+
+**How to start fresh:** Write a self-contained prompt file (e.g. `layer4-prompt.md`) with goal, context, file references, and constraints. Then hand it to a new agent session. The guide/AGENTS.md/docs are the source of truth — not the old session's memory.
+
+**Self-check before choosing:** Would a 10-minute investment in writing a clean prompt + spawning a new session save me from a 30-minute hallucination cleanup later? If yes, start fresh.
+
 ## Verification Checklist
 
 When a user references a project, run through these checks **before** responding with any claim about its existence or state:
@@ -105,6 +150,27 @@ This reveals: HEAD commit, how recent the clone is, remote URL, and recent activ
 
 **Important: A git repo may have no commits yet (fresh `git init`).**
 `git log --oneline -1` will error with `fatal: your current branch 'main' does not have any commits yet`. This means the project exists but needs initial commit + remote creation — report it as "🔴 Butuh init commit + push" rather than "tidak ada git".
+
+### 3a. Single-Project Health Audit (Status Audit)
+
+When the user asks for status/review of ONE project ("periksa status dan kondisi aktual X", premortem-style audit), the minimum verification set — semua verifiable, SEBELUM backward-reasoning atau klaim:
+
+1. **Git sync (backup health)** — divergence = kerja tidak ter-backup, failure mode paling umum & merusak:
+   ```bash
+   git fetch origin
+   echo "lokal : $(git rev-parse HEAD)"
+   echo "origin: $(git rev-parse origin/main)"
+   git log --oneline HEAD..origin/main   # output kosong = sinkron
+   ```
+   Umum terjadi saat deploy via CLI (`vercel deploy --prod` pakai `VERCEL_OIDC_TOKEN` di `.env.local`): production JALAN tapi remote backup kosong. Selalu cek `git check-ignore -v .env.local` + `git ls-files | grep -E '\.env'` (secret hygiene).
+2. **Production live** — `curl -sI` home + `curl -w "%{http_code}"` SEMUA halaman kunci (bukan cuma home); browser console check untuk JS errors (0 error = fix client-side benar-benar ter-deploy).
+3. **Build lokal** — `npm run build` exit 0. Build lokal hijau TIDAK membuktikan production sama — verifikasi keduanya.
+4. **Data integrity** — inspect schema JSON dulu (`list(keys())`), jangan asumsi struktur; hitung record vs referensi (ground truth / spec).
+5. **Secret hygiene** — tidak ada `.env` ter-track, `.env.local` ter-ignore.
+
+Recipe perintah lengkap: `references/status-audit-commands.md`.
+
+**Penutup setelah eksekusi rekomendasi** — saat user bilang 'gas'/'lakukan sesuai rekomendasi' = eksekusi SEMUA rekomendasi sekaligus (urut dari risiko terbesar), lalu verifikasi ulang SEBELUM lapor: `git rev-parse HEAD origin/main` identik, `git status -s` bersih, HTTP 200. Jangan klaim hasil tanpa cek ulang.
 
 ### 4. Project README / PLAN Files
 
@@ -646,6 +712,35 @@ Verify these specific things:
 
 **Self-check:** "Do I know what every file I'm about to change currently contains?" If the answer is NO for any file, read it.
 
+#### Phase 2a — Author-Intent Check via Git History (WAJIB sebelum mengubah perilaku)
+
+Saat user melaporkan perilaku "rusak"/"berubah" (mis. "klik X tidak membuka Y"),
+JANGAN langsung "memperbaiki" — cek dulu apakah perilaku sekarang itu **desain
+yang disengaja** atau **regresi**:
+
+```bash
+git log --oneline -15 -- <file>          # riwayat file: commit beruntun dengan pesan sama?
+git show <commit> -- <file>              # baca diff tiap commit mencurigakan
+git diff <known-good-commit> HEAD -- <file>  # bandingkan dengan versi yang user bilang "dulu bisa"
+```
+
+Aturan:
+1. **Pesan commit beruntun dengan tema sama** (mis. 3× "accordion detail panel")
+   = perilaku itu DESAIN bertahap, bukan regresi. "Memperbaiki" = merusak desain.
+2. **User bilang "dulu bisa"** → cari commit known-good dan diff-kan. Seringkali
+   komponen tidak berubah sama sekali (`git diff` kosong) — regresi ada di
+   **pemanggil** (handler onclick), bukan di komponen. Fix = 1 blok di pemanggil.
+3. **Jangan menambah fallback/fitur redundan** — cek hook/util yang dipakai sudah
+   punya fallback sendiri (mis. useInView sudah punya timeout 3s); tambahan
+   fallback baru bisa merusak animasi/desain.
+4. **Komponen sehat jangan disentuh** — kalau file identik dengan versi
+   known-good, jangan di-rewrite. Ganti cuma yang bermasalah.
+5. **Pola conditional render untuk modal/panel**: `{state && <Modal open …>}`
+   unmount saat tertutup → DOM bersih. `open={false}` tetap merender markup
+   kosong `aria-hidden` yang mengganggu inspect element.
+
+Kasus nyata lengkap: `references/git-intent-regression-fix.md`.
+
 ### Phase 3 — One Change → One Test → Commit
 
 Execute changes with atomic verification after each:
@@ -711,6 +806,24 @@ When the user provides a zip, tar, or any archive with code changes:
 After verification, update persistent memory with the confirmed project location, state, and any corrections to prior assumptions.
 
 ## Common Pitfalls
+### ❌ "Hapus ini" = hapus ELEMEN itu persis — jangan ganti dengan markup setara
+Saat user menempelkan cuplikan DOM/HTML dan bilang "hapus ini" / "hilangkan X",
+hapus elemen itu TANPA menggantinya dengan padanan lain (inline style flex/
+overflowY/padding yang meniru perilaku class yang dihapus = TIDAK menghapus).
+Verifikasi: cari string cuplikan tsb di DOM → 0 match.
+
+**Real failure (10 Aug 2026):** User minta hilangkan `class="sp-header"` dan
+`"sp-body"` di panel. Saya ganti dengan div inline style setara, lalu menghapus
+div tapi memindahkan `overflowY:auto` ke panel, lalu merombak komponen jadi
+mount/unmount — tiga putaran salah. Yang sebenarnya mengganggu user adalah
+**markup panel kosong `aria-hidden` saat tertutup** (`open={false}` tetap
+render), bukan class-nya. Solusi: conditional render `{state && <Modal open/>}`
++ `git restore` komponen ke versi known-good. Detail: `references/git-intent-regression-fix.md`.
+
+Saat user makin marah beruntun ("kamu BODOH/bajingan"): BERHENTI menebak —
+minta arah commit known-good ("periksa commit X") dan bandingkan dulu sebelum
+menyentuh file apa pun.
+
 ### ❌ Relying on context compaction summaries
 Compacted context is **lossy by design** — it may omit project locations, conflate projects with similar names, or contain stale information. Treat it as a hint, not a source of truth.
 
@@ -751,6 +864,17 @@ The ecosystem root DOX was migrated from v3.0 to v4.0 on 29 Jul 2026. Before tha
 If AGENTS.md still lists a project under `Production/` or `projects/`, OR if you find a project on disk under `apps/` or `services/` that isn't in the DOX tree at all—the DOX is likely stale. Verify both v3.0 and v4.0 path conventions before claiming a project doesn't exist locally.
 
 Always use absolute path `/Users/zaryu/Desktop/Niumination/` for terminal commands to avoid USB home resolution issues.
+
+### ❌ Locating a project: grep DOX tree FIRST, then `find` — search_files can miss directories
+
+`search_files(target='files')` globs match **files**, not reliably directory names — searching `*cc-aceh*` from the workspace root returned 0 even though `services/cc-acehtengah/` existed (real failure, 28 Jul 2026; user: "periksa services/cc-acehtengah, kamu harus tau keseluruhan ekosistem ini"). Backend/service projects live in `services/` (cc-acehtengah, camofox-browser, latticesend, niu-cast, niu-mission-control, uacc), frontends in `sites/`, desktop apps in `desktop/`, experiments in `labs/` + `sandbox/` — NOT just `apps/`.
+
+Reliable project-location recipe:
+1. `grep -i "<name>" /Users/zaryu/Desktop/Niumination/AGENTS.md` — the DOX directory tree + catalog is the authoritative index (checklist step 1)
+2. `find /Users/zaryu/Desktop/Niumination -maxdepth 2 -iname "*<name>*"` via terminal (matches directories)
+3. `ls` the category folder the DOX names (apps/, services/, sites/, desktop/, labs/, sandbox/)
+
+Never claim "proyek tidak ada di Mac" from a single category-folder listing or a `search_files` hit of 0.
 
 ### ❌ "Catat aja" / "Note only" means DO NOT IMPLEMENT
 
@@ -1097,8 +1221,13 @@ After completing work on a project (fixes, features, refactors), **sync all surf
 
 ## Reference Files
 
+- `references/dox-injection-engine.md` — The DOX Injection Engine pattern: auto-loaded skills via AGENTS.md trigger keywords. 3 levels (Always Active, On-Demand, Future). Built 29 Jul 2026 as Layer 3. How to maintain and extend it.
+
 - `references/matplotlib-ecosystem-infographic.md` — Create multi-section ecosystem infographic JPEGs from scan data using matplotlib. Covers dark theme, layout structure, MPLCONFIGDIR fix, venv vs system python, and code templates.
 - `references/user-shell-environment.md` — User's Zsh + GNU Stow dotfiles setup. Covers shell type, dotfiles repo location at `Niumination/rekap/zaryu-terminal-dotfiles/`, how to modify PATH safely, the `~/.zshrc` symlink pattern, and `nlm` CLI location + config (browser auth).
 - `references/ui-ux-audit-methodology.md` — UI/UX audit & redesign recommendations when user asks "cek ui/ux" / "cek desain" / "rekomendasi redesign". Covers live-site analysis, pain points categorization, phased recommendations (Quick Wins / Structural / Premium), and document output format.
+- `references/government-evidence-data-integration.md` — Multi-source cross-referencing and dashboard evidence injection workflow for Pemdi/SPBE compliance dashboards. Covers audit ZIP extraction, JDIH URL mapping, Google Docs Viewer PDF proxy, CSP iframe fixes, preview-only UI rules. User preference: evidence tables only show inline preview (👁️ Lihat), never external download links.
+- `references/status-audit-commands.md` — Recipe verifikasi single-project health audit: git sync divergence (backup health), production live + browser console, build lokal, data integrity, secret hygiene, verifikasi penutup setelah eksekusi rekomendasi.
+- `references/git-intent-regression-fix.md` — Studi kasus fix regresi UI (Pemdi side panel): cek intent penulis via git history sebelum mengubah perilaku, diff vs commit known-good, conditional render untuk modal, Playwright UI verification patterns.
 
 ## Related Skills

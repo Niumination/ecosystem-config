@@ -1,6 +1,6 @@
 {
   "fileCount": 250,
-  "generatedAt": "2026-08-16T16:09:41.896125+00:00",
+  "generatedAt": "2026-08-16T16:30:45.240162+00:00",
   "skillCount": 40,
   "skills": {
     "agent-reach": {
@@ -26,19 +26,19 @@
       }
     },
     "compliance-checklist-dashboard": {
-      "bundleHash": "35cbe765d38142d2041488971b0f68bf6a4245967291e51a0f7dceccbe94ee6f",
+      "bundleHash": "d3e4f62b9c2325858f8fec54011c699aef4338c39c7687d07ec9159683830b3b",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "8b184b6871a625c04f41cc3d11b0df90c22345daadf028cce9f223bc09229c0d",
+        "SKILL.md": "b5f481100bb093081bcdadbf0ecf7300e234deaff9f5753b07ac7495eac58408",
         "references/document-mapping-pattern.md": "73d1c76667302c8fc2fd7e7eae6f7b52e92cab81b666a2d92448095a8f071c26",
         "references/pemdi-data-structure.md": "2a3cb447d0cc46f258af4e0de9a7b7b829fd68c2ced383db55e1659e1ddc1a12"
       }
     },
     "document-content-pipeline": {
-      "bundleHash": "5414ed05ceafab92cc0524492af89b27f25250061209a85db4df19512ced8498",
+      "bundleHash": "a08c96af46f410d4360f557ee0e34f8d8913d58128d4916b32f648308e0bac6c",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "e7624ea16895dfa5f5e50b47f3150f57ffd19b226d1f129f7220a2e06e4ca348",
+        "SKILL.md": "6b5b798ce425d08d599e94f9db0e4f7ae9ca5f4215a8276780b96b0b5e91503a",
         "references/agents-md-migration-case-study.md": "649cc236b43ef50467b2731e7f63f3e21e81912ec7c8b1fb5587476ade08957c",
         "references/agents-md-migration-quickref.md": "76a4d6254f78d2ef61d2243393bfec1b15bb54c0b3bd1b959642b625c63d31d2",
         "references/cleanup-build-scripts-reference.md": "33025029913ace92b8853e8039b938ed9f3f98fe84e5f00580c06ac56ab80dda",
@@ -275,7 +275,7 @@
       }
     },
     "pemdi-evidence-management": {
-      "bundleHash": "69966fadcf017dae38015e51cf966516d64d4945f748b6529c745bfa0edb3d3a",
+      "bundleHash": "22dad7a0c010c492823a4f381bbab6d7cb008478d29f5f39fd778ec86b4a6c55",
       "domain": "software-development",
       "files": {
         "SKILL.md": "37a71d97ea1493c31101c9c6a893109488a1e11ff2b0c042da88cb892b345eba",
@@ -283,7 +283,7 @@
         "references/bukti-dukung-pemdi-aceh-tengah.md": "660b573f3f20bab5c5350406c523149392baa904719e950c60181377d044be61",
         "references/macos-vision-ocr.md": "68b0f0bbcdc0a8962b07e4e92399d79424f2edac4e04c9768c3341d919615a40",
         "scripts/audit_sync.py": "66d0f504b633c2dbd417f5696666f20e924a7bbb87e424a2016cf9816b3045e1",
-        "scripts/ocr_macos_vision.py": "6372731a104e829bd93d29665ff13c03f38c142ed7cf86e525a313f3598aa5d8"
+        "scripts/ocr_macos_vision.py": "a964fdc30c99c8ec7bb302691f2844fea7dad74622602eeb4085056e60b9a75c"
       }
     },
     "pemdi-uiux-refinement": {
@@ -355,10 +355,10 @@
       }
     },
     "project-orientation": {
-      "bundleHash": "74203c7a7768dd03e49091e6c724c91893cb7f3622af55df27cba0ed844a3060",
+      "bundleHash": "1416cd9192cf2ac31ef6774b43cb51f6d8a2e79753f1e2840fbca4b57658ca2e",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "06fab74e4503bf29509d1fe07ebe74008aa9b1f03c9a1b42fa2ce6e37bcc9a9f"
+        "SKILL.md": "28e70c87547bc5e6ed0c3bc74603c68b9d771f19cfb3779ad282ef9b1fa7018f"
       }
     },
     "redteam": {
@@ -411,10 +411,10 @@
       }
     },
     "telegram-router-orchestration": {
-      "bundleHash": "d3f35ce3ee2aaccc33903b5a3e5156336895da3c25fd43e9e0636cd35166f6e2",
+      "bundleHash": "4a2f525c05ecd7566682ebb647da99f8dbe7dccd7f946f49f45e2ec329a38402",
       "domain": "autonomous-ai-agents",
       "files": {
-        "SKILL.md": "06f39c29cb232e4f1490b9a1b3fafa5dea17b0e628e544dc90a5bbe309bd079d"
+        "SKILL.md": "9a3c78c90ce968624a778dfd26fa5ed8f0b0b849cd1367ab73554ad0913b98a4"
       }
     },
     "tripwire": {
