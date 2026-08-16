@@ -451,6 +451,22 @@ check_skill_bank() {
   rm -f "$name_check_file"
 
   $dup_found || pass "Tidak ada duplikasi skill name"
+
+  # ── 6d: Verifikasi manifest integritas SHA-256 (pola autoskills)
+  if [ -f "$SKILLS_DIR/manifest.json" ]; then
+    if python3 "$NIUMINATION/scripts/skill-manifest.py" --check > /tmp/up-eco-manifest.log 2>&1; then
+      local mf_count
+      mf_count=$(python3 -c "import json;m=json.load(open('$SKILLS_DIR/manifest.json'));print(f\"{m['skillCount']} skill, {m['fileCount']} file\")" 2>/dev/null || echo "?")
+      pass "Manifest SHA-256 sinkron ($mf_count)"
+    else
+      fail "Manifest SHA-256 mismatch:"
+      cat /tmp/up-eco-manifest.log
+      rec "→ Regenerate manifest: python3 scripts/skill-manifest.py"
+    fi
+  else
+    warn "manifest.json belum ada — integritas hash tidak diverifikasi"
+    rec "→ Generate manifest: python3 scripts/skill-manifest.py"
+  fi
 }
 
 # ═══════════════════════════════════════════════════════════════════════════

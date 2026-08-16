@@ -64,6 +64,93 @@ fi
 log()  { echo "[$(date '+%H:%M:%S')] $*"; }
 vlog() { $VERBOSE && echo "  $*" || true; }
 
+# ── Sync satu skill (SELURUH folder — references/scripts/assets ikut) ────────
+# Non-destruktif: copy/add only, never delete. Skip jika target lebih baru.
+# Prioritas rsync (tersedia di macOS); fallback cp -R -u (portable).
+sync_skill_dir() {
+  local src_dir="$1"    # skills/<domain>/<skill>/  (bank)
+  local tgt_dir="$2"    # <target>/[<domain>/]<skill>/  (agent)
+  if [ ! -d "$src_dir" ]; then return 1; fi
+
+  if command -v rsync &>/dev/null; then
+    rsync -a -u --quiet "$src_dir/" "$tgt_dir/"
+  else
+    mkdir -p "$tgt_dir"
+    cp -R -u "$src_dir/." "$tgt_dir/"
+  fi
+}
+
+# ── Hitung jumlah file pendukung (total file - SKILL.md) ─────────────────────
+count_skill_files() {
+  find "$1" -type f -not -name ".DS_Store" | wc -l | tr -d ' '
+}
+
+# ── Verify target vs manifest (jika manifest ada) ─────────────────────────────
+verify_target() {
+  local target="$1" label="$2" structure="$3"
+  if [ -f "$BANK_DIR/manifest.json" ]; then
+    if python3 "$BANK_DIR/../scripts/skill-manifest.py" --verify-target "$target" --structure "$structure" 2>/dev/null; then
+      log "   ✅ $label: verifikasi hash LULUS"
+    else
+      log "   ⚠️  $label: verifikasi hash GAGAL (lihat detail di atas)"
+    fi
+  else
+    log "   ℹ️  $label: manifest.json belum ada — verifikasi dilewati"
+  fi
+}
+
+# ── Tulis lockfile di target (source + bundleHash) ────────────────────────────
+write_lockfile() {
+  local target="$1" label="$2"
+  if [ -f "$BANK_DIR/manifest.json" ]; then
+    if python3 "$BANK_DIR/../scripts/skill-manifest.py" --lockfile "$target" 2>/dev/null; then
+      log "   ✅ $label: skills-lock.json ditulis"
+    else
+      log "   ⚠️  $label: lockfile gagal ditulis"
+    fi
+  fi
+}
+
+# ── Sync SEMUA skill ke satu target ───────────────────────────────────────────
+# structure: flat  = <target>/<skill>/        (Jcode)
+#            domain = <target>/<domain>/<skill>/ (Hermes, USB)
+sync_target() {
+  local target="$1" label="$2" structure="$3"
+  local copied=0
+  log "→ $label: $target"
+
+  while IFS= read -r src_file; do
+    rel_path="${src_file#$BANK_DIR/}"        # software-development/ponytail-core/SKILL.md
+    domain_dir="${rel_path%%/*}"             # software-development
+    skill_dir="${rel_path#*/}"               # ponytail-core/SKILL.md
+    skill_name="${skill_dir%/*}"             # ponytail-core
+    src_skill_folder="$BANK_DIR/$domain_dir/$skill_name"
+
+    if [ "$structure" = "flat" ]; then
+      tgt="$target/$skill_name"
+      display="$skill_name"
+    else
+      tgt="$target/$domain_dir/$skill_name"
+      display="$domain_dir/$skill_name"
+    fi
+
+    if $DRY_RUN; then
+      echo "  [COPY] → $label: $display"
+      ((copied++)) || true
+    else
+      sync_skill_dir "$src_skill_folder" "$tgt"
+      ((copied++)) || true
+      vlog "  ✅ $skill_name ($(count_skill_files "$tgt") file)"
+    fi
+  done <<< "$SKILL_FILES"
+
+  log "   ↑ $label: $copied skill disinkronkan"
+  if ! $DRY_RUN; then
+    verify_target "$target" "$label" "$structure"
+    write_lockfile "$target" "$label"
+  fi
+}
+
 # ── Verify bank exists ──────────────────────────────────────────────────────
 if [ ! -d "$BANK_DIR" ]; then
   echo "❌ Bank skill tidak ditemukan: $BANK_DIR"
@@ -81,114 +168,15 @@ fi
 log "📦 Bank: $SKILL_COUNT skill ditemukan"
 $DRY_RUN && log "🏁 DRY RUN — tidak ada perubahan nyata"
 
-# ── 1. Sync ke Jcode ────────────────────────────────────────────────────────
-jcode_copied=0
-jcode_skipped=0
+# ── 1. Sync ke Jcode (flat structure) ───────────────────────────────────────
+sync_target "$JCODE_DIR" "Jcode" "flat"
 
-log "→ Jcode  : $JCODE_DIR"
+# ── 2. Sync ke Hermes (domain structure) ────────────────────────────────────
+sync_target "$HERMES_DIR" "Hermes" "domain"
 
-while IFS= read -r src_file; do
-  # Extract: skills/<domain>/<skill-name>/SKILL.md
-  rel_path="${src_file#$BANK_DIR/}"           # software-development/ponytail-core/SKILL.md
-  domain_dir="${rel_path%%/*}"                # software-development
-  skill_dir="${rel_path#*/}"                  # ponytail-core/SKILL.md
-  skill_name="${skill_dir%/*}"                # ponytail-core
-  skill_file="${skill_dir##*/}"               # SKILL.md
-
-  # Jcode: ~/.jcode/skills/<skill-name>/SKILL.md (flat, no domain)
-  jcode_target="$JCODE_DIR/$skill_name"
-  jcode_file="$jcode_target/$skill_file"
-
-  if [ -f "$jcode_file" ] && [ "$src_file" -ot "$jcode_file" ]; then
-    ((jcode_skipped++)) || true
-    vlog "  ⏭  $skill_name (up to date)"
-    continue
-  fi
-
-  if $DRY_RUN; then
-    echo "  [COPY] → Jcode: $skill_name"
-    ((jcode_copied++)) || true
-  else
-    mkdir -p "$jcode_target"
-    cp "$src_file" "$jcode_file"
-    ((jcode_copied++)) || true
-    vlog "  ✅ $skill_name"
-  fi
-done <<< "$SKILL_FILES"
-
-log "   ↑ Jcode: $jcode_copied copied, $jcode_skipped up-to-date"
-
-# ── 2. Sync ke Hermes ───────────────────────────────────────────────────────
-hermes_copied=0
-hermes_skipped=0
-
-log "→ Hermes : $HERMES_DIR"
-
-while IFS= read -r src_file; do
-  rel_path="${src_file#$BANK_DIR/}"
-  domain_dir="${rel_path%%/*}"
-  skill_dir="${rel_path#*/}"
-  skill_name="${skill_dir%/*}"
-  skill_file="${skill_dir##*/}"
-
-  # Hermes: ~/.hermes/skills/<domain>/<skill-name>/SKILL.md (same structure)
-  hermes_target="$HERMES_DIR/$domain_dir/$skill_name"
-  hermes_file="$hermes_target/$skill_file"
-
-  if [ -f "$hermes_file" ] && [ "$src_file" -ot "$hermes_file" ]; then
-    ((hermes_skipped++)) || true
-    vlog "  ⏭  $domain_dir/$skill_name (up to date)"
-    continue
-  fi
-
-  if $DRY_RUN; then
-    echo "  [COPY] → Hermes: $domain_dir/$skill_name"
-    ((hermes_copied++)) || true
-  else
-    mkdir -p "$hermes_target"
-    cp "$src_file" "$hermes_file"
-    ((hermes_copied++)) || true
-    vlog "  ✅ $domain_dir/$skill_name"
-  fi
-done <<< "$SKILL_FILES"
-
-log "   ↑ Hermes: $hermes_copied copied, $hermes_skipped up-to-date"
-
-# ── 2b. Sync ke Hermes USB (portable) ──────────────────────────────────────────
-usb_copied=0
-usb_skipped=0
-
+# ── 2b. Sync ke Hermes USB (domain structure) ───────────────────────────────
 if [ -d "$HERMES_USB_DIR" ]; then
-  log "→ Hermes USB: $HERMES_USB_DIR"
-
-  while IFS= read -r src_file; do
-    rel_path="${src_file#$BANK_DIR/}"
-    domain_dir="${rel_path%%/*}"
-    skill_dir="${rel_path#*/}"
-    skill_name="${skill_dir%/*}"
-    skill_file="${skill_dir##*/}"
-
-    usb_target="$HERMES_USB_DIR/$domain_dir/$skill_name"
-    usb_file="$usb_target/$skill_file"
-
-    if [ -f "$usb_file" ] && [ "$src_file" -ot "$usb_file" ]; then
-      ((usb_skipped++)) || true
-      vlog "  ⏭  $domain_dir/$skill_name (up to date)"
-      continue
-    fi
-
-    if $DRY_RUN; then
-      echo "  [COPY] → Hermes USB: $domain_dir/$skill_name"
-      ((usb_copied++)) || true
-    else
-      mkdir -p "$usb_target"
-      cp "$src_file" "$usb_file"
-      ((usb_copied++)) || true
-      vlog "  ✅ $domain_dir/$skill_name"
-    fi
-  done <<< "$SKILL_FILES"
-
-  log "   ↑ Hermes USB: $usb_copied copied, $usb_skipped up-to-date"
+  sync_target "$HERMES_USB_DIR" "Hermes USB" "domain"
 else
   log "   ⚠️  Hermes USB path not found: $HERMES_USB_DIR (skipped)"
 fi
@@ -202,8 +190,8 @@ if ! $DRY_RUN; then
   registry_block="$REGISTRY_START
 ### 🧠 Bank Skill — Active Registry (auto-synced)
 
-| Skill | Domain | Source | Description |
-|-------|--------|--------|-------------|"
+| Skill | Domain | File | Source | Description |
+|-------|--------|-----:|--------|-------------|"
 
   while IFS= read -r src_file; do
     rel_path="${src_file#$BANK_DIR/}"
@@ -229,7 +217,7 @@ if ! $DRY_RUN; then
       }
     }' "$src_file" 2>/dev/null || echo "—")
     registry_block+="
-| \`$skill_name\` | $domain_dir | Bank Pusat | $desc |"
+| \`$skill_name\` | $domain_dir | $(count_skill_files "$BANK_DIR/$domain_dir/$skill_name") | Bank Pusat | $desc |"
   done <<< "$SKILL_FILES"
 
   registry_block+="
@@ -299,13 +287,14 @@ for root, dirs, files in os.walk(bank):
                     else:
                         desc = val
                         break
-        rows.append((skill, domain, desc))
+        file_count = sum(len(files) for _, _, files in os.walk(root))
+        rows.append((skill, domain, desc, file_count))
 
 registry = '### 🧠 Bank Skill — Active Registry (auto-synced)\n\n'
-registry += '| Skill | Domain | Source | Description |\n'
-registry += '|-------|--------|--------|-------------|\n'
-for skill, domain, desc in sorted(rows):
-    registry += f'| `{skill}` | {domain} | Bank Pusat | {desc} |\n'
+registry += '| Skill | Domain | File | Source | Description |\n'
+registry += '|-------|--------|-----:|--------|-------------|\n'
+for skill, domain, desc, fc in sorted(rows):
+    registry += f'| `{skill}` | {domain} | {fc} | Bank Pusat | {desc} |\n'
 registry += f'\n_Last sync: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}_\n'
 
 # Replace between markers
@@ -353,9 +342,8 @@ fi
 
 # ── 4. Write log ─────────────────────────────────────────────────────────────
 if ! $DRY_RUN; then
-  total="$((jcode_copied + hermes_copied + usb_copied))"
-  echo "[$(date '+%Y-%m-%d %H:%M:%S')] Sync selesai: Jcode +${jcode_copied}, Hermes +${hermes_copied}, USB +${usb_copied}, AGENTS.md ✅" >> "$LOG_FILE"
-  log "✅ Sync selesai — $total perubahan"
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] Sync selesai: $SKILL_COUNT skill × 3 target (Jcode/Hermes/USB) + AGENTS.md ✅" >> "$LOG_FILE"
+  log "✅ Sync selesai — $SKILL_COUNT skill disinkronkan ke Jcode/Hermes/USB"
   
   # Notify mission-control (fire-and-forget, non-blocking)
   if command -v curl &>/dev/null; then
@@ -372,9 +360,9 @@ if ! $DRY_RUN; then
     # Also record sync meta-event
     curl -s -X POST "http://localhost:5200/api/mc/skills/event" \
       -H "Content-Type: application/json" \
-      -d '{"skill_name":"__sync__","agent":"system","event_type":"sync","metadata":{"source":"sync-to-agents.sh","files_synced":'$total'}}' \
+      -d '{"skill_name":"__sync__","agent":"system","event_type":"sync","metadata":{"source":"sync-to-agents.sh","files_synced":'$SKILL_COUNT'}}' \
       --connect-timeout 2 --max-time 3 >/dev/null 2>&1 &
   fi
 else
-  log "🏁 DRY RUN selesai — $(($jcode_copied + $hermes_copied)) perubahan akan terjadi"
+  log "🏁 DRY RUN selesai — $SKILL_COUNT skill akan disinkronkan"
 fi
