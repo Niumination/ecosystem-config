@@ -7,7 +7,7 @@
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
 > **Hermes Integration:** ✅ Semua 36 skill tersedia di Hermes catalog (USB: 150+ total, ~/.hermes/: up-to-date)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 43 ✅ Aktif
+> **Status:** 47 ✅ Aktif
 
 ---
 
@@ -42,6 +42,10 @@
 | **compliance-checklist-dashboard** | ✅ Aktif | Hermes USB | 11.0 KB | Build compliance/checklist dashboards (Pemdi, SPBE, IKD) — parse checklist → JSON → Next.js dashboard + embedded previews |
 | **plan-compliance-audit** | ✅ Aktif | Hermes USB | 21.0 KB | Audit ekosistem/proyek terhadap spesifikasi tertulis — layer scripts/crons/configs/credentials/docs, gap by severity |
 | **agent-reach** | ✅ Aktif | Panniantong/Agent-Reach | 2.3 KB | Internet capability layer — read/search web, YouTube, GitHub, RSS via zero-config CLI with fallbacks |
+| **python-testing-patterns** | ✅ Aktif | autoskills (MIT, wshobson) | 6.0 KB | Pytest, fixtures, mocking, TDD — strategi testing Python komprehensif |
+| **fastapi-templates** | ✅ Aktif | autoskills (MIT, wshobson) | 4.6 KB | FastAPI production-ready — async patterns, dependency injection, error handling |
+| **fastapi-python** | ✅ Aktif | autoskills (Apache-2.0, mindrally) | 2.5 KB | FastAPI expert — best practices API & async |
+| **flask-api-development** | ✅ Aktif | autoskills (MIT, aj-geddes) | 3.2 KB | Flask API — routing, blueprints, SQLAlchemy, JWT auth (9 file + references) |
 
 ## Domain: Design
 

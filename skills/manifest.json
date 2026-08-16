@@ -1,7 +1,7 @@
 {
-  "fileCount": 256,
-  "generatedAt": "2026-08-16T17:00:50.235348+00:00",
-  "skillCount": 43,
+  "fileCount": 267,
+  "generatedAt": "2026-08-16T17:06:33.920576+00:00",
+  "skillCount": 47,
   "skills": {
     "accessibility": {
       "bundleHash": "f6196fb22b2e6bcf97ef5b048651abd02e08d056537bdd8fa3fb333fe91aec18",
@@ -65,11 +65,38 @@
         "SKILL.md": "bbf189b53bd93489f5a4de62b36056243610390d74ae4cb2dca8f5415ead2c14"
       }
     },
+    "fastapi-python": {
+      "bundleHash": "fbc07263c64b7e5d0a17eb713cb9c9f6a11f6b2e5a3275a3ea7f8a6908aa1091",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "0bc1cea9250ac9fb7dbc13ae1dae936327047eb60a2162f06cc6fda37c085291"
+      }
+    },
+    "fastapi-templates": {
+      "bundleHash": "bd679f471435239fd38dd372178c76641cf024e843c5ed4357d29dfbee7861eb",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "aa9849ae150d536a8021274155399ba009b381db1fbb96dc104b6215a355568c"
+      }
+    },
     "finishing-a-development-branch": {
       "bundleHash": "185185252bd53cafa757fcb133ca509e7181a16ec02b3346a09f01140fab41f4",
       "domain": "software-development",
       "files": {
         "SKILL.md": "284d73bf734a76b97f7664ca604b30050b175fa5d67a40cf799fdd0a9122db2f"
+      }
+    },
+    "flask-api-development": {
+      "bundleHash": "da18d25ac20859fc2ebaa2def9bc524d328bbe89244bb9b72687c836fb7aa616",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "0664711002de5c2f7e93764ba77e90c90dce94967fa9b22ba41d1132ee5fcc8c",
+        "references/application-factory-and-configuration.md": "557880ad869a4e4348e0cbf084acaf38d995e898e10cbecd2cbe1792cfebd5da",
+        "references/authentication-and-jwt.md": "de96ec4ae42fcf7a472150a8cfbd5aba824e347d071ec34b0b528412ee2ac143",
+        "references/blueprints-for-modular-api-design.md": "acfd38f1e70a9979e3b3909bde5f406f3afb680396ec0f8ec6dd1112cc77221b",
+        "references/database-models-with-sqlalchemy.md": "6c1f8cfd30acd7bffa505678b6db09e33cd8fc5cf4651dae97e954a5803d0262",
+        "references/flask-application-setup.md": "7fdce8c465c605a78b73e00b738d80f11cd20f970631f0c100dbfa429839b01e",
+        "references/request-validation.md": "c820ef443f0efd7e373bda5da3038f10f50a1cb90615c434c098ab6996fa753a"
       }
     },
     "frontend-design": {
@@ -376,6 +403,14 @@
       "domain": "software-development",
       "files": {
         "SKILL.md": "28e70c87547bc5e6ed0c3bc74603c68b9d771f19cfb3779ad282ef9b1fa7018f"
+      }
+    },
+    "python-testing-patterns": {
+      "bundleHash": "2fd0da67d9ae4c7bda24e4b1210095abf78860f9096e7532b7c0357e858e9f96",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "a01102f46c6e7351181a7e0cbeb41d6ea37ce16a3a1527b4a06e40d08cd01970",
+        "references/advanced-patterns.md": "f560ee8b3cffc0fe971e78269bed21dc74f541c2056eae58d34259d9e537176a"
       }
     },
     "redteam": {
