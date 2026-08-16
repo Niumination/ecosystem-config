@@ -1,7 +1,7 @@
 {
-  "fileCount": 255,
-  "generatedAt": "2026-08-16T16:57:38.422294+00:00",
-  "skillCount": 42,
+  "fileCount": 256,
+  "generatedAt": "2026-08-16T17:00:50.235348+00:00",
+  "skillCount": 43,
   "skills": {
     "accessibility": {
       "bundleHash": "f6196fb22b2e6bcf97ef5b048651abd02e08d056537bdd8fa3fb333fe91aec18",
@@ -404,6 +404,13 @@
       "domain": "note-taking",
       "files": {
         "SKILL.md": "458d8938e32fd4545dafb0a7544a7fe6699946b4357a8ced807421c3e3ea247f"
+      }
+    },
+    "seo": {
+      "bundleHash": "bd94b55e4b3dd4a9f555cc0eee5cc54623e6d3b70c6b7f0a6a06e7dfc724dd32",
+      "domain": "design",
+      "files": {
+        "SKILL.md": "a65b8654017fc03ceddddf24bb4b98e3effcf8ea6ad22dd6f125d7ac039935a3"
       }
     },
     "simplify-code": {

@@ -624,6 +624,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `requesting-code-review` | software-development | 1 | Bank Pusat | Use when completing tasks, implementing major features, or before merging to verify work meets requirements — dispatches code reviewer with precise context. |
 | `routines` | note-taking | 1 | Bank Pusat | Routine workflows — morning brief, daily report, project sync. Use when user says: /routine, morning brief, laporan harian, rekap harian, update status proyek, daily report. Trigger words: routine, brief, laporan harian, rekap, status proyek. |
 | `second-brain` | note-taking | 1 | Bank Pusat | Second Brain PKM — simpan catatan ke brain/inbox dan cari pengetahuan lama. Use when user says: simpan ini, catat ini, ingat ini, capture, cari di brain, apa yang kita bahas, knowledge base. Trigger words: simpan, catat, capture, brain, knowledge, recall. |
+| `seo` | design | 1 | Bank Pusat | Optimize for search engine visibility and ranking. Use when asked to "improve SEO", "optimize for search", "fix meta tags", "add structured data", "sitemap optimization", or "search engine optimization". |
 | `simplify-code` | software-development | 1 | Bank Pusat | Parallel 3-agent cleanup of recent code changes. |
 | `subagent-driven-development` | software-development | 1 | Bank Pusat | Use when executing implementation plans with independent tasks in the current session — dispatches fresh subagent per task with two-stage review. |
 | `systematic-debugging` | software-development | 1 | Bank Pusat | 4-phase root cause debugging: understand bugs before fixing. |
@@ -635,9 +636,11 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `verification-before-completion` | software-development | 1 | Bank Pusat | Use when ABOUT to claim work is complete, fixed, or passing — before committing or creating PRs. Requires running verification commands and confirming output before any success claims. |
 | `writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-08-16 23:57:44_
+_Last sync: 2026-08-17 00:00:55_
 
 <!-- SKILL_REGISTRY_END -->
+
+
 
 
 
