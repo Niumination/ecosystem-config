@@ -1,0 +1,15 @@
+id: D-0001
+ts: 2026-08-18
+status: sealed
+title: Otak ekosistem hanya keluarga OpenCode Zen free
+decided_by: zaryu
+applies_to: core
+one_sentence: >
+  Satu-satunya model yang boleh berpikir di core adalah
+  opencode-zen/big-pickle dan opencode-zen/deepseek-v4-flash-free.
+why: >
+  Auto-switch ke 9router/juan/gemini/gemma/zai/gratislonggar
+  merusak state, menumpuk kesalahan, dan menelan dokumentasi.
+not_doing: >
+  Fallback lintas keluarga. Multi-agen. Menjadikan website sebagai inti.
+review_after: 2026-09-18
