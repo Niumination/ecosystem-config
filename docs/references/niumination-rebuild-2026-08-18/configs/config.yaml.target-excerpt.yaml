@@ -1,0 +1,65 @@
+# KEADAAN AKHIR yang harus tercermin di ~/.hermes/config.yaml
+# JANGAN paste buta menimpa 18.6 KB config yang sudah ada.
+# Terapkan lewat: hermes config set / hermes fallback / hermes cron
+# Snapshot acuan: 2026-08-18 18:45 WIB
+
+model:
+  default: big-pickle
+  provider: opencode-zen
+  base_url: https://opencode.ai/zen/v1
+  api_mode: chat_completions
+
+# providers: yang sudah terdaftar biarkan
+#   9router      http://localhost:20128/v1     NINE_ROUTER_API_KEY
+#   agentrouter  https://agentrouter.org/v1    AGENTROUTER_API_KEY   (tidak di chain sampai 200)
+#   juan-router  https://router.juan.web.id/v1 JUAN_ROUTER_API_KEY   (tidak di depan selama 401)
+#   huancheng    https://api.hcnsec.cn/v1      HUANCHENG_API_KEY     (masuk chain setelah 200)
+
+fallback_providers:
+  - provider: 9router
+    model: cf/@cf/deepseek-ai/deepseek-r1-distill-qwen-32b
+    base_url: http://localhost:20128/v1
+    key_env: NINE_ROUTER_API_KEY
+  - provider: 9router
+    model: gratislonggar
+    base_url: http://localhost:20128/v1
+    key_env: NINE_ROUTER_API_KEY
+  # - provider: huancheng
+  #   model: DeepSeek-V4-Flash
+  #   base_url: https://api.hcnsec.cn/v1
+  #   key_env: HUANCHENG_API_KEY
+  # - provider: juan-router
+  #   model: agnes-2.0-flash
+  #   base_url: https://router.juan.web.id/v1
+  #   key_env: JUAN_ROUTER_API_KEY
+
+cron:
+  model: big-pickle
+  model_provider: opencode-zen
+  model_drift_guard: true
+  preflight: true
+
+compression:
+  enabled: true
+  threshold: 0.50
+
+context:
+  engine: compressor
+
+auxiliary:
+  compression:
+    provider: 9router
+    model: gratislonggar
+    reasoning_effort: low
+    max_concurrency: 1
+  title_generation:
+    provider: 9router
+    model: gratislonggar
+    max_concurrency: 1
+
+plugins:
+  disabled:
+    - hermes-achievements
+    - telegram_router
+    # orca-status: putuskan setelah audit overlap watchdog×5
+    # rtk-rewrite: JANGAN masuk disabled
