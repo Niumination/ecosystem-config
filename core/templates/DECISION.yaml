@@ -1,0 +1,11 @@
+# Salin ke core/ledger/decisions/D-NNNN.yaml lalu isi. Jangan mengarang.
+id: D-0000
+ts: YYYY-MM-DD
+status: draft          # draft | sealed
+title: ""
+decided_by: zaryu      # manusia mengesahkan. agen hanya boleh draft.
+applies_to: core       # core | satellite:<nama>
+one_sentence: ""
+why: ""
+not_doing: ""
+review_after: ""
