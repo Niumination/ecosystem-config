@@ -40,11 +40,11 @@ Audit sebelumnya mencatat HTTP 429 (FreeUsageLimitError) pada `big-pickle` & `de
 
 | Fase | Isi | Status |
 |---|---|---|
-| F1 | Pasang core: install, test, seal, SOUL/USER, hooks, plugin | 🔄 Dikerjakan |
-| F2 | Stabilkan otak: pin cron, fallback 1 kaki Zen, unify thread, compression | 🔄 Dikerjakan |
-| F3 | Control plane: MC launchd, probe 120s, healthz/readyz, watchdog ×1 | ⏳ |
-| F4 | Skill plane: HOME pin ≤12, USB mirror 47, ledger no-agent, AGENTS slim | ⏳ |
-| F5 | Integrasi: orchestrator MVP, pdf-inspector, AI Priming, Action Broker | ⏳ |
+| F1 | Pasang core: install, test, seal, SOUL/USER, hooks, plugin | ✅ DONE (19 Ags) — ALL PASS, tersegel |
+| F2 | Stabilkan otak: pin cron, fallback 1 kaki Zen, unify thread, compression | ✅ DONE (19 Ags) — cron ter-pin, fallback 1 kaki |
+| F3 | Control plane: MC launchd, probe 120s, healthz/readyz, watchdog ×1 | ✅ DONE (19 Ags) — MC up launchd, kill-test pass, MCP uacc/ponytail dihapus |
+| F4 | Skill plane: HOME pin ≤12, USB mirror 47, ledger no-agent, AGENTS slim | ⏳ PENDING — home=117, usb=605 masih bloat |
+| F5 | Integrasi: orchestrator MVP, pdf-inspector, AI Priming, Action Broker | ⏳ PENDING |
 
 ## DoD — 4 kondisi hijau 72 jam
 
