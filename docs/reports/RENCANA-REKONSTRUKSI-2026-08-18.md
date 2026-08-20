@@ -44,7 +44,7 @@ Audit sebelumnya mencatat HTTP 429 (FreeUsageLimitError) pada `big-pickle` & `de
 | F2 | Stabilkan otak: pin cron, fallback 1 kaki Zen, unify thread, compression | ✅ DONE (19 Ags) — cron ter-pin, fallback 1 kaki |
 | F3 | Control plane: MC launchd, probe 120s, healthz/readyz, watchdog ×1 | ✅ DONE (19 Ags) — MC up launchd, kill-test pass, MCP uacc/ponytail dihapus |
 | F4 | Skill plane: HOME pin ≤12, USB mirror 47, ledger no-agent, AGENTS slim | 🔄 DONE (20 Ags): bank 47 SoT, HOME 213→113 (arsip 100 ke skills_archive_2026-08-20), ledger jalan, AGENTS slim |
-| F5 | Integrasi: orchestrator MVP, pdf-inspector, AI Priming, Action Broker | ⏳ PENDING |
+| F5 | Integrasi: orchestrator MVP, pdf-inspector, AI Priming, Action Broker | 🔄 DONE (20 Ags): pdf-inspector live (Niumination/pdf-inspector), orchestrator delegate→Telegram WORKING (env chat fix). AI Priming & Action Broker = opsional berikutnya |
 
 ## DoD — 4 kondisi hijau 72 jam
 
