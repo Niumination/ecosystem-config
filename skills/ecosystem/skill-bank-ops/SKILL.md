@@ -76,6 +76,26 @@ Jangan pernah resolve drift tanpa konfirmasi user (audit = rekomendasi; mutasi b
 6. `python3 scripts/skill-manifest.py` → `bash skills/sync-to-agents.sh` → verify 3 target
 7. Commit + push
 
+## Konsolidasi: Promosi Skill dari HOME → Bank (internal, 20 Ags 2026)
+
+Berbeda dari adopsi eksternal — sumbernya HOME aktif (`/Volumes/HermesAgent/HermesAgentUSB/data/skills`), bukan registry. Dipakai saat skill operasional yang lahir/sejak lama tinggal di HOME (mis. hasil kerja rekonstruksi) ingin dijadikan bagian Bank SoT (hasil nyata: Bank 47→68).
+
+**Alur benar:**
+1. **Klasifikasi kandidat** — bedakan 3 kelompok di HOME yang bukan bank:
+   - `builtin` Hermes (via `hermes skills list` → kolom Source=builtin) → **JANGAN dipromosikan** (skill sistem, 54 buatan)
+   - personal/konfigurasi user (language-preference, nlm-cli-portable, agent-reach-benchmark) → **tetap di HOME**
+   - skill operasional reusable (skill-bank-*, ecosystem-*, provider-fallback, niu-mission-control-ops, redesign-verification, dll) → **PROMOTE**
+   - Deteksi builtin: `hermes skills list | awk -F'│' '{...if ($5=="builtin") print $2}'` → cocokkan basename.
+2. **Promosi via script fungsi (BUKAN associative array bash!)** — `declare -A` dengan key path ber-slash (`ecosystem/skill-bank-integrity`) meledak `division by 0 (error token is "-bank-integrity")` karena `/` diparse aritmetika. Tulis fungsi `promote() { rel=$1; cat=$2; ... }` + panggil baris per baris. Salin via `cp -R "$SRC/$rel/." "$NIU/skills/$cat/$name/"`.
+3. **Peta kategori eksplisit** — kandidat HOME di kategori `ecosystem/` `hermes/` `devops/` `software-development/` `web-development/` `design/` dipetakan ke 8 domain bank (`ecosystem`, `governance`, `software-development`, `design`, ...). Cek bentrok nama dulu: `find bank -name SKILL.md -exec basename {} \; | sort`.
+4. **Regenerate manifest** — `python3 scripts/skill-manifest.py` (tanpa arg = GENERATE, bukan verify) → `[ok] manifest.json ditulis: ... N skill, M file`.
+5. **Update `INDEX.md`**: counter `> **Status:** 47 ✅ Aktif` → 68 + tambah baris tabel per skill baru.
+6. **Sync + verify** — `bash skills/sync-to-agents.sh` → 68 skill disinkronkan ke Hermes + USB, hash LULUS, `skills-lock.json` ditulis. Sync TIDAK menghapus builtin/personal yang tidak di bank (rsync `-u` non-destruktif) — HOME naik, bukan turun.
+7. **Verifikasi akhir** — `skill-manifest.py --check` (0 mismatch) + `hermes skills list | grep -c enabled`.
+8. Commit + push.
+
+**Pitfall:** jangan hapus file HOME yang tidak dipromosikan (builtin/personal) — biarkan; tujuan konsolidasi = Bank lengkap, bukan HOME menyusut.
+
 ## Pitfall
 
 - **`_get_home()`-style path resolution (MC skill_monitor)**: cek folder **berisi** (`Desktop/Niumination/skills`), BUKAN folder induk (`Desktop/Niumination`) — HOME cache Hermes punya folder induk KOSONG yang menyesatkan → `_scan_skill_bank()` = 0 → puluhan conflict palsu "NOT in bank pusat". Same bug class in sync scripts & manifest resolvers.

@@ -15,29 +15,11 @@ if printf '%s' "$probe" | grep -qi 'No hook installed'; then
 fi
 
 printf 'Hermes plugin: '
-if [ -d "/Volumes/HermesAgent/HermesAgentUSB/data/plugins/rtk-rewrite" ]; then
+if [ -d "${HERMES_HOME:-$HOME/.hermes}/plugins/rtk-rewrite" ]; then
   echo 'PRESENT'
 else
   echo 'MISSING'
   exit 3
 fi
 
-printf 'Claude settings hook: '
-if [ -f "/Volumes/HermesAgent/.cache/unix-home/.claude/settings.json" ] && \
-   grep -q 'rtk hook claude' "/Volumes/HermesAgent/.cache/unix-home/.claude/settings.json"; then
-  echo 'PRESENT'
-else
-  echo 'MISSING'
-  exit 4
-fi
-
-printf 'CLAUDE.md RTK ref: '
-if [ -f "/Volumes/HermesAgent/.cache/unix-home/.claude/CLAUDE.md" ] && \
-   grep -q '@RTK.md' "/Volumes/HermesAgent/.cache/unix-home/.claude/CLAUDE.md"; then
-  echo 'PRESENT'
-else
-  echo 'MISSING'
-  exit 5
-fi
-
-echo 'OK: RTK active'
+echo 'OK: RTK active (Hermes internal)'

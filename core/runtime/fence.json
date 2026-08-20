@@ -1,4 +1,7 @@
 {
-  "active": false,
-  "cleared": "2026-08-19T02:36:58+07:00"
+  "active": true,
+  "reason": "foreign_model",
+  "from": "stepfun/step-3.7-flash:free",
+  "to": "stepfun/step-3.7-flash:free",
+  "ts": "2026-08-20T22:10:22+07:00"
 }

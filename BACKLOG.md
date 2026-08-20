@@ -23,6 +23,7 @@ Desktop/Niumination/
 ├── tools/              🛠️ Ponytail MCP
 ├── vault/              🔐 Secrets & credentials (gitignored)
 ├── brain/              🧠 Obsidian vault (git, terpisah)
+├── core/               ⚖️ Runtime internal (CONSTITUTION, ledger, runtime, templates)
 ├── dotfiles/              🐚 Terminal dotfiles (gitignored)
 ├── AGENTS.md           📋 Root DOX — AI orchestration rules
 ├── BACKLOG.md          📋 Master doc ini
@@ -106,6 +107,7 @@ Desktop/Niumination/
 | **orchestrator** | P3 | ⏸️ Stale | Python multi-agent |
 | **Ultra** | P3 | ⏸️ Stale | Puppeteer automation |
 | **characters/** | ⚪ | 🟢 Active | 4 herdr agents (arsitek, pembangun, pengawas, penjaga) |
+| **_shared/** | ⚪ | 🟢 Active | Incident & path registry (INCIDENT.md, PATHS.md) |
 
 ### 🔬 labs/ — 3 Experiments
 
@@ -193,6 +195,7 @@ agents/                    4   33 MB    AI agents + profile + characters
 labs/                      3   1.2 GB   Experiments
 sandbox/                   7   600 MB   Dormant (ex-incubator)
 archive/projects/          2   837 MB   Archived (niuterm, terax-ai)
+core/                      1   440 KB   Runtime internal (CONSTITUTION, ledger, runtime, templates)
 docs/                     24   240 KB   Documentation (merged from docs/dox/reports)
 scripts/                  21   128 KB   Automation scripts
 tools/                     1   25 MB    Ponytail MCP

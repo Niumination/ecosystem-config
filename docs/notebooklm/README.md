@@ -31,15 +31,16 @@ dox/notebooklm/
 - **Lain:** Jumlah Perangkat Daerah (DOCX), README, CONTRIBUTING, AGENTS
 
 ## Cara Update
-## 🔌 Status Koneksi (24 Jul 2026)
+## 🔌 Status Koneksi (20 Aug 2026)
 
-> ❌ **PUTUS** — `nlm login --check` bilang `Profile 'default': not found`
-> Penyebab: migrasi portable→native / token expired.
-> **Panduan reconnect:** lihat `RECONNECT_GUIDE.md`
+> ✅ **TERHUBUNG** — auth dipulihkan dari USB (cookies Aug 14), `nlm login --check` valid: **27 notebooks**.
+> Hermes MCP: `notebooklm` terdaftar di `~/.hermes/config.yaml` (`mcp_servers.notebooklm`), `hermes mcp test` → **✓ Connected, 43 tools**.
+> CLI: `~/.local/share/uv/tools/notebooklm-mcp-cli/bin/notebooklm-mcp` (uv tool v0.9.2).
+> Backup auth lama: `~/Backups/notebooklm-pre-fix-2026-08-20/`.
 
 ## Cara Update
 Via Hermes agent:
 ```bash
-nlm login --check       # verify auth (❌ saat ini — lihat RECONNECT_GUIDE.md)
+nlm login --check       # verify auth (✅ valid — 27 notebooks)
 nlm source add <notebook-id> --url <url> --wait
 ```

@@ -23,7 +23,7 @@ INDEX_FILE="$SKILLS_DIR/INDEX.md"
 SYNC_SCRIPT="$SKILLS_DIR/sync-to-agents.sh"
 SYNC_LOG="$NIUMINATION/.sync-log"
 MC_URL="http://localhost:5200"
-HERMES_HOME="/Volumes/HermesAgent/HermesAgentUSB/data"
+HERMES_HOME="${HOME}/.hermes"
 NOW=$(date "+%Y-%m-%d %H:%M:%S WIB")
 DIVERGE_FILE=$(mktemp)
 REPORT_FILE=$(mktemp)
@@ -86,7 +86,7 @@ check_unknown_folders() {
 
   local known_dirs=(
     apps services sites desktop agents labs sandbox
-    docs scripts skills tools vault brain dotfiles archive
+    docs scripts skills tools vault brain dotfiles archive core
   )
 
   # Baca dari BACKLOG.md untuk daftar proyek yang dikenal
@@ -533,14 +533,14 @@ check_skill_sync() {
     info "Hermes dir ($hermes_dir) tidak ditemukan (optional)"
   fi
 
-  # ── 7e: Cek Hermes USB
+  # ── 7e: Cek Hermes USB (backup-only — bukan target aktif)
   local usb_dir="/Volumes/HermesAgent/HermesAgentUSB/data/skills"
   if [ -d "$usb_dir" ]; then
     local usb_count
     usb_count=$(find "$usb_dir" -name SKILL.md -type f 2>/dev/null | wc -l | tr -d ' ')
-    pass "Hermes USB: $usb_count skills (terhubung)"
+    info "Hermes USB (backup-only): $usb_count skills terdeteksi — bukan target aktif"
   else
-    info "Hermes USB tidak terhubung (normal jika USB tidak dipasang)"
+    info "Hermes USB tidak terhubung (normal — USB = backup)"
   fi
 }
 

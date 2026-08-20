@@ -1,6 +1,6 @@
 {
   "fileCount": 348,
-  "generatedAt": "2026-08-20T06:13:18.751338+00:00",
+  "generatedAt": "2026-08-20T14:11:43.457024+00:00",
   "skillCount": 68,
   "skills": {
     "accessibility": {
@@ -423,10 +423,10 @@
       }
     },
     "niu-mission-control-ui": {
-      "bundleHash": "a4dcef213af7b2ccb2c5abb67f1817feabccd115e76673ad0c9cc49da0592613",
+      "bundleHash": "1c6c3ef546d2f0b0c6d486e98cb89ac8f126a3f479ff91d43937702a9d0a4c0d",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "b63149fb86826e2047447a10efe360bf3bc7c82a9dd72ef162016b1565f9ca14",
+        "SKILL.md": "828d785dd9e72da2a3e3303e3e7cfc95ee66e3212bc8e6e4a0b472a3b68693e0",
         "references/dedup-selectors.md": "c7f134fce123858703cfe6f4dad044d7ee36ff0f6613d5d6af7783621850fb60",
         "references/dom-visual-audit-2026-08-20.md": "3ca1930598cf4dc4476e6b7109e3d69c5ccf8150a4b5c848fa72fa443a38b0a3",
         "references/mc-api-shapes.md": "ae9d6789f519b3b4f70b75827f885dfb1a4acb053729865b70aa7ee273c85b90",
@@ -631,20 +631,20 @@
       }
     },
     "skill-bank-ops": {
-      "bundleHash": "f2d7481a06262eb4fbacb8fc1a595ef6b7d526c1c93cb50817605bde2fcd8ab5",
+      "bundleHash": "c4407d616b11f9ec40585e9d6de742cb9f8d14fe9e487df1abca5fc30c9c720e",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "b03fd8004a00659678a37174a671289501d59dd96d8c1b9fbc8eae3e71a6232a",
+        "SKILL.md": "720cfb595e8b99f932bf84f8273ebae77524c9ef3d18b7bf7620103061e3f6be",
         "references/skill-bank-manifest-sync.md": "ed73748fe07bd9718d8c2493742dfc1e0cad006dd474be4d6e469d16c1e7714a"
       }
     },
     "skill-bank-sync": {
-      "bundleHash": "0eb3fcaa00a549abbe7380dfaa566350664c084abd3133f40ce3fd94338f0efe",
+      "bundleHash": "767b1767cb437ddb1fa6971daecea9c33be341dec43820ffc8bb850d2e474ca4",
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "ac02a660eda5d7cd255b505c3950c67f51831de504a696430cdb16bd3060fa7e",
         "references/home-pruning-f4-2026-08-20.md": "245cf99bb02a59a5a73ce617c11363db7754ba061d4b22a4be10eed736989bd9",
-        "scripts/check-rtk.sh": "9ba9a117f09a1223e759ff25bb540ceec562bdbf4254279eb7ada3880eaa9358"
+        "scripts/check-rtk.sh": "0b3065e58ace02078848b7141ffb08ee2a86333121ec1222f3ab3d6b2696c4b3"
       }
     },
     "subagent-driven-development": {

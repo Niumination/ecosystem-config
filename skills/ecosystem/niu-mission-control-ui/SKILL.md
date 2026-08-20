@@ -69,6 +69,37 @@ build_unified.py → index.html (single file, ~83KB)
 | Heading | H1 visually-hidden → H2/H3 berurutan |
 | Lang | `<html lang="id">` |
 
+## 🔴 PITFALL CACHE-BUST — edit app.js Wajib bump `?v=` + restart MC (ditemukan 20 Ags 2026)
+
+**Gejala:** Anda edit `dashboard/app.js` (tambah fungsi, fix render), buka ulang dashboard, tapi fungsi tetap `undefined` / DOM lama. `fetch('/static/app.js?v='+Date.now())` menunjukkan file BARU sudah ter-serve (hasCost: true), tapi halaman masih pakai versi lama.
+
+**Akar:** `index.html` me-ref `<script src="/static/app.js">` TANPA query — browser (dan iframe ORB yang di-cache) memakai app.js lama dari cache. `/dashboard` FileResponse juga bisa di-cache.
+
+**Fix — urutan WAJIB:**
+```bash
+# 1. Bump versi di index.html (setiap edit app.js):
+sed -i '' 's/app.js?v=20260820-X/app.js?v=20260820-X+1/' dashboard/index.html
+# 2. Restart MC (cache-bust + muat index baru):
+launchctl kickstart -k gui/501/niu.missioncontrol
+```
+**Aturan: edit `app.js` atau `index.html` apa pun = bump `?v=` DAN restart MC. Tanpa keduanya, perubahan frontend TIDAK terlihat — jangan klaim "fixed" dari file di disk saja.**
+
+## 🔴 PITFALL "HTML panggil fungsi yang tidak ada" — akar halaman kosong (20 Ags 2026)
+
+Pola berulang: halaman di `index.html` memanggil `onclick="loadX()"` tapi fungsi `loadX` TIDAK PERNAH ada di `app.js` → halaman tampak rusak/kosong meski backend sehat.
+
+Ditemukan sesi ini (semua FIXED dengan menambahkan fungsi ke app.js):
+- `loadCostData()` dipanggil di `#page-cost` (KPI + Refresh) → **tidak ada di app.js** → COST page kosong walau `/api/mc/cost/agents` OK
+- `loadMarket()` (tombol Refresh Skill Market) hanya = `filterMarket()` (filter 4 kartu statis hardcoded), tidak pernah fetch API → 47 skill tidak muncul
+- `loadDeployStatus()` hanya update 2 KPI, TIDAK render `#deployProjectGrid` (kartu statis hardcoded)
+
+**Debug cepat:**
+```js
+// di browser_console: cek apakah fungsi eksis
+typeof loadCostData   // "undefined" = handler belum pernah dibangun
+```
+**Fix pattern:** tambahkan fungsi async yang fetch endpoint + render ke grid (`loadCostData`/`loadMarket`/`loadDeployStatus` + render function), panggil saat init (`loadX();` di blok Initialize App), THEN bump `?v=` + restart MC. Statistik setelah fix (DOM terverifikasi): COST = KPI 113M tokens + 12 agent + 12 model cards; TELEGRAM = 9 pesan riil; DEPLOY = 2 kartu dinamis; SKILL MARKET = 47 kartu dari API + filter berfungsi.
+
 ## Redesign v3.0 (docs/REDESIGN_V3_BREAKDOWN.md)
 
 **⚠️ STATUS AKTUAL — JANGAN KLAIM SELESAI TANPA VERIFIKASI VISUAL.**
