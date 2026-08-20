@@ -28,7 +28,7 @@ Yang belum = beberapa halaman masih tipis/kosong data visual, dan satu blocker e
 | **TELEGRAM** | 9 pesan ter-render | ✅ TERISI (parser chat_id dari env) |
 | **COST** | KPI + 12 agent + 12 model | ✅ TERISI (fallback state.db + loadCostData baru) |
 | **SYSTEM** | 957 chars | 5 input/select | 🟡 Form ada, data tipis |
-| **DEPLOY** | 636 chars | 5 tombol/status | ❌ TIPIS |
+| **DEPLOY** | **2 cards dinamis** (Niu-Vermilion, Pemdi) | ✅ TERISI (loadDeployStatus render grid) |
 | **SKILL MARKET** | 994 chars | minimal | 🟡 Ringkas |
 | **TERMINAL** | 836 chars | 1 output (welcome) | 🟡 Ada, belum interactive test |
 
