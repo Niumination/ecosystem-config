@@ -4,6 +4,10 @@
 <dict>
 	<key>EnvironmentVariables</key>
 	<dict>
+		<key>HERMES_HOME</key>
+		<string>/Volumes/HermesAgent/HermesAgentUSB/data</string>
+		<key>HERMES_TELEGRAM_CHAT_ID</key>
+		<string>-1004204696417</string>
 		<key>NIU_MC_PORT</key>
 		<string>5200</string>
 		<key>PYTHONUNBUFFERED</key>
