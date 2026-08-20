@@ -34,11 +34,10 @@ Yang belum = beberapa halaman masih tipis/kosong data visual, dan satu blocker e
 
 ## 2. Blocker Ditemukan
 
-**Vision model auxiliary DOWN** — `Qwen3.5-397B-A17B` (9router) **503 model_not_found**.
-- `browser_vision` gagal 2× → tidak bisa verifikasi pixel, hanya DOM.
-- Ini konsisten dengan audit model: auxiliary vision memakai 9router, tapi model itu tidak ada di 9router.
-
-**Rekomendasi:** ganti `auxiliary.vision` ke model yang hidup (cek `_auxiliary` di config) atau keluarga Zen.
+~~Vision model auxiliary DOWN~~ **FIXED (20 Ags 11:54):** model `Qwen3.5-397B-A17B` (9router) 503 model_not_found.
+- **Root cause:** mismatch 3 arah — provider=9router tapi base_url=api.hcnsec.cn (huancheng) + key huancheng.
+- **Fix:** model → `gemini/gemini-3.7-flash`, base_url → `http://localhost:20128/v1`, key → `${NINE_ROUTER_API_KEY}` (via hermes config set + restart gateway).
+- **Terverifikasi:** browser_vision sukses (41.46s, 2226 chars) — dark sci-fi dashboard, ORB 3D, 13 modul, widget SYSTEM/ROUTINES/AGENTS. Log: `using custom (gemini/gemini-3.7-flash)`.
 
 ## 3. Data Flow (sudah benar)
 
