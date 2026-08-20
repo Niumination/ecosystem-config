@@ -1,7 +1,7 @@
 {
-  "fileCount": 267,
-  "generatedAt": "2026-08-16T17:06:33.920576+00:00",
-  "skillCount": 47,
+  "fileCount": 348,
+  "generatedAt": "2026-08-20T06:13:18.751338+00:00",
+  "skillCount": 68,
   "skills": {
     "accessibility": {
       "bundleHash": "f6196fb22b2e6bcf97ef5b048651abd02e08d056537bdd8fa3fb333fe91aec18",
@@ -43,6 +43,29 @@
         "references/pemdi-data-structure.md": "2a3cb447d0cc46f258af4e0de9a7b7b829fd68c2ced383db55e1659e1ddc1a12"
       }
     },
+    "config-history-review": {
+      "bundleHash": "b43a1c6a69bbf5f42d20d5ab495a0560e87d6d1977f62bef95eca78816cd9e20",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "ca3bf5e03fccf16c7a7797e8751f84caadc314f224a6907cfba0e3b3976c74f3",
+        "references/provider-evolution-niumination.md": "a59729b3fb3fac80978e03bdf0c3b31766879dfd9cee18108ee9d20a70b8caf9"
+      }
+    },
+    "dark-theme-a11y": {
+      "bundleHash": "6356067cccb831194afa28b8723a7aed57ee0a7a724594c45f9181bd72f841de",
+      "domain": "design",
+      "files": {
+        "SKILL.md": "09b7b4fe5b2f99a2722c9081837ec15cb970d7a97110aff104d48ece40c09be1"
+      }
+    },
+    "delegated-output-verification": {
+      "bundleHash": "7f66b727158d63d8ed1887e5c6f7f655eb16c0e6e1a190da7c86b7c04fb4f045",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "2b41c9991104ed2d86709abd8e1e2ade9396a843ae29ef6387331ae84d25715b",
+        "references/rebuild-gutted-dashboard.md": "0c091ed37796287a49f5edee71ec92eaa1f7c75163e31cf1a2be7aaa44111a33"
+      }
+    },
     "document-content-pipeline": {
       "bundleHash": "a08c96af46f410d4360f557ee0e34f8d8913d58128d4916b32f648308e0bac6c",
       "domain": "software-development",
@@ -56,6 +79,32 @@
         "references/odl-pdf-setup.md": "8cbe4b9a1bd629a4c5fb222ab396a2c91ef22a73a33f61b804d022c0328ecc0f",
         "references/pemdi-evaluation-evidence-audit.md": "55b919a3c7a7b5cfd06c18129b1eeaeb40b7a27429b206dce0e700fb4a4fc6f0",
         "references/stow-symlink-fix.md": "0ca06617a4d6ce821889782a3416e9b3f38a239ca28cd8dc63bbbca3c8d9fa8f"
+      }
+    },
+    "ecosystem-snapshot": {
+      "bundleHash": "04ebb40fb1b01fe581bf05f30e05e9474e061307f682d86a5c0b63c61f2e4499",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "36ef0e36f98695c3f407d72bc9d0c96db09c8aefa6bc926e287a28cfe3fddb9a",
+        "references/anomaly-audit-playbook.md": "a7f2982868df46e5c4adbd6f632a02144e17bc761c8c9948192ea03399c1ae15",
+        "references/mass-repo-sync.md": "fa81d3fbcf10cc86ecd99d6f0c65a38f4b1b3988b6cafe3a363a9595d69159eb",
+        "references/niumination-core-v2.md": "51ba7ff4690824188ba2c6eaea16c469213fcebb30587e2014472a50d4ee07e8",
+        "references/snapshot-template.md": "e4ee1fdf47b9562834a0f019ab1b4f03b77d173fd1864e01f3f3f716fb8e3297"
+      }
+    },
+    "ecosystem-tool-adoption": {
+      "bundleHash": "5a57dd7b9d5594178d7acd313cf67c1392104a9cebc145e4690c63a2c78ac84f",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "6f4e77f348e9071fad87554691932ac8b55088f5d22321dc93aa1bcb521d046b"
+      }
+    },
+    "ekosistem-content-verification": {
+      "bundleHash": "68c562d597349ea6da642d553312ed8ab4fc1a9f703263f6a8d61c27139c4496",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "eba7a58db5fcaa83669564bf841ab4a86108b8c65fa628c93006a3e93c101002",
+        "references/pemdi-audit-structure.md": "aea949ef8e2a573392740722b4c7eb5ac0248cc0e008c5182e0c14c6b5e8ecf0"
       }
     },
     "ekosistem-scaffold": {
@@ -130,6 +179,24 @@
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "7d3aa79739df5c17424869fe3c783ddeb5c340d6b4b30a993100f982b24eadd6"
+      }
+    },
+    "hermes-provider-config": {
+      "bundleHash": "312007684b37efdb14be6cc36ad387133fcbd769198082a9aa8ebcaaefaea853",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "eca66eaf8721d49d8a543d1c7e954aa10058c23aba724bbfd13079d35df64278",
+        "references/9router-gateway-admin.md": "d4b718f0ad1b63419c2248d0d4d3105a441065dbcd57915cc1ee3a69c8d1bac5",
+        "references/juan-router-integration.md": "737c490e199201370c75d62c2f51693f5242b41ea79228fe49636e2a7df64b42",
+        "references/model-catalog-structure.md": "ba5b28126411702689a793b6e4cea6433ac3841e2e0c37580d7041ec936d1f4d",
+        "references/model-mapping-report.md": "c2cd66027323b705e12a8eac4af4eba74117a50ab13a978ed0b087acf26aaf39",
+        "references/oauth2-vs-apikey.md": "c32e08dd3fb02d8ae7bfaf4ff164f85ad3539229cb6cacc912420265a0da56b7",
+        "references/openrouter-free-tier.md": "3ec3fde62fdff79950ec8bfaa31bbd6d42baf14622a0be467632542a4a9cc986",
+        "references/provider-audit-2026-08-18.md": "c1ded25561d5476646fede92811e007f8dcf3e341c1dc3558f79441df540a310",
+        "references/rtk-verification.md": "68eade5a4f4f2e5417ee798824b5a72075f025b61e795fa1b79eb74e7b241f47",
+        "scripts/probe-provider-models.py": "39dfbc4fa90a210a0c9135b32d9a160fc66e5f657e10dd7b596653b6d0bc9a5f",
+        "scripts/stress-test-models.py": "1c7022f0b56584d371b11a92b90ab14781281fc9d18c829593764450c451520c",
+        "scripts/test-vision-endpoint.py": "23426710553f9407890df8e25b451d1b233c3430dac481af8ab0ab3efddd56c1"
       }
     },
     "hermes-uiux-technical": {
@@ -311,6 +378,61 @@
         "scripts/surface-brief.mjs": "acd03bf38f6aef2b5d5287cefccacac018063b5b5356c99d191b3bd012f28ed3"
       }
     },
+    "kanban-ecosystem-management": {
+      "bundleHash": "3ee15bde7e8c0d974393cee40873c3c42a566a7bb14efc2bda75e8b526feb4b6",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "5c3580c6af15cee4b2036b31d05616b8ca2a160d8b6958291bdcab0720930c1a",
+        "references/alternative-pm-tools.md": "8b9f9dff94a0e1730be586242b72c70a021364c9a7c8284b8987c7dae933f879",
+        "references/brain-capture-location.md": "ec9efc6f3cf7a56ee84f2356a67d5d5f0ac36798fb10a72eda83237d484b8006",
+        "references/dashboard-dbpath-debug.md": "16b7cddb02a0c01e523879d7177e633d499684059a3a47fe9b2d581b35229f93",
+        "references/db-corruption-recovery.md": "107413f8e9bf67a1a355b26722705bcc9313ef3ca6ea598cda0f02b1dc5fbf8d",
+        "references/eco-collect-architecture.md": "149e4b643c6c1c4a4ae33e0bbb187dd77965b6e49bf4884a356685cb774e33ff",
+        "references/ecosystem-audit-config-comparison.md": "8fcd61ff7e5d121fb682863a4f6d86b3fd435c9c3ce622d289f009cdf6a926f5",
+        "references/ecosystem-bulk-cleanup.md": "df80389b3263ab095b5643e0c387b66d35e586086dd1f9c077c65d154668572d",
+        "references/ecosystem-dashboard-json.md": "bbf5a567f0afbc3d9007471fff766f117762cc476acddb25c5bbdbff5fd572dd",
+        "references/ecosystem-wide-sync.md": "06fca818f0ea4581f5561c1d41f5af0d2525bff1a588a2a95f5670f974862a9d",
+        "references/frontend-backend-data-contract.md": "e834ea8343336838201eb5992b5f4f553f80c3a214708b639149c4fe2b760e1a",
+        "references/government-api-audit.md": "31385ffdc135cebb4cf965ce6dc3ccda7babcacec5eaecd1e508af64c2f01c80",
+        "references/kanban-sync-format.md": "9a98c5f0acb5029e5fff137b3942801fc38c5716a58b56b9b14291da388f80ac",
+        "references/notebooklm-ecosystem-docs.md": "47f699c793c8c1a38cac28630245adb4ddd2dda7f7f49f559666748419ac597d",
+        "references/project-health-check.md": "87537a31c37cbfa9e88475304a6aa9e884c4cdac3f4aa410d0efdd26aab290a4",
+        "references/root-cleanup-2026-06-22.md": "2093e5b29c4ff72ba2f623006fbc125a204e427588e69e921dbca4ba9ce23321",
+        "references/root-cleanup-2026-07-17.md": "460e3b988fcb2fb164c79e3291aba6652d730c38abcb9e9b891a74a0fb2d5b2e",
+        "references/supabase-prisma-migration.md": "8c8cf76c723f41a6bb7f7f87eaa60fd8be695cb6378e0a3144f0053cfd349eb0",
+        "references/tedeo-bugfix-patterns.md": "f8f01c6ed5bb1f6a5b63d03ab9220e5b5cb5616395b82c95d40942f3530a2a55",
+        "references/third-party-integration-assessment.md": "bf40132d59bb247eee83ba03089eaa8686b9c2ed7000d2e66ad434b792982b20"
+      }
+    },
+    "niu-core-governance": {
+      "bundleHash": "503932e77fd24acec73242923be92e7c19082d929f1a6044ba76b51444927583",
+      "domain": "governance",
+      "files": {
+        "SKILL.md": "7ff861f17b67473c76a8b349400b16f45d04cc59fb2d8247c5b0e699b082ff8c",
+        "references/f5-cleanup-2026-08-20.md": "6524d3dbbd7c34e21654a3f36d17a3091a5daedaf969ebaf9db7c4624edcf8e9"
+      }
+    },
+    "niu-mission-control-ops": {
+      "bundleHash": "dad587692223c8c8d753060018d9daf8d07e0481f27d67bba95c0ff56ab74718",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "438f6a058118aeb32f429711e36d9b162cfeb2242eb8bcb5f1a2b35a54c7575d",
+        "references/cost-telegram-p1-fix-2026-08-20.md": "7246d5172061c6f712729a8d8212e69f18887d89d7f4502498cacf9c61853719",
+        "references/deploy-p2-fix-2026-08-20.md": "fda37d07e7b1b1d95ff9969cab5cce762c6a8d502aee485c12728beccb07766d",
+        "references/quick-wins-cleanup-2026-08-20.md": "bc7dd27983ac5e2581ef2e25d6353a9bf390a6b5f25da7aaf2cb11919a3912b1"
+      }
+    },
+    "niu-mission-control-ui": {
+      "bundleHash": "a4dcef213af7b2ccb2c5abb67f1817feabccd115e76673ad0c9cc49da0592613",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "b63149fb86826e2047447a10efe360bf3bc7c82a9dd72ef162016b1565f9ca14",
+        "references/dedup-selectors.md": "c7f134fce123858703cfe6f4dad044d7ee36ff0f6613d5d6af7783621850fb60",
+        "references/dom-visual-audit-2026-08-20.md": "3ca1930598cf4dc4476e6b7109e3d69c5ccf8150a4b5c848fa72fa443a38b0a3",
+        "references/mc-api-shapes.md": "ae9d6789f519b3b4f70b75827f885dfb1a4acb053729865b70aa7ee273c85b90",
+        "references/orb-fusion-engine.md": "179a0bf2d1e48d571eb696f9e0a68f289d37c0750a3399b5d9ea47024055baad"
+      }
+    },
     "optimization": {
       "bundleHash": "4c2a02578a52d7b04279da2ffc5d5371ba1336d21d149b3eb27a736e5092b2f2",
       "domain": "software-development",
@@ -405,12 +527,33 @@
         "SKILL.md": "28e70c87547bc5e6ed0c3bc74603c68b9d771f19cfb3779ad282ef9b1fa7018f"
       }
     },
+    "provider-fallback": {
+      "bundleHash": "5939787b766340518714e9361ff851f7924902434252f3774b6272e214dd4c38",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "69f2854a293a9d69fee56cb61ef75fbe6fa788c6ce67a1bc72c3cfe5192be1ed",
+        "references/agentrouter-investigation-2026-08-13.md": "c78730422f289626372e7574c9b2b17ab068fb4d102130c8c14ffaf4cf2742a1",
+        "references/fallback-chain-selection-2026-08-13.md": "f2bb06698c54e87daacd02524fedb6224223c0daf2160fa2dc74518e5e27e8fb",
+        "references/openrouter-free-tier.md": "82c0abfadaf673ff48a0f80db515005fe4ff3c123811a34f59f4cb1cebf9daaf",
+        "references/provider-troubleshooting-13ags-2026.md": "6541ab039c46b589d6c36d33bc63322de6b9612460f7b859fac6ccaf8c94a0e8",
+        "references/provider-troubleshooting.md": "74c45dd20e7ed48b9108a602a3643e936ad3d757df179cfed5abd459659c0a37",
+        "scripts/stress_test_models.py": "d33af11d6d8f03816b2ce64f6a74c2f873118d7602e46ad308e4c385b13e0f16"
+      }
+    },
     "python-testing-patterns": {
       "bundleHash": "2fd0da67d9ae4c7bda24e4b1210095abf78860f9096e7532b7c0357e858e9f96",
       "domain": "software-development",
       "files": {
         "SKILL.md": "a01102f46c6e7351181a7e0cbeb41d6ea37ce16a3a1527b4a06e40d08cd01970",
         "references/advanced-patterns.md": "f560ee8b3cffc0fe971e78269bed21dc74f541c2056eae58d34259d9e537176a"
+      }
+    },
+    "redesign-verification": {
+      "bundleHash": "64b7c7dd6037cda38c0e4a487698ced3990e98853bec5c6284839d7c5c7a77cc",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "90d1b6ef72ba9685a6b9581ca9ef0e4202abcd6b98c9de4d26e5bef1d717b601",
+        "references/mc-v3-redesign-lessons.md": "3a75dca754c76edfbe297520cc1f1e9a027a29545f65ed9ac435c051c93344a2"
       }
     },
     "redteam": {
@@ -453,6 +596,55 @@
       "domain": "software-development",
       "files": {
         "SKILL.md": "5549142eb234a6decabf8c4ff59dad5279c80997bb7c9b14405fd4edf81d7b6c"
+      }
+    },
+    "skill-bank-integrity": {
+      "bundleHash": "52e0b11022340c975d52e0a65b3d8e72033c8432c3700ec2b76d67346ab002a9",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "141a032e0377e68b1b7cb91fc2b4ae19b06fec145f867e1d770e30435f82d383",
+        "references/autoskills-patterns.md": "8b9c362c22b5c38f31079616d74e32f51f5ec643b9be1b08a4f57f3ba2e06eb9"
+      }
+    },
+    "skill-bank-maintenance": {
+      "bundleHash": "b58018f97b6ecf06c975cf2aec54b3e0d14f2559163f7d5436234f25ed6d3c32",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "6f997d66381cf40f420020bee715fbbb23d8598eaca9e0702b5295d16c0c6893"
+      }
+    },
+    "skill-bank-management": {
+      "bundleHash": "694ee6c1a7c71d3eebd3575a3d1398e10eb3fe340ab86fa21cb9a93e4479b9a0",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "a65c8803e353abe579c44a01429309689d1da7a4859b72f128c51943bac38237",
+        "references/adopt-external-skill.md": "ff24a68eac0f45387d339b2e7a7d81bbcc8b7066fd8cf867b211ce71f626529e"
+      }
+    },
+    "skill-bank-operations": {
+      "bundleHash": "831781b15877b075dc98728677ca27de1531cd11d4337a9a7c7b2618916bb4ad",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "b2455f22623ae2ebd23b94bf632c89f80c44530e1cbc2b7ca31725773faebc78",
+        "references/autoskills-patterns.md": "f7e805e9ef05d1bd18b14be03c4534b24dc4f2cdff81972acc97ea227017a048",
+        "references/cases-2026-08.md": "c114615e3effe82b00cdaebd1f40d552339d4548cdaf4d2143bf8676ab96a78c"
+      }
+    },
+    "skill-bank-ops": {
+      "bundleHash": "f2d7481a06262eb4fbacb8fc1a595ef6b7d526c1c93cb50817605bde2fcd8ab5",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "b03fd8004a00659678a37174a671289501d59dd96d8c1b9fbc8eae3e71a6232a",
+        "references/skill-bank-manifest-sync.md": "ed73748fe07bd9718d8c2493742dfc1e0cad006dd474be4d6e469d16c1e7714a"
+      }
+    },
+    "skill-bank-sync": {
+      "bundleHash": "0eb3fcaa00a549abbe7380dfaa566350664c084abd3133f40ce3fd94338f0efe",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "ac02a660eda5d7cd255b505c3950c67f51831de504a696430cdb16bd3060fa7e",
+        "references/home-pruning-f4-2026-08-20.md": "245cf99bb02a59a5a73ce617c11363db7754ba061d4b22a4be10eed736989bd9",
+        "scripts/check-rtk.sh": "9ba9a117f09a1223e759ff25bb540ceec562bdbf4254279eb7ada3880eaa9358"
       }
     },
     "subagent-driven-development": {
@@ -543,6 +735,21 @@
       "domain": "software-development",
       "files": {
         "SKILL.md": "6245c092aae5da292770f1c383a20eb080790163e604cdd34998528f0acff5df"
+      }
+    },
+    "web-accessibility-wcag": {
+      "bundleHash": "52210abf1064a1b840044cb4b771f5fefafd51f1a858cfef1e6efa484e56cc14",
+      "domain": "design",
+      "files": {
+        "SKILL.md": "3208507f2699f2ed0fe223559445c074f7980883fe87454da509e6ff75baad21",
+        "scripts/wcag-contrast.py": "f0a050c7dceab4edf90a68c5d08b20d1861b565391f0d532ee7f6d863f4617be"
+      }
+    },
+    "web-dashboard-maintenance": {
+      "bundleHash": "5629f43612a7d04043f0d85b762c491d1f9daf4279f05d83631fcf6fed3f7663",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "182a890f3b86865dc901ea9bbc279ab0302bd831142aa34b44f49472010ac3cb"
       }
     },
     "writing-plans": {
