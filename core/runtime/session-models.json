@@ -3,10 +3,13 @@
   "cron_c6ec80ed633f_20260819_095657": "opencode-zen/big-pickle",
   "cron_c6ec80ed633f_20260820_104210": "opencode-zen/big-pickle",
   "20260718_020326_cbee9e": "gemini/gemini-3.5-flash-lite",
-  "20260820_144320_46d7fd8f": "stepfun/step-3.7-flash:free",
+  "20260820_144320_46d7fd8f": "deepseek-v4-flash",
   "20260820_170157_d65d73": "nemotron-3-ultra-free",
   "20260820_174633_33e884": "opencode-zen/deepseek-v4-flash-free",
   "20260820_182219_bb6780": "opencode-zen/big-pickle",
   "20260820_182450_205751": "opencode-zen/deepseek-v4-flash-free",
-  "20260820_220400_650464": "nemotron-3-ultra-free"
+  "20260820_220400_650464": "nemotron-3-ultra-free",
+  "20260821_000422_b1e8072d": "nemotron-3-ultra-free",
+  "20260821_012843_05e6d4": "gpt-5.6-sol",
+  "20260821_012932_b56ede": "gpt-5.6-sol"
 }

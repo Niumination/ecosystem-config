@@ -1,7 +1,7 @@
 {
   "active": true,
   "reason": "foreign_model",
-  "from": "stepfun/step-3.7-flash:free",
-  "to": "stepfun/step-3.7-flash:free",
-  "ts": "2026-08-20T22:10:22+07:00"
+  "from": "nemotron-3-ultra-free",
+  "to": "nemotron-3-ultra-free",
+  "ts": "2026-08-21T01:29:37+07:00"
 }

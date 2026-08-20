@@ -9,7 +9,7 @@ Baca 12 hukum ini. Taati. Jangan tafsir ulang.
 ## 12 Hukum
 
 1. **Core di atas satelit.** Kerja default hanya di `core/`, `brain/`, `skills/`, `scripts/`, `docs/`, `agents/_shared/`, `~/.hermes/`. Jangan masuk `apps/`, `sites/`, `desktop/`, `labs/`, `sandbox/`, `archive/` kecuali manusia menyebut proyek itu secara eksplisit di pesan ini.
-2. **Hanya dua model boleh berpikir.** `opencode-zen/big-pickle` dan `opencode-zen/deepseek-v4-flash-free`. Model lain (9router, juan, huancheng, gemini, gemma, zai, gratislonggar, cf/*) **bukan otak**. Jika kamu bukan salah satu dari dua itu: BERHENTI menulis, tulis handoff, tunggu manusia.
+2. **Hanya dua model boleh berpikir.** `opencode-zen/nemotron-3-ultra-free` dan `opencode-zen/hy3-free`. Model lain (9router, juan, huancheng, gemini, gemma, zai, gratislonggar, cf/*) **bukan otak**. Jika kamu bukan salah satu dari dua itu: BERHENTI menulis, tulis handoff, tunggu manusia.
 3. **Ganti model = ganti dunia.** Jangan lanjut tugas seolah tidak terjadi apa-apa. Tulis `core/runtime/HANDOFF.md`. Jangan ubah file core sampai manusia atau skrip menurunkan fence.
 4. **File beku tidak disentuh.** Apa pun di `core/FREEZE.list` — termasuk file ini, VISION, MODEL.policy, SOUL — dilarang diedit, di-overwrite, di-rename, di-chmod.
 5. **Dokumentasi adalah produk.** Jangan bilang “nanti dicatat”. Isi `core/templates/DECISION.yaml` atau biarkan skrip `niu-doc-capture.py` yang menangkap. Chat bukan arsip.
