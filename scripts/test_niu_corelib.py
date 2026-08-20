@@ -40,13 +40,16 @@ def assert_true(cond: bool, msg: str) -> None:
 def main() -> int:
     setup_tmp()
     print("== classify_model ==")
-    assert_true(C.classify_model("opencode-zen/big-pickle") == "allowed", "pickle allowed")
-    assert_true(C.classify_model("big-pickle") == "allowed", "bare pickle allowed")
-    assert_true(C.classify_model("deepseek-v4-flash-free") == "allowed", "flash-free allowed")
+    assert_true(C.classify_model("opencode-zen/nemotron-3-ultra-free") == "allowed", "nemotron allowed")
+    assert_true(C.classify_model("nemotron-3-ultra-free") == "allowed", "bare nemotron allowed")
+    assert_true(C.classify_model("opencode-zen/hy3-free") == "allowed", "hy3 allowed")
+    assert_true(C.classify_model("hy3-free") == "allowed", "bare hy3 allowed")
     assert_true(C.classify_model("9router/gratislonggar") == "foreign", "gratislonggar foreign")
     assert_true(C.classify_model("gemini/gemini-3.x") == "foreign", "gemini foreign")
     assert_true(C.classify_model("juan-router/agnes-2.0-flash") == "foreign", "juan foreign")
     assert_true(C.classify_model("9router/big-pickle") == "foreign", "pickle via 9router foreign")
+    assert_true(C.classify_model("opencode-zen/big-pickle") == "foreign", "big-pickle retired")
+    assert_true(C.classify_model("deepseek-v4-flash-free") == "foreign", "deepseek-v4-flash-free retired")
 
     print("== freeze paths ==")
     niu = Path(os.environ["NIU"])
@@ -59,7 +62,7 @@ def main() -> int:
     d = C.decide_pre_tool(
         "write_file",
         {"path": str(niu / "core" / "CONSTITUTION.md"), "content": "hack"},
-        model="opencode-zen/big-pickle",
+        model="opencode-zen/nemotron-3-ultra-free",
     )
     assert_true(d is not None and d.get("action") == "block", "block write constitution")
 
@@ -67,7 +70,7 @@ def main() -> int:
     d = C.decide_pre_tool(
         "write_file",
         {"path": str(niu / "brain" / "ops" / "note.md"), "content": "ok"},
-        model="opencode-zen/big-pickle",
+        model="opencode-zen/nemotron-3-ultra-free",
     )
     assert_true(d is None, "allow brain/ops write")
 
@@ -80,9 +83,9 @@ def main() -> int:
     assert_true(d is not None and d.get("action") == "block", "foreign blocked")
 
     print("== switch raises fence ==")
-    ctx = C.pre_llm_context("sess-1", "opencode-zen/big-pickle", True)
+    ctx = C.pre_llm_context("sess-1", "opencode-zen/nemotron-3-ultra-free", True)
     assert_true("Hukum" in ctx or "hukum" in ctx.lower() or "CONSTITUTION" in ctx, "first turn inject")
-    ctx2 = C.pre_llm_context("sess-1", "opencode-zen/deepseek-v4-flash-free", False)
+    ctx2 = C.pre_llm_context("sess-1", "opencode-zen/hy3-free", False)
     assert_true("berganti" in ctx2.lower() or "HANDOFF" in ctx2, "switch inject")
     assert_true(C.read_fence().get("active") is True, "fence on after switch")
     assert_true(C.handoff_path().is_file(), "handoff written")
@@ -90,7 +93,7 @@ def main() -> int:
     d = C.decide_pre_tool(
         "write_file",
         {"path": str(niu / "core" / "STATE.yaml"), "content": "x"},
-        model="opencode-zen/deepseek-v4-flash-free",
+        model="opencode-zen/hy3-free",
     )
     assert_true(d is not None and d.get("action") == "block", "fence blocks core mutate")
 
@@ -98,7 +101,7 @@ def main() -> int:
     d = C.decide_pre_tool(
         "terminal",
         {"command": "echo pwned >> core/CONSTITUTION.md"},
-        model="opencode-zen/big-pickle",
+        model="opencode-zen/nemotron-3-ultra-free",
     )
     assert_true(d is not None and d.get("action") == "block", "shell rewrite constitution blocked")
 

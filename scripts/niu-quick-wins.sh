@@ -87,13 +87,13 @@ echo
 # ---------------------------------------------------------------------------
 echo "== 2. Pin cron $JOB =="
 if need_cmd hermes; then
-  info "edit pin provider=opencode-zen model=big-pickle"
-  if hermes cron edit "$JOB" --provider opencode-zen --model big-pickle; then
+  info "edit pin provider=opencode-zen model=nemotron-3-ultra-free"
+  if hermes cron edit "$JOB" --provider opencode-zen --model nemotron-3-ultra-free; then
     ok "cron $JOB di-pin"
   else
     warn "hermes cron edit gagal — coba dari dashboard atau cek job_id"
   fi
-  hermes config set cron.model big-pickle || warn "gagal set cron.model"
+  hermes config set cron.model nemotron-3-ultra-free || warn "gagal set cron.model"
   hermes config set cron.model_provider opencode-zen || warn "gagal set cron.model_provider"
   info "drift guard HARUS tetap true (tidak disentuh)"
   info "trigger sadar:  hermes cron trigger $JOB"
@@ -111,7 +111,7 @@ if need_cmd hermes; then
   hermes fallback ls || true
   echo
   info "TARGET v2 — SATU kaki, keluarga yang sama:"
-  info "  opencode-zen / deepseek-v4-flash-free"
+  info "  opencode-zen / hy3-free"
   info "HAPUS dari chain: juan-router, 9router/*, huancheng, gratislonggar"
   info "Hop lintas keluarga = merusak core. Setelah kaki Zen gagal: HALT + HANDOFF."
 else

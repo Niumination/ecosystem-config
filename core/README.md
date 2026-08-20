@@ -7,7 +7,7 @@ Ini jantung ekosistem. Bukan `apps/`. Bukan `sites/`.
 | `CONSTITUTION.md` | 12 hukum — **tersegel** |
 | `VISION.md` | visi & misi — **tersegel** |
 | `SCOPE.md` | core vs satelit |
-| `MODEL.policy.yaml` | hanya `big-pickle` + `deepseek-v4-flash-free` |
+| `MODEL.policy.yaml` | hanya `nemotron-3-ultra-free` + `hy3-free` |
 | `FREEZE.list` | file yang agen tidak boleh sentuh |
 | `STATE.yaml` | papan tulis mesin |
 | `LEDGER.md` | bagaimana pengetahuan disimpan |

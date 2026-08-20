@@ -68,7 +68,7 @@ if [[ ! -f "$HERMES/SOUL.md" ]]; then
   cp "$SRC/hermes/SOUL.md" "$HERMES/SOUL.md"
   ok "SOUL.md baru"
 else
-  if ! grep -q "opencode-zen/big-pickle" "$HERMES/SOUL.md" 2>/dev/null; then
+  if ! grep -q "nemotron-3-ultra-free\|opencode-zen/nemotron-3-ultra-free" "$HERMES/SOUL.md" 2>/dev/null; then
     cp "$HERMES/SOUL.md" "$HERMES/SOUL.md.bak-before-niu-core"
     cp "$SRC/hermes/SOUL.md" "$HERMES/SOUL.md"
     ok "SOUL.md diganti (backup .bak-before-niu-core)"
@@ -101,15 +101,15 @@ fi
 # 4. Hermes CLI — best effort
 if command -v hermes >/dev/null 2>&1; then
   info "mencoba pin model + plugin (gagal = lanjut manual)"
-  hermes config set model.default big-pickle || true
+  hermes config set model.default nemotron-3-ultra-free || true
   hermes config set model.provider opencode-zen || true
-  hermes config set cron.model big-pickle || true
+  hermes config set cron.model nemotron-3-ultra-free || true
   hermes config set cron.model_provider opencode-zen || true
   # JANGAN sentuh model_drift_guard
-  info "fallback: HANYA zen/deepseek-v4-flash-free — rapikan manual:"
+  info "fallback: HANYA zen/hy3-free — rapikan manual:"
   info "  hermes fallback ls"
   info "  hapus juan-router / 9router / huancheng dari chain"
-  info "  hermes fallback add --provider opencode-zen --model deepseek-v4-flash-free"
+  info "  hermes fallback add --provider opencode-zen --model hy3-free"
   info "enable plugin: tambah niu-core-fence ke plugins.enabled (biarkan rtk-rewrite)"
 else
   info "binary hermes tidak di PATH — konfigurasi manual, lihat configs/"
@@ -117,7 +117,7 @@ fi
 
 echo
 echo "selanjutnya:"
-echo "  1. Satukan 5 thread Telegram ke opencode-zen/big-pickle (bukan 9router zoo)"
+echo "  1. Satukan 5 thread Telegram ke opencode-zen/nemotron-3-ultra-free (bukan 9router zoo)"
 echo "  2. python3 ${NIU}/scripts/niu-handoff.py --status"
 echo "  3. python3 ${NIU}/scripts/niu-doc-capture.py --note bootstrap"
 echo "  4. Baca core/CONSTITUTION.md dan core/VISION.md — itu hukumnya"

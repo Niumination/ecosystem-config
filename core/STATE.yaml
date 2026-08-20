@@ -1,18 +1,18 @@
 # STATE — papan tulis mesin. Agen boleh update field yang diizinkan.
 # Jangan mengarang. UNKNOWN lebih baik daripada salah.
 schema: niu-core-state/v1
-updated: 2026-08-18T18:45:00+07:00
+updated: 2026-08-21T02:20:00+07:00
 updated_by: bootstrap
 
 operator: zaryu
 root: /Users/zaryu/Desktop/Niumination
 
 model:
-  active: opencode-zen/big-pickle
+  active: opencode-zen/nemotron-3-ultra-free
   allowed:
-    - opencode-zen/big-pickle
-    - opencode-zen/deepseek-v4-flash-free
-  last_switch: null
+    - opencode-zen/nemotron-3-ultra-free
+    - opencode-zen/hy3-free
+  last_switch: 2026-08-21
   fence: false
   fence_reason: null
 
@@ -23,24 +23,22 @@ task:
 
 handoff:
   path: core/runtime/HANDOFF.md
-  last: null
+  last: 2026-08-21T02:15:00+07:00
 
 health:
   constitution: sealed
-  mission_control_5200: down          # snapshot 18:45
+  mission_control_5200: down
   gateway: running
   nine_router_20128: live
-  cron_agent_reach_watch: error       # c6ec80ed633f unpinned
+  cron_agent_reach_watch: error       # pin model lama — wajib re-pin ke nemotron-3-ultra-free
   skill_bank: 47
   skill_home: 2
   skill_usb: 213
-  telegram_threads: foreign-models    # HARUS disatukan ke Zen
+  telegram_threads: unify-ke-nemotron-3-ultra-free
 
 unknowns:
-  - isi 2 file dirty di ecosystem-config (secret atau bukan)
-  - apakah 401 juan/huancheng/agentrouter karena probe tanpa header atau key mati
-  - path persis mirror skill USB
+  - status kuota nemotron-3-ultra-free / hy3-free di free tier Zen
 
 notes: >
-  Bootstrap dari snapshot 2026-08-18 18:45 WIB.
-  Jangan menimpa field dengan spekulasi.
+  Suksesi otak 2026-08-21 (D-0002): big-pickle + deepseek-v4-flash-free pensiun.
+  Enforcement runtime sudah ke keluarga baru. STATE diupdate setelah fence turun.

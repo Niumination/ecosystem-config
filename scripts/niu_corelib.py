@@ -17,8 +17,8 @@ WIB = timezone(timedelta(hours=7))
 
 DEFAULT_NIU = "/Users/zaryu/Desktop/Niumination"
 ALLOWED_MODELS = (
-    "big-pickle",
-    "deepseek-v4-flash-free",
+    "nemotron-3-ultra-free",
+    "hy3-free",
 )
 ALLOWED_PROVIDER = "opencode-zen"
 
@@ -315,7 +315,7 @@ def write_handoff(
         f"done: UNKNOWN\n"
         f"not_done: UNKNOWN\n"
         f"do_not_repeat: jangan lanjut tugas seolah model tidak berganti\n"
-        f"next_human_or_same_family: tunggu zaryu atau big-pickle / deepseek-v4-flash-free setelah fence turun\n"
+        f"next_human_or_same_family: tunggu zaryu atau nemotron-3-ultra-free / hy3-free setelah fence turun\n"
         f"```\n\n"
         f"{extra}\n"
     )
@@ -377,7 +377,7 @@ def decide_pre_tool(tool_name: str, tool_input: Any, model: str | None = None) -
             "action": "block",
             "message": (
                 "NIU-FENCE: model ini bukan otak yang diizinkan "
-                "(hanya opencode-zen/big-pickle atau deepseek-v4-flash-free). "
+                "(hanya opencode-zen/nemotron-3-ultra-free atau hy3-free). "
                 "Jangan mutasi file. Tulis HANDOFF jika belum, tunggu manusia."
             ),
         }
@@ -432,7 +432,7 @@ def pre_llm_context(session_id: str, model: str | None, is_first_turn: bool) -> 
         set_fence("foreign_model", str(prev or "unknown"), mid)
         bits.append(
             "[NIU] Kamu BUKAN otak yang diizinkan. "
-            "Hanya opencode-zen/big-pickle dan opencode-zen/deepseek-v4-flash-free. "
+            "Hanya opencode-zen/nemotron-3-ultra-free dan opencode-zen/hy3-free. "
             "Jangan menulis file. Baca core/runtime/HANDOFF.md. Tunggu manusia."
         )
     elif switched:
@@ -459,7 +459,7 @@ def pre_llm_context(session_id: str, model: str | None, is_first_turn: bool) -> 
     if is_first_turn:
         bits.append(
             "[NIU] Hukum: core/CONSTITUTION.md. Scope: core/SCOPE.md. "
-            "Otak: big-pickle | deepseek-v4-flash-free. Chat bukan arsip."
+            "Otak: nemotron-3-ultra-free | hy3-free. Chat bukan arsip."
         )
 
     # keep tiny — weak models drown

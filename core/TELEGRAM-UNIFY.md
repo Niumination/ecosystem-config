@@ -1,6 +1,6 @@
 # Satukan thread Telegram ke keluarga Zen
 
-Snapshot 18:45 WIB — **ini mesin cacat**, bukan fitur:
+Snapshot 2026-08-21 — keluarga baru setelah suksesi otak (D-0002): **ini mesin cacat**, bukan fitur:
 
 | Thread | Model sekarang | Provider | Masalah |
 |---|---|---|---|
@@ -14,19 +14,19 @@ Lima kepribadian lemah + auto-switch = dokumentasi hilang dan core premature.
 
 ## Yang harus terjadi
 
-Semua thread: `opencode-zen` / `big-pickle`.
-Cadangan sadar (manual `/model`, bukan silent hop): `opencode-zen` / `deepseek-v4-flash-free`.
+Semua thread: `opencode-zen` / `nemotron-3-ultra-free`.
+Cadangan sadar (manual `/model`, bukan silent hop): `opencode-zen` / `hy3-free`.
 
 Di tiap thread Telegram:
 
 ```
-/model opencode-zen:big-pickle
+/model opencode-zen:nemotron-3-ultra-free
 ```
 
 Jika limit:
 
 ```
-/model opencode-zen:deepseek-v4-flash-free
+/model opencode-zen:hy3-free
 ```
 
 Lalu **pesan baru**, bukan “lanjutkan saja”. Baca `core/runtime/HANDOFF.md`.

@@ -1,0 +1,18 @@
+id: D-0002
+ts: 2026-08-21
+status: sealed          # draft | sealed — disahkan zaryu via permintaan suksesi otak 2026-08-21
+title: Suksesi otak: big-pickle/deepseek-v4-flash-free -> nemotron-3-ultra-free/hy3-free
+decided_by: zaryu      # manusia mengesahkan. agen hanya boleh draft.
+applies_to: core
+one_sentence: >
+  Otak utama ekosistem berganti dari opencode-zen/big-pickle dan
+  opencode-zen/deepseek-v4-flash-free menjadi opencode-zen/nemotron-3-ultra-free
+  (primary) dan opencode-zen/hy3-free (alternate), menggantikan D-0001.
+why: >
+  Konstitusi v2.0 (2026-08-18) sudah menetapkan keluarga baru sebagai satu-satunya
+  otak. MODEL.policy, AGENTS, enforcement runtime, cron, dan fallback disinkronkan
+  ke keluarga baru; model lama tidak lagi diizinkan berpikir di core.
+not_doing: >
+  Fallback lintas keluarga. Multi-agen. Menjadikan website sebagai inti.
+  Silent hop ke model lama.
+review_after: 2026-09-21

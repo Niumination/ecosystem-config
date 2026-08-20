@@ -2,24 +2,29 @@
 # Hanya manusia zaryu yang boleh mengubah file ini.
 # Agen yang bukan keluarga di bawah = bukan otak.
 
-schema: niu-model-policy/v1
-updated: 2026-08-18
+schema: niu-model-policy/v2
+updated: 2026-08-21
 
 family: opencode-zen-free
 provider: opencode-zen
 base_url: https://opencode.ai/zen/v1
 
 allowed:
-  - id: opencode-zen/big-pickle
+  - id: opencode-zen/nemotron-3-ultra-free
     provider: opencode-zen
-    model: big-pickle
+    model: nemotron-3-ultra-free
     role: primary
-    notes: free tier Zen; kuota habis sering 429
-  - id: opencode-zen/deepseek-v4-flash-free
+    notes: free tier Zen; ID di opencode: opencode/nemotron-3-ultra-free
+  - id: opencode-zen/hy3-free
     provider: opencode-zen
-    model: deepseek-v4-flash-free
+    model: hy3-free
     role: same-family-alternate
-    notes: free tier Zen; context efektif sering 200K (bukan 1M)
+    notes: free tier Zen; ID di opencode: opencode/hy3-free
+
+# Model lama sudah pensiun — bukan otak lagi
+retired:
+  - opencode-zen/big-pickle
+  - opencode-zen/deepseek-v4-flash-free
 
 # Boleh disebut di config sebagai infrastruktur — JANGAN jadi pemikir sesi core
 infrastructure_not_thinker:
@@ -38,17 +43,21 @@ forbidden_thinkers:
   - 9router/cf/@cf/zai-org
   - huancheng/DeepSeek-V4-Flash
   - agentrouter/*
+  - tencent/hy3:free
+  - opencode-zen/big-pickle
+  - opencode-zen/deepseek-v4-flash-free
 
 on_rate_limit:
   action: same-family-or-halt
   same_family_fallback:
     - provider: opencode-zen
-      model: deepseek-v4-flash-free
+      model: hy3-free
   after_switch: fence_core_writes
   never:
     - hop to 9router
     - hop to juan-router
     - hop to huancheng
+    - hop to model pensiun (big-pickle / deepseek-v4-flash-free)
     - continue the same mutating task silently
 
 on_foreign_model_detected:
@@ -57,14 +66,14 @@ on_foreign_model_detected:
   inject: "Kamu bukan otak yang diizinkan. Baca core/runtime/HANDOFF.md. Jangan tulis file."
 
 telegram:
-  # Snapshot 18:45 — 5 thread di 9router = mesin cacat. Satukan.
-  unify_to: opencode-zen/big-pickle
-  alternate: opencode-zen/deepseek-v4-flash-free
+  # Snapshot 2026-08-21 — keluarga baru setelah suksesi otak (D-0002).
+  unify_to: opencode-zen/nemotron-3-ultra-free
+  alternate: opencode-zen/hy3-free
   threads: ["1", "802", "803", "804", "1172"]
 
 cron:
   pin_provider: opencode-zen
-  pin_model: big-pickle
+  pin_model: nemotron-3-ultra-free
   drift_guard: true
   agent_jobs_allowed:
     - Pemdi-Learning-Reminder   # satelit, terpin, jangan diperluas
@@ -72,6 +81,6 @@ cron:
 
 compression:
   provider: opencode-zen
-  model: deepseek-v4-flash-free
+  model: hy3-free
   threshold: 0.50
   # Jangan pakai 9router/gratislonggar untuk merangkum memori core

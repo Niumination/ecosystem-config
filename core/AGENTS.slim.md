@@ -16,7 +16,7 @@ Baca `~/.hermes/SOUL.md` + 12 hukum. Jangan memuat folder `agents/characters/`.
 
 ## Otak yang diizinkan
 
-`opencode-zen/big-pickle` · `opencode-zen/deepseek-v4-flash-free`
+`opencode-zen/nemotron-3-ultra-free` · `opencode-zen/hy3-free`
 Selain itu: berhenti, tulis `core/runtime/HANDOFF.md`, jangan mutasi.
 
 ## Jika ganti model

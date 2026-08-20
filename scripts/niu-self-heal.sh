@@ -85,12 +85,12 @@ heal_cron_pin() {
     log "hermes tidak di PATH — tidak bisa pin $JOB"
     return 0
   fi
-  if hermes cron edit "$JOB" --provider opencode-zen --model big-pickle; then
-    log "pinned $JOB opencode-zen/big-pickle"
+  if hermes cron edit "$JOB" --provider opencode-zen --model nemotron-3-ultra-free; then
+    log "pinned $JOB opencode-zen/nemotron-3-ultra-free"
   else
     log "gagal pin $JOB — lakukan manual"
   fi
-  hermes config set cron.model big-pickle >/dev/null 2>&1 || true
+  hermes config set cron.model nemotron-3-ultra-free >/dev/null 2>&1 || true
   hermes config set cron.model_provider opencode-zen >/dev/null 2>&1 || true
 }
 
