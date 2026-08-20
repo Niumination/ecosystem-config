@@ -25,8 +25,8 @@ Yang belum = beberapa halaman masih tipis/kosong data visual, dan satu blocker e
 | **SKILL BANK** | 1.5K-19K chars | rows berubah (fetch async) | 🟡 Async — setelah refresh berisi |
 | **SWARM** | 1.2K chars | 19 node/agent elemen | 🟡 Layout ada, data tipis |
 | **STORAGE** | 1.2K chars | 8 elemen (disk/usb/wal) | 🟡 Ringkas |
-| **TELEGRAM** | 1.4K chars | **0 message elemen** | ❌ KOSONG — feed tidak render |
-| **COST** | 1.2K chars | **0 cost/token values** | ❌ KOSONG — tidak terisi |
+| **TELEGRAM** | 9 pesan ter-render | ✅ TERISI (parser chat_id dari env) |
+| **COST** | KPI + 12 agent + 12 model | ✅ TERISI (fallback state.db + loadCostData baru) |
 | **SYSTEM** | 957 chars | 5 input/select | 🟡 Form ada, data tipis |
 | **DEPLOY** | 636 chars | 5 tombol/status | ❌ TIPIS |
 | **SKILL MARKET** | 994 chars | minimal | 🟡 Ringkas |
