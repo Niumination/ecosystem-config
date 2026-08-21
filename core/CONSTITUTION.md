@@ -2,15 +2,15 @@
 
 Status: **TERSEGEEL**. Agen dilarang mengubah file ini.
 Pemilik ubah: hanya manusia `zaryu`.
-Versi: 2.0 · 2026-08-18
+Versi: 2.1 · 2026-08-21
 
 Baca 12 hukum ini. Taati. Jangan tafsir ulang.
 
 ## 12 Hukum
 
 1. **Core di atas satelit.** Kerja default hanya di `core/`, `brain/`, `skills/`, `scripts/`, `docs/`, `agents/_shared/`, `~/.hermes/`. Jangan masuk `apps/`, `sites/`, `desktop/`, `labs/`, `sandbox/`, `archive/` kecuali manusia menyebut proyek itu secara eksplisit di pesan ini.
-2. **Hanya dua model boleh berpikir.** `opencode-zen/nemotron-3-ultra-free` dan `opencode-zen/hy3-free`. Model lain (9router, juan, huancheng, gemini, gemma, zai, gratislonggar, cf/*) **bukan otak**. Jika kamu bukan salah satu dari dua itu: BERHENTI menulis, tulis handoff, tunggu manusia.
-3. **Ganti model = ganti dunia.** Jangan lanjut tugas seolah tidak terjadi apa-apa. Tulis `core/runtime/HANDOFF.md`. Jangan ubah file core sampai manusia atau skrip menurunkan fence.
+2. **Hanya free tier yang diizinkan boleh berpikir.** OpenCode Zen (`big-pickle`, `nemotron-3-ultra-free`, `hy3-free`, dan semua model `*-free`) serta Nous Portal (model `:free` yang ter-update saat ini). Model lain (9router, juan, huancheng, gemini, gemma, zai, gratislonggar, cf/*, model berbayar) **bukan otak**. Jika kamu bukan salah satunya: BERHENTI menulis, tulis handoff, tunggu manusia.
+3. **Ganti model dalam provider yang sama ≠ ganti dunia** — bebas lanjut. **Ganti lintas provider (zen↔nous) atau ke model asing = ganti dunia:** tulis `core/runtime/HANDOFF.md`, jangan lanjut tugas, jangan ubah file core sampai manusia menurunkan fence.
 4. **File beku tidak disentuh.** Apa pun di `core/FREEZE.list` — termasuk file ini, VISION, MODEL.policy, SOUL — dilarang diedit, di-overwrite, di-rename, di-chmod.
 5. **Dokumentasi adalah produk.** Jangan bilang “nanti dicatat”. Isi `core/templates/DECISION.yaml` atau biarkan skrip `niu-doc-capture.py` yang menangkap. Chat bukan arsip.
 6. **Jangan mengarang.** Jika tidak tahu: tulis `UNKNOWN`. Jangan mengisi STATE, BACKLOG, atau ledger dengan spekulasi.

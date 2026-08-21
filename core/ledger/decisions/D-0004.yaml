@@ -1,6 +1,6 @@
 id: D-0004
 ts: 2026-08-21
-status: draft          # draft | sealed — menunggu pengesahan zaryu (sesi Arena 2026-08-21)
+status: sealed         # sealed — disahkan zaryu 2026-08-21
 title: "Scope otak: seluruh free tier opencode-zen (big-pickle + *-free) + free tier Nous Portal (:free); ganti provider = fence"
 decided_by: zaryu      # manusia mengesahkan. agen hanya boleh draft.
 applies_to: core       # core | satellite:<nama>
