@@ -10,10 +10,12 @@ root: /Users/zaryu/Desktop/Niumination
 model:
   active: opencode-zen/nemotron-3-ultra-free
   allowed:
+    - opencode-zen/big-pickle
     - opencode-zen/nemotron-3-ultra-free
-    - opencode-zen/nemotron-3.5-lightning-free
     - opencode-zen/hy3-free
-    - opencode-zen/mimo-v2.5-free
+    # prinsip D-0004 (bukan daftar statis):
+    #   + semua model free tier opencode-zen (akhiran *-free)
+    #   + semua model free tier Nous Portal (akhiran :free, OAuth2 Hermes)
   last_switch: 2026-08-21
   fence: false
   fence_reason: null
@@ -39,12 +41,13 @@ health:
   telegram_threads: unify-ke-nemotron-3-ultra-free
 
 unknowns:
-  - status kuota keluarga Zen (nemotron-3-ultra-free / lightning / hy3-free / mimo) di free tier
+  - daftar live model free tier Nous Portal (model_catalog.json -> providers.nous) belum diverifikasi
 
 notes: >
-  Suksesi otak 2026-08-21 (D-0002): big-pickle + deepseek-v4-flash-free pensiun.
-  Enforcement runtime sudah ke keluarga baru. STATE diupdate setelah fence turun.
-  D-0003 (draft, 2026-08-21): switch sesama keluarga tanpa fence + allowlist
-  diperluas ke 4 model Zen (nemotron-3-ultra-free, nemotron-3.5-lightning-free,
-  hy3-free, mimo-v2.5-free). File ter-segel (CONSTITUTION/MODEL.policy/AGENTS.slim)
-  menunggu pengesahan zaryu — lihat docs/reports/amandemen-otoritas-model-2026-08-21.md.
+  D-0002 (suksesi) direvisi D-0004 (draft, 2026-08-21): big-pickle dipulihkan;
+  scope otak = free tier opencode-zen (big-pickle + *-free) + free tier Nous Portal
+  (:free, OAuth2 Hermes). Switch sesama provider = bebas lanjut tanpa fence;
+  lintas provider (zen↔nous) atau model asing = fence + HANDOFF. Rem anti-waste
+  (on_rate_limit.after_switch=fence_core_writes) TETAP. File ter-segel
+  (CONSTITUTION/MODEL.policy/AGENTS.slim/VISION) menunggu pengesahan zaryu —
+  lihat docs/reports/amandemen-otoritas-model-2026-08-21.md.

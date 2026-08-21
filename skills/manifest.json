@@ -1,6 +1,6 @@
 {
   "fileCount": 348,
-  "generatedAt": "2026-08-21T04:48:33.862350+00:00",
+  "generatedAt": "2026-08-21T05:03:13.096695+00:00",
   "skillCount": 68,
   "skills": {
     "accessibility": {
@@ -82,21 +82,21 @@
       }
     },
     "ecosystem-snapshot": {
-      "bundleHash": "9914f68a0323e7bb0b72dc7f7673ee99fb26b67474ebb1b2a247ee79952326ab",
+      "bundleHash": "c285942facef3da08b76183883e3e1ced48f7a3b528abb659bd88a83e3b61523",
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "c7d716db6a7dc7a217a19cdca5a242f1f02d31a5143d7c1a6409cd03a20bd37b",
         "references/anomaly-audit-playbook.md": "a7f2982868df46e5c4adbd6f632a02144e17bc761c8c9948192ea03399c1ae15",
         "references/mass-repo-sync.md": "fa81d3fbcf10cc86ecd99d6f0c65a38f4b1b3988b6cafe3a363a9595d69159eb",
-        "references/niumination-core-v2.md": "d15206dc4e558e18bff50049bdb908411bc72ba2c20bc84dffaa633462178309",
+        "references/niumination-core-v2.md": "99073530fb00fe93f2ee9716559e5efbd2a8716be4b004dcf74165362de8ee26",
         "references/snapshot-template.md": "e4ee1fdf47b9562834a0f019ab1b4f03b77d173fd1864e01f3f3f716fb8e3297"
       }
     },
     "ecosystem-tool-adoption": {
-      "bundleHash": "c687839aec8a36ee0e119192bf1d39b2359302d2cb01bb58ff6f3a9ea749ca7d",
+      "bundleHash": "4b075c4671a6a2411d678e532ccabc46a50f6e55a3eb2a907abf2df3b749a76f",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "c36910ae8e65890b5cebf4ea00dd5ba5d194abd97b5f916f846b9a26c0f3c08a"
+        "SKILL.md": "6b0641ecb902c3b06e8c87856def96972b08739f3d90b7e2f75c06c36387284f"
       }
     },
     "ekosistem-content-verification": {
@@ -182,10 +182,10 @@
       }
     },
     "hermes-provider-config": {
-      "bundleHash": "926dd2462760118bfb9cff0eb7f2e1d291c392ca9adb7ba669f5eece55f115c3",
+      "bundleHash": "5a8c55156bf93454611d45d116fee137c694ef90be66a19b893408a956da3714",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "acfdfc03fcb2d351e50f9151e3a0dec32a9faf82b8a810f787e69fe0b7b18917",
+        "SKILL.md": "16ac25743ad3a101bad36a0167ace97d33f10cd60c30e66b160fa56e2d45fe06",
         "references/9router-gateway-admin.md": "d4b718f0ad1b63419c2248d0d4d3105a441065dbcd57915cc1ee3a69c8d1bac5",
         "references/juan-router-integration.md": "737c490e199201370c75d62c2f51693f5242b41ea79228fe49636e2a7df64b42",
         "references/model-catalog-structure.md": "ba5b28126411702689a793b6e4cea6433ac3841e2e0c37580d7041ec936d1f4d",
@@ -405,18 +405,18 @@
       }
     },
     "niu-core-governance": {
-      "bundleHash": "b029e5add9b870cd6a3c11da137822336d86d16c6b8cc33216ee7249db2742fa",
+      "bundleHash": "932ffd65f1a997b366adef736615aa4972edb3d17d70f9ad1262e31a96830505",
       "domain": "governance",
       "files": {
-        "SKILL.md": "39997cf992bc0bb422dd50edc690062f3914145f5fb570f37fe5541514f3781c",
+        "SKILL.md": "eecc6c841c20759da89f8b8d08348517cba3f0183829229613bfd7cb3dc4ff55",
         "references/f5-cleanup-2026-08-20.md": "6524d3dbbd7c34e21654a3f36d17a3091a5daedaf969ebaf9db7c4624edcf8e9"
       }
     },
     "niu-mission-control-ops": {
-      "bundleHash": "c2eb1051da85679cc513aebf183ac8bc961051d20a42c49d060769c3e4173cee",
+      "bundleHash": "744291782d2b6679a99cfe00fcec01f20879659024db88a6c7a39f0c1b107e59",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "0e157036f6386e9a7614d746a7f004d85a18faf36f5c7a6afa69a4c73940f0eb",
+        "SKILL.md": "6a32b396cfb68251d4a74cf089690415af4717be6c6c4ac893ab3c8dfce29cbc",
         "references/cost-telegram-p1-fix-2026-08-20.md": "7246d5172061c6f712729a8d8212e69f18887d89d7f4502498cacf9c61853719",
         "references/deploy-p2-fix-2026-08-20.md": "fda37d07e7b1b1d95ff9969cab5cce762c6a8d502aee485c12728beccb07766d",
         "references/quick-wins-cleanup-2026-08-20.md": "bc7dd27983ac5e2581ef2e25d6353a9bf390a6b5f25da7aaf2cb11919a3912b1"
@@ -528,10 +528,10 @@
       }
     },
     "provider-fallback": {
-      "bundleHash": "6fcc84dfbe693753f5967f92a0139963c795f203d58cafa2de3b780c8cad06c9",
+      "bundleHash": "d2521b4adbff9c48b70611d910d1fe88927f6c9eb959e358ea80ef1e940cac55",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "69e238e8a3e475086a52328805005afd8853b44b87415bcc7febe86a1603d049",
+        "SKILL.md": "4d7a284ed40b530fffce931395771230b4f8070bb602c5244993be9a8fc9800e",
         "references/agentrouter-investigation-2026-08-13.md": "c78730422f289626372e7574c9b2b17ab068fb4d102130c8c14ffaf4cf2742a1",
         "references/fallback-chain-selection-2026-08-13.md": "f2bb06698c54e87daacd02524fedb6224223c0daf2160fa2dc74518e5e27e8fb",
         "references/openrouter-free-tier.md": "82c0abfadaf673ff48a0f80db515005fe4ff3c123811a34f59f4cb1cebf9daaf",

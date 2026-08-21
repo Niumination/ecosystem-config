@@ -251,7 +251,7 @@ Probe curl ad-hoc ke `opencode.ai/zen/v1` dengan `OPENCODE_ZEN_API_KEY` dari `.e
 
 - `hy3-free` (3.6s), `laguna-s-2.1-free` (3.6s), `nemotron-3-ultra-free` (17s)
 - 9router `gemini/gemini-3.7-flash` = tercepat 1.1s; `gratislonggar` resolve ke gemini-3.6 (⚠️ responsnya **SSE stream** — test non-streaming salah-parse)
-- Fallback resmi (D-0002/D-0003): **keluarga `opencode-zen`** — `nemotron-3-ultra-free` (primary), fallback se-keluarga `hy3-free` / `nemotron-3.5-lightning-free`; buang zoo (juan/9router/huancheng) dari chain. Prinsip core: ganti KELUARGA model = HALT + HANDOFF, bukan silent hop. Sesama keluarga = bebas lanjut.
+- Fallback resmi (D-0004): free tier `opencode-zen` (`big-pickle` / `nemotron-3-ultra-free` primary, fallback se-provider `hy3-free` / `*-free` lain) + free tier Nous Portal (`:free`); buang zoo (juan/9router/huancheng) dari chain. Prinsip core: ganti lintas PROVIDER (zen↔nous) atau model asing = HALT + HANDOFF, bukan silent hop. Sesama provider = bebas lanjut.
 
 ## Notes
 

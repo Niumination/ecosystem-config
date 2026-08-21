@@ -5,6 +5,8 @@
 > **Sifat:** audit + rekomendasi. File ter-segel (`CONSTITUTION.md`, `MODEL.policy.yaml`, dst.) **hanya diubah atas keputusan `zaryu`** — dokumen ini tidak memutasinya.
 
 > **✅ Pembaruan eksekusi (sama hari, arahan zaryu — Opsi B + perbaikan stale):** runtime `niu_corelib.py` dilonggarkan (switch sesama keluarga tanpa fence; allowlist 4 model), `STATE.yaml`/`AGENTS.md`/`TELEGRAM-UNIFY.md`/`INCIDENT.md`/`PATHS.md` diperbarui, draft keputusan **D-0003** dibuat, test diperbarui (21 cek lulus). **File ter-segel TIDAK disentuh** — amandemen siap-pakai ada di `docs/reports/amandemen-otoritas-model-2026-08-21.md` untuk Anda seal.
+>
+> **🔁 Revisi lanjutan (sama hari):** scope diperluas lagi oleh zaryu → **D-0004** (draft): otak = free tier `opencode-zen` (`big-pickle` dipulihkan + semua `*-free`) + free tier **Nous Portal** (`:free`, OAuth2 Hermes). Runtime & dokumen non-beku sudah sinkron; amandemen doc ditulis ulang ke D-0004. Rem anti-waste (rate-limit) tetap.
 
 ---
 

@@ -23,7 +23,7 @@ Sistem hukum + pagar + ledger yang dipasang dari paket `niumination-rebuild-v2` 
 ├── core/
 │   ├── CONSTITUTION.md      ← 12 hukum (tersegel)
 │   ├── VISION.md            ← tujuan (tersegel)
-│   ├── MODEL.policy.yaml    ← keluarga opencode-zen: nemotron-3-ultra-free (utama) + lightning/hy3/mimo (tersegel)
+│   ├── MODEL.policy.yaml    ← free tier opencode-zen (big-pickle + *-free) + free tier Nous Portal (:free) (tersegel)
 │   ├── SCOPE.md             ← core vs satelit; agen buta satelit sampai disebut (tersegel)
 │   ├── FREEZE.list          ← path yang dilarang disentuh (tersegel)
 │   ├── AGENTS.slim.md       ← template AGENTS.md slim ≤ 2 KB (tersegel)
@@ -44,17 +44,17 @@ Sistem hukum + pagar + ledger yang dipasang dari paket `niumination-rebuild-v2` 
 
 ## Kebijakan Model (MODEL.policy.yaml — inti anti-zoo)
 
-- **Hanya keluarga `opencode-zen` boleh berpikir:** `nemotron-3-ultra-free` (primary) + `nemotron-3.5-lightning-free` / `hy3-free` / `mimo-v2.5-free` (alternate se-keluarga). Daftar sah = `core/MODEL.policy.yaml` (D-0002 sealed → nemotron+hy3; D-0003 draft → 4 model + bebas switch sesama keluarga). Fallback chain config:
+- **Otak yang diizinkan (D-0004):** (1) free tier `opencode-zen` — `big-pickle`, `nemotron-3-ultra-free`, `hy3-free`, + semua model `*-free`; (2) free tier **Nous Portal** (OAuth2 Hermes, id `nous`) — semua model `:free` yang ter-update saat ini (cek live: `model_catalog.json` → `providers.nous`). Fallback chain config (zen):
   ```yaml
   fallback_providers:
     - provider: opencode-zen
-      model: nemotron-3.5-lightning-free
+      model: nemotron-3-ultra-free
     - provider: opencode-zen
       model: hy3-free
   ```
 - **9router / juan-router / huancheng / gemini = PIPA ATAU INFRASTRUKTUR, bukan otak.** Boleh dipakai untuk probe, health check, canary — TIDAK untuk berpikir/menyelesaikan tugas.
-- Model asing (di luar keluarga Zen) → fence aktif + HANDOFF, bukan lanjut diam-diam. Sesama keluarga (switch DISENGAJA) → bebas lanjut, tanpa fence.
-- **Anti-waste (429):** semua model `*-free` berbagi **1 kuota harian**. Saat kuota habis, SEMUA free balas 429 serentak → hopping antar free TIDAK menambah kuota, hanya bakar request. Aturan: retry ≤1 dengan backoff, masih 429 → **HALT + HANDOFF** (`on_rate_limit.after_switch: fence_core_writes` TETAP, tidak dilonggarkan D-0003).
+- Model asing (di luar 2 provider di atas) → fence aktif + HANDOFF, bukan lanjut diam-diam. Sesama provider (zen↔zen / nous↔nous, switch DISENGAJA) → bebas lanjut, tanpa fence. Lintas provider (zen↔nous) → fence + HANDOFF.
+- **Anti-waste (429):** semua model free di **satu** provider berbagi **1 kuota harian**. Saat kuota habis, SEMUA free balas 429 serentak → hopping antar free TIDAK menambah kuota, hanya bakar request. Aturan: retry ≤1 dengan backoff, masih 429 → **HALT + HANDOFF** (`on_rate_limit.after_switch: fence_core_writes` TETAP).
 - ⚠️ **KOREKSI 19 Ags 2026 (user):** jangan klaim model primary "kuota habis/mati" dari probe eksternal — gateway runtime memakai key/base_url/header yang mungkin BEDA dari probe curl. Verifikasi cara gateway memanggil model sebelum vonis.
 
 ## Fence & Handoff (mekanisme ganti model)

@@ -1,6 +1,6 @@
 id: D-0003
 ts: 2026-08-21
-status: draft          # draft | sealed — menunggu pengesahan zaryu (sesi Arena 2026-08-21)
+status: draft          # draft | superseded_by D-0004 (scope allowlist diperluas) — tidak pernah di-seal
 title: "Longgarkan otoritas model: switch sesama keluarga yang DISENGAJA tanpa fence + perluas allowlist Zen free (2 → 4 model); rem rate-limit TETAP"
 decided_by: zaryu      # manusia mengesahkan. agen hanya boleh draft.
 applies_to: core       # core | satellite:<nama>

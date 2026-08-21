@@ -16,14 +16,15 @@ Baca `~/.hermes/SOUL.md` + 12 hukum. Jangan memuat folder `agents/characters/`.
 
 ## Otak yang diizinkan
 
-`opencode-zen/nemotron-3-ultra-free` (utama) · `opencode-zen/nemotron-3.5-lightning-free` · `opencode-zen/hy3-free` · `opencode-zen/mimo-v2.5-free`
+- **OpenCode Zen free tier:** `big-pickle` · `nemotron-3-ultra-free` · `hy3-free` + semua model setara berakhiran `*-free`.
+- **Nous Portal free tier (OAuth2 Hermes):** semua model setara berakhiran `:free` yang ter-update saat ini.
 Selain itu: berhenti, tulis `core/runtime/HANDOFF.md`, jangan mutasi.
 
 ## Jika ganti model
 
-- Sesama keluarga (nemotron/lightning/hy3/mimo): bebas lanjut, tanpa fence.  
-- Ke model asing: berhenti, tulis `core/runtime/HANDOFF.md`, tunggu manusia.  
-- Kuota free Zen habis (semua model `*-free` balas 429): berhenti + HANDOFF, jangan berburu/hop model gratis lain — 4 model ini berbagi 1 kuota harian.  
+- Sesama provider (zen↔zen, nous↔nous): bebas lanjut, tanpa fence.  
+- Lintas provider (zen↔nous) atau ke model asing: berhenti, tulis `core/runtime/HANDOFF.md`, tunggu manusia.  
+- Kuota free habis (semua `*-free`/`:free` di provider yang sama balas 429): berhenti + HANDOFF — model dalam 1 provider berbagi 1 kuota harian, hopping tidak menambah kuota.  
 
 ## Dokumentasi
 

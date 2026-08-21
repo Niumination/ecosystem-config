@@ -16,17 +16,25 @@ from typing import Any, Iterable
 WIB = timezone(timedelta(hours=7))
 
 DEFAULT_NIU = "/Users/zaryu/Desktop/Niumination"
-ALLOWED_MODELS = (
-    "nemotron-3-ultra-free",
-    "hy3-free",
-    "nemotron-3.5-lightning-free",
-    "mimo-v2.5-free",
-)
-ALLOWED_PROVIDER = "opencode-zen"
+
+# ── Kebijakan model (D-0004): PRINSIP, bukan daftar statis (self-update) ─────
+# Otak yang diizinkan berpikir di core:
+#   1. opencode-zen FREE TIER — model "big-pickle" ATAU nama berakhiran "-free"
+#      (nemotron-3-ultra-free, hy3-free, nemotron-3.5-lightning-free,
+#       mimo-v2.5-free, laguna-s-2.1-free, deepseek-v4-flash-free, dst.)
+#   2. Nous Portal FREE TIER — model berakhiran ":free" (OAuth2 Hermes, id "nous";
+#      contoh: stepfun/step-3.7-flash:free, upstage/solar-pro4:free)
+# Provider asing (9router/juan/huancheng/agentrouter) TETAP foreign walau nama model sama.
+# Catatan anti-waste: semua model *-free di satu provider BERBAGI kuota harian.
+ZEN_FREE_EXACT = {"big-pickle"}
+ZEN_FREE_SUFFIX = "-free"
+NOUS_FREE_SUFFIX = ":free"
+FOREIGN_PROVIDER_HINTS = ("9router", "juan", "huancheng", "agentrouter")
+
 # Teks tampilan untuk pesan enforcement (satu sumber, hindari drift antar string)
 ALLOWED_MODELS_TEXT = (
-    "opencode-zen/nemotron-3-ultra-free · opencode-zen/nemotron-3.5-lightning-free · "
-    "opencode-zen/hy3-free · opencode-zen/mimo-v2.5-free"
+    "opencode-zen free tier (big-pickle + model *-free) · "
+    "Nous Portal free tier (model :free)"
 )
 
 WRITE_TOOLS = {
@@ -233,21 +241,66 @@ def extract_command(tool_input: Any) -> str:
     return ""
 
 
+def _model_name(model: str) -> str:
+    return model.strip().lower().split("/")[-1]
+
+
+def _provider_hint(model: str) -> str | None:
+    """'foreign' | 'opencode-zen' | 'nous' | None (nama model polos)."""
+    low = model.lower()
+    if any(h in low for h in FOREIGN_PROVIDER_HINTS):
+        return "foreign"
+    if "opencode-zen" in low or low.startswith("zen/") or low.startswith("zen:"):
+        return "opencode-zen"
+    if "nous" in low:
+        return "nous"
+    return None
+
+
+def _is_zen_free(name: str) -> bool:
+    return name in ZEN_FREE_EXACT or name.endswith(ZEN_FREE_SUFFIX)
+
+
+def _is_nous_free(name: str) -> bool:
+    return name.endswith(NOUS_FREE_SUFFIX)
+
+
 def classify_model(model: str | None) -> str:
-    """allowed | same-family handled by caller | foreign | unknown"""
+    """allowed | foreign | unknown (semua otak yang diizinkan = 'allowed')."""
     if not model:
         return "unknown"
-    m = model.lower().strip()
-    # normalize provider/model
-    name = m.split("/")[-1]
-    has_zen = "opencode-zen" in m or m.startswith("zen/")
-    if name in ALLOWED_MODELS:
-        # if provider explicitly something else, foreign
-        if "9router" in m or "juan" in m or "huancheng" in m or "agentrouter" in m:
-            return "foreign"
+    m = model.strip()
+    name = _model_name(m)
+    hint = _provider_hint(m)
+    if hint == "foreign":
+        return "foreign"
+    if hint == "opencode-zen":
+        return "allowed" if _is_zen_free(name) else "foreign"
+    if hint == "nous":
+        return "allowed" if _is_nous_free(name) else "foreign"
+    # model polos (tanpa provider): infer dari akhiran
+    if _is_zen_free(name) or _is_nous_free(name):
         return "allowed"
-    if has_zen and name in ALLOWED_MODELS:
-        return "allowed"
+    return "foreign"
+
+
+def family_of(model: str | None) -> str:
+    """'opencode-zen' | 'nous' | 'foreign' | 'unknown' — untuk logika ganti model."""
+    if not model:
+        return "unknown"
+    m = model.strip()
+    name = _model_name(m)
+    hint = _provider_hint(m)
+    if hint == "foreign":
+        return "foreign"
+    if hint == "opencode-zen":
+        return "opencode-zen" if _is_zen_free(name) else "foreign"
+    if hint == "nous":
+        return "nous" if _is_nous_free(name) else "foreign"
+    if _is_zen_free(name):
+        return "opencode-zen"
+    if _is_nous_free(name):
+        return "nous"
     return "foreign"
 
 
@@ -255,9 +308,16 @@ def normalize_model_id(model: str | None) -> str:
     if not model:
         return "unknown"
     m = model.strip()
-    name = m.split("/")[-1]
-    if name in ALLOWED_MODELS:
-        return f"{ALLOWED_PROVIDER}/{name}"
+    name = _model_name(m)
+    hint = _provider_hint(m)
+    if hint == "opencode-zen":
+        return f"opencode-zen/{name}"
+    if hint == "nous":
+        return f"nous/{name}"
+    if _is_zen_free(name):
+        return f"opencode-zen/{name}"
+    if _is_nous_free(name):
+        return f"nous/{name}"
     return m
 
 
@@ -442,20 +502,35 @@ def pre_llm_context(session_id: str, model: str | None, is_first_turn: bool) -> 
         )
     elif switched:
         prev_klass = classify_model(prev)
+        prev_fam = family_of(prev)
+        curr_fam = family_of(mid)
         fence = read_fence()
-        if prev_klass == "allowed" and klass == "allowed":
-            # Sesama keluarga (nemotron/lightning/hy3/mimo): bebas lanjut, tanpa fence.
+        if prev_klass == "allowed" and klass == "allowed" and prev_fam == curr_fam:
+            # Sesama provider free tier (zen↔zen atau nous↔nous): bebas lanjut, tanpa fence.
             bits.append(
-                f"[NIU] Model berganti dalam keluarga {prev} → {mid}. "
+                f"[NIU] Model berganti dalam provider yang sama {prev} → {mid}. "
                 "Tidak ada fence. Lanjutkan sesuai Hukum & Scope. "
-                "Jika ganti karena 429/limit: semua model *-free berbagi 1 kuota harian — "
-                "jika semua balas 429, berhenti + HANDOFF, jangan hop terus."
+                "Jika ganti karena 429/limit: model *-free di provider yang sama "
+                "BERBAGI kuota harian — jika semua balas 429, berhenti + HANDOFF, jangan hop terus."
             )
             if fence.get("active"):
                 bits.append(
                     f"[NIU] Namun fence masih aktif dari kejadian sebelumnya ({fence.get('reason')}). "
                     "Jangan mutasi core sampai manusia menurunkan fence."
                 )
+        elif prev_klass == "allowed" and klass == "allowed":
+            # Lintas provider (zen↔nous): tetap diizinkan, tapi = ganti keluarga → fence.
+            write_handoff(
+                from_model=str(prev),
+                to_model=mid,
+                reason="cross_provider_switch",
+            )
+            set_fence("cross_provider_switch", str(prev), mid)
+            bits.append(
+                f"[NIU] Model berganti lintas provider {prev} → {mid}. "
+                "Fence aktif: jangan mutasi core sampai manusia menurunkan fence. "
+                "Baca core/runtime/HANDOFF.md."
+            )
         else:
             # Kembali ke keluarga dari model asing: fence dari kejadian asing tetap
             # aktif sampai manusia menurunkan. Jangan lanjut mutasi diam-diam.

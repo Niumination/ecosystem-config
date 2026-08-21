@@ -110,10 +110,10 @@ if need_cmd hermes; then
   info "daftar saat ini:"
   hermes fallback ls || true
   echo
-  info "TARGET v2 — SATU kaki, keluarga yang sama:"
-  info "  opencode-zen / hy3-free (atau nemotron-3.5-lightning-free)"
+  info "TARGET — SATU kaki, provider yang sama (free tier):"
+  info "  opencode-zen / big-pickle · nemotron-3-ultra-free · hy3-free (+ Nous Portal :free)"
   info "HAPUS dari chain: juan-router, 9router/*, huancheng, gratislonggar"
-  info "Hop lintas keluarga = merusak core. Sesama keluarga = bebas lanjut."
+  info "Hop lintas provider / model asing = merusak core. Sesama provider = bebas lanjut."
 else
   warn "lewati fallback"
 fi
