@@ -1,5 +1,13 @@
 # Referensi Belum Diterapkan — Tracking 2026-08-21
 
+> ⚠️ **KOREKSI (2026-08-21, pasca audit):** Item #1 "TELEGRAM-UNIFY belum diterapkan"
+> adalah **false-diagnosis** — `up-eco`/`telegram_threads.py` saat itu menghardcode path USB
+> (`/Volumes/HermesAgent`) yang tidak ter-mount, sehingga melaporkan `default/default`.
+> Fakta: `~/.hermes/config.yaml` `channel_overrides` SUDAH benar ke
+> `opencode-zen:nemotron-3-ultra-free` di ke-5 thread (terverifikasi via `hermes config get`
+> + `telegram_threads.py` HERMES_HOME lokal). Lihat `telegram-unify-status-2026-08-21.md`.
+> TELEGRAM-UNIFY **bukan lagi open item**. Sisa open item ada di bawah.
+
 **Sumber:** `docs/references/STATUS-REFERENSI-2026-08-13.md` (stale, perlu refresh) + audit `docs/references/` (148 file) + verifikasi sistem.
 
 ## ✅ SUDAH DITERAPKAN (terverifikasi di sistem)
@@ -9,9 +17,9 @@
 - Agent Reach ✅ · ULTRON ✅
 
 ## 🔴 BELUM DITERAPKAN (open)
-1. **TELEGRAM-UNIFY** — 5 thread TG (1/802/803/804/1172) masih `default/default`.
-   Referensi: `core/TELEGRAM-UNIFY.md` mewajibkan `opencode-zen:nemotron-3-ultra-free`.
-   Aksi: butuh `/model` per-thread di sisi Telegram (bukan filesystem). Status: PENDING user.
+1. ~~**TELEGRAM-UNIFY** — 5 thread TG (1/802/803/804/1172) masih `default/default`.~~
+   ✅ **SUDAH DITERAPKAN** — lihat koreksi di atas & `telegram-unify-status-2026-08-21.md`.
+   (Bukan lagi open item; false-diagnosis tooling yang sudah diperbaiki.)
 2. **OmniRoute** (docs/references) — 📄 HIGH POTENTIAL, PENDING. Blocker: storage Docker 9.2GB.
 3. **Kimi K3 in C** — 📄 reference only. Blocker: checkpoint 1.56TB.
 4. **UniFace** — 📄 reference only. No use case spesifik.

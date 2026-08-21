@@ -39,7 +39,9 @@ health:
   skill_home: 2
   skill_usb: 213
   telegram_threads: unify-ke-nemotron-3-ultra-free
-  ecosystem_repos: 45                 # root + 44 sub-repo (audit 2026-08-21)
+  usb_symlink_remaining: 1            # apps/mac-web-dashboard/hexstrike/venv -> USB python (BROKEN, lihat laporan migrasi)
+  scripts_usb_hardcode: fixed         # telegram_threads/kanban-sync/generate-ecosystem-json env-first, no crash tanpa USB
+  ecosystem_repos: 48                 # root + 47 sub-repo (audit 2026-08-21, 48 total)
   dirty_repos_resolved: 3             # dotfiles, brain, JHermUSB-portable (committed+push 2026-08-21)
   pemdi_pr4: merged                   # 2026-08-21 squash-merge commit 0369891
 
