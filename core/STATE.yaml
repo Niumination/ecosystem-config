@@ -1,8 +1,8 @@
 # STATE — papan tulis mesin. Agen boleh update field yang diizinkan.
 # Jangan mengarang. UNKNOWN lebih baik daripada salah.
 schema: niu-core-state/v1
-updated: 2026-08-21T12:30:00+07:00
-updated_by: zaryu (seal D-0004)
+updated: 2026-08-21T14:00:00+07:00
+updated_by: zaryu (Wave 1 doc sync + triage)
 
 operator: zaryu
 root: /Users/zaryu/Desktop/Niumination
@@ -55,3 +55,4 @@ notes: >-
   Mac: macOS 26.5, ReduceMotion=ON.
   2026-08-21 triage: Nous Portal :free TERVERIFIKASI 6 model (model_catalog.json).
   Skill-audit 32 finding = 0 risiko nyata (lihat core/ledger/decisions/skill-audit-triage-2026-08-21.md).
+  2026-08-21 Wave 1: header sync INDEX.md/CRON_SETUP.md/sync-to-agents.sh, STATE unknowns cleared.

@@ -335,7 +335,7 @@ fi
 
 # ── 4. Write log ─────────────────────────────────────────────────────────────
 if ! $DRY_RUN; then
-  echo "[$(date '+%Y-%m-%d %H:%M:%S')] Sync selesai: $SKILL_COUNT skill × 3 target (Jcode/Hermes/USB) + AGENTS.md ✅" >> "$LOG_FILE"
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] Sync selesai: $SKILL_COUNT skill × 2 target (Jcode/Hermes) + AGENTS.md ✅" >> "$LOG_FILE"
   log "✅ Sync selesai — $SKILL_COUNT skill disinkronkan ke Jcode/Hermes/USB"
   
   # Notify mission-control (fire-and-forget, non-blocking)

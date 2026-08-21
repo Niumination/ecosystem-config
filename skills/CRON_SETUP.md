@@ -17,7 +17,7 @@ crontab -e
 Tambahkan baris ini (akan jalan setiap 6 jam):
 
 ```cron
-# Layer 2: Sync skill bank ke Jcode + Hermes + Hermes USB (every 6h)
+# Layer 2: Sync skill bank ke Jcode + Hermes (local) + AGENTS.md (every 6h) — USB backup-only
 0 */6 * * * cd ~/Desktop/Niumination && bash skills/sync-to-agents.sh > /dev/null 2>&1
 ```
 

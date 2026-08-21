@@ -2,10 +2,10 @@
 
 > **Versi:** 4.0.1 (Superpowers Integration — 6 SDLC skills added from obra/superpowers)
 > **Lokasi:** `~/Desktop/Niumination/skills/`
-> **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local + USB) + AGENTS.md (cron every 6h)
+> **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 36 skill tersedia di Hermes catalog (USB: 150+ total, ~/.hermes/: up-to-date)
+> **Hermes Integration:** ✅ Semua 68 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 138 skill)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
 > **Status:** 68 ✅ Aktif
 >
