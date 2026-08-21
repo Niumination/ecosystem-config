@@ -31,20 +31,26 @@ handoff:
 
 health:
   constitution: sealed
-  mission_control_5200: down
-  gateway: running
-  nine_router_20128: live
+  mission_control_5200: up            # venv lokal recreate 2026-08-21 (symlink USB rusak), server.py port 5200 live
+  gateway: running                    # pid 13381 hermes-portable gateway
+  nine_router_20128: live             # HTTP 307
   cron_agent_reach_watch: ok          # re-pinned ke nemotron-3-ultra-free
   skill_bank: 68
   skill_home: 2
   skill_usb: 213
   telegram_threads: unify-ke-nemotron-3-ultra-free
+  ecosystem_repos: 45                 # root + 44 sub-repo (audit 2026-08-21)
+  dirty_repos_resolved: 3             # dotfiles, brain, JHermUSB-portable (committed+push 2026-08-21)
+  pemdi_pr4: merged                   # 2026-08-21 squash-merge commit 0369891
 
 unknowns:
   - daftar live model free tier Nous Portal (model_catalog.json -> providers.nous) belum diverifikasi
 
-notes: >
+notes: >-
   D-0004 SEALED 2026-08-21: big-pickle dipulihkan; scope otak = free tier
   opencode-zen (big-pickle + *-free) + free tier Nous Portal (:free).
   4 file tersegel diupdate (CONSTITUTION v2.1, MODEL.policy, AGENTS.slim, VISION v2.1).
   Rem anti-waste TETAP. Amandemen diterapkan manual zaryu.
+  2026-08-21 up-eco follow-up: root commit 6391be7, Pemdi#4 merged, MC venv recreate+up,
+  skill-audit 32 finding (warning-only, secret=0), 3 dirty repo di-commit.
+  Mac: macOS 26.5, ReduceMotion=ON.

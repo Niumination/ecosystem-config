@@ -54,13 +54,13 @@ Desktop/Niumination/
 
 | Proyek | Status | Deploy | Aktivitas 14 Hari | Notes |
 |--------|:------:|:------:|:------------------:|-------|
-| **PemdiAcehTengah** | 🟢 **Active** | Vercel | **+3 commit** | 57 bukti dukung + preview + 42 file lampiran |
+| **PemdiAcehTengah** | 🟢 **Active** | Vercel | **PR#4 merged 2026-08-21** | Rumus resmi PermenPANRB 8/2026 + matriks kebutuhan bukti L1-L2 (NotebookLM). Masa penilaian mandiri selesai (bukti diupload eval.spbe.go.id) |
 | **Niu-LKH** | ✅ Done | GH Pages | 0 | v3.1.1 — ⚠️ Dirty 1 file |
 | **niu-vermilion** | 🟢 Active | Vercel | 0 | Stable — V1-V5 fixed |
 | **kune-ya.com** | 🟢 Active | Vercel | 0 | Stable — K1-K5 fixed |
 | **niu-dash** | 🟢 Active | GH Pages | **+2 commit** | v2.16.8 — ⚠️ Dirty 3 file |
 | **kopi-aceh-app-android** | ⚪ Sandbox | GitHub | 0 | Rancangan & source app Android Gerobak Kopi Keliling Aceh Tengah — peta gerobak, pesan QRIS, antar/jemput. Repo belum dibuat (butuh gh auth) — remote sementara ke ecosystem-config. |
-| **JHermUSB-portable** | ✅ Done | GitHub | 0 | ⚠️ **Dirty 8 file** — config & docs |
+| **JHermUSB-portable** | ✅ Done | GitHub | **committed 2026-08-21** | 2 file skill sync diedit + commit+push (sebelumnya dirty 8 file per BACKLOG lama — sudah tidak valid) |
 | **mac-web-dashboard** | ✅ Done | GitHub | +1 | v1.0.0 |
 | **arch-web-dashboard** | ✅ Done | GitHub | 0 | v1.0.0 |
 | **ai-file-manager-android** | 🟢 Active | Device | 0 | Published & tested |
@@ -73,10 +73,10 @@ Desktop/Niumination/
 | Proyek | Priority | Status | Aktivitas 14 Hari | Notes |
 |--------|:--------:|:------:|:------------------:|-------|
 | **cc-acehtengah** | **P2 ⬆** | 🟢 **Active** | **+27 commit** 🏆 | Tema Gayo Highlands, Analytics, GIS, AI orchestrator, QueryBar |
-| **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **+33 commit** 🏆 | v2.6.2 — Agent Konten Kreator (topic 1172), ecosystem scanner, config preservasi |
+| **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **+33 commit** 🏆 | v2.6.2 — UP 2026-08-21 (venv lokal recreate, symlink USB rusak). Port 5200 live, health ok |
 | **niu-cast** | P2 | 🟢 **Active** | **+27 commit** | v3.6.0 — Mac Connect Bridge, macOS native install |
 | **Niu-Flow** | P2 | 🟢 **Remote only** | ✅ GitHub | github.com/Niumination/niu-flow |
-| **latticesend** | P3 | 🟢 Active | +1 | P2P file transfer — ⚠️ NO REMOTE |
+| **latticesend** | P3 | 🟢 Active | +1 | P2P file transfer — ✅ sudah punya remote (audit 2026-08-21) |
 | **uacc** | P2 🆕 | 🟢 Active | +new | Universal AI Computer Control — MCP server |
 | **camofox-browser** | P3 🆕 | ⚪ Third-party | 0 | Anti-detection browser (jo-inc/camofox-browser) — dependency browser toolset |
 
@@ -206,11 +206,14 @@ dotfiles/                     1   7.3 MB   Terminal dotfiles
 Total git repos           ~41   18 GB
 ```
 
-### ⚠️ Dirty Repos (3)
+### ⚠️ Dirty Repos (0 — all resolved 2026-08-21)
 
-1. **Production/JHermUSB-portable** — 8 file (config, docs, setup)
-2. **Production/niu-dash** — 3 file (README, ecosystem-status, released.json)
-3. **Production/Niu-LKH** — 1 file (ExcelPreview.jsx)
+Semua repo bersih per audit 2026-08-21 (45 repo discan). 3 repo yang sempat dirty telah di-commit+push:
+1. `dotfiles/zaryu-terminal-dotfiles` — lazy-lock.json
+2. `brain` — ops/ (untracked → committed)
+3. `apps/JHermUSB-portable` — 2 file skill sync
+
+Sebelumnya (BACKLOG Jul 28) mencatat niu-dash/Niu-LKH dirty — sudah tidak valid (verified clean 2026-08-21).
 
 ---
 
@@ -228,7 +231,8 @@ Total git repos           ~41   18 GB
 
 | Komponen | Provider | Model | Status |
 |:---------|:---------|:------|:------:|
-| **Hermes (main)** | opencode-zen | kimi-K2.6 | ✅ **Live** |
+| **Hermes (main)** | opencode-zen | **nemotron-3-ultra-free** (default) / hy3-free / big-pickle | ✅ **Live** (free tier) |
+| **Nous Portal** | OAuth2 Hermes | model `:free` ter-update | ✅ **Live** (login aktif, exp 13:43 WIB) |
 | **Claude Code** | ANTHROPIC_API_KEY | claude-sonnet-4 | ✅ **Live** |
 | **JCode** | OPENCODE_API_KEY | — | ✅ **Live** (billing dead) |
 | **Delegation** | gemini | gemini-2.5-flash | ✅ Off (concurrent=1, depth=0) |
@@ -269,4 +273,18 @@ Ultra, AuditTI-AT, Niu-Flow, didong-code, x-downloader, flame-ade, niu-vermilion
 - ⚠️ **latticesend** — Masih tanpa remote GitHub (perlu dibuatkan repo)
 - 🧪 **Sandbox** — 7 proyek sisa dengan total ~600MB
 
-*Dokumen diverifikasi langsung dari filesystem Jul 28, 2026.*
+---
+
+## 🔴 Perubahan — 21 Aug 2026 — up-eco Follow-up
+
+*Dokumen diverifikasi langsung dari tool output (up-eco.sh, git, gh, ps, curl, skill-audit) 2026-08-21.*
+
+- 🔧 **Mission Control** — `services/niu-mission-control` v2.6.2 **UP** (port 5200, health ok). venv lama rusak (symlink ke `/Volumes/HermesAgent` USB tidak ter-mount) → recreate venv lokal penuh + install requirements.
+- 📦 **Ecosystem audit** — 45 git repos terdeteksi (root + 44 sub). Semua punya remote. 3 dirty repo di-commit+push.
+- 🔀 **PemdiAcehTengah PR#4** — squash-merged 2026-08-21 (commit `0369891`). Rumus PermenPANRB 8/2026 + matriks bukti L1-L2.
+- 🧠 **Skill Bank** — 68 skill (bank pusat), INDEX+manifest sinkron, 0 duplikat. Skill-audit: 32 finding **warning-only** (url=26 contoh dokumentasi domain security, secret=0).
+- 📝 **Root ecosystem** — commit `6391be7` (session-models.json snapshot).
+- 🖥️ **Mac** — macOS 26.5 (build 25F71), ReduceMotion=ON.
+- 📚 **BACKLOG.md** — diperbarui faktual (Pemdi, MC, JHermUSB, latticesend, dirty repos, AI ecosystem model).
+
+*Catatan: file tersegel (CONSTITUTION, SCOPE, MODEL.policy, AGENTS.slim, VISION, FREEZE.list) TIDAK diubah agen — sesuai Law 4 NIU-FENCE aktif.*
