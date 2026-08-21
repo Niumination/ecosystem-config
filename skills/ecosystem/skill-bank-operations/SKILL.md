@@ -65,6 +65,6 @@ Bank pusat: `~/Desktop/Niumination/skills/` (single source of truth; 47 skill, 2
 ```bash
 cd ~/Desktop/Niumination
 python3 scripts/skill-manifest.py --check          # 0 mismatch
-bash skills/sync-to-agents.sh --dry-run            # preview 120 = 40 skill × 3 target
+bash skills/sync-to-agents.sh --dry-run            # preview 136 = 68 skill × 2 target (USB diparkir 2026-08-20)
 diff -rq skills ~/.jcode/skills | grep -v "\.DS_Store\|lock\|manifest"   # hanya file meta yang beda
 ```

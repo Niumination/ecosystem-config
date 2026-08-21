@@ -8,6 +8,9 @@
 > **Hermes Integration:** ✅ Semua 36 skill tersedia di Hermes catalog (USB: 150+ total, ~/.hermes/: up-to-date)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
 > **Status:** 68 ✅ Aktif
+>
+> | Skill | Status | Path | Deskripsi |
+> |-------|--------|------|-----------|
 | **skill-bank-integrity** | ✅ Aktif | ecosystem/skill-bank-integrity | Integrity verification skill bank — manifest SHA-256 |
 | **skill-bank-maintenance** | ✅ Aktif | ecosystem/skill-bank-maintenance | Maintenance skill bank harian |
 | **skill-bank-management** | ✅ Aktif | ecosystem/skill-bank-management | Management skill bank terpusat |
@@ -116,8 +119,8 @@
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **40** |
-| **Total** | **40** |
+| ✅ Aktif | **68** |
+| **Total** | **68** |
 
 ## Catatan Penting — Potensi Konflik
 

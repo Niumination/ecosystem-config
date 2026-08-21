@@ -19,7 +19,7 @@ version: 1.0.0
 - Regenerating manifest, fixing sync drift, adding/removing skills
 
 ## Layout & Topology
-- **Bank Pusat**: `~/Desktop/Niumination/skills/<domain>/<skill>/` — single source of truth (40 skill, ~250 file)
+- **Bank Pusat**: `~/Desktop/Niumination/skills/<domain>/<skill>/` — single source of truth (68 skill, 348 file)
 - **Targets** (synced by `skills/sync-to-agents.sh`):
   - Jcode: `~/.jcode/skills/<skill>/` — **flat** structure
   - Hermes local: `~/.hermes/skills/<domain>/<skill>/` — **domain** structure

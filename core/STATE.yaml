@@ -1,8 +1,8 @@
 # STATE — papan tulis mesin. Agen boleh update field yang diizinkan.
 # Jangan mengarang. UNKNOWN lebih baik daripada salah.
 schema: niu-core-state/v1
-updated: 2026-08-21T02:20:00+07:00
-updated_by: bootstrap
+updated: 2026-08-21T11:08:00+07:00
+updated_by: arena-agent (arah zaryu 2026-08-21)
 
 operator: zaryu
 root: /Users/zaryu/Desktop/Niumination
@@ -10,8 +10,12 @@ root: /Users/zaryu/Desktop/Niumination
 model:
   active: opencode-zen/nemotron-3-ultra-free
   allowed:
+    - opencode-zen/big-pickle
     - opencode-zen/nemotron-3-ultra-free
     - opencode-zen/hy3-free
+    # prinsip D-0004 (bukan daftar statis):
+    #   + semua model free tier opencode-zen (akhiran *-free)
+    #   + semua model free tier Nous Portal (akhiran :free, OAuth2 Hermes)
   last_switch: 2026-08-21
   fence: false
   fence_reason: null
@@ -31,14 +35,19 @@ health:
   gateway: running
   nine_router_20128: live
   cron_agent_reach_watch: error       # pin model lama — wajib re-pin ke nemotron-3-ultra-free
-  skill_bank: 47
+  skill_bank: 68
   skill_home: 2
   skill_usb: 213
   telegram_threads: unify-ke-nemotron-3-ultra-free
 
 unknowns:
-  - status kuota nemotron-3-ultra-free / hy3-free di free tier Zen
+  - daftar live model free tier Nous Portal (model_catalog.json -> providers.nous) belum diverifikasi
 
 notes: >
-  Suksesi otak 2026-08-21 (D-0002): big-pickle + deepseek-v4-flash-free pensiun.
-  Enforcement runtime sudah ke keluarga baru. STATE diupdate setelah fence turun.
+  D-0002 (suksesi) direvisi D-0004 (draft, 2026-08-21): big-pickle dipulihkan;
+  scope otak = free tier opencode-zen (big-pickle + *-free) + free tier Nous Portal
+  (:free, OAuth2 Hermes). Switch sesama provider = bebas lanjut tanpa fence;
+  lintas provider (zen↔nous) atau model asing = fence + HANDOFF. Rem anti-waste
+  (on_rate_limit.after_switch=fence_core_writes) TETAP. File ter-segel
+  (CONSTITUTION/MODEL.policy/AGENTS.slim/VISION) menunggu pengesahan zaryu —
+  lihat docs/reports/amandemen-otoritas-model-2026-08-21.md.

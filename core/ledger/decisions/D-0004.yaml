@@ -1,0 +1,29 @@
+id: D-0004
+ts: 2026-08-21
+status: draft          # draft | sealed — menunggu pengesahan zaryu (sesi Arena 2026-08-21)
+title: "Scope otak: seluruh free tier opencode-zen (big-pickle + *-free) + free tier Nous Portal (:free); ganti provider = fence"
+decided_by: zaryu      # manusia mengesahkan. agen hanya boleh draft.
+applies_to: core       # core | satellite:<nama>
+one_sentence: >
+  Otak yang diizinkan berpikir di core = (1) free tier opencode-zen: big-pickle,
+  nemotron-3-ultra-free, hy3-free, dan semua model setara berakhiran *-free di Zen;
+  (2) free tier Nous Portal (OAuth2 Hermes, id "nous"): semua model setara berakhiran
+  :free yang ter-update saat ini. Pergantian model dalam provider yang sama = bebas
+  lanjut tanpa fence; lintas provider (zen↔nous) atau model asing = fence + HANDOFF.
+why: >
+  zaryu menilai scope sebelumnya terlalu sempit (2 lalu 4 model). Model gratis yang
+  tersedia berubah seiring waktu (limited time di Zen, katalog live di Nous Portal),
+  sehingga allowlist diganti dari daftar statis menjadi PRINSIP berbasis akhiran
+  (-free untuk Zen, :free untuk Nous) agar self-update tanpa ritual amandemen tiap
+  model baru. big-pickle (pensiun di D-0002) dipulihkan secara eksplisit sebagai
+  salah satu otak utama; deepseek-v4-flash-free ikut dipulihkan karena masih model
+  *-free di Zen. Nous Portal (provider OAuth2 milik Hermes) resmi jadi pemikir kedua.
+not_doing: >
+  Tidak mengizinkan model berbayar di kedua provider (Zen tanpa -free, Nous tanpa
+  :free) — termasuk GLM-5.2/Kimi K3/K2.7 Code di OpenCode Go (keputusan terpisah,
+  draft opsi-1/opsi-2 belum dipilih). Tidak membuka 9router/juan-router/huancheng/
+  agentrouter sebagai pemikir (tetap foreign walau nama model sama). Tidak menghapus
+  rem anti-waste: saat kuota free habis (semua *-free atau :free 429) → berhenti +
+  HANDOFF, jangan hop antar model dalam provider yang sama (berbagi 1 kuota). Tidak
+  membebaskan switch lintas provider dari fence (zen↔nous tetap HANDOFF + fence).
+review_after: 2026-09-04

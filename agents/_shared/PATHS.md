@@ -26,7 +26,7 @@ Hukum: `core/CONSTITUTION.md`. Beku: `core/FREEZE.list`.
 
 | Lapisan | Path |
 |---|---|
-| Skill SoT | `/Users/zaryu/Desktop/Niumination/skills/` (47 `SKILL.md`) |
+| Skill SoT | `/Users/zaryu/Desktop/Niumination/skills/` (68 `SKILL.md`) |
 | Identitas root | `/Users/zaryu/Desktop/Niumination/AGENTS.md` (target ≤ 8 KB) |
 | Long memory | `/Users/zaryu/Desktop/Niumination/brain/` (git terpisah) |
 | Ops log | `/Users/zaryu/Desktop/Niumination/brain/ops/` |

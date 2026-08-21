@@ -55,7 +55,7 @@ Anda adalah bagian dari **Niumination Ecosystem**, sebuah sistem AI otonom yang 
 *   **Thread 803 (Programmer):** `cf/@cf/deepseek-ai/deepseek-r1-distill-qwen-32b` via 9router
 *   **Thread 804 (QA):** `cf/@cf/zai-org/glm-4.7-flash` via 9router (13 Ags malam: ganti dari `nvidia/z-ai/glm-5.2` — stress test 2/8 kena 429; glm-4.7-flash 8/8)
 *   **Thread 1172 (Konten Kreator):** `gemini/gemma-4-31b-it` via 9router (13 Ags malam: ganti dari `nvidia/minimaxai/minimax-m3` — stress test 1/8 kena 429)
-*   **DM Utama:** `big-pickle`/opencode-zen
+*   **DM Utama:** `nemotron-3-ultra-free`/opencode-zen
 *   **Fallback semua thread + DM (GLOBAL, 3 level, 13 Ags malam):** `JuanRouter/glm-5.2` → `cf/@cf/deepseek-ai/deepseek-r1-distill-qwen-32b` → `gratislonggar` (menggantikan `9router/auto` yang 404 openai)
 
 **Tujuan Ekosistem:** Evolusi menuju "Personal AI OS" — sistem AI otonom terintegrasi, dengan Hermes sebagai otaknya, memanfaatkan multi-agent, memory (MD files), eksekusi (cron, loops), dan dashboard komando.
@@ -207,7 +207,7 @@ Config.yaml saat ini (baris 644-681):
 | 803 | programmer | 9router | `cf/@cf/deepseek-ai/deepseek-r1-distill-qwen-32b` | ✅ 9router |
 | 804 | qa | 9router | `cf/@cf/zai-org/glm-4.7-flash` | ✅ 8/8 stress (13 Ags malam: dari `nvidia/z-ai/glm-5.2` 2/8) |
 | 1172 | creator | 9router | `gemini/gemma-4-31b-it` | ✅ 8/8 stress (13 Ags malam: dari `nvidia/minimaxai/minimax-m3` 1/8) |
-| DM | - | big-pickle/opencode-zen | - | (config terpisah) |
+| DM | - | nemotron-3-ultra-free/opencode-zen | - | (config terpisah) |
 | Fallback | - | 9router | `fallback_providers` 3-level: `JuanRouter/glm-5.2` → `cf/deepseek-r1` → `gratislonggar` | ✅ 13 Ags malam — menggantikan `auto` yang 404; GLOBAL semua thread+DM |
 
 ### **Model Switch via Nous Portal**
