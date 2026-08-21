@@ -138,47 +138,62 @@ Desktop/Niumination/
 
 ---
 
-## 📊 SCOREBOARD EKOSISTEM — Jul 28, 2026
+## 📊 SCOREBOARD EKOSISTEM — 21 Aug 2026 (audit git real)
 
-```
-Proyek               Kematangan     Prio  Status    Git  Remote    Deploy      Lokasi (baru)
-─────────────────────────────────────────────────────────────────────────────────────────
-PemdiAcehTengah      ██████████ 95% P1    🟢 Active ✅   ✅ SSH    🟢 Vercel   apps/
-cc-acehtengah        ██████████ 90% P2 ⬆  🟢 Active ✅   ✅ SSH    🟢 GitHub   services/
-niu-mission-control  ██████████ 85% P2 ⬆  🟢 Active ✅   ✅ SSH    🟢 GitHub   services/
-niu-cast             ██████████ v3.6.0 P2 🟢 Active ✅   ✅ SSH    ⚪ macOS    services/
-Niu-LKH              ██████████ 100% ✅    ✅ Done   ✅   ✅ SSH    🟢 GH Page  apps/
-niu-vermilion        ██████████ V1-V5 P1   🟢 Active ✅   ✅ SSH    🟢 Vercel   apps/
-kune-ya.com          ██████████ K1-K5 P1   🟢 Active ✅   ✅ SSH    🟢 Vercel   apps/
-TEDEO-Kanban         ██████████ 95% P2     🟡 95%     ✅   ✅ SSH    ✅ GitHub   sites/
-CC.Switch            ██████████ v3.17.0 P2 🟢 Active  ✅   ✅ SSH    🟢 GitHub   apps/
-Niu-Flow             ██████████ 90% P2     🟢 Remote  ✅   ✅ SSH    🟢 GitHub   services/ (remote only)
-Flame-ADE            ██████████ v1.3.0 P2  ⏸️ Stale   ✅   ✅ SSH    ✅ GitHub   desktop/
-niu-dash             ██████████ v2.16.8 P2 🟢 Active  ✅   ✅ SSH    🟢 GH Page apps/
-JHermUSB-portable    ██████████ 100% ✅ P2 ✅ Done    ✅   ✅ SSH    🟢 GitHub   apps/
-mac-web-dashboard    ██████████ v1.0.0 ✅  ✅ Done    ✅   ✅ SSH    🟢 GitHub   apps/
-arch-web-dashboard   ██████████ v1.0.0 ✅  ✅ Done    ✅   ✅ SSH    🟢 GitHub   apps/
-ai-file-manager      ██████████ 100% P1    🟢 Active ✅   ✅ SSH    🟢 Device   apps/
-ai-first-os          █████░░░░░ 45%        ⚪ Minor   ✅   ✅ SSH    🟢 GitHub   apps/
-brain                ██████░░░░ 60% P3     🟢 Active  ✅   ✅ SSH    ❌ local     root/
-didong-code          ██████░░░░ 50% P2     🟢 Active  ✅   ✅ SSH    ✅ GitHub   desktop/
-joy-connect-for-mac  ██████░░░░ 60% P2     🟢 Active  ✅   ✅ SSH    🟢 GitHub   desktop/
-x-downloader         ██████████ 100% P3    ✅ Phase 3  ✅   ✅ SSH    🟢 GitHub   desktop/
-orchestrator         ██████░░░░ 40% P3     ⏸️ Stale   ✅   ✅ SSH    ✅ GitHub   agents/
-Ultra                ████████░░ 80% P3     ⏸️ Stale   ✅   ✅ SSH    ✅ GitHub   agents/
+```text
+Repo (rel path)                          Days  Status  Remote  Dirty
+-----------------------------------------------------------------
+.                                          0  🟢     yes     no
+agents/orchestrator                        2  🟢     yes     no
+agents/profile                            23  🟡     yes     no
+agents/Ultra                              56  ⏸️     yes     no
+apps/JHermUSB-portable                     0  🟢     yes     no
+apps/PemdiAcehTengah                       2  🟢     yes     no
+apps/arch-web-dashboard                    2  🟢     yes     no
+apps/mac-web-dashboard                     2  🟢     yes     no
+apps/niu-lkh                               2  🟢     yes     no
+apps/ai-file-manager-android              10  🟢     yes     no
+apps/niu-dash                             10  🟢     yes     no
+apps/niu-vermilion                        23  🟡     yes     no
+apps/cc-switch                            26  🟡     yes     no
+apps/kune-ya.com                          38  ⏸️     yes     no
+apps/ai-first-os                          54  ⏸️     yes     no
+apps/mac-web-dashboard/hexstrike/repo    115  📦     yes     no
+brain                                      0  🟢     yes     no
+desktop/joy-connect-for-mac               17  🟡     yes     no
+desktop/didong-code                       44  ⏸️     yes     no
+desktop/x-downloader                      46  ⏸️     yes     no
+desktop/flame-ade                         54  ⏸️     yes     no
+dotfiles/zaryu-terminal-dotfiles           0  🟢     yes     no
+labs/eKinerja-AfrizalMunthe               14  🟢     yes     no
+labs/maze-3d                              54  ⏸️     yes     no
+labs/niumination-workspace                58  ⏸️     yes     no
+sandbox/niutui                            36  ⏸️     yes     no
+sandbox/x-downloader-backup               46  ⏸️     yes     no
+sandbox/niude                             54  ⏸️     yes     no
+sandbox/niu-studio                        62  📦     yes     no
+sandbox/zen                               66  📦     yes     no
+services/niu-mission-control               1  🟢     yes     no
+services/camofox-browser                   2  🟢     yes     no
+services/uacc                              2  🟢     yes     no
+services/cc-acehtengah                     8  🟢     yes     no
+services/latticesend                      24  🟡     yes     no
+services/niu-cast                         30  🟡     yes     no
+sites/niu-kanban-dash                      2  🟢     yes     no
+sites/spatial-vision                       2  🟢     yes     no
+sites/tedeo-kanban                         2  🟢     yes     no
+sites/audit-ti-at                          7  🟢     yes     no
+sites/niu-dash-fullstack                  21  🟡     yes     no
+tools/pdf-inspector                        1  🟢     yes     no
+tools/ponytail                            34  ⏸️     yes     no
+archive/backup/*                           12-70 📦     yes     no (5 backup repos, non-aktif)
+archive/projects/terax-ai                 81  📦     yes     no
+archive/projects/niuterm                  87  📦     yes     no
 ```
 
-### sandbox/ (Dormant)
+**Total: 48 repos** — 🟢 Active ≤14d: 21 · 🟡 15–30d: 7 · ⏸️ Stale 31–60d: 12 · 📦 Archive/>60d: 8
 
-```
-niu-studio            ██████░░░░ 60% P3     Stale     sandbox/
-niude                 ██████░░░░ 50% P3     Stale     sandbox/
-niutui                ██████░░░░ 20% P3     Stale     sandbox/
-zen                   ██░░░░░░░░ 20% P3     Stale     sandbox/
-aistudio-google       ██░░░░░░░░ 10% P3     Stale     sandbox/
-arena.ai              ██░░░░░░░░ 10% P3     Stale     sandbox/
-x-downloader-backup   ░░░░░░░░░░ —          Stale     sandbox/
-```
+*Audit 2026-08-21 dari `git log` real (days = sejak commit terakhir). Tidak ada repo tanpa remote. `archive/backup/*` ter-scan tapi bukan proyek aktif.*
 
 ---
 
