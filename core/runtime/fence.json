@@ -1,4 +1,8 @@
 {
   "active": false,
-  "cleared": "2026-08-21T02:26:27+07:00"
+  "reason": "model_switch",
+  "from": "opencode-zen/nemotron-3-ultra-free",
+  "to": "opencode-zen/hy3-free",
+  "ts": "2026-08-21T11:47:04+07:00",
+  "cleared": "2026-08-21T12:30:00+07:00"
 }

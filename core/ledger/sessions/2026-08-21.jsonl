@@ -50,3 +50,15 @@
 {"ts": "2026-08-21T02:20:30+07:00", "event": "on_session_end", "session_id": "20260821_020812_3b0096e9", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
 {"ts": "2026-08-21T02:24:12+07:00", "event": "on_session_end", "session_id": "20260821_020812_3b0096e9", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
 {"ts": "2026-08-21T02:24:12+07:00", "event": "on_session_end", "session_id": "20260821_020812_3b0096e9", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
+{"ts": "2026-08-21T02:27:16+07:00", "event": "on_session_end", "session_id": "20260821_020812_3b0096e9", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
+{"ts": "2026-08-21T02:27:16+07:00", "event": "on_session_end", "session_id": "20260821_020812_3b0096e9", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
+{"ts": "2026-08-21T10:13:25+07:00", "event": "on_session_end", "session_id": "cron_c6ec80ed633f_20260821_101038", "model": "opencode-zen/hy3-free", "platform": "cron", "completed": true, "interrupted": false}
+{"ts": "2026-08-21T10:13:25+07:00", "event": "on_session_end", "session_id": "cron_c6ec80ed633f_20260821_101038", "model": "opencode-zen/hy3-free", "platform": "cron", "completed": true, "interrupted": false}
+{"ts": "2026-08-21T10:15:29+07:00", "event": "on_session_end", "session_id": "20260821_020812_3b0096e9", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
+{"ts": "2026-08-21T10:15:29+07:00", "event": "on_session_end", "session_id": "20260821_020812_3b0096e9", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
+{"ts": "2026-08-21T11:05:46+07:00", "event": "on_session_end", "session_id": "20260821_020812_3b0096e9", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
+{"ts": "2026-08-21T11:05:46+07:00", "event": "on_session_end", "session_id": "20260821_020812_3b0096e9", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
+{"ts": "2026-08-21T11:47:03+07:00", "event": "on_session_end", "session_id": "20260821_020812_3b0096e9", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
+{"ts": "2026-08-21T11:47:03+07:00", "event": "on_session_end", "session_id": "20260821_020812_3b0096e9", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
+{"ts": "2026-08-21T11:50:20+07:00", "event": "on_session_end", "session_id": "20260821_020812_3b0096e9", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
+{"ts": "2026-08-21T11:50:20+07:00", "event": "on_session_end", "session_id": "20260821_020812_3b0096e9", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
