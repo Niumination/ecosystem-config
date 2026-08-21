@@ -43,8 +43,7 @@ health:
   dirty_repos_resolved: 3             # dotfiles, brain, JHermUSB-portable (committed+push 2026-08-21)
   pemdi_pr4: merged                   # 2026-08-21 squash-merge commit 0369891
 
-unknowns:
-  - daftar live model free tier Nous Portal (model_catalog.json -> providers.nous) belum diverifikasi
+unknowns: []
 
 notes: >-
   D-0004 SEALED 2026-08-21: big-pickle dipulihkan; scope otak = free tier
@@ -54,3 +53,5 @@ notes: >-
   2026-08-21 up-eco follow-up: root commit 6391be7, Pemdi#4 merged, MC venv recreate+up,
   skill-audit 32 finding (warning-only, secret=0), 3 dirty repo di-commit.
   Mac: macOS 26.5, ReduceMotion=ON.
+  2026-08-21 triage: Nous Portal :free TERVERIFIKASI 6 model (model_catalog.json).
+  Skill-audit 32 finding = 0 risiko nyata (lihat core/ledger/decisions/skill-audit-triage-2026-08-21.md).
