@@ -1,14 +1,14 @@
 # STATE — papan tulis mesin. Agen boleh update field yang diizinkan.
 # Jangan mengarang. UNKNOWN lebih baik daripada salah.
 schema: niu-core-state/v1
-updated: 2026-08-21T14:00:00+07:00
-updated_by: zaryu (Wave 1 doc sync + triage)
+updated: 2026-08-22T00:38:00+07:00
+updated_by: jcode-up-eco (auto-sync Hermes Wave2)
 
 operator: zaryu
 root: /Users/zaryu/Desktop/Niumination
 
 model:
-  active: opencode-zen/nemotron-3-ultra-free
+  active: opencode-zen/hy3-free
   allowed:
     - opencode-zen/big-pickle
     - opencode-zen/nemotron-3-ultra-free
@@ -16,7 +16,7 @@ model:
     # prinsip D-0004 (bukan daftar statis):
     #   + semua model free tier opencode-zen (akhiran *-free)
     #   + semua model free tier Nous Portal (akhiran :free, OAuth2 Hermes)
-  last_switch: 2026-08-21
+  last_switch: 2026-08-22
   fence: false
   fence_reason: null
 
@@ -38,7 +38,7 @@ health:
   skill_bank: 68
   skill_home: 2
   skill_usb: 213
-  telegram_threads: unify-ke-nemotron-3-ultra-free
+  telegram_threads: hy3-free(1) + longcat-2.0:free(802) + laguna-s-2.1:free(803) + solar-pro4:free(804) + nemotron-3-ultra-free(1172) — Wave2 max-per-function
   usb_symlink_remaining: 0            # hexstrike/venv migrated to local venv 2026-08-21 (USB dipasang)
   scripts_usb_hardcode: fixed         # telegram_threads/kanban-sync/generate-ecosystem-json env-first, no crash tanpa USB
   ecosystem_repos: 48                 # root + 47 sub-repo (audit 2026-08-21, 48 total)
@@ -58,3 +58,6 @@ notes: >-
   2026-08-21 triage: Nous Portal :free TERVERIFIKASI 6 model (model_catalog.json).
   Skill-audit 32 finding = 0 risiko nyata (lihat core/ledger/decisions/skill-audit-triage-2026-08-21.md).
   2026-08-21 Wave 1: header sync INDEX.md/CRON_SETUP.md/sync-to-agents.sh, STATE unknowns cleared.
+  2026-08-22 00:20 Wave2: thread-model max-per-function (hy3→1, longcat→802, laguna→803, solar→804, ultra→1172)
+  + telegram_threads.py JSON-string fix; Skill Bank 68 sync 2026-08-22 00:35; konstitusi-ringkas report.
+  Jcode config akan disinkron: default opencode-zen/nemotron-3-ultra-free → hy3-free per active thread 1.
