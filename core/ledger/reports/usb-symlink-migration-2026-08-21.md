@@ -29,26 +29,17 @@ Verifikasi: ketiga script dijalankan **tanpa USB mount** → exit 0 (BACKLOG-onl
 ## 3. Rencana Migrasi `hexstrike/venv` (butuh USB)
 `apps/mac-web-dashboard/hexstrike/venv` adalah virtualenv yang **seluruh binarinya**
 menunjuk ke python USB. Saat USB lepas → venv mati (`python3.11` broken).
-**Tindakan lanjutan (perlu USB dipasang):**
-1. Pasang USB `/Volumes/HermesAgent`.
-2. Recreate venv lokal: `cd apps/mac-web-dashboard/hexstrike && rm -rf venv && python3 -m venv venv && venv/bin/pip install -r requirements.txt` (jika ada).
-3. Verifikasi: `venv/bin/python -c "import sys; print(sys.executable)"` → harus `/Users/zaryu/...` bukan `/Volumes/...`.
-4. Atau jika hexstrike tidak dipakai lagi → hapus folder (arsip ke `archive/`).
 
-**Catatan:** Saya tidak recreate sekarang karena butuh USB (Anda bilang akan pasang jika perlu).
-Saya hanya laporkan; eksekusi migrasi menunggu USB atau konfirmasi hapus.
-
-## 4. Broken Symlinks Non-USB (dicatat, bukan kita)
-- `dotfiles/zaryu-terminal-dotfiles/bin/.local/bin/java` → Homebrew openjdk (path berubah)
-- `dotfiles/zaryu-terminal-dotfiles/nvim/.config/nvim/spell` → `~/spell` (tidak ada)
-- `apps/PemdiAcehTengah/.claude/skills/*` (20 item) → `../../.agents/skills/*` (milik bot arena)
-
-## 5. Artefak Historis (TIDAK diubah)
-`docs/references/niumination-rebuild-v2-2026-08-18/**` dan `archive/backup/**` masih
-menyebut `/Volumes/HermesAgent` — itu dokumentasi migrasi masa lalu, bukan runtime.
-Biarkan sebagai arsip.
+**STATUS: ✅ SELESAI 2026-08-21 (USB dipasang)**
+- `rm -rf venv && /usr/local/bin/python3 -m venv venv` (venv lokal penuh)
+- `pip install flask mcp aiohttp psutil requests bs4` (real deps; selenium/mitmproxy/pwn/angr di-stub oleh launch_server.py)
+- Verifikasi: `venv/bin/python3.14 → /usr/local/opt/python@3.14/bin/python3.14` (LOKAL)
+- `import flask, mcp, aiohttp, psutil, requests, bs4` → ALL_IMPORTS_OK
+- Server test: Flask jalan di `127.0.0.1:8888` (HTTP 404 = responsive), process pool workers started
+- **0 USB symlink tersisa** di venv
+- venv gitignored (`hexstrike/venv/`) → tidak di-commit, benar
 
 ## Status Akhir
 - ✅ Script runtime tidak lagi bergantung USB (defensive, no-crash).
-- 🔴 1 symlink USB rusak tersisa (`hexstrike/venv`) → migrasi lanjutan butuh USB.
+- ✅ 1 symlink USB rusak (`hexstrike/venv`) → **SUDAH dimigrasi ke venv lokal** (USB dipasang).
 - ✅ Dokumentasi salah (TELEGRAM-UNIFY false-diagnosis) dikoreksi + STATE.yaml disinkron.
