@@ -59,8 +59,16 @@ if os.path.exists(error_log):
 if yaml:
     try:
         cfg = yaml.safe_load(open(f"{HERMES_HOME}/config.yaml"))
+        raw_ov = cfg.get("platforms", {}).get("telegram", {}).get("channel_overrides", {})
+        # hermes config set may store this as a JSON string; parse if needed
+        if isinstance(raw_ov, str):
+            import json as _json
+            try:
+                raw_ov = _json.loads(raw_ov)
+            except Exception:
+                raw_ov = {}
         for tid in threads:
-            ov = cfg.get("platforms", {}).get("telegram", {}).get("channel_overrides", {}).get(tid, {})
+            ov = raw_ov.get(tid, {})
             overrides[tid] = (ov.get("provider", "-"), ov.get("model", "-"))
     except Exception:
         pass
