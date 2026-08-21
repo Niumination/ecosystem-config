@@ -8,7 +8,16 @@ try:
 except Exception:
     yaml = None
 
-HERMES_HOME = "/Volumes/HermesAgent/HermesAgentUSB/data"
+import os as _os
+# Prefer env HERMES_HOME (set by gateway/Hermes), fallback to local ~/.hermes,
+# then USB mount. Hardcoding USB broke status when USB not mounted.
+HERMES_HOME = _os.environ.get("HERMES_HOME") or _os.path.expanduser("~/.hermes")
+if not _os.path.exists(f"{HERMES_HOME}/state.db"):
+    for cand in ["/Volumes/HermesAgent/HermesAgentUSB/data",
+                 _os.path.expanduser("~/.hermes-portable/data")]:
+        if _os.path.exists(f"{cand}/state.db"):
+            HERMES_HOME = cand
+            break
 state_db = f"{HERMES_HOME}/state.db"
 error_log = f"{HERMES_HOME}/logs/gateway.error.log"
 threads = ["1", "802", "803", "804", "1172"]
