@@ -64,3 +64,9 @@
 {"ts": "2026-08-21T11:50:20+07:00", "event": "on_session_end", "session_id": "20260821_020812_3b0096e9", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
 {"ts": "2026-08-21T12:53:55+07:00", "event": "on_session_end", "session_id": "20260821_125043_f0608b43", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
 {"ts": "2026-08-21T12:53:55+07:00", "event": "on_session_end", "session_id": "20260821_125043_f0608b43", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
+{"ts": "2026-08-21T13:06:50+07:00", "event": "on_session_end", "session_id": "20260821_125043_f0608b43", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
+{"ts": "2026-08-21T13:06:50+07:00", "event": "on_session_end", "session_id": "20260821_125043_f0608b43", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
+{"ts": "2026-08-21T13:07:14+07:00", "event": "on_session_end", "session_id": "20260821_125043_f0608b43", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
+{"ts": "2026-08-21T13:07:14+07:00", "event": "on_session_end", "session_id": "20260821_125043_f0608b43", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": true, "interrupted": false}
+{"ts": "2026-08-21T13:13:03+07:00", "event": "on_session_end", "session_id": "20260821_125043_f0608b43", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": false, "interrupted": false}
+{"ts": "2026-08-21T13:13:03+07:00", "event": "on_session_end", "session_id": "20260821_125043_f0608b43", "model": "opencode-zen/hy3-free", "platform": "telegram", "completed": false, "interrupted": false}
