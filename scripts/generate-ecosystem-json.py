@@ -15,7 +15,18 @@ from datetime import datetime, timezone, timedelta
 WIB = timezone(timedelta(hours=7))
 NIUMINATION = "/Users/zaryu/Desktop/Niumination"
 BACKLOG = os.path.join(NIUMINATION, "BACKLOG.md")
-DB = "/Volumes/HermesAgent/HermesAgentUSB/data/kanban.db"
+# DB path: env HERMES_HOME (gateway), fallback lokal, lalu USB. None jika tidak ada.
+_db_env = os.environ.get("KANBAN_DB") or os.path.join(
+    os.environ.get("HERMES_HOME", "/Users/zaryu/.hermes"), "kanban.db")
+DB = _db_env
+if not os.path.isfile(DB):
+    for _cand in ("/Volumes/HermesAgent/HermesAgentUSB/data/kanban.db",
+                  "/Users/zaryu/Desktop/Niumination/data/kanban.db"):
+        if os.path.isfile(_cand):
+            DB = _cand
+            break
+    else:
+        DB = None  # kanban.db unavailable → BACKLOG-only mode
 OUTPUT = os.path.join(NIUMINATION, "apps/niu-dash/public/data/ecosystem-status.json")
 
 os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
@@ -35,21 +46,22 @@ p3 = len(re.findall(r'^- \[.\] .*P3', content, re.MULTILINE))
 
 # Parse kanban counts from DB
 kanban = {"active": 0, "todo": 0, "done": 0, "archived": 0}
-try:
-    conn = sqlite3.connect(DB)
-    cur = conn.cursor()
-    for status in ["in_progress", "todo", "done", "cancelled"]:
-        cur.execute("SELECT COUNT(*) FROM tasks WHERE status=?", (status,))
-        count = cur.fetchone()[0] or 0
-        if status == "in_progress":
-            kanban["active"] = count
-        elif status == "cancelled":
-            kanban["archived"] = count
-        else:
-            kanban[status] = count
-    conn.close()
-except Exception:
-    pass
+if DB is not None:
+    try:
+        conn = sqlite3.connect(DB)
+        cur = conn.cursor()
+        for status in ["in_progress", "todo", "done", "cancelled"]:
+            cur.execute("SELECT COUNT(*) FROM tasks WHERE status=?", (status,))
+            count = cur.fetchone()[0] or 0
+            if status == "in_progress":
+                kanban["active"] = count
+            elif status == "cancelled":
+                kanban["archived"] = count
+            else:
+                kanban[status] = count
+        conn.close()
+    except Exception:
+        pass
 
 # Generate timestamp
 timestamp = datetime.now(WIB).strftime("%Y-%m-%dT%H:%M:%S+07:00")
