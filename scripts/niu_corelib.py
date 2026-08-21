@@ -442,17 +442,25 @@ def pre_llm_context(session_id: str, model: str | None, is_first_turn: bool) -> 
         )
     elif switched:
         prev_klass = classify_model(prev)
+        fence = read_fence()
         if prev_klass == "allowed" and klass == "allowed":
             # Sesama keluarga (nemotron/lightning/hy3/mimo): bebas lanjut, tanpa fence.
             bits.append(
                 f"[NIU] Model berganti dalam keluarga {prev} → {mid}. "
                 "Tidak ada fence. Lanjutkan sesuai Hukum & Scope."
             )
+            if fence.get("active"):
+                bits.append(
+                    f"[NIU] Namun fence masih aktif dari kejadian sebelumnya ({fence.get('reason')}). "
+                    "Jangan mutasi core sampai manusia menurunkan fence."
+                )
         else:
-            # Kembali ke keluarga dari model asing: tanpa fence baru
-            # (fence dari kejadian asing tetap aktif sampai manusia menurunkan).
+            # Kembali ke keluarga dari model asing: fence dari kejadian asing tetap
+            # aktif sampai manusia menurunkan. Jangan lanjut mutasi diam-diam.
             bits.append(
-                f"[NIU] Model berganti {prev} → {mid}. Lanjutkan sesuai Hukum & Scope."
+                f"[NIU] Model berganti {prev} → {mid}. Fence dari kejadian model asing "
+                "mungkin masih aktif. Baca core/runtime/HANDOFF.md; jangan mutasi core "
+                "sampai manusia menurunkan fence."
             )
 
     fence = read_fence()

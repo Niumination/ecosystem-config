@@ -114,7 +114,7 @@ EXFIL_CURL_BASH = re.compile(
 )
 BASE64_BLOB = re.compile(r"\b[A-Za-z0-9+/]{200,}={0,2}\b")
 
-URL = re.compile(r"https?://[^\s\)\]\"'<>]+")
+URL = re.compile(r"https?://[^\s\)\]\"'<>,\u201c\u201d`]+")
 
 SECRET_SK = re.compile(r"\bsk-[A-Za-z0-9]{20,}\b")
 # api_key/token assignment — value wajib mengandung digit (filter di scan_skill)
@@ -203,14 +203,20 @@ def scan_skill(skill_dir: Path, domain: str, skill: str):
 
         # URL (diekstrak sekali, per file)
         for m in URL.finditer(text):
-            url = m.group(0)
+            url = m.group(0).rstrip(".,;:!?")
+            if any(t in url for t in ("...", "$(", "*")):
+                continue  # placeholder/template, bukan URL nyata
             try:
                 host = url.split("//", 1)[1].split("/", 1)[0].split(":")[0]
             except IndexError:
-                host = ""
-            if host and not host_allowed(host):
-                line = text.count("\n", 0, m.start()) + 1
-                findings.append(_f(domain, skill, rel, line, "url", "URL non-allowlist", url[:120]))
+                continue
+            host = host.lower().rstrip(".")
+            if not host or host in {"test", "example.invalid"}:
+                continue  # placeholder host
+            if host_allowed(host):
+                continue
+            line = text.count("\n", 0, m.start()) + 1
+            findings.append(_f(domain, skill, rel, line, "url", "URL non-allowlist", url[:120]))
 
         # Komentar HTML berisi instruksi
         for m in HTML_COMMENT.finditer(text):

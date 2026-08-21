@@ -1,7 +1,7 @@
 # 📜 Amandemen Otoritas Model — untuk diterapkan & disahkan zaryu
 
 > **Tanggal:** 2026-08-21 · **Keputusan:** D-0003 (draft, menunggu seal)
-> **Kenapa dokumen ini ada:** 3 file di bawah berstatus **TERSEGEEL / BEKU** (`core/FREEZE.list` + Hukum 4). Agen **dilarang** mengeditnya — hanya manusia `zaryu`. Dokumen ini menyiapkan teks final (before → after) agar Anda tinggal tempel. Semua file **lain** yang tidak beku sudah saya eksekusi (lihat `docs/reports/status-hukum-otoritas-model-2026-08-21.md`).
+> **Kenapa dokumen ini ada:** 4 file di bawah berstatus **TERSEGEEL / BEKU** (`core/FREEZE.list` + Hukum 4). Agen **dilarang** mengeditnya — hanya manusia `zaryu`. Dokumen ini menyiapkan teks final (before → after) agar Anda tinggal tempel. Semua file **lain** yang tidak beku sudah saya eksekusi (lihat `docs/reports/status-hukum-otoritas-model-2026-08-21.md`).
 >
 > **Perubahan inti (D-0003):**
 > 1. Allowlist 2 → 4 model Zen free: +`nemotron-3.5-lightning-free`, +`mimo-v2.5-free`.
@@ -183,11 +183,30 @@ Selain itu: berhenti, tulis `core/runtime/HANDOFF.md`, jangan mutasi.
 
 ---
 
+## File 4 — `core/VISION.md`
+
+### SEBELUM (baris 22 — Misi #3)
+
+```markdown
+3. **Bekerja jujur dengan model yang ada** — free tier OpenCode Zen (`big-pickle`, `deepseek-v4-flash-free`). Tidak berpura-pura punya model kuat. Tidak membiarkan ganti model merusak inti.
+```
+
+### SESUDAH
+
+```markdown
+3. **Bekerja jujur dengan model yang ada** — free tier OpenCode Zen (`nemotron-3-ultra-free`, `nemotron-3.5-lightning-free`, `hy3-free`, `mimo-v2.5-free`). Tidak berpura-pura punya model kuat. Tidak membiarkan ganti model merusak inti.
+```
+
+> Disarankan juga bump `Versi: 2.0` → `2.1` di header visi.
+
+---
+
 ## Checklist pengesahan (zaryu)
 
 - [ ] Terapkan File 1 (Hukum 2 & 3) di `core/CONSTITUTION.md` (opsional: bump Versi → 2.1)
 - [ ] Terapkan File 2 (allowed / on_rate_limit / telegram / compression) di `core/MODEL.policy.yaml`
 - [ ] Terapkan File 3 di `core/AGENTS.slim.md`
+- [ ] Terapkan File 4 (Misi #3) di `core/VISION.md`
 - [ ] Seal `core/ledger/decisions/D-0003.yaml` (ubah `status: draft` → `sealed`)
 - [ ] (Opsional) Update `core/STATE.yaml` `health.cron_agent_reach_watch` setelah cron di-re-pin di mesin zaryu
 

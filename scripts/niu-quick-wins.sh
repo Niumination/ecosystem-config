@@ -111,9 +111,9 @@ if need_cmd hermes; then
   hermes fallback ls || true
   echo
   info "TARGET v2 — SATU kaki, keluarga yang sama:"
-  info "  opencode-zen / hy3-free"
+  info "  opencode-zen / hy3-free (atau nemotron-3.5-lightning-free)"
   info "HAPUS dari chain: juan-router, 9router/*, huancheng, gratislonggar"
-  info "Hop lintas keluarga = merusak core. Setelah kaki Zen gagal: HALT + HANDOFF."
+  info "Hop lintas keluarga = merusak core. Sesama keluarga = bebas lanjut."
 else
   warn "lewati fallback"
 fi

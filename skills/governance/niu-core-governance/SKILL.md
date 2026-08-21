@@ -23,7 +23,7 @@ Sistem hukum + pagar + ledger yang dipasang dari paket `niumination-rebuild-v2` 
 ├── core/
 │   ├── CONSTITUTION.md      ← 12 hukum (tersegel)
 │   ├── VISION.md            ← tujuan (tersegel)
-│   ├── MODEL.policy.yaml    ← HANYA 2 otak: opencode-zen/big-pickle ↔ deepseek-v4-flash-free (tersegel)
+│   ├── MODEL.policy.yaml    ← keluarga opencode-zen: nemotron-3-ultra-free (utama) + lightning/hy3/mimo (tersegel)
 │   ├── SCOPE.md             ← core vs satelit; agen buta satelit sampai disebut (tersegel)
 │   ├── FREEZE.list          ← path yang dilarang disentuh (tersegel)
 │   ├── AGENTS.slim.md       ← template AGENTS.md slim ≤ 2 KB (tersegel)
@@ -39,20 +39,22 @@ Sistem hukum + pagar + ledger yang dipasang dari paket `niumination-rebuild-v2` 
 │   ├── niu-doc-capture.py   ← --note "<catatan>" → ledger JSONL tanpa LLM
 │   ├── niu-health-probe.py  ← --loop --interval 120 --heal (dipasang sebagai launchd)
 │   ├── niu-self-heal.sh     ← Tindakan 1: kickstart MC/gateway/9router
-│   └── test_niu_corelib.py  ← 18 tes — WAJIB ALL PASS
+│   └── test_niu_corelib.py  ← 30 tes — WAJIB ALL PASS
 ```
 
 ## Kebijakan Model (MODEL.policy.yaml — inti anti-zoo)
 
-- **HANYA 2 model boleh berpikir:** `opencode-zen/big-pickle` (primary) dan `opencode-zen/deepseek-v4-flash-free` (fallback). Fallback chain config = **1 entry**:
+- **Hanya keluarga `opencode-zen` boleh berpikir:** `nemotron-3-ultra-free` (primary) + `nemotron-3.5-lightning-free` / `hy3-free` / `mimo-v2.5-free` (alternate se-keluarga). Daftar sah = `core/MODEL.policy.yaml` (D-0002 sealed → nemotron+hy3; D-0003 draft → 4 model + bebas switch sesama keluarga). Fallback chain config:
   ```yaml
   fallback_providers:
     - provider: opencode-zen
-      model: deepseek-v4-flash-free
+      model: nemotron-3.5-lightning-free
+    - provider: opencode-zen
+      model: hy3-free
   ```
-- **9router / juan-router / huancheng / gemini = PIP ATAU INFRASTRUKTUR, bukan otak.** Boleh dipakai untuk probe, health check, canary — TIDAK untuk berpikir/menyelesaikan tugas.
-- Model asing (di luar 2 otak) → fence aktif + HANDOFF, bukan lanjut diam-diam.
-- ⚠️ **KOREKSI 19 Ags 2026 (user):** jangan klaim "big-pickle kuota habis/mati" dari probe eksternal — gateway runtime memakai key/base_url/header yang mungkin BEDA dari probe curl. Verifikasi cara gateway memanggil model sebelum vonis.
+- **9router / juan-router / huancheng / gemini = PIPA ATAU INFRASTRUKTUR, bukan otak.** Boleh dipakai untuk probe, health check, canary — TIDAK untuk berpikir/menyelesaikan tugas.
+- Model asing (di luar keluarga Zen) → fence aktif + HANDOFF, bukan lanjut diam-diam. Sesama keluarga → bebas lanjut, tanpa fence.
+- ⚠️ **KOREKSI 19 Ags 2026 (user):** jangan klaim model primary "kuota habis/mati" dari probe eksternal — gateway runtime memakai key/base_url/header yang mungkin BEDA dari probe curl. Verifikasi cara gateway memanggil model sebelum vonis.
 
 ## Fence & Handoff (mekanisme ganti model)
 
@@ -102,14 +104,14 @@ for p in (
 
 **Test hook tanpa PYTHONPATH (sama persis dengan cara Hermes menjalankannya):**
 ```bash
-echo '{"tool_name": "write_file", "tool_input": {"path": "/Users/zaryu/Desktop/Niumination/core/CONSTITUTION.md"}, "extra": {"model": "opencode-zen/big-pickle"}}' | python3 /Volumes/HermesAgent/HermesAgentUSB/data/agent-hooks/niu-fence.py
+echo '{"tool_name": "write_file", "tool_input": {"path": "/Users/zaryu/Desktop/Niumination/core/CONSTITUTION.md"}, "extra": {"model": "opencode-zen/nemotron-3-ultra-free"}}' | python3 /Volumes/HermesAgent/HermesAgentUSB/data/agent-hooks/niu-fence.py
 # → {"action": "block", "message": "NIU-FENCE: dilarang menyentuh file beku: ..."}
 ```
 
 ## Verifikasi Sistem
 
 ```bash
-python3 /Users/zaryu/Desktop/Niumination/scripts/test_niu_corelib.py   # 18 tes → ALL PASS
+python3 /Users/zaryu/Desktop/Niumination/scripts/test_niu_corelib.py   # 30 tes → ALL PASS
 cat /Users/zaryu/Desktop/Niumination/core/runtime/fence.json            # {"active": false} = bersih
 ls /Users/zaryu/Desktop/Niumination/core/ledger/sessions/               # JSONL harian terisi
 ls -la /Users/zaryu/Desktop/Niumination/core/CONSTITUTION.md            # -r--r--r-- (tersegel)
@@ -122,7 +124,7 @@ hermes plugins list | grep niu-core-fence                               # enable
 
 ## Cron yang Dipin (jangan di-unpin)
 
-- `c6ec80ed633f` (agent-reach-watch) **DI-PIN** ke `big-pickle`/`opencode-zen` via `cronjob action=update job_id=... model={"model":"big-pickle","provider":"opencode-zen"}`. `cron.model_drift_guard` TIDAK BOLEH dimatikan.
+- `c6ec80ed633f` (agent-reach-watch) **DI-PIN** ke `nemotron-3-ultra-free`/`opencode-zen` via `cronjob action=update job_id=... model={"model":"nemotron-3-ultra-free","provider":"opencode-zen"}`. `cron.model_drift_guard` TIDAK BOLEH dimatikan.
 - Gejala "unpinned": error `Skipped to prevent unintended spend: global inference config drifted...` — pin via cronjob update (bukan hermes config set, key `cron.model` bukan recognized key).
 
 ## Anti-Pattern

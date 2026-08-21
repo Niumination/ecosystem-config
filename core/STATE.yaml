@@ -33,13 +33,13 @@ health:
   gateway: running
   nine_router_20128: live
   cron_agent_reach_watch: error       # pin model lama — wajib re-pin ke nemotron-3-ultra-free
-  skill_bank: 47
+  skill_bank: 68
   skill_home: 2
   skill_usb: 213
   telegram_threads: unify-ke-nemotron-3-ultra-free
 
 unknowns:
-  - status kuota nemotron-3-ultra-free / hy3-free di free tier Zen
+  - status kuota keluarga Zen (nemotron-3-ultra-free / lightning / hy3-free / mimo) di free tier
 
 notes: >
   Suksesi otak 2026-08-21 (D-0002): big-pickle + deepseek-v4-flash-free pensiun.

@@ -42,7 +42,7 @@ version: 2.0.0
 ## Status adopsi (per 2026-08-16 malam)
 - ✅ **Phase 1 SELESAI** — `scripts/skill-manifest.py` (generate / `--check` / `--verify-target --structure flat|domain` / `--lockfile`); up-eco Phase 6d verify manifest; manifest.json: 68 skill, 348 file
 - ✅ **Phase 2 SELESAI** — sync-to-agents.sh full-folder rsync + verify hash + skills-lock.json di 3 target (commit f8b6c53, 66b7d53)
-- ✅ **Phase 3 SELESAI (2026-08-21)** — `scripts/skill-audit.py` (heuristic 7 kategori, warning-only) + up-eco Phase 6e. Baseline: 43 finding — 37 url non-allowlist (mayoritas endpoint provider third-party sah + false-positive benign), sisanya exfil/self-mod/secret/path/injection. Ingat: audit = saran, BUKAN auto-fix.
+- ✅ **Phase 3 SELESAI (2026-08-21)** — `scripts/skill-audit.py` (heuristic 7 kategori, warning-only) + up-eco Phase 6e. Baseline: 32 finding — 26 url non-allowlist (endpoint provider third-party huancheng/juan/aerolink + fixture test impeccable + contoh WCAG), 2 exfil (self-reference), 1 hidden, 1 path, 1 injection, 1 self-mod; 0 secret. Ingat: audit = saran, BUKAN auto-fix.
 - ⬜ **Phase 4** (opsional): `skill-detect.py` — deteksi stack → rekomendasi skill
 - Dokumen lengkap: `docs/architecture/autoskills-pattern-adoption.md` (292 baris, 2026-08-16)
 - Detail arsitektur + gap analysis: `references/autoskills-patterns.md`

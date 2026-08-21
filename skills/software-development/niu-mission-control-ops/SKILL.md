@@ -153,8 +153,8 @@ DOM terisi (KPI 113,965,875 tokens + 12 agent cards + 12 model + 20 recent) = te
 
 **DoD 4 kondisi hijau — perintah verifikasi cepat:**
 1. Control loop: `launchctl print gui/501/niu.missioncontrol` (state=running + pid) + `launchctl print gui/501/niu.healthprobe` + `curl -s http://127.0.0.1:5200/healthz`
-2. Fail-closed: `hermes fallback ls` (Primary big-pickle, chain 1 kaki Zen) + cron `c6ec80ed633f` `Last run: ... ok`
-3. Skill plane: `find skills -name SKILL.md | wc -l` = 47 bank; AGENTS.md ≤ 2KB
+2. Fail-closed: `hermes fallback ls` (Primary nemotron-3-ultra-free, chain 1 keluarga Zen) + cron `c6ec80ed633f` `Last run: ... ok`
+3. Skill plane: `find skills -name SKILL.md | wc -l` = 68 bank; AGENTS.md ≤ 2KB
 4. Token tax: grep compression config (threshold 0.5) + `hermes plugins list | grep rtk` (enabled)
 
 **Storage hygiene (aman, tanpa LLM):**

@@ -96,6 +96,17 @@ def main() -> int:
     assert_true(C.read_fence().get("active") is True, "fence on after foreign switch")
     assert_true(C.handoff_path().is_file(), "handoff written after foreign switch")
 
+    print("== foreign→allowed keeps fence ==")
+    ctx4 = C.pre_llm_context("sess-2", "opencode-zen/hy3-free", False)
+    assert_true("fence" in ctx4.lower() or "HANDOFF" in ctx4, "return-to-allowed warns fence")
+    assert_true(C.read_fence().get("active") is True, "fence stays active on return to allowed")
+
+    print("== same-family switch with active fence warns ==")
+    ctx5 = C.pre_llm_context("sess-5", "opencode-zen/nemotron-3-ultra-free", True)
+    ctx6 = C.pre_llm_context("sess-5", "opencode-zen/hy3-free", False)
+    assert_true("keluarga" in ctx6.lower(), "same-family switch note (fence still on)")
+    assert_true("fence" in ctx6.lower(), "same-family switch notes active fence")
+
     d = C.decide_pre_tool(
         "write_file",
         {"path": str(niu / "core" / "STATE.yaml"), "content": "x"},
