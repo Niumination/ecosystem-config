@@ -662,6 +662,35 @@ print(total)
   fi
 }
 
+# ── Phase 9b: Verbosity / Gaya Jawab Guard (anti bertele-tele) ────────────────
+check_verbosity() {
+  section "✂️ Gaya Jawab — Anti Bertele-tele (SOUL + config)"
+  local v_ok=true
+  # SOUL live harus punya bab Gaya jawab
+  if ! grep -q "Gaya jawab" "$HERMES_HOME/SOUL.md" 2>/dev/null; then
+    fail "SOUL.md tanpa bab Gaya jawab — balasan Telegram akan bertele-tele"
+    rec "→ Pulihkan: cp docs/references/niumination-rebuild-v2-2026-08-18/hermes/SOUL.md ~/.hermes/SOUL.md && chmod 444 ~/.hermes/SOUL.md"
+    v_ok=false
+  fi
+  # Template rebuild harus sinkron (diff 0) agar reinstall tidak revert
+  if ! diff -q "$HERMES_HOME/SOUL.md" "$NIUMINATION/docs/references/niumination-rebuild-v2-2026-08-18/hermes/SOUL.md" >/dev/null 2>&1; then
+    warn "SOUL live vs template rebuild tidak identik — risiko revert saat reinstall"
+    rec "→ Sinkronkan: cp ~/.hermes/SOUL.md docs/references/niumination-rebuild-v2-2026-08-18/hermes/SOUL.md"
+    v_ok=false
+  fi
+  # 4 config anti-verbose
+  local compact tcg tce pers
+  compact=$(hermes config get display.compact 2>/dev/null | tr -d ' \n' || echo "?")
+  tcg=$(hermes config get agent.task_completion_guidance 2>/dev/null | tr -d ' \n' || echo "?")
+  tce=$(hermes config get display.turn_completion_explainer 2>/dev/null | tr -d ' \n' || echo "?")
+  pers=$(hermes config get display.personality 2>/dev/null | tr -d ' \n' || echo "?")
+  if [ "$compact" != "true" ]; then warn "display.compact=$compact (harusnya true)"; rec "→ hermes config set display.compact true"; v_ok=false; fi
+  if [ "$tcg" != "false" ]; then warn "agent.task_completion_guidance=$tcg (harusnya false)"; rec "→ hermes config set agent.task_completion_guidance false"; v_ok=false; fi
+  if [ "$tce" != "false" ]; then warn "display.turn_completion_explainer=$tce (harusnya false)"; rec "→ hermes config set display.turn_completion_explainer false"; v_ok=false; fi
+  if [ -n "$pers" ] && [ "$pers" != "?" ]; then warn "display.personality=$pers (harusnya kosong)"; rec "→ hermes config set display.personality \"\""; v_ok=false; fi
+  if [ "$v_ok" = true ]; then pass "Gaya jawab ringkas aktif (SOUL + 4 config sinkron)"; fi
+}
+
 # ── Phase 9: Telegram Thread Status 🆕 ─────────────────────────────────────
 check_telegram_threads() {
   section "💬 Telegram Thread Status — Mission Control (5 thread)"
@@ -724,6 +753,9 @@ main() {
 
   # ── Phase 9: Telegram Thread Status 🆕 ────────────────────────────────────
   check_telegram_threads
+
+  # ── Phase 9b: Gaya Jawab Guard (anti bertele-tele) ───────────────────────
+  check_verbosity
 
   # ── Summary ───────────────────────────────────────────────────────────────
   header
