@@ -1,6 +1,6 @@
 {
   "fileCount": 348,
-  "generatedAt": "2026-08-21T04:26:21.531856+00:00",
+  "generatedAt": "2026-08-21T04:48:33.862350+00:00",
   "skillCount": 68,
   "skills": {
     "accessibility": {
@@ -405,10 +405,10 @@
       }
     },
     "niu-core-governance": {
-      "bundleHash": "62bfa0778ee99c3dcc5e2ed7c86b99fccd276ef49c0db3eeff4173ee1476cf5a",
+      "bundleHash": "b029e5add9b870cd6a3c11da137822336d86d16c6b8cc33216ee7249db2742fa",
       "domain": "governance",
       "files": {
-        "SKILL.md": "c47fcd94aac7aac385f45d70c9cc0bce7bb5c595cef5b15cbf4dd7fc99524d6e",
+        "SKILL.md": "39997cf992bc0bb422dd50edc690062f3914145f5fb570f37fe5541514f3781c",
         "references/f5-cleanup-2026-08-20.md": "6524d3dbbd7c34e21654a3f36d17a3091a5daedaf969ebaf9db7c4624edcf8e9"
       }
     },

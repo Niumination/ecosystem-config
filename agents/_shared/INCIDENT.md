@@ -10,7 +10,7 @@ Jangan matikan `cron.model_drift_guard`. Jangan Docker-kan MC di laptop 16 GB.
 | Cron `c6ec80ed633f` ERROR / unpinned | `hermes cron edit c6ec80ed633f --provider opencode-zen --model nemotron-3-ultra-free` |
 | Jcode dir missing + USB mounted | `bash scripts/niu-self-heal.sh jcode` |
 | USB unmounted | skip USB/Jcode, jangan alert berulang |
-| zen 5xx/429 | retry → fallback sesama keluarga `opencode-zen/hy3-free` / `opencode-zen/nemotron-3.5-lightning-free`; berhenti menekan endpoint saat 429. Jangan hop 9router/juan |
+| zen 429 FreeUsageLimitError | retry **≤1 dengan backoff**; masih 429 → **HALT + HANDOFF** (semua model `*-free` berbagi 1 kuota harian — hopping antar free TIDAK menambah kuota, hanya bakar request). Fallback se-keluarga hanya jika probe ringan membuktikan model itu MASIH punya kuota. Jangan hop 9router/juan |
 | kaki fallback 401 | `hermes fallback remove <kaki>` — jangan putar key di chat |
 | kune-ya timeout / vermilion 307 | canary saja, **bukan** auto-redeploy |
 | dirty git + gitleaks | blokir commit, alert thread `804` |

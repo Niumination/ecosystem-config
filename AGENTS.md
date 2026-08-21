@@ -23,6 +23,7 @@ Selain itu: berhenti, tulis `core/runtime/HANDOFF.md`, jangan mutasi.
 
 - Sesama keluarga (nemotron/lightning/hy3/mimo): bebas lanjut, tanpa fence.  
 - Ke model asing: berhenti, tulis `core/runtime/HANDOFF.md`, tunggu manusia.  
+- Kuota free Zen habis (semua model `*-free` balas 429): berhenti + HANDOFF, jangan berburu/hop model gratis lain — 4 model ini berbagi 1 kuota harian.  
 
 ## Dokumentasi
 

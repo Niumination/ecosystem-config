@@ -4,8 +4,8 @@
 > **Kenapa dokumen ini ada:** 4 file di bawah berstatus **TERSEGEEL / BEKU** (`core/FREEZE.list` + Hukum 4). Agen **dilarang** mengeditnya — hanya manusia `zaryu`. Dokumen ini menyiapkan teks final (before → after) agar Anda tinggal tempel. Semua file **lain** yang tidak beku sudah saya eksekusi (lihat `docs/reports/status-hukum-otoritas-model-2026-08-21.md`).
 >
 > **Perubahan inti (D-0003):**
-> 1. Allowlist 2 → 4 model Zen free: +`nemotron-3.5-lightning-free`, +`mimo-v2.5-free`.
-> 2. Switch **sesama keluarga** = bebas lanjut, **tanpa** HANDOFF/fence. Fence **tetap** untuk model asing/forbidden.
+> 1. Allowlist 2 → 4 model Zen free: +`nemotron-3.5-lightning-free`, +`mimo-v2.5-free`. (Bukan kuota baru — 4 model ini **berbagi satu kuota harian** `*-free` Zen.)
+> 2. Switch **sesama keluarga yang DISENGAJA** (`/model` manual) = bebas lanjut, **tanpa** HANDOFF/fence. Fence **tetap** untuk: model asing/forbidden, **dan** fallback otomatis pasca rate-limit (`on_rate_limit.after_switch: fence_core_writes` — rem anti-waste).
 
 ---
 
@@ -104,10 +104,14 @@ on_rate_limit:
       model: nemotron-3.5-lightning-free
     - provider: opencode-zen
       model: hy3-free
-  after_switch: no_fence_same_family   # sesama keluarga bebas lanjut (D-0003); fence hanya untuk model asing
+  after_switch: fence_core_writes   # TETAP (anti-waste): fallback karena limit = HENTIKAN mutasi, bukan lanjut diam-diam
+  never:
+    # daftar lama tetap (hop ke 9router/juan/huancheng/model pensiun, continue silently)
+    - hop antar model *-free saat kuota free Zen habis (FreeUsageLimitError di SEMUA model free)
+      # semua *-free BERBAGI kuota harian — hopping antar free TIDAK menambah kuota
 ```
 
-> `never:` (daftar hop terlarang) **tidak berubah** — tetap melarang 9router/juan/huancheng/model pensiun.
+> `after_switch: fence_core_writes` **TIDAK dilonggarkan** — ini rem anti-waste saat fallback otomatis karena rate-limit. Pelonggaran D-0003 hanya berlaku untuk **pergantian model yang DISENGAJA** (`/model` manual), bukan fallback otomatis pasca 429.
 
 ### 2c. `telegram.alternate:` — SEBELUM
 

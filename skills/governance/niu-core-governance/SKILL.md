@@ -53,7 +53,8 @@ Sistem hukum + pagar + ledger yang dipasang dari paket `niumination-rebuild-v2` 
       model: hy3-free
   ```
 - **9router / juan-router / huancheng / gemini = PIPA ATAU INFRASTRUKTUR, bukan otak.** Boleh dipakai untuk probe, health check, canary — TIDAK untuk berpikir/menyelesaikan tugas.
-- Model asing (di luar keluarga Zen) → fence aktif + HANDOFF, bukan lanjut diam-diam. Sesama keluarga → bebas lanjut, tanpa fence.
+- Model asing (di luar keluarga Zen) → fence aktif + HANDOFF, bukan lanjut diam-diam. Sesama keluarga (switch DISENGAJA) → bebas lanjut, tanpa fence.
+- **Anti-waste (429):** semua model `*-free` berbagi **1 kuota harian**. Saat kuota habis, SEMUA free balas 429 serentak → hopping antar free TIDAK menambah kuota, hanya bakar request. Aturan: retry ≤1 dengan backoff, masih 429 → **HALT + HANDOFF** (`on_rate_limit.after_switch: fence_core_writes` TETAP, tidak dilonggarkan D-0003).
 - ⚠️ **KOREKSI 19 Ags 2026 (user):** jangan klaim model primary "kuota habis/mati" dari probe eksternal — gateway runtime memakai key/base_url/header yang mungkin BEDA dari probe curl. Verifikasi cara gateway memanggil model sebelum vonis.
 
 ## Fence & Handoff (mekanisme ganti model)

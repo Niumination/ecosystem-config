@@ -33,4 +33,7 @@ Jika limit:
 Sesama keluarga (nemotron/lightning/hy3/mimo): boleh lanjut, tanpa fence.
 Ke model asing: tulis `core/runtime/HANDOFF.md`, jangan lanjut, tunggu manusia.
 
+Saat kuota free Zen habis (semua `*-free` balas 429): berhenti + HANDOFF, jangan
+hop antar model free — semuanya berbagi 1 kuota harian; hopping hanya membakar request.
+
 Jangan `/model` ke 9router, juan, huancheng, gemini, gemma, zai, gratislonggar untuk kerja core.

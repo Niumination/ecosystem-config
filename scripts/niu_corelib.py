@@ -447,7 +447,9 @@ def pre_llm_context(session_id: str, model: str | None, is_first_turn: bool) -> 
             # Sesama keluarga (nemotron/lightning/hy3/mimo): bebas lanjut, tanpa fence.
             bits.append(
                 f"[NIU] Model berganti dalam keluarga {prev} → {mid}. "
-                "Tidak ada fence. Lanjutkan sesuai Hukum & Scope."
+                "Tidak ada fence. Lanjutkan sesuai Hukum & Scope. "
+                "Jika ganti karena 429/limit: semua model *-free berbagi 1 kuota harian — "
+                "jika semua balas 429, berhenti + HANDOFF, jangan hop terus."
             )
             if fence.get("active"):
                 bits.append(
