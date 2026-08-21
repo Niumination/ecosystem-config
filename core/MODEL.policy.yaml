@@ -10,21 +10,16 @@ provider: opencode-zen
 base_url: https://opencode.ai/zen/v1
 
 allowed:
-  - id: opencode-zen/nemotron-3-ultra-free
-    provider: opencode-zen
-    model: nemotron-3-ultra-free
+  - provider: opencode-zen
     role: primary
-    notes: free tier Zen; ID di opencode: opencode/nemotron-3-ultra-free
-  - id: opencode-zen/hy3-free
-    provider: opencode-zen
-    model: hy3-free
-    role: same-family-alternate
-    notes: free tier Zen; ID di opencode: opencode/hy3-free
+    models: [big-pickle, nemotron-3-ultra-free, hy3-free]
+    note: free tier Zen; + semua model berakhiran *-free (prinsip, self-update)
+  - provider: nous
+    role: same-tier-alternate
+    note: OAuth2 Hermes (hermes auth); model free = berakhiran :free (katalog live di model_catalog.json -> providers.nous)
 
-# Model lama sudah pensiun — bukan otak lagi
-retired:
-  - opencode-zen/big-pickle
-  - opencode-zen/deepseek-v4-flash-free
+# Model pensiun (D-0002) dipulihkan oleh D-0004 untuk free tier
+retired: []   # D-0004 memulihkan big-pickle + seluruh free tier Zen (termasuk deepseek-v4-flash-free)
 
 # Boleh disebut di config sebagai infrastruktur — JANGAN jadi pemikir sesi core
 infrastructure_not_thinker:
@@ -44,15 +39,15 @@ forbidden_thinkers:
   - huancheng/DeepSeek-V4-Flash
   - agentrouter/*
   - tencent/hy3:free
-  - opencode-zen/big-pickle
-  - opencode-zen/deepseek-v4-flash-free
 
 on_rate_limit:
-  action: same-family-or-halt
-  same_family_fallback:
+  action: same-provider-or-halt
+  same_provider_fallback:
+    - provider: opencode-zen
+      model: nemotron-3-ultra-free
     - provider: opencode-zen
       model: hy3-free
-  after_switch: fence_core_writes
+  after_switch: fence_core_writes   # TETAP (anti-waste) — jangan dilonggarkan
   never:
     - hop to 9router
     - hop to juan-router
@@ -66,7 +61,7 @@ on_foreign_model_detected:
   inject: "Kamu bukan otak yang diizinkan. Baca core/runtime/HANDOFF.md. Jangan tulis file."
 
 telegram:
-  # Snapshot 2026-08-21 — keluarga baru setelah suksesi otak (D-0002).
+  # Snapshot 2026-08-21 — free tier Zen + Nous Portal (D-0004).
   unify_to: opencode-zen/nemotron-3-ultra-free
   alternate: opencode-zen/hy3-free
   threads: ["1", "802", "803", "804", "1172"]

@@ -1,8 +1,8 @@
 # STATE — papan tulis mesin. Agen boleh update field yang diizinkan.
 # Jangan mengarang. UNKNOWN lebih baik daripada salah.
 schema: niu-core-state/v1
-updated: 2026-08-21T11:08:00+07:00
-updated_by: arena-agent (arah zaryu 2026-08-21)
+updated: 2026-08-21T12:30:00+07:00
+updated_by: zaryu (seal D-0004)
 
 operator: zaryu
 root: /Users/zaryu/Desktop/Niumination
@@ -34,7 +34,7 @@ health:
   mission_control_5200: down
   gateway: running
   nine_router_20128: live
-  cron_agent_reach_watch: error       # pin model lama — wajib re-pin ke nemotron-3-ultra-free
+  cron_agent_reach_watch: ok          # re-pinned ke nemotron-3-ultra-free
   skill_bank: 68
   skill_home: 2
   skill_usb: 213
@@ -44,10 +44,7 @@ unknowns:
   - daftar live model free tier Nous Portal (model_catalog.json -> providers.nous) belum diverifikasi
 
 notes: >
-  D-0002 (suksesi) direvisi D-0004 (draft, 2026-08-21): big-pickle dipulihkan;
-  scope otak = free tier opencode-zen (big-pickle + *-free) + free tier Nous Portal
-  (:free, OAuth2 Hermes). Switch sesama provider = bebas lanjut tanpa fence;
-  lintas provider (zen↔nous) atau model asing = fence + HANDOFF. Rem anti-waste
-  (on_rate_limit.after_switch=fence_core_writes) TETAP. File ter-segel
-  (CONSTITUTION/MODEL.policy/AGENTS.slim/VISION) menunggu pengesahan zaryu —
-  lihat docs/reports/amandemen-otoritas-model-2026-08-21.md.
+  D-0004 SEALED 2026-08-21: big-pickle dipulihkan; scope otak = free tier
+  opencode-zen (big-pickle + *-free) + free tier Nous Portal (:free).
+  4 file tersegel diupdate (CONSTITUTION v2.1, MODEL.policy, AGENTS.slim, VISION v2.1).
+  Rem anti-waste TETAP. Amandemen diterapkan manual zaryu.
