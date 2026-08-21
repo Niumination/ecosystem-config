@@ -1,0 +1,13 @@
+id: D-0006
+ts: 2026-08-22
+status: draft
+title: "Gaya jawab Telegram: ringkas 3-5 baris, anti bertele-tele"
+decided_by: jcode-draft
+applies_to: core
+one_sentence: >
+  Hermes di Telegram wajib ringkas 3-5 baris (gaya SI PEMBANGUN: done/fixing/stuck), hanya detail jika diminta; SOUL bab Gaya jawab + config compact true + guidance/explainer false.
+why: >
+  Setelah rekonstruksi SOUL 12 hukum (21 Agu) kalimat anti-verbose lama hilang ("prioritize being genuinely useful over being verbose... Be targeted and efficient") dan config masih personality kawaii + task_completion_guidance true + turn_completion_explainer true + compact false. Model free-tier tanpa rem jadi bercerita panjang. Perbaikan: ~/.hermes/SOUL.md 20→27 baris + bab Gaya jawab wajib + template rebuild disinkronkan + hermes config: personality kosong, compact true, task_completion_guidance false, turn_completion_explainer false; gateway restart PID 26133. Efektif tanpa ubah konstitusi (SOUL di FREEZE.list tapi pengecualian gaya jawab).
+not_doing: >
+  Tidak mengubah core/CONSTITUTION.md, MODEL.policy.yaml, AGENTS.slim.md (tetap beku). Tidak menyentuh 5 thread mapping (D-0004). Tidak menambah model. Template JHermUSB-portable tidak diubah (done/archived).
+review_after: 2026-09-04
