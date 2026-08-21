@@ -1,0 +1,24 @@
+id: D-0003
+ts: 2026-08-21
+status: draft          # draft | sealed — menunggu pengesahan zaryu (sesi Arena 2026-08-21)
+title: "Longgarkan otoritas model: switch sesama keluarga tanpa fence + perluas allowlist Zen free (2 → 4 model)"
+decided_by: zaryu      # manusia mengesahkan. agen hanya boleh draft.
+applies_to: core       # core | satellite:<nama>
+one_sentence: >
+  Pergantian model antar sesama keluarga yang diizinkan (opencode-zen/nemotron-3-ultra-free,
+  nemotron-3.5-lightning-free, hy3-free, mimo-v2.5-free) tidak lagi memicu HANDOFF+fence;
+  fence tetap berlaku untuk model asing/forbidden. Allowlist diperluas dari 2 ke 4 model
+  tier gratis OpenCode Zen.
+why: >
+  Pemilik (zaryu) menilai aturan lama terlalu ketat: fallback resmi (hy3-free) ikut di-fence
+  oleh runtime, padahal D-0002 menyahkannya sebagai cadangan se-tier. Studi Zen 2026-08-21
+  (LAPORAN niumination-model-selection) memverifikasi nemotron-3.5-lightning-free (same-family
+  NVIDIA) dan mimo-v2.5-free (workhorse) tersedia di tier gratis; keduanya diangkat sebagai
+  otak alternatif. Insiden 20 Agu mengajarkan bahayanya silent hop ke model asing — bukan
+  bahayanya fallback sesama keluarga — sehingga pagar tetap dipertahankan untuk model asing.
+not_doing: >
+  Tidak membuka fallback lintas-keluarga (9router/juan-router/huancheng/agentrouter). Fence
+  untuk model asing TETAP aktif. Model pensiun (big-pickle, deepseek-v4-flash-free) TETAP
+  dilarang. Tier berbayar OpenCode Go (GLM-5.2/Kimi K3/K2.7 Code) adalah keputusan terpisah
+  (draft opsi-1/opsi-2 belum dipilih) — tidak diadopsi di keputusan ini.
+review_after: 2026-09-04

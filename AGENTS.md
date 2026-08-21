@@ -16,14 +16,13 @@ Baca `~/.hermes/SOUL.md` + 12 hukum. Jangan memuat folder `agents/characters/`.
 
 ## Otak yang diizinkan
 
-`opencode-zen/nemotron-3-ultra-free` · `opencode-zen/hy3-free`
+`opencode-zen/nemotron-3-ultra-free` (utama) · `opencode-zen/nemotron-3.5-lightning-free` · `opencode-zen/hy3-free` · `opencode-zen/mimo-v2.5-free`
 Selain itu: berhenti, tulis `core/runtime/HANDOFF.md`, jangan mutasi.
 
 ## Jika ganti model
 
-1. Tulis handoff  
-2. Jangan lanjut tugas yang sama  
-3. Tunggu fence turun  
+- Sesama keluarga (nemotron/lightning/hy3/mimo): bebas lanjut, tanpa fence.  
+- Ke model asing: berhenti, tulis `core/runtime/HANDOFF.md`, tunggu manusia.  
 
 ## Dokumentasi
 

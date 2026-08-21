@@ -19,8 +19,15 @@ DEFAULT_NIU = "/Users/zaryu/Desktop/Niumination"
 ALLOWED_MODELS = (
     "nemotron-3-ultra-free",
     "hy3-free",
+    "nemotron-3.5-lightning-free",
+    "mimo-v2.5-free",
 )
 ALLOWED_PROVIDER = "opencode-zen"
+# Teks tampilan untuk pesan enforcement (satu sumber, hindari drift antar string)
+ALLOWED_MODELS_TEXT = (
+    "opencode-zen/nemotron-3-ultra-free · opencode-zen/nemotron-3.5-lightning-free · "
+    "opencode-zen/hy3-free · opencode-zen/mimo-v2.5-free"
+)
 
 WRITE_TOOLS = {
     "write_file",
@@ -315,7 +322,7 @@ def write_handoff(
         f"done: UNKNOWN\n"
         f"not_done: UNKNOWN\n"
         f"do_not_repeat: jangan lanjut tugas seolah model tidak berganti\n"
-        f"next_human_or_same_family: tunggu zaryu atau nemotron-3-ultra-free / hy3-free setelah fence turun\n"
+        f"next_human_or_same_family: tunggu zaryu atau {ALLOWED_MODELS_TEXT} setelah fence turun\n"
         f"```\n\n"
         f"{extra}\n"
     )
@@ -376,8 +383,7 @@ def decide_pre_tool(tool_name: str, tool_input: Any, model: str | None = None) -
         return {
             "action": "block",
             "message": (
-                "NIU-FENCE: model ini bukan otak yang diizinkan "
-                "(hanya opencode-zen/nemotron-3-ultra-free atau hy3-free). "
+                f"NIU-FENCE: model ini bukan otak yang diizinkan (hanya {ALLOWED_MODELS_TEXT}). "
                 "Jangan mutasi file. Tulis HANDOFF jika belum, tunggu manusia."
             ),
         }
@@ -431,23 +437,23 @@ def pre_llm_context(session_id: str, model: str | None, is_first_turn: bool) -> 
         )
         set_fence("foreign_model", str(prev or "unknown"), mid)
         bits.append(
-            "[NIU] Kamu BUKAN otak yang diizinkan. "
-            "Hanya opencode-zen/nemotron-3-ultra-free dan opencode-zen/hy3-free. "
+            f"[NIU] Kamu BUKAN otak yang diizinkan. Hanya {ALLOWED_MODELS_TEXT}. "
             "Jangan menulis file. Baca core/runtime/HANDOFF.md. Tunggu manusia."
         )
     elif switched:
-        write_handoff(
-            from_model=str(prev),
-            to_model=mid,
-            reason="model_switch",
-        )
-        set_fence("model_switch", str(prev), mid)
-        bits.append(
-            f"[NIU] Model berganti {prev} → {mid}. "
-            "Dunia tugas sebelumnya TIDAK dilanjutkan diam-diam. "
-            "Baca core/runtime/HANDOFF.md dan core/STATE.yaml. "
-            "Fence aktif: jangan mutasi file core sampai manusia menurunkan fence."
-        )
+        prev_klass = classify_model(prev)
+        if prev_klass == "allowed" and klass == "allowed":
+            # Sesama keluarga (nemotron/lightning/hy3/mimo): bebas lanjut, tanpa fence.
+            bits.append(
+                f"[NIU] Model berganti dalam keluarga {prev} → {mid}. "
+                "Tidak ada fence. Lanjutkan sesuai Hukum & Scope."
+            )
+        else:
+            # Kembali ke keluarga dari model asing: tanpa fence baru
+            # (fence dari kejadian asing tetap aktif sampai manusia menurunkan).
+            bits.append(
+                f"[NIU] Model berganti {prev} → {mid}. Lanjutkan sesuai Hukum & Scope."
+            )
 
     fence = read_fence()
     if fence.get("active") and not switched and klass != "foreign":
@@ -459,7 +465,7 @@ def pre_llm_context(session_id: str, model: str | None, is_first_turn: bool) -> 
     if is_first_turn:
         bits.append(
             "[NIU] Hukum: core/CONSTITUTION.md. Scope: core/SCOPE.md. "
-            "Otak: nemotron-3-ultra-free | hy3-free. Chat bukan arsip."
+            f"Otak: {ALLOWED_MODELS_TEXT}. Chat bukan arsip."
         )
 
     # keep tiny — weak models drown

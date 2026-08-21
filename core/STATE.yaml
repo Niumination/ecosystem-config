@@ -1,8 +1,8 @@
 # STATE — papan tulis mesin. Agen boleh update field yang diizinkan.
 # Jangan mengarang. UNKNOWN lebih baik daripada salah.
 schema: niu-core-state/v1
-updated: 2026-08-21T02:20:00+07:00
-updated_by: bootstrap
+updated: 2026-08-21T11:08:00+07:00
+updated_by: arena-agent (arah zaryu 2026-08-21)
 
 operator: zaryu
 root: /Users/zaryu/Desktop/Niumination
@@ -11,7 +11,9 @@ model:
   active: opencode-zen/nemotron-3-ultra-free
   allowed:
     - opencode-zen/nemotron-3-ultra-free
+    - opencode-zen/nemotron-3.5-lightning-free
     - opencode-zen/hy3-free
+    - opencode-zen/mimo-v2.5-free
   last_switch: 2026-08-21
   fence: false
   fence_reason: null
@@ -42,3 +44,7 @@ unknowns:
 notes: >
   Suksesi otak 2026-08-21 (D-0002): big-pickle + deepseek-v4-flash-free pensiun.
   Enforcement runtime sudah ke keluarga baru. STATE diupdate setelah fence turun.
+  D-0003 (draft, 2026-08-21): switch sesama keluarga tanpa fence + allowlist
+  diperluas ke 4 model Zen (nemotron-3-ultra-free, nemotron-3.5-lightning-free,
+  hy3-free, mimo-v2.5-free). File ter-segel (CONSTITUTION/MODEL.policy/AGENTS.slim)
+  menunggu pengesahan zaryu — lihat docs/reports/amandemen-otoritas-model-2026-08-21.md.

@@ -82,13 +82,19 @@ def main() -> int:
     )
     assert_true(d is not None and d.get("action") == "block", "foreign blocked")
 
-    print("== switch raises fence ==")
+    print("== same-family switch does NOT fence ==")
     ctx = C.pre_llm_context("sess-1", "opencode-zen/nemotron-3-ultra-free", True)
     assert_true("Hukum" in ctx or "hukum" in ctx.lower() or "CONSTITUTION" in ctx, "first turn inject")
     ctx2 = C.pre_llm_context("sess-1", "opencode-zen/hy3-free", False)
-    assert_true("berganti" in ctx2.lower() or "HANDOFF" in ctx2, "switch inject")
-    assert_true(C.read_fence().get("active") is True, "fence on after switch")
-    assert_true(C.handoff_path().is_file(), "handoff written")
+    assert_true("keluarga" in ctx2.lower(), "same-family switch note")
+    assert_true(not C.read_fence().get("active"), "no fence after same-family switch")
+    assert_true(not C.handoff_path().is_file(), "no handoff after same-family switch")
+
+    print("== foreign switch raises fence ==")
+    ctx3 = C.pre_llm_context("sess-2", "9router/gratislonggar", True)
+    assert_true("BUKAN otak" in ctx3, "foreign model inject")
+    assert_true(C.read_fence().get("active") is True, "fence on after foreign switch")
+    assert_true(C.handoff_path().is_file(), "handoff written after foreign switch")
 
     d = C.decide_pre_tool(
         "write_file",

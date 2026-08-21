@@ -15,7 +15,7 @@ Lima kepribadian lemah + auto-switch = dokumentasi hilang dan core premature.
 ## Yang harus terjadi
 
 Semua thread: `opencode-zen` / `nemotron-3-ultra-free`.
-Cadangan sadar (manual `/model`, bukan silent hop): `opencode-zen` / `hy3-free`.
+Cadangan sadar (manual `/model`, bukan silent hop): `opencode-zen` / `hy3-free` · `nemotron-3.5-lightning-free` · `mimo-v2.5-free`.
 
 Di tiap thread Telegram:
 
@@ -27,8 +27,10 @@ Jika limit:
 
 ```
 /model opencode-zen:hy3-free
+# atau /model opencode-zen:nemotron-3.5-lightning-free
 ```
 
-Lalu **pesan baru**, bukan “lanjutkan saja”. Baca `core/runtime/HANDOFF.md`.
+Sesama keluarga (nemotron/lightning/hy3/mimo): boleh lanjut, tanpa fence.
+Ke model asing: tulis `core/runtime/HANDOFF.md`, jangan lanjut, tunggu manusia.
 
 Jangan `/model` ke 9router, juan, huancheng, gemini, gemma, zai, gratislonggar untuk kerja core.
