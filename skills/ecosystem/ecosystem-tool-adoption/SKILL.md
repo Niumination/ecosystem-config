@@ -54,10 +54,10 @@ Tawarkan opsi: gas semua / fase prioritas / buat dokumen dulu. Hormati pilihan u
 User sedang merekonstruksi ekosistem (kinerja model lemah merusak state). Paket `niumination-rebuild-v2.zip` = kebijakan SAAT INI; `AUDIT-REKONSTRUKSI-...md` (v1) = observasi snapshot saja, rekomendasi arsitekturnya **ditarik oleh `ERRATA-AUDIT-V1.md`**. Poin yang ditarik dan TIDAK boleh diterapkan:
 - ❌ Fallback ke 9router/juan/huancheng/gemini/gratislonggar — **mesin cacat** (model beda keluarga lanjut tugas = state kacau)
 - ❌ Multi-agen runtime (4 karakter + orchestrator + Ultra) — dormant/arsip sampai core hijau 14 hari
-- ❌ Bind 5 thread Telegram ke 5 model beda — semua thread harus `opencode-zen/big-pickle` (cadangan: `deepseek-v4-flash-free`), via `/model` manual bukan silent hop
-- ❌ Auxiliary compression ke model asing — compression harus keluarga Zen
+- ❌ Bind 5 thread Telegram ke 5 model beda — semua thread harus free tier yang diizinkan: `opencode-zen/big-pickle` / `nemotron-3-ultra-free` (cadangan: `hy3-free` / `*-free` lain / `:free` di Nous), via `/model` manual bukan silent hop
+- ❌ Auxiliary compression ke model asing — compression harus provider free tier yang diizinkan (Zen/Nous)
 
-Yang TETAP berlaku: pin cron `c6ec80ed633f` ke opencode-zen/big-pickle, `model_drift_guard: true` (JANGAN false), no-Docker MC di 16 GB, no `telegram_router`, RTK tetap enabled, vault tertutup, NTFS `/Volumes/Niumination` jebakan, Jcode optional.
+Yang TETAP berlaku: pin cron `c6ec80ed633f` ke opencode-zen/nemotron-3-ultra-free, `model_drift_guard: true` (JANGAN false), no-Docker MC di 16 GB, no `telegram_router`, RTK tetap enabled, vault tertutup, NTFS `/Volumes/Niumination` jebakan, Jcode optional.
 
 Arsitektur v2: `core/` (CONSTITUTION 12 hukum, MODEL.policy, FREEZE.list, STATE.yaml, ledger) + plugin/hook `niu-core-fence` (pre_tool_call block file beku, pre_llm_call deteksi model asing, on_session_end ledger) + scripts `niu_corelib.py`/`niu-handoff.py`/`niu-doc-capture.py`/`niu-seal-core.sh` + `AGENTS.md` slim ≤2 KB. Semua tersimpan di `docs/references/niumination-rebuild-2026-08-18/` (v1; v2 masih di Downloads, belum di-commit ke referensi).
 

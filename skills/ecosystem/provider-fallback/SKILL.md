@@ -109,7 +109,7 @@ fallback_providers:
   ```yaml
   fallback_providers:
     - provider: opencode-zen
-      model: deepseek-v4-flash-free
+      model: hy3-free
   ```
   Verifikasi `hermes fallback ls` → "Fallback chain (1 entry)".
 
@@ -251,7 +251,7 @@ Probe curl ad-hoc ke `opencode.ai/zen/v1` dengan `OPENCODE_ZEN_API_KEY` dari `.e
 
 - `hy3-free` (3.6s), `laguna-s-2.1-free` (3.6s), `nemotron-3-ultra-free` (17s)
 - 9router `gemini/gemini-3.7-flash` = tercepat 1.1s; `gratislonggar` resolve ke gemini-3.6 (⚠️ responsnya **SSE stream** — test non-streaming salah-parse)
-- Fallback resmi sejak 19 Ags (sesuai rekonstruksi core v2): **HANYA `opencode-zen/deepseek-v4-flash-free`** — 1 kaki keluarga Zen, buang zoo (juan/9router/huancheng) dari chain. Prinsip core v2: ganti keluarga model = HALT + HANDOFF, bukan silent hop.
+- Fallback resmi (D-0004): free tier `opencode-zen` (`big-pickle` / `nemotron-3-ultra-free` primary, fallback se-provider `hy3-free` / `*-free` lain) + free tier Nous Portal (`:free`); buang zoo (juan/9router/huancheng) dari chain. Prinsip core: ganti lintas PROVIDER (zen↔nous) atau model asing = HALT + HANDOFF, bukan silent hop. Sesama provider = bebas lanjut.
 
 ## Notes
 

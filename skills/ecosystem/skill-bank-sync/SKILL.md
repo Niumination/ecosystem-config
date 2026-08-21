@@ -98,8 +98,8 @@ Bug `_get_home()` di MC pernah: bank scan 0 → **43 conflict palsu** "loaded bu
 ## Verification
 
 - `diff -r` bank vs target untuk skill besar (impeccable 152 file) → harus identik (kecuali file meta: INDEX.md, .gitignore, .bundled_manifest, lockfile)
-- Semua target verify LULUS = 250 file, 0 masalah
-- `bash scripts/up-eco.sh` → Phase 6d menampilkan "Manifest SHA-256 sinkron (40 skill, 250 file)"
+- Semua target verify LULUS = 348 file, 0 masalah
+- `bash scripts/up-eco.sh` → Phase 6d menampilkan "Manifest SHA-256 sinkron (68 skill, 348 file)"
 
 ## HOME / data/skills pruning (F4, 2026-08-20)
 

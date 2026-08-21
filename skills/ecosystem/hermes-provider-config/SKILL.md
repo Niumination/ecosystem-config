@@ -256,7 +256,7 @@ new = """fallback_providers:
 content = content.replace(old, new)
 ```
 3. Verifikasi: `python3 -c "import yaml; d=yaml.safe_load(open('config.yaml')); print(type(d['fallback_providers']).__name__)"` → `list`; lalu `hermes fallback ls` → harus tampil 1 entry.
-**Catatan fallback pasca-rekonstruksi v2 (19 Ags 2026):** kebijakan Niumination sekarang = **1 kaki keluarga Zen saja** (`opencode-zen/deepseek-v4-flash-free`), bukan zoo debug (juan 401 di depan, 9router ×2). Lihat skill `niu-core-governance` (umbrella tata kelola core: hukum tersegel, kebijakan 2-model, fence/handoff/ledger, pitfall path hook niu-*).
+**Catatan fallback pasca-rekonstruksi (D-0004, 21 Ags 2026):** kebijakan Niumination sekarang = **free tier `opencode-zen`** (`big-pickle` / `nemotron-3-ultra-free` primary; fallback se-provider `hy3-free` / `*-free` lain) **+ free tier Nous Portal** (`:free`, OAuth2), bukan zoo debug (juan 401 di depan, 9router ×2). Lihat skill `niu-core-governance` (umbrella tata kelola core: hukum tersegel, kebijakan model, fence/handoff/ledger, pitfall path hook niu-*).
 
 **CLI note (20 Ags 2026):** `hermes fallback remove <name>` dan `hermes mcp remove <name>` TIDAK menerima argumen non-interaktif; `remove` adalah picker/konfirmasi — `--force` unrecognized. Cara script-safe: `echo "y" | hermes mcp remove uacc` untuk MCP; untuk fallback gunakan direct YAML edit (Pitfall 11) atau `echo y | hermes fallback clear` lalu add via YAML.
 

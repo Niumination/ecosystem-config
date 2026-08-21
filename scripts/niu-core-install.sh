@@ -106,7 +106,7 @@ if command -v hermes >/dev/null 2>&1; then
   hermes config set cron.model nemotron-3-ultra-free || true
   hermes config set cron.model_provider opencode-zen || true
   # JANGAN sentuh model_drift_guard
-  info "fallback: HANYA zen/hy3-free — rapikan manual:"
+  info "fallback: se-provider free tier Zen (big-pickle / nemotron-3-ultra-free / hy3-free) — rapikan manual:"
   info "  hermes fallback ls"
   info "  hapus juan-router / 9router / huancheng dari chain"
   info "  hermes fallback add --provider opencode-zen --model hy3-free"

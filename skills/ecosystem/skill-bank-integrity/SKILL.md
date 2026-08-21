@@ -24,7 +24,7 @@ version: 2.0.0
 - **Bank pusat** (single source of truth): `~/Desktop/Niumination/skills/` — struktur `<domain>/<skill-name>/`
 - **Sync**: `skills/sync-to-agents.sh` → `~/.jcode/skills/` (flat), `~/.hermes/skills/`, `/Volumes/HermesAgent/HermesAgentUSB/data/skills/` (cron 6 jam) + update registry di AGENTS.md
 - **Checker**: `scripts/up-eco.sh` Phase 6 (frontmatter + INDEX) & Phase 7 (sync status)
-- Bank terukur (manifest.json): 40 skill, 250 file; 8 skill punya file pendukung (impeccable 152, ui-ux-pro-max 35, document-content-pipeline 9, plan-compliance-audit 6, pemdi-evidence-management 6, gdpr-compliance 5, compliance-checklist-dashboard 3, agent-reach 2)
+- Bank terukur (manifest.json): 68 skill, 348 file (per 2026-08-21); 8 skill punya file pendukung (impeccable 152, ui-ux-pro-max 35, document-content-pipeline 9, plan-compliance-audit 6, pemdi-evidence-management 6, gdpr-compliance 5, compliance-checklist-dashboard 3, agent-reach 2)
 
 ## ✅ Fix (2026-08-16): sync SELURUH folder skill
 `sync-to-agents.sh` sebelumnya `cp` SKILL.md saja — references/scripts/data TIDAK tersinkron (8 skill terpotong). Sudah diperbaiki: `sync_target()` memakai `rsync -a -u` seluruh folder skill (non-destruktif, file target lebih baru TIDAK ditimpa; fallback `cp -R -u`), lalu verify hash + tulis `skills-lock.json` per target.
@@ -40,9 +40,9 @@ version: 2.0.0
 5. **Auto-detect stack** — scan proyek → rekomendasi skill bank (opsional, Phase 4)
 
 ## Status adopsi (per 2026-08-16 malam)
-- ✅ **Phase 1 SELESAI** — `scripts/skill-manifest.py` (generate / `--check` / `--verify-target --structure flat|domain` / `--lockfile`); up-eco Phase 6d verify manifest; manifest.json: 40 skill, 250 file
+- ✅ **Phase 1 SELESAI** — `scripts/skill-manifest.py` (generate / `--check` / `--verify-target --structure flat|domain` / `--lockfile`); up-eco Phase 6d verify manifest; manifest.json: 68 skill, 348 file
 - ✅ **Phase 2 SELESAI** — sync-to-agents.sh full-folder rsync + verify hash + skills-lock.json di 3 target (commit f8b6c53, 66b7d53)
-- ⬜ **Phase 3** (belum): `scripts/skill-audit.py` — heuristic scan, warning-only
+- ✅ **Phase 3 SELESAI (2026-08-21)** — `scripts/skill-audit.py` (heuristic 7 kategori, warning-only) + up-eco Phase 6e. Baseline: 32 finding — 26 url non-allowlist (endpoint provider third-party huancheng/juan/aerolink + fixture test impeccable + contoh WCAG), 2 exfil (self-reference), 1 hidden, 1 path, 1 injection, 1 self-mod; 0 secret. Ingat: audit = saran, BUKAN auto-fix.
 - ⬜ **Phase 4** (opsional): `skill-detect.py` — deteksi stack → rekomendasi skill
 - Dokumen lengkap: `docs/architecture/autoskills-pattern-adoption.md` (292 baris, 2026-08-16)
 - Detail arsitektur + gap analysis: `references/autoskills-patterns.md`
@@ -51,7 +51,7 @@ version: 2.0.0
 1. **Diagnosa dulu**: cek kelengkapan folder di target (`find <target> -name SKILL.md | wc -l` vs bank; bandingkan file pendukung skill besar)
 2. **Verifikasi integritas**: jika manifest ada → `python3 scripts/skill-manifest.py --check`; jika belum → catat sebagai gap, jangan klaim "aman"
 3. **Sync**: `bash skills/sync-to-agents.sh --dry-run` dulu, lalu real, lalu verify
-4. **Audit**: scan pattern injection; hasil = rekomendasi review manual (aturan user: audit = saran, bukan mutasi data)
+4. **Audit**: `python3 scripts/skill-audit.py` — scan pattern injection; hasil = rekomendasi review manual (aturan user: audit = saran, bukan mutasi data)
 5. **Klaim selesai hanya dengan bukti**: `diff -r` bank vs target identik, manifest `--check` exit 0
 
 ## Drift workflow (verify GAGAL di target)
