@@ -1,6 +1,6 @@
 {
   "fileCount": 348,
-  "generatedAt": "2026-08-20T14:11:43.457024+00:00",
+  "generatedAt": "2026-08-21T03:48:40.368063+00:00",
   "skillCount": 68,
   "skills": {
     "accessibility": {
@@ -599,10 +599,10 @@
       }
     },
     "skill-bank-integrity": {
-      "bundleHash": "52e0b11022340c975d52e0a65b3d8e72033c8432c3700ec2b76d67346ab002a9",
+      "bundleHash": "b364adb2e786ac461a2cb8cdb1abd836e94608102d4503037865dfa93b8c2a98",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "141a032e0377e68b1b7cb91fc2b4ae19b06fec145f867e1d770e30435f82d383",
+        "SKILL.md": "a633887ac4c199720d2a9d05e02a59f79ccf26ac1c92ffddb7ad3d0c08d8e6b7",
         "references/autoskills-patterns.md": "8b9c362c22b5c38f31079616d74e32f51f5ec643b9be1b08a4f57f3ba2e06eb9"
       }
     },
@@ -676,33 +676,33 @@
       }
     },
     "ui-ux-pro-max": {
-      "bundleHash": "79015a3e9bee12d8ad295d81ae668f863368c255a5c2ff757969dc27850e3cb2",
+      "bundleHash": "ab5d7afb31bb656c47a180ba42c90b6524d9774a6953938fc26774d1e3dd23e4",
       "domain": "design",
       "files": {
         "SKILL.md": "3e9a7eb7f03f7f53d093145f4b76ee8edb53d8b68cd0bce8d7d943ee382b99a0",
-        "data/charts.csv": "b754c0efffcf54cb889114a9314be1d5af6ceebe65c4c436d713b52018e752c9",
-        "data/colors.csv": "4cc0df2785f340b8bd0ace50bd4068dc13a7c4c6fa4d9d2723271244ce904614",
+        "data/charts.csv": "77d32cf4d9e78f80795baf391e1cc8f9ee137351aab29ca682938ec9d8ebe7e4",
+        "data/colors.csv": "19a74a1fe858f92dc9213553bb6b8326b7f32dc6bfc0857668e2b4da32322f8a",
         "data/icons.csv": "351fe61ba45b8146c66de6ea7d67297654639d79a94f537b4d0bad570058c28f",
-        "data/landing.csv": "010e1e46db271b94e0af6f18973bea86ddba62feeccd62aeeaa6ed40e2ae2db1",
-        "data/products.csv": "5359e3037dcb84e99c792ea13dd44f5b78ab6a53557afb309cf19140512aaf5b",
+        "data/landing.csv": "51021dbadc40b0305c42f80c270eb515420440afe9f3482dfd048dc2475dbfbd",
+        "data/products.csv": "6f9c9be6fdb53a415af273dac6221e87a418d1600da2ee39f974b997e880050e",
         "data/react-performance.csv": "904c8afcda229629545912dde0e8ac37503757131f0169f80b016f1f58c4fd3f",
         "data/stacks/astro.csv": "ad18dae3ab6d148d37d144592df80dc1825b6c9e86d9d2d68fdda77434206a37",
-        "data/stacks/flutter.csv": "e470e6bc2bcd8562667cc764d1e1afb0be0a30ca4dc9ec12fa18b19d46f156bd",
-        "data/stacks/html-tailwind.csv": "1f004891dd189f6bc2a7717401e3100244326e7e2f3963a79bf7b2349d85e091",
+        "data/stacks/flutter.csv": "fe36d404c799781e8ba6e9a8179b45799ed5126a545528550cd2eb0f2346e8c5",
+        "data/stacks/html-tailwind.csv": "7aef38e75c53559470afcfa91580a9917ca8b7dbf8b92110389e23e93703ac52",
         "data/stacks/jetpack-compose.csv": "6c8fd4b0391c342c12b0af15610cd5becbeccaef0bbe8dcfc01d928c3195d93e",
-        "data/stacks/nextjs.csv": "06a8e8c13bd44696c6ebb4cb6c4d8dea440e3de8cce77616512529ed29258f0c",
+        "data/stacks/nextjs.csv": "e828ccc04843742f52f545a068e8a9ab0d2b97c0e771f7e93bf0cef74da05554",
         "data/stacks/nuxt-ui.csv": "05d6e74501b2b6a636faed32450622759f49a5bcafad971f5f4e7eba0eb7be71",
         "data/stacks/nuxtjs.csv": "f7a3f2d9542856d00199f85c6c023b7c284cc698e2e6e12d61afce2edacb24d6",
-        "data/stacks/react-native.csv": "a08ca77fcf6b6d9531982dce465366296013bfcf12d2938ac72ad57cf0c4f085",
-        "data/stacks/react.csv": "b6e3eb0e4c9c01bd00ffb951d5ca224a19d488b4544c75436f48cf92ff12bf45",
+        "data/stacks/react-native.csv": "077aefc81d194895ecf7936b3ed298b978e36961f183e3a275f8acda19b5f621",
+        "data/stacks/react.csv": "e5624ab41d33427d88e41d07581ce4eca59b37b36ab72a6ad43a9c8e2d0a1c72",
         "data/stacks/shadcn.csv": "395c2e415ef6f48a474acccdc8eb2c7258a6ed751a5037ba171a2d8823e02ded",
-        "data/stacks/svelte.csv": "bc8d158994a8bdf412830a9dd5e5a5534edd2f367a6e50e0ebd4d76f592dfa3f",
-        "data/stacks/swiftui.csv": "e87cb9eee208bb753bdab96d4a261c7f830c4317ee90ec098316b248fc32be85",
-        "data/stacks/vue.csv": "9b793c3f4eec85f77a758c09322f2b62f3b3ca549bb713ccf0849ef885934395",
-        "data/styles.csv": "ad3c3236134d833bda01a2faf31ddeaaa1dbd5005fa430dec571fa91b26e5fea",
+        "data/stacks/svelte.csv": "71af52d64f266c88070b91dbbaa900c2f8074b6baae9f35eaea6ba9cec6fd803",
+        "data/stacks/swiftui.csv": "c9c2d2510f8e66281a2514e8dd0125a6b653b9ef53a71281b5e7dfe003d5b569",
+        "data/stacks/vue.csv": "c2724915d3c11cd67263f25896cff721f787a0fdd8326002d31e9f5806dfd8f8",
+        "data/styles.csv": "663ac9775e6f5b874b32d930fa0951591c45e39cde8ac7033278f42a0881c037",
         "data/typography.csv": "64695e05ac335ba534aff396c4ba9241c642f80ea53b424251d2669b71c4772b",
         "data/ui-reasoning.csv": "58fc52fff69f62709f8c7dd460de6f6693699ea820f24287f3301a427c2b554e",
-        "data/ux-guidelines.csv": "1870ee048f2a2bdd60709f8f7adf7f3b6dcad560bc005c8b2915a8ac8639820d",
+        "data/ux-guidelines.csv": "e01943c433b2cad3040f19389b3b0455673758a569b7a927b5bedf65c989cb96",
         "data/web-interface.csv": "10bfc24e09a6a15db8309e6ef9b6881e1d4af97dffb7c99418aefb8e30df7d54",
         "references/dark-nexus-theme-pattern.md": "614d0235752024df1dad49b7b57f4ef4153d6ff361b85dca10b2f66bd3db5c3f",
         "references/design-code-audit-methodology.md": "bf7eed8cba7572c420e84cf51112affc9b0820cc2b142f88f7bb135f645a812e",
@@ -712,7 +712,7 @@
         "references/theme-color-audit.md": "791d91668528e1ab05b565e12bdbe161b389ef505ce55bf4232bd4f8f69e286c",
         "scripts/core.py": "5459d1f04eea03dfb913742d0c03edc5065ac67f6227e4807fa87699662588cb",
         "scripts/design_system.py": "4da1d341f3c7749df51b51db4a543a48a427c3c746eb0e9882a1ab86acf3bb54",
-        "scripts/search.py": "a449e57060ef5134e98e62fd11f6e240153afd68c27dab89cbb72a3ce55f1498",
+        "scripts/search.py": "e924de555714fe612398d36f30c1d2514339a881d68a018fdbdc0b5589330de3",
         "scripts/uiux-search": "a057e0d8fbd851371bf3f580b2529967ca041916bebedbb8a51de95a9bafd86b"
       }
     },

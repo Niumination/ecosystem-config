@@ -467,6 +467,22 @@ check_skill_bank() {
     warn "manifest.json belum ada — integritas hash tidak diverifikasi"
     rec "→ Generate manifest: python3 scripts/skill-manifest.py"
   fi
+
+  # ── 6e: Audit konten skill anti prompt-injection (pola autoskills Phase 3)
+  if [ -f "$NIUMINATION/scripts/skill-audit.py" ]; then
+    local audit_count
+    audit_count=$(python3 "$NIUMINATION/scripts/skill-audit.py" --count 2>/dev/null || echo "?")
+    if [ "$audit_count" = "0" ]; then
+      pass "Audit konten skill bersih (0 finding)"
+    elif [ "$audit_count" = "?" ]; then
+      warn "skill-audit.py gagal dijalankan — cek manual: python3 scripts/skill-audit.py"
+    else
+      warn "Audit konten skill: $audit_count finding — review manual disarankan (warning-only)"
+      rec "→ Detail: python3 scripts/skill-audit.py"
+    fi
+  else
+    info "skill-audit.py belum ada — audit konten anti-injection dilewati"
+  fi
 }
 
 # ═══════════════════════════════════════════════════════════════════════════
