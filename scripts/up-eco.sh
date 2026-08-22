@@ -660,10 +660,8 @@ print(total)
   if [ "$today_loaded" != "?" ]; then
     info "Skill loads hari ini: $today_loaded"
   fi
-}
 
-# ── Phase 9b: Verbosity / Gaya Jawab Guard (anti bertele-tele) ────────────────
-check_verbosity() {
+  # ── Phase 9b: Gaya Jawab Guard (anti bertele-tele) ────────────────────────
   section "✂️ Gaya Jawab — Anti Bertele-tele (SOUL + config)"
   local v_ok=true
   # SOUL live harus punya bab Gaya jawab
@@ -697,8 +695,24 @@ check_telegram_threads() {
   python3 "$(dirname "$0")/telegram_threads.py" 2>/dev/null || warn "telegram_threads.py tidak tersedia"
 }
 
+# ── Phase 9a: Trio Awareness (Hermes · JCode · OpenCode) 🆕 ───────────────────
+check_trio_awareness() {
+  local from="${FROM:-hermes}"
+  section "🔗 Trio Awareness — Called dari: $from"
+  bash "$(dirname "$0")/trio-watch.sh" --from "$from" || warn "trio-watch.sh gagal dijalankan"
+}
+
 # ── Main ───────────────────────────────────────────────────────────────────
 main() {
+  # ── Parse --from arg (trio awareness) ──
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --from) FROM="$2"; shift 2;;
+      --from=*) FROM="${1#*=}"; shift;;
+      *) break;;
+    esac
+  done
+
   printf "${BOLD}${CYAN}"
   echo "╔══════════════════════════════════════════════════════╗"
   echo "║              🔄 UP-ECO — Ecosystem Check             ║"
@@ -754,6 +768,10 @@ main() {
   # ── Phase 9: Telegram Thread Status 🆕 ────────────────────────────────────
   check_telegram_threads
 
+  # ── Phase 9a: Trio Awareness (Hermes · JCode · OpenCode) 🆕 ───────────────────
+  # 🔧 FIX: semua output trio-watch ke STDERR — supaya stdout (phase lain) tidak terpotong di Telegram
+  check_trio_awareness
+  echo "" 2>&1
   # ── Phase 9b: Gaya Jawab Guard (anti bertele-tele) ───────────────────────
   check_verbosity
 
