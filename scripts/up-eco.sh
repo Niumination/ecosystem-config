@@ -23,7 +23,7 @@ INDEX_FILE="$SKILLS_DIR/INDEX.md"
 SYNC_SCRIPT="$SKILLS_DIR/sync-to-agents.sh"
 SYNC_LOG="$NIUMINATION/.sync-log"
 MC_URL="http://localhost:5200"
-HERMES_HOME="/Volumes/HermesAgent/HermesAgentUSB/data"
+HERMES_HOME="${HOME}/.hermes"
 NOW=$(date "+%Y-%m-%d %H:%M:%S WIB")
 DIVERGE_FILE=$(mktemp)
 REPORT_FILE=$(mktemp)
@@ -86,7 +86,7 @@ check_unknown_folders() {
 
   local known_dirs=(
     apps services sites desktop agents labs sandbox
-    docs scripts skills tools vault brain dotfiles archive
+    docs scripts skills tools vault brain dotfiles archive core
   )
 
   # Baca dari BACKLOG.md untuk daftar proyek yang dikenal
@@ -467,6 +467,22 @@ check_skill_bank() {
     warn "manifest.json belum ada — integritas hash tidak diverifikasi"
     rec "→ Generate manifest: python3 scripts/skill-manifest.py"
   fi
+
+  # ── 6e: Audit konten skill anti prompt-injection (pola autoskills Phase 3)
+  if [ -f "$NIUMINATION/scripts/skill-audit.py" ]; then
+    local audit_count
+    audit_count=$(python3 "$NIUMINATION/scripts/skill-audit.py" --count 2>/dev/null || echo "?")
+    if [ "$audit_count" = "0" ]; then
+      pass "Audit konten skill bersih (0 finding)"
+    elif [ "$audit_count" = "?" ]; then
+      warn "skill-audit.py gagal dijalankan — cek manual: python3 scripts/skill-audit.py"
+    else
+      warn "Audit konten skill: $audit_count finding — review manual disarankan (warning-only)"
+      rec "→ Detail: python3 scripts/skill-audit.py"
+    fi
+  else
+    info "skill-audit.py belum ada — audit konten anti-injection dilewati"
+  fi
 }
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -533,14 +549,14 @@ check_skill_sync() {
     info "Hermes dir ($hermes_dir) tidak ditemukan (optional)"
   fi
 
-  # ── 7e: Cek Hermes USB
+  # ── 7e: Cek Hermes USB (backup-only — bukan target aktif)
   local usb_dir="/Volumes/HermesAgent/HermesAgentUSB/data/skills"
   if [ -d "$usb_dir" ]; then
     local usb_count
     usb_count=$(find "$usb_dir" -name SKILL.md -type f 2>/dev/null | wc -l | tr -d ' ')
-    pass "Hermes USB: $usb_count skills (terhubung)"
+    info "Hermes USB (backup-only): $usb_count skills terdeteksi — bukan target aktif"
   else
-    info "Hermes USB tidak terhubung (normal jika USB tidak dipasang)"
+    info "Hermes USB tidak terhubung (normal — USB = backup)"
   fi
 }
 
@@ -644,6 +660,33 @@ print(total)
   if [ "$today_loaded" != "?" ]; then
     info "Skill loads hari ini: $today_loaded"
   fi
+
+  # ── Phase 9b: Gaya Jawab Guard (anti bertele-tele) ────────────────────────
+  section "✂️ Gaya Jawab — Anti Bertele-tele (SOUL + config)"
+  local v_ok=true
+  # SOUL live harus punya bab Gaya jawab
+  if ! grep -q "Gaya jawab" "$HERMES_HOME/SOUL.md" 2>/dev/null; then
+    fail "SOUL.md tanpa bab Gaya jawab — balasan Telegram akan bertele-tele"
+    rec "→ Pulihkan: cp docs/references/niumination-rebuild-v2-2026-08-18/hermes/SOUL.md ~/.hermes/SOUL.md && chmod 444 ~/.hermes/SOUL.md"
+    v_ok=false
+  fi
+  # Template rebuild harus sinkron (diff 0) agar reinstall tidak revert
+  if ! diff -q "$HERMES_HOME/SOUL.md" "$NIUMINATION/docs/references/niumination-rebuild-v2-2026-08-18/hermes/SOUL.md" >/dev/null 2>&1; then
+    warn "SOUL live vs template rebuild tidak identik — risiko revert saat reinstall"
+    rec "→ Sinkronkan: cp ~/.hermes/SOUL.md docs/references/niumination-rebuild-v2-2026-08-18/hermes/SOUL.md"
+    v_ok=false
+  fi
+  # 4 config anti-verbose
+  local compact tcg tce pers
+  compact=$(hermes config get display.compact 2>/dev/null | tr -d ' \n' || echo "?")
+  tcg=$(hermes config get agent.task_completion_guidance 2>/dev/null | tr -d ' \n' || echo "?")
+  tce=$(hermes config get display.turn_completion_explainer 2>/dev/null | tr -d ' \n' || echo "?")
+  pers=$(hermes config get display.personality 2>/dev/null | tr -d ' \n' || echo "?")
+  if [ "$compact" != "true" ]; then warn "display.compact=$compact (harusnya true)"; rec "→ hermes config set display.compact true"; v_ok=false; fi
+  if [ "$tcg" != "false" ]; then warn "agent.task_completion_guidance=$tcg (harusnya false)"; rec "→ hermes config set agent.task_completion_guidance false"; v_ok=false; fi
+  if [ "$tce" != "false" ]; then warn "display.turn_completion_explainer=$tce (harusnya false)"; rec "→ hermes config set display.turn_completion_explainer false"; v_ok=false; fi
+  if [ -n "$pers" ] && [ "$pers" != "?" ]; then warn "display.personality=$pers (harusnya kosong)"; rec "→ hermes config set display.personality \"\""; v_ok=false; fi
+  if [ "$v_ok" = true ]; then pass "Gaya jawab ringkas aktif (SOUL + 4 config sinkron)"; fi
 }
 
 # ── Phase 9: Telegram Thread Status 🆕 ─────────────────────────────────────
@@ -652,8 +695,24 @@ check_telegram_threads() {
   python3 "$(dirname "$0")/telegram_threads.py" 2>/dev/null || warn "telegram_threads.py tidak tersedia"
 }
 
+# ── Phase 9a: Trio Awareness (Hermes · JCode · OpenCode) 🆕 ───────────────────
+check_trio_awareness() {
+  local from="${FROM:-hermes}"
+  section "🔗 Trio Awareness — Called dari: $from"
+  bash "$(dirname "$0")/trio-watch.sh" --from "$from" || warn "trio-watch.sh gagal dijalankan"
+}
+
 # ── Main ───────────────────────────────────────────────────────────────────
 main() {
+  # ── Parse --from arg (trio awareness) ──
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --from) FROM="$2"; shift 2;;
+      --from=*) FROM="${1#*=}"; shift;;
+      *) break;;
+    esac
+  done
+
   printf "${BOLD}${CYAN}"
   echo "╔══════════════════════════════════════════════════════╗"
   echo "║              🔄 UP-ECO — Ecosystem Check             ║"
@@ -708,6 +767,13 @@ main() {
 
   # ── Phase 9: Telegram Thread Status 🆕 ────────────────────────────────────
   check_telegram_threads
+
+  # ── Phase 9a: Trio Awareness (Hermes · JCode · OpenCode) 🆕 ───────────────────
+  # 🔧 FIX: semua output trio-watch ke STDERR — supaya stdout (phase lain) tidak terpotong di Telegram
+  check_trio_awareness
+  echo "" 2>&1
+  # ── Phase 9b: Gaya Jawab Guard (anti bertele-tele) ───────────────────────
+  check_verbosity
 
   # ── Summary ───────────────────────────────────────────────────────────────
   header

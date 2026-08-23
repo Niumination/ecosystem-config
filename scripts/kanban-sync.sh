@@ -9,10 +9,16 @@ mkdir "$LOCKDIR" 2>/dev/null || { echo "❌ Lock exists"; exit 1; }
 trap "rmdir '$LOCKDIR' 2>/dev/null" EXIT
 
 BACKLOG="/Users/zaryu/Desktop/Niumination/BACKLOG.md"
-DB="/Volumes/HermesAgent/HermesAgentUSB/data/kanban.db"
+# DB path: env HERMES_HOME (gateway), fallback lokal, lalu USB. Tidak crash jika tidak ada.
+DB="${KANBAN_DB:-${HERMES_HOME:-/Users/zaryu/.hermes}/kanban.db}"
+if [ ! -f "$DB" ]; then
+  for cand in "/Volumes/HermesAgent/HermesAgentUSB/data/kanban.db" "/Users/zaryu/Desktop/Niumination/data/kanban.db"; do
+    [ -f "$cand" ] && DB="$cand" && break
+  done
+fi
 
 [ ! -f "$BACKLOG" ] && { echo "❌ BACKLOG.md not found"; exit 1; }
-[ ! -f "$DB" ] && { echo "❌ kanban.db not found"; exit 1; }
+[ ! -f "$DB" ] && { echo "⚠️ kanban.db not found (skip DB sync, BACKLOG-only)"; DB=""; }
 
 # Parse BACKLOG.md — extract task lines
 echo "📋 Kanban Sync — $(date '+%Y-%m-%d %H:%M')"
@@ -56,18 +62,22 @@ grep -E '^- \[.\] .*@[a-z0-9_-]+' "$BACKLOG" | while read -r line; do
   # Generate task ID
   task_id="backlog-$(echo "$title" | tr '[:upper:]' '[:lower:]' | tr -cs 'a-z0-9_' '-')-${project}"
 
-  # Check if task exists
-  existing=$(sqlite3 "$DB" "SELECT id FROM tasks WHERE id='$task_id'" 2>/dev/null)
+  # Check if task exists (only if DB available)
+  if [ -n "$DB" ]; then
+    existing=$(sqlite3 "$DB" "SELECT id FROM tasks WHERE id='$task_id'" 2>/dev/null)
   
-  now=$(date +%s)
+    now=$(date +%s)
   
-  if [ -z "$existing" ]; then
-    sqlite3 "$DB" "INSERT INTO tasks (id, title, body, status, priority, created_at, workspace_kind) VALUES ('$task_id', '$(echo "$title" | sed "s/'/''/g")', '$(echo "$desc" | sed "s/'/''/g") | @$project', '$kanban_status', 0, $now, 'scratch')" 2>/dev/null
-    echo "  ✅ Added: $title (@$project)"
-    echo $(( $(cat "$ADD_TMP") + 1 )) > "$ADD_TMP"
+    if [ -z "$existing" ]; then
+      sqlite3 "$DB" "INSERT INTO tasks (id, title, body, status, priority, created_at, workspace_kind) VALUES ('$task_id', '$(echo "$title" | sed "s/'/''/g")', '$(echo "$desc" | sed "s/'/''/g") | @$project', '$kanban_status', 0, $now, 'scratch')" 2>/dev/null
+      echo "  ✅ Added: $title (@$project)"
+      echo $(( $(cat "$ADD_TMP") + 1 )) > "$ADD_TMP"
+    else
+      sqlite3 "$DB" "UPDATE tasks SET title='$(echo "$title" | sed "s/'/''/g")', body='$(echo "$desc" | sed "s/'/''/g") | @$project', status='$kanban_status' WHERE id='$task_id'" 2>/dev/null
+      echo $(( $(cat "$UPD_TMP") + 1 )) > "$UPD_TMP"
+    fi
   else
-    sqlite3 "$DB" "UPDATE tasks SET title='$(echo "$title" | sed "s/'/''/g")', body='$(echo "$desc" | sed "s/'/''/g") | @$project', status='$kanban_status' WHERE id='$task_id'" 2>/dev/null
-    echo $(( $(cat "$UPD_TMP") + 1 )) > "$UPD_TMP"
+    echo "  ⏭️  $title (@$project) — DB skip"
   fi
 done
 
