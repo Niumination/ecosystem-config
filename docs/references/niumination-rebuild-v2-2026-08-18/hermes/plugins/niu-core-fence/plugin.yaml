@@ -1,5 +1,0 @@
-name: niu-core-fence
-version: "2.0"
-description: >
-  Pagar core Niumination — blokir tulis file beku, halt model asing,
-  fence setelah ganti model. Tidak menambah tool untuk LLM.
