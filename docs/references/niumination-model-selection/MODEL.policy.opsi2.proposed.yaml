@@ -1,0 +1,149 @@
+# Kebijakan model Niumination — USULAN OPSI 2 "Throughput-First" (DRAFT — seal oleh zaryu)
+# Zen = hanya gratis · Go = hanya yang paling longgar rate-limit, tetap powerful.
+# Prinsip tetap: fence setelah switch, model asing = halt + HANDOFF.md,
+# chat bukan arsip, tidak berburu model gratis tanpa seal.
+
+schema: niu-model-policy/v1
+updated: 2026-08-21
+variant: opsi-2-throughput-first
+
+family: zen-two-tier
+tiers:
+  T0_free:
+    provider: opencode-zen
+    base_url: https://opencode.ai/zen/v1
+    privacy: data-dipakai-improve-model
+  T1_go:
+    provider: opencode-go
+    base_url: https://opencode.ai/zen/go/v1
+    privacy: zero-retention
+
+allowed:
+  # ---------- T0 — GRATIS (satu-satunya lapisan Zen yang dipakai) ----------
+  - id: opencode-zen/nemotron-3-ultra-free
+    provider: opencode-zen
+    model: nemotron-3-ultra-free
+    role: primary
+    scope: general-only                 # NVIDIA: trial use only — no personal/confidential
+    notes: flagship open NVIDIA — terkuat di tier gratis Zen
+  - id: opencode-zen/nemotron-3.5-lightning-free
+    provider: opencode-zen
+    model: nemotron-3.5-lightning-free
+    role: same-family-alternate
+    scope: general-only
+  - id: opencode-zen/mimo-v2.5-free
+    provider: opencode-zen
+    model: mimo-v2.5-free
+    role: workhorse                     # kompresi non-sensitif, cron ringan, swarm jcode
+    scope: general-only
+  - id: opencode-zen/hy3-free
+    provider: opencode-zen
+    model: hy3-free
+    role: workhorse-alternate
+    scope: general-only
+
+  # ---------- T1 — GO (longgar + powerful) ----------
+  - id: opencode-go/minimax-m3
+    provider: opencode-go
+    model: minimax-m3
+    role: paid-fallback-and-heavy
+    scope: sensitive-allowed
+    notes: 3.200 req/5jam (16.000/bln) — paling longgar di antara flagship Go (3,6x GLM-5.2); endpoint /v1/messages (Anthropic-style) — Hermes native OK
+  - id: opencode-go/minimax-m2.7
+    provider: opencode-go
+    model: minimax-m2.7
+    role: same-family-alternate
+    scope: sensitive-allowed
+    notes: 3.400 req/5jam
+  - id: opencode-go/deepseek-v4-flash
+    provider: opencode-go
+    model: deepseek-v4-flash
+    role: safety-net-and-jcode-primary
+    scope: sensitive-allowed
+    notes: 7.600 req/5jam — lantai pengaman ultra-longgar + otak jcode (jalur /chat/completions, kompatibel profil custom jcode)
+  # DIKELUARKAN dari opsi 2 (kuota ketat): kimi-k3 (110), glm-5.2 (880), kimi-k2.7-code (1.350)
+  # DIKELUARKAN (region terbatas): muse-spark-1.2-contributor (45.300 tapi terbatas geografis)
+
+# data_boundary (hukum):
+#   T0 = tugas umum saja. Data ASN/personal, SK, bukti dukung, vault/, kredensial,
+#   memori sensitif = WAJIB T1 (zero-retention). Kuota T1 yang lega di opsi ini
+#   membuat aturan tidak berebut ruang dengan tugas harian.
+
+infrastructure_not_thinker:
+  - 9router
+  - agentrouter
+  - juan-router
+  - huancheng
+
+forbidden_thinkers:
+  - juan-router/agnes-2.0-flash
+  - 9router/cf/@cf/deepseek-ai/deepseek-r1-distill-qwen-32b
+  - 9router/gratislonggar
+  - 9router/gemini/gemini-3.x
+  - 9router/gc/gemini-2.5-pro
+  - 9router/gemini/gemma-4
+  - 9router/cf/@cf/zai-org
+  - huancheng/DeepSeek-V4-Flash
+  - agentrouter/*
+  - stepfun/step-3.7-flash:free      # insiden drift 2026-08-20
+  - step-3.7-flash
+  - gemini/gemini-3.5-flash-lite
+  # nemotron-3-ultra-free SAH sebagai T0 primary HANYA setelah seal keputusan ini.
+
+on_rate_limit:
+  action: tiered-fallback
+  chain:
+    - provider: opencode-zen
+      model: nemotron-3.5-lightning-free   # turun se-tier (masih $0)
+    - provider: opencode-go
+      model: minimax-m3                    # berbayar longgar → fence core writes
+    - provider: opencode-go
+      model: deepseek-v4-flash             # safety net ultra-longgar
+  after_switch: fence_core_writes
+  never:
+    - hop to 9router
+    - hop to juan-router
+    - hop to huancheng
+    - continue the same mutating task silently
+    - hunt for other free models without a seal
+    - self-escalate to models outside this policy (kimi-k3 dkk. = seal baru)
+
+on_free_model_removed:
+  action: handoff-and-use-T1
+  fallback: opencode-go/minimax-m3
+  never:
+    - self-select a new free model
+
+on_foreign_model_detected:
+  action: halt_mutating_tools
+  write_handoff: true
+  inject: "Kamu bukan otak yang diizinkan. Baca core/runtime/HANDOFF.md. Jangan tulis file."
+
+telegram:
+  unify_to: opencode-zen/nemotron-3-ultra-free
+  alternate: opencode-zen/nemotron-3.5-lightning-free
+  paid_fallback: opencode-go/minimax-m3
+  threads: ["1", "802", "803", "804", "1172"]
+
+cron:
+  pin_provider: opencode-zen
+  pin_model: nemotron-3-ultra-free
+  drift_guard: true
+  agent_jobs_allowed:
+    - Pemdi-Learning-Reminder
+
+compression:
+  provider: opencode-zen
+  model: mimo-v2.5-free
+  sensitive_provider: opencode-go
+  sensitive_model: deepseek-v4-flash
+  threshold: 0.50
+
+jcode:
+  primary: deepseek-v4-flash              # longgar + /chat/completions
+  escalation: [minimax-m3]                # manual; ⚠️ endpoint /messages — verifikasi profil jcode dulu
+  swarm_model: mimo-v2.5-free
+  memory_model: hy3-free
+
+zen_pay_per_request:                      # tidak dipakai di opsi 2 (Zen = gratis saja)
+  enabled: false

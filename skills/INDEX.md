@@ -2,13 +2,36 @@
 
 > **Versi:** 4.0.1 (Superpowers Integration — 6 SDLC skills added from obra/superpowers)
 > **Lokasi:** `~/Desktop/Niumination/skills/`
-> **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local + USB) + AGENTS.md (cron every 6h)
+> **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 36 skill tersedia di Hermes catalog (USB: 150+ total, ~/.hermes/: up-to-date)
+> **Hermes Integration:** ✅ Semua 68 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 138 skill)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 47 ✅ Aktif
-
+> **Status:** 68 ✅ Aktif
+>
+> | Skill | Status | Path | Deskripsi |
+> |-------|--------|------|-----------|
+| **skill-bank-integrity** | ✅ Aktif | ecosystem/skill-bank-integrity | Integrity verification skill bank — manifest SHA-256 |
+| **skill-bank-maintenance** | ✅ Aktif | ecosystem/skill-bank-maintenance | Maintenance skill bank harian |
+| **skill-bank-management** | ✅ Aktif | ecosystem/skill-bank-management | Management skill bank terpusat |
+| **skill-bank-operations** | ✅ Aktif | ecosystem/skill-bank-operations | Operasi skill bank (ops) |
+| **skill-bank-ops** | ✅ Aktif | ecosystem/skill-bank-ops | Operasi skill bank ringkas |
+| **skill-bank-sync** | ✅ Aktif | ecosystem/skill-bank-sync | Sync skill bank dengan verifikasi integritas |
+| **ecosystem-snapshot** | ✅ Aktif | ecosystem/ecosystem-snapshot | Generate snapshot konfigurasi ekosistem |
+| **ecosystem-tool-adoption** | ✅ Aktif | ecosystem/ecosystem-tool-adoption | Adopsi tool baru ke ekosistem |
+| **niu-core-governance** | ✅ Aktif | governance/niu-core-governance | Governance core Niumination |
+| **niu-mission-control-ui** | ✅ Aktif | ecosystem/niu-mission-control-ui | Operasi dashboard Mission Control UI |
+| **niu-mission-control-ops** | ✅ Aktif | software-development/niu-mission-control-ops | Operate Niu-MissionControl server (port 5200) |
+| **hermes-provider-config** | ✅ Aktif | ecosystem/hermes-provider-config | Konfigurasi provider Hermes |
+| **kanban-ecosystem-management** | ✅ Aktif | ecosystem/kanban-ecosystem-management | Kelola kanban ekosistem |
+| **config-history-review** | ✅ Aktif | ecosystem/config-history-review | Review riwayat config |
+| **ekosistem-content-verification** | ✅ Aktif | ecosystem/ekosistem-content-verification | Verifikasi konten ekosistem |
+| **provider-fallback** | ✅ Aktif | ecosystem/provider-fallback | Handle AI provider failures + fallback |
+| **redesign-verification** | ✅ Aktif | software-development/redesign-verification | Pitfall proyek redesign multi-fase |
+| **delegated-output-verification** | ✅ Aktif | software-development/delegated-output-verification | Verifikasi output delegasi |
+| **web-dashboard-maintenance** | ✅ Aktif | software-development/web-dashboard-maintenance | Maintenance unified dashboards |
+| **web-accessibility-wcag** | ✅ Aktif | design/web-accessibility-wcag | Audit aksesibilitas web WCAG 2.1 AA |
+| **dark-theme-a11y** | ✅ Aktif | design/dark-theme-a11y | Aksesibilitas dark/glassmorphism theme |
 ---
 
 ## Domain: Software Development
@@ -96,8 +119,8 @@
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **40** |
-| **Total** | **40** |
+| ✅ Aktif | **68** |
+| **Total** | **68** |
 
 ## Catatan Penting — Potensi Konflik
 

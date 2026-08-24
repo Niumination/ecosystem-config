@@ -1,0 +1,12 @@
+# Salin ke core/ledger/decisions/D-NNNN.yaml lalu isi nomor. Jangan mengarang.
+# DRAFT dari agen — menunggu pengesahan manusia.
+id: D-NNNN
+ts: 2026-08-21
+status: draft          # draft | sealed
+title: "Arsitektur dua tingkat: otak utama Nemotron 3 Ultra Free (Zen, $0) + OpenCode Go untuk tugas berat & fallback (GLM-5.2; Kimi K3 manual)"
+decided_by: zaryu      # manusia mengesahkan. agen hanya boleh draft.
+applies_to: core       # core | satellite:<nama>
+one_sentence: "Daemon Hermes berotak opencode-zen/nemotron-3-ultra-free (model gratis terkuat di Zen) dengan cadangan se-tier nemotron-3.5-lightning-free; saat limit atau tugas berat, naik ke opencode-go/glm-5.2 (fence core writes setelah switch), Kimi K3 hanya eskalasi manual, jcode berotak kimi-k2.7-code."
+why: "Nemotron 3 Ultra Free adalah model paling powerful di tier gratis Zen (flagship open NVIDIA; Lightning/MiMo/Hy3/Big Pickle/Muse semuanya kelas di bawah atau region-terbatas). Biaya harian daemon 24/7 menjadi $0, sementara Go (tetap satu akun Zen = satu kaki) menyediakan otot berbayar: GLM-5.2 ±880 req/5jam untuk fallback & tugas berat, Kimi K2.7 Code ±1.350 req/5jam untuk coding jcode. Insiden 20 Agu (±40 handoff, drift stepfun/nemotron tanpa seal, fence aktif 22:10) membuktikan masalahnya bukan pemakaian model gratis — melainkan pemakaian TANPA seal; keputusan ini mengangkat nemotron-3-ultra-free secara resmi."
+not_doing: "Tidak mengirim data personal/rahasia pemerintah ke tier gratis (aturan resmi NVIDIA: trial use only; model free Zen: data dipakai improve model) — data sensitif wajib T1 zero-retention. Tidak menjadikan Kimi K3 otak daemon/cron. Tidak berburu model gratis pengganti tanpa seal saat Zen menghapus tier gratis (limited time). Tidak membuka thinking ke 9router/juan-router/huancheng/agentrouter. Tidak mutasi selama fence.json masih active:true."
+review_after: "2026-09-04 (2 minggu — lebih pendek dari biasa karena tier gratis bersifat limited time) — evaluasi: stabilitas nemotron-3-ultra-free, rasio fallback ke GLM-5.2, konsumsi kuota Go, dan status masa gratis di docs Zen."

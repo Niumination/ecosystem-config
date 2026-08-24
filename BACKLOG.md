@@ -23,6 +23,7 @@ Desktop/Niumination/
 ├── tools/              🛠️ Ponytail MCP
 ├── vault/              🔐 Secrets & credentials (gitignored)
 ├── brain/              🧠 Obsidian vault (git, terpisah)
+├── core/               ⚖️ Runtime internal (CONSTITUTION, ledger, runtime, templates)
 ├── dotfiles/              🐚 Terminal dotfiles (gitignored)
 ├── AGENTS.md           📋 Root DOX — AI orchestration rules
 ├── BACKLOG.md          📋 Master doc ini
@@ -53,13 +54,13 @@ Desktop/Niumination/
 
 | Proyek | Status | Deploy | Aktivitas 14 Hari | Notes |
 |--------|:------:|:------:|:------------------:|-------|
-| **PemdiAcehTengah** | 🟢 **Active** | Vercel | **+3 commit** | 57 bukti dukung + preview + 42 file lampiran |
+| **PemdiAcehTengah** | 🟢 **Active** | Vercel | **PR#4 merged 2026-08-21** | Rumus resmi PermenPANRB 8/2026 + matriks kebutuhan bukti L1-L2 (NotebookLM). Masa penilaian mandiri selesai (bukti diupload eval.spbe.go.id) |
 | **Niu-LKH** | ✅ Done | GH Pages | 0 | v3.1.1 — ⚠️ Dirty 1 file |
 | **niu-vermilion** | 🟢 Active | Vercel | 0 | Stable — V1-V5 fixed |
 | **kune-ya.com** | 🟢 Active | Vercel | 0 | Stable — K1-K5 fixed |
 | **niu-dash** | 🟢 Active | GH Pages | **+2 commit** | v2.16.8 — ⚠️ Dirty 3 file |
 | **kopi-aceh-app-android** | ⚪ Sandbox | GitHub | 0 | Rancangan & source app Android Gerobak Kopi Keliling Aceh Tengah — peta gerobak, pesan QRIS, antar/jemput. Repo belum dibuat (butuh gh auth) — remote sementara ke ecosystem-config. |
-| **JHermUSB-portable** | ✅ Done | GitHub | 0 | ⚠️ **Dirty 8 file** — config & docs |
+| **JHermUSB-portable** | ✅ Done | GitHub | **committed 2026-08-21** | 2 file skill sync diedit + commit+push (sebelumnya dirty 8 file per BACKLOG lama — sudah tidak valid) |
 | **mac-web-dashboard** | ✅ Done | GitHub | +1 | v1.0.0 |
 | **arch-web-dashboard** | ✅ Done | GitHub | 0 | v1.0.0 |
 | **ai-file-manager-android** | 🟢 Active | Device | 0 | Published & tested |
@@ -72,10 +73,10 @@ Desktop/Niumination/
 | Proyek | Priority | Status | Aktivitas 14 Hari | Notes |
 |--------|:--------:|:------:|:------------------:|-------|
 | **cc-acehtengah** | **P2 ⬆** | 🟢 **Active** | **+27 commit** 🏆 | Tema Gayo Highlands, Analytics, GIS, AI orchestrator, QueryBar |
-| **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **+33 commit** 🏆 | v2.6.2 — Agent Konten Kreator (topic 1172), ecosystem scanner, config preservasi |
+| **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **+33 commit** 🏆 | v2.6.2 — UP 2026-08-21 (venv lokal recreate, symlink USB rusak). Port 5200 live, health ok |
 | **niu-cast** | P2 | 🟢 **Active** | **+27 commit** | v3.6.0 — Mac Connect Bridge, macOS native install |
 | **Niu-Flow** | P2 | 🟢 **Remote only** | ✅ GitHub | github.com/Niumination/niu-flow |
-| **latticesend** | P3 | 🟢 Active | +1 | P2P file transfer — ⚠️ NO REMOTE |
+| **latticesend** | P3 | 🟢 Active | +1 | P2P file transfer — ✅ sudah punya remote (audit 2026-08-21) |
 | **uacc** | P2 🆕 | 🟢 Active | +new | Universal AI Computer Control — MCP server |
 | **camofox-browser** | P3 🆕 | ⚪ Third-party | 0 | Anti-detection browser (jo-inc/camofox-browser) — dependency browser toolset |
 
@@ -106,6 +107,7 @@ Desktop/Niumination/
 | **orchestrator** | P3 | ⏸️ Stale | Python multi-agent |
 | **Ultra** | P3 | ⏸️ Stale | Puppeteer automation |
 | **characters/** | ⚪ | 🟢 Active | 4 herdr agents (arsitek, pembangun, pengawas, penjaga) |
+| **_shared/** | ⚪ | 🟢 Active | Incident & path registry (INCIDENT.md, PATHS.md) |
 
 ### 🔬 labs/ — 3 Experiments
 
@@ -136,47 +138,62 @@ Desktop/Niumination/
 
 ---
 
-## 📊 SCOREBOARD EKOSISTEM — Jul 28, 2026
+## 📊 SCOREBOARD EKOSISTEM — 21 Aug 2026 (audit git real)
 
-```
-Proyek               Kematangan     Prio  Status    Git  Remote    Deploy      Lokasi (baru)
-─────────────────────────────────────────────────────────────────────────────────────────
-PemdiAcehTengah      ██████████ 95% P1    🟢 Active ✅   ✅ SSH    🟢 Vercel   apps/
-cc-acehtengah        ██████████ 90% P2 ⬆  🟢 Active ✅   ✅ SSH    🟢 GitHub   services/
-niu-mission-control  ██████████ 85% P2 ⬆  🟢 Active ✅   ✅ SSH    🟢 GitHub   services/
-niu-cast             ██████████ v3.6.0 P2 🟢 Active ✅   ✅ SSH    ⚪ macOS    services/
-Niu-LKH              ██████████ 100% ✅    ✅ Done   ✅   ✅ SSH    🟢 GH Page  apps/
-niu-vermilion        ██████████ V1-V5 P1   🟢 Active ✅   ✅ SSH    🟢 Vercel   apps/
-kune-ya.com          ██████████ K1-K5 P1   🟢 Active ✅   ✅ SSH    🟢 Vercel   apps/
-TEDEO-Kanban         ██████████ 95% P2     🟡 95%     ✅   ✅ SSH    ✅ GitHub   sites/
-CC.Switch            ██████████ v3.17.0 P2 🟢 Active  ✅   ✅ SSH    🟢 GitHub   apps/
-Niu-Flow             ██████████ 90% P2     🟢 Remote  ✅   ✅ SSH    🟢 GitHub   services/ (remote only)
-Flame-ADE            ██████████ v1.3.0 P2  ⏸️ Stale   ✅   ✅ SSH    ✅ GitHub   desktop/
-niu-dash             ██████████ v2.16.8 P2 🟢 Active  ✅   ✅ SSH    🟢 GH Page apps/
-JHermUSB-portable    ██████████ 100% ✅ P2 ✅ Done    ✅   ✅ SSH    🟢 GitHub   apps/
-mac-web-dashboard    ██████████ v1.0.0 ✅  ✅ Done    ✅   ✅ SSH    🟢 GitHub   apps/
-arch-web-dashboard   ██████████ v1.0.0 ✅  ✅ Done    ✅   ✅ SSH    🟢 GitHub   apps/
-ai-file-manager      ██████████ 100% P1    🟢 Active ✅   ✅ SSH    🟢 Device   apps/
-ai-first-os          █████░░░░░ 45%        ⚪ Minor   ✅   ✅ SSH    🟢 GitHub   apps/
-brain                ██████░░░░ 60% P3     🟢 Active  ✅   ✅ SSH    ❌ local     root/
-didong-code          ██████░░░░ 50% P2     🟢 Active  ✅   ✅ SSH    ✅ GitHub   desktop/
-joy-connect-for-mac  ██████░░░░ 60% P2     🟢 Active  ✅   ✅ SSH    🟢 GitHub   desktop/
-x-downloader         ██████████ 100% P3    ✅ Phase 3  ✅   ✅ SSH    🟢 GitHub   desktop/
-orchestrator         ██████░░░░ 40% P3     ⏸️ Stale   ✅   ✅ SSH    ✅ GitHub   agents/
-Ultra                ████████░░ 80% P3     ⏸️ Stale   ✅   ✅ SSH    ✅ GitHub   agents/
+```text
+Repo (rel path)                          Days  Status  Remote  Dirty
+-----------------------------------------------------------------
+.                                          0  🟢     yes     no
+agents/orchestrator                        2  🟢     yes     no
+agents/profile                            23  🟡     yes     no
+agents/Ultra                              56  ⏸️     yes     no
+apps/JHermUSB-portable                     0  🟢     yes     no
+apps/PemdiAcehTengah                       2  🟢     yes     no
+apps/arch-web-dashboard                    2  🟢     yes     no
+apps/mac-web-dashboard                     2  🟢     yes     no
+apps/niu-lkh                               2  🟢     yes     no
+apps/ai-file-manager-android              10  🟢     yes     no
+apps/niu-dash                             10  🟢     yes     no
+apps/niu-vermilion                        23  🟡     yes     no
+apps/cc-switch                            26  🟡     yes     no
+apps/kune-ya.com                          38  ⏸️     yes     no
+apps/ai-first-os                          54  ⏸️     yes     no
+apps/mac-web-dashboard/hexstrike/repo    115  📦     yes     no
+brain                                      0  🟢     yes     no
+desktop/joy-connect-for-mac               17  🟡     yes     no
+desktop/didong-code                       44  ⏸️     yes     no
+desktop/x-downloader                      46  ⏸️     yes     no
+desktop/flame-ade                         54  ⏸️     yes     no
+dotfiles/zaryu-terminal-dotfiles           0  🟢     yes     no
+labs/eKinerja-AfrizalMunthe               14  🟢     yes     no
+labs/maze-3d                              54  ⏸️     yes     no
+labs/niumination-workspace                58  ⏸️     yes     no
+sandbox/niutui                            36  ⏸️     yes     no
+sandbox/x-downloader-backup               46  ⏸️     yes     no
+sandbox/niude                             54  ⏸️     yes     no
+sandbox/niu-studio                        62  📦     yes     no
+sandbox/zen                               66  📦     yes     no
+services/niu-mission-control               1  🟢     yes     no
+services/camofox-browser                   2  🟢     yes     no
+services/uacc                              2  🟢     yes     no
+services/cc-acehtengah                     8  🟢     yes     no
+services/latticesend                      24  🟡     yes     no
+services/niu-cast                         30  🟡     yes     no
+sites/niu-kanban-dash                      2  🟢     yes     no
+sites/spatial-vision                       2  🟢     yes     no
+sites/tedeo-kanban                         2  🟢     yes     no
+sites/audit-ti-at                          7  🟢     yes     no
+sites/niu-dash-fullstack                  21  🟡     yes     no
+tools/pdf-inspector                        1  🟢     yes     no
+tools/ponytail                            34  ⏸️     yes     no
+archive/backup/*                           12-70 📦     yes     no (5 backup repos, non-aktif)
+archive/projects/terax-ai                 81  📦     yes     no
+archive/projects/niuterm                  87  📦     yes     no
 ```
 
-### sandbox/ (Dormant)
+**Total: 48 repos** — 🟢 Active ≤14d: 21 · 🟡 15–30d: 7 · ⏸️ Stale 31–60d: 12 · 📦 Archive/>60d: 8
 
-```
-niu-studio            ██████░░░░ 60% P3     Stale     sandbox/
-niude                 ██████░░░░ 50% P3     Stale     sandbox/
-niutui                ██████░░░░ 20% P3     Stale     sandbox/
-zen                   ██░░░░░░░░ 20% P3     Stale     sandbox/
-aistudio-google       ██░░░░░░░░ 10% P3     Stale     sandbox/
-arena.ai              ██░░░░░░░░ 10% P3     Stale     sandbox/
-x-downloader-backup   ░░░░░░░░░░ —          Stale     sandbox/
-```
+*Audit 2026-08-21 dari `git log` real (days = sejak commit terakhir). Tidak ada repo tanpa remote. `archive/backup/*` ter-scan tapi bukan proyek aktif.*
 
 ---
 
@@ -193,6 +210,7 @@ agents/                    4   33 MB    AI agents + profile + characters
 labs/                      3   1.2 GB   Experiments
 sandbox/                   7   600 MB   Dormant (ex-incubator)
 archive/projects/          2   837 MB   Archived (niuterm, terax-ai)
+core/                      1   440 KB   Runtime internal (CONSTITUTION, ledger, runtime, templates)
 docs/                     24   240 KB   Documentation (merged from docs/dox/reports)
 scripts/                  21   128 KB   Automation scripts
 tools/                     1   25 MB    Ponytail MCP
@@ -203,11 +221,14 @@ dotfiles/                     1   7.3 MB   Terminal dotfiles
 Total git repos           ~41   18 GB
 ```
 
-### ⚠️ Dirty Repos (3)
+### ⚠️ Dirty Repos (0 — all resolved 2026-08-21)
 
-1. **Production/JHermUSB-portable** — 8 file (config, docs, setup)
-2. **Production/niu-dash** — 3 file (README, ecosystem-status, released.json)
-3. **Production/Niu-LKH** — 1 file (ExcelPreview.jsx)
+Semua repo bersih per audit 2026-08-21 (45 repo discan). 3 repo yang sempat dirty telah di-commit+push:
+1. `dotfiles/zaryu-terminal-dotfiles` — lazy-lock.json
+2. `brain` — ops/ (untracked → committed)
+3. `apps/JHermUSB-portable` — 2 file skill sync
+
+Sebelumnya (BACKLOG Jul 28) mencatat niu-dash/Niu-LKH dirty — sudah tidak valid (verified clean 2026-08-21).
 
 ---
 
@@ -225,7 +246,8 @@ Total git repos           ~41   18 GB
 
 | Komponen | Provider | Model | Status |
 |:---------|:---------|:------|:------:|
-| **Hermes (main)** | opencode-zen | kimi-K2.6 | ✅ **Live** |
+| **Hermes (main)** | opencode-zen | **nemotron-3-ultra-free** (default) / hy3-free / big-pickle | ✅ **Live** (free tier) |
+| **Nous Portal** | OAuth2 Hermes | model `:free` ter-update | ✅ **Live** (login aktif, exp 13:43 WIB) |
 | **Claude Code** | ANTHROPIC_API_KEY | claude-sonnet-4 | ✅ **Live** |
 | **JCode** | OPENCODE_API_KEY | — | ✅ **Live** (billing dead) |
 | **Delegation** | gemini | gemini-2.5-flash | ✅ Off (concurrent=1, depth=0) |
@@ -266,4 +288,18 @@ Ultra, AuditTI-AT, Niu-Flow, didong-code, x-downloader, flame-ade, niu-vermilion
 - ⚠️ **latticesend** — Masih tanpa remote GitHub (perlu dibuatkan repo)
 - 🧪 **Sandbox** — 7 proyek sisa dengan total ~600MB
 
-*Dokumen diverifikasi langsung dari filesystem Jul 28, 2026.*
+---
+
+## 🔴 Perubahan — 21 Aug 2026 — up-eco Follow-up
+
+*Dokumen diverifikasi langsung dari tool output (up-eco.sh, git, gh, ps, curl, skill-audit) 2026-08-21.*
+
+- 🔧 **Mission Control** — `services/niu-mission-control` v2.6.2 **UP** (port 5200, health ok). venv lama rusak (symlink ke `/Volumes/HermesAgent` USB tidak ter-mount) → recreate venv lokal penuh + install requirements.
+- 📦 **Ecosystem audit** — 45 git repos terdeteksi (root + 44 sub). Semua punya remote. 3 dirty repo di-commit+push.
+- 🔀 **PemdiAcehTengah PR#4** — squash-merged 2026-08-21 (commit `0369891`). Rumus PermenPANRB 8/2026 + matriks bukti L1-L2.
+- 🧠 **Skill Bank** — 68 skill (bank pusat), INDEX+manifest sinkron, 0 duplikat. Skill-audit: 32 finding **warning-only** (url=26 contoh dokumentasi domain security, secret=0).
+- 📝 **Root ecosystem** — commit `6391be7` (session-models.json snapshot).
+- 🖥️ **Mac** — macOS 26.5 (build 25F71), ReduceMotion=ON.
+- 📚 **BACKLOG.md** — diperbarui faktual (Pemdi, MC, JHermUSB, latticesend, dirty repos, AI ecosystem model).
+
+*Catatan: file tersegel (CONSTITUTION, SCOPE, MODEL.policy, AGENTS.slim, VISION, FREEZE.list) TIDAK diubah agen — sesuai Law 4 NIU-FENCE aktif.*

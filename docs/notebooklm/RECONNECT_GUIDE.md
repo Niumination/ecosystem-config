@@ -1,8 +1,8 @@
 # 🔌 NotebookLM Reconnect Guide
 
 **Dibuat:** 24 Jul 2026
-**Status:** ❌ Koneksi putus — perlu re-login
-**Penyebab kemungkinan:** Migrasi portable→native / token Google expired / profile directory terhapus
+**Status:** ✅ **TERHUBUNG (20 Aug 2026)** — auth dipulihkan dari USB, MCP terdaftar di Hermes
+**Riwayat:** Koneksi sempat putus karena migrasi portable→native; dokumentasi di bawah adalah panduan jika putus lagi.
 
 ---
 

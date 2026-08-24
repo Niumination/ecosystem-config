@@ -1,0 +1,12 @@
+# Salin ke core/ledger/decisions/D-NNNN.yaml lalu isi nomor. Jangan mengarang.
+# DRAFT dari agen — menunggu pengesahan manusia. OPSI 2 dari dua opsi (bandingkan D-NNNN Opsi 1).
+id: D-NNNN
+ts: 2026-08-21
+status: draft          # draft | sealed
+title: "OPSI 2 Throughput-First: otak utama Nemotron 3 Ultra Free (Zen, $0) + Go paling longgar (MiniMax M3 3.200 req/5jam · DeepSeek V4 Flash 7.600 req/5jam)"
+decided_by: zaryu      # manusia mengesahkan. agen hanya boleh draft.
+applies_to: core       # core | satellite:<nama>
+one_sentence: "Daemon Hermes berotak opencode-zen/nemotron-3-ultra-free dengan cadangan se-tier lightning-free; fallback & tugas berat ke opencode-go/minimax-m3 (3.200 req/5jam — paling longgar di kelas flagship Go) lalu safety net deepseek-v4-flash (7.600 req/5jam); jcode berotak deepseek-v4-flash."
+why: "Mandat zaryu: Zen hanya yang gratis, Go hanya yang paling longgar rate limit, tetap powerful. Nemotron 3 Ultra = model gratis terkuat di Zen. Di Go, MiniMax M3 adalah titik temu longgar×kuat: 3.200 req/5jam ≈ 3,6x kuota GLM-5.2 (880) dengan daya agentic sekelas; DeepSeek V4 Flash (7.600 req/5jam) adalah lantai pengaman paling longgar yang masih layak berpikir dan satu-satunya kandidat longgar di jalur /chat/completions (cocok profil custom jcode). Pola insiden 20 Agu (daemon ramai, 5 thread Telegram, fence storm) menuntut ruang napas kuota — opsi ini memaksimalkan ketahanan harian dengan tetap satu kaki Zen."
+not_doing: "Tidak memakai Kimi K3 (110 req/5jam — terlalu ketat untuk mandat ini), GLM-5.2, atau K2.7 Code sebagai pin opsi ini. Tidak memakai Muse Spark 1.2 Contributor (region terbatas). Tidak mengirim data personal/rahasia pemerintah ke tier gratis (NVIDIA: trial use only) — sensitif wajib Go zero-retention. Tidak berburu model gratis pengganti tanpa seal. Tidak membuka thinking ke 9router/juan-router/huancheng/agentrouter. Tidak mutasi selama fence.json masih active:true."
+review_after: "2026-09-04 (2 minggu) — evaluasi: stabilitas nemotron-3-ultra-free, kedalaman pemakaian kuota M3 vs V4 Flash, kualitas coding V4 Flash di jcode (jika kurang → pertimbangkan opsi 1 untuk jcode saja, lewat seal baru), status masa gratis di docs Zen."
