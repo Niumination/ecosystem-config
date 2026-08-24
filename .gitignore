@@ -78,3 +78,5 @@ __pycache__/
 # Sync artifacts (Layer 2)
 .sync-lock/
 .sync-log
+
+.git-backup-*/

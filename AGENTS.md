@@ -5,7 +5,7 @@
 **DOX Version:** 4.0
 || **Total Projek Lokal:** ~40 git repos
 |||||| | **Kanban Board:** "Niumination Ecosystem" — terupdate 16 Jul 2026 ✅
-| | **Model aktif:** `opencode/big-pickle` — paid ($1/M in, $5/M out)
+| | **Model aktif:** `opencode/hy3-free/nemotron-3-ultra-free` — paid ($1/M in, $5/M out)
 
 ---
 
@@ -360,7 +360,7 @@ Keduanya jalan bersamaan — tidak saling menimpa.
 
 | # | Agent | Role | Provider/Model | Status |
 |:-:|-------|------|----------------|:------:|
-| 1 | **Hermes Agent** | Main orchestrator | Opencode Zen — `opencode/big-pickle` | ✅ **Live** — $1/M in, $5/M out |
+| 1 | **Hermes Agent** | Main orchestrator | Opencode Zen — `opencode/hy3-free/nemotron-3-ultra-free` | ✅ **Live** — $1/M in, $5/M out |
 | 2 | **Claude Code CLI** | Side coding agent | Anthropic — `claude-sonnet-4` | ✅ **Live** — `claude -p "..."` |
 | 3 | **JCode** | Hermes↔OpenCode bridge | `OPENCODE_API_KEY` via Niu-Flow pipeline | ✅ **Live** — 5 commits |
 | 4 | **Codex CLI** | OpenAI coding agent | OpenAI — Codex CLI | ✅ **Live** — goals DB, logs |
@@ -439,7 +439,7 @@ Keduanya jalan bersamaan — tidak saling menimpa.
 | Diagram | Excalidraw, architecture-diagram (SVG dark) |
 | Deployment | Vercel (web), GitHub Pages (statis) |
 | Desktop | Tauri 2 + Rust |
-| AI Agent | Hermes Agent v0.16.0 — opencode/big-pickle |
+| AI Agent | Hermes Agent v0.16.0 — opencode/hy3-free/nemotron-3-ultra-free |
 
 ### 📝 Output
 - Bahasa Indonesia untuk semua output
@@ -610,7 +610,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `hermes-uiux-technical` | ecosystem | 1 | Bank Pusat | Capability profile UI/UX & technical skills Hermes Agent — intelligent message routing, end-to-end workflow automation, API/multi-agent interoperability, fast NLP & tool-calling, event-driven architecture, conversational UX, micro-interactions, agentic transparency, tone matching. |
 | `hermes-zero-defect-architect` | software-development | 1 | Bank Pusat | Sistem resolusi bug absolut dengan toleransi kegagalan 0% (Zero-Defect Protocol). Mengeksekusi perbaikan full-stack (Rust, Python, React) dan arsitektur agen (MCP, n8n) melalui pipeline terisolasi: Diagnosa -> Eksekusi Idempotent -> Verifikasi -> Rollback otomatis jika gagal. Terintegrasi dengan JCode AI untuk parallel task dengan jaring pengaman. |
 | `hyperframes` | creative | 1 | Bank Pusat | HyperFrames — open-source framework dari HeyGen untuk mengubah HTML + CSS + animasi menjadi video MP4. 'Write HTML. Render video. Built for agents.' |
-| `impeccable` | design | 154 | Bank Pusat | Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks. |
+| `impeccable` | design | 152 | Bank Pusat | Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks. |
 | `optimization` | software-development | 1 | Bank Pusat | Improve performance, latency, and throughput of code and systems. Systematic profiling → bottleneck detection → targeted optimization. |
 | `pemdi-evidence-management` | software-development | 6 | Bank Pusat | >- |
 | `pemdi-uiux-refinement` | software-development | 1 | Bank Pusat | Refine UI/UX portal Pemdi Aceh Tengah dengan impeccable + hermes-uiux-technical — sistem animasi global, fix anti-pattern, audit pasca-deploy. Trigger: perubahan desain/animasi/UX PemdiAcehTengah. |
@@ -634,15 +634,20 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `systematic-debugging` | software-development | 1 | Bank Pusat | 4-phase root cause debugging: understand bugs before fixing. |
 | `telegram-router-orchestration` | autonomous-ai-agents | 1 | Bank Pusat | Mengelola persona, skills, dan model override per-thread Telegram di Hermes Gateway, termasuk integrasi dengan ekosistem Niumination. |
 | `tripwire` | software-development | 1 | Bank Pusat | Identify the single most critical risk that could derail a project — forcing prioritization down to one thing when a full risk analysis has produced too many findings to act on all at once. |
-| `ui-ux-pro-max` | design | 36 | Bank Pusat | UI/UX design intelligence. 67 styles, 96 palettes, 57 font pairings, 25 charts, 13 stacks (React, Next.js, Vue, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui). Actions: plan, build, create, design, implement, review, fix, improve, optimize, enhance, refactor, check UI/UX code. Projects: website, landing page, dashboard, admin panel, e-commerce, SaaS, portfolio, blog, mobile app, .html, .tsx, .vue, .svelte. Elements: button, modal, navbar, sidebar, card, table, form, chart. Styles: glassmorphism, claymorphism, minimalism, brutalism, neumorphism, bento grid, dark mode, responsive, skeuomorphism, flat design. Topics: color palette, accessibility, animation, layout, typography, font pairing, spacing, hover, shadow, gradient. Integrations: shadcn/ui MCP for component search and examples. |
+| `ui-ux-pro-max` | design | 35 | Bank Pusat | UI/UX design intelligence. 67 styles, 96 palettes, 57 font pairings, 25 charts, 13 stacks (React, Next.js, Vue, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui). Actions: plan, build, create, design, implement, review, fix, improve, optimize, enhance, refactor, check UI/UX code. Projects: website, landing page, dashboard, admin panel, e-commerce, SaaS, portfolio, blog, mobile app, .html, .tsx, .vue, .svelte. Elements: button, modal, navbar, sidebar, card, table, form, chart. Styles: glassmorphism, claymorphism, minimalism, brutalism, neumorphism, bento grid, dark mode, responsive, skeuomorphism, flat design. Topics: color palette, accessibility, animation, layout, typography, font pairing, spacing, hover, shadow, gradient. Integrations: shadcn/ui MCP for component search and examples. |
 | `ultrathink` | software-development | 1 | Bank Pusat | Force deep architectural and system-level reasoning before writing code — channels a master craftsman who thinks in trade-offs, invariants, and long-term maintainability rather than rushing to implementation. |
 | `up-eco` | ecosystem | 1 | Bank Pusat | Ecosystem status check & sync workflow. Triggered via Telegram /up-eco command. Checks git status, detects unknown/foreign folders, syncs BACKLOG/docs with filesystem, and recommends actions to align local ecosystem with GitHub. |
 | `verification-before-completion` | software-development | 1 | Bank Pusat | Use when ABOUT to claim work is complete, fixed, or passing — before committing or creating PRs. Requires running verification commands and confirming output before any success claims. |
 | `writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-08-23 16:02:59_
+_Last sync: 2026-08-24 12:00:03_
 
 <!-- SKILL_REGISTRY_END -->
+
+
+
+
+
 
 
 
