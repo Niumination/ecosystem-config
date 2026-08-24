@@ -664,16 +664,11 @@ print(total)
   # ── Phase 9b: Gaya Jawab Guard (anti bertele-tele) ────────────────────────
   section "✂️ Gaya Jawab — Anti Bertele-tele (SOUL + config)"
   local v_ok=true
-  # SOUL live harus punya bab Gaya jawab
+  # SOUL live harus punya bab Gaya jawab (didefinisikan langsung di ~/.hermes/SOUL.md,
+  # bukan dari template eksternal — template rebuild-v2 sudah dihapus dari repo)
   if ! grep -q "Gaya jawab" "$HERMES_HOME/SOUL.md" 2>/dev/null; then
     fail "SOUL.md tanpa bab Gaya jawab — balasan Telegram akan bertele-tele"
-    rec "→ Pulihkan: cp docs/references/niumination-rebuild-v2-2026-08-18/hermes/SOUL.md ~/.hermes/SOUL.md && chmod 444 ~/.hermes/SOUL.md"
-    v_ok=false
-  fi
-  # Template rebuild harus sinkron (diff 0) agar reinstall tidak revert
-  if ! diff -q "$HERMES_HOME/SOUL.md" "$NIUMINATION/docs/references/niumination-rebuild-v2-2026-08-18/hermes/SOUL.md" >/dev/null 2>&1; then
-    warn "SOUL live vs template rebuild tidak identik — risiko revert saat reinstall"
-    rec "→ Sinkronkan: cp ~/.hermes/SOUL.md docs/references/niumination-rebuild-v2-2026-08-18/hermes/SOUL.md"
+    rec "→ Tambahkan bab '## Gaya jawab' (ringkas 3-5 baris) ke ~/.hermes/SOUL.md"
     v_ok=false
   fi
   # 4 config anti-verbose
