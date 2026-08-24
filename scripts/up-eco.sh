@@ -768,7 +768,8 @@ main() {
   check_trio_awareness
   echo "" 2>&1
   # ── Phase 9b: Gaya Jawab Guard (anti bertele-tele) ───────────────────────
-  check_verbosity
+  # Catatan: guard gaya jawab sudah dijalankan di akhir check_mission_control()
+  # (tidak ada fungsi check_verbosity terpisah — panggilan lama menyebabkan error 127)
 
   # ── Summary ───────────────────────────────────────────────────────────────
   header
