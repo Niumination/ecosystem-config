@@ -41,22 +41,40 @@ tools = {}
 
 # ── Hermes ───────────────────────────────────────────────────────────────────
 def hermes_status():
-    s = {"sessions": 0, "last_session": "", "model": "", "git_dirty": []}
-    sess_dir = os.path.join(hermes_home, "sessions")
-    if os.path.isdir(sess_dir):
-        files = sorted(glob.glob(f"{sess_dir}/*.json"))
-        s["sessions"] = len(files)
-        if files:
-            s["last_session"] = os.path.basename(files[-1])
-    # model terakhir
-    model_file = os.path.join(hermes_home, "session-models.json")
-    if os.path.exists(model_file):
+    s = {"sessions": 0, "active_sessions": 0, "total_sessions": 0,
+         "last_session": "", "model": "", "gateway": "?", "git_dirty": [],
+         "live_summaries": []}
+    # status gateway (hidup/mati) dari gateway_state.json
+    gs_file = os.path.join(hermes_home, "gateway_state.json")
+    if os.path.exists(gs_file):
         try:
-            import json as _j
-            mm = _j.load(open(model_file))
-            if mm:
-                last_key = sorted(mm.keys())[-1]
-                s["model"] = mm[last_key]
+            gs = json.load(open(gs_file))
+            s["gateway"] = gs.get("gateway_state", "?")
+        except Exception:
+            pass
+    # sumber kebenaran: state.db tabel sessions (bukan request-dump di sessions/)
+    db = os.path.join(hermes_home, "state.db")
+    if os.path.exists(db):
+        try:
+            import sqlite3 as _sq
+            con = _sq.connect(f"file:{db}?mode=ro", uri=True, timeout=5)
+            cur = con.cursor()
+            s["total_sessions"] = cur.execute("SELECT COUNT(*) FROM sessions").fetchone()[0]
+            # aktif = session ada pesan < 30 menit terakhir (bukan berdasar waktu mulai —
+            # sesi Telegram bisa berjalan berjam-jam)
+            s["active_sessions"] = cur.execute(
+                "SELECT COUNT(DISTINCT session_id) FROM messages "
+                "WHERE timestamp > strftime('%s','now') - 1800").fetchone()[0]
+            rows = cur.execute(
+                "SELECT COALESCE(NULLIF(title,''), id), COALESCE(model,''), source "
+                "FROM sessions ORDER BY started_at DESC LIMIT 3").fetchall()
+            if rows:
+                s["last_session"] = rows[0][0]
+                s["model"] = rows[0][1]
+                for _t, _m, _src in rows:
+                    s["live_summaries"].append(
+                        {"session": str(_t)[:40], "summary": f"[{_src}] {_m or '-'}"})
+            con.close()
         except Exception:
             pass
     # git dirty di ekosistem root
@@ -195,7 +213,13 @@ def opencode_status():
     # OPTIMASI: kalau opencode tidak jalan, skip `opencode session list` (hemat ~14s)
     sessions_total = 0
     sessions = []
-    prev_status = os.path.exists(status_file) and json.load(open(status_file)).get("tools",{}).get("opencode",{})
+    # cache .trio-status.json sebelumnya — di-guard agar file korup tidak mematikan script
+    prev_status = {}
+    if os.path.exists(status_file):
+        try:
+            prev_status = json.load(open(status_file)).get("tools", {}).get("opencode", {}) or {}
+        except Exception:
+            prev_status = {}
     if not opencode_running:
         s["sessions"] = 0
         s["active_sessions"] = 0
@@ -267,7 +291,7 @@ def recent_tool_activity(repo):
 
 # Check conflict: 2+ tools active in same repo
 for repo in [nium,
-             f"{nium}/services/cc-aceh-tengah",
+             f"{nium}/services/cc-acehtengah",
              f"{nium}/services/niu-mission-control"]:
     if os.path.isdir(repo) and os.path.isdir(f"{repo}/.git"):
         active = recent_tool_activity(repo)
@@ -279,24 +303,27 @@ for repo in [nium,
                 "desc": f"⚠️ {', '.join(sorted(active))} pernah aktif di repo yang sama"
             })
 
-# Gap: commit terbaru ada tapi belum di BACKLOG
-backlog_path = f"{nium}/BACKLOG.md"
-for repo in [nium, f"{nium}/services/cc-aceh-tengah"]:
+# Gap: commit lokal belum di-push (bukan "belum di BACKLOG" — itu false positive tiap commit baru)
+for repo in [nium, f"{nium}/services/cc-acehtengah"]:
     if not os.path.isdir(repo):
         continue
     try:
-        last_commit = subprocess.run(
-            ["git", "-C", repo, "log", "-1", "--pretty=format:%h %s"],
-            capture_output=True, text=True, timeout=10).stdout.strip()
-        if last_commit and os.path.exists(backlog_path):
-            h = last_commit.split()[0]
-            if h not in open(backlog_path).read():
-                rel = repo.replace(f"{nium}/", "")
+        unpushed = subprocess.run(
+            ["git", "-C", repo, "rev-list", "--count", "@{upstream}..HEAD"],
+            capture_output=True, text=True, timeout=10)
+        if unpushed.returncode == 0 and unpushed.stdout.strip().isdigit():
+            n_unpushed = int(unpushed.stdout.strip())
+            if n_unpushed > 0:
+                last_commit = subprocess.run(
+                    ["git", "-C", repo, "log", "-1", "--pretty=format:%h %s"],
+                    capture_output=True, text=True, timeout=10).stdout.strip()
+                rel = repo.replace(f"{nium}/", "") or "."
                 gaps.append({
-                    "type": "undocumented",
+                    "type": "unpushed",
                     "repo": rel,
+                    "count": n_unpushed,
                     "commit": last_commit[:60],
-                    "desc": f"ℹ️ commit terbaru {h} di {rel} belum tercatat di BACKLOG.md"
+                    "desc": f"ℹ️ {rel}: {n_unpushed} commit belum di-push (terakhir: {last_commit[:40]})"
                 })
     except Exception:
         pass
@@ -329,15 +356,20 @@ for name, data in tools.items():
     total = data.get("total_sessions", sess)
     last = data.get("last_session", "") or "-"
     model = f" | model: {data.get('model','')}" if data.get("model") else ""
+    # status gateway untuk hermes
+    gw = ""
+    if name == "hermes":
+        gw_state = data.get("gateway", "?")
+        gw_icon = "🟢" if gw_state == "running" else ("🔴" if gw_state not in ("?", "") else "⚪")
+        gw = f" | gateway: {gw_icon}{gw_state}"
     # tampilkan "X aktif (Y total)" bila ada active_sessions terpisah
-    if "active_sessions" in data and total != active:
+    if name == "opencode" and active == 0:
+        sess_str = "tidak aktif (idle)"
+    elif total != active:
         sess_str = f"{active} aktif ({total} total)"
     else:
         sess_str = f"{sess} sessions"
-    # untuk open-code jika tidak aktif → pesan idle
-    if name == "opencode" and active == 0:
-        sess_str = "tidak aktif (idle)"
-    print(f"{prefix}: {sess_str} | last: {last[:40]}{model}")
+    print(f"{prefix}: {sess_str} | last: {last[:40]}{model}{gw}")
     # ringkasan live sessions (jika ada)
     live_summaries = data.get("live_summaries", [])
     for ls in live_summaries:
