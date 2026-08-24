@@ -80,3 +80,4 @@ __pycache__/
 .sync-log
 
 .git-backup-*/
+scripts/.trio-status.json
