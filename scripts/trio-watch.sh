@@ -4,14 +4,14 @@
 # =============================================================================
 # Pemanggil: up-eco.sh --from <hermes|jcode|opencode>
 # Tujuan : Memberi tahu 2 tool lain tanpa kontrol/span/delegasi apa pun.
-# Output : core/runtime/trio-status.json  (overwrite tiap run, shared memory)
+# Output : scripts/.trio-status.json  (overwrite tiap run, shared memory)
 # Batasan: READ-ONLY. Tidak mutate core, tidak spawn sub-agent, tidak ganti model.
 # =============================================================================
 
 set -euo pipefail
 NIUMINATION="/Users/zaryu/Desktop/Niumination"
 HERMES_HOME="${HOME}/.hermes"
-STATUS_FILE="$NIUMINATION/core/runtime/trio-status.json"
+STATUS_FILE="$NIUMINATION/scripts/.trio-status.json"
 
 # ── Parse --from arg ──
 FROM=""
@@ -200,7 +200,7 @@ def opencode_status():
         s["sessions"] = 0
         s["active_sessions"] = 0
         s["last_session"] = "idle"
-        # ambil total dari cache trio-status.json sebelumnya (jika ada)
+        # ambil total dari cache .trio-status.json sebelumnya (jika ada)
         if prev_status:
             sessions_total = prev_status.get("total_sessions", 0)
         s["sessions"] = sessions_total
