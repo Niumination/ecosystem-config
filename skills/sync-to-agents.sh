@@ -6,8 +6,8 @@
 # Source:  ~/Desktop/Niumination/skills/ (bank pusat — single source of truth)
 # Target:  ~/.jcode/skills/        → Jcode flat structure
 #          ~/.hermes/skills/       → Hermes domain structure (local)
-#          /Volumes/HermesAgent/   → Hermes USB domain structure (portable)
 #          AGENTS.md               → DOX injection (skill registry update)
+#          (USB Hermes diparkir sebagai backup 2026-08-20 — tidak di-sync lagi)
 #
 # Safety:  Non-destructive (copy/add only, never delete)
 #          mkdir-based lock (macOS compatible)
@@ -27,7 +27,7 @@ fi
 BANK_DIR="$_REAL_HOME/Desktop/Niumination/skills"
 JCODE_DIR="$_REAL_HOME/.jcode/skills"
 HERMES_DIR="$_REAL_HOME/.hermes/skills"
-HERMES_USB_DIR="/Volumes/HermesAgent/HermesAgentUSB/data/skills"
+# HERMES_USB_DIR="/Volumes/HermesAgent/HermesAgentUSB/data/skills"  # diparkir 2026-08-20
 AGENTS_MD="$_REAL_HOME/Desktop/Niumination/AGENTS.md"
 LOCK_DIR="$_REAL_HOME/Desktop/Niumination/.sync-lock"
 LOG_FILE="$_REAL_HOME/Desktop/Niumination/.sync-log"
@@ -174,13 +174,6 @@ sync_target "$JCODE_DIR" "Jcode" "flat"
 # ── 2. Sync ke Hermes (domain structure) ────────────────────────────────────
 sync_target "$HERMES_DIR" "Hermes" "domain"
 
-# ── 2b. Sync ke Hermes USB (domain structure) ───────────────────────────────
-if [ -d "$HERMES_USB_DIR" ]; then
-  sync_target "$HERMES_USB_DIR" "Hermes USB" "domain"
-else
-  log "   ⚠️  Hermes USB path not found: $HERMES_USB_DIR (skipped)"
-fi
-
 # ── 3. Update AGENTS.md — Skill Registry ────────────────────────────────────
 if ! $DRY_RUN; then
   # Build the skill registry block
@@ -321,7 +314,7 @@ PYEOF
   else
     # Append before footer
     # Find the last --- line before the footer
-    footer_line=$(grep -n "^> \\*\\*Dibuat:" "$AGENTS_MD" | head -1 | cut -d: -f1)
+    footer_line=$(grep -n "^> \\*\\*Dibuat:" "$AGENTS_MD" | head -1 | cut -d: -f1 || true)
     if [ -n "$footer_line" ]; then
       insert_line=$((footer_line - 2))
       head -n "$insert_line" "$AGENTS_MD" > /tmp/agents-new.md
@@ -342,7 +335,7 @@ fi
 
 # ── 4. Write log ─────────────────────────────────────────────────────────────
 if ! $DRY_RUN; then
-  echo "[$(date '+%Y-%m-%d %H:%M:%S')] Sync selesai: $SKILL_COUNT skill × 3 target (Jcode/Hermes/USB) + AGENTS.md ✅" >> "$LOG_FILE"
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] Sync selesai: $SKILL_COUNT skill × 2 target (Jcode/Hermes) + AGENTS.md ✅" >> "$LOG_FILE"
   log "✅ Sync selesai — $SKILL_COUNT skill disinkronkan ke Jcode/Hermes/USB"
   
   # Notify mission-control (fire-and-forget, non-blocking)

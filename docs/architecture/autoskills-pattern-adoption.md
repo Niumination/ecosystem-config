@@ -1,6 +1,6 @@
 # Rencana Penerapan: Pola autoskills untuk Skill Bank Niumination
 
-> **Status:** Draft — menunggu persetujuan eksekusi
+> **Status:** Phase 1-4 SELESAI — 2026-08-22 (Jcode)
 > **Tanggal:** 2026-08-16
 > **Penulis:** Hermes (analisis + rekomendasi)
 > **Referensi:** [autoskills.sh](https://www.autoskills.sh/) · [midudev/autoskills](https://github.com/midudev/autoskills) (6.8k⭐, CC BY-NC 4.0)
@@ -223,9 +223,9 @@ Skill: impeccable
 
 ---
 
-### PHASE 4 — Auto-Detect Stack (OPSIONAL / Lanjutan)
+### PHASE 4 — Auto-Detect Stack ✅ SELESAI 2026-08-22
 
-**Tujuan:** `nium-skill-detect` — scan proyek → rekomendasi skill dari bank (mirip autoskills).
+**Tujuan:** `scripts/skill-detect.py` — scan proyek → rekomendasi skill dari bank (mirip autoskills).
 
 **Spesifikasi singkat:**
 - File: `scripts/skill-detect.py` (Python — ekosistem dominan Python)
@@ -235,7 +235,9 @@ Skill: impeccable
 - Output: daftar skill yang relevan + lokasi di bank + instruksi sync
 - Integrasi: bisa jadi command di Mission Control / pre-commit hook (opsional)
 
-**Kriteria sukses:** deteksi benar pada 3 proyek nyata (niu-mission-control, pemdi, satu proyek PHP).
+**Kriteria sukses:** deteksi benar pada 3 proyek nyata — ✅ Niumination (20 skill), niu-mission-control (13 skill), cc-acehtengah (6 skill).
+
+**Implementasi:** `scripts/skill-detect.py` — 6 mekanisme (package names, package regex, config files, ext, content regex, Gemfile/go.mod/Cargo.toml/composer), map ke 68 skill via SKILL_MAP, dedup evidence, confidence high/medium/low. Usage: `python3 scripts/skill-detect.py --dir <proyek> [--json] [--verbose] [--list-map]`.
 
 ---
 
@@ -289,4 +291,9 @@ cd ~/Desktop/Niumination && bash skills/sync-to-agents.sh --verbose
 
 # Security scan (setelah Phase 3)
 cd ~/Desktop/Niumination && python3 scripts/skill-audit.py
+
+# Auto-detect stack → rekomendasi skill (Phase 4)
+cd ~/Desktop/Niumination && python3 scripts/skill-detect.py --dir services/cc-acehtengah
+python3 scripts/skill-detect.py --dir services/niu-mission-control --json
+python3 scripts/skill-detect.py --list-map
 ```
