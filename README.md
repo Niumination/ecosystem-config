@@ -1,6 +1,6 @@
 # 🏔️ Niumination Ecosystem
 
-> **Version:** 4.0 | **Updated:** July 29, 2026
+> **Version:** 4.0 | **Updated:** August 27, 2026
 > **Master orchestrator:** [ecosystem-config](https://github.com/Niumination/ecosystem-config)
 
 ---
@@ -13,8 +13,8 @@ Niumination/
 ├── BACKLOG.md         ← Master project portfolio
 ├── README.md          ← This file — ecosystem index
 │
-├── apps/              🏭 12 PRODUCTION — deployed & battle-tested
-├── services/          🔧 5 BACKEND — servers & engines
+├── apps/              🏭 13 PRODUCTION — deployed & battle-tested
+├── services/          🔧 6 BACKEND — servers & engines
 ├── sites/             🌐 5 FRONTEND — web applications
 ├── desktop/           🖥️ 4 NATIVE — desktop & mobile
 ├── agents/            🤖 4 AI — agents & automation
@@ -43,7 +43,7 @@ Niumination/
 
 ---
 
-## 🏭 Apps — Production (12)
+## 🏭 Apps — Production (13)
 
 | Project | Stack | Deploy | Status |
 |---------|-------|--------|:------:|
@@ -56,12 +56,13 @@ Niumination/
 | **arch-dashboard** | HTML/CSS | GitHub | ✅ Done |
 | **ai-file-manager** | Android/Kotlin | GitHub | 🟢 Live |
 | **cc-switch** | Tauri 2/Rust | GitHub | 🟢 Active |
+| **pabrik-aplikasi-gas** | Google Apps Script | GAS Web App | 🟢 Active |
 | **jhermusb** | Python/Portable | GitHub | ✅ Done |
 | **ai-first-os** | Arch ISO | GitHub | ⚪ Minor |
 
 ---
 
-## 🔧 Services — Backend & API (5)
+## 🔧 Services — Backend & API (6)
 
 | Project | Stack | Priority | Status |
 |---------|-------|:--------:|:------:|
@@ -111,8 +112,8 @@ Niumination/
 
 | Kategori | Count | Size | Maturity |
 |----------|:-----:|:----:|:--------:|
-| 🏭 **apps/** | 12 | 10 GB | Production |
-| 🔧 **services/** | 5 | 2.1 GB | Active |
+| 🏭 **apps/** | 13 | 10 GB | Production |
+| 🔧 **services/** | 6 | 2.1 GB | Active |
 | 🌐 **sites/** | 5 | 1.3 GB | Active |
 | 🖥️ **desktop/** | 4 | 949 MB | Active |
 | 🤖 **agents/** | 4 (incl profile) | 33 MB | Active |
