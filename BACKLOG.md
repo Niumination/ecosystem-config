@@ -1,11 +1,10 @@
 # 📋 BACKLOG — Niumination Ecosystem — MASTER DOCUMENTATION
 
-> **UPDATE: July 28, 2026** — Sync real filesystem state setelah 11 hari tidak diupdate (sejak Jul 17).
-> Perubahan besar: cc-acehtengah +27 commit, niu-mission-control +33 commit, PemdiAcehTengah 57 bukti dukung.
+> **UPDATE: August 26, 2026** — Sync real filesystem + GitHub state. Major: cc-acehtengah (Aug 24), niu-mission-control (Aug 20), PemdiAcehTengah (Aug 21), Niumination profile (Aug 26), hermes-agent fork (Aug 24). Skill Bank: 42 skills. External: Entire.io ecosystem discovered for agent memory layer.
 
 ---
 
-## 🗂️ Struktur Root Ekosistem — Niumination v4.0 — Jul 29, 2026
+## 🗂️ Struktur Root Ekosistem — Niumination v4.0 — Aug 26, 2026
 
 ```
 Desktop/Niumination/
@@ -13,17 +12,17 @@ Desktop/Niumination/
 ├── services/           🔧 7 proyek — backend & engines
 ├── sites/              🌐 5 proyek — frontend apps
 ├── desktop/            🖥️ 4 proyek — native apps
-├── agents/             🤖 4 proyek — AI agents + characters + profile
+├── agents/             🤖 5 proyek — AI agents + characters + profile + _shared
 ├── labs/               🔬 3 proyek — experiments
 ├── sandbox/            🧪 7 proyek — dormant (ex-incubator)
 ├── archive/projects/   📦 2 proyek — archived (niuterm, terax-ai)
 ├── docs/               📚 Dokumentasi terpadu (reference/, reports/, notebooklm/, dox/)
 ├── scripts/            ⚙️ 21 ecosystem automation scripts
-├── skills/             🧠 **22 skill terpusat** (Layer 1-4 ✅, design domain baru ✅)
-├── tools/              🛠️ Ponytail MCP
+├── skills/             🧠 **42 skill terpusat** (Layer 1-4 ✅, design domain, ecosystem, creative, security)
+├── tools/              🛠️ Ponytail MCP + pdf-inspector
 ├── vault/              🔐 Secrets & credentials (gitignored)
 ├── brain/              🧠 Obsidian vault (git, terpisah)
-├── dotfiles/              🐚 Terminal dotfiles (gitignored)
+├── dotfiles/           🐚 Terminal dotfiles (gitignored)
 ├── AGENTS.md           📋 Root DOX — AI orchestration rules
 ├── BACKLOG.md          📋 Master doc ini
 └── .gitleaks.toml      🔒 Security config
@@ -51,54 +50,54 @@ Desktop/Niumination/
 
 ### 🏭 apps/ — 12 Proyek Production
 
-| Proyek | Status | Deploy | Aktivitas 14 Hari | Notes |
+| Proyek | Status | Deploy | Aktivitas Terakhir | Notes |
 |--------|:------:|:------:|:------------------:|-------|
 | **PemdiAcehTengah** | 🟢 **Active** | Vercel | **PR#4 merged 2026-08-21** | Rumus resmi PermenPANRB 8/2026 + matriks kebutuhan bukti L1-L2 (NotebookLM). Masa penilaian mandiri selesai (bukti diupload eval.spbe.go.id) |
-| **Niu-LKH** | ✅ Done | GH Pages | 0 | v3.1.1 — ⚠️ Dirty 1 file |
-| **niu-vermilion** | 🟢 Active | Vercel | 0 | Stable — V1-V5 fixed |
-| **kune-ya.com** | 🟢 Active | Vercel | 0 | Stable — K1-K5 fixed |
-| **niu-dash** | 🟢 Active | GH Pages | **+2 commit** | v2.16.8 — ⚠️ Dirty 3 file |
-| **kopi-aceh-app-android** | ⚪ Sandbox | GitHub | 0 | Rancangan & source app Android Gerobak Kopi Keliling Aceh Tengah — peta gerobak, pesan QRIS, antar/jemput. Repo belum dibuat (butuh gh auth) — remote sementara ke ecosystem-config. |
-| **JHermUSB-portable** | ✅ Done | GitHub | **committed 2026-08-21** | 2 file skill sync diedit + commit+push (sebelumnya dirty 8 file per BACKLOG lama — sudah tidak valid) |
-| **mac-web-dashboard** | ✅ Done | GitHub | +1 | v1.0.0 |
-| **arch-web-dashboard** | ✅ Done | GitHub | 0 | v1.0.0 |
-| **ai-file-manager-android** | 🟢 Active | Device | 0 | Published & tested |
-| **ai-first-os** | ⚪ Minor | GitHub | 0 | Build kit |
-| **Niumination** | ⚪ Minor | GitHub | **+7 commit** | Profile config |
-| **CC.Switch** | 🟢 **Active** | GitHub | **+8 commit** | Tauri 2 multi-CLI |
+| **Niu-LKH** | ✅ Done | GH Pages | 2026-08-18 | v3.1.1 — clean |
+| **niu-vermilion** | 🟢 Active | Vercel | 2026-08-07 | Stable — V1-V5 fixed |
+| **kune-ya.com** | 🟢 Active | Vercel | 2026-07-13 | Stable — K1-K5 fixed |
+| **niu-dash** | 🟢 Active | GH Pages | 2026-08-21 | v2.16.8 — clean |
+| **kopi-aceh-app-android** | ⚪ Sandbox | GitHub | — | Rancangan & source app Android Gerobak Kopi Keliling Aceh Tengah |
+| **JHermUSB-portable** | ✅ Done | GitHub | 2026-08-21 | committed 2 file skill sync |
+| **mac-web-dashboard** | ✅ Done | GitHub | 2026-08-18 | v1.0.0 |
+| **arch-web-dashboard** | ✅ Done | GitHub | 2026-08-18 | v1.0.0 |
+| **ai-file-manager-android** | 🟢 Active | Device | 2026-08-10 | Published & tested |
+| **ai-first-os** | ⚪ Minor | GitHub | 2026-06-27 | Build kit |
+| **Niumination** (profile) | ⚪ Minor | GitHub | **2026-08-26** | Animated terminal README — live |
+| **CC.Switch** | 🟢 **Active** | GitHub | 2026-08-07 | Tauri 2 multi-CLI |
 
 ### 🔧 services/ — 7 Backend & API
 
-| Proyek | Priority | Status | Aktivitas 14 Hari | Notes |
+| Proyek | Priority | Status | Aktivitas Terakhir | Notes |
 |--------|:--------:|:------:|:------------------:|-------|
-| **cc-acehtengah** | **P2 ⬆** | 🟢 **Active** | **+27 commit** 🏆 | Tema Gayo Highlands, Analytics, GIS, AI orchestrator, QueryBar |
-| **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **+33 commit** 🏆 | v2.6.2 — UP 2026-08-21 (venv lokal recreate, symlink USB rusak). Port 5200 live, health ok |
-| **niu-cast** | P2 | 🟢 **Active** | **+27 commit** | v3.6.0 — Mac Connect Bridge, macOS native install |
-| **Niu-Flow** | P2 | 🟢 **Remote only** | ✅ GitHub | github.com/Niumination/niu-flow |
-| **latticesend** | P3 | 🟢 Active | +1 | P2P file transfer — ✅ sudah punya remote (audit 2026-08-21) |
-| **uacc** | P2 🆕 | 🟢 Active | +new | Universal AI Computer Control — MCP server |
-| **camofox-browser** | P3 🆕 | ⚪ Third-party | 0 | Anti-detection browser (jo-inc/camofox-browser) — dependency browser toolset |
+| **cc-acehtengah** | **P2 ⬆** | 🟢 **Active** | **2026-08-24** | DTSEN Multi-Source → AI Smart Query, EWS, KPI Pimpinan, Laporan Eksekutif. 200/200 Vitest passing |
+| **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **2026-08-20** | v2.6.2 — UP (port 5200, health ok). Swarm orchestrator |
+| **niu-cast** | P2 | 🟢 **Active** | 2026-07-21 | v3.6.0 — Mac Connect Bridge |
+| **Niu-Flow** | P2 | 🟢 **Remote only** | 2026-07-28 | github.com/Niumination/niu-flow |
+| **latticesend** | P3 | 🟢 Active | 2026-08-10 | P2P file transfer — ✅ sudah punya remote |
+| **uacc** | P2 🆕 | 🟢 Active | 2026-08-18 | Universal AI Computer Control — MCP server |
+| **camofox-browser** | P3 🆕 | ⚪ Third-party | 2026-08-18 | Anti-detection browser |
 
 ### 🌐 sites/ — 5 Frontend
 
-| Proyek | Priority | Status | Aktivitas 14 Hari | Notes |
+| Proyek | Priority | Status | Aktivitas Terakhir | Notes |
 |--------|:--------:|:------:|:------------------:|-------|
-| **TEDEO-Kanban** | P2 | 🟡 95% | +1 | Vite/React/Zustand |
-| **niu-dash-fullstack** | P3 | ⏸️ Stale | +1 | Next.js 16 |
-| **niu-kanban-dash** | P3 | ⏸️ | 0 | Vite/React |
-| **AuditTI-AT** (`sites/audit-ti-at/`) | P3 | ✅ Live | 0 | GH Pages |
-| **spatial-vision** | P3 | 🟢 Active | +1 | 3D vision |
+| **TEDEO-Kanban** | P2 | 🟡 95% | 2026-08-18 | Vite/React/Zustand |
+| **niu-dash-fullstack** | P3 | ⏸️ Stale | 2026-07-30 | Next.js 16 |
+| **niu-kanban-dash** | P3 | ⏸️ | 2026-08-18 | Vite/React |
+| **AuditTI-AT** | P3 | ✅ Live | 2026-08-13 | GH Pages |
+| **spatial-vision** | P3 | 🟢 Active | 2026-08-18 | Rust/WASM 3D vision |
 
 ### 🖥️ desktop/ — 4 Native
 
-| Proyek | Priority | Status | Aktivitas 14 Hari | Notes |
+| Proyek | Priority | Status | Aktivitas Terakhir | Notes |
 |--------|:--------:|:------:|:------------------:|-------|
-| **Flame-ADE** | P2 | ⏸️ Stale | 0 | Tauri/Rust |
-| **didong-code** | P2 | 🟢 Active | 0 | Electron ADE Gayo |
-| **joy-connect-for-mac** | P2 🆕 | 🟢 Active | 0 | Swift/ADB bridge |
-| **x-downloader** | P3 | ✅ Phase 3 | 0 | Tauri 2 |
+| **Flame-ADE** | P2 | ⏸️ Stale | 2026-06-27 | Tauri/Rust |
+| **didong-code** | P2 | 🟢 Active | 2026-07-07 | Electron ADE Gayo |
+| **joy-connect-for-mac** | P2 🆕 | 🟢 Active | 2026-08-03 | Swift/ADB bridge |
+| **x-downloader** | P3 | ✅ Phase 3 | 2026-07-15 | Tauri 2 |
 
-### 🤖 agents/ — 4 AI & Automation
+### 🤖 agents/ — 5 AI & Automation
 
 | Proyek | Priority | Status | Notes |
 |--------|:--------:|:------:|-------|
@@ -114,26 +113,26 @@ Desktop/Niumination/
 |--------|:--------:|:------:|-------|
 | **maze-3d** | P3 | ✅ Live | GH Pages |
 | **niumination-workspace** | P3 | ⏸️ Stale | Next.js 16 |
-| **eKinerja-AfrizalMunthe** | ⚪ Minor | 🟢 Active | Bukti dukung eKinerja Sem 1 2026 (SKP/DEKP/PAK) — 🔒 private repo |
+| **eKinerja-AfrizalMunthe** | ⚪ Minor | 🟢 Active | Bukti dukung eKinerja Sem 1 2026 — 🔒 private repo |
 
 ### 🧪 sandbox/ — 7 Dormant (ex-incubator)
 
 | Proyek | Last Activity | Alasan |
 |--------|:------------:|--------|
-| niu-studio | Stale 38d | Dual lockfile |
-| niude | Stale 31d | Low priority |
-| niutui | Stale 13d | Low priority |
-| zen | Stale 42d | acehtengah-web/ |
+| niu-studio | Stale 62d | Dual lockfile |
+| niude | Stale 54d | Low priority |
+| niutui | Stale 36d | Low priority |
+| zen | Stale 66d | acehtengah-web/ |
 | aistudio-google | Stale | Game files only |
 | arena.ai | Stale | Eksperimen |
-| x-downloader-backup | Stale | Backup of x-downloader |
+| x-downloader-backup | Stale 46d | Backup of x-downloader |
 
 ### 📦 archive/projects/ — 2 Archived
 
 | Proyek | Size | Alasan |
 |--------|:----:|--------|
-| niuterm | 621MB | Stale 64 hari |
-| terax-ai | 216MB | Stale 58 hari |
+| niuterm | 621MB | Stale 87 hari |
+| terax-ai | 216MB | Stale 81 hari |
 
 ---
 
@@ -301,3 +300,34 @@ Ultra, AuditTI-AT, Niu-Flow, didong-code, x-downloader, flame-ade, niu-vermilion
 - 📚 **BACKLOG.md** — diperbarui faktual (Pemdi, MC, JHermUSB, latticesend, dirty repos, AI ecosystem model).
 
 *Catatan: era konstitusi/core governance sudah DIHAPUS dari ekosistem (keputusan pemilik, 24 Agu 2026). Tidak ada file tersegel; semua folder terbuka untuk agen sesuai DOX.*
+
+---
+
+## 🔴 Perubahan — 26 Aug 2026 — BACKLOG Sync + Entire.io Discovery
+
+*Dokumen diverifikasi langsung dari GitHub org (`gh repo list Niumination`) + filesystem audit 2026-08-26.*
+
+- 📊 **GitHub Org Audit** — 77 repositori terdeteksi (public ~45, private ~32). Fokus: AI Agents, Desktop Apps (Tauri/Electron), Web Dashboards, GovTech, Infra.
+- 🏆 **Top Active (Aug 2026):** `Niumination` (profile, Aug 26), `cc-acehtengah` (Aug 24), `hermes-agent` fork (Aug 24), `ecosystem-config` (Aug 24), `niu-mission-control` (Aug 20), `PemdiAcehTengah` (Aug 21).
+- 🧠 **Skill Bank** — 42 skill aktif (INDEX.md) — naik dari 22 (Jul 28) / 68 (audit bank pusat Aug 21).
+- 🔧 **cc-acehtengah** — DTSEN Multi-Source → AI Smart Query (PR-4b/4c/4d), EWS, KPI Pimpinan, Laporan Eksekutif. 200/200 Vitest passing.
+- 🤖 **Entire.io Discovery** — Organisasi open-source untuk **agent memory layer**. Repo kunci: `cli` (⭐5k checkpoint search), `skills` (⭐217 cross-agent), `entire-graph` (entity graph), `external-agents` (Hermes/Claude/Codex/OpenCode plugins), `git-sync`, `pgr` (MCP search). Relevan untuk mengatasi amnesia agen + handoff antar agen di swarm.
+- 📝 **BACKLOG.md** — sync faktual: update tanggal, aktivitas terakhir (bukan "14 hari"), hapus "dirty" yang sudah resolved, perbaiki agents 4→5, tools +pdf-inspector.
+
+**Rekomendasi Tindak Lanjut:**
+1. Evaluasi `entire-cli` di `ecosystem-config` untuk checkpoint sesi Hermes/JCode/OpenCode.
+2. Fork `entireio/skills` → `skills/ecosystem/entire-skills/` sebagai upstream skill bank eksternal.
+3. Archive ~10 repo Linux ricing lama di GitHub (`ryuland`, `Zaryu-HyDE`, `RyuDE`, dll) yang sudah di-archive lokal.
+
+---
+
+## 🔴 Perubahan — 24 Aug 2026 — cc-acehtengah: DTSEN Multi-Source → AI Smart Query
+
+- 🔀 **DTSEN agregat → AI pipeline** — `src/services/ai-orchestrator.ts` diintegrasikan dengan `fetchDtsenAgregatPublik()`. Pertanyaan DTSEN agregat (desil, bansos, pembagian wilayah) kini menjawab berdasarkan gabungan SAPA + DTSEN (one door), bukan hanya SAPA.
+- 🎯 **Provenance tracking** — setiap evidence DTSEN dilabeli `opd="DTSEN (Kemensos/BPS)"`, `id="dtsen:..."`; narasi WAJIB menyertakan provenance chip + teks "Menurut DTSEN…".
+- 🔒 **Privacy tetap** — NIK/per-orang tetap defleksi ke konsol DTSEN terbatas (audit trail, UU 27/2022). k-anonymity sensor k≥5 diterapkan saat publish, bukan di query.
+- ✅ **200/200 Vitest passing**, production build clean, TypeScript `tsc --noEmit` clean.
+- 📄 **AGENTS.md** — update arsitektur diagram, stack, feature table, dan dokumentasi integrasi DTSEN-AI (DOX pass).
+- 🚀 **Push** — commit `f6d7cb2` ke `github.com:Niumination/cc-acehtengah`.
+
+@cc-acehtengah
