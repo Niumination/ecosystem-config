@@ -1,6 +1,6 @@
 # 📋 BACKLOG — Niumination Ecosystem — MASTER DOCUMENTATION
 
-> **UPDATE: August 26, 2026** — Sync real filesystem + GitHub state. Major: cc-acehtengah (Aug 24), niu-mission-control (Aug 20), PemdiAcehTengah (Aug 21), Niumination profile (Aug 26), hermes-agent fork (Aug 24). Skill Bank: 42 skills. External: Entire.io ecosystem discovered for agent memory layer.
+> **UPDATE: August 27, 2026** — Sync real filesystem + GitHub state. Major: pabrik-aplikasi-gas pilot LIVE (GAS v3), niu-mission-control PR#6 merged (Mission Core retheme), Trio Governance v2 approved, Skill Bank 68. Mac REDUCE-MOTION ON.
 
 ---
 
@@ -8,17 +8,17 @@
 
 ```
 Desktop/Niumination/
-├── apps/               🏭 12 proyek — deployed & battle-tested
-├── services/           🔧 7 proyek — backend & engines
+├── apps/               🏭 13 proyek — deployed & battle-tested
+├── services/           🔧 6 proyek — backend & engines
 ├── sites/              🌐 5 proyek — frontend apps
 ├── desktop/            🖥️ 4 proyek — native apps
-├── agents/             🤖 5 proyek — AI agents + characters + profile + _shared
+├── agents/             🤖 4 proyek — AI agents + characters + profile
 ├── labs/               🔬 3 proyek — experiments
 ├── sandbox/            🧪 7 proyek — dormant (ex-incubator)
 ├── archive/projects/   📦 2 proyek — archived (niuterm, terax-ai)
 ├── docs/               📚 Dokumentasi terpadu (reference/, reports/, notebooklm/, dox/)
 ├── scripts/            ⚙️ 21 ecosystem automation scripts
-├── skills/             🧠 **42 skill terpusat** (Layer 1-4 ✅, design domain, ecosystem, creative, security)
+├── skills/             🧠 **68 skill terpusat** (Layer 1-4 ✅, ecosystem domain, design, software-development, dll)
 ├── tools/              🛠️ Ponytail MCP + pdf-inspector
 ├── vault/              🔐 Secrets & credentials (gitignored)
 ├── brain/              🧠 Obsidian vault (git, terpisah)
@@ -48,7 +48,7 @@ Desktop/Niumination/
 **Board:** Niumination Ecosystem
 **Status:** 12 apps, 5 services, 5 sites, 4 desktop, 4 agents, 2 labs, 7 sandbox, 2 archived, **22 skills**
 
-### 🏭 apps/ — 12 Proyek Production
+### 🏭 apps/ — 13 Proyek Production
 
 | Proyek | Status | Deploy | Aktivitas Terakhir | Notes |
 |--------|:------:|:------:|:------------------:|-------|
@@ -65,13 +65,14 @@ Desktop/Niumination/
 | **ai-first-os** | ⚪ Minor | GitHub | 2026-06-27 | Build kit |
 | **Niumination** (profile) | ⚪ Minor | GitHub | **2026-08-26** | Animated terminal README — live |
 | **CC.Switch** | 🟢 **Active** | GitHub | 2026-08-07 | Tauri 2 multi-CLI |
+| **pabrik-aplikasi-gas** | 🟢 **Active** | Google Apps Script | **2026-08-27** | Pabrik Aplikasi GAS — Pilot 1: Inventaris Aset TI LIVE (v3). Repo mandiri: Niumination/pabrik-aplikasi-gas |
 
-### 🔧 services/ — 7 Backend & API
+### 🔧 services/ — 6 Backend & API
 
 | Proyek | Priority | Status | Aktivitas Terakhir | Notes |
 |--------|:--------:|:------:|:------------------:|-------|
 | **cc-acehtengah** | **P2 ⬆** | 🟢 **Active** | **2026-08-24** | DTSEN Multi-Source → AI Smart Query, EWS, KPI Pimpinan, Laporan Eksekutif. 200/200 Vitest passing |
-| **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **2026-08-20** | v2.6.2 — UP (port 5200, health ok). Swarm orchestrator |
+| **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **2026-08-27** | v2.6.2 → PR#6 merged: Mission Core retheme (token APEX gold/cyan). UP (port 5200, health ok). Swarm orchestrator |
 | **niu-cast** | P2 | 🟢 **Active** | 2026-07-21 | v3.6.0 — Mac Connect Bridge |
 | **Niu-Flow** | P2 | 🟢 **Remote only** | 2026-07-28 | github.com/Niumination/niu-flow |
 | **latticesend** | P3 | 🟢 Active | 2026-08-10 | P2P file transfer — ✅ sudah punya remote |
@@ -97,7 +98,7 @@ Desktop/Niumination/
 | **joy-connect-for-mac** | P2 🆕 | 🟢 Active | 2026-08-03 | Swift/ADB bridge |
 | **x-downloader** | P3 | ✅ Phase 3 | 2026-07-15 | Tauri 2 |
 
-### 🤖 agents/ — 5 AI & Automation
+### 🤖 agents/ — 4 AI & Automation
 
 | Proyek | Priority | Status | Notes |
 |--------|:--------:|:------:|-------|
@@ -329,5 +330,19 @@ Ultra, AuditTI-AT, Niu-Flow, didong-code, x-downloader, flame-ade, niu-vermilion
 - ✅ **200/200 Vitest passing**, production build clean, TypeScript `tsc --noEmit` clean.
 - 📄 **AGENTS.md** — update arsitektur diagram, stack, feature table, dan dokumentasi integrasi DTSEN-AI (DOX pass).
 - 🚀 **Push** — commit `f6d7cb2` ke `github.com:Niumination/cc-acehtengah`.
+
+---
+
+## 🔴 Perubahan — 27 Aug 2026 — Pabrik GAS LIVE + MC Retheme + Trio Gov v2
+
+*Dokumen diverifikasi langsung dari tool output (clasp, gh pr, up-eco.sh) 2026-08-27.*
+
+- 🏭 **pabrik-aplikasi-gas** — Pilot 1 **LIVE** (Google Apps Script v3). Inventaris Aset TI ter-deploy: dashboard CRUD + riwayat + self-healing tab Sheet. Repo mandiri: `Niumination/pabrik-aplikasi-gas` (private). Fix: `doGet` createHtmlOutputFromFile + serialisasi Date di `_readAsetRaw`. URL web app verified working.
+- 🎨 **niu-mission-control PR#6** — MERGED (`8a8b631`) → Mission Core retheme (token APEX gold-ring + cyan-core, 12 halaman). Produksi direstart (pid baru), `healthz`/`readyz` 200. WCAG AA lulus, reduce-motion hormati OS. Issue #5 auto-closed.
+- 📜 **Trio Governance v2** — commit `1442732`: intent-based, bukan folder-bound. Aturan dampak + klarifikasi sebelum eksekusi.
+- 🧠 **Skill Bank** — 68 skill (bank pusat), INDEX+manifest sinkron, 0 duplikat. Sync-to-agents jalan harian (JCode/Hermes). 3 conflict MC = **abaikan** (bank = katalog, tidak jalan barengan).
+- 📊 **Struktur** — apps 13 (tambah pabrik-aplikasi-gas), services 6, agents 4. Mac REDUCE-MOTION ON.
+
+*Status: ekosistem sehat & stabil. PR bot (Niu-LKH#1, afoa#2) masih menganggur — tahan review.*
 
 @cc-acehtengah
