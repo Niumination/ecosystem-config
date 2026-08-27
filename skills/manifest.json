@@ -1,6 +1,6 @@
 {
   "fileCount": 348,
-  "generatedAt": "2026-08-21T05:26:36.885481+00:00",
+  "generatedAt": "2026-08-27T19:09:08.580082+00:00",
   "skillCount": 68,
   "skills": {
     "accessibility": {
@@ -182,10 +182,10 @@
       }
     },
     "hermes-provider-config": {
-      "bundleHash": "5a8c55156bf93454611d45d116fee137c694ef90be66a19b893408a956da3714",
+      "bundleHash": "0f9190d446837db09efbbae13f70f58bf6dc2d73d8066480b56ee5bd48163218",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "16ac25743ad3a101bad36a0167ace97d33f10cd60c30e66b160fa56e2d45fe06",
+        "SKILL.md": "a474c18f2cb0bf98553c47518307470da9bde2791e5db9df5d8594cde8bba5e2",
         "references/9router-gateway-admin.md": "d4b718f0ad1b63419c2248d0d4d3105a441065dbcd57915cc1ee3a69c8d1bac5",
         "references/juan-router-integration.md": "737c490e199201370c75d62c2f51693f5242b41ea79228fe49636e2a7df64b42",
         "references/model-catalog-structure.md": "ba5b28126411702689a793b6e4cea6433ac3841e2e0c37580d7041ec936d1f4d",
@@ -662,10 +662,10 @@
       }
     },
     "telegram-router-orchestration": {
-      "bundleHash": "96fbdac22e28971b024e158d61e49acb01cfb7af67011c316b59ad39389562ca",
+      "bundleHash": "6b0fc522b3e82ee6706af28b2b8f476bf432ccf9694180bf874104503bf09a1c",
       "domain": "autonomous-ai-agents",
       "files": {
-        "SKILL.md": "579991c6ae274236fef569b0150e4e49e15ca52503f9a5a988c4cca54e49d96f"
+        "SKILL.md": "f71a132bf152a4391132c65613de0190ae2e59767b4084a851ba083723431fb8"
       }
     },
     "tripwire": {
@@ -724,10 +724,10 @@
       }
     },
     "up-eco": {
-      "bundleHash": "0c2037c087ec99a503c131aa840e5a54ac9df35a75eb0360709cdb2a91c4cd9c",
+      "bundleHash": "aa5626f0b79a1d5bad787e976690bd7ee7376a689febd313caf89ae9bfff4831",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "c1355197136098c852e966109e405dbe8bdc1437129c25801a7efb1bc5505d26"
+        "SKILL.md": "48eb56ba1b18554359b2d54c76f564ae22f0eeb32b921d38f8035cd5546647aa"
       }
     },
     "verification-before-completion": {

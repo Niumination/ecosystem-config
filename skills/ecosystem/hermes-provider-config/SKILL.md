@@ -84,6 +84,79 @@ A cached manifest of available models per provider, fetched from Hermes cloud.
 
 ---
 
+## opencode-free Provider (27 Ags 2026 — post-constitution rollback)
+
+### Overview
+`opencode-free` is the **anonymous free tier** of the OpenCode Zen API — no API key required. Migrated from `opencode-zen` (required `OPENCODE_ZEN_API_KEY`) as part of the Constitution era rollback (24 Agu 2026).
+
+### Configuration
+```yaml
+providers:
+  opencode-free:
+    base_url: https://opencode.ai/zen/v1
+    api_mode: chat_completions
+    # NO key_env needed — anonymous bearer accepted
+```
+
+### Available Free Models (Verified HTTP 200)
+| Model | Use Case | Verified |
+|:---|:---|:---|
+| `hy3-free` | General purpose, fast | ✅ HTTP 200 |
+| `nemotron-3-ultra-free` | Reasoning heavy, cron | ✅ HTTP 200 |
+| `laguna-s-2.1-free` | Coding specialist | ✅ HTTP 200 |
+| `muse-spark-1.2-contributor-free` | Creative/writing | ✅ HTTP 200 |
+| `x-preview-f-free` (Ox Alpha) | **EXCLUDED** | ❌ HTTP 401 |
+
+### Current Usage in Config (Active)
+| Function | Model | Provider |
+|:---|:---|:---|
+| **DM Default** | `hy3-free` | `opencode-free` |
+| **Thread 1** | `hy3-free` | `opencode-free` |
+| **Thread 1172** | `nemotron-3-ultra-free` | `opencode-free` |
+| **Cron** | `nemotron-3-ultra-free` | `opencode-free` |
+| **Delegation** | `hy3-free` | `opencode-free` |
+| **Compression** | `hy3-free` | `opencode-free` |
+| **X-Search** | `hy3-free` | `opencode-free` |
+
+### Fallback Chain (3-Level, Single Provider Family)
+```yaml
+fallback_providers:
+  - provider: opencode-free
+    model: hy3-free              # L1: fast, lightweight
+  - provider: opencode-free
+    model: nemotron-3-ultra-free # L2: reasoning heavy
+  - provider: opencode-free
+    model: laguna-s-2.1-free     # L3: coding specialist
+```
+
+**Core v2 Principle**: Single provider family (`opencode-free`), diversify models — NOT silent hop to different providers (provider swap = HALT + HANDOFF).
+
+### Migration Notes (27 Ags 2026)
+1. **Provider**: `opencode-zen` → `opencode-free` (12 locations in config.yaml)
+2. **API Key**: Removed `OPENCODE_API_KEY` from `env_passthrough` (not needed)
+3. **Default Model**: `big-pickle` → `hy3-free` (more stable free tier)
+4. **Fallback**: 1-level → 3-level (all opencode-free)
+5. **Removed**: `x-preview-f-free` from fallback (401 on free tier)
+
+### Verification Commands
+```bash
+# Test all models
+for m in hy3-free nemotron-3-ultra-free laguna-s-2.1-free; do
+  curl -s -o /dev/null -w "HTTP %{http_code} %{time_total}s" \
+    --max-time 15 https://opencode.ai/zen/v1/chat/completions \
+    -H "Content-Type: application/json" \
+    -d "{\"model\":\"$m\",\"messages\":[{\"role\":\"user\",\"content\":\"OK\"}],\"stream\":false}"
+  echo
+done
+```
+
+### Related Files
+- `~/.hermes/config.yaml` — Main configuration
+- `.hermes/skills/provider-fallback/SKILL.md` — Fallback strategy doc
+- `docs/references/model-mapping-post-rollback.md` — Complete mapping reference
+
+---
+
 ## Investigation Workflow
 
 When a provider isn't working or you need to understand its status:
@@ -106,7 +179,7 @@ hermes auth status
 ### Step 4: Test provider connectivity
 ```bash
 # For API-key providers:
-curl -s -X POST <base_url>/v1/chat/completions -H "Authorization: Bearer $KEY" ...
+curl -s -X POST <base_url>/v1/chat/completions -H "Authorization: Bearer ***" ...
 
 # For OAuth2 providers:
 hermes auth status   # check if access token is valid
@@ -437,7 +510,7 @@ for p in opencode-zen juan-router 9router agentrouter huancheng openrouter nvidi
     openrouter) url="https://openrouter.ai/api/v1/models"; key="$OPENROUTER_API_KEY" ;;
     nvidia_nim) url="https://integrate.api.nvidia.com/v1/models"; key="$NVIDIA_NIM_API_KEY" ;;
   esac
-  status=$(curl -sS -m 8 -H "Authorization: Bearer $key" -H "User-Agent: hermes-agent/0.19.0" "$url" -o /dev/null -w "%{http_code}" 2>/dev/null || echo "timeout")
+  status=$(curl -sS -m 8 -H "Authorization: Bearer ***" -H "User-Agent: hermes-agent/0.19.0" "$url" -o /dev/null -w "%{http_code}" 2>/dev/null || echo "timeout")
   echo "$p: $status"
 done
 ```
