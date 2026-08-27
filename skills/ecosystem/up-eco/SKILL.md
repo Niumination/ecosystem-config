@@ -37,6 +37,7 @@ Output will show:
 - **🔄 Skill Sync Status** — sync-to-agents.sh last run, Jcode/Hermes/USB divergence
 - **🎛️ Mission Control Dashboard** — Skill Monitor API reachable, stale skills, conflicts, usage stats
 - **💬 Telegram Thread Status** — 5 mission-control thread activity, model/provider mapping, last error
+- **🔑 Credential Broker** — central AI-API key control plane (scripts/keys.sh): canonical terdefinisi vs tersimpan di Keychain, status migrasi (Phase B HOLD), scan plaintext leak di store lama (~/.hermes/.env, ~/.gemini/.env, ~/.continue/.env, vault/secrets.zsh)
 - **Recommendations list** (numbered)
 
 ### Step 2: Interpret results for the user

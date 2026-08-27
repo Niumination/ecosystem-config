@@ -72,6 +72,13 @@ repoint the consumer:
 - Add `keys env` to shell profile so all interactive/launched tools inherit.
 - launchd plists for 9router/hermes get `keys env` piped into EnvironmentVariables.
 - A `scripts/keys.sh audit` (future) to detect plaintext leaks.
+- **`/up-eco` integration (DONE):** `scripts/up-eco.sh` now runs
+  **Phase 9c — Credential Broker** on every `/up-eco` pass: reports canonical
+  count vs Keychain-stored, prints the Phase B HOLD status, and scans the old
+  plaintext stores for leaks (~/.hermes/.env, ~/.gemini/.env, ~/.continue/.env,
+  vault/secrets.zsh). This is the "dashboard" substitute — broker visibility
+  surfaces inside the existing ecosystem report instead of a new web server.
+  Documented in `skills/ecosystem/up-eco/SKILL.md`.
 
 ## 5. Why Keychain over alternatives
 - `op`/`bw` (1Password/Bitwarden): not installed; adds a paid dependency.

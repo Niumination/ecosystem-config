@@ -81,6 +81,7 @@ case "$cmd" in
   list)
     kc_list
     ;;
+
   env)
     if [ $# -ge 1 ]; then
       c="$1"; canon_exists "$c" || { echo "unknown canonical: $c" >&2; exit 1; }
