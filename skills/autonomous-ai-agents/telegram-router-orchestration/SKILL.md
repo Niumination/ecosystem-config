@@ -49,14 +49,16 @@ Anda adalah bagian dari **Niumination Ecosystem**, sebuah sistem AI otonom yang 
 *   **Total:** ~40 git repos, ~18 GB data.
 *   **Messaging Gateway:** Hermes terhubung ke Telegram Niu-MissionControl (`-1004204696417`).
 
-**Model Mapping — Spesifik per Thread (10 Ags 2026):**
+**Model Mapping — Spesifik per Thread (Updated 27 Ags 2026 — post-constitution rollback):**
 *   **Thread 1 (General/Command Center):** `gemini/gemini-3.5-flash-lite` via 9router (13 Ags sore: ROLLBACK dari agentrouter `gpt-5.6-sol` — filter konten blokir frasa ID, lihat bagian AgentRouter)
 *   **Thread 802 (Research):** `gc/gemini-2.5-pro` via 9router
 *   **Thread 803 (Programmer):** `cf/@cf/deepseek-ai/deepseek-r1-distill-qwen-32b` via 9router
 *   **Thread 804 (QA):** `cf/@cf/zai-org/glm-4.7-flash` via 9router (13 Ags malam: ganti dari `nvidia/z-ai/glm-5.2` — stress test 2/8 kena 429; glm-4.7-flash 8/8)
 *   **Thread 1172 (Konten Kreator):** `gemini/gemma-4-31b-it` via 9router (13 Ags malam: ganti dari `nvidia/minimaxai/minimax-m3` — stress test 1/8 kena 429)
-*   **DM Utama:** `nemotron-3-ultra-free`/opencode-zen
-*   **Fallback semua thread + DM (GLOBAL, 3 level, 13 Ags malam):** `JuanRouter/glm-5.2` → `cf/@cf/deepseek-ai/deepseek-r1-distill-qwen-32b` → `gratislonggar` (menggantikan `9router/auto` yang 404 openai)
+*   **DM Utama (Default):** `hy3-free` via **opencode-free** (was: `nemotron-3-ultra-free`/opencode-zen)
+*   **Cron:** `nemotron-3-ultra-free` via **opencode-free**
+*   **Delegation/Compression/X-Search:** `hy3-free` via **opencode-free**
+*   **Fallback semua thread + DM (GLOBAL, 3 level, 27 Ags 2026):** `opencode-free/hy3-free` → `opencode-free/nemotron-3-ultra-free` → `opencode-free/laguna-s-2.1-free` (single provider family, diversified models)
 
 **Tujuan Ekosistem:** Evolusi menuju "Personal AI OS" — sistem AI otonom terintegrasi, dengan Hermes sebagai otaknya, memanfaatkan multi-agent, memory (MD files), eksekusi (cron, loops), dan dashboard komando.
 
@@ -118,21 +120,21 @@ Lihat `references/agentrouter-integration.md` untuk resep lengkap.
 curl -s -o /dev/null -w "HTTP %{http_code} %{time_total}s" \
   --max-time 15 http://localhost:20128/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $(grep '^NINE_ROUTER_API_KEY=' /path/to/.env | cut -d= -f2)" \
+  -H "Authorization: Bearer *** '^NINE_ROUTER_API_KEY=' /path/to/.env | cut -d= -f2)" \
   -d '{"model":"gila","messages":[{"role":"user","content":"ping"}]}'
 
 # OpenRouter
 curl -s -o /dev/null -w "HTTP %{http_code} %{time_total}s" \
   --max-time 15 https://openrouter.ai/api/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $(grep '^OPENROUTER_API_KEY=' /path/to/.env | cut -d= -f2)" \
+  -H "Authorization: Bearer *** '^OPENROUTER_API_KEY=' /path/to/.env | cut -d= -f2)" \
   -d '{"model":"google/gemma-4-31b-it:free","messages":[{"role":"user","content":"ping"}]}'
 
 # Huancheng
 curl -s -o /dev/null -w "HTTP %{http_code} %{time_total}s" \
   --max-time 15 https://api.hcnsec.cn/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $(grep '^HUANCHENG_API_KEY=' /path/to/.env | cut -d= -f2)" \
+  -H "Authorization: Bearer *** '^HUANCHENG_API_KEY=' /path/to/.env | cut -d= -f2)" \
   -d '{"model":"Kimi-K2.6","messages":[{"role":"user","content":"ping"}]}'
 ```
 
@@ -191,14 +193,9 @@ Hermes config section `9router:` **wajib** memiliki `key_env: NINE_ROUTER_API_KE
 - `python3 -c "from pathlib import Path; p=Path('config.yaml'); t=p.read_text(); t=t.replace(...); p.write_text(t))"`
 - Atau edit manual + restart gateway via `launchctl bootout/bootstrap`
 
-### **Model Mapping — Status Terakhir (13 Agu 2026)**
+### **Model Mapping — Status Terakhir (27 Ags 2026 — post-constitution rollback)**
 
-**PERHATIAN: Ada ketidaksesuaian antara config.yaml dan dokumentasi ini.**
-
-Config.yaml saat ini (baris 644-681):
-- **Semua thread + DM** menggunakan provider `9router`
-- **DM utama**: model `gratis` (bukan `upstage/solar-pro4:free` sesuai keinginan user)
-- **Fallback**: `9router/auto`
+**Config.yaml (active) — migrated from opencode-zen to opencode-free:**
 
 | Thread | Agent | Provider | Model | Status |
 |--------|-------|----------|-------|--------|
@@ -207,8 +204,12 @@ Config.yaml saat ini (baris 644-681):
 | 803 | programmer | 9router | `cf/@cf/deepseek-ai/deepseek-r1-distill-qwen-32b` | ✅ 9router |
 | 804 | qa | 9router | `cf/@cf/zai-org/glm-4.7-flash` | ✅ 8/8 stress (13 Ags malam: dari `nvidia/z-ai/glm-5.2` 2/8) |
 | 1172 | creator | 9router | `gemini/gemma-4-31b-it` | ✅ 8/8 stress (13 Ags malam: dari `nvidia/minimaxai/minimax-m3` 1/8) |
-| DM | - | nemotron-3-ultra-free/opencode-zen | - | (config terpisah) |
-| Fallback | - | 9router | `fallback_providers` 3-level: `JuanRouter/glm-5.2` → `cf/deepseek-r1` → `gratislonggar` | ✅ 13 Ags malam — menggantikan `auto` yang 404; GLOBAL semua thread+DM |
+| **DM (Default)** | - | **opencode-free** | **hy3-free** | ✅ HTTP 200 verified |
+| **Cron** | - | **opencode-free** | **nemotron-3-ultra-free** | ✅ HTTP 200 verified |
+| **Delegation/Compression/X-Search** | - | **opencode-free** | **hy3-free** | ✅ HTTP 200 verified |
+| **Fallback (GLOBAL)** | - | **opencode-free** | **3-level: hy3-free → nemotron-3-ultra-free → laguna-s-2.1-free** | ✅ 27 Ags verified |
+
+**Migration Note (27 Ags 2026):** DM & internal functions migrated from `opencode-zen` (required `OPENCODE_ZEN_API_KEY`) to `opencode-free` (no API key, anonymous bearer). All primary models verified HTTP 200. `x-preview-f-free` (Ox Alpha) excluded (HTTP 401).
 
 ### **Model Switch via Nous Portal**
 
@@ -231,16 +232,23 @@ Jika config.yaml tidak sesuai, TANYAKAN user sebelum mengubah — jangan asumsi.
 
 **Rule:** Config.yaml adalah sumber kebenaran yang berjalan. Dokumen skill hanya referensi — VERIFY config.yaml sebelum melapor "selesai".
 
-### **Mapping Teruji (10 Ags 2026 — verified HTTP 200 semua endpoint)**
+### **Mapping Teruji (27 Ags 2026 — post-constitution rollback, verified HTTP 200)**
 
 | Target | Provider | Model | Uji |
 |---|---|---|---|
-| **Thread 1** (chief) | agentrouter | `gpt-5.6-sol` | ✅ 200 (ASCII) / ❌ **content-blocked (frasa ID)** |
+| **Thread 1** (chief) | 9router | `gemini/gemini-3.5-flash-lite` | ✅ 200 (ASCII) / ❌ content-blocked (frasa ID) |
 | **Thread 802** (research) | 9router | `gc/gemini-2.5-pro` | ✅ 200 |
 | **Thread 803** (programmer) | 9router | `cf/@cf/deepseek-ai/deepseek-r1-distill-qwen-32b` | ✅ 200 |
-| **Thread 804** (qa) | huancheng | `DeepSeek-V4-Pro` | ✅ 200 |
-| **Thread 1172** (creator) | 9router | `nvidia/minimaxai/minimax-m3` | ✅ 200 |
-| **DM utama** (fallback) | huancheng | `auto` | ✅ 200 |
+| **Thread 804** (qa) | 9router | `cf/@cf/zai-org/glm-4.7-flash` | ✅ 8/8 stress test |
+| **Thread 1172** (creator) | 9router | `gemini/gemma-4-31b-it` | ✅ 8/8 stress test |
+| **DM (Default)** | **opencode-free** | **hy3-free** | ✅ 200 |
+| **Cron** | **opencode-free** | **nemotron-3-ultra-free** | ✅ 200 |
+| **Delegation/Compression/X-Search** | **opencode-free** | **hy3-free** | ✅ 200 |
+| **Fallback L1** | **opencode-free** | **hy3-free** | ✅ 200 |
+| **Fallback L2** | **opencode-free** | **nemotron-3-ultra-free** | ✅ 200 |
+| **Fallback L3** | **opencode-free** | **laguna-s-2.1-free** | ✅ 200 |
+
+**Removed (HTTP 401):** `x-preview-f-free` (Ox Alpha) — excluded from fallback chain
 
 ### **Workflow: Edit Config Hermes yang Diblokir `patch`**
 HermesAgent melaporkan error `Refusing to write to Hermes config file` untuk file di USB. Workaround:
@@ -289,7 +297,7 @@ Laporkan: klaim vs bukti per lapis (aktivasi session, outbound, trace, artefak).
 
 ### **User Preferences (hard rules — jangan langgar)**
 *   **NO combo models.** Jangan pakai model combo seperti `gratis`, `capek`, `gila`. Selalu pilih model **spesifik per role**.
-*   **Fallback semua thread + DM utama** → `huancheng/auto` (bukan 9router atau opencode-zen).
+*   **Fallback semua thread + DM utama** → **opencode-free** (3-level: `hy3-free` → `nemotron-3-ultra-free` → `laguna-s-2.1-free`) — bukan huancheng/auto, bukan 9router.
 *   **Mapping harus diuji (HTTP 200)** sebelum dilapor "selesai". Uji setiap endpoint via `curl` ke base_url provider.
 *   **9router wajib `key_env`** — tanpa `key_env: NINE_ROUTER_API_KEY` di config Hermes, semua request 401.
 *   **Komit config langsung ke Hermes USB** (`/Volumes/HermesAgent/HermesAgentUSB/data/config.yaml`) — bukan repo terpisah. Skill ini adalah sumber kebenaran untuk mapping, tapi config yang berjalan adalah Hermes config.
