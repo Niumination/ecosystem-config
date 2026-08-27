@@ -33,6 +33,10 @@ Full design: `docs/references/credential-broker-design.md`.
   this design doc. Committed.
 - **Phase B (PENDING — blocked):** per-canonical `keys set` + repoint consumers.
 - **Phase C (future):** `keys env` into shell profile + launchd plists; `keys audit`.
+- **`/up-eco` integration (DONE):** `scripts/up-eco.sh` Phase 9c reports broker
+  status (canonical count, Keychain-stored count, HOLD status, plaintext-leak
+  scan) on every `/up-eco` run. No separate web dashboard — visibility lives in
+  the existing ecosystem report.
 
 ## Gate to proceed with Phase B
 Only start Phase B after ALL of these are true:
