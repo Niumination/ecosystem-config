@@ -154,17 +154,19 @@ Niumination/
 ## 🔩 Hermes Agent — Konfigurasi Aktif
 
 | Komponen | Detail |
-|----------|--------|
-| **Version** | v0.16.0 |
-| **Provider** | opencode-zen |
-| **Model** | big-pickle |
+| **Provider** | **opencode-free** (was: opencode-zen) |
+| **Model Default** | **hy3-free** (was: big-pickle) |
+| **Model Cron** | **nemotron-3-ultra-free** |
+| **Model Delegation/Compression/X-Search** | **hy3-free** |
+| **Model Thread 1** | **hy3-free** |
+| **Model Thread 1172** | **nemotron-3-ultra-free** |
 | **Profile** | default (active) |
-| **Gateway** | ✅ launchd KeepAlive |
+| **Gateway** | ✅ launchd KeepAlive (config reloaded) |
 | **Cron Active** | 1 job (memory-checkpoint) |
 | **MCP Servers** | postgres, sqlite, ponytail, github, time, filesystem |
-| **Migration** | ⏸️ Ditunda — portable→native belum dieksekusi |
+| **Migration** | ✅ **opencode-zen → opencode-free** (27 Ags 2026) — no API key needed |
 | **Upgrade** | ⏸️ v0.18.0 — tunggu ekosistem matang |
-
+| **Fallback Chain** | 3-level opencode-free: hy3-free → nemotron-3-ultra-free → laguna-s-2.1-free |
 ---
 
 ## 🔸 Anomali DOX vs Filesystem

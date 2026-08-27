@@ -1,6 +1,6 @@
 # 📋 BACKLOG — Niumination Ecosystem — MASTER DOCUMENTATION
 
-> **UPDATE: August 27, 2026** — Sync real filesystem + GitHub state. Major: pabrik-aplikasi-gas pilot LIVE (GAS v3), niu-mission-control PR#6 merged (Mission Core retheme), Trio Governance v2 approved, Skill Bank 68. Mac REDUCE-MOTION ON.
+> **UPDATE: August 27, 2026** — Sync real filesystem + GitHub state. Major: pabrik-aplikasi-gas pilot LIVE (GAS v3), niu-mission-control redesign v3.0 (APEX-MC orb, PR#10 merged, localhost mati, docs update), Trio Governance v2 approved, Skill Bank 68. Mac REDUCE-MOTION ON.
 
 ---
 
@@ -72,7 +72,7 @@ Desktop/Niumination/
 | Proyek | Priority | Status | Aktivitas Terakhir | Notes |
 |--------|:--------:|:------:|:------------------:|-------|
 | **cc-acehtengah** | **P2 ⬆** | 🟢 **Active** | **2026-08-24** | DTSEN Multi-Source → AI Smart Query, EWS, KPI Pimpinan, Laporan Eksekutif. 200/200 Vitest passing |
-| **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **2026-08-27** | v2.6.2 → PR#6 merged: Mission Core retheme (token APEX gold/cyan). UP (port 5200, health ok). Swarm orchestrator |
+| **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **2026-08-27** | v3.0.0 → Redesign APEX-MC (orb golden ring + particle core + reasoning graph + overview HUD + status bar; vanilla JS/CSS, reduced-motion safe). PR#10 merged, PR#11 apex5 draft. MC OFF (localhost mati per "matikan localhost & update dokumentasi"). Swarm orchestrator |
 | **niu-cast** | P2 | 🟢 **Active** | 2026-07-21 | v3.6.0 — Mac Connect Bridge |
 | **Niu-Flow** | P2 | 🟢 **Remote only** | 2026-07-28 | github.com/Niumination/niu-flow |
 | **latticesend** | P3 | 🟢 Active | 2026-08-10 | P2P file transfer — ✅ sudah punya remote |
@@ -338,6 +338,7 @@ Ultra, AuditTI-AT, Niu-Flow, didong-code, x-downloader, flame-ade, niu-vermilion
 *Dokumen diverifikasi langsung dari tool output (clasp, gh pr, up-eco.sh) 2026-08-27.*
 
 - 🏭 **pabrik-aplikasi-gas** — Pilot 1 **LIVE** (Google Apps Script v3). Inventaris Aset TI ter-deploy: dashboard CRUD + riwayat + self-healing tab Sheet. Repo mandiri: `Niumination/pabrik-aplikasi-gas` (private). Fix: `doGet` createHtmlOutputFromFile + serialisasi Date di `_readAsetRaw`. URL web app verified working.
+- 🎨 **niu-mission-control PR#10** — MERGED → Redesign total APEX-MC (faithful replika https://apex-ui-xi.vercel.app). 12 pages → 1 orb view: golden ring R=220 + sound waves + particle core (SVG dots, pengganti three.js) + equalizer + reasoning graph nodes orbit + overview HUD + status bar. Vanilla JS/CSS (zero deps, no FontAwesome/-400k lines). Reduced-motion guard (Mac REDUCE-MOTION ON). Source APEX-UI: https://apex-ui-xi.vercel.app (bukan GitHub repo). PR#11 (apex5) — iterasi tambahan particle core + equalizer kiri/kanan, pending review.
 - 🎨 **niu-mission-control PR#6** — MERGED (`8a8b631`) → Mission Core retheme (token APEX gold-ring + cyan-core, 12 halaman). Produksi direstart (pid baru), `healthz`/`readyz` 200. WCAG AA lulus, reduce-motion hormati OS. Issue #5 auto-closed.
 - 📜 **Trio Governance v2** — commit `1442732`: intent-based, bukan folder-bound. Aturan dampak + klarifikasi sebelum eksekusi.
 - 🧠 **Skill Bank** — 68 skill (bank pusat), INDEX+manifest sinkron, 0 duplikat. Sync-to-agents jalan harian (JCode/Hermes). 3 conflict MC = **abaikan** (bank = katalog, tidak jalan barengan).
