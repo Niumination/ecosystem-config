@@ -17,6 +17,11 @@
 4. Pindah fokus antar proyek: **baca AGENTS.md induk → langsung navigasi ke proyek target → baca AGENTS.md anak jika ada**
 5. Jika ada konflik antar DOX, doc yang lebih dekat ke file yang disentuh menang
 
+> ⚠️ **STATUS TERKINI EKOSISTEM — 2026-08-27:** Baca `docs/ECOSYSTEM-STATUS-2026-08-27.md`.
+> Insiden: 1 session jcode salah direktori menghapus beberapa file config di disk (~17:45–18:04);
+> session tersebut **sedang repair mandiri**. Jangan edit config saat repair berjalan.
+> Migrasi kredensial ke broker (`scripts/keys.sh`) **DITAHAN** sampai repair selesai & config kembali.
+
 ---
 
 ## 📐 Master Direction Protocol — Phase 0 (Foundation ✅)
@@ -662,9 +667,11 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-08-27 00:00:06_
+_Last sync: 2026-08-27 12:00:27_
 
 <!-- SKILL_REGISTRY_END -->
+
+
 
 
 
