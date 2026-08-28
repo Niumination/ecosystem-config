@@ -697,43 +697,6 @@ check_trio_awareness() {
   bash "$(dirname "$0")/trio-watch.sh" --from "$from" || warn "trio-watch.sh gagal dijalankan"
 }
 
-# ── Phase 9c: Credential Broker (Niumination central key store) 🆕 ───────────
-check_credential_broker() {
-  section "🔑 Credential Broker — central AI-API key control plane"
-  local keys_sh="$NIUMINATION/scripts/keys.sh"
-  if [ ! -x "$keys_sh" ]; then
-    warn "scripts/keys.sh tidak ditemukan — broker belum di-scaffold"
-    return
-  fi
-  # Total canonical yang didefinisikan (statis, aman)
-  local total
-  total=$(grep -cE '^[a-z0-9_]+ +[A-Z]' "$keys_sh" 2>/dev/null || echo "?")
-  # Canonical yang sudah tersimpan di Keychain — timeout agar tidak hang kalau
-  # security(1) meminta otorisasi Keychain di context non-interaktif.
-  # `|| true` wajib: keys.sh list return 1 kalau kosong (set -euo pipefail).
-  local stored
-  stored=$(timeout 8 "$keys_sh" list 2>/dev/null | wc -l | tr -d ' ') || true
-  [ -z "$stored" ] && stored=0
-  # Status migrasi (Phase B) — lihat handoff doc
-  local hold_doc="$NIUMINATION/docs/references/credential-broker-handoff.md"
-  if [ -f "$hold_doc" ]; then
-    info "Broker scaffolded & ter-test. Migrasi live key = HOLD (tunggu session jcode selesai)."
-  fi
-  # Plaintext-leak scan (sumber lama yang seharusnya dikosongkan nanti)
-  local leak=0
-  for f in ~/.hermes/.env ~/.gemini/.env ~/.continue/.env ~/Desktop/Niumination/vault/secrets.zsh; do
-    [ -f "$f" ] || continue
-    if grep -qiE "API_KEY|SECRET|TOKEN|sk-" "$f" 2>/dev/null; then
-      leak=$((leak + 1)); warn "plaintext masih ada: $f"
-    fi
-  done
-  [ "$leak" -eq 0 ] && pass "Tidak ada plaintext leak terdeteksi"
-  info "Canonical terdefinisi: $total · tersimpan di Keychain: $stored"
-  if [ "$stored" -eq 0 ]; then
-    rec "→ Broker: jalankan pilot 'keys set <canonical> <value>' setelah session jcode selesai (lihat credential-broker-handoff.md)"
-  fi
-}
-
 # ── Main ───────────────────────────────────────────────────────────────────
 main() {
   # ── Parse --from arg (trio awareness) ──
@@ -804,8 +767,6 @@ main() {
   # 🔧 FIX: semua output trio-watch ke STDERR — supaya stdout (phase lain) tidak terpotong di Telegram
   check_trio_awareness
   echo "" 2>&1
-  # ── Phase 9c: Credential Broker 🆕 ────────────────────────────────────────
-  check_credential_broker
   # ── Phase 9b: Gaya Jawab Guard (anti bertele-tele) ───────────────────────
   # Catatan: guard gaya jawab sudah dijalankan di akhir check_mission_control()
   # (tidak ada fungsi check_verbosity terpisah — panggilan lama menyebabkan error 127)
