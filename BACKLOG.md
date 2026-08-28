@@ -173,7 +173,7 @@ sandbox/niude                             54  ⏸️     yes     no
 sandbox/niu-studio                        62  📦     yes     no
 sandbox/zen                               66  📦     yes     no
 services/niu-mission-control               1  🟢     yes     no
-services/camofox-browser                   2  🟢     yes     no
+tools/camofox-browser                       2  🟢     yes     no
 services/uacc                              2  🟢     yes     no
 services/cc-acehtengah                     8  🟢     yes     no
 services/latticesend                      24  🟡     yes     no
