@@ -27,7 +27,7 @@
   (archived), browser.camofox tanpa path
 
 ## ⏳ Backlog / Lanjutan nanti
-- [ ] SPLP DTSEN API: dapatkan JWT baru → ganti `SPLP_API_KEY` Vercel → label live
+- [x] SPLP DTSEN API: **sumber OFFLINE BAPPEDA aktif** (`4f875ea` 29 Agu) — agregat resmi Des 2025 (71.370 KK) dipakai sementara API 401; masih perlu JWT baru utk data live real-time
 - [ ] `main` cc-acehtengah tertinggal 44+ commit dari hotfix/meeting-ready
 - [ ] niu-mission-control: `swarm/` module hilang → server.py gagal start (skip dulu)
 - [ ] ponytail & camofox: repo upstream org lain (Niumination/ponytail 404)
