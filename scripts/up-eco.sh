@@ -787,6 +787,7 @@ main() {
     pass "✅ Ekosistem dalam kondisi sinkron — tidak ada rekomendasi"
   fi
 
+  if [ -x "$ROOT/scripts/9router-sync.sh" ]; then echo "[up-eco] 9router-sync..."; "$ROOT/scripts/9router-sync.sh" 2>&1 | tail -n 2; cnt=$(python3 -c "import json; print(len(json.load(open("$HOME/.cache/niumination/9router-models.json")).get("data",[])))" 2>/dev/null || echo "?"); echo "[up-eco] 9router: $cnt models"; fi
   header
   printf "${BOLD}Selesai: ${NOW}${NC}\n"
 }
