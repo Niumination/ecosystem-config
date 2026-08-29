@@ -9,7 +9,18 @@
 | **UniFace** | Face analysis library | 📄 Reference only | Butuh use case spesifik |
 | **OmniRoute** | AI gateway + model routing | 📄 High potential | Pending — storage issue |
 | **Websites Android PWA** | 16 websites status | 📋 Track project | 8 live, 8 perlu deploy |
-| **ULTRON** | 3D command orb | ✅ SELESAI | v1-v3 complete |
+| **ULTRON** | 3D command orb | ✅ **SELESAI** | v1-v3 complete |
+| **9Router Crash-Loop Fix** | Fix 9router crash loop | ✅ **ADOPTED** | Di-merge ke skill `niu-9router-maintain` |
+| **Hermes Free-Stack** | Merge free-stack + 9Router | 📋 **REFERENSI** | Disalin ke `~/Downloads/INSTRUKSI_UNTUK_HERMES.md` — belum di-apply (routing saat ini sudah jalan: huancheng→9router→opencode-zen) |
+
+---
+
+## Adopsi 29 Agustus 2026
+
+- **Skill `niu-9router-maintain`** (di `~/.hermes/skills/`) di-upgrade: tambah section *Crash-Loop Fix* (insiden 27-Agu — 9router CLI TUI menu tanpa TTY → `--tray --skip-update`). Committed `db5e7f3`.
+- **Refs besar dipindah ke `brain/resources/`** sebagai prompt library / study: `cadence-content-machine-all-prompts.md` (94KB), `jarvis-mission-control-all-prompts.md` (129KB), `analisis-optimalisasi-hermes-2026-08-18.md` (33KB), `studi-integrasi-10-referensi-2026-08-18.md` (17KB), `ekosistem-status.md`, `second-brain-plan*.md`. Committed `ab948f8` ke brain.git.
+- **`archive/skills-main/` dihapus** (usang, 0 ref di manifest skill bank).
+- **`hermes-free-stack.zip`** dipelajari: berisi instruksi merge Gemini/NVIDIA/Groq/GLM/OpenRouter + 9Router ke config Hermes. **Belum di-apply** — routing saat ini (`huancheng/auto` primary + `9router` + `opencode-zen/hy3-free`) sudah terverifikasi jalan & aman. Config.yaml Hermes juga diblokir agent untuk diedit langsung.
 
 ---
 
