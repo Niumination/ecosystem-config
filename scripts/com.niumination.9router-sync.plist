@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.niumination.9router-sync</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/zaryu/Desktop/Niumination/scripts/9router-sync.sh</string>
+    </array>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/usr/local/Cellar/node/26.7.0/bin</string>
+    </dict>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StartInterval</key>
+    <integer>300</integer>
+    <key>WatchPaths</key>
+    <array>
+        <string>/Users/zaryu/.9router/db/data.sqlite</string>
+    </array>
+    <key>StandardOutPath</key>
+    <string>/tmp/9router-sync.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/9router-sync.error.log</string>
+</dict>
+</plist>
