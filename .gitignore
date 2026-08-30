@@ -85,3 +85,6 @@ scripts/.trio-status.json
 
 # Logs / runtime artifacts
 logs/
+
+# IDE local
+.vscode/
