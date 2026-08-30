@@ -86,7 +86,7 @@ check_unknown_folders() {
 
   local known_dirs=(
     apps services sites desktop agents labs sandbox
-    docs scripts skills tools vault brain dotfiles archive core
+    docs scripts skills tools vault brain dotfiles archive core logs
   )
 
   # Baca dari BACKLOG.md untuk daftar proyek yang dikenal
