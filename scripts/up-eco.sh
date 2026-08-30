@@ -349,6 +349,56 @@ print(sum(1 for p in prs if (now - ts(p)).days > 14))
 # ═══════════════════════════════════════════════════════════════════════════
 # 🆕 Phase 6: Skill Bank Integrity
 # ═══════════════════════════════════════════════════════════════════════════
+# ── 6c: Verifikasi SOUL drift guard (dotfiles vs portable vs active) ────
+check_soul_drift() {
+  section "🧠 SOUL Drift Guard"
+
+  local dotfiles_soul="$NIUMINATION/dotfiles/zaryu-terminal-dotfiles/hermes/SOUL.md"
+  local portable_soul="$NIUMINATION/apps/JHermUSB-portable/SOUL.md"
+  local active_soul="$HOME/.hermes/SOUL.md"
+  local drift=false
+
+  if [ ! -f "$dotfiles_soul" ]; then
+    warn "Dotfiles SOUL.md tidak ditemukan: $dotfiles_soul"
+    rec "→ Buat SOUL.md di dotfiles repo sebagai single source of truth"
+    drift=true
+  fi
+
+  if [ -f "$portable_soul" ]; then
+    local dot_hash port_hash
+    dot_hash=$(shasum -a 256 "$dotfiles_soul" | awk '{print $1}')
+    port_hash=$(shasum -a 256 "$portable_soul" | awk '{print $1}')
+    if [ "$dot_hash" != "$port_hash" ]; then
+      warn "Portable SOUL.md differs from dotfiles (drift detected)"
+      rec "→ Sync portable from dotfiles: cp $dotfiles_soul $portable_soul"
+      drift=true
+    fi
+  fi
+
+  if [ -L "$active_soul" ]; then
+    local target
+    target=$(readlink "$active_soul")
+    if [ "$target" != "$dotfiles_soul" ]; then
+      warn "Active SOUL.md symlink points to wrong target: $target"
+      rec "→ Fix symlink: ln -sf $dotfiles_soul $active_soul"
+      drift=true
+    fi
+  elif [ -f "$active_soul" ]; then
+    local active_hash dot_hash
+    active_hash=$(shasum -a 256 "$active_soul" | awk '{print $1}')
+    dot_hash=$(shasum -a 256 "$dotfiles_soul" | awk '{print $1}')
+    if [ "$active_hash" != "$dot_hash" ]; then
+      warn "Active SOUL.md is not symlinked and differs from dotfiles"
+      rec "→ Replace active with symlink: ln -sf $dotfiles_soul $active_soul"
+      drift=true
+    fi
+  fi
+
+  if [ "$drift" = false ]; then
+    pass "SOUL.md sinkron: dotfiles == portable == active symlink"
+  fi
+}
+
 check_skill_bank() {
   section "🧠 Skill Bank — Integritas"
 
@@ -753,6 +803,9 @@ main() {
 
   # ── Phase 6: Skill Bank Integrity 🆕 ──
   check_skill_bank
+
+  # ── Phase 6c: SOUL Drift Guard ──
+  check_soul_drift
 
   # ── Phase 7: Skill Sync Status 🆕 ──
   check_skill_sync
