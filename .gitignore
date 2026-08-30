@@ -82,3 +82,6 @@ __pycache__/
 .git-backup-*/
 scripts/.trio-status.json
 .9router-state.json
+
+# Logs / runtime artifacts
+logs/
