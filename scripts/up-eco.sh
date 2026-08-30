@@ -792,4 +792,6 @@ main() {
   printf "${BOLD}Selesai: ${NOW}${NC}\n"
 }
 
+ROOT=""
+
 main "$@"

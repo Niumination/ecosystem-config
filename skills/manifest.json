@@ -1,6 +1,6 @@
 {
   "fileCount": 348,
-  "generatedAt": "2026-08-27T19:09:08.580082+00:00",
+  "generatedAt": "2026-08-30T06:39:44.449535+00:00",
   "skillCount": 68,
   "skills": {
     "accessibility": {
@@ -521,10 +521,10 @@
       }
     },
     "project-orientation": {
-      "bundleHash": "1416cd9192cf2ac31ef6774b43cb51f6d8a2e79753f1e2840fbca4b57658ca2e",
+      "bundleHash": "ee15fcbac0395cc6db38a18ad0b3e0a18a442c9d382b9a242e9c474562ee2889",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "28e70c87547bc5e6ed0c3bc74603c68b9d771f19cfb3779ad282ef9b1fa7018f"
+        "SKILL.md": "7dfb7935d82b623238724abb668cee0423d6d99e591ae47acf705cac16c4b95f"
       }
     },
     "provider-fallback": {
