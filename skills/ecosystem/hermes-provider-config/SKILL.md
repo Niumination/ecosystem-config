@@ -544,9 +544,78 @@ Hasil probe DENGAN auth (18 Ags 2026): opencode-zen 200 (62 model) · 9router 20
 - `references/openrouter-free-tier.md` — OpenRouter free tier (verified 16 Ags 2026): cek key via `GET /api/v1/key`, 19 model `:free` + highlights, rate limit 20/min·50/hari (1000/hari setelah beli ≥$10), error 402/429 + retry, pola provider config.yaml, lokasi key `~/.config/openrouter/env`
 - `references/rtk-verification.md` — Recipe verifikasi RTK (Rust Token Killer): `rtk --version`, `rtk rewrite` exit codes (3=rewritten, 1=pass-through), `rtk gain` stats, cek plugin enabled di config, pitfalls (config write protection, plugins folder ≠ enabled)
 - `references/provider-audit-2026-08-18.md` — Hasil sweep penuh 8 provider + tool-call test 18 Ags 2026: opencode-zen 429 kuota free habis, huancheng list-OK-chat-timeout, 9router/nvidia/openrouter yang hidup, rekomendasi fallback saat Zen 429
+- `references/provider-scan-2026-08-29.md` — Hasil scan 29 Ags 2026: sweep 6 provider, stress-test 37 kandidat, burst 4x top candidates. Rekomendasi mapping thread+DM+fallback (belum diterapkan). Huancheng/agentrouter/ju-router EXCLUDED. OpenRouter free tier 429 massal.
 
 ---
 
+### Pitfall 13: Huancheng `/v1/models` 200 ≠ chat jalan (verified 29 Ags 2026)
+**Symptom:** `curl https://api.hcnsec.cn/v1/models` → HTTP 200, 20 model tercantum. Tapi semua chat-completion timeout (30s+).
+**Reality:** Server Huancheng responsif di endpoint listing tapi inference engine mati/timeout untuk SEMUA model (DeepSeek-V4-Flash, glm-5.2, Kimi-K2.6, MiniMax-M3, DeepSeek-V4-Pro). **List ≠ usable** bahkan lebih parah dari kasus lain karena tidak ada satupun model yang bisa diselamatkan.
+**Fix:** Selalu lakukan chat-probe minimal 1 model SEBELUM menyimpulkan provider "hidup". Script `scripts/probe-provider-models.py` dengan timeout 30s akan timeout juga, tapi itu bukti bahwa inference mati. Jangan pasang provider ini di fallback chain.
+
+### Pitfall 14: 9router `ollama/qwen3.5` = 402 Payment Required (bukan gratis!)
+**Symptom:** Model terdaftar di `curl localhost:20128/v1/models` tapi chat → HTTP 402.
+**Reality:** 9router punya campuran model gratis DAN berbayar (saldo-based). `ollama/qwen3.5` termasuk yang berbayar. Juga `ollama/glm-5` → 410 Gone. Selalu cek error code: 402 = perlu saldo, 404 = model tidak ada, 400 = model salah/hapus, 500 = upstream error.
+**Fix:** Prioritaskan model dengan prefix `ag/` (Gemini agent-optimized), `gh/` (GitHub pathway), dan `gemini/` (langsung dari Google) yang semuanya gratis di 9router. Hindari `ollama/*` kecuali sudah diverifikasi.
+
+### Pitfall 15: OpenRouter free tier 429 massal (verified 29 Ags 2026)
+**Symptom:** 17 dari 18 model `:free` di OpenRouter kena 429 rate limit saat di-probe beruntun.
+**Reality:** Free tier OpenRouter (20 req/min, 50 req/hari tanpa credit) sangat terbatas. Model `google/gemma-4-31b-it:free` dan `poolside/laguna*.free` langsung 429. Hanya `nvidia/nemotron-3-super-120b-a12b:free` yang 3/4 OK (1 miss karena 429).
+**Fix:** OpenRouter free tier TIDAK layak sebagai primary atau fallback utama. Gunakan hanya sebagai cadangan ketiga/keempat setelah 9router dan opencode-zen. Atau top-up ≥$10 untuk naik ke 1000 req/hari.
+
+### Pitfall 16: Kimi models di 9router = 500 Internal Server Error
+**Symptom:** `kimi/kimi-k3`, `kimi/kimi-k2.5`, `kimi/kimi-for-coding` semua return HTTP 500.
+**Reality:** Upstream Moonshot AI quota exhausted atau endpoint bermasalah di 9router. Model kimi lain (`kimi/k3`, `kimi/kimi-k2.7-code`) perlu dicek terpisah.
+**Fix:** Jangan pakai kimi models di 9router untuk saat ini. Alternatif coding: `laguna-s-2.1-free` (opencode-zen) atau `cf/@cf/deepseek-ai/deepseek-r1-distill-qwen-32b` (jika tidak 429).
+
+### Pitfall 17: 9router (localhost:20128) adalah SPOF untuk SEMUA channel Telegram — JANGAN dimatikan saat "kill all localhost" (verified 29 Ags 2026)
+**Symptom:** User minta "matikan semua localhost di mac". Agent menjalankan `kill` pada semua process Next.js (port 3000/5200/20128) — TERMASUK 9router (`/usr/local/lib/node_modules/9router/app`). Hasil: semua 5 channel Telegram (1/802/803/804/1172) diam/drop karena `channel_overrides` semuanya mengarah ke `9router@localhost:20128`. Hermes gateway TETAP jalan, tapi tiap chat Telegram gagal resolve model.
+**Reality:** `9router` = gateway lokal yang dipakai SEMUA thread MC + channel Telegram override. Hanya CLI tray (`com.9router.autostart` → `9router/cli.js`, port 7000/5000) yang auto-start; **server Next.js (port 20128) tidak auto-restart** setelah di-kill. `com.niumination.9router-watch` (cache-watcher) non-kritis — boleh mati.
+**Fix (verifikasi live 29 Ags — semua hijau setelahnya):**
+1. **Saat "kill all localhost", SPARE:** 9router (PID next-server port 20128) + hermes gateway (python `hermes serve`, port ~54671). Yang AMAN dimatikan: dev server proyek (cc-acehtengah :3000, Mission Control :5200, 9router CLI tray :7000 — tapi SERVER :20128 jangan).
+2. **Cek 9router mati:** `curl -s -o /dev/null -w '%{http_code}' -m 5 http://localhost:20128/v1/models` → `000` = mati.
+3. **Restart server (bukan kill):** `launchctl kickstart -k gui/$(id -u)/com.9router.autostart` → port 20128 balik `200` dalam ~3 detik.
+4. **Verifikasi channel:** `hermes config get platforms.telegram.channel_overrides` → semua 5 channel ke `9router`; lalu chat-probe tiap model via 9router (lihat Pitfall 18).
+**Aturan umum:** "localhost cleanup" ≠ "matikan semua next-server". Selalu kecualikan gateway yang dipakai routing produktif (9router untuk Telegram, hermes gateway untuk sesi).
+
+### Pitfall 18: Model reasoning (gemma-4-31b-it) butuh max_tokens besar — small max_tokens → "no content" false negative (verified 29 Ags 2026)
+**Symptom:** Channel `1172` (`gemini/gemma-4-31b-it` via 9router) balas kosong saat probe `max_tokens:15`. Parser SSE membaca `content` = '' → disimpulkan "model mati".
+**Reality:** gemma-4-31b-it adalah **reasoning model** — outputnya masuk ke `delta.reasoning_content`, BUKAN `delta.content`, sampai token reasoning habis. Dengan `max_tokens:15`, budget habis di reasoning → tidak ada `content` final.
+**Fix:** Saat probe reasoning model, pakai `max_tokens:200` (atau lebih). Parser SSE harus akumulasi `delta.content` DAN `delta.reasoning_content`. Bukti: gemma-4-31b-it dengan `max_tokens:200` → `content: "OK"`. Berlaku untuk semua model ber-prefix reasoning (DeepSeek-R1 distil, nemotron-3-ultra, dll) — jangan vonis "no content" dari 1 probe token-kecil.
+
+### Pitfall 19: opencode-zen butuh env `OPENCODE_ZEN_API_KEY` (bukan `OPENCODE_API_KEY`) — terminal.env_passthrough salah (verified 29 Ags 2026)
+**Symptom:** Fallback `opencode-zen/hy3-free` gagal saat dijalankan dari subprocess terminal/toolshell, padahal chat-probe langsung (`https://opencode.ai/zen/v1`, key dari `.hermes/.env`) sukses 200.
+**Reality:** Preset `opencode-zen` di `hermes_cli/auth.py` membaca `api_key_env_vars=("OPENCODE_ZEN_API_KEY",)`, base_url `https://opencode.ai/zen/v1`. Config `terminal.env_passthrough` lama cuma menyertakan `OPENCODE_API_KEY` (milik provider/endpoint LAIN — `api.opencode.ai/v1` yang balas "Not Found"). Gateway sendiri baca `OPENCODE_ZEN_API_KEY` dari `.hermes/.env` saat startup → jadi fallback di level gateway jalan, tapi terminal subprocess tidak.
+**Fix:** `hermes config set terminal.env_passthrough '["HOME","PATH","HERMES_HOME","OPENROUTER_API_KEY","OPENCODE_API_KEY","OPENCODE_ZEN_API_KEY","OPENAI_API_KEY","AGENTROUTER_API_KEY","AEROLINK_API_KEY","HUANCHENG_API_KEY","NINE_ROUTER_API_KEY"]'`. Catatan: `config.yaml` sendiri REFUSE untuk di-patch/write_file (security) — WAJIB via `hermes config set`.
+
+## Provider Scan Workflow (Class Procedure — 29 Ags 2026)
+
+Ketika user meminta "scan & seleksi model untuk semua thread + DM + fallback":
+
+1. **Load env keys:** `load_env(Path.home() / '.hermes' / '.env')` — jangan asumsi `/Volumes/.../.env` (sudah tidak ada di setup saat ini).
+2. **Probe `/v1/models` per provider** dengan Authorization header + UA `hermes-agent/0.19.0`.
+3. **Candidate selection:** hand-pick dari hasil list:
+   - 9router: prefix `ag/` (Gemini flash variants), `gh/gpt-4o-mini`, `gemini/gemma-4-31b-it`
+   - OpenRouter: hanya model `:free` yang survive 429
+   - opencode-zen: `big-pickle`, `hy3-free`, `laguna-s-2.1-free`
+4. **Single-chat probe** per candidate (timeout 8s, SSE parser).
+5. **Burst stress-test 4x** per top candidate (interval 0.2s).
+6. **Ranking:** burst success → latency → fungsi agent match.
+7. **Sajikan rekomendasi BELUM diterapkan** — tunggu konfirmasi user sebelum edit config.yaml.
+
+Script reusable: `~/.hermes/provider-sweep-rapid2.py` (single probe) dan `~/.hermes/burst-ultra.py` (4-burst stress test). Simpan di workspace agent, bukan di skill scripts (environment-specific).
+
 ## Related Skills
 
-- `hermes-agent` — General Hermes Agent configuration (for broader config topics)
+- `telegram-router-orchestration` — Model mapping per-thread Telegram, provider health snapshot
+- `provider-fallback` — Fallback chain strategy, stress-test methodology
+
+## References (29 Ags 2026 — Sweep Results)
+- `references/provider-sweep-2026-08-29.md` — Full sweep report: all providers, excluded models, recommendations
+- `references/model-mapping-report-2026-08-29.md` — Final mapping table with test results
+- `references/provider-status-2026-08-29.md` — Quick reference: DM, thread overrides, fallback chain YAML
+- `~/.hermes/provider-sweep-results.json` — Raw sweep data
+- `~/.hermes/live-test-results.json` — Live burst test results (8x)
+- `~/.hermes/MAPPING-UPDATE-SUMMARY.md` — Change log
+- `telegram-router-orchestration` — Per-thread model mapping di Telegram gateway
+- `provider-fallback` — Fallback chain strategy & troubleshooting
