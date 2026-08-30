@@ -20,32 +20,24 @@ secrets.zsh
 api-key.md
 
 # Sub-project directories (each has its own git repo)
-# apps/ — selectively allowed for portable installer
-apps/*
-!apps/JHermUSB-portable/
-
+apps/
 services/
 sites/
 desktop/
-labs/
-sandbox/
-
-# Agents with own git repos (but NOT characters/ — tracked in root)
-dotfiles/
 agents/profile/
 agents/orchestrator/
 agents/ultra/
+labs/
+sandbox/
 
 # Private dirs (each has own git repo or is local-only)
 brain/
 rekap/
 tools/
+dotfiles/
 
 # Archive — historical backup, not tracked in root repo
 archive/
-
-# Niu-Flow — remote-only, dihapus dari lokal Jul 2026
-Niu-Flow/
 
 # Build artifacts
 node_modules/
@@ -92,8 +84,3 @@ logs/
 # IDE local
 .vscode/
 skills-lock.json
-
-
-# Portable Hermes installer — track only this subfolder
-!apps/JHermUSB-portable/
-!apps/JHermUSB-portable/installers/
