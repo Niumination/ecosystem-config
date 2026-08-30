@@ -1,6 +1,6 @@
 {
   "fileCount": 348,
-  "generatedAt": "2026-08-30T06:39:44.449535+00:00",
+  "generatedAt": "2026-08-30T06:53:10.318783+00:00",
   "skillCount": 68,
   "skills": {
     "accessibility": {
@@ -182,10 +182,10 @@
       }
     },
     "hermes-provider-config": {
-      "bundleHash": "0f9190d446837db09efbbae13f70f58bf6dc2d73d8066480b56ee5bd48163218",
+      "bundleHash": "426203a4352e111163af270915419d38e247d83cb1fa1f5d50917d677d7b1eb3",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "a474c18f2cb0bf98553c47518307470da9bde2791e5db9df5d8594cde8bba5e2",
+        "SKILL.md": "d964af2450a8056de8249b355ec2467d2175efd23814323e7c63fe7d8622c2c3",
         "references/9router-gateway-admin.md": "d4b718f0ad1b63419c2248d0d4d3105a441065dbcd57915cc1ee3a69c8d1bac5",
         "references/juan-router-integration.md": "737c490e199201370c75d62c2f51693f5242b41ea79228fe49636e2a7df64b42",
         "references/model-catalog-structure.md": "ba5b28126411702689a793b6e4cea6433ac3841e2e0c37580d7041ec936d1f4d",
@@ -413,10 +413,10 @@
       }
     },
     "niu-mission-control-ops": {
-      "bundleHash": "744291782d2b6679a99cfe00fcec01f20879659024db88a6c7a39f0c1b107e59",
+      "bundleHash": "0310d2845ca5833490faa5dd2429b63de5750407bc43bc1acd7fbd4b65499b14",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "6a32b396cfb68251d4a74cf089690415af4717be6c6c4ac893ab3c8dfce29cbc",
+        "SKILL.md": "f26b736747ec591e8a7f2d5b38d3f52d2a3165f46da3ae74d1a0e3d49e17db30",
         "references/cost-telegram-p1-fix-2026-08-20.md": "7246d5172061c6f712729a8d8212e69f18887d89d7f4502498cacf9c61853719",
         "references/deploy-p2-fix-2026-08-20.md": "fda37d07e7b1b1d95ff9969cab5cce762c6a8d502aee485c12728beccb07766d",
         "references/quick-wins-cleanup-2026-08-20.md": "bc7dd27983ac5e2581ef2e25d6353a9bf390a6b5f25da7aaf2cb11919a3912b1"
@@ -592,10 +592,10 @@
       }
     },
     "simplify-code": {
-      "bundleHash": "773dddabd3ce8ff3b12f7b4dfafb24f2d86dc63e06a6577dde7c19075a1ebf98",
+      "bundleHash": "1f1beb133d3ef2294d1e993b4e31cba4f7752589e02e602cac39217442c5eda9",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "5549142eb234a6decabf8c4ff59dad5279c80997bb7c9b14405fd4edf81d7b6c"
+        "SKILL.md": "c259970bff23997a9b395f514af12723e33218fca97f529b5e0fa914ac72660e"
       }
     },
     "skill-bank-integrity": {
@@ -662,10 +662,10 @@
       }
     },
     "telegram-router-orchestration": {
-      "bundleHash": "6b0fc522b3e82ee6706af28b2b8f476bf432ccf9694180bf874104503bf09a1c",
+      "bundleHash": "311bdc6633e5289a62517f97b5befdaa0c34297fc337b9bc6b48145a15836d7d",
       "domain": "autonomous-ai-agents",
       "files": {
-        "SKILL.md": "f71a132bf152a4391132c65613de0190ae2e59767b4084a851ba083723431fb8"
+        "SKILL.md": "6211669d4cfacd6e07bfe8ec9ee3d75b647f3806ada4b05d5d85eadcf4063734"
       }
     },
     "tripwire": {

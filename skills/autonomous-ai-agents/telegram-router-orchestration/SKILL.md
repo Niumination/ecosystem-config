@@ -49,16 +49,17 @@ Anda adalah bagian dari **Niumination Ecosystem**, sebuah sistem AI otonom yang 
 *   **Total:** ~40 git repos, ~18 GB data.
 *   **Messaging Gateway:** Hermes terhubung ke Telegram Niu-MissionControl (`-1004204696417`).
 
-**Model Mapping — Spesifik per Thread (Updated 27 Ags 2026 — post-constitution rollback):**
-*   **Thread 1 (General/Command Center):** `gemini/gemini-3.5-flash-lite` via 9router (13 Ags sore: ROLLBACK dari agentrouter `gpt-5.6-sol` — filter konten blokir frasa ID, lihat bagian AgentRouter)
-*   **Thread 802 (Research):** `gc/gemini-2.5-pro` via 9router
-*   **Thread 803 (Programmer):** `cf/@cf/deepseek-ai/deepseek-r1-distill-qwen-32b` via 9router
-*   **Thread 804 (QA):** `cf/@cf/zai-org/glm-4.7-flash` via 9router (13 Ags malam: ganti dari `nvidia/z-ai/glm-5.2` — stress test 2/8 kena 429; glm-4.7-flash 8/8)
-*   **Thread 1172 (Konten Kreator):** `gemini/gemma-4-31b-it` via 9router (13 Ags malam: ganti dari `nvidia/minimaxai/minimax-m3` — stress test 1/8 kena 429)
-*   **DM Utama (Default):** `hy3-free` via **opencode-free** (was: `nemotron-3-ultra-free`/opencode-zen)
-*   **Cron:** `nemotron-3-ultra-free` via **opencode-free**
-*   **Delegation/Compression/X-Search:** `hy3-free` via **opencode-free**
-*   **Fallback semua thread + DM (GLOBAL, 3 level, 27 Ags 2026):** `opencode-free/hy3-free` → `opencode-free/nemotron-3-ultra-free` → `opencode-free/laguna-s-2.1-free` (single provider family, diversified models)
+**Model Mapping — Spesifik per Thread (Updated 29 Ags 2026 — post-sweep & burst test):**
+*   **DM Utama (Default):** `auto` via **huancheng** (https://api.hcnsec.cn/v1) — user paling sering pakai DM
+*   **Thread 1 (General/Command Center):** `ag/gemini-3.5-flash-low` via 9router (10/10 burst, 729ms — tercepat)
+*   **Thread 802 (Research):** `ag/gemini-3-flash-agent` via 9router (10/10 burst, 966ms — agent-optimized)
+*   **Thread 803 (Programmer):** `gh/gpt-4o-mini` via 9router (10/10 burst, 930ms — coding proven)
+*   **Thread 804 (QA):** `ag/gemini-3.7-flash-low` via 9router (10/10 burst, 2483ms — strong reasoning)
+*   **Thread 1172 (Konten Kreator):** `gemini/gemma-4-31b-it` via 9router (10/10 burst, 1039ms — creative quality)
+*   **Fallback Chain (GLOBAL, 3 level, 29 Ags 2026):**
+    *   L1: `9router/ag/gemini-3.5-flash-low` (tercepat + long limit)
+    *   L2: `9router/ag/gemini-3-flash-agent` (agent-optimized)
+    *   L3: `opencode-zen/hy3-free` (satu-satunya Zen stabil)
 
 **Tujuan Ekosistem:** Evolusi menuju "Personal AI OS" — sistem AI otonom terintegrasi, dengan Hermes sebagai otaknya, memanfaatkan multi-agent, memory (MD files), eksekusi (cron, loops), dan dashboard komando.
 
