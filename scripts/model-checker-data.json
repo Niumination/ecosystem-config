@@ -1,0 +1,939 @@
+{
+  "timestamp": "2026-08-30T13:14:04.287019",
+  "router": "http://127.0.0.1:20128",
+  "total_models": 89,
+  "results": {
+    "gh/copilot-search-a": {
+      "ok": true,
+      "latency_ms": 459,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "unknown",
+        "tier": "tidak_diketahui",
+        "notes": "provider tidak dikenal"
+      }
+    },
+    "gh/copilot-search-b": {
+      "ok": true,
+      "latency_ms": 509,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "unknown",
+        "tier": "tidak_diketahui",
+        "notes": "provider tidak dikenal"
+      }
+    },
+    "gh/copilot-search-c": {
+      "ok": true,
+      "latency_ms": 572,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "unknown",
+        "tier": "tidak_diketahui",
+        "notes": "provider tidak dikenal"
+      }
+    },
+    "gh/exec-agent-a": {
+      "ok": true,
+      "latency_ms": 586,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "unknown",
+        "tier": "tidak_diketahui",
+        "notes": "provider tidak dikenal"
+      }
+    },
+    "gh/exec-agent-b": {
+      "ok": false,
+      "latency_ms": 7455,
+      "error": "HTTP 503",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 503"
+      }
+    },
+    "gh/exec-agent-c": {
+      "ok": true,
+      "latency_ms": 582,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "unknown",
+        "tier": "tidak_diketahui",
+        "notes": "provider tidak dikenal"
+      }
+    },
+    "gh/gpt-5.4-mini-free-auto": {
+      "ok": false,
+      "latency_ms": 584,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "gh/gpt-5.6-luna": {
+      "ok": false,
+      "latency_ms": 624,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "gh/mai-code-1.1-flash": {
+      "ok": false,
+      "latency_ms": 709,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "gh/mai-code-1-flash-4th": {
+      "ok": false,
+      "latency_ms": 1531,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "gh/mai-code-1-flash-picker": {
+      "ok": false,
+      "latency_ms": 657,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "gh/mai-code-1-flash-secondary": {
+      "ok": false,
+      "latency_ms": 585,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "gh/mai-code-1-flash": {
+      "ok": false,
+      "latency_ms": 583,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "gh/trajectory-compaction": {
+      "ok": false,
+      "latency_ms": 7449,
+      "error": "HTTP 503",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 503"
+      }
+    },
+    "gh/gpt-5-mini": {
+      "ok": false,
+      "latency_ms": 584,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "gh/gpt-4o-mini-2024-07-18": {
+      "ok": true,
+      "latency_ms": 669,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "unknown",
+        "tier": "tidak_diketahui",
+        "notes": "provider tidak dikenal"
+      }
+    },
+    "gh/gpt-4o-2024-11-20": {
+      "ok": true,
+      "latency_ms": 1255,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "unknown",
+        "tier": "tidak_diketahui",
+        "notes": "provider tidak dikenal"
+      }
+    },
+    "gh/gpt-4o-2024-08-06": {
+      "ok": true,
+      "latency_ms": 934,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "unknown",
+        "tier": "tidak_diketahui",
+        "notes": "provider tidak dikenal"
+      }
+    },
+    "gh/claude-haiku-4.5": {
+      "ok": false,
+      "latency_ms": 281,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "gh/gpt-4.1-2025-04-14": {
+      "ok": true,
+      "latency_ms": 1658,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "unknown",
+        "tier": "tidak_diketahui",
+        "notes": "provider tidak dikenal"
+      }
+    },
+    "gh/oswe-vscode-prime": {
+      "ok": false,
+      "latency_ms": 547,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "gh/gpt-5.6-luna-free-auto": {
+      "ok": false,
+      "latency_ms": 547,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "gh/gpt-3.5-turbo-0613": {
+      "ok": true,
+      "latency_ms": 3431,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "unknown",
+        "tier": "tidak_diketahui",
+        "notes": "provider tidak dikenal"
+      }
+    },
+    "gh/gpt-4": {
+      "ok": false,
+      "latency_ms": 550,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "gh/gpt-4-0613": {
+      "ok": false,
+      "latency_ms": 555,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "gh/gpt-4-0125-preview": {
+      "ok": false,
+      "latency_ms": 561,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "gh/gpt-4o-2024-05-13": {
+      "ok": true,
+      "latency_ms": 1180,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "unknown",
+        "tier": "tidak_diketahui",
+        "notes": "provider tidak dikenal"
+      }
+    },
+    "gh/gpt-4-o-preview": {
+      "ok": true,
+      "latency_ms": 1165,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "unknown",
+        "tier": "tidak_diketahui",
+        "notes": "provider tidak dikenal"
+      }
+    },
+    "gh/gpt-4.1": {
+      "ok": true,
+      "latency_ms": 1183,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "unknown",
+        "tier": "tidak_diketahui",
+        "notes": "provider tidak dikenal"
+      }
+    },
+    "gh/gpt-3.5-turbo": {
+      "ok": false,
+      "latency_ms": 541,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "gh/gpt-4o-mini": {
+      "ok": true,
+      "latency_ms": 668,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "unknown",
+        "tier": "tidak_diketahui",
+        "notes": "provider tidak dikenal"
+      }
+    },
+    "gh/gpt-4o": {
+      "ok": true,
+      "latency_ms": 1065,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "unknown",
+        "tier": "tidak_diketahui",
+        "notes": "provider tidak dikenal"
+      }
+    },
+    "gemini/gemini-3.7-flash": {
+      "ok": false,
+      "latency_ms": 431,
+      "error": "HTTP 429",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 429"
+      }
+    },
+    "gemini/gemini-3.6-flash": {
+      "ok": true,
+      "latency_ms": 1229,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis_dengan_kuota",
+        "notes": "AI Studio free, ada batas kuota"
+      }
+    },
+    "gemini/gemini-3.5-flash-lite": {
+      "ok": true,
+      "latency_ms": 829,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis",
+        "notes": "AI Studio free, kuota harian \ubb34\uc81c\ud55c"
+      }
+    },
+    "gemini/gemini-3.1-pro-preview": {
+      "ok": false,
+      "latency_ms": 149,
+      "error": "HTTP 429",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 429"
+      }
+    },
+    "gemini/gemini-3.1-flash-lite-preview": {
+      "ok": true,
+      "latency_ms": 672,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis",
+        "notes": "AI Studio free, kuota harian \ubb34\uc81c\ud55c"
+      }
+    },
+    "gemini/gemini-3-flash-preview": {
+      "ok": true,
+      "latency_ms": 1139,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis_dengan_kuota",
+        "notes": "AI Studio free, ada batas kuota"
+      }
+    },
+    "gemini/gemma-4-31b-it": {
+      "ok": true,
+      "latency_ms": 929,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis_dengan_kuota",
+        "notes": "AI Studio free, ada batas kuota"
+      }
+    },
+    "kr/auto": {
+      "ok": true,
+      "latency_ms": 3004,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "paid",
+        "tier": "berbayar",
+        "notes": "Kiro subscription"
+      }
+    },
+    "kr/auto-thinking": {
+      "ok": false,
+      "latency_ms": 462,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/claude-sonnet-4.5": {
+      "ok": true,
+      "latency_ms": 2050,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "paid",
+        "tier": "berbayar",
+        "notes": "Kiro subscription"
+      }
+    },
+    "kr/claude-sonnet-4.5-thinking": {
+      "ok": false,
+      "latency_ms": 461,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/claude-sonnet-4.5-agentic": {
+      "ok": false,
+      "latency_ms": 388,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/claude-sonnet-4.5-thinking-agentic": {
+      "ok": false,
+      "latency_ms": 401,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/claude-sonnet-4": {
+      "ok": true,
+      "latency_ms": 1941,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "paid",
+        "tier": "berbayar",
+        "notes": "Kiro subscription"
+      }
+    },
+    "kr/claude-sonnet-4-thinking": {
+      "ok": false,
+      "latency_ms": 424,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/claude-sonnet-4-agentic": {
+      "ok": false,
+      "latency_ms": 413,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/claude-sonnet-4-thinking-agentic": {
+      "ok": false,
+      "latency_ms": 406,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/claude-haiku-4.5": {
+      "ok": true,
+      "latency_ms": 1119,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "paid",
+        "tier": "berbayar",
+        "notes": "Kiro subscription"
+      }
+    },
+    "kr/claude-haiku-4.5-thinking": {
+      "ok": false,
+      "latency_ms": 389,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/claude-haiku-4.5-agentic": {
+      "ok": false,
+      "latency_ms": 407,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/claude-haiku-4.5-thinking-agentic": {
+      "ok": false,
+      "latency_ms": 416,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/deepseek-3.2": {
+      "ok": true,
+      "latency_ms": 889,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free_tier",
+        "tier": "gratis_terbatas",
+        "notes": "Kiro \u2014 model tertentu gratis terbatas"
+      }
+    },
+    "kr/deepseek-3.2-thinking": {
+      "ok": false,
+      "latency_ms": 398,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/deepseek-3.2-agentic": {
+      "ok": false,
+      "latency_ms": 407,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/deepseek-3.2-thinking-agentic": {
+      "ok": false,
+      "latency_ms": 660,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/minimax-m2.5": {
+      "ok": true,
+      "latency_ms": 2380,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "paid",
+        "tier": "berbayar",
+        "notes": "Kiro subscription"
+      }
+    },
+    "kr/minimax-m2.5-thinking": {
+      "ok": false,
+      "latency_ms": 416,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/minimax-m2.5-agentic": {
+      "ok": false,
+      "latency_ms": 433,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/minimax-m2.5-thinking-agentic": {
+      "ok": false,
+      "latency_ms": 404,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/minimax-m2.1": {
+      "ok": false,
+      "latency_ms": 15003,
+      "error": "timed out",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "timed out"
+      }
+    },
+    "kr/minimax-m2.1-thinking": {
+      "ok": false,
+      "latency_ms": 15002,
+      "error": "timed out",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "timed out"
+      }
+    },
+    "kr/minimax-m2.1-agentic": {
+      "ok": false,
+      "latency_ms": 15002,
+      "error": "timed out",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "timed out"
+      }
+    },
+    "kr/minimax-m2.1-thinking-agentic": {
+      "ok": false,
+      "latency_ms": 15002,
+      "error": "timed out",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "timed out"
+      }
+    },
+    "kr/glm-5": {
+      "ok": false,
+      "latency_ms": 15001,
+      "error": "timed out",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "timed out"
+      }
+    },
+    "kr/glm-5-thinking": {
+      "ok": false,
+      "latency_ms": 15002,
+      "error": "timed out",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "timed out"
+      }
+    },
+    "kr/glm-5-agentic": {
+      "ok": false,
+      "latency_ms": 7930,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/glm-5-thinking-agentic": {
+      "ok": false,
+      "latency_ms": 1547,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/qwen3-coder-next": {
+      "ok": true,
+      "latency_ms": 889,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free_tier",
+        "tier": "gratis_terbatas",
+        "notes": "Kiro \u2014 model tertentu gratis terbatas"
+      }
+    },
+    "kr/qwen3-coder-next-thinking": {
+      "ok": false,
+      "latency_ms": 411,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/qwen3-coder-next-agentic": {
+      "ok": false,
+      "latency_ms": 418,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/qwen3-coder-next-thinking-agentic": {
+      "ok": false,
+      "latency_ms": 423,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "ag/gemini-3.7-flash-high": {
+      "ok": true,
+      "latency_ms": 3858,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis_antigravity",
+        "notes": "Antigravity gratis via OAuth"
+      }
+    },
+    "ag/gemini-3.7-flash-medium": {
+      "ok": true,
+      "latency_ms": 2494,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis_antigravity",
+        "notes": "Antigravity gratis via OAuth"
+      }
+    },
+    "ag/gemini-3.7-flash-low": {
+      "ok": true,
+      "latency_ms": 3290,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis_antigravity",
+        "notes": "Antigravity gratis via OAuth"
+      }
+    },
+    "ag/gemini-3.6-flash-high": {
+      "ok": true,
+      "latency_ms": 3108,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis_antigravity",
+        "notes": "Antigravity gratis via OAuth"
+      }
+    },
+    "ag/gemini-3.6-flash-medium": {
+      "ok": true,
+      "latency_ms": 2468,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis_antigravity",
+        "notes": "Antigravity gratis via OAuth"
+      }
+    },
+    "ag/gemini-3.6-flash-low": {
+      "ok": true,
+      "latency_ms": 721,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis_antigravity",
+        "notes": "Antigravity gratis via OAuth"
+      }
+    },
+    "ag/gemini-3.5-flash-high": {
+      "ok": false,
+      "latency_ms": 132,
+      "error": "HTTP 404",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 404"
+      }
+    },
+    "ag/gemini-3-flash-agent": {
+      "ok": true,
+      "latency_ms": 595,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis_antigravity",
+        "notes": "Antigravity gratis via OAuth"
+      }
+    },
+    "ag/gemini-3.5-flash-low": {
+      "ok": true,
+      "latency_ms": 630,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis_antigravity",
+        "notes": "Antigravity gratis via OAuth"
+      }
+    },
+    "ag/gemini-3.5-flash-extra-low": {
+      "ok": true,
+      "latency_ms": 820,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis_antigravity",
+        "notes": "Antigravity gratis via OAuth"
+      }
+    },
+    "ag/gemini-pro-agent": {
+      "ok": true,
+      "latency_ms": 1768,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis_antigravity",
+        "notes": "Antigravity gratis via OAuth"
+      }
+    },
+    "ag/gemini-3.1-pro-low": {
+      "ok": true,
+      "latency_ms": 1948,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis_antigravity",
+        "notes": "Antigravity gratis via OAuth"
+      }
+    },
+    "ag/claude-sonnet-4-6": {
+      "ok": true,
+      "latency_ms": 2338,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis_antigravity",
+        "notes": "Antigravity gratis via OAuth"
+      }
+    },
+    "ag/claude-opus-4-6-thinking": {
+      "ok": true,
+      "latency_ms": 3196,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis_antigravity",
+        "notes": "Antigravity gratis via OAuth"
+      }
+    },
+    "ag/gpt-oss-120b-medium": {
+      "ok": true,
+      "latency_ms": 4267,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis_antigravity",
+        "notes": "Antigravity gratis via OAuth"
+      }
+    },
+    "ag/gemini-3-flash": {
+      "ok": true,
+      "latency_ms": 961,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "free",
+        "tier": "gratis_antigravity",
+        "notes": "Antigravity gratis via OAuth"
+      }
+    }
+  }
+}
