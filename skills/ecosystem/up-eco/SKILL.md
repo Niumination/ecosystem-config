@@ -79,6 +79,16 @@ After presenting the report, ask the user (if not already instructed):
 - `/up-eco --fix` → run script + execute all non-destructive fixes (commit, push, register projects)
 - `/up-eco --dry-run` → run script without output colors (for cron/automation)
 
+## Current-State Addendum (2026-08-30)
+From a real `/up-eco` run on macOS, these additional checks and fixes are now part of the standard workflow:
+
+- **SOUL.md style section:** `up-eco` now checks for a `## Gaya jawab` section in `~/.hermes/SOUL.md`. If missing, add a concise 3-5 line section covering: answer style, language default, structure preference.
+- **Hermes display config:** Verify `display.compact=true`, `agent.task_completion_guidance=false`, `display.turn_completion_explainer=false`, `display.personality=""`. These suppress verbose Telegram output.
+- **`.gitignore` hygiene:** Ensure root `.gitignore` covers runtime/local artifacts: `logs/`, `.vscode/`, `.9router-state.json`, `skills-lock.json`, `.sync-log`, `.git-backup-*/`. Missing entries cause `up-eco` to flag them as unknown folders.
+- **Skill sync mismatch:** After `sync-to-agents.sh`, Hermes may show 4 mismatch skills (`hermes-provider-config`, `niu-mission-control-ops`, `simplify-code`, `telegram-router-orchestration`) even when Jcode is clean. This is a known non-fatal divergence; do not block on it.
+- **`ROOT: unbound variable` error:** If `scripts/up-eco.sh` ends with `ROOT: unbound variable`, check line ~790 for a shell variable expansion issue. This is a script bug, not an ecosystem bug.
+- **Mission Control Skill API:** `HTTP 404` on `/api/*` while dashboard UI returns `HTTP 200` is normal if only the Next.js frontend runs without the FastAPI backend process. Not a failure.
+
 ## Known Categories
 ```
 Pipeline: sandbox💤 → labs🔬 → services/sites/desktop/agents🔧 → apps🏭 → archive📦
