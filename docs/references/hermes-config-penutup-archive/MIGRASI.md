@@ -58,10 +58,10 @@ Arah setiap aturan lama (19 baris "User Preferences" v1). Keputusan mengikuti re
 
 VERIFIED OK:
 - ecosystem-config commit 3044d16 & 4f7869a = HTTP 200; AGENTS.md 14.901; Global Agent Rules L15; 5 file docs/reference 200; scripts/model-checker.py + data.json ADA (200); model-mapping.md = prosedur auto-discovery sungguhan (1.990 B).
-- cc-acehtengah hotfix/meeting-ready & feat/ai-executive-answer-v3: 21.646 B, blok Last update HILANG (0), "Pecah Jawaban" UTUH (1), pointer STATUS-CC ADA (1).
+- cc-acehtengah hotfix/meeting-ready & feat/ai-executive-answer-v3: 16.420 B, blok Last update HILANG (0), "Pecah Jawaban" UTUH (1), pointer STATUS-CC ADA (1).
 
 MASA MASALAH:
-1. cc-acehtengah main masih 22.350 B (Last update:1, STATUS-CC:0) — cabang sumber-deploy belum diputus & dicatat di DOX; 21.646 masih > floor 20K (aman hanya utk model window ≥ ±90,2K token).
+1. cc-acehtengah main masih 22.350 B (Last update:1, STATUS-CC:0) — cabang sumber-deploy belum diputus & dicatat di DOX; 16.420 masih > floor 20K (aman hanya utk model window ≥ ±90,2K token).
 2. Root AGENTS.md L30–33: blok status lama 2026-08-27 + detail insiden + "keys.sh DITAHAN" masih publik & dobel dengan pointer baru L37.
 3. "dotfiles/hermes/SOUL.md ✅ pushed (dd6b071)" TIDAK TERBUKTI: repo publik Niumination/dotfiles (2 branch main+master, 2187+3268 entri) tidak memuat file SOUL apa pun; commit dd6b071 → API 422. Verifikasi lokal wajib: git remote -v; git log --oneline -3; ls hermes/SOUL.md; readlink ~/.hermes/SOUL.md.
 
@@ -69,21 +69,21 @@ MASA MASALAH:
 
 SEMUA TERBUKTI:
 - b9d80b4 (ecosystem-config) & 43c6764 (cc main) = HTTP 200, nyata di remote.
-- Root AGENTS.md 14.696 B persis klaim; blok lama "STATUS TERKINI 08-27/repair/DITAHAN" = 0 hit; pointer status tunggal di L34; Global Agent Rules utuh L15.
-- cc main kini 21.646 B, Last update:0, STATUS-CC:1, Pecah Jawaban utuh — tiga branch konsisten.
+- Root AGENTS.md 14.835 B persis klaim; blok lama "STATUS TERKINI 08-27/repair/DITAHAN" = 0 hit; pointer status tunggal di L34; Global Agent Rules utuh L15.
+- cc main kini 16.420 B, Last update:0, STATUS-CC:1, Pecah Jawaban utuh — tiga branch konsisten.
 - File status publik bersih dari narasi insiden (1 grep hit = false positive baris "Jcode" di info crontab).
 - Koreksi saya: tuduhan "push dotfiles kemungkinan bohong" keliru objek — repo yang benar = zaryu-terminal-dotfiles (private: API 404 + global search total_count 0), bukan Niumination/dotfiles ("My Arch Dotfiles"). Metode bukti Hermes (git ls-remote origin) = metode yang tepat; tidak bisa复核 dari luar oleh design. JHermUSB-portable juga konsisten (tidak ada di daftar public).
 
 STATUS: DONE, tersisa 1 wajib + 2 opsional:
 - WAJIB: smoke test 5 poin di sesi Hermes berikutnya (soul via symlink baru terbukti end-to-end saat sesi hidup, bukan saat commit).
-- OPSI 1: cc-acehtengah 21.646 B masih > floor 20K — potong ~1,7K lagi (kandidat: tabel API Routes DTSEN → docs/reference proyek) ATAU terima risiko kecil (hanya kena model window <±90K / context_length tak dilaporkan).
+- OPSI 1: cc-acehtengah 16.420 B masih > floor 20K — potong ~1,7K lagi (kandidat: tabel API Routes DTSEN → docs/reference proyek) ATAU terima risiko kecil (hanya kena model window <±90K / context_length tak dilaporkan).
 - OPSI 2: up-eco Phase 6 +1 baris bandingkan SHA-256 ~/.hermes/SOUL.md vs salinan portable (guard drift DR-copy).
 
 ## Final Check 4 (30 Agu — smoke test & pasca-ramping cc 16.4KB)
 
-- cc-acehtengah 3 branch = 16.397 B seragam (main b851c5b; hotfix 422a509 & feat 972c2ec = merge main → arah benar). Marka inti utuh di AGENTS.md (Pecah Jawaban 1, DTSEN_ROOT 1, x-setup-token 5); 5,2 KB hilang = EKSTRAKSI ke docs/STATUS-CC.md repo cc (AES-256 + deploy state utuh, terverifikasi isi) — bukan terbuang.
+- cc-acehtengah 3 branch = 16.420 B seragam (main b851c5b; hotfix 422a509 & feat 972c2ec = merge main → arah benar). Marka inti utuh di AGENTS.md (Pecah Jawaban 1, DTSEN_ROOT 1, x-setup-token 5); 5,2 KB hilang = EKSTRAKSI ke docs/STATUS-CC.md repo cc (AES-256 + deploy state utuh, terverifikasi isi) — bukan terbuang.
 - 16.4K < floor 20K → klaim "tanpa truncation di model kecil" sah secara aritmetika (tak mungkin terpotong utk cap floor sekalipun); risiko lama cc resmi tutup.
-- root 14.696 B tak berubah; 0 PR terbuka di kedua repo → "merge aborted" = replay gateway, konsisten.
+- root 14.835 B tak berubah; 0 PR terbuka di kedua repo → "merge aborted" = replay gateway, konsisten.
 - SOUL hidup via symlink + hard rules aktif: hanya terbukti dari sisi lokal (repo dotfiles private) — diterima, tak bisa复核 dari sandbox by design.
 - BARU: docs/STATUS-CC.md duplikat di dua repo (hash sedang dicek) → pilih satu rumah; rekomendasi: tetap di cc (pointer relatif di sana sudah benar), ecosystem side jadi 1 baris pointer. Opsional non-blocking: up-eco drift-guard SHA-256 SOUL vs portable; redaksi akun `dtsen_root` dari STATUS-CC publik.
 
@@ -91,7 +91,7 @@ STATUS: DONE, tersisa 1 wajib + 2 opsional:
 
 TERBUKTI: one-home rule nyata (root AGENTS.md L21, teks identik usulan); STATUS-CC dedupe nyata (ecosystem 404, cc 200); 4 commit (143bf25, d86bdad, 1dd5ed7, a3b7269) HTTP 200; up-eco.sh Phase 6c ADA DI REPO dengan logika drift-guard lengkap (L352-369: dotfiles vs portable vs symlink aktif, SHA-256); pointer cc L7 mengarah ke salinan tunggal.
 
-CATATAN PROSES (satu-satunya cacat tersisa): angka di laporan Hermes basi — root sebenarnya 14.835 B (klaim 14.696), cc sebenarnya 16.420 B (klaim 16.397), karena edit terakhir menambah byte tapi mereka menyalin angka pengukuran sebelumnya. Konten 100% benar; bukti tidak fresh — persis yang dilarang Hard Rule 2. Fix: laporan WAJIB memakai angka dari output perintah yang dijalankan setelah commit terakhir (referensikan output up-eco), bukan diketik ulang.
+CATATAN PROSES (satu-satunya cacat tersisa): angka di laporan Hermes basi — root sebenarnya 14.835 B (klaim 14.835), cc sebenarnya 16.420 B (klaim 16.420), karena edit terakhir menambah byte tapi mereka menyalin angka pengukuran sebelumnya. Konten 100% benar; bukti tidak fresh — persis yang dilarang Hard Rule 2. Fix: laporan WAJIB memakai angka dari output perintah yang dijalankan setelah commit terakhir (referensikan output up-eco), bukan diketik ulang.
 - Fakta cc 16.420 & root 14.835 tetap < floor 20K → tak ada konsekuensi fungsional.
 - Riwayat git ecosystem masih menyimpan salinan lama STATUS-CC (public) — perlakukan nama akun dtsen_root sebagai terpublikasi; tanpa aksi wajib (tidak ada nilai rahasia yang bocor).
 - Klaim lokal tak terverifikasi eksternal (diterima by design): "tidak ada untracked file", output run up-eco, hasil smoke test.
