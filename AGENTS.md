@@ -27,10 +27,7 @@
 4. Pindah fokus antar proyek: **baca AGENTS.md induk → langsung navigasi ke proyek target → baca AGENTS.md anak jika ada**
 5. Jika ada konflik antar DOX, doc yang lebih dekat ke file yang disentuh menang
 
-> ⚠️ **STATUS TERKINI EKOSISTEM — 2026-08-27:** Baca `docs/ECOSYSTEM-STATUS-2026-08-27.md`.
-> Insiden: 1 session jcode salah direktori menghapus beberapa file config di disk (~17:45–18:04);
-> session tersebut **sedang repair mandiri**. Jangan edit config saat repair berjalan.
-> Migrasi kredensial ke broker (`scripts/keys.sh`) **DITAHAN** sampai repair selesai & config kembali.
+> ⚠️ **Catatan historis:** Insiden 27 Agu 2026 sudah selesai diperbaiki. Detail ada di `docs/reports/ECOSYSTEM-STATUS-2026-08-30.md`. Jangan edit config saat ada repair berjalan.
 
 ---
 
