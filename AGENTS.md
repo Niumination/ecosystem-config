@@ -626,7 +626,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `impeccable` | design | 152 | Bank Pusat | Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks. |
 | `kanban-ecosystem-management` | ecosystem | 20 | Bank Pusat | Track Niumination project portfolio via Hermes kanban. Covers: mapping AGENTS.md project catalog → kanban tasks by category/priority, syncing BACKLOG.md, fixing empty-dashboard DB_PATH issues, and the Plan→DOX→Execute workflow for ecosystem-wide kanban updates. |
 | `niu-core-governance` | governance | 2 | Bank Pusat | Operasikan sistem tata kelola inti Niumination (core/) yang dipasang rekonstruksi F1-F5 (19-20 Ags 2026): konstitusi tersegel, kebijakan model 2-otak, pagar (fence) tanpa LLM, hook niu-* di agent-hooks, handoff ganti-model, ledger no-agent, dan script niu_* pendukung. Use when: fence aktif/blokir core, ganti model butuh HANDOFF, test_niu_corelib.py, core/ muncul error, hook tidak jalan, atau perlu dokumentasi keputusan ke ledger. |
-| `niu-mission-control-ops` | software-development | 4 | Bank Pusat | Operate the Niu-MissionControl dashboard server (port 5200): start/restart with the correct venv, verify health before reporting, known silent-death causes, runtime data shapes, and test/rebuild workflows. Use whenever MC is down, needs restart, tests fail, or /up-eco reports MC unreachable. |
+| `niu-mission-control-ops` | software-development | 4 | Bank Pusat | Operate the Niu-MissionControl dashboard server (port 5200): Next.js 15 runtime, SQLite backend, health checks, and deployment workflows. |
 | `niu-mission-control-ui` | ecosystem | 5 | Bank Pusat | Frontend Niumination Mission Control — unified dashboard (ORB iframe + 12 floating windows), WCAG 2.1 AA accessibility, SEO pipeline, redesign v3.0. Use when working on dashboard styling, accessibility, SEO, floating windows, build_unified.py, or redesign tasks. |
 | `optimization` | software-development | 1 | Bank Pusat | Improve performance, latency, and throughput of code and systems. Systematic profiling → bottleneck detection → targeted optimization. |
 | `pemdi-evidence-management` | software-development | 6 | Bank Pusat | >- |
@@ -648,7 +648,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `routines` | note-taking | 1 | Bank Pusat | Routine workflows — morning brief, daily report, project sync. Use when user says: /routine, morning brief, laporan harian, rekap harian, update status proyek, daily report. Trigger words: routine, brief, laporan harian, rekap, status proyek. |
 | `second-brain` | note-taking | 1 | Bank Pusat | Second Brain PKM — simpan catatan ke brain/inbox dan cari pengetahuan lama. Use when user says: simpan ini, catat ini, ingat ini, capture, cari di brain, apa yang kita bahas, knowledge base. Trigger words: simpan, catat, capture, brain, knowledge, recall. |
 | `seo` | design | 1 | Bank Pusat | Optimize for search engine visibility and ranking. Use when asked to "improve SEO", "optimize for search", "fix meta tags", "add structured data", "sitemap optimization", or "search engine optimization". |
-| `simplify-code` | software-development | 1 | Bank Pusat | Parallel 3-agent cleanup of recent code changes. |
+| `simplify-code` | software-development | 1 | Bank Pusat | Parallel 4-agent cleanup of recent code changes. |
 | `skill-bank-integrity` | ecosystem | 2 | Bank Pusat | Jaga integritas & keamanan Skill Bank Niumination — manifest SHA-256, kelengkapan sync (references/scripts/data), audit konten anti prompt-injection, lockfile traceability. Load saat menangani sync-to-agents.sh, manifest skill, audit isi skill, atau mengadopsi pola autoskills (midudev) ke ekosistem. |
 | `skill-bank-maintenance` | ecosystem | 1 | Bank Pusat | Maintain the Niumination Skill Bank — manifest SHA-256 integrity, full-folder sync to agents, drift handling, lockfiles. Use when working with ~/Desktop/Niumination/skills, skill-manifest.py, sync-to-agents.sh, or when up-eco reports skill bank integrity/sync issues. |
 | `skill-bank-management` | ecosystem | 2 | Bank Pusat | Kelola Skill Bank Niumination (single source of truth ~/Desktop/Niumination/skills/) — generate & verifikasi manifest SHA-256, sync seluruh folder skill ke agent target (Jcode/Hermes/USB) dengan verifikasi hash + lockfile, tangani drift antar target, dan adopsi skill dari registry eksternal (autoskills, GitHub). Gunakan saat ada skill baru masuk bank, sync-to-agents.sh dijalankan/gagal, up-eco melaporkan manifest mismatch, drift file antara bank vs target, atau user minta adopsi skill X. |
@@ -667,9 +667,11 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | `web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-08-30 13:40:00_
+_Last sync: 2026-08-30 13:56:40_
 
 <!-- SKILL_REGISTRY_END -->
+
+
 
 
 
