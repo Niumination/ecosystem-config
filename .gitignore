@@ -20,7 +20,10 @@ secrets.zsh
 api-key.md
 
 # Sub-project directories (each has its own git repo)
-apps/
+# apps/ — selectively allowed for portable installer
+apps/*
+!apps/JHermUSB-portable/
+
 services/
 sites/
 desktop/
@@ -89,3 +92,8 @@ logs/
 # IDE local
 .vscode/
 skills-lock.json
+
+
+# Portable Hermes installer — track only this subfolder
+!apps/JHermUSB-portable/
+!apps/JHermUSB-portable/installers/
