@@ -1,66 +1,63 @@
-# Model Checker Report — 30 Aug 2026 13:14 WIB
+# Model Checker Report — 30 Aug 2026 14:00 WIB
 
 Server: 9router (127.0.0.1:20128)
 Total model di catalog: 89
-Model accessible: 42
-Model inaccessible: 47
+Model accessible: 39
+Model inaccessible: 50
 
 ## Per Provider Summary
 
 ### AG (16 models)
-- **OK:** 15 | **FAIL:** 1
-- Latency: min=595ms, avg=2164ms, max=4267ms
+- **OK:** 14 | **FAIL:** 2
+- Latency: min=972ms, avg=4150ms, max=8732ms
 
 ### GEMINI (7 models)
 - **OK:** 5 | **FAIL:** 2
-- Latency: min=672ms, avg=960ms, max=1229ms
+- Latency: min=1556ms, avg=3826ms, max=10414ms
 
 ### GH (32 models)
 - **OK:** 15 | **FAIL:** 17
-- Latency: min=459ms, avg=1061ms, max=3431ms
+- Latency: min=558ms, avg=1876ms, max=5534ms
 
 ### KR (34 models)
-- **OK:** 7 | **FAIL:** 27
-- Latency: min=889ms, avg=1753ms, max=3004ms
+- **OK:** 5 | **FAIL:** 29
+- Latency: min=1845ms, avg=4996ms, max=14572ms
 
 ## 🆓 Model GRATIS / Free Tier (bisa dipakai tanpa biaya)
 
 | Model | Provider | Latency | Keterangan |
 |-------|----------|---------|------------|
-| ag/gemini-3-flash-agent | ag | 595ms | Antigravity gratis via OAuth |
-| ag/gemini-3.5-flash-low | ag | 630ms | Antigravity gratis via OAuth |
-| gemini/gemini-3.1-flash-lite-preview | gemini | 672ms | AI Studio free, kuota harian 무제한 |
-| ag/gemini-3.6-flash-low | ag | 721ms | Antigravity gratis via OAuth |
-| ag/gemini-3.5-flash-extra-low | ag | 820ms | Antigravity gratis via OAuth |
-| gemini/gemini-3.5-flash-lite | gemini | 829ms | AI Studio free, kuota harian 무제한 |
-| kr/deepseek-3.2 | kr | 889ms | Kiro — model tertentu gratis terbatas |
-| kr/qwen3-coder-next | kr | 889ms | Kiro — model tertentu gratis terbatas |
-| gemini/gemma-4-31b-it | gemini | 929ms | AI Studio free, ada batas kuota |
-| ag/gemini-3-flash | ag | 961ms | Antigravity gratis via OAuth |
-| gemini/gemini-3-flash-preview | gemini | 1139ms | AI Studio free, ada batas kuota |
-| gemini/gemini-3.6-flash | gemini | 1229ms | AI Studio free, ada batas kuota |
-| ag/gemini-pro-agent | ag | 1768ms | Antigravity gratis via OAuth |
-| ag/gemini-3.1-pro-low | ag | 1948ms | Antigravity gratis via OAuth |
-| ag/claude-sonnet-4-6 | ag | 2338ms | Antigravity gratis via OAuth |
-| ag/gemini-3.6-flash-medium | ag | 2468ms | Antigravity gratis via OAuth |
-| ag/gemini-3.7-flash-medium | ag | 2494ms | Antigravity gratis via OAuth |
-| ag/gemini-3.6-flash-high | ag | 3108ms | Antigravity gratis via OAuth |
-| ag/claude-opus-4-6-thinking | ag | 3196ms | Antigravity gratis via OAuth |
-| ag/gemini-3.7-flash-low | ag | 3290ms | Antigravity gratis via OAuth |
-| ag/gemini-3.7-flash-high | ag | 3858ms | Antigravity gratis via OAuth |
-| ag/gpt-oss-120b-medium | ag | 4267ms | Antigravity gratis via OAuth |
+| ag/gemini-3.5-flash-extra-low | ag | 972ms | Antigravity gratis via OAuth |
+| ag/gemini-3.5-flash-low | ag | 1094ms | Antigravity gratis via OAuth |
+| ag/gemini-3-flash-agent | ag | 1294ms | Antigravity gratis via OAuth |
+| ag/gemini-3-flash | ag | 1534ms | Antigravity gratis via OAuth |
+| gemini/gemini-3.1-flash-lite-preview | gemini | 1556ms | AI Studio free, kuota harian 무제한 |
+| gemini/gemini-3.5-flash-lite | gemini | 1673ms | AI Studio free, kuota harian 무제한 |
+| gemini/gemma-4-31b-it | gemini | 1861ms | AI Studio free, ada batas kuota |
+| ag/claude-opus-4-6-thinking | ag | 2209ms | Antigravity gratis via OAuth |
+| ag/claude-sonnet-4-6 | ag | 2350ms | Antigravity gratis via OAuth |
+| ag/gemini-3.1-pro-low | ag | 3365ms | Antigravity gratis via OAuth |
+| gemini/gemini-3-flash-preview | gemini | 3624ms | AI Studio free, ada batas kuota |
+| ag/gemini-pro-agent | ag | 4854ms | Antigravity gratis via OAuth |
+| ag/gemini-3.6-flash-low | ag | 4934ms | Antigravity gratis via OAuth |
+| ag/gemini-3.6-flash-high | ag | 5646ms | Antigravity gratis via OAuth |
+| ag/gemini-3.7-flash-low | ag | 5655ms | Antigravity gratis via OAuth |
+| ag/gemini-3.6-flash-medium | ag | 7057ms | Antigravity gratis via OAuth |
+| ag/gemini-3.7-flash-medium | ag | 8399ms | Antigravity gratis via OAuth |
+| ag/gemini-3.7-flash-high | ag | 8732ms | Antigravity gratis via OAuth |
+| gemini/gemini-3.6-flash | gemini | 10414ms | AI Studio free, ada batas kuota |
 
-**Total:** 22 model gratis
+**Total:** 19 model gratis
 
 ## 💰 Model Berbayar / Kuota Besar
 
 | Model | Provider | Latency | Keterangan |
 |-------|----------|---------|------------|
-| kr/claude-haiku-4.5 | kr | 1119ms | Kiro subscription |
-| kr/claude-sonnet-4 | kr | 1941ms | Kiro subscription |
-| kr/claude-sonnet-4.5 | kr | 2050ms | Kiro subscription |
-| kr/minimax-m2.5 | kr | 2380ms | Kiro subscription |
-| kr/auto | kr | 3004ms | Kiro subscription |
+| kr/minimax-m2.5 | kr | 1845ms | Kiro subscription |
+| kr/claude-haiku-4.5 | kr | 2021ms | Kiro subscription |
+| kr/claude-sonnet-4.5 | kr | 2598ms | Kiro subscription |
+| kr/minimax-m2.1 | kr | 3942ms | Kiro subscription |
+| kr/auto | kr | 14572ms | Kiro subscription |
 
 **Total:** 5 model berbayar
 
@@ -69,6 +66,7 @@ Model inaccessible: 47
 | Model | Provider | Error |
 |-------|----------|-------|
 | ag/gemini-3.5-flash-high | ag | HTTP 404 |
+| ag/gpt-oss-120b-medium | ag | HTTP 400 |
 | gemini/gemini-3.1-pro-preview | gemini | HTTP 429 |
 | gemini/gemini-3.7-flash | gemini | HTTP 429 |
 | gh/claude-haiku-4.5 | gh | HTTP 400 |
@@ -91,47 +89,49 @@ Model inaccessible: 47
 | kr/auto-thinking | kr | HTTP 400 |
 | kr/claude-haiku-4.5-agentic | kr | HTTP 400 |
 | kr/claude-haiku-4.5-thinking | kr | HTTP 400 |
-| kr/claude-haiku-4.5-thinking-agentic | kr | HTTP 400 |
+| kr/claude-haiku-4.5-thinking-agentic | kr | timed out |
+| kr/claude-sonnet-4 | kr | timed out |
 | kr/claude-sonnet-4-agentic | kr | HTTP 400 |
 | kr/claude-sonnet-4-thinking | kr | HTTP 400 |
 | kr/claude-sonnet-4-thinking-agentic | kr | HTTP 400 |
 | kr/claude-sonnet-4.5-agentic | kr | HTTP 400 |
 | kr/claude-sonnet-4.5-thinking | kr | HTTP 400 |
 | kr/claude-sonnet-4.5-thinking-agentic | kr | HTTP 400 |
+| kr/deepseek-3.2 | kr | timed out |
 | kr/deepseek-3.2-agentic | kr | HTTP 400 |
 | kr/deepseek-3.2-thinking | kr | HTTP 400 |
 | kr/deepseek-3.2-thinking-agentic | kr | HTTP 400 |
 | kr/glm-5 | kr | timed out |
 | kr/glm-5-agentic | kr | HTTP 400 |
-| kr/glm-5-thinking | kr | timed out |
+| kr/glm-5-thinking | kr | HTTP 400 |
 | kr/glm-5-thinking-agentic | kr | HTTP 400 |
-| kr/minimax-m2.1 | kr | timed out |
-| kr/minimax-m2.1-agentic | kr | timed out |
-| kr/minimax-m2.1-thinking | kr | timed out |
-| kr/minimax-m2.1-thinking-agentic | kr | timed out |
+| kr/minimax-m2.1-agentic | kr | HTTP 400 |
+| kr/minimax-m2.1-thinking | kr | HTTP 400 |
+| kr/minimax-m2.1-thinking-agentic | kr | HTTP 400 |
 | kr/minimax-m2.5-agentic | kr | HTTP 400 |
 | kr/minimax-m2.5-thinking | kr | HTTP 400 |
 | kr/minimax-m2.5-thinking-agentic | kr | HTTP 400 |
+| kr/qwen3-coder-next | kr | timed out |
 | kr/qwen3-coder-next-agentic | kr | HTTP 400 |
 | kr/qwen3-coder-next-thinking | kr | HTTP 400 |
 | kr/qwen3-coder-next-thinking-agentic | kr | HTTP 400 |
 
-**Total:** 47 model gagal
+**Total:** 50 model gagal
 
 ## 🎯 Rekomendasi (berdasarkan latency + ketersediaan)
 
 ### Cepat (< 1000ms)
 
-- **ag/gemini-3-flash-agent** (595ms) — Antigravity gratis via OAuth
-- **ag/gemini-3.5-flash-low** (630ms) — Antigravity gratis via OAuth
-- **gemini/gemini-3.1-flash-lite-preview** (672ms) — AI Studio free, kuota harian 무제한
-- **ag/gemini-3.6-flash-low** (721ms) — Antigravity gratis via OAuth
-- **ag/gemini-3.5-flash-extra-low** (820ms) — Antigravity gratis via OAuth
+- **ag/gemini-3.5-flash-extra-low** (972ms) — Antigravity gratis via OAuth
+- **ag/gemini-3.5-flash-low** (1094ms) — Antigravity gratis via OAuth
+- **ag/gemini-3-flash-agent** (1294ms) — Antigravity gratis via OAuth
+- **ag/gemini-3-flash** (1534ms) — Antigravity gratis via OAuth
+- **gemini/gemini-3.1-flash-lite-preview** (1556ms) — AI Studio free, kuota harian 무제한
 
 ### Vision-capable (bisa proses gambar)
 
-- **ag/gemini-3-flash-agent** (595ms)
-- **ag/gemini-3.5-flash-low** (630ms)
-- **gemini/gemini-3.1-flash-lite-preview** (672ms)
-- **ag/gemini-3.6-flash-low** (721ms)
-- **ag/gemini-3.5-flash-extra-low** (820ms)
+- **ag/gemini-3.5-flash-extra-low** (972ms)
+- **ag/gemini-3.5-flash-low** (1094ms)
+- **ag/gemini-3-flash-agent** (1294ms)
+- **ag/gemini-3-flash** (1534ms)
+- **gemini/gemini-3.1-flash-lite-preview** (1556ms)
