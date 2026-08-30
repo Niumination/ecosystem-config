@@ -867,7 +867,7 @@ Always use absolute path `/Users/zaryu/Desktop/Niumination/` for terminal comman
 
 ### ❌ Locating a project: grep DOX tree FIRST, then `find` — search_files can miss directories
 
-`search_files(target='files')` globs match **files**, not reliably directory names — searching `*cc-aceh*` from the workspace root returned 0 even though `services/cc-acehtengah/` existed (real failure, 28 Jul 2026; user: "periksa services/cc-acehtengah, kamu harus tau keseluruhan ekosistem ini"). Backend/service projects live in `services/` (cc-acehtengah, camofox-browser, latticesend, niu-cast, niu-mission-control, uacc), frontends in `sites/`, desktop apps in `desktop/`, experiments in `labs/` + `sandbox/` — NOT just `apps/`.
+`search_files(target='files')` globs match **files**, not reliably directory names — searching `*cc-aceh*` from the workspace root returned 0 even though `services/cc-acehtengah/` existed (real failure, 28 Jul 2026; user: "periksa services/cc-acehtengah, kamu harus tau keseluruhan ekosistem ini"). Backend/service projects live in `services/` (cc-acehtengah, latticesend, niu-cast, niu-mission-control, uacc), frontends in `sites/`, desktop apps in `desktop/`, experiments in `labs/` + `sandbox/`, utility tools & third-party mirrors (camofox-browser, ponytail) in `tools/` — NOT just `apps/`.
 
 Reliable project-location recipe:
 1. `grep -i "<name>" /Users/zaryu/Desktop/Niumination/AGENTS.md` — the DOX directory tree + catalog is the authoritative index (checklist step 1)
