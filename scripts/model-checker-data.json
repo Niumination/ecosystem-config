@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-08-30T13:14:04.287019",
+  "timestamp": "2026-08-30T14:00:58.494789",
   "router": "http://127.0.0.1:20128",
   "total_models": 89,
   "results": {
     "gh/copilot-search-a": {
       "ok": true,
-      "latency_ms": 459,
+      "latency_ms": 1554,
       "error": null,
       "stream": false,
       "category": {
@@ -16,7 +16,7 @@
     },
     "gh/copilot-search-b": {
       "ok": true,
-      "latency_ms": 509,
+      "latency_ms": 558,
       "error": null,
       "stream": false,
       "category": {
@@ -27,7 +27,7 @@
     },
     "gh/copilot-search-c": {
       "ok": true,
-      "latency_ms": 572,
+      "latency_ms": 741,
       "error": null,
       "stream": false,
       "category": {
@@ -38,7 +38,7 @@
     },
     "gh/exec-agent-a": {
       "ok": true,
-      "latency_ms": 586,
+      "latency_ms": 2980,
       "error": null,
       "stream": false,
       "category": {
@@ -49,7 +49,7 @@
     },
     "gh/exec-agent-b": {
       "ok": false,
-      "latency_ms": 7455,
+      "latency_ms": 8487,
       "error": "HTTP 503",
       "stream": false,
       "category": {
@@ -59,7 +59,7 @@
     },
     "gh/exec-agent-c": {
       "ok": true,
-      "latency_ms": 582,
+      "latency_ms": 561,
       "error": null,
       "stream": false,
       "category": {
@@ -70,7 +70,7 @@
     },
     "gh/gpt-5.4-mini-free-auto": {
       "ok": false,
-      "latency_ms": 584,
+      "latency_ms": 370,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -80,7 +80,7 @@
     },
     "gh/gpt-5.6-luna": {
       "ok": false,
-      "latency_ms": 624,
+      "latency_ms": 492,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -90,7 +90,7 @@
     },
     "gh/mai-code-1.1-flash": {
       "ok": false,
-      "latency_ms": 709,
+      "latency_ms": 411,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -100,7 +100,7 @@
     },
     "gh/mai-code-1-flash-4th": {
       "ok": false,
-      "latency_ms": 1531,
+      "latency_ms": 389,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -110,7 +110,7 @@
     },
     "gh/mai-code-1-flash-picker": {
       "ok": false,
-      "latency_ms": 657,
+      "latency_ms": 439,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -120,7 +120,7 @@
     },
     "gh/mai-code-1-flash-secondary": {
       "ok": false,
-      "latency_ms": 585,
+      "latency_ms": 406,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -130,7 +130,7 @@
     },
     "gh/mai-code-1-flash": {
       "ok": false,
-      "latency_ms": 583,
+      "latency_ms": 421,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -140,7 +140,7 @@
     },
     "gh/trajectory-compaction": {
       "ok": false,
-      "latency_ms": 7449,
+      "latency_ms": 11611,
       "error": "HTTP 503",
       "stream": false,
       "category": {
@@ -150,7 +150,7 @@
     },
     "gh/gpt-5-mini": {
       "ok": false,
-      "latency_ms": 584,
+      "latency_ms": 404,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -160,7 +160,7 @@
     },
     "gh/gpt-4o-mini-2024-07-18": {
       "ok": true,
-      "latency_ms": 669,
+      "latency_ms": 5534,
       "error": null,
       "stream": false,
       "category": {
@@ -171,7 +171,7 @@
     },
     "gh/gpt-4o-2024-11-20": {
       "ok": true,
-      "latency_ms": 1255,
+      "latency_ms": 1347,
       "error": null,
       "stream": false,
       "category": {
@@ -182,7 +182,7 @@
     },
     "gh/gpt-4o-2024-08-06": {
       "ok": true,
-      "latency_ms": 934,
+      "latency_ms": 3763,
       "error": null,
       "stream": false,
       "category": {
@@ -193,7 +193,7 @@
     },
     "gh/claude-haiku-4.5": {
       "ok": false,
-      "latency_ms": 281,
+      "latency_ms": 544,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -203,7 +203,7 @@
     },
     "gh/gpt-4.1-2025-04-14": {
       "ok": true,
-      "latency_ms": 1658,
+      "latency_ms": 1126,
       "error": null,
       "stream": false,
       "category": {
@@ -214,7 +214,7 @@
     },
     "gh/oswe-vscode-prime": {
       "ok": false,
-      "latency_ms": 547,
+      "latency_ms": 521,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -224,7 +224,7 @@
     },
     "gh/gpt-5.6-luna-free-auto": {
       "ok": false,
-      "latency_ms": 547,
+      "latency_ms": 399,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -234,7 +234,7 @@
     },
     "gh/gpt-3.5-turbo-0613": {
       "ok": true,
-      "latency_ms": 3431,
+      "latency_ms": 811,
       "error": null,
       "stream": false,
       "category": {
@@ -245,7 +245,7 @@
     },
     "gh/gpt-4": {
       "ok": false,
-      "latency_ms": 550,
+      "latency_ms": 2879,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -255,7 +255,7 @@
     },
     "gh/gpt-4-0613": {
       "ok": false,
-      "latency_ms": 555,
+      "latency_ms": 565,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -265,7 +265,7 @@
     },
     "gh/gpt-4-0125-preview": {
       "ok": false,
-      "latency_ms": 561,
+      "latency_ms": 3317,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -275,7 +275,7 @@
     },
     "gh/gpt-4o-2024-05-13": {
       "ok": true,
-      "latency_ms": 1180,
+      "latency_ms": 1237,
       "error": null,
       "stream": false,
       "category": {
@@ -286,7 +286,7 @@
     },
     "gh/gpt-4-o-preview": {
       "ok": true,
-      "latency_ms": 1165,
+      "latency_ms": 1424,
       "error": null,
       "stream": false,
       "category": {
@@ -297,7 +297,7 @@
     },
     "gh/gpt-4.1": {
       "ok": true,
-      "latency_ms": 1183,
+      "latency_ms": 3184,
       "error": null,
       "stream": false,
       "category": {
@@ -308,7 +308,7 @@
     },
     "gh/gpt-3.5-turbo": {
       "ok": false,
-      "latency_ms": 541,
+      "latency_ms": 378,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -318,7 +318,7 @@
     },
     "gh/gpt-4o-mini": {
       "ok": true,
-      "latency_ms": 668,
+      "latency_ms": 931,
       "error": null,
       "stream": false,
       "category": {
@@ -329,7 +329,7 @@
     },
     "gh/gpt-4o": {
       "ok": true,
-      "latency_ms": 1065,
+      "latency_ms": 2384,
       "error": null,
       "stream": false,
       "category": {
@@ -340,7 +340,7 @@
     },
     "gemini/gemini-3.7-flash": {
       "ok": false,
-      "latency_ms": 431,
+      "latency_ms": 1017,
       "error": "HTTP 429",
       "stream": false,
       "category": {
@@ -350,7 +350,7 @@
     },
     "gemini/gemini-3.6-flash": {
       "ok": true,
-      "latency_ms": 1229,
+      "latency_ms": 10414,
       "error": null,
       "stream": false,
       "category": {
@@ -361,7 +361,7 @@
     },
     "gemini/gemini-3.5-flash-lite": {
       "ok": true,
-      "latency_ms": 829,
+      "latency_ms": 1673,
       "error": null,
       "stream": false,
       "category": {
@@ -372,7 +372,7 @@
     },
     "gemini/gemini-3.1-pro-preview": {
       "ok": false,
-      "latency_ms": 149,
+      "latency_ms": 1256,
       "error": "HTTP 429",
       "stream": false,
       "category": {
@@ -382,7 +382,7 @@
     },
     "gemini/gemini-3.1-flash-lite-preview": {
       "ok": true,
-      "latency_ms": 672,
+      "latency_ms": 1556,
       "error": null,
       "stream": false,
       "category": {
@@ -393,7 +393,7 @@
     },
     "gemini/gemini-3-flash-preview": {
       "ok": true,
-      "latency_ms": 1139,
+      "latency_ms": 3624,
       "error": null,
       "stream": false,
       "category": {
@@ -404,7 +404,7 @@
     },
     "gemini/gemma-4-31b-it": {
       "ok": true,
-      "latency_ms": 929,
+      "latency_ms": 1861,
       "error": null,
       "stream": false,
       "category": {
@@ -415,7 +415,7 @@
     },
     "kr/auto": {
       "ok": true,
-      "latency_ms": 3004,
+      "latency_ms": 14572,
       "error": null,
       "stream": false,
       "category": {
@@ -426,7 +426,7 @@
     },
     "kr/auto-thinking": {
       "ok": false,
-      "latency_ms": 462,
+      "latency_ms": 1194,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -436,7 +436,7 @@
     },
     "kr/claude-sonnet-4.5": {
       "ok": true,
-      "latency_ms": 2050,
+      "latency_ms": 2598,
       "error": null,
       "stream": false,
       "category": {
@@ -447,7 +447,7 @@
     },
     "kr/claude-sonnet-4.5-thinking": {
       "ok": false,
-      "latency_ms": 461,
+      "latency_ms": 668,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -457,7 +457,7 @@
     },
     "kr/claude-sonnet-4.5-agentic": {
       "ok": false,
-      "latency_ms": 388,
+      "latency_ms": 538,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -467,7 +467,7 @@
     },
     "kr/claude-sonnet-4.5-thinking-agentic": {
       "ok": false,
-      "latency_ms": 401,
+      "latency_ms": 542,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -476,19 +476,18 @@
       }
     },
     "kr/claude-sonnet-4": {
-      "ok": true,
-      "latency_ms": 1941,
-      "error": null,
+      "ok": false,
+      "latency_ms": 15004,
+      "error": "timed out",
       "stream": false,
       "category": {
-        "category": "paid",
-        "tier": "berbayar",
-        "notes": "Kiro subscription"
+        "category": "not_accessible",
+        "reason": "timed out"
       }
     },
     "kr/claude-sonnet-4-thinking": {
       "ok": false,
-      "latency_ms": 424,
+      "latency_ms": 6782,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -498,7 +497,7 @@
     },
     "kr/claude-sonnet-4-agentic": {
       "ok": false,
-      "latency_ms": 413,
+      "latency_ms": 675,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -508,7 +507,7 @@
     },
     "kr/claude-sonnet-4-thinking-agentic": {
       "ok": false,
-      "latency_ms": 406,
+      "latency_ms": 707,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -518,7 +517,7 @@
     },
     "kr/claude-haiku-4.5": {
       "ok": true,
-      "latency_ms": 1119,
+      "latency_ms": 2021,
       "error": null,
       "stream": false,
       "category": {
@@ -529,7 +528,7 @@
     },
     "kr/claude-haiku-4.5-thinking": {
       "ok": false,
-      "latency_ms": 389,
+      "latency_ms": 927,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -539,7 +538,7 @@
     },
     "kr/claude-haiku-4.5-agentic": {
       "ok": false,
-      "latency_ms": 407,
+      "latency_ms": 3349,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -549,28 +548,27 @@
     },
     "kr/claude-haiku-4.5-thinking-agentic": {
       "ok": false,
-      "latency_ms": 416,
-      "error": "HTTP 400",
+      "latency_ms": 15001,
+      "error": "timed out",
       "stream": false,
       "category": {
         "category": "not_accessible",
-        "reason": "HTTP 400"
+        "reason": "timed out"
       }
     },
     "kr/deepseek-3.2": {
-      "ok": true,
-      "latency_ms": 889,
-      "error": null,
+      "ok": false,
+      "latency_ms": 15002,
+      "error": "timed out",
       "stream": false,
       "category": {
-        "category": "free_tier",
-        "tier": "gratis_terbatas",
-        "notes": "Kiro \u2014 model tertentu gratis terbatas"
+        "category": "not_accessible",
+        "reason": "timed out"
       }
     },
     "kr/deepseek-3.2-thinking": {
       "ok": false,
-      "latency_ms": 398,
+      "latency_ms": 6231,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -580,7 +578,7 @@
     },
     "kr/deepseek-3.2-agentic": {
       "ok": false,
-      "latency_ms": 407,
+      "latency_ms": 635,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -590,7 +588,7 @@
     },
     "kr/deepseek-3.2-thinking-agentic": {
       "ok": false,
-      "latency_ms": 660,
+      "latency_ms": 858,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -600,7 +598,7 @@
     },
     "kr/minimax-m2.5": {
       "ok": true,
-      "latency_ms": 2380,
+      "latency_ms": 1845,
       "error": null,
       "stream": false,
       "category": {
@@ -611,7 +609,7 @@
     },
     "kr/minimax-m2.5-thinking": {
       "ok": false,
-      "latency_ms": 416,
+      "latency_ms": 1306,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -621,7 +619,7 @@
     },
     "kr/minimax-m2.5-agentic": {
       "ok": false,
-      "latency_ms": 433,
+      "latency_ms": 6382,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -631,7 +629,7 @@
     },
     "kr/minimax-m2.5-thinking-agentic": {
       "ok": false,
-      "latency_ms": 404,
+      "latency_ms": 1098,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -640,6 +638,47 @@
       }
     },
     "kr/minimax-m2.1": {
+      "ok": true,
+      "latency_ms": 3942,
+      "error": null,
+      "stream": false,
+      "category": {
+        "category": "paid",
+        "tier": "berbayar",
+        "notes": "Kiro subscription"
+      }
+    },
+    "kr/minimax-m2.1-thinking": {
+      "ok": false,
+      "latency_ms": 1153,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/minimax-m2.1-agentic": {
+      "ok": false,
+      "latency_ms": 622,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/minimax-m2.1-thinking-agentic": {
+      "ok": false,
+      "latency_ms": 613,
+      "error": "HTTP 400",
+      "stream": false,
+      "category": {
+        "category": "not_accessible",
+        "reason": "HTTP 400"
+      }
+    },
+    "kr/glm-5": {
       "ok": false,
       "latency_ms": 15003,
       "error": "timed out",
@@ -649,59 +688,19 @@
         "reason": "timed out"
       }
     },
-    "kr/minimax-m2.1-thinking": {
-      "ok": false,
-      "latency_ms": 15002,
-      "error": "timed out",
-      "stream": false,
-      "category": {
-        "category": "not_accessible",
-        "reason": "timed out"
-      }
-    },
-    "kr/minimax-m2.1-agentic": {
-      "ok": false,
-      "latency_ms": 15002,
-      "error": "timed out",
-      "stream": false,
-      "category": {
-        "category": "not_accessible",
-        "reason": "timed out"
-      }
-    },
-    "kr/minimax-m2.1-thinking-agentic": {
-      "ok": false,
-      "latency_ms": 15002,
-      "error": "timed out",
-      "stream": false,
-      "category": {
-        "category": "not_accessible",
-        "reason": "timed out"
-      }
-    },
-    "kr/glm-5": {
-      "ok": false,
-      "latency_ms": 15001,
-      "error": "timed out",
-      "stream": false,
-      "category": {
-        "category": "not_accessible",
-        "reason": "timed out"
-      }
-    },
     "kr/glm-5-thinking": {
       "ok": false,
-      "latency_ms": 15002,
-      "error": "timed out",
+      "latency_ms": 715,
+      "error": "HTTP 400",
       "stream": false,
       "category": {
         "category": "not_accessible",
-        "reason": "timed out"
+        "reason": "HTTP 400"
       }
     },
     "kr/glm-5-agentic": {
       "ok": false,
-      "latency_ms": 7930,
+      "latency_ms": 768,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -711,7 +710,7 @@
     },
     "kr/glm-5-thinking-agentic": {
       "ok": false,
-      "latency_ms": 1547,
+      "latency_ms": 683,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -720,19 +719,18 @@
       }
     },
     "kr/qwen3-coder-next": {
-      "ok": true,
-      "latency_ms": 889,
-      "error": null,
+      "ok": false,
+      "latency_ms": 15002,
+      "error": "timed out",
       "stream": false,
       "category": {
-        "category": "free_tier",
-        "tier": "gratis_terbatas",
-        "notes": "Kiro \u2014 model tertentu gratis terbatas"
+        "category": "not_accessible",
+        "reason": "timed out"
       }
     },
     "kr/qwen3-coder-next-thinking": {
       "ok": false,
-      "latency_ms": 411,
+      "latency_ms": 1090,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -742,7 +740,7 @@
     },
     "kr/qwen3-coder-next-agentic": {
       "ok": false,
-      "latency_ms": 418,
+      "latency_ms": 4649,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -752,7 +750,7 @@
     },
     "kr/qwen3-coder-next-thinking-agentic": {
       "ok": false,
-      "latency_ms": 423,
+      "latency_ms": 1703,
       "error": "HTTP 400",
       "stream": false,
       "category": {
@@ -762,7 +760,7 @@
     },
     "ag/gemini-3.7-flash-high": {
       "ok": true,
-      "latency_ms": 3858,
+      "latency_ms": 8732,
       "error": null,
       "stream": false,
       "category": {
@@ -773,7 +771,7 @@
     },
     "ag/gemini-3.7-flash-medium": {
       "ok": true,
-      "latency_ms": 2494,
+      "latency_ms": 8399,
       "error": null,
       "stream": false,
       "category": {
@@ -784,7 +782,7 @@
     },
     "ag/gemini-3.7-flash-low": {
       "ok": true,
-      "latency_ms": 3290,
+      "latency_ms": 5655,
       "error": null,
       "stream": false,
       "category": {
@@ -795,7 +793,7 @@
     },
     "ag/gemini-3.6-flash-high": {
       "ok": true,
-      "latency_ms": 3108,
+      "latency_ms": 5646,
       "error": null,
       "stream": false,
       "category": {
@@ -806,7 +804,7 @@
     },
     "ag/gemini-3.6-flash-medium": {
       "ok": true,
-      "latency_ms": 2468,
+      "latency_ms": 7057,
       "error": null,
       "stream": false,
       "category": {
@@ -817,7 +815,7 @@
     },
     "ag/gemini-3.6-flash-low": {
       "ok": true,
-      "latency_ms": 721,
+      "latency_ms": 4934,
       "error": null,
       "stream": false,
       "category": {
@@ -828,7 +826,7 @@
     },
     "ag/gemini-3.5-flash-high": {
       "ok": false,
-      "latency_ms": 132,
+      "latency_ms": 435,
       "error": "HTTP 404",
       "stream": false,
       "category": {
@@ -838,7 +836,7 @@
     },
     "ag/gemini-3-flash-agent": {
       "ok": true,
-      "latency_ms": 595,
+      "latency_ms": 1294,
       "error": null,
       "stream": false,
       "category": {
@@ -849,7 +847,7 @@
     },
     "ag/gemini-3.5-flash-low": {
       "ok": true,
-      "latency_ms": 630,
+      "latency_ms": 1094,
       "error": null,
       "stream": false,
       "category": {
@@ -860,7 +858,7 @@
     },
     "ag/gemini-3.5-flash-extra-low": {
       "ok": true,
-      "latency_ms": 820,
+      "latency_ms": 972,
       "error": null,
       "stream": false,
       "category": {
@@ -871,7 +869,7 @@
     },
     "ag/gemini-pro-agent": {
       "ok": true,
-      "latency_ms": 1768,
+      "latency_ms": 4854,
       "error": null,
       "stream": false,
       "category": {
@@ -882,7 +880,7 @@
     },
     "ag/gemini-3.1-pro-low": {
       "ok": true,
-      "latency_ms": 1948,
+      "latency_ms": 3365,
       "error": null,
       "stream": false,
       "category": {
@@ -893,7 +891,7 @@
     },
     "ag/claude-sonnet-4-6": {
       "ok": true,
-      "latency_ms": 2338,
+      "latency_ms": 2350,
       "error": null,
       "stream": false,
       "category": {
@@ -904,7 +902,7 @@
     },
     "ag/claude-opus-4-6-thinking": {
       "ok": true,
-      "latency_ms": 3196,
+      "latency_ms": 2209,
       "error": null,
       "stream": false,
       "category": {
@@ -914,19 +912,18 @@
       }
     },
     "ag/gpt-oss-120b-medium": {
-      "ok": true,
-      "latency_ms": 4267,
-      "error": null,
+      "ok": false,
+      "latency_ms": 3470,
+      "error": "HTTP 400",
       "stream": false,
       "category": {
-        "category": "free",
-        "tier": "gratis_antigravity",
-        "notes": "Antigravity gratis via OAuth"
+        "category": "not_accessible",
+        "reason": "HTTP 400"
       }
     },
     "ag/gemini-3-flash": {
       "ok": true,
-      "latency_ms": 961,
+      "latency_ms": 1534,
       "error": null,
       "stream": false,
       "category": {
