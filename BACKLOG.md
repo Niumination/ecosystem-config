@@ -77,17 +77,19 @@ Desktop/Niumination/
 | **Niu-Flow** | P2 | 🟢 **Remote only** | 2026-07-28 | github.com/Niumination/niu-flow |
 | **latticesend** | P3 | 🟢 Active | 2026-08-10 | P2P file transfer — ✅ sudah punya remote |
 | **uacc** | P2 🆕 | 🟢 Active | 2026-08-18 | Universal AI Computer Control — MCP server |
+| **sapa-ai** | P2 🆕 | 🟢 Active | 2026-08-31 | SAPA Smart AI — SPLP-only public app |
 | **camofox-browser** | P3 🆕 | ⚪ Third-party | 2026-08-18 | Anti-detection browser |
 
-### 🌐 sites/ — 5 Frontend
+### 🌐 sites/ — 6 Frontend
 
-| Proyek | Priority | Status | Aktivitas Terakhir | Notes |
-|--------|:--------:|:------:|:------------------:|-------|
-| **TEDEO-Kanban** | P2 | 🟡 95% | 2026-08-18 | Vite/React/Zustand |
-| **niu-dash-fullstack** | P3 | ⏸️ Stale | 2026-07-30 | Next.js 16 |
-| **niu-kanban-dash** | P3 | ⏸️ | 2026-08-18 | Vite/React |
-| **AuditTI-AT** | P3 | ✅ Live | 2026-08-13 | GH Pages |
-| **spatial-vision** | P3 | 🟢 Active | 2026-08-18 | Rust/WASM 3D vision |
+|| Proyek | Priority | Status | Aktivitas Terakhir | Notes |
+||--------|:--------:|:------:|:------------------:|-------|
+|| **TEDEO-Kanban** | P2 | 🟡 95% | 2026-08-18 | Vite/React/Zustand |
+|| **niu-dash-fullstack** | P3 | ⏸️ Stale | 2026-07-30 | Next.js 16 |
+|| **niu-kanban-dash** | P3 | ⏸️ | 2026-08-18 | Vite/React |
+|| **AuditTI-AT** | P3 | ✅ Live | 2026-08-13 | GH Pages |
+|| **spatial-vision** | P3 | 🟢 Active | 2026-08-18 | Rust/WASM 3D vision |
+|| **landing-web-id** | P3 | 🟢 Active | 2026-08-31 | Landing page — idwebhost |
 
 ### 🖥️ desktop/ — 4 Native
 
@@ -349,3 +351,9 @@ Ultra, AuditTI-AT, Niu-Flow, didong-code, x-downloader, flame-ade, niu-vermilion
 @cc-acehtengah
 
 - [HOLD] **Credential Broker Phase B — tunggu 2 session jcode selesai** — broker (scripts/keys.sh) sudah jalan & ter-test; migrasi live key DITAHAN karena PID 22342 & 1028 sedang kerja. Lanjut hanya kalau session selesai atau user bilang "lanjut". Ref: docs/references/credential-broker-handoff.md @scripts
+
+@cc-acehtengah
+
+- [ACTIVE] **Rencana eksekusi 100% cc-acehtengah** — pakai `docs/EXECUTION-PLAN-100.md`. Urutan: PR-M00 (WP0.00 credential/PII) → PR-M0a (WP0.0 jiwa==keluarga) → PR-M0f (WP0.14 kunci 32 byte) → PR-M0g (WP0.15 Bapokting) → PR-M0h (WP0.16 normalisasi kecamatan) → PR-M0c (WP0.12 role/BNBA) → PR-M0d (WP0.13 tata kelola branch) → PR-M0e (WP0.5/0.3/0.1 gerbang mutu) → PR-M1 (WP1 semantic layer) → PR-M2 (WP2 router) → PR-M3a+PR-M3 (WP3 stat engine) → PR-M4 (WP4 rekonsiliasi) → PR-M5 (WP5 narasi) → PR-M6 (WP6 eval harness) → PR-M7 (WP7 hardening) → PR-M8 (deploy + doc). Setiap PR berdiri sendiri; jangan merge ke main sebelum PR-M00 + PR-M0a lolos.
+- [HOLD] **Jangan deploy production sebelum WP0.00 + WP0.0 selesai** — credential + PII + jiwa==keluarga adalah P0.
+- [PENDING] **Audit berkas `cc-acehtengah-v7.zip`** — 92 golden query + 73 audit test sudah diverifikasi. Sisa WP0–WP7 belum dijalankan.

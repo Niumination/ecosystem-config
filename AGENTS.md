@@ -78,11 +78,12 @@
 │   ├── niu-vermilion/         ← Second Brain — 🟢 Vercel ✅
 │   └── pabrik-aplikasi-gas/   ← Pabrik Aplikasi GAS — Pilot Inventaris Aset TI LIVE (GAS v3) — repo mandiri Niumination/pabrik-aplikasi-gas
 │
-├── services/                  🔧 5 proyek — backend & engines
+├── services/                  🔧 6 proyek — backend & engines
 │   ├── cc-acehtengah/         ← AI Command Center — Next.js 16
 │   ├── latticesend/           ← P2P device transfer
 │   ├── niu-cast/              ← Android Device Manager via ADB
 │   ├── niu-mission-control/   ← Agent Swarm — FastAPI + WebSocket
+│   ├── sapa-ai/               ← SAPA Smart AI — SPLP-only public app ✅
 │   └── uacc/                  ← Universal AI Computer Control — 68 MCP tools ✅
 │
 ├── sites/                     🌐 5 proyek — frontend apps
