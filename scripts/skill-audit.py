@@ -75,6 +75,10 @@ ALLOWED_DOMAINS = {
     "anthropic.com", "openai.com", "googleapis.com", "openrouter.ai",
     "agentrouter.org", "opencode.ai", "huggingface.co", "autoskills.sh",
     "arxiv.org", "doi.org", "nvidia.com", "jina.ai",
+    # provider internal Niumination (9router)
+    "juan.web.id", "hcnsec.cn", "aerolink.lat", "router.juan.web.id", "api.hcnsec.cn",
+    # komunitas
+    "discord.gg", "discord.com",
     # google & sosial
     "google.com", "gstatic.com", "twitter.com", "linkedin.com",
     # wikipedia/stackoverflow
