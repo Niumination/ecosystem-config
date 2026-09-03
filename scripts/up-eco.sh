@@ -747,6 +747,52 @@ check_trio_awareness() {
   bash "$(dirname "$0")/trio-watch.sh" --from "$from" || warn "trio-watch.sh gagal dijalankan"
 }
 
+# ── Phase 10: MCP Status 🆕 ───────────────────────────────────────────────
+check_mcp_status() {
+  section "🔌 MCP Servers — Model Context Protocol"
+  if ! command -v hermes >/dev/null 2>&1; then warn "hermes CLI tidak tersedia — skip MCP check"; return; fi
+  local mcp_out
+  mcp_out=$(hermes mcp list 2>&1 || echo "fail")
+  if echo "$mcp_out" | grep -qi "fail\|error"; then warn "hermes mcp list gagal"; return; fi
+  local enabled disabled total
+  enabled=$(echo "$mcp_out" | grep -c "✓ enabled" || echo 0)
+  disabled=$(echo "$mcp_out" | grep -c "✗ disabled" || echo 0)
+  total=$((enabled + disabled))
+  if [ "$total" -eq 0 ]; then warn "Tidak ada MCP server terdeteksi"; rec "→ hermes mcp add <name> <transport>"; return; fi
+  pass "MCP: $total server ($enabled enabled, $disabled disabled)"
+  echo "$mcp_out" | grep -E "✓ enabled|✗ disabled" | head -n 10 | while IFS= read -r line; do info "$line"; done
+  if [ "$disabled" -gt 0 ]; then rec "→ Aktifkan MCP disabled: hermes mcp enable <name>"; fi
+}
+
+# ── Phase 11: Plugin Status 🆕 ────────────────────────────────────────────
+check_plugin_status() {
+  section "🧩 Plugins — Hermes Agent"
+  if ! command -v hermes >/dev/null 2>&1; then warn "hermes CLI tidak tersedia — skip plugin check"; return; fi
+  local plug_out
+  plug_out=$(hermes plugins list 2>&1 || echo "fail")
+  if echo "$plug_out" | grep -qi "^fail"; then warn "hermes plugins list gagal"; return; fi
+  local total disabled enabled
+  total=$(echo "$plug_out" | grep "│" | grep -c "enabled" || echo 0)
+  disabled=$(echo "$plug_out" | grep "│" | grep -c "not enabled" || echo 0)
+  enabled=$((total - disabled))
+  if [ "$total" -eq 0 ]; then warn "Tidak ada plugin terdeteksi"; return; fi
+  pass "Plugins: $enabled enabled, $disabled not enabled (bundled, total $total)"
+  if [ "$enabled" -gt 0 ]; then echo "$plug_out" | grep "│" | grep "enabled" | grep -v "not enabled" | head -n 5 | while IFS= read -r line; do info "$line"; done; else info "Semua plugin not enabled — aktifkan via hermes plugins enable <name>"; fi
+}
+
+# ── Phase 12: Composio Status 🆕 ──────────────────────────────────────────
+check_composio_status() {
+  section "🔗 Composio — Tool Router"
+  local has_cli=false has_py=false
+  if command -v composio >/dev/null 2>&1; then has_cli=true; info "composio CLI: $(composio --version 2>&1 | head -n1)"; else info "composio CLI: tidak terinstal (pakai python package)"; fi
+  if python3 -c "import composio" 2>/dev/null; then has_py=true; info "composio python package: tersedia"; else info "composio python package: tidak terinstal"; fi
+  if [ "$has_cli" = false ] && [ "$has_py" = false ]; then warn "Composio tidak terdeteksi (CLI & python)"; rec "→ pip install composio atau uv add composio"; return; fi
+  # cek env
+  if [ -n "${COMPOSIO_API_KEY:-}" ]; then pass "COMPOSIO_API_KEY: ter-set (env)"; else warn "COMPOSIO_API_KEY tidak di-set"; rec "→ export COMPOSIO_API_KEY atau set di vault/env"; fi
+  # cek endpoint v3
+  info "Endpoint: https://backend.composio.dev/api/v3/tools (sessions.create)"
+}
+
 # ── Main ───────────────────────────────────────────────────────────────────
 main() {
   # ── Parse --from arg (trio awareness) ──
@@ -823,6 +869,15 @@ main() {
   # ── Phase 9b: Gaya Jawab Guard (anti bertele-tele) ───────────────────────
   # Catatan: guard gaya jawab sudah dijalankan di akhir check_mission_control()
   # (tidak ada fungsi check_verbosity terpisah — panggilan lama menyebabkan error 127)
+
+  # ── Phase 10: MCP Status ──
+  check_mcp_status
+
+  # ── Phase 11: Plugin Status ──
+  check_plugin_status
+
+  # ── Phase 12: Composio Status ──
+  check_composio_status
 
   # ── Summary ───────────────────────────────────────────────────────────────
   header
