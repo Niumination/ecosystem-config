@@ -83,7 +83,7 @@
 │   ├── latticesend/           ← P2P device transfer
 │   ├── niu-cast/              ← Android Device Manager via ADB
 │   ├── niu-mission-control/   ← Agent Swarm — FastAPI + WebSocket
-│   ├── sapa-ai/               ← SAPA Smart AI — SPLP-only public app ✅
+│   ├── sapa-ai/               ← SAPA Smart AI — SPLP-only, RSC+ISR 10m (kpi/stats/report/sapa cache, revalidate) ✅
 │   └── uacc/                  ← Universal AI Computer Control — 68 MCP tools ✅
 │
 ├── sites/                     🌐 5 proyek — frontend apps
