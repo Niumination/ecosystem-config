@@ -785,12 +785,64 @@ check_composio_status() {
   section "🔗 Composio — Tool Router"
   local has_cli=false has_py=false
   if command -v composio >/dev/null 2>&1; then has_cli=true; info "composio CLI: $(composio --version 2>&1 | head -n1)"; else info "composio CLI: tidak terinstal (pakai python package)"; fi
-  if python3 -c "import composio" 2>/dev/null; then has_py=true; info "composio python package: tersedia"; else info "composio python package: tidak terinstal"; fi
+  if python3 -c "import composio" 2>/dev/null; then has_py=true; info "composio python package: tersedia ($(python3 -c 'import composio; print(composio.__version__)' 2>/dev/null))"; else info "composio python package: tidak terinstal"; fi
   if [ "$has_cli" = false ] && [ "$has_py" = false ]; then warn "Composio tidak terdeteksi (CLI & python)"; rec "→ pip install composio atau uv add composio"; return; fi
-  # cek env
-  if [ -n "${COMPOSIO_API_KEY:-}" ]; then pass "COMPOSIO_API_KEY: ter-set (env)"; else warn "COMPOSIO_API_KEY tidak di-set"; rec "→ export COMPOSIO_API_KEY atau set di vault/env"; fi
-  # cek endpoint v3
+  # cek env (coba load dari ~/.hermes/.env jika belum di env)
+  if [ -z "${COMPOSIO_API_KEY:-}" ] && [ -f "$HOME/.hermes/.env" ]; then COMPOSIO_API_KEY=$(grep -Eo 'COMPOSIO_API_KEY=.*' "$HOME/.hermes/.env" 2>/dev/null | cut -d= -f2 | tr -d ' "\"\r' | head -1); export COMPOSIO_API_KEY; fi
+  if [ -n "${COMPOSIO_API_KEY:-}" ]; then pass "COMPOSIO_API_KEY: ter-set (len ${#COMPOSIO_API_KEY})"; else warn "COMPOSIO_API_KEY tidak di-set"; rec "→ export COMPOSIO_API_KEY atau set di vault/env"; fi
   info "Endpoint: https://backend.composio.dev/api/v3/tools (sessions.create)"
+  # tampilkan toolkit/skills terhubung (connected_accounts)
+  if [ -n "${COMPOSIO_API_KEY:-}" ] && [ "$has_py" = true ]; then
+    local comp_out
+    comp_out=$(python3 - << 'PY' 2>&1
+import os
+from collections import Counter
+try:
+    from composio import Composio
+    c = Composio(api_key=os.getenv("COMPOSIO_API_KEY"))
+    res = c.connected_accounts.list()
+    items = getattr(res, 'items', [])
+    if not items:
+        print("EMPTY")
+    else:
+        # group by slug + status
+        for it in items:
+            slug = getattr(getattr(it, 'toolkit', None), 'slug', '?')
+            status = getattr(it, 'status', getattr(getattr(it, 'state', None), 'status', '?'))
+            # fallback: try it.status or data status
+            if not status or status == '?':
+                try: status = it.data.get('status', '?')
+                except: pass
+            uid = getattr(it, 'user_id', '') or getattr(it, 'userId', '') or ''
+            # toolkit tools count via cache? skip, just slug
+            print(f"{slug}|{status}|{uid}|{it.id}")
+except Exception as e:
+    print(f"ERR:{e}")
+PY
+)
+    if echo "$comp_out" | grep -q "^ERR:"; then warn "Composio API: $comp_out"; rec "→ cek COMPOSIO_API_KEY / jaringan"; 
+    elif echo "$comp_out" | grep -q "^EMPTY"; then warn "Composio: tidak ada connected account"; rec "→ hubungkan via Composio dashboard / c.toolkits.authorize()";
+    else
+      local total active expired
+      total=$(echo "$comp_out" | grep -c "|")
+      active=$(echo "$comp_out" | grep -c "|ACTIVE|")
+      expired=$(echo "$comp_out" | grep -c "|EXPIRED|")
+      pass "Connected: $total account ($active ACTIVE, $expired EXPIRED)"
+      # tampilkan ACTIVE dulu, lalu EXPIRED
+      echo "$comp_out" | grep "|ACTIVE|" | head -n 10 | while IFS='|' read -r slug status uid cid; do
+        if [ -n "$uid" ]; then info "  ✅ $slug — ACTIVE — user:$uid ($cid)"; else info "  ✅ $slug — ACTIVE ($cid)"; fi
+      done
+      echo "$comp_out" | grep -v "|ACTIVE|" | head -n 10 | while IFS='|' read -r slug status uid cid; do
+        info "  ⚠️  $slug — $status ($cid)"
+      done
+      # ringkasan toolkit unik
+      local uniq_active uniq_all
+      uniq_active=$(echo "$comp_out" | grep "|ACTIVE|" | cut -d'|' -f1 | sort -u | paste -sd ',' - | sed 's/,/, /g')
+      uniq_all=$(echo "$comp_out" | cut -d'|' -f1 | sort -u | paste -sd ',' - | sed 's/,/, /g')
+      [ -n "$uniq_active" ] && info "Toolkit ACTIVE: $uniq_active"
+      info "Toolkit semua: $uniq_all"
+    fi
+  fi
 }
 
 # ── Main ───────────────────────────────────────────────────────────────────
