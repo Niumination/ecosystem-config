@@ -16,6 +16,10 @@
 
 set -euo pipefail
 
+# Ensure timeout/gh/composio resolve in Hermes background (PATH=/usr/bin:/bin)
+export PATH="/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+TIMEOUT_BIN="$(command -v timeout 2>/dev/null || command -v gtimeout 2>/dev/null || echo timeout)"
+
 NIUMINATION="/Users/zaryu/Desktop/Niumination"
 PROFILE="$NIUMINATION/agents/profile"
 SKILLS_DIR="$NIUMINATION/skills"
@@ -257,9 +261,9 @@ check_gh_prs() {
 
   # ── 5b-3: Cek auth gh (keyring Hermes kadang tak kebuka di background → fallback ke gh api user + hosts.yml)
   local gh_ok=false
-  if HOME="$gh_home" timeout 8 gh auth status --hostname github.com &>/dev/null; then gh_ok=true
-  elif HOME="$gh_home" timeout 8 gh api user --jq .login &>/dev/null; then gh_ok=true
-  elif timeout 8 gh auth status --hostname github.com &>/dev/null; then gh_ok=true
+  if HOME="$gh_home" $TIMEOUT_BIN 8 gh auth status --hostname github.com &>/dev/null; then gh_ok=true
+  elif HOME="$gh_home" $TIMEOUT_BIN 8 gh api user --jq .login &>/dev/null; then gh_ok=true
+  elif $TIMEOUT_BIN 8 gh auth status --hostname github.com &>/dev/null; then gh_ok=true
   elif [ -f "/Users/${USER:-zaryu}/.config/gh/hosts.yml" ] && grep -q "github.com" "/Users/${USER:-zaryu}/.config/gh/hosts.yml" 2>/dev/null; then gh_ok=true
   fi
   if [ "$gh_ok" = false ]; then
@@ -269,8 +273,25 @@ check_gh_prs() {
   fi
 
   # ── 5b-4: Satu query — semua open PR di org Niumination
+  # Hermes snap kadang sudah punya GITHUB_TOKEN stale → override paksa dari .hermes/.env (fresh) & keyring
+  if [ -f "/Users/${USER:-zaryu}/.hermes/.env" ]; then
+    _tok=$(grep -E "^GITHUB_TOKEN=" "/Users/${USER:-zaryu}/.hermes/.env" 2>/dev/null | cut -d= -f2- | tr -d '"\r' | head -n1)
+    if [ -n "$_tok" ] && [ "${#_tok}" -ge 35 ]; then export GH_TOKEN="$_tok"; export GITHUB_TOKEN="$_tok"; fi
+    unset _tok
+  fi
+  if [ -z "${GH_TOKEN:-}" ] && [ -z "${GITHUB_TOKEN:-}" ]; then
+    _tok=$(HOME="$gh_home" gh auth token 2>/dev/null || true)
+    if [ -n "$_tok" ]; then export GH_TOKEN="$_tok"; fi
+    unset _tok
+  fi
+  # fallback: jika masih kosong, coba gh auth token lagi
+  if [ -z "${GH_TOKEN:-}" ]; then
+    _tok=$(HOME="$gh_home" gh auth token 2>/dev/null || true)
+    [ -n "$_tok" ] && export GH_TOKEN="$_tok"
+    unset _tok
+  fi
   local prs_json
-  prs_json=$(HOME="$gh_home" timeout 20 gh search prs --owner Niumination --state open --limit 50 \
+  prs_json=$(HOME="$gh_home" $TIMEOUT_BIN 20 gh search prs --owner Niumination --state open --limit 50 \
     --json number,title,repository,isDraft,author,createdAt,updatedAt 2>/dev/null || echo "[]")
 
   local total
@@ -527,7 +548,7 @@ check_skill_bank() {
   # ── 6e: Audit konten skill anti prompt-injection (pola autoskills Phase 3)
   if [ -f "$NIUMINATION/scripts/skill-audit.py" ]; then
     local audit_count
-    audit_count=$(timeout 30 python3 "$NIUMINATION/scripts/skill-audit.py" --count 2>/dev/null || echo "?")
+    audit_count=$($TIMEOUT_BIN 30 python3 "$NIUMINATION/scripts/skill-audit.py" --count 2>/dev/null || echo "?")
     if [ "$audit_count" = "0" ]; then
       pass "Audit konten skill bersih (0 finding)"
     elif [ "$audit_count" = "?" ]; then
@@ -761,8 +782,8 @@ check_mcp_status() {
   mcp_out=$(hermes mcp list 2>&1 || echo "fail")
   if echo "$mcp_out" | grep -qi "fail\|error"; then warn "hermes mcp list gagal"; return; fi
   local enabled disabled total
-  enabled=$(echo "$mcp_out" | grep -c "✓ enabled" || echo 0)
-  disabled=$(echo "$mcp_out" | grep -c "✗ disabled" || echo 0)
+  enabled=$(echo "$mcp_out" | grep -c "✓ enabled" 2>/dev/null || true)
+  disabled=$(echo "$mcp_out" | grep -c "✗ disabled" 2>/dev/null || true)
   total=$((enabled + disabled))
   if [ "$total" -eq 0 ]; then warn "Tidak ada MCP server terdeteksi"; rec "→ hermes mcp add <name> <transport>"; return; fi
   pass "MCP: $total server ($enabled enabled, $disabled disabled)"
@@ -793,9 +814,9 @@ check_composio_status() {
   if command -v composio >/dev/null 2>&1; then has_cli=true; info "composio CLI: $(composio --version 2>&1 | head -n1)"; else info "composio CLI: tidak terinstal (pakai python package)"; fi
   # probe import sekali dengan timeout (import composio pernah hang >15s dan menggantung up-eco)
   local comp_ver=""
-  if timeout 25 python3 -c "import composio" 2>/dev/null; then
+  if $TIMEOUT_BIN 25 python3 -c "import composio" 2>/dev/null; then
     has_py=true
-    comp_ver=$(timeout 25 python3 -c 'import composio; print(composio.__version__)' 2>/dev/null || echo "?")
+    comp_ver=$($TIMEOUT_BIN 25 python3 -c 'import composio; print(composio.__version__)' 2>/dev/null || echo "?")
     info "composio python package: tersedia ($comp_ver)"
   else
     info "composio python package: tidak terdeteksi/timeout (import >25s)"
@@ -808,7 +829,7 @@ check_composio_status() {
   # tampilkan toolkit/skills terhubung (connected_accounts) — timeout 40s agar tak gantung up-eco
   if [ -n "${COMPOSIO_API_KEY:-}" ] && [ "$has_py" = true ]; then
     local comp_out
-    comp_out=$(timeout 40 python3 - << 'PY' 2>&1
+    comp_out=$($TIMEOUT_BIN 40 python3 - << 'PY' 2>&1
 import os
 from collections import Counter
 try:
