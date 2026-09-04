@@ -785,16 +785,24 @@ check_composio_status() {
   section "🔗 Composio — Tool Router"
   local has_cli=false has_py=false
   if command -v composio >/dev/null 2>&1; then has_cli=true; info "composio CLI: $(composio --version 2>&1 | head -n1)"; else info "composio CLI: tidak terinstal (pakai python package)"; fi
-  if python3 -c "import composio" 2>/dev/null; then has_py=true; info "composio python package: tersedia ($(python3 -c 'import composio; print(composio.__version__)' 2>/dev/null))"; else info "composio python package: tidak terinstal"; fi
+  # probe import sekali dengan timeout (import composio pernah hang >15s dan menggantung up-eco)
+  local comp_ver=""
+  if timeout 25 python3 -c "import composio" 2>/dev/null; then
+    has_py=true
+    comp_ver=$(timeout 25 python3 -c 'import composio; print(composio.__version__)' 2>/dev/null || echo "?")
+    info "composio python package: tersedia ($comp_ver)"
+  else
+    info "composio python package: tidak terdeteksi/timeout (import >25s)"
+  fi
   if [ "$has_cli" = false ] && [ "$has_py" = false ]; then warn "Composio tidak terdeteksi (CLI & python)"; rec "→ pip install composio atau uv add composio"; return; fi
   # cek env (coba load dari ~/.hermes/.env jika belum di env)
   if [ -z "${COMPOSIO_API_KEY:-}" ] && [ -f "$HOME/.hermes/.env" ]; then COMPOSIO_API_KEY=$(grep -Eo 'COMPOSIO_API_KEY=.*' "$HOME/.hermes/.env" 2>/dev/null | cut -d= -f2 | tr -d ' "\"\r' | head -1); export COMPOSIO_API_KEY; fi
   if [ -n "${COMPOSIO_API_KEY:-}" ]; then pass "COMPOSIO_API_KEY: ter-set (len ${#COMPOSIO_API_KEY})"; else warn "COMPOSIO_API_KEY tidak di-set"; rec "→ export COMPOSIO_API_KEY atau set di vault/env"; fi
   info "Endpoint: https://backend.composio.dev/api/v3/tools (sessions.create)"
-  # tampilkan toolkit/skills terhubung (connected_accounts)
+  # tampilkan toolkit/skills terhubung (connected_accounts) — timeout 40s agar tak gantung up-eco
   if [ -n "${COMPOSIO_API_KEY:-}" ] && [ "$has_py" = true ]; then
     local comp_out
-    comp_out=$(python3 - << 'PY' 2>&1
+    comp_out=$(timeout 40 python3 - << 'PY' 2>&1
 import os
 from collections import Counter
 try:
@@ -821,6 +829,7 @@ except Exception as e:
 PY
 )
     if echo "$comp_out" | grep -q "^ERR:"; then warn "Composio API: $comp_out"; rec "→ cek COMPOSIO_API_KEY / jaringan"; 
+    elif [ -z "$comp_out" ]; then warn "Composio API: timeout (>40s) — SDK tidak respons"; rec "→ cek jaringan / reinstall composio (pip3 install --force-reinstall composio)";
     elif echo "$comp_out" | grep -q "^EMPTY"; then warn "Composio: tidak ada connected account"; rec "→ hubungkan via Composio dashboard / c.toolkits.authorize()";
     else
       local total active expired
