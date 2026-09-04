@@ -56,8 +56,8 @@ check_git_status() {
   branch=$(cd "$dir" && git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "?")
   head=$(cd "$dir" && git rev-parse --short HEAD 2>/dev/null || echo "?")
   dirty=$(cd "$dir" && git status --porcelain 2>/dev/null | wc -l | tr -d ' ')
-  ahead=$(cd "$dir" && git rev-list --count @{upstream}..HEAD 2>/dev/null || echo "0")
-  behind=$(cd "$dir" && git rev-list --count HEAD..@{upstream} 2>/dev/null || echo "0")
+  ahead=$(cd "$dir" && git rev-list --count '@{upstream}'..HEAD 2>/dev/null || echo "0")
+  behind=$(cd "$dir" && git rev-list --count HEAD..'@{upstream}' 2>/dev/null || echo "0")
   remote=$(cd "$dir" && git remote get-url origin 2>/dev/null || echo "none")
 
   info "Branch: $branch | HEAD: $head"
@@ -225,7 +225,7 @@ check_gh_pages() {
 
   for url in "${urls[@]}"; do
     local code
-    code=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 5 "$url" 2>/dev/null || echo "000")
+    code=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 5 --max-time 8 "$url" 2>/dev/null || echo "000")
     case "$code" in
       200|301|302) pass "$url → $code OK" ;;
       000) fail "$url → timeout / unreachable" ; rec "→ Cek deployment $url" ;;
@@ -255,8 +255,14 @@ check_gh_prs() {
     fi
   fi
 
-  # ── 5b-3: Cek auth gh
-  if ! HOME="$gh_home" timeout 8 gh auth status &>/dev/null; then
+  # ── 5b-3: Cek auth gh (keyring Hermes kadang tak kebuka di background → fallback ke gh api user + hosts.yml)
+  local gh_ok=false
+  if HOME="$gh_home" timeout 8 gh auth status --hostname github.com &>/dev/null; then gh_ok=true
+  elif HOME="$gh_home" timeout 8 gh api user --jq .login &>/dev/null; then gh_ok=true
+  elif timeout 8 gh auth status --hostname github.com &>/dev/null; then gh_ok=true
+  elif [ -f "/Users/${USER:-zaryu}/.config/gh/hosts.yml" ] && grep -q "github.com" "/Users/${USER:-zaryu}/.config/gh/hosts.yml" 2>/dev/null; then gh_ok=true
+  fi
+  if [ "$gh_ok" = false ]; then
     warn "gh CLI belum authenticated — skip PR check"
     rec "→ gh auth login (atau set GH_TOKEN)"
     return
@@ -521,7 +527,7 @@ check_skill_bank() {
   # ── 6e: Audit konten skill anti prompt-injection (pola autoskills Phase 3)
   if [ -f "$NIUMINATION/scripts/skill-audit.py" ]; then
     local audit_count
-    audit_count=$(python3 "$NIUMINATION/scripts/skill-audit.py" --count 2>/dev/null || echo "?")
+    audit_count=$(timeout 30 python3 "$NIUMINATION/scripts/skill-audit.py" --count 2>/dev/null || echo "?")
     if [ "$audit_count" = "0" ]; then
       pass "Audit konten skill bersih (0 finding)"
     elif [ "$audit_count" = "?" ]; then
@@ -618,7 +624,7 @@ check_mission_control() {
 
   # ── 8a: Cek apakah server MC berjalan
   local mc_health
-  mc_health=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 3 "$MC_URL/health" 2>/dev/null || echo "000")
+  mc_health=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 3 --max-time 5 "$MC_URL/health" 2>/dev/null || echo "000")
   mc_health="${mc_health:0:3}"  # Trim to 3 chars (curl may repeat digits on some macOS versions)
 
   if [ "$mc_health" = "000" ]; then
@@ -630,7 +636,7 @@ check_mission_control() {
 
   # ── 8b: Skill API — total skills & active
   local skills_json
-  skills_json=$(curl -s --connect-timeout 3 "$MC_URL/api/mc/skills" 2>/dev/null || echo "{}")
+  skills_json=$(curl -s --connect-timeout 3 --max-time 5 "$MC_URL/api/mc/skills" 2>/dev/null || echo "{}")
   local total_skills_api
   total_skills_api=$(echo "$skills_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('total','?'))" 2>/dev/null || echo "?")
   local active_skills_api
@@ -645,7 +651,7 @@ check_mission_control() {
 
   # ── 8c: Stale skills (>30 hari)
   local stale_json
-  stale_json=$(curl -s --connect-timeout 3 "$MC_URL/api/mc/skills/stale" 2>/dev/null || echo "{}")
+  stale_json=$(curl -s --connect-timeout 3 --max-time 5 "$MC_URL/api/mc/skills/stale" 2>/dev/null || echo "{}")
   local stale_count
   stale_count=$(echo "$stale_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('count',0))" 2>/dev/null || echo "0")
 
@@ -666,7 +672,7 @@ for s in d.get('stale', [])[:5]:
 
   # ── 8d: Skill conflicts
   local conflict_json
-  conflict_json=$(curl -s --connect-timeout 3 "$MC_URL/api/mc/skills/conflicts" 2>/dev/null || echo "{}")
+  conflict_json=$(curl -s --connect-timeout 3 --max-time 5 "$MC_URL/api/mc/skills/conflicts" 2>/dev/null || echo "{}")
   local conflict_count
   conflict_count=$(echo "$conflict_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('count',0))" 2>/dev/null || echo "0")
 
@@ -688,7 +694,7 @@ for c in d.get('conflicts', []):
 
   # ── 8e: Cek dashboard UI bisa diakses
   local dash_code
-  dash_code=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 3 "$MC_URL/" 2>/dev/null || echo "000")
+  dash_code=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 3 --max-time 5 "$MC_URL/" 2>/dev/null || echo "000")
   if [ "$dash_code" != "000" ]; then
     pass "Dashboard UI: HTTP $dash_code"
   else
@@ -698,7 +704,7 @@ for c in d.get('conflicts', []):
 
   # ── 8f: Skill usage stats (hari ini)
   local stats_json
-  stats_json=$(curl -s --connect-timeout 3 "$MC_URL/api/mc/skills/stats" 2>/dev/null || echo "{}")
+  stats_json=$(curl -s --connect-timeout 3 --max-time 5 "$MC_URL/api/mc/skills/stats" 2>/dev/null || echo "{}")
   local today_loaded
   today_loaded=$(echo "$stats_json" | python3 -c "
 import sys, json
@@ -956,11 +962,11 @@ main() {
     pass "✅ Ekosistem dalam kondisi sinkron — tidak ada rekomendasi"
   fi
 
-  if [ -x "$ROOT/scripts/9router-sync.sh" ]; then echo "[up-eco] 9router-sync..."; "$ROOT/scripts/9router-sync.sh" 2>&1 | tail -n 2; cnt=$(python3 -c "import json; print(len(json.load(open("$HOME/.cache/niumination/9router-models.json")).get("data",[])))" 2>/dev/null || echo "?"); echo "[up-eco] 9router: $cnt models"; fi
+  if [ -x "$NIUMINATION/scripts/9router-sync.sh" ]; then echo "[up-eco] 9router-sync..."; "$NIUMINATION/scripts/9router-sync.sh" 2>&1 | tail -n 2; cnt=$(python3 -c "import json,os; p=os.path.expanduser('~/.cache/niumination/9router-models.json'); print(len(json.load(open(p)).get('data',[])) if os.path.exists(p) else '?')" 2>/dev/null || echo "?"); echo "[up-eco] 9router: $cnt models"; fi
   header
   printf "${BOLD}Selesai: ${NOW}${NC}\n"
 }
 
-ROOT=""
+ROOT="$NIUMINATION"  # legacy compat (older callers reference $ROOT)
 
 main "$@"
