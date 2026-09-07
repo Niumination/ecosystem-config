@@ -3,7 +3,7 @@
 **Lokasi:** `~/Desktop/Niumination/`
 **Pengguna:** Afrizal Munthe (Niumination) — Pranata Komputer, Diskominfo Aceh Tengah
 **DOX Version:** 4.0
-|| **Total Projek Lokal:** ~40 git repos
+|| **Total Projek Lokal:** ~41 git repos
 |||||| | **Kanban Board:** "Niumination Ecosystem" — terupdate 16 Jul 2026 ✅
 
 ---
@@ -64,10 +64,9 @@
 ├── BACKLOG.md                 ← Prioritas master semua proyek
 ├── README.md                  ← Root overview & maturity pipeline
 │
-├── apps/                      🏭 13 proyek — deployed, battle-tested
+├── apps/                      🏭 14 proyek — deployed, battle-tested
 │   ├── JHermUSB-portable/     ← Backup DR Hermes Portable (21MB+ skills) ✅
 │   ├── niu-lkh/               ← LKH v3.1.1 — 100% Done — Vercel live ✅
-│   ├── niu-gayo-agroclimate/  ← Agro-Climate Kopi Gayo & Mitigasi Bencana — React 19/Vite 6 ✅
 │   ├── PemdiAcehTengah/       ← Portal Pemda — 52 OPD, 70 pages — 🟢 Vercel
 │   ├── ai-file-manager-android/
 │   ├── ai-first-os/
@@ -129,6 +128,7 @@
 │   ├── camofox-browser/       ← Stealth headless browser (Camoufox) — REST :9377 (upstream jo-inc)
 │   └── ponytail/              ← SKILL.md + MCP server code
 ├── archive/                   📦 Arsip proyek lama (~25MB)
+├── apps/niu-gayo-agroclimate/ ← Agro-Climate Kopi Gayo & Mitigasi Bencana — React 19/Vite 6 ✅
 ├── skills/                    🧠 **ACTIVE** Bank skill terpusat — 68 skill terisi ✅
 │
 ├── .folder-icons/             🖼️ Custom Finder folder icons (PNG + @2x) — lokal, tidak di-track git

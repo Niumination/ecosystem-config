@@ -1,6 +1,6 @@
 # 📋 BACKLOG — Niumination Ecosystem — MASTER DOCUMENTATION
 
-> **UPDATE: August 27, 2026** — Sync real filesystem + GitHub state. Major: pabrik-aplikasi-gas pilot LIVE (GAS v3), niu-mission-control redesign v3.0 (APEX-MC orb, PR#10 merged, localhost mati, docs update), Trio Governance v2 approved, Skill Bank 68. Mac REDUCE-MOTION ON.
+> **UPDATE: September 7, 2026** — Sync real filesystem + GitHub state. Major: pabrik-aplikasi-gas pilot LIVE (GAS v3), niu-mission-control redesign v3.0 (APEX-MC orb, PR#10 merged, localhost mati, docs update), Trio Governance v2 approved, Skill Bank 70. Mac REDUCE-MOTION ON.
 
 ---
 
@@ -46,7 +46,7 @@ Desktop/Niumination/
 
 **Data source:** `kanban.db` + filesystem audit
 **Board:** Niumination Ecosystem
-**Status:** 12 apps, 5 services, 5 sites, 4 desktop, 4 agents, 2 labs, 7 sandbox, 2 archived, **22 skills**
+**Status:** 13 apps, 6 services, 5 sites, 4 desktop, 4 agents, 3 labs, 7 sandbox, 2 archived, **70 skills**
 
 ### 🏭 apps/ — 13 Proyek Production
 
@@ -89,7 +89,13 @@ Desktop/Niumination/
 || **niu-kanban-dash** | P3 | ⏸️ | 2026-08-18 | Vite/React |
 || **AuditTI-AT** | P3 | ✅ Live | 2026-08-13 | GH Pages |
 || **spatial-vision** | P3 | 🟢 Active | 2026-08-18 | Rust/WASM 3D vision |
-|| **landing-web-id** | P3 | 🟢 Active | 2026-08-31 | Landing page — idwebhost |
+
+
+### 🆕 apps/ — Newly tracked
+
+|| Proyek | Status | Deploy | Aktivitas Terakhir | Notes |
+||--------|:------:|:------:|:------------------:|-------|
+|| **niu-gayo-agroclimate** | 🟢 Active | Vercel | 2026-09-07 | React 19/Vite 6 |
 
 ### 🖥️ desktop/ — 4 Native
 
@@ -271,7 +277,7 @@ Ultra, AuditTI-AT, Niu-Flow, didong-code, x-downloader, flame-ade, niu-vermilion
 
 ---
 
-## 🔴 Perubahan Hari Ini — Jul 29, 2026 — Niumination Ecosystem v4.0
+## 🔴 Perubahan Hari Ini — Sep 7, 2026 — Niumination Ecosystem sync
 
 - 🏛️ **Ecosystem restructure** — Ekosistem diorganisir ulang ke maturity pipeline:
   - `Production/` → `apps/` (12 proyek deployed)
