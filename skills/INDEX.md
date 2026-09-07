@@ -12,6 +12,7 @@
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
 | **skill-bank-integrity** | ✅ Aktif | ecosystem/skill-bank-integrity | Integrity verification skill bank — manifest SHA-256 |
+| **weathernext-gayo** | ✅ Aktif | ecosystem/weathernext-gayo | Analisis agro-klimatologi kopi Gayo & mitigasi bencana hidrometeorologi |
 | **integration-verification** | ✅ Aktif | ecosystem/integration-verification | Verify external services/APIs connected and working end-to-end |
 | **skill-bank-maintenance** | ✅ Aktif | ecosystem/skill-bank-maintenance | Maintenance skill bank harian |
 | **skill-bank-management** | ✅ Aktif | ecosystem/skill-bank-management | Management skill bank terpusat |
