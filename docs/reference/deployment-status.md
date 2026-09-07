@@ -14,7 +14,7 @@
 
 | URL | Status |
 |-----|--------|
-| `niumination.github.io/Niu-LKH` | ✅ v3.1.1 |
+| `niumination.github.io/Niu-LKH` | ✅ v3.2.0 (Merged PR #1 + Fix toLocalISODate) |
 | `niumination.github.io/niu-dash` | ✅ v2.16.8 |
 | `niumination.github.io/niu-private` | ✅ |
 | `niumination.github.io/Niu-Startpage` | ✅ |

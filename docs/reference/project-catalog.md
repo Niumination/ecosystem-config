@@ -5,7 +5,8 @@
 | Projek | Path | Stack | GitHub | Deploy | Last Push | Status |
 |--------|------|-------|--------|--------|-----------|--------|
 || **PemdiAcehTengah** | `apps/PemdiAcehTengah/` | Next.js 14, React 18, pure CSS (Gayo Civic Digital v3) | `github.com/Niumination/PemdiAcehTengah` | 🟢 Vercel — 52 OPD SSG, 70 pages, **57 bukti dukung + preview**, **+Modul Indikator** | 29 Jul 2026 | 🟢 **Active — apps/ 🏭** |
-||| **LKH** | `apps/niu-lkh/` 🏭 | React 19, Vite 6, Tailwind v4, Supabase | `github.com/Niumination/Niu-LKH` | 🟢 Vercel — v3.1.1 | 20 Jun 2026 | ✅ **100% Done 🎉 — apps/ 🏭** |
+||| **LKH** | `apps/niu-lkh/` 🏭 | React 19, Vite 6, Tailwind v4, Supabase | `github.com/Niumination/Niu-LKH` | 🟢 GH Pages / Vercel — v3.2.0 | 07 Sep 2026 | ✅ **100% Done 🎉 — apps/ 🏭** |
+||| **Niu-Gayo-Agroclimate** | `apps/niu-gayo-agroclimate/` 🏭 | React 19, Vite 6, Tailwind CSS, WeatherNext pipeline | `github.com/Niumination/niu-gayo-agroclimate` | ⚪ Local / GH Pages ready | 07 Sep 2026 | 🆕 **Agro-Climate Kopi Gayo & Mitigasi Bencana — apps/ 🏭** |
 | **DiskominfoAT** | — (remote only) | HTML, CSS | `github.com/Niumination/DiskominfoAT` | 🟢 GH Pages | 13 Okt 2025 | ✅ Live |
 | **Diskominfo-Web** | — (remote only) | HTML, CSS | `github.com/Niumination/Diskominfo-Web` | 🟢 GH Pages | 9 Okt 2025 | ✅ Live |
 | **SPBE-DevOps-Academy** | — (remote only) | JS, HTML | `github.com/Niumination/SPBE-DevOps-Academy` | 🟢 GH Pages | 5 Nov 2025 | ✅ Live |
