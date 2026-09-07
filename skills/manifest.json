@@ -1,7 +1,7 @@
 {
-  "fileCount": 348,
-  "generatedAt": "2026-09-02T08:49:44.526171+00:00",
-  "skillCount": 68,
+  "fileCount": 351,
+  "generatedAt": "2026-09-07T02:05:52.015803+00:00",
+  "skillCount": 69,
   "skills": {
     "accessibility": {
       "bundleHash": "f6196fb22b2e6bcf97ef5b048651abd02e08d056537bdd8fa3fb333fe91aec18",
@@ -376,6 +376,15 @@
         "scripts/pin.mjs": "43cf60991a233a84646eb73883461cb4184f680d903d26610f82db6e3e905fa5",
         "scripts/serve-question.mjs": "ed01a46415b89e1852ceefe3efb00ae556e48440b7d9aef2f41e1a079efb8c89",
         "scripts/surface-brief.mjs": "acd03bf38f6aef2b5d5287cefccacac018063b5b5356c99d191b3bd012f28ed3"
+      }
+    },
+    "integration-verification": {
+      "bundleHash": "6d74635a013e128193cd3978a13455f01eba0d166a42e5276f18344c82314319",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "4e45e94076ee422fab1f6c7fec28897b88c0019d2cb78922bc25b18956e1fe02",
+        "references/composio-sdk-patterns.md": "ffb3347558e5aeee5a26b13ba08d6387939b88b800f6f97f8a4baa7d15d5fe69",
+        "references/hermes-config-inspection.md": "c5133cd1001f4465e0b26e39a769c22c4ce77ea9025a0229212f71e43d0c1230"
       }
     },
     "kanban-ecosystem-management": {
