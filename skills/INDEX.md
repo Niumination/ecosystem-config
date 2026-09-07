@@ -5,13 +5,14 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 68 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 138 skill)
+> **Hermes Integration:** ✅ Semua 69 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 138 skill)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 68 ✅ Aktif
+> **Status:** 69 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
 | **skill-bank-integrity** | ✅ Aktif | ecosystem/skill-bank-integrity | Integrity verification skill bank — manifest SHA-256 |
+| **integration-verification** | ✅ Aktif | ecosystem/integration-verification | Verify external services/APIs connected and working end-to-end |
 | **skill-bank-maintenance** | ✅ Aktif | ecosystem/skill-bank-maintenance | Maintenance skill bank harian |
 | **skill-bank-management** | ✅ Aktif | ecosystem/skill-bank-management | Management skill bank terpusat |
 | **skill-bank-operations** | ✅ Aktif | ecosystem/skill-bank-operations | Operasi skill bank (ops) |
