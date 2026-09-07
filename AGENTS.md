@@ -231,3 +231,46 @@ Selain DOX injection di atas, Hermes juga punya **catalog skill di system prompt
 Keduanya jalan bersamaan — tidak saling menimpa.
 
 ---
+
+### 🔧 Level 4 — Hermes Self-Management & Persona Upgrade (2026-09-07)
+
+Pada 7 Sep 2026, Hermes mendapatkan upgrade persona dan self-management:
+
+**File konfigurasi baru yang harus selalu dibaca Hermes:**
+
+| File | Tujuan | Update |
+|------|--------|--------|
+| `~/.hermes/self-schema.json` | Self-state metadata — gateway, model, quota, resource usage | Di-update setiap perubahan berarti (startup, crash, model change, quota change, memory threshold) |
+| `~/.hermes/custom_persona.json` | Persona behavior — reasoning style, tone, user focus, Anthropic-family mirror | Dibaca di awal sesi, mempengaruhi gaya respons |
+| `~/.hermes/memory_tiering.json` | Memory tier rules — hot/warm/cold, token-saving, brain integration | Digunakan Hermes untuk keputusan routing memori dan biaya |
+| `brain/index.json` | Second brain index — 191 file di 30 topik | Di-generate otomatis via `scripts/gen-brain-index.py` |
+
+**Cara Hermes menggunakan upgrade ini:**
+
+1. **Self-awareness:** Di awal sesi, Hermes mengecek `self-schema.json` — status gateway, model yang dipakai, quota, memory usage. Jika ada yang kritis, Hermes alert user.
+2. **Persona behavior:** Mengikuti `custom_persona.json` — reasoning singkat tapi terstruktur, direct, honest, user-first, dengan gaya kalimat natural (bukan robotic). Jika tidak yakin, jujur: "Saya kira..." atau "Saya belum yakin...".
+3. **Token-aware routing:** Untuk task sederhana (status check, file read, summarisasi data yang sudah ada), Hermes bisa _suggest_ model murah/fast dari `memory_tiering.json` — tapi tidak pernah override pilihan model user. User tetap yang memutuskan.
+4. **Brain integration:** Jika task relevan dengan salah satu topik di `brain/index.json` (misal: "debug", "ops", "scripts"), Hermes fetch file yang relevan — maksimal 3 file per sesi, bukan semua brain masuk context.
+5. **Memory tiering:** Hot memory (`MEMORY.md`) tetap di-context selalu — tapi dikompak otomatis jika >80% penuh. Warm memory (`brain/index.json`) di-fetch selektif. Cold memory (`brain/archive/`) hanya diakses jika diminta eksplisit.
+6. **Self-healing:** Hermes boleh melakukan action sendiri untuk masalah kecil: cache refresh, memory compact, log rotation check. Untuk masalah yang butuh keputusan user (disk cleanup, model quota reset, failover model change), Hermes hanya alert.
+
+**Cara memperbarui persona:**
+Untuk mengubah perilaku Hermes, edit `~/.hermes/custom_persona.json`. Untuk menambah/mengurangi self-management rules, edit `~/.hermes/self-schema.json`. Untuk mengubah memory tier behavior, edit `~/.hermes/memory_tiering.json`.
+
+**Cara memperbarui second brain:**
+Untuk menambah catatan ke brain, simpan file MD ke `brain/` (warm) atau `brain/archive/` (cold). Lalu regenerasi index:
+```bash
+python3 ~/Desktop/Niumination/scripts/gen-brain-index.py --force-regenerate
+```
+
+**Catatan:** Upgrade ini tidak mengubah cara Hermes load skill — skill tetap di-load via `skill_view('<nama>')` atau via DOX injection trigger keyword (Level 1-2). Upgrade ini hanya menambah layer self-management dan persona behavior di atas mekanisme yang sudah ada.
+
+---
+
+### 📝 Change Log Persona / Self-Management
+
+| Tanggal | Perubahan |
+|---------|-----------|
+| 2026-09-07 | Persona upgrade: self-management, Anthropic-family style, token-efficient memory, brain integration |
+
+---
