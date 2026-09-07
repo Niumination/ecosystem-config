@@ -67,6 +67,7 @@
 ├── apps/                      🏭 13 proyek — deployed, battle-tested
 │   ├── JHermUSB-portable/     ← Backup DR Hermes Portable (21MB+ skills) ✅
 │   ├── niu-lkh/               ← LKH v3.1.1 — 100% Done — Vercel live ✅
+│   ├── niu-gayo-agroclimate/  ← Agro-Climate Kopi Gayo & Mitigasi Bencana — React 19/Vite 6 ✅
 │   ├── PemdiAcehTengah/       ← Portal Pemda — 52 OPD, 70 pages — 🟢 Vercel
 │   ├── ai-file-manager-android/
 │   ├── ai-first-os/
