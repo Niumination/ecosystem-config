@@ -78,6 +78,9 @@ __pycache__/
 scripts/.trio-status.json
 .9router-state.json
 
+# Hermes runtime state
+.hermes-memory/
+
 # Logs / runtime artifacts
 logs/
 

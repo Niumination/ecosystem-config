@@ -165,6 +165,7 @@ apps/niu-vermilion                        23  🟡     yes     no
 apps/cc-switch                            26  🟡     yes     no
 apps/kune-ya.com                          38  ⏸️     yes     no
 apps/ai-first-os                          54  ⏸️     yes     no
+apps/Mobile-Harness                       0  🟢     yes     no
 apps/mac-web-dashboard/hexstrike/repo    115  📦     yes     no
 brain                                      0  🟢     yes     no
 desktop/joy-connect-for-mac               17  🟡     yes     no
@@ -198,7 +199,7 @@ archive/projects/terax-ai                 81  📦     yes     no
 archive/projects/niuterm                  87  📦     yes     no
 ```
 
-**Total: 48 repos** — 🟢 Active ≤14d: 21 · 🟡 15–30d: 7 · ⏸️ Stale 31–60d: 12 · 📦 Archive/>60d: 8
+**Total: 50 repos** — 🟢 Active ≤14d: 22 · 🟡 15–30d: 7 · ⏸️ Stale 31–60d: 12 · 📦 Archive/>60d: 8
 
 *Audit 2026-08-21 dari `git log` real (days = sejak commit terakhir). Tidak ada repo tanpa remote. `archive/backup/*` ter-scan tapi bukan proyek aktif.*
 

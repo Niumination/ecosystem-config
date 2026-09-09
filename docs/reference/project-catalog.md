@@ -59,8 +59,9 @@
 || **eKinerja-AfrizalMunthe** | `labs/eKinerja-AfrizalMunthe/` | Dokumen (DOCX/PDF/TXT) | `github.com/Niumination/eKinerja-AfrizalMunthe` | 🔒 Private | 6 Agu 2026 | 🆕 **Bukti dukung eKinerja Sem 1 2026 — SKP/DEKP/PAK** |
 || **x-downloader** | `desktop/x-downloader/` | Tauri 2 (Rust) + Vite 5 + React 18 + Three.js 3D orb | `github.com/Niumination/x-downloader` | 🟢 GitHub | 06 Jul 2026 | ✅ **v2.0.0 — DMG release** |
 | **niu-private** | — (remote only) | TS | `github.com/Niumination/niu-private` | 🟢 GH Pages | 8 Jun 2026 | ✅ Live |
-| **ai-file-manager-android** | `apps/ai-file-manager-android/` 🏭 | Android (Kotlin, Jetpack Compose, Gradle), Google Gemini | `github.com/Niumination/ai-file-organizer-android` | 🟢 GitHub | 23 Jun 2026 | ✅ **apps/ 🏭** |
-|| **kune-ya.com** | `apps/kune-ya.com/` 🏭 | TS, Next.js 15 | `github.com/Niumination/kune-ya.com` | 🟢 Vercel | 29 Jul 2026 | ✅ **apps/ 🏭** |
+|| **ai-file-manager-android** | `apps/ai-file-manager-android/` 🏭 | Android (Kotlin, Jetpack Compose, Gradle), Google Gemini | `github.com/Niumination/ai-file-organizer-android` | 🟢 GitHub | 23 Jun 2026 | ✅ **apps/ 🏭** |
+||| **Mobile-Harness** | `apps/Mobile-Harness/` 🏭 | Android (Kotlin, Jetpack Compose), PRoot Linux, Claude Code CLI | `github.com/Niumination/Mobile-Harness` | 🟢 GitHub | 08 Sep 2026 | 🆕 **Claude Code on Android — mobile AI coding IDE** |
+||| **kune-ya.com** | `apps/kune-ya.com/` 🏭 | TS, Next.js 15 | `github.com/Niumination/kune-ya.com` | 🟢 Vercel | 29 Jul 2026 | ✅ **apps/ 🏭** |
 | **Niu-Startpage** | — (remote only) | HTML, CSS | `github.com/Niumination/Niu-Startpage` | 🟢 GH Pages | 22 Okt 2025 | ✅ Live |
 | **NiuHomePage** (fork) | — (remote only) | CSS | `github.com/Niumination/NiuHomePage` | 🟢 GH Pages | 13 Okt 2025 | ✅ Live |
 | **zaryu.startpage** (fork) | — (remote only) | JS | `github.com/Niumination/zaryu.startpage` | 🟢 GH Pages | 13 Okt 2025 | ✅ Live |
