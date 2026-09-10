@@ -100,7 +100,7 @@
 │   ├── joy-connect-for-mac/   ← macOS native — Infinix bridge
 │   └── x-downloader/          ← Tauri 2 — yt-dlp GUI
 │
-├── agents/                    🤖 4 proyek — AI + automation
+├── agents/                    🤖 3 proyek — AI + automation
 │   ├── Ultra/                 ← Puppeteer automation
 │   ├── characters/            ← 4 herdr personas
 │   ├── orchestrator/          ← Python multi-agent
@@ -111,7 +111,7 @@
 │   ├── niumination-workspace/
 │   └── eKinerja-AfrizalMunthe/  ← Bukti dukung eKinerja Sem 1 2026 🔒 private
 │
-├── sandbox/                   💤 7 proyek — playground
+├── sandbox/                   💤 5 proyek — playground
 │   ├── aistudio-google/
 │   ├── arena.ai/
 │   ├── niu-studio/
@@ -128,7 +128,7 @@
 ├── tools/                     🛠️ Ponytail MCP & utilities
 │   ├── camofox-browser/       ← Stealth headless browser (Camoufox) — REST :9377 (upstream jo-inc)
 │   └── ponytail/              ← SKILL.md + MCP server code
-├── archive/                   📦 Arsip proyek lama (~25MB)
+├── archive/                   📦 Arsip proyek lama (4 inactive + ~25MB)
 ├── apps/niu-gayo-agroclimate/ ← Agro-Climate Kopi Gayo & Mitigasi Bencana — React 19/Vite 6 ✅
 ├── skills/                    🧠 **ACTIVE** Bank skill terpusat — 68 skill terisi ✅
 │
