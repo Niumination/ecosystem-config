@@ -52,7 +52,7 @@ def test_uacc():
     call("initialize", {
         "protocolVersion": "2024-11-05",
         "capabilities": {},
-        "clientInfo": {"name": "jcode-test", "version": "1.0"},
+        "clientInfo": {"name": "hermes-test", "version": "1.0"},
     })
     time.sleep(2)
     resp = read(3)

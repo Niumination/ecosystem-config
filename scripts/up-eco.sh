@@ -598,25 +598,8 @@ check_skill_sync() {
     rec "→ Pertama: jalankan skills/sync-to-agents.sh"
   fi
 
-  # ── 7c: Cek divergence dengan target Jcode
-  local jcode_skill_count=0
-  local jcode_dir="$HOME/.jcode/skills"
-  if [ -d "$jcode_dir" ]; then
-    jcode_skill_count=$(find "$jcode_dir" -name SKILL.md -type f 2>/dev/null | wc -l | tr -d ' ')
-    local bank_count
-    bank_count=$(find "$SKILLS_DIR" -name SKILL.md -type f 2>/dev/null | wc -l | tr -d ' ')
-
-    if [ "$jcode_skill_count" -ge "$bank_count" ]; then
-      pass "Jcode: $jcode_skill_count skills (up to date)"
-    else
-      warn "Jcode: $jcode_skill_count of $bank_count skills — ada $((bank_count - jcode_skill_count)) belum tersync"
-      rec "→ Jalankan sync-to-agents.sh untuk update Jcode"
-    fi
-  else
-    warn "Jcode skill dir ($jcode_dir) tidak ditemukan"
-  fi
-
-  # ── 7d: Cek divergence dengan Hermes target
+  # ── 7c: Cek divergence dengan target Hermes (JCode dihapus dari pipeline)
+  info "Hermes skill sync: JCode no longer integrated"
   local hermes_skill_count=0
   local hermes_dir="$HOME/.hermes/skills"
   if [ -d "$hermes_dir" ]; then
@@ -767,7 +750,7 @@ check_telegram_threads() {
   python3 "$(dirname "$0")/telegram_threads.py" 2>/dev/null || warn "telegram_threads.py tidak tersedia"
 }
 
-# ── Phase 9a: Trio Awareness (Hermes · JCode · OpenCode) 🆕 ───────────────────
+# ── Phase 9a: Trio Awareness (Hermes · OpenCode) 🆕 ───────────────────
 check_trio_awareness() {
   local from="${FROM:-hermes}"
   section "🔗 Trio Awareness — Called dari: $from"
@@ -950,7 +933,7 @@ main() {
   # ── Phase 9: Telegram Thread Status 🆕 ────────────────────────────────────
   check_telegram_threads
 
-  # ── Phase 9a: Trio Awareness (Hermes · JCode · OpenCode) 🆕 ───────────────────
+  # ── Phase 9a: Trio Awareness (Hermes · OpenCode) 🆕 ───────────────────
   # 🔧 FIX: semua output trio-watch ke STDERR — supaya stdout (phase lain) tidak terpotong di Telegram
   check_trio_awareness
   echo "" 2>&1

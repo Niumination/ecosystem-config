@@ -7,7 +7,7 @@ Pola diadopsi dari autoskills (midudev) — manifest per-file hash + bundleHash.
 Mode:
   (default)           Generate skills/manifest.json dari filesystem
   --check             Verifikasi manifest vs filesystem bank (deteksi ubah/hilang/baru)
-  --verify-target DIR Verifikasi salinan di target agent (Jcode/Hermes/USB) vs manifest
+  --verify-target DIR Verifikasi salinan di target agent (Hermes/USB) vs manifest
   --lockfile DIR      Generate skills-lock.json di target (source + bundleHash)
   --help              Bantuan
 
@@ -16,8 +16,8 @@ Exit code: 0 = OK, 1 = mismatch/error (detail di stdout)
 Contoh:
   python3 scripts/skill-manifest.py
   python3 scripts/skill-manifest.py --check
-  python3 scripts/skill-manifest.py --verify-target ~/.jcode/skills
-  python3 scripts/skill-manifest.py --lockfile ~/.jcode/skills
+  python3 scripts/skill-manifest.py --verify-target ~/.hermes/skills
+  python3 scripts/skill-manifest.py --lockfile ~/.hermes/skills
 """
 
 import argparse
@@ -213,7 +213,7 @@ def main() -> int:
     ap.add_argument("--check", action="store_true", help="Verifikasi manifest vs bank")
     ap.add_argument("--verify-target", metavar="DIR", help="Verifikasi salinan target vs manifest")
     ap.add_argument("--structure", choices=["flat", "domain"], default="flat",
-                    help="Struktur target: flat=<dir>/<skill>/ (Jcode), domain=<dir>/<domain>/<skill>/ (Hermes/USB)")
+                    help="Struktur target: domain=<dir>/<domain>/<skill>/ (Hermes/USB)")
     ap.add_argument("--lockfile", metavar="DIR", help="Generate skills-lock.json di target")
     args = ap.parse_args()
 

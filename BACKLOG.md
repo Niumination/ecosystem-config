@@ -257,7 +257,7 @@ Sebelumnya (BACKLOG Jul 28) mencatat niu-dash/Niu-LKH dirty — sudah tidak vali
 | **Hermes (main)** | opencode-zen | **nemotron-3-ultra-free** (default) / hy3-free / big-pickle | ✅ **Live** (free tier) |
 | **Nous Portal** | OAuth2 Hermes | model `:free` ter-update | ✅ **Live** (login aktif, exp 13:43 WIB) |
 | **Claude Code** | ANTHROPIC_API_KEY | claude-sonnet-4 | ✅ **Live** |
-| **JCode** | OPENCODE_API_KEY | — | ✅ **Live** (billing dead) |
+| **JCode** | OPENCODE_API_KEY | — | ⚪ Deprecated — not used in ecosystem
 | **Delegation** | gemini | gemini-2.5-flash | ✅ Off (concurrent=1, depth=0) |
 | **AI-Memory-Collection** | 12 AI tools | Snapshot ~1.7GB | ✅ **Referenced** |
 
@@ -326,7 +326,7 @@ Ultra, AuditTI-AT, Niu-Flow, didong-code, x-downloader, flame-ade, niu-vermilion
 - 📝 **BACKLOG.md** — sync faktual: update tanggal, aktivitas terakhir (bukan "14 hari"), hapus "dirty" yang sudah resolved, perbaiki agents 4→5, tools +pdf-inspector.
 
 **Rekomendasi Tindak Lanjut:**
-1. Evaluasi `entire-cli` di `ecosystem-config` untuk checkpoint sesi Hermes/JCode/OpenCode.
+1. Evaluasi `entire-cli` di `ecosystem-config` untuk checkpoint sesi Hermes/OpenCode.
 2. Fork `entireio/skills` → `skills/ecosystem/entire-skills/` sebagai upstream skill bank eksternal.
 3. Archive ~10 repo Linux ricing lama di GitHub (`ryuland`, `Zaryu-HyDE`, `RyuDE`, dll) yang sudah di-archive lokal.
 
@@ -351,7 +351,7 @@ Ultra, AuditTI-AT, Niu-Flow, didong-code, x-downloader, flame-ade, niu-vermilion
 - 🎨 **niu-mission-control PR#10** — MERGED → Redesign total APEX-MC (faithful replika https://apex-ui-xi.vercel.app). 12 pages → 1 orb view: golden ring R=220 + sound waves + particle core (SVG dots, pengganti three.js) + equalizer + reasoning graph nodes orbit + overview HUD + status bar. Vanilla JS/CSS (zero deps, no FontAwesome/-400k lines). Reduced-motion guard (Mac REDUCE-MOTION ON). Source APEX-UI: https://apex-ui-xi.vercel.app (bukan GitHub repo). PR#11 (apex5) — iterasi tambahan particle core + equalizer kiri/kanan, pending review.
 - 🎨 **niu-mission-control PR#6** — MERGED (`8a8b631`) → Mission Core retheme (token APEX gold-ring + cyan-core, 12 halaman). Produksi direstart (pid baru), `healthz`/`readyz` 200. WCAG AA lulus, reduce-motion hormati OS. Issue #5 auto-closed.
 - 📜 **Trio Governance v2** — commit `1442732`: intent-based, bukan folder-bound. Aturan dampak + klarifikasi sebelum eksekusi.
-- 🧠 **Skill Bank** — 68 skill (bank pusat), INDEX+manifest sinkron, 0 duplikat. Sync-to-agents jalan harian (JCode/Hermes). 3 conflict MC = **abaikan** (bank = katalog, tidak jalan barengan).
+- 🧠 **Skill Bank** — 70 skill (bank pusat), INDEX+manifest sinkron. Sync-to-agents jalan ke Hermes saja (JCode dihapus dari pipeline). 3 conflict MC = **abaikan** (bank = katalog, tidak jalan barengan).
 - 📊 **Struktur** — apps 13 (tambah pabrik-aplikasi-gas), services 6, agents 4. Mac REDUCE-MOTION ON.
 
 *Status: ekosistem sehat & stabil. PR bot (Niu-LKH#1, afoa#2) masih menganggur — tahan review.*

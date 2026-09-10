@@ -4,10 +4,9 @@
 # ============================================================================
 # Path:    ~/Desktop/Niumination/skills/sync-to-agents.sh
 # Source:  ~/Desktop/Niumination/skills/ (bank pusat — single source of truth)
-# Target:  ~/.jcode/skills/        → Jcode flat structure
-#          ~/.hermes/skills/       → Hermes domain structure (local)
+# Target:  ~/.hermes/skills/       → Hermes domain structure (local)
 #          AGENTS.md               → DOX injection (skill registry update)
-#          (USB Hermes diparkir sebagai backup 2026-08-20 — tidak di-sync lagi)
+#          USB Hermes diparkir sebagai backup 2026-08-20 — tidak di-sync lagi)
 #
 # Safety:  Non-destructive (copy/add only, never delete)
 #          mkdir-based lock (macOS compatible)
@@ -168,10 +167,7 @@ fi
 log "📦 Bank: $SKILL_COUNT skill ditemukan"
 $DRY_RUN && log "🏁 DRY RUN — tidak ada perubahan nyata"
 
-# ── 1. Sync ke Jcode (flat structure) ───────────────────────────────────────
-sync_target "$JCODE_DIR" "Jcode" "flat"
-
-# ── 2. Sync ke Hermes (domain structure) ────────────────────────────────────
+# ── 1. Sync ke Hermes (domain structure) ────────────────────────────
 sync_target "$HERMES_DIR" "Hermes" "domain"
 
 # ── 3. Update AGENTS.md — Skill Registry ────────────────────────────────────
@@ -336,7 +332,7 @@ fi
 # ── 4. Write log ─────────────────────────────────────────────────────────────
 if ! $DRY_RUN; then
   echo "[$(date '+%Y-%m-%d %H:%M:%S')] Sync selesai: $SKILL_COUNT skill × 2 target (Jcode/Hermes) + AGENTS.md ✅" >> "$LOG_FILE"
-  log "✅ Sync selesai — $SKILL_COUNT skill disinkronkan ke Jcode/Hermes/USB"
+  log "✅ Sync selesai — $SKILL_COUNT skill disinkronkan ke Hermes/AGENTS.md"
   
   # Notify mission-control (fire-and-forget, non-blocking)
   if command -v curl &>/dev/null; then

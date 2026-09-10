@@ -15,7 +15,7 @@
 ## Global Agent Rules (relocated from SOUL.md v1 — 2026-08-30)
 - **Git discipline:** selective `git add` (never blind `git add .`); setiap commit menyertakan perubahan DOX; docs adalah source of truth.
 - **macOS services:** service launchd yang butuh jaringan WAJIB WaitNetwork (NetworkState key) sebelum start — pola ini wajib untuk semua service baru; lihat `scripts/` untuk contoh.
-- **Skill sync:** sinkronisasi skill bank HANYA lewat tool resmi (`scripts/skill-manifest.py` + `sync-to-agents.sh` + lockfile/hash). Dilarang copy-paste manual antar agent target (Jcode/Hermes/USB).
+- **Skill sync:** sinkronisasi skill bank HANYA lewat tool resmi (`scripts/skill-manifest.py` + `sync-to-agents.sh` + lockfile/hash). Dilarang copy-paste manual antar agent target (Hermes/USB).
 - **Model mapping:** jangan pakai combo/generic model sebagai mapping utama thread/DM. Sumber mapping sah: hasil auto-discovery (lihat `docs/reference/model-mapping.md`) — fallback chain harus lolos probe HTTP-200 sebelum dicatat.
 - **UI/theme (semua proyek UI):** gunakan CSS theme tokens; dilarang hardcode overlay warna / transparansi yang menyimpang dari token proyek.
 - **One-home rule:** satu file hanya punya satu repo-home. Berbagi lintas repo hanya via pointer/symlink, bukan salinan yang di-track git.
