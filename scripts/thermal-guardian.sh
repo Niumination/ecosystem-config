@@ -34,7 +34,7 @@ RULES="extract_:15
 custom-server\.js:8
 9router:8
 mcp-server:6
-opencode:4
+opencode:4"
 
 renice_name(){
   pat="$1"; lvl="$2"
