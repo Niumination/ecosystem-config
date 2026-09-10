@@ -62,7 +62,7 @@ Return a compact summary:
 - **Local clones & dirty state** — which repos are cloned locally + uncommitted changes
 - **Kanban projects** — project-level tasks from the Hermes kanban DB
 - **Unpushed commits** — repos with `git log @{u}..HEAD`
-- **Recent commits (last 2 days)** — per-repo summary of recently committed work; critical when user mentions jcode, Claude Code, or other AI coding tools since those changes are already committed+ pushed and won't appear in dirty/unpushed checks
+- **Recent commits (last 2 days)** — per-repo summary of recently committed work; critical when user mentions other AI coding tools since those changes are already committed+ pushed and won't appear in dirty/unpushed checks
 - **Ponytail exclusion** — note it was skipped if relevant
 
 ⚠️ **Pitfall — dirty-only report misses committed work.** If the user says they've been fixing projects with jcode (or any AI coding tool), the changes are likely already committed and pushed. A `git status --short` check alone will report everything as clean — falsely implying nothing changed. Always also check `git log --since="2 days ago"` for recent commits when the user signals active work.
@@ -1763,7 +1763,7 @@ Add an entry to the AI ECOSYSTEM (or analogous) section:
 ### Pitfalls
 
 - **Large model files (~1.4GB+)** — NEVER copy into ecosystem dir. The ecosystem is a git repo and should stay lean. Note the path and move on.
-- **API keys in config files** — Scan every file before copying. Config files from tools like JCode, OpenCode, or Claude may contain API key remnants. If found: don't copy the file, document the path with a ⚠️ instead.
+- **API keys in config files** — Scan every file before copying. Config files from tools may contain API key remnants. If found: don't copy the file, document the path with a ⚠️ instead.
 - **Cache data is session-stale** — Endpoint cache, model catalogs, and session logs from 1-2 days ago are already stale. They're reference-only for understanding past behavior, not for re-use.
 - **memory.md may duplicate ecosystem data** — The external collection's memory.md likely contains Hermes memory, BACKLOG.md content, and user profile info extracted at snapshot time. It's a copy, not canonical. Don't update it — update the canonical ecosystem docs instead.
 - **Hooks from "Orca" or other tools may assume specific paths** — Check each hook for hardcoded `~/.config/`, `~/Library/`, or `/Applications/` references. These hooks were designed for the original environment, not the ecosystem. Document the assumption rather than patching the hook unless the user asks.

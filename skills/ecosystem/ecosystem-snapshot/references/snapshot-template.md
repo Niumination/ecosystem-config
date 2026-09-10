@@ -96,7 +96,7 @@ Generated from: `/up-eco`, `BACKLOG.md`, `system_profiler`, Hermes config, Missi
 - **Duplikasi:** none / list
 - **Manifest SHA-256:** sinkron (<count> skill, <count> file) / drift
 - **Sync terakhir:** YYYY-MM-DD HH:MM:SS
-- **Targets:** Jcode (missing/ok), Hermes USB <count> skills, Hermes <count> skills
+- **Targets:** Hermes USB <count> skills, Hermes <count> skills
 
 ---
 

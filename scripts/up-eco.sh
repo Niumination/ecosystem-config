@@ -598,8 +598,6 @@ check_skill_sync() {
     rec "→ Pertama: jalankan skills/sync-to-agents.sh"
   fi
 
-  # ── 7c: Cek divergence dengan target Hermes (JCode dihapus dari pipeline)
-  info "Hermes skill sync: JCode no longer integrated"
   local hermes_skill_count=0
   local hermes_dir="$HOME/.hermes/skills"
   if [ -d "$hermes_dir" ]; then

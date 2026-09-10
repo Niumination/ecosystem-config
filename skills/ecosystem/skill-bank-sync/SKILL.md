@@ -13,7 +13,7 @@ version: 1.0.0
 
 # Skill Bank Sync & Integrity (Niumination)
 
-Pola autoskills (midudev) diadopsi 2026-08-16: manifest SHA-256 + verifikasi hash + lockfile. Bank pusat = `~/Desktop/Niumination/skills/` (single source of truth), disinkronkan ke 3 target: Jcode (flat), Hermes local (domain), Hermes USB (domain).
+Pola autoskills (midudev) diadopsi 2026-08-16: manifest SHA-256 + verifikasi hash + lockfile. Bank pusat = `~/Desktop/Niumination/skills/` (single source of truth), disinkronkan ke 2 target: Hermes local (domain), Hermes USB (domain).
 
 ## Tools
 
@@ -29,12 +29,10 @@ Pola autoskills (midudev) diadopsi 2026-08-16: manifest SHA-256 + verifikasi has
 ```bash
 python3 scripts/skill-manifest.py                      # generate skills/manifest.json
 python3 scripts/skill-manifest.py --check              # verify bank vs manifest ([ubah]/[hilang]/[baru])
-python3 scripts/skill-manifest.py --verify-target ~/.jcode/skills --structure flat
 python3 scripts/skill-manifest.py --verify-target /Volumes/HermesAgent/HermesAgentUSB/data/skills --structure domain
-python3 scripts/skill-manifest.py --lockfile ~/.jcode/skills
 ```
 
-`--structure`: `flat` = `<dir>/<skill>/` (Jcode), `domain` = `<dir>/<domain>/<skill>/` (Hermes, USB). **Salah struktur → semua skill dilaporkan hilang (false positive).**
+`--structure`: `domain` = `<dir>/<domain>/<skill>/` (Hermes, USB). **Salah struktur → semua skill dilaporkan hilang (false positive).**
 
 ## Sync behavior (sejak 2026-08-16)
 
@@ -91,7 +89,7 @@ Bug `_get_home()` di MC pernah: bank scan 0 → **43 conflict palsu** "loaded bu
 
 ## Pitfall lain
 
-- Setelah refactor `sync_target()`, counter lama (`jcode_copied`/`hermes_copied`/`total`) TIDAK ada — jangan pakai di log/meta-event curl (error `unbound variable`)
+- Setelah refactor `sync_target()`, counter lama (`hermes_copied`/`total`) TIDAK ada — jangan pakai di log/meta-event curl (error `unbound variable`)
 - Bash heredoc Python di sync-to-agents.sh: **escape-drift** `\n` jadi `\\n` literal di dalam string Python — selalu `read_file` dulu sebelum patch, jangan patch dari diff saja
 - Patch tool: string dengan `\"` bisa kena escape-drift — pecah jadi patch kecil atau baca file aktual dulu
 

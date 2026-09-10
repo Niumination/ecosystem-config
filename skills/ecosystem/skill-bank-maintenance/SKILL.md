@@ -21,7 +21,6 @@ version: 1.0.0
 ## Layout & Topology
 - **Bank Pusat**: `~/Desktop/Niumination/skills/<domain>/<skill>/` — single source of truth (68 skill, 348 file)
 - **Targets** (synced by `skills/sync-to-agents.sh`):
-  - Jcode: `~/.jcode/skills/<skill>/` — **flat** structure
   - Hermes local: `~/.hermes/skills/<domain>/<skill>/` — **domain** structure
   - Hermes USB: `/Volumes/HermesAgent/HermesAgentUSB/data/skills/<domain>/<skill>/` — **domain**
 - **Manifest**: `skills/manifest.json` — per-file SHA-256 + bundleHash per skill (pola autoskills/midudev)
@@ -37,8 +36,7 @@ python3 scripts/skill-manifest.py
 # Verify bank vs manifest (deteksi ubah/hilang/baru)
 python3 scripts/skill-manifest.py --check
 
-# Verify salinan target (--structure: flat=Jcode, domain=Hermes/USB)
-python3 scripts/skill-manifest.py --verify-target ~/.jcode/skills --structure flat
+# Verify salinan target (--structure: domain=Hermes/USB)
 python3 scripts/skill-manifest.py --verify-target /Volumes/HermesAgent/HermesAgentUSB/data/skills --structure domain
 
 # Full sync + verify + lockfile (semua target)

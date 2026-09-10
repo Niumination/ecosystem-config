@@ -1,6 +1,6 @@
 ---
 name: skill-bank-operations
-description: "Operate the Niumination Skill Bank — manifest SHA-256 integrity (scripts/skill-manifest.py), full-folder sync to Jcode/Hermes/USB (sync-to-agents.sh), drift resolution between bank and agent targets, and adoption of third-party skills (from autoskills registry or elsewhere) into the bank. Use when adding/removing skills, verifying sync integrity, resolving [ubah]/[hilang] drift, or adopting external skills. Patterns adopted from autoskills (midudev)."
+description: "Operate the Niumination Skill Bank — manifest SHA-256 integrity (scripts/skill-manifest.py), full-folder sync to Hermes + USB (sync-to-agents.sh), drift resolution between bank and agent targets, and adoption of third-party skills (from autoskills registry or elsewhere) into the bank. Use when adding/removing skills, verifying sync integrity, resolving [ubah]/[hilang] drift, or adopting external skills. Patterns adopted from autoskills (midudev)."
 tags:
   - skills
   - niumination
@@ -21,14 +21,14 @@ Bank pusat: `~/Desktop/Niumination/skills/` (single source of truth; 47 skill, 2
 - `skill-bank-management` — subset dari skill ini
 - `skill-bank-ops` — subset dari skill ini
 - `skill-bank-integrity` — subset dari skill ini
-→ Jika menemukan salah satu dari ini aktif, konsultasi skill ini (operations) sebagai sumber utama. Target: `~/.jcode/skills` (flat), `~/.hermes/skills` (domain), `/Volumes/HermesAgent/HermesAgentUSB/data/skills` (domain). Rekomendasi monitor: up-eco Phase 6-8. Rencana pola: `docs/architecture/autoskills-pattern-adoption.md`. Detail kasus nyata (drift USB 6 file, adopsi autoskills, fix MC `_get_home`): `references/cases-2026-08.md`.
+→ Jika menemukan salah satu dari ini aktif, konsultasi skill ini (operations) sebagai sumber utama. Target: `~/.hermes/skills` (domain), `/Volumes/HermesAgent/HermesAgentUSB/data/skills` (domain). Rekomendasi monitor: up-eco Phase 6-8. Rencana pola: `docs/architecture/autoskills-pattern-adoption.md`. Detail kasus nyata (drift USB 6 file, adopsi autoskills, fix MC `_get_home`): `references/cases-2026-08.md`.
 
 ## Alat
 
 ### scripts/skill-manifest.py (root ecosystem)
 - `python3 scripts/skill-manifest.py` — regenerate `skills/manifest.json` (hash SHA-256 per file + bundleHash per skill). WAJIB setelah tambah/ubah/hapus file di bank.
 - `--check` — bank vs manifest; deteksi `[ubah] [hilang] [baru]`; exit 1 = mismatch. up-eco Phase 6d menjalankan ini otomatis.
-- `--verify-target DIR --structure flat|domain` — verifikasi salinan target (Jcode = flat, Hermes/USB = domain).
+- `--verify-target DIR --structure flat|domain` — verifikasi salinan target (Hermes/USB = domain).
 - `--lockfile DIR` — tulis `skills-lock.json` (source + bundleHash + syncedAt) di target.
 
 ### skills/sync-to-agents.sh
@@ -66,5 +66,5 @@ Bank pusat: `~/Desktop/Niumination/skills/` (single source of truth; 47 skill, 2
 cd ~/Desktop/Niumination
 python3 scripts/skill-manifest.py --check          # 0 mismatch
 bash skills/sync-to-agents.sh --dry-run            # preview 136 = 68 skill × 2 target (USB diparkir 2026-08-20)
-diff -rq skills ~/.jcode/skills | grep -v "\.DS_Store\|lock\|manifest"   # hanya file meta yang beda
+# diff -rq skills ~/.hermes/skills | grep -v "\.DS_Store\|lock\|manifest"   # hanya file meta yang beda
 ```

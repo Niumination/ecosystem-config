@@ -50,7 +50,7 @@ Lalu cek ROOT CAUSE per jenis — cek file yang diklaim: `.venv/bin/python` MISS
 `launchctl print gui/501/<label>` → `last exit code`, `program`. Exit **127** = program/script path hilang. 18-Ags: `kanban-sync`, `health-checker`, `changelog-writer` semuanya 127 karena script di `/Volumes/HermesAgent/HermesAgentUSB/data/scripts/*.sh` MISSING (path mengarah USB, file tidak ada).
 
 ## Layer 7 — Skill plane drift
-Hitung SKILL.md per store: bank `/Users/zaryu/Desktop/Niumination/skills` (47), USB `/Volumes/HermesAgent/HermesAgentUSB/data/skills` (231 — BUKAN 213, berubah!), HOME `~/.hermes/skills` (2), Jcode `~/.jcode/skills` (MISSING). Cek manifest.json skillCount vs real count; INDEX.md count vs real. 18-Ags: manifest 47 = real 47 (bank OK), tapi USB 231 = 4.9× bank (hub-dump, bukan mirror) + Jcode MISSING.
+Hitung SKILL.md per store: bank `/Users/zaryu/Desktop/Niumination/skills` (47), USB `/Volumes/HermesAgent/HermesAgentUSB/data/skills` (231 — BUKAN 213, berubah!), HOME `~/.hermes/skills` (2), Jcode target removed (was MISSING). Cek manifest.json skillCount vs real count; INDEX.md count vs real. 18-Ags: manifest 47 = real 47 (bank OK), tapi USB 231 = 4.9× bank (hub-dump, bukan mirror).
 
 ## Layer 8 — Deploy canary
 ```bash

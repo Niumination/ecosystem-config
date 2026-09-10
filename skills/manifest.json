@@ -1,6 +1,6 @@
 {
   "fileCount": 353,
-  "generatedAt": "2026-09-09T09:46:22.235970+00:00",
+  "generatedAt": "2026-09-10T06:35:19.982331+00:00",
   "skillCount": 70,
   "skills": {
     "accessibility": {
@@ -82,21 +82,21 @@
       }
     },
     "ecosystem-snapshot": {
-      "bundleHash": "c285942facef3da08b76183883e3e1ced48f7a3b528abb659bd88a83e3b61523",
+      "bundleHash": "9dc9b8331fd909ced9e86127b7e379b66a138002ce018e67d699408243fd3dde",
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "c7d716db6a7dc7a217a19cdca5a242f1f02d31a5143d7c1a6409cd03a20bd37b",
-        "references/anomaly-audit-playbook.md": "a7f2982868df46e5c4adbd6f632a02144e17bc761c8c9948192ea03399c1ae15",
+        "references/anomaly-audit-playbook.md": "7d339fb09a612d3c420acbcbcf160915c3dfee1bfeb2438a1c11751cc0ce92fb",
         "references/mass-repo-sync.md": "fa81d3fbcf10cc86ecd99d6f0c65a38f4b1b3988b6cafe3a363a9595d69159eb",
         "references/niumination-core-v2.md": "99073530fb00fe93f2ee9716559e5efbd2a8716be4b004dcf74165362de8ee26",
-        "references/snapshot-template.md": "e4ee1fdf47b9562834a0f019ab1b4f03b77d173fd1864e01f3f3f716fb8e3297"
+        "references/snapshot-template.md": "b1ad596334865dada1f841e84924b9d1c6089063d84b08eac6f9c13c1e7176e9"
       }
     },
     "ecosystem-tool-adoption": {
-      "bundleHash": "4b075c4671a6a2411d678e532ccabc46a50f6e55a3eb2a907abf2df3b749a76f",
+      "bundleHash": "047afcb5be7df8aabfe683a6f08e4a3d40a8246aba3a90e105b192d45ffc9aba",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "6b0641ecb902c3b06e8c87856def96972b08739f3d90b7e2f75c06c36387284f"
+        "SKILL.md": "4dfe123b837a0fdf78f5264dbb495f798cf41be79cd9baf42e3ba699bea4269f"
       }
     },
     "ekosistem-content-verification": {
@@ -388,10 +388,10 @@
       }
     },
     "kanban-ecosystem-management": {
-      "bundleHash": "3ee15bde7e8c0d974393cee40873c3c42a566a7bb14efc2bda75e8b526feb4b6",
+      "bundleHash": "4d40c49ba11ec415d9fa8f9ca734c83b93712a8af9f7f315e39b57749424909f",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "5c3580c6af15cee4b2036b31d05616b8ca2a160d8b6958291bdcab0720930c1a",
+        "SKILL.md": "63743b31bf014151016dfc95ee8ea2031fabc7d1c5d0c6702d952df71088a522",
         "references/alternative-pm-tools.md": "8b9f9dff94a0e1730be586242b72c70a021364c9a7c8284b8987c7dae933f879",
         "references/brain-capture-location.md": "ec9efc6f3cf7a56ee84f2356a67d5d5f0ac36798fb10a72eda83237d484b8006",
         "references/dashboard-dbpath-debug.md": "16b7cddb02a0c01e523879d7177e633d499684059a3a47fe9b2d581b35229f93",
@@ -432,10 +432,10 @@
       }
     },
     "niu-mission-control-ui": {
-      "bundleHash": "1c6c3ef546d2f0b0c6d486e98cb89ac8f126a3f479ff91d43937702a9d0a4c0d",
+      "bundleHash": "03101f4c24217b22ce55f38f07747d08bc9fc0da8c592a59d4f90746cc4e3976",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "828d785dd9e72da2a3e3303e3e7cfc95ee66e3212bc8e6e4a0b472a3b68693e0",
+        "SKILL.md": "c51854182e31dab2d76b4a0665a268638a35fe1d025fa848c95b86042672ecf5",
         "references/dedup-selectors.md": "c7f134fce123858703cfe6f4dad044d7ee36ff0f6613d5d6af7783621850fb60",
         "references/dom-visual-audit-2026-08-20.md": "3ca1930598cf4dc4476e6b7109e3d69c5ccf8150a4b5c848fa72fa443a38b0a3",
         "references/mc-api-shapes.md": "ae9d6789f519b3b4f70b75827f885dfb1a4acb053729865b70aa7ee273c85b90",
@@ -608,50 +608,50 @@
       }
     },
     "skill-bank-integrity": {
-      "bundleHash": "c9b0e630c16ac87953c9983b8439d04194bab346fad7bd14cca8c57c31ed5a4e",
+      "bundleHash": "57525d80274a8b3ba4e86c19d564e84a1e900107b3bdc9429353911fc95c7f4c",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "0ab6debbe873faf5a5cea8f5293fdd7f17da023c08f0cbfdf732e655c8bcfb66",
+        "SKILL.md": "3441de22f0be0230635539983620e21a8b2e9092f8dd8ccffd698feb828eb41f",
         "references/autoskills-patterns.md": "8b9c362c22b5c38f31079616d74e32f51f5ec643b9be1b08a4f57f3ba2e06eb9"
       }
     },
     "skill-bank-maintenance": {
-      "bundleHash": "39f175b94f419d57467a93744a8ea397eb45a5ed2dbcd24186c282621d897315",
+      "bundleHash": "035cb1c906489e3e2f830ea8c4ec87416347e270e3dfd43306eb1d9c1db194a8",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "461577909620235dabaa9424a729379413ff841c8b0fad28d91e82b004f3a2ac"
+        "SKILL.md": "4a1dc864fee4c6cb83d4842dfaa3162151799d9877ace48ee9073dafd52317c5"
       }
     },
     "skill-bank-management": {
-      "bundleHash": "694ee6c1a7c71d3eebd3575a3d1398e10eb3fe340ab86fa21cb9a93e4479b9a0",
+      "bundleHash": "6b585b3cdcd8204afac93e041e9563bca9eea4200023602dc25ea52028008a35",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "a65c8803e353abe579c44a01429309689d1da7a4859b72f128c51943bac38237",
-        "references/adopt-external-skill.md": "ff24a68eac0f45387d339b2e7a7d81bbcc8b7066fd8cf867b211ce71f626529e"
+        "SKILL.md": "a6f4e04caa1dcb749363f56321bafae913d63f5da6693ccfbe6de52462e8b006",
+        "references/adopt-external-skill.md": "2dca01c269cc3dd11ecf6d66f31159468d58fb8edb370649839e426a7358f2ec"
       }
     },
     "skill-bank-operations": {
-      "bundleHash": "62599ce266e52bde1fb3f532d9514d66589a4db37ad73d9f8ec4222161cff742",
+      "bundleHash": "1039d52eadc39da3e67fa383f7eb5392bcecd6038713383718263b9beffb08cd",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "c1cf307bf0e3c1982dd4cc4546387e1edbeec9863c0116bce25dcb92dfe0cae2",
+        "SKILL.md": "2310d0358a7cdecb56e55529c0f5cf17f9ff99c653a46ecc1d1cef71f75f6e02",
         "references/autoskills-patterns.md": "f7e805e9ef05d1bd18b14be03c4534b24dc4f2cdff81972acc97ea227017a048",
-        "references/cases-2026-08.md": "c114615e3effe82b00cdaebd1f40d552339d4548cdaf4d2143bf8676ab96a78c"
+        "references/cases-2026-08.md": "a87f0a8f980145dbf119480097f3e851f49c1976c100a9497764f1e023e97b85"
       }
     },
     "skill-bank-ops": {
-      "bundleHash": "c4407d616b11f9ec40585e9d6de742cb9f8d14fe9e487df1abca5fc30c9c720e",
+      "bundleHash": "9596fc90a7471fe1a73d51db9542a0207e2c18f908f07dfca0e8da50ef51f0b2",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "720cfb595e8b99f932bf84f8273ebae77524c9ef3d18b7bf7620103061e3f6be",
+        "SKILL.md": "4ee54b050574e9970bf93a80f5186d2da694337078c80c0c2692100d8c1b3469",
         "references/skill-bank-manifest-sync.md": "ed73748fe07bd9718d8c2493742dfc1e0cad006dd474be4d6e469d16c1e7714a"
       }
     },
     "skill-bank-sync": {
-      "bundleHash": "44353113bd67977602c1ad84ccbfc607066a0b0e72850d858e3f02383fa67dbe",
+      "bundleHash": "ef0a59841117c2bfdb6c3656bc3c8b59790800aef71d13b38009792fa532a3f2",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "3cac1d1ea77227e8cae8713aae19dd107ecc379f0535a75d191c378579bb89d9",
+        "SKILL.md": "2d9e7b63410714219afaa7bfadb9f27b17dba5715949e2bc1c1cccbd054a2a97",
         "references/home-pruning-f4-2026-08-20.md": "245cf99bb02a59a5a73ce617c11363db7754ba061d4b22a4be10eed736989bd9",
         "scripts/check-rtk.sh": "0b3065e58ace02078848b7141ffb08ee2a86333121ec1222f3ab3d6b2696c4b3"
       }
@@ -733,10 +733,10 @@
       }
     },
     "up-eco": {
-      "bundleHash": "281e30247b76e931d607698b951fbaaae16f4ca0f70fb4950065ec7dc3d42c8a",
+      "bundleHash": "64e30c428b1e138a060d5cbb0e0296e6f09b7a2e4a94fd061056059110384e98",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "a69279b96254062e1f860822f2998af3fb6103ff87e1f03b9916624e22f627fa"
+        "SKILL.md": "d0c077bd91ec21700c3028f83ef813378490192d221a4c57550b63acee51b2e0"
       }
     },
     "verification-before-completion": {
