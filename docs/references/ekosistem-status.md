@@ -56,7 +56,7 @@ Niumination/
 ├── Belum disentuh/
 └── projects/                          ← 16 dirs
     ├── audit-ti-at/                    ← Vercel ✅
-    ├── Niu-Flow/                      ← JCode bridge
+    ├── Niu-Flow/                      ← P2P bridge
     ├── tedeo-kanban/                   ← 95% ✅ Vercel
     ├── Ultra/                         ← Puppeteer ✅ GitHub
     ├── cc-acehtengah/                 ← Next.js + Prisma
@@ -101,7 +101,7 @@ Niumination/
 |---------|-------|------|--------|--------|
 | **TEDEO** | Express/React/PostgreSQL | `8c0f6a0` | ✅ SSH | 🔴 **Remote only — butuh VPS** |
 || **tedeo-kanban** | Vite/React/Zustand | `a6535d4` | ✅ SSH | 🟡 95% — ✅ Vercel |
-| **Niu-Flow** | Python/JCode | `0a52845` | ✅ SSH | 🟡 90% |
+| **Niu-Flow** | Python | `0a52845` | ✅ SSH | 🟡 90% |
 | **Flame-ADE** | Tauri 2/Rust | `ba9101c` | ✅ SSH | 🟡 v1.3.0 |
 | **cc-acehtengah** | Next.js + Prisma | `4b96598` | ✅ SSH | 🟢 Phase 2-3 |
 | **didong-code** | Electron/React | `100a14d` | ✅ SSH | 🟢 Active |

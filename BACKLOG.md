@@ -46,7 +46,7 @@ Desktop/Niumination/
 
 **Data source:** `kanban.db` + filesystem audit
 **Board:** Niumination Ecosystem
-**Status:** 13 apps, 6 services, 5 sites, 4 desktop, 4 agents, 3 labs, 7 sandbox, 2 archived, **70 skills**
+**Status:** 13 apps, 6 services, 5 sites, 4 desktop, 3 agents, 2 labs, 5 sandbox, 6 archived, **70 skills**
 
 ### 🏭 apps/ — 13 Proyek Production
 
@@ -62,7 +62,7 @@ Desktop/Niumination/
 | **mac-web-dashboard** | ✅ Done | GitHub | 2026-08-18 | v1.0.0 |
 | **arch-web-dashboard** | ✅ Done | GitHub | 2026-08-18 | v1.0.0 |
 | **ai-file-manager-android** | 🟢 Active | Device | 2026-08-10 | Published & tested |
-| **ai-first-os** | ⚪ Minor | GitHub | 2026-06-27 | Build kit |
+| **ai-first-os** | ⚪ Minor | GitHub | 2026-06-27 | Build kit — AGENTS.md missing |
 | **Niumination** (profile) | ⚪ Minor | GitHub | **2026-08-26** | Animated terminal README — live |
 | **CC.Switch** | 🟢 **Active** | GitHub | 2026-08-07 | Tauri 2 multi-CLI |
 | **pabrik-aplikasi-gas** | 🟢 **Active** | Google Apps Script | **2026-08-27** | Pabrik Aplikasi GAS — Pilot 1: Inventaris Aset TI LIVE (v3). Repo mandiri: Niumination/pabrik-aplikasi-gas |
@@ -125,7 +125,7 @@ Desktop/Niumination/
 | **niumination-workspace** | P3 | ⏸️ Stale | Next.js 16 |
 | **eKinerja-AfrizalMunthe** | ⚪ Minor | 🟢 Active | Bukti dukung eKinerja Sem 1 2026 — 🔒 private repo |
 
-### 🧪 sandbox/ — 7 Dormant (ex-incubator)
+### 🧪 sandbox/ — 5 Dormant (ex-incubator)
 
 | Proyek | Last Activity | Alasan |
 |--------|:------------:|--------|
@@ -217,7 +217,7 @@ sites/                     5   1.3 GB   Frontend apps
 desktop/                   4   949 MB   Native apps
 agents/                    4   33 MB    AI agents + profile + characters
 labs/                      3   1.2 GB   Experiments
-sandbox/                   7   600 MB   Dormant (ex-incubator)
+sandbox/                   5   400 MB   Dormant (ex-incubator)
 archive/projects/          2   837 MB   Archived (niuterm, terax-ai)
 docs/                     24   240 KB   Documentation (merged from docs/dox/reports)
 scripts/                  21   128 KB   Automation scripts
