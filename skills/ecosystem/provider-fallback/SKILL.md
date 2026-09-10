@@ -8,6 +8,10 @@ tags: [provider, fallback, troubleshooting, configuration]
 
 # Provider Fallback Strategy
 
+## Current 9router Model Config
+
+For the live verified model mapping, fallback chain, channel overrides, and probe methodology, see **`9router-model-mapping`**. That skill is the authoritative source for Hermes↔9router configuration.
+
 ## Purpose
 When primary LLM provider fails (invalid token, unauthorized, empty key), automatically fallback to working providers.
 
