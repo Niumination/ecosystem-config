@@ -87,8 +87,9 @@ Desktop/Niumination/
 || **TEDEO-Kanban** | P2 | 🟡 95% | 2026-08-18 | Vite/React/Zustand |
 || **niu-dash-fullstack** | P3 | ⏸️ Stale | 2026-07-30 | Next.js 16 |
 || **niu-kanban-dash** | P3 | ⏸️ | 2026-08-18 | Vite/React |
-|| **AuditTI-AT** | P3 | ✅ Live | 2026-08-13 | GH Pages |
-|| **spatial-vision** | P3 | 🟢 Active | 2026-08-18 | Rust/WASM 3D vision |
+||| **AuditTI-AT** | P3 | ✅ Live | 2026-08-13 | GH Pages |
+||| **landing-web-id** | P3 🆕 | ⚪ Ready | 2026-08-30 | Landing page Bahasa Indonesia — niumination.web.id — Vercel deploy ready |
+||| **spatial-vision** | P3 | 🟢 Active | 2026-08-18 | Rust/WASM 3D vision |
 
 
 ### 🆕 apps/ — Newly tracked
