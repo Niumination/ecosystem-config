@@ -25,7 +25,7 @@ Bank Pusat (skills/<domain>/<skill>/)  ← source of truth
 skills/manifest.json  (SHA-256 per file + bundleHash per skill)
   │
   ▼  sync-to-agents.sh (rsync -a -u seluruh folder)
-  ├── ~/.jcode/skills/<skill>/          (flat)
+  ├── ~/.hermes/skills/<skill>/          (flat)
   ├── ~/.hermes/skills/<domain>/<skill>/ (domain)
   └── /Volumes/HermesAgent/.../skills/<domain>/<skill>/ (domain, USB)
         └── skills-lock.json per target (source + bundleHash + syncedAt)
@@ -42,8 +42,8 @@ python3 scripts/skill-manifest.py
 # Verifikasi bank vs manifest (up-eco Phase 6d memakai ini)
 python3 scripts/skill-manifest.py --check
 
-# Verifikasi salinan target (Jcode flat; Hermes/USB domain!)
-python3 scripts/skill-manifest.py --verify-target ~/.jcode/skills --structure flat
+# Verifikasi salinan target (Hermes/USB domain!)
+python3 scripts/skill-manifest.py --verify-target ~/.hermes/skills --structure flat
 python3 scripts/skill-manifest.py --verify-target ~/.hermes/skills --structure domain
 
 # Tulis lockfile di target
@@ -100,7 +100,7 @@ Berbeda dari adopsi eksternal — sumbernya HOME aktif (`/Volumes/HermesAgent/He
 
 - **`_get_home()`-style path resolution (MC skill_monitor)**: cek folder **berisi** (`Desktop/Niumination/skills`), BUKAN folder induk (`Desktop/Niumination`) — HOME cache Hermes punya folder induk KOSONG yang menyesatkan → `_scan_skill_bank()` = 0 → puluhan conflict palsu "NOT in bank pusat". Same bug class in sync scripts & manifest resolvers.
 - **Manifest basi**: file diedit manual tanpa regenerate → `--check` FAIL. Regenerate setelah setiap perubahan bank.
-- **Jcode flat vs Hermes/USB domain**: `--structure` salah → seluruh skill di-flag hilang. Jcode = flat, sisanya = domain.
+- `--structure` salah → seluruh skill di-flag hilang.
 - **rsync lintas volume (USB)**: normal copy, bukan symlink — jangan pakai `--delete` (non-destruktif).
 
 ## Referensi

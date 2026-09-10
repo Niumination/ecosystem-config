@@ -18,17 +18,17 @@ version: 2.0.0
 - Kerja pada `sync-to-agents.sh`, `skills/manifest.json`, atau audit konten skill
 - `/up-eco` melaporkan masalah integritas/kelengkapan skill bank
 - Adopsi pola manajemen skill dari tool lain (autoskills, superpowers, dll.)
-- Verifikasi bahwa skill di agent target (Jcode/Hermes/USB) sama dengan bank pusat
+- Verifikasi bahwa skill di agent target (Hermes/USB) sama dengan bank pusat
 
 ## Konteks
 - **Bank pusat** (single source of truth): `~/Desktop/Niumination/skills/` — struktur `<domain>/<skill-name>/`
-- **Sync**: `skills/sync-to-agents.sh` → `~/.jcode/skills/` (flat), `~/.hermes/skills/`, `/Volumes/HermesAgent/HermesAgentUSB/data/skills/` (cron 6 jam) + update registry di AGENTS.md
+- **Sync**: `skills/sync-to-agents.sh` → `~/.hermes/skills/`, `/Volumes/HermesAgent/HermesAgentUSB/data/skills/` (cron 6 jam) + update registry di AGENTS.md
 - **Checker**: `scripts/up-eco.sh` Phase 6 (frontmatter + INDEX) & Phase 7 (sync status)
 - Bank terukur (manifest.json): 68 skill, 348 file (per 2026-08-21); 8 skill punya file pendukung (impeccable 152, ui-ux-pro-max 35, document-content-pipeline 9, plan-compliance-audit 6, pemdi-evidence-management 6, gdpr-compliance 5, compliance-checklist-dashboard 3, agent-reach 2)
 
 ## ✅ Fix (2026-08-16): sync SELURUH folder skill
 `sync-to-agents.sh` sebelumnya `cp` SKILL.md saja — references/scripts/data TIDAK tersinkron (8 skill terpotong). Sudah diperbaiki: `sync_target()` memakai `rsync -a -u` seluruh folder skill (non-destruktif, file target lebih baru TIDAK ditimpa; fallback `cp -R -u`), lalu verify hash + tulis `skills-lock.json` per target.
-- Struktur target: **Jcode = flat** (`<dir>/<skill>/`), **Hermes & USB = domain** (`<dir>/<domain>/<skill>/`) — `--structure` di skill-manifest.py WAJIB sesuai, salah struktur → semua skill di-flag hilang
+- Struktur target: **Hermes & USB = domain** (`<dir>/<domain>/<skill>/`) — `--structure` di skill-manifest.py WAJIB sesuai, salah struktur → semua skill di-flag hilang
 - Saat memverifikasi sync: cek KELENGKAPAN folder (hash), bukan hanya keberadaan SKILL.md
 - Bukti sync OK: `diff -r` bank vs target identik — beda hanya file meta (INDEX.md, .gitignore, .bundled_manifest, skills-lock.json)
 

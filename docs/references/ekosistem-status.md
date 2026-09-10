@@ -56,7 +56,7 @@ Niumination/
 ├── Belum disentuh/
 └── projects/                          ← 16 dirs
     ├── audit-ti-at/                    ← Vercel ✅
-    ├── Niu-Flow/                      ← P2P bridge
+    ├── Niu-Flow*                   ← Remote only
     ├── tedeo-kanban/                   ← 95% ✅ Vercel
     ├── Ultra/                         ← Puppeteer ✅ GitHub
     ├── cc-acehtengah/                 ← Next.js + Prisma
@@ -133,7 +133,7 @@ Niumination/
 | Job | Schedule | Last Run | Status |
 |-----|----------|----------|--------|
 | **memory-checkpoint** (cron Hermes) | Setiap 6 jam | 5 Agu 21:42 | ✅ OK — backup BACKLOG.md (dedup + retensi 14) |
-| **sync-to-agents** (crontab macOS) | Setiap 6 jam | 5 Agu 12:00 | ✅ OK — sync skill bank ke Jcode + Hermes + USB |
+| **sync-to-agents** (crontab macOS) | Setiap 6 jam | 5 Agu 12:00 | ✅ OK — sync skill bank ke Hermes + USB |
 | **update-activity** (GH Actions) | Harian 08:00 UTC | — | ✅ Cloud |
 | **generate-readme** (GH Actions) | Senin 09:00 UTC | — | ✅ Cloud |
 

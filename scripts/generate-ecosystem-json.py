@@ -122,7 +122,7 @@ data = {
             "priority": "P2",
             "git": "Niumination/Niu-Flow",
             "dox": True,
-            "desc": "JCode bridge — pipeline paralel, 5 commits",
+            "desc": "Niumination ecosystem — parallel pipeline, 5 commits",
         },
         {
             "name": "niu-dash",

@@ -60,7 +60,7 @@ python3 scripts/skill-manifest.py          # regenerate (jumlah skill/file naik)
 python3 scripts/skill-manifest.py --check  # 0 mismatch
 bash skills/sync-to-agents.sh              # 3 target harus "verifikasi hash LULUS"
 ```
-Catatan: verifikasi target Jcode butuh `--structure flat` otomatis dari script sync; manual check Hermes/USB pakai `--structure domain`.
+Catatan: `--structure domain` wajib digunakan untuk verifikasi target Hermes/USB via skill-manifest.py.
 
 ## 6. Commit + push
 

@@ -8,12 +8,12 @@
 
 ```
 Desktop/Niumination/
-├── apps/               🏭 13 proyek — deployed & battle-tested
+├── apps/               🏭 15 proyek — deployed & battle-tested
 ├── services/           🔧 6 proyek — backend & engines
 ├── sites/              🌐 5 proyek — frontend apps
 ├── desktop/            🖥️ 4 proyek — native apps
-├── agents/             🤖 4 proyek — AI agents + characters + profile
-├── labs/               🔬 3 proyek — experiments
+├── agents/             🤖 3 proyek — AI agents + characters + profile
+├── labs/               🔬 2 proyek — experiments
 ├── sandbox/            🧪 7 proyek — dormant (ex-incubator)
 ├── archive/projects/   📦 2 proyek — archived (niuterm, terax-ai)
 ├── docs/               📚 Dokumentasi terpadu (reference/, reports/, notebooklm/, dox/)
@@ -46,7 +46,7 @@ Desktop/Niumination/
 
 **Data source:** `kanban.db` + filesystem audit
 **Board:** Niumination Ecosystem
-**Status:** 13 apps, 6 services, 5 sites, 4 desktop, 3 agents, 2 labs, 5 sandbox, 6 archived, **70 skills**
+**Status:** 15 apps, 9 services, 5 sites, 4 desktop, 3 agents, 2 labs, 5 sandbox, 6 archived, **70 skills**
 
 ### 🏭 apps/ — 13 Proyek Production
 
@@ -64,15 +64,15 @@ Desktop/Niumination/
 | **ai-file-manager-android** | 🟢 Active | Device | 2026-08-10 | Published & tested |
 | **ai-first-os** | ⚪ Minor | GitHub | 2026-06-27 | Build kit — AGENTS.md missing |
 | **Niumination** (profile) | ⚪ Minor | GitHub | **2026-08-26** | Animated terminal README — live |
-| **CC.Switch** | 🟢 **Active** | GitHub | 2026-08-07 | Tauri 2 multi-CLI |
-| **pabrik-aplikasi-gas** | 🟢 **Active** | Google Apps Script | **2026-08-27** | Pabrik Aplikasi GAS — Pilot 1: Inventaris Aset TI LIVE (v3). Repo mandiri: Niumination/pabrik-aplikasi-gas |
+| **CC.Switch** | 🟢 **Active** | GitHub | 2026-08-30 | Tauri 2 multi-CLI |
+| **pabrik-aplikasi-gas** | 🟢 **Active** | Google Apps Script | **2026-09-07** | Pabrik Aplikasi GAS — Pilot 1: Inventaris Aset TI LIVE (v3). Repo mandiri: Niumination/pabrik-aplikasi-gas |
 
 ### 🔧 services/ — 6 Backend & API
 
 | Proyek | Priority | Status | Aktivitas Terakhir | Notes |
 |--------|:--------:|:------:|:------------------:|-------|
 | **cc-acehtengah** | **P2 ⬆** | 🟢 **Active** | **2026-08-29** | DTSEN Multi-Source → AI Smart Query (sumber offline BAPPEDA Des 2025 aktif), EWS, KPI Pimpinan, Laporan Eksekutif. Model AI: huancheng auto |
-| **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **2026-08-27** | v3.0.0 → Redesign APEX-MC (orb golden ring + particle core + reasoning graph + overview HUD + status bar; vanilla JS/CSS, reduced-motion safe). PR#10 merged, PR#11 apex5 draft. MC OFF (localhost mati per "matikan localhost & update dokumentasi"). Swarm orchestrator |
+| **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **2026-09-07** | v3.0.0 → Redesign APEX-MC (orb golden ring + particle core + reasoning graph + overview HUD + status bar; vanilla JS/CSS, reduced-motion safe). PR#10 merged, PR#11 apex5 draft. MC OFF (localhost mati per "matikan localhost & update dokumentasi"). Swarm orchestrator |
 | **niu-cast** | P2 | 🟢 **Active** | 2026-07-21 | v3.6.0 — Mac Connect Bridge |
 | **Niu-Flow** | P2 | 🟢 **Remote only** | 2026-07-28 | github.com/Niumination/niu-flow |
 | **latticesend** | P3 | 🟢 Active | 2026-08-10 | P2P file transfer — ✅ sudah punya remote |
@@ -107,32 +107,32 @@ Desktop/Niumination/
 | **joy-connect-for-mac** | P2 🆕 | 🟢 Active | 2026-08-03 | Swift/ADB bridge |
 | **x-downloader** | P3 | ✅ Phase 3 | 2026-07-15 | Tauri 2 |
 
-### 🤖 agents/ — 4 AI & Automation
+### 🤖 agents/ — 3 AI & Automation
 
 | Proyek | Priority | Status | Notes |
 |--------|:--------:|:------:|-------|
 | **profile** (`Niumination/Niumination`) | ⚪ Minor | 🟢 Live | Animated terminal README |
 | **orchestrator** | P3 | ⏸️ Stale | Python multi-agent |
-| **Ultra** | P3 | ⏸️ Stale | Puppeteer automation |
+| ~~**Ultra**~~ | **Archived** | → inactive-2026-09 | Puppeteer automation |
 | **characters/** | ⚪ | 🟢 Active | 4 herdr agents (arsitek, pembangun, pengawas, penjaga) |
 | **_shared/** | ⚪ | 🟢 Active | Incident & path registry (INCIDENT.md, PATHS.md) |
 
-### 🔬 labs/ — 3 Experiments
+### 🔬 labs/ — 2 Experiments
 
 | Proyek | Priority | Status | Notes |
 |--------|:--------:|:------:|-------|
 | **maze-3d** | P3 | ✅ Live | GH Pages |
-| **niumination-workspace** | P3 | ⏸️ Stale | Next.js 16 |
+| ~~**niumination-workspace**~~ | **Archived** | → inactive-2026-09 | Next.js 16 |
 | **eKinerja-AfrizalMunthe** | ⚪ Minor | 🟢 Active | Bukti dukung eKinerja Sem 1 2026 — 🔒 private repo |
 
 ### 🧪 sandbox/ — 5 Dormant (ex-incubator)
 
 | Proyek | Last Activity | Alasan |
 |--------|:------------:|--------|
-| niu-studio | Stale 62d | Dual lockfile |
+| ~~niu-studio~~ | **Archived** | → inactive-2026-09 |
 | niude | Stale 54d | Low priority |
 | niutui | Stale 36d | Low priority |
-| zen | Stale 66d | acehtengah-web/ |
+| ~~zen~~ | **Archived** | → inactive-2026-09 |
 | aistudio-google | Stale | Game files only |
 | arena.ai | Stale | Eksperimen |
 | x-downloader-backup | Stale 46d | Backup of x-downloader |
