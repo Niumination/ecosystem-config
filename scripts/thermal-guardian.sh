@@ -35,7 +35,6 @@ custom-server\.js:8
 9router:8
 mcp-server:6
 opencode:4
-_jcode-bin:2"
 
 renice_name(){
   pat="$1"; lvl="$2"
@@ -80,7 +79,7 @@ while :; do
     log "HOT ${t}C"; apply_rules
   else
     cont_batch
-    for pid in $(pgrep -f "opencode|_jcode-bin" 2>/dev/null); do
+    for pid in $(pgrep -f "opencode" 2>/dev/null); do
       cur=$(ps -o nice= -p "$pid" 2>/dev/null | tr -d ' ')
       [ -n "$cur" ] && [ "$cur" -gt 0 ] 2>/dev/null && renice 0 -p "$pid" >/dev/null 2>&1
     done

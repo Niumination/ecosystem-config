@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # =============================================================================
-# trio-watch.sh — Read-only Trio Awareness (Hermes · JCode · OpenCode)
+# trio-watch.sh — Read-only Trio Awareness (Hermes · OpenCode)
 # =============================================================================
-# Pemanggil: up-eco.sh --from <hermes|jcode|opencode>
+# Pemanggil: up-eco.sh --from <hermes|opencode>
 # Tujuan : Memberi tahu 2 tool lain tanpa kontrol/span/delegasi apa pun.
 # Output : scripts/.trio-status.json  (overwrite tiap run, shared memory)
 # Batasan: READ-ONLY. Tidak mutate core, tidak spawn sub-agent, tidak ganti model.
@@ -87,121 +87,16 @@ def hermes_status():
         pass
     return s
 
-# ── JCode ────────────────────────────────────────────────────────────────────
+# ── OpenCode (formerly JCode) ─────────────────────────────────────────
 def jcode_status():
-    s = {"sessions": 0, "active_sessions": 0, "total_sessions": 0,
-         "last_session": "", "pid": "", "git_dirty": []}
-    cache = os.path.expandvars("$HOME/.jcode/cache/session-picker-list-v2.json")
-    sessions_dir = os.path.expandvars("$HOME/.jcode/sessions")
-    goals_dir = os.path.expandvars("$HOME/.jcode/goals")
-    import subprocess as _sp
-    import time as _time
-    import glob as _glob
-
-    # proses hidup? (server daemon = PID hidup = JCode siap pakai)
-    pgrep = _sp.run(["pgrep", "-x", "jcode"], capture_output=True, text=True)
-    pids = [p for p in pgrep.stdout.strip().split("\n") if p]
-    s["pid"] = pids[0] if pids else ""
-    jcode_running = bool(pids)  # proses hidup = aktif
-
-    # ── aktivitas: pgrep hidup = aktif, scan session terbaru untuk ringkasan ──
-    active_sessions = 0
-    last_session_name = ""
-    live_summaries = []  # ringkasan aktivitas tiap session live
-    if jcode_running:
-        active_sessions = 1  # pgrep hidup = JCode siap pakai
-    if os.path.isdir(sessions_dir):
-        try:
-            json_files = [f for f in _glob.glob(f"{sessions_dir}/*.json") if os.path.isfile(f)]
-            json_files.sort(key=os.path.getmtime)
-            # ambil 3 file terbaru untuk ringkasan (live atau stale, asal ada)
-            for jf in reversed(json_files[-3:]):
-                try:
-                    d2 = json.load(open(jf))
-                    sn = d2.get("short_name") or d2.get("title", "")[:50]
-                    wdir = d2.get("working_dir", "")
-                    # 🎯 PRIMARY: compaction.summary_text
-                    summary = ""
-                    comp = d2.get("compaction", {})
-                    if isinstance(comp, dict):
-                        raw_summary = comp.get("summary_text", "")
-                        if raw_summary:
-                            summary = raw_summary.replace("**Context:** ", "").strip()[:120]
-                    # fallback: scan sampai ketemu user prompt asli
-                    if not summary and d2.get("messages"):
-                        for idx in range(min(5, len(d2["messages"]))):
-                            mb = d2["messages"][idx]
-                            if not isinstance(mb, dict): continue
-                            if mb.get("role") != "user": continue
-                            content = mb.get("content", "")
-                            if isinstance(content, list):
-                                for item in content:
-                                    if isinstance(item, dict) and item.get("type") == "text":
-                                        txt = item.get("text", "")
-                                        if txt and "system-reminder" not in txt:
-                                            summary = txt[:120]; break
-                                    elif isinstance(item, str) and item != "system-reminder":
-                                        summary = item[:120]; break
-                            elif isinstance(content, str) and "system-reminder" not in content:
-                                summary = content[:120]
-                            if summary: break
-                    # tambah project/repo jika ada di working_dir
-                    extra = ""
-                    if wdir and "services/" in wdir:
-                        import re as _re
-                        m = _re.search(r"services/([a-zA-Z0-9_-]+)", wdir)
-                        if m: extra = f"[{m.group(1)}]"
-                    if not summary and sn: summary = sn
-                    summary = f"{extra} {summary}".strip()[:90] if extra else summary[:90]
-                    live_summaries.append({"session": sn, "summary": summary})
-                    if not last_session_name:
-                        last_session_name = sn
-                except Exception:
-                    pass
-        except Exception:
-            pass
-    s["live_summaries"] = live_summaries
-
-    # ── total session dari cache ──
-    total_sessions = 0
-    if os.path.exists(cache):
-        try:
-            d = json.load(open(cache))
-            ext = d.get("external_sessions", [])
-            sg = d.get("server_groups", [])
-            orphans = d.get("orphan_sessions", [])
-            if not isinstance(ext, list): ext = []
-            if not isinstance(sg, list): sg = []
-            if not isinstance(orphans, list): orphans = []
-            total_sessions = len(orphans + ext + [ss for grp in sg for ss in grp.get("sessions", [])])
-        except Exception:
-            pass
-
-    # ── goals count ──
-    s["goals_count"] = 0
-    if os.path.isdir(goals_dir):
-        try:
-            s["goals_count"] = len(os.listdir(goals_dir))
-        except Exception:
-            pass
-
-    s["active_sessions"] = active_sessions
-    s["total_sessions"] = total_sessions
-    s["sessions"] = active_sessions
-    s["last_session"] = last_session_name or "idle"
-    s["generated_at"] = str(_time.strftime("%Y-%m-%dT%H:%M:%SZ", _time.gmtime(os.path.getmtime(cache)))) if os.path.exists(cache) else ""
-    # git dirty
-    try:
-        out = subprocess.run(["git", "-C", nium, "status", "--porcelain"],
-                             capture_output=True, text=True, timeout=10).stdout
-        if out.strip():
-            s["git_dirty"] = [l for l in out.strip().splitlines()[:5]]
-    except Exception:
-        pass
-    return s
+    """JCode compatibility wrapper — JCode no longer integrated in ecosystem.
+    Returns static zero state; historical session data preserved in ~/.jcode/."""
+    return {"sessions": 0, "active_sessions": 0, "total_sessions": 0,
+            "last_session": "", "pid": "", "git_dirty": [],
+            "note": "JCode no longer integrated — preserved for reference"}
 
 
-# ── OpenCode ─────────────────────────────────────────────────────────────────
+# ── OpenCode ─────────────────────────────────────────────────────────
 def opencode_status():
     s = {"sessions": 0, "active_sessions": 0, "last_session": "", "git_dirty": []}
     sessions_total = 0
@@ -256,8 +151,8 @@ def opencode_status():
     return s
 
 tools["hermes"]   = hermes_status()
-tools["jcode"]    = jcode_status()
 tools["opencode"] = opencode_status()
+tools.pop("jcode", None)  # JCode no longer integrated in ecosystem
 
 # ── Detector konflik (tanpa window) ─────────────────────────────────────────
 conflicts = []
@@ -279,12 +174,11 @@ def recent_tool_activity(repo):
             if len(parts) >= 2:
                 author = parts[0].lower()
                 email = parts[1].lower()
-                if "jcode" in author or "jcode" in email:
-                    found.add("jcode")
                 if "opencode" in author or "open" in email:
                     found.add("opencode")
                 if "hermes" in author or "hermes" in email:
                     found.add("hermes")
+                # JCode author detection removed — no longer integrated
     except Exception:
         pass
     return found
@@ -295,6 +189,7 @@ for repo in [nium,
              f"{nium}/services/niu-mission-control"]:
     if os.path.isdir(repo) and os.path.isdir(f"{repo}/.git"):
         active = recent_tool_activity(repo)
+        active.discard("jcode")  # JCode no longer integrated
         if len(active) >= 2:
             conflicts.append({
                 "type": "overlap",
@@ -347,8 +242,8 @@ for name, data in tools.items():
         prefix = "  YOU"
     elif name == "hermes":
         prefix = "  🤖 Hermes"
-    elif name == "jcode":
-        prefix = "  🟢 JCode"
+    elif name == "opencode":
+        prefix = "  🟢 OpenCode"
     else:
         prefix = "  🟣 OpenCode"
     sess = data.get("sessions", 0)
