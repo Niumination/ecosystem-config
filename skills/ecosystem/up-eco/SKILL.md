@@ -79,16 +79,24 @@ After presenting the report, ask the user (if not already instructed):
 - `/up-eco --fix` → run script + execute all non-destructive fixes (commit, push, register projects)
 - `/up-eco --dry-run` → run script without output colors (for cron/automation)
 
-## Current-State Addendum (2026-08-30)
+## Current-State Addendum (2026-09-10)
 From a real `/up-eco` run on macOS, these additional checks and fixes are now part of the standard workflow:
 
 - **SOUL.md style section:** `up-eco` now checks for a `## Gaya jawab` section in `~/.hermes/SOUL.md`. If missing, add a concise 3-5 line section covering: answer style, language default, structure preference.
 - **Hermes display config:** Verify `display.compact=true`, `agent.task_completion_guidance=false`, `display.turn_completion_explainer=false`, `display.personality=""`. These suppress verbose Telegram output.
-- **SOUL/dotfiles drift check:** `up-eco` compares SHA-256 of `~/.hermes/SOUL.md` vs `dotfiles/zaryu-terminal-dotfiles/hermes/SOUL.md`. If they differ, or if the symlink target is missing, report a drift insiden and recommend repair before any session restart.
+- **SOUL/dotfiles drift check:** `up-eco` compares SHA-256 of `~/.hermes/SOUL.md` vs `dotfiles/zaryu-terminal-dotfiles/hermes/SOUL.md`. If they differ, or if the symlink target is missing, report a drift incident and recommend repair before any session restart.
 - **`.gitignore` hygiene:** Ensure root `.gitignore` covers runtime/local artifacts: `logs/`, `.vscode/`, `.9router-state.json`, `skills-lock.json`, `.sync-log`, `.git-backup-*/`. Missing entries cause `up-eco` to flag them as unknown folders.
-- **Skill sync mismatch:** After `sync-to-agents.sh`, Hermes may show 4 mismatch skills (`hermes-provider-config`, `niu-mission-control-ops`, `simplify-code`, `telegram-router-orchestration`) even when Jcode is clean. This is a known non-fatal divergence; do not block on it.
+- **Skill sync mismatch:** After `sync-to-agents.sh`, Hermes may show mismatch skills even when Jcode is clean. Known non-fatal divergence; do not block on it.
+- **Mission Control v3.0 (Next.js-only):** Legacy `server.py` (FastAPI port 5200) DELETED. Modern MC = `services/niu-mission-control/apex-ui/` (Next.js 15 + React 19). Dev: `npm run dev` (port 3000). Production: `npm run build && npm start`. `HTTP 404` on `/api/*` while UI returns `HTTP 200` is NORMAL — Next.js frontend only, no FastAPI backend. Not a failure.
 - **`ROOT: unbound variable` error:** If `scripts/up-eco.sh` ends with `ROOT: unbound variable`, check line ~790 for a shell variable expansion issue. This is a script bug, not an ecosystem bug.
-- **Mission Control Skill API:** `HTTP 404` on `/api/*` while dashboard UI returns `HTTP 200` is normal if only the Next.js frontend runs without the FastAPI backend process. Not a failure.
+
+## MC Architecture Transition (2026-09-10)
+**Legacy (deleted):** `services/niu-mission-control/server.py` (FastAPI port 5200)
+**Current (v3.0):** `services/niu-mission-control/apex-ui/` (Next.js 15 + React 19, port 3000 dev)
+- `build_unified.py` → generates `index.html` single-file dashboard
+- `server.py` at root is legacy snapshot only (`legacy-ui` branch)
+- Health check: `curl -s http://localhost:3000/` → HTTP 200
+- Do NOT reference port 5200 as active — it was removed
 
 ## Known Categories
 ```

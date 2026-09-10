@@ -117,9 +117,10 @@ typeof loadCostData   // "undefined" = handler belum pernah dibangun
 | 7 - Ops | ✅ | Dockerfile + docker-compose.yml + CI workflow |
 | 8 - Migrasi | ✅ | Script migrasi data (JSON→SQLite), cutover checklist |
 
-**🔴 PITFALL REDESIGN (V3):**
+## 🔴 PITFALL REDESIGN (V3):
 - **Phantom Completion**: Backend v3 (routers/services) sering dikira redesign visual. Pisahkan backend (Phase 2-4) dengan frontend (Phase 5). Verifikasi via screenshot/DOM (bukan API metrics).
 - **f-string `build_unified.py`**: Escape JS `{{` sebagai `{{{{` dan `}}` sebagai `}}}}`.
+- **MC v3 = Next.js-only**: Tidak ada FastAPI `server.py` lagi. Jangan cari port 5200 — MC sekarang di port 3000 (dev) atau produksi via `npm start`. Legacy `server.py` hanya di `legacy-ui` branch.
 
 ## Verify visual TANPA vision model (DOM audit)
 
@@ -129,16 +130,17 @@ Saat `browser_vision` gagal (`503 model_not_found` — auxiliary vision misconfi
 
 ## Server ops
 
-**v3 (Backend Factory) — Entry Point Baru:**
-- Start: `cd services/niu-mission-control && venv/bin/python backend/run.py`
-- Cek: `curl -s localhost:5200/health` → `{"status":"ok","version":"3.0.0"}`
-- Routes: `/` (unified), `/orb` (standalone ORB), `/dashboard` (legacy)
-- Tests: `venv/bin/pytest tests/ -q` (44 tests) + `venv/bin/pytest backend/tests/ -q` (11 tests) = **55 total**
-- Dashboard regenerate: `cd dashboard && python3 build_unified.py`
+**v3 (Next.js — CURRENT):**
+- Start: `cd services/niu-mission-control/apex-ui && npm run dev`
+- Cek: `curl -s http://localhost:3000/` → `HTTP 200`
+- Dashboard: `http://localhost:3000/` — unified single-page app
+- Build: `npm run build && npm start`
+- Scripts: `dashboard/build_unified.py`, `dashboard/app.js`, `dashboard/styles.css`
 
-**v2 (Legacy server.py)** — Masih ada tapi tidak memuat v3 routers:
-- Start: `cd services/niu-mission-control && venv/bin/python server.py`
-- Port 5200, tapi endpoint `/api/mc/*` beda implementasi
+**v2 (Legacy server.py — DELETED 2026-09-10):**
+- `server.py` sudah dihapus dari trunk, tersisa di `legacy-ui` branch saja
+- Port 5200 TIDAK aktif lagi — jangan gunakan sebagai acuan kesehatan MC
+- API routes v3 sekarang di Next.js Server Routes (`/api/*`)
 
 ## API v3 Compatibility Notes (Phase 5B)
 
