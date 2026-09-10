@@ -84,6 +84,7 @@ From a real `/up-eco` run on macOS, these additional checks and fixes are now pa
 
 - **SOUL.md style section:** `up-eco` now checks for a `## Gaya jawab` section in `~/.hermes/SOUL.md`. If missing, add a concise 3-5 line section covering: answer style, language default, structure preference.
 - **Hermes display config:** Verify `display.compact=true`, `agent.task_completion_guidance=false`, `display.turn_completion_explainer=false`, `display.personality=""`. These suppress verbose Telegram output.
+- **SOUL/dotfiles drift check:** `up-eco` compares SHA-256 of `~/.hermes/SOUL.md` vs `dotfiles/zaryu-terminal-dotfiles/hermes/SOUL.md`. If they differ, or if the symlink target is missing, report a drift insiden and recommend repair before any session restart.
 - **`.gitignore` hygiene:** Ensure root `.gitignore` covers runtime/local artifacts: `logs/`, `.vscode/`, `.9router-state.json`, `skills-lock.json`, `.sync-log`, `.git-backup-*/`. Missing entries cause `up-eco` to flag them as unknown folders.
 - **Skill sync mismatch:** After `sync-to-agents.sh`, Hermes may show 4 mismatch skills (`hermes-provider-config`, `niu-mission-control-ops`, `simplify-code`, `telegram-router-orchestration`) even when Jcode is clean. This is a known non-fatal divergence; do not block on it.
 - **`ROOT: unbound variable` error:** If `scripts/up-eco.sh` ends with `ROOT: unbound variable`, check line ~790 for a shell variable expansion issue. This is a script bug, not an ecosystem bug.

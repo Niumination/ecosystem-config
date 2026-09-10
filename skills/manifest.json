@@ -1,6 +1,6 @@
 {
   "fileCount": 353,
-  "generatedAt": "2026-09-07T08:07:42.336590+00:00",
+  "generatedAt": "2026-09-09T09:46:22.235970+00:00",
   "skillCount": 70,
   "skills": {
     "accessibility": {
@@ -182,10 +182,10 @@
       }
     },
     "hermes-provider-config": {
-      "bundleHash": "426203a4352e111163af270915419d38e247d83cb1fa1f5d50917d677d7b1eb3",
+      "bundleHash": "29a3cca4ca2d6a06f881a65a6c2bf90c8cf758741d41b1987a9e93edf3dc3f79",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "d964af2450a8056de8249b355ec2467d2175efd23814323e7c63fe7d8622c2c3",
+        "SKILL.md": "62345b02f9edd9d58fe46c752402ae4c5270e22cb6c0dd7ac62afb773d738b3f",
         "references/9router-gateway-admin.md": "d4b718f0ad1b63419c2248d0d4d3105a441065dbcd57915cc1ee3a69c8d1bac5",
         "references/juan-router-integration.md": "737c490e199201370c75d62c2f51693f5242b41ea79228fe49636e2a7df64b42",
         "references/model-catalog-structure.md": "ba5b28126411702689a793b6e4cea6433ac3841e2e0c37580d7041ec936d1f4d",
@@ -537,10 +537,10 @@
       }
     },
     "provider-fallback": {
-      "bundleHash": "d2521b4adbff9c48b70611d910d1fe88927f6c9eb959e358ea80ef1e940cac55",
+      "bundleHash": "bdccc2ce9294111ca35e7fca19a1a9a988cb8bd3527d22d7ebbf3fb950201b17",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "4d7a284ed40b530fffce931395771230b4f8070bb602c5244993be9a8fc9800e",
+        "SKILL.md": "192b460081e9aae66defa4491c57079185538b847e6ffcd6d80318c0ca27d71a",
         "references/agentrouter-investigation-2026-08-13.md": "c78730422f289626372e7574c9b2b17ab068fb4d102130c8c14ffaf4cf2742a1",
         "references/fallback-chain-selection-2026-08-13.md": "f2bb06698c54e87daacd02524fedb6224223c0daf2160fa2dc74518e5e27e8fb",
         "references/openrouter-free-tier.md": "82c0abfadaf673ff48a0f80db515005fe4ff3c123811a34f59f4cb1cebf9daaf",
@@ -733,10 +733,10 @@
       }
     },
     "up-eco": {
-      "bundleHash": "b03eb7dfd893c89a8f499dd4f3f21b6d3e3ce827e738617c745d8cb88c8c6cfc",
+      "bundleHash": "281e30247b76e931d607698b951fbaaae16f4ca0f70fb4950065ec7dc3d42c8a",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "d89f33a5e9e27a18c1f9b08f5e5ae3cf44924573f479c3893d4c0869fc36a739"
+        "SKILL.md": "a69279b96254062e1f860822f2998af3fb6103ff87e1f03b9916624e22f627fa"
       }
     },
     "verification-before-completion": {
