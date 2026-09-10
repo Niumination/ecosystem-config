@@ -46,6 +46,8 @@ bash skills/sync-to-agents.sh          # real
 bash skills/sync-to-agents.sh --dry-run
 ```
 
+> **PATH NOTE:** `sync-to-agents.sh` hidup di `skills/sync-to-agents.sh` (BUKAN `scripts/`). `up-eco.sh` hidup di `scripts/up-eco.sh`. Jangan bingung — periksa `find` jika tidak yakin lokasinya.
+
 ## Sync Behavior (v3, 2026-08-16)
 - **SELURUH folder skill di-rsync** (`rsync -a -u`), bukan cuma SKILL.md — references/scripts/assets ikut. Sebelumnya hanya SKILL.md → 8 skill terpotong di target (impeccable 152 file, ui-ux-pro-max 35, dll). Jangan asumsikan target lengkap tanpa `--verify-target`.
 - **Non-destruktif by design**: `-u` (update) TIDAK menimpa file target yang lebih baru. Safety "copy/add only, never delete" dipertahankan.
@@ -76,7 +78,7 @@ mv "$rel" "$BACKUP/$rel"
 
 ## Pitfalls
 - **Patch skill yang di-sync dari bank → ditolak**: skill dengan `created_by=None` (bank-synced, mis. `up-eco`) menolak skill_manage patch. Backport perubahan ke Bank Pusat `~/Desktop/Niumination/skills/<domain>/<skill>/SKILL.md`, lalu sync.
-- **MC server mati diam-diam** (terbunuh saat session compact/restart) — up-eco lapor "MC tidak merespon di 5200". Verifikasi `curl -s localhost:5200/health` + `lsof -i :5200` dulu, restart `cd services/niu-mission-control && venv/bin/python server.py` (background).
+- **MC server mati diam-diam** (terbunuh saat session compact/restart) — up-eco lapor "MC tidak merespon di 5200". Verifikasi `curl -s localhost:5200/health` + `lsof -i :5200` dulu. Legacy `server.py` (FastAPI, port 5200) SUDAH DIHAPUS di v3.0 — server modern adalah Next.js di `services/niu-mission-control/apex-ui/`. Start: `cd services/niu-mission-control/apex-ui && npm run dev` (dev port 3000). Production: `npm run build && npm start`. Jika `/health` 404, cek apakah MC v3 Next.js sudah jalan di port 3000 atau legacy server.py masih dibutuhkan untuk API routes tertentu.
 - **Escape-drift saat patch bash heredoc** (sync-to-agents.sh, up-eco.sh): file berisi `\n` literal di heredoc Python sering gagal patch karena escape-drift (`\"`/`\\n`). Fix: patch kecil per baris tanpa backslash-escape, atau read_file dulu sebelum overwrite.
 - Manifest basi = false alarm: regenerate manifest sebelum `--check` setelah edit manual.
 
