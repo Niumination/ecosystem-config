@@ -86,3 +86,10 @@ logs/
 # IDE local
 .vscode/
 skills-lock.json
+archive/01-updates/
+archive/backup/
+archive/docs/
+archive/media-lib/
+archive/projects/
+archive/projects-scan.json
+archive/Belum disentuh/

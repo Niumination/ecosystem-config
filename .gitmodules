@@ -1,0 +1,12 @@
+[submodule "inactive-Ultra"]
+	path = inactive-2026-09/Ultra
+	url = file:///Users/zaryu/Desktop/Niumination/inactive-2026-09/Ultra
+[submodule "inactive-niu-studio"]
+	path = inactive-2026-09/niu-studio
+	url = file:///Users/zaryu/Desktop/Niumination/inactive-2026-09/niu-studio
+[submodule "inactive-zen"]
+	path = inactive-2026-09/zen
+	url = file:///Users/zaryu/Desktop/Niumination/inactive-2026-09/zen
+[submodule "inactive-niumination-workspace"]
+	path = inactive-2026-09/niumination-workspace
+	url = file:///Users/zaryu/Desktop/Niumination/inactive-2026-09/niumination-workspace
