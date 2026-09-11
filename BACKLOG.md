@@ -365,3 +365,9 @@ Ultra, AuditTI-AT, Niu-Flow, didong-code, x-downloader, flame-ade, niu-vermilion
 - [ACTIVE] **Rencana eksekusi 100% cc-acehtengah** — pakai `docs/EXECUTION-PLAN-100.md`. Urutan: PR-M00 (WP0.00 credential/PII) → PR-M0a (WP0.0 jiwa==keluarga) → PR-M0f (WP0.14 kunci 32 byte) → PR-M0g (WP0.15 Bapokting) → PR-M0h (WP0.16 normalisasi kecamatan) → PR-M0c (WP0.12 role/BNBA) → PR-M0d (WP0.13 tata kelola branch) → PR-M0e (WP0.5/0.3/0.1 gerbang mutu) → PR-M1 (WP1 semantic layer) → PR-M2 (WP2 router) → PR-M3a+PR-M3 (WP3 stat engine) → PR-M4 (WP4 rekonsiliasi) → PR-M5 (WP5 narasi) → PR-M6 (WP6 eval harness) → PR-M7 (WP7 hardening) → PR-M8 (deploy + doc). Setiap PR berdiri sendiri; jangan merge ke main sebelum PR-M00 + PR-M0a lolos.
 - [HOLD] **Jangan deploy production sebelum WP0.00 + WP0.0 selesai** — credential + PII + jiwa==keluarga adalah P0.
 - [PENDING] **Audit berkas `cc-acehtengah-v7.zip`** — 92 golden query + 73 audit test sudah diverifikasi. Sisa WP0–WP7 belum dijalankan.
+
+---
+
+## 🔴 Mendesak — 11 Sep 2026 — AI HackFest Batch 3: MATA (Hari-1/5)
+
+- [ACTIVE] **MATA × AI HackFest 2026 — sprint 11–15 Sep** — Watchdog akuntabilitas pengadaan (Python, rule engine D1–D6, dossier PDF). Lokasi: `labs/mata-aihackfest-2026/` (DOX proyek + sub-BACKLOG harian). Sumber: `~/Downloads/aihackfest.zip`. VPS dikelola owner via Kitty; Hermes tidak menyentuh VPS. Deadline karya: 15 Sep (VM dinonaktifkan pasca-batch). Detail harian: `labs/mata-aihackfest-2026/BACKLOG.md` @mata-aihackfest
