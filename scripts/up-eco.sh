@@ -484,7 +484,7 @@ check_skill_bank() {
   local index_skills=0
   while IFS= read -r line; do
     # Match table rows in domain tables: | **skill-name** |
-    if echo "$line" | grep -qE '^\| \*\*[a-z]' 2>/dev/null; then
+    if echo "$line" | grep -qE '^\| \*\*[^*]+\*\* \| ✅ Aktif \|' 2>/dev/null; then
       index_skills=$((index_skills + 1))
     fi
   done < "$INDEX_FILE"
