@@ -57,7 +57,8 @@
 || **niu-kanban-dash** | `sites/niu-kanban-dash/` | React 19, Vite, Tailwind v4 | `github.com/Niumination/niu-kanban-dash` | localhost:5199 | 24 Jun 2026 | ✅ **Pushed** |
 || **maze-3d** | `labs/maze-3d/` | HTML, JS | `github.com/Niumination/Maze-3D-Game---Web-Based` | 🟢 GH Pages | 21 Mei 2026 | ✅ Live |
 || **eKinerja-AfrizalMunthe** | `labs/eKinerja-AfrizalMunthe/` | Dokumen (DOCX/PDF/TXT) | `github.com/Niumination/eKinerja-AfrizalMunthe` | 🔒 Private | 6 Agu 2026 | 🆕 **Bukti dukung eKinerja Sem 1 2026 — SKP/DEKP/PAK** |
-|| **MATA-AIHackFest2026** | `labs/mata-aihackfest-2026/` | Python 3, SQLite, Hermes Agent, systemd | `github.com/Niumination/mata-aihackfest-2026` | ⚪ Local (VPS kompetisi) | 11 Sep 2026 | 🟢 **Watchdog akuntabilitas pengadaan — AI HackFest Batch 3 (11–15 Sep) — labs/ 🆕** |
+|| **MATA-AIHackFest2026** | `labs/mata-aihackfest-2026/` | Python 3, SQLite, Hermes Agent, systemd | `github.com/Niumination/mata-aihackfest-2026` | ⚪ Local (VPS kompetisi) | 13 Sep 2026 | 🟢 **Watchdog akuntabilitas pengadaan — AI HackFest Batch 3 (11–15 Sep) — labs/ 🆕** |
+|| **aihackfest-mata-media** | `labs/mata-aihackfest-2026/assets/media/` (submodule) | Git LFS | `github.com/Niumination/aihackfest-mata-media` 🔒 **PRIVATE** | ⚪ Submodule MATA | 13 Sep 2026 | 🆕 **Submodule media (video final, screenshot, audio) — submit 15 Sep** |
 || **x-downloader** | `desktop/x-downloader/` | Tauri 2 (Rust) + Vite 5 + React 18 + Three.js 3D orb | `github.com/Niumination/x-downloader` | 🟢 GitHub | 06 Jul 2026 | ✅ **v2.0.0 — DMG release** |
 | **niu-private** | — (remote only) | TS | `github.com/Niumination/niu-private` | 🟢 GH Pages | 8 Jun 2026 | ✅ Live |
 || **ai-file-manager-android** | `apps/ai-file-manager-android/` 🏭 | Android (Kotlin, Jetpack Compose, Gradle), Google Gemini | `github.com/Niumination/ai-file-organizer-android` | 🟢 GitHub | 23 Jun 2026 | ✅ **apps/ 🏭** |
