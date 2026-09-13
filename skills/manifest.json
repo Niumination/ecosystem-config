@@ -1,6 +1,6 @@
 {
   "fileCount": 588,
-  "generatedAt": "2026-09-13T15:23:00.735024+00:00",
+  "generatedAt": "2026-09-13T17:20:57.748829+00:00",
   "skillCount": 121,
   "skills": {
     "9router-model-mapping": {
@@ -1250,10 +1250,10 @@
       }
     },
     "up-eco": {
-      "bundleHash": "f857f3d31fd5c737af9da9e15bc079d1425f11fe0827d0bc8c10de0d1b878354",
+      "bundleHash": "16d51eceb4a5dab13223dd2d3bc6880127d6f8c74f8888f5e6964b3fa992bc2b",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "a8ba74628700f6d2137c70da17a439aa842d55136c892ce008c5839b41cb8ec8"
+        "SKILL.md": "6399d32f99eca92d1aa66be3f6cd27708a50a4b33c4a8892e312c6ad98cbda83"
       }
     },
     "vercel-deploy-check": {
