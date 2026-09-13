@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>%LABEL%</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>%SCRIPT_DIR%/wait-for-network.sh</string>
+  </array>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>MAX_WAIT</key>
+    <integer>120</integer>
+    <key>SLEEP_SECONDS</key>
+    <integer>2</integer>
+    <!-- Set WAITER_TARGET_CMD as a single shell command or comma-joined commands -->
+    <key>WAITER_TARGET_CMD</key>
+    <string>%TARGET_CMD%</string>
+  </dict>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>StandardOutPath</key>
+  <string>%LOG_DIR%/%LABEL%.stdout.log</string>
+  <key>StandardErrorPath</key>
+  <string>%LOG_DIR%/%LABEL%.stderr.log</string>
+</dict>
+</plist>
