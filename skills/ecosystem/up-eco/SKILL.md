@@ -120,6 +120,8 @@ From a real `/up-eco` run on macOS, these additional checks and fixes are now pa
 - **Skill sync mismatch:** After `sync-to-agents.sh`, Hermes may show mismatch skills even when target is clean. Known non-fatal divergence; do not block on it.
 - **Mission Control v3.0 (Next.js-only):** Legacy `server.py` (FastAPI port 5200) DELETED. Modern MC = `services/niu-mission-control/apex-ui/` (Next.js 15 + React 19). Dev: `npm run dev` (port 3000). Production: `npm run build && npm start`. `HTTP 404` on `/api/*` while UI returns `HTTP 200` is NORMAL — Next.js frontend only, no FastAPI backend. Not a failure.
 - **`ROOT: unbound variable` error:** If `scripts/up-eco.sh` ends with `ROOT: unbound variable`, check line ~790 for a shell variable expansion issue. This is a script bug, not an ecosystem bug.
+- **MC check masih memakai port legacy 5200 (warning palsu):** `scripts/up-eco.sh` set `MC_URL="http://localhost:5200"`, padahal port itu milik `server.py` legacy yang sudah dihapus. Akibatnya warning `Mission Control server tidak merespon di port 5200` muncul permanen walau MC sehat. Verifikasi MC yang benar: `curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/` (Next.js `apex-ui`). Script belum diperbaiki (status 2026-09-13) — jangan baca warning itu sebagai insiden.
+- **Whitelist folder top-level:** `check_unknown_folders()` punya array `known_dirs`; `inactive-2026-09` ditambahkan 2026-09-13 setelah sebelumnya muncul sebagai "Folder Asing" palsu. Folder top-level baru yang sah (mis. kategori arsip baru) harus ditambahkan di sana, kalau tidak akan dilaporkan sebagai folder asing.
 
 ## MC Architecture Transition (2026-09-10)
 **Legacy (deleted):** `services/niu-mission-control/server.py` (FastAPI port 5200)

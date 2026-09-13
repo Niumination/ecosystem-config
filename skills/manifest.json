@@ -1,6 +1,6 @@
 {
   "fileCount": 353,
-  "generatedAt": "2026-09-10T06:35:19.982331+00:00",
+  "generatedAt": "2026-09-13T14:57:11.862091+00:00",
   "skillCount": 70,
   "skills": {
     "accessibility": {
@@ -733,10 +733,10 @@
       }
     },
     "up-eco": {
-      "bundleHash": "64e30c428b1e138a060d5cbb0e0296e6f09b7a2e4a94fd061056059110384e98",
+      "bundleHash": "782684d2f77f0697b7bf070acaf8b07a69edd5f18dceddfeb842da4b69340d86",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "d0c077bd91ec21700c3028f83ef813378490192d221a4c57550b63acee51b2e0"
+        "SKILL.md": "4814843d863cbd7681348559ed410363a1f1a9216acd057cda8219dc503f9ef7"
       }
     },
     "verification-before-completion": {
