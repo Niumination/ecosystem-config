@@ -852,17 +852,26 @@ PY
     elif echo "$comp_out" | grep -q "^EMPTY"; then warn "Composio: tidak ada connected account"; rec "→ hubungkan via Composio dashboard / c.toolkits.authorize()";
     else
       local total active expired
-      total=$(echo "$comp_out" | grep -c "|")
-      active=$(echo "$comp_out" | grep -c "|ACTIVE|")
-      expired=$(echo "$comp_out" | grep -c "|EXPIRED|")
+      # grep -c exit 1 saat 0 match → guard || true (set -e mematikan script tanpa ini)
+      total=$(echo "$comp_out" | grep -c "|" || true)
+      active=$(echo "$comp_out" | grep -c "|ACTIVE|" || true)
+      expired=$(echo "$comp_out" | grep -c "|EXPIRED|" || true)
       pass "Connected: $total account ($active ACTIVE, $expired EXPIRED)"
-      # tampilkan ACTIVE dulu, lalu EXPIRED
-      echo "$comp_out" | grep "|ACTIVE|" | head -n 10 | while IFS='|' read -r slug status uid cid; do
-        if [ -n "$uid" ]; then info "  ✅ $slug — ACTIVE — user:$uid ($cid)"; else info "  ✅ $slug — ACTIVE ($cid)"; fi
-      done
-      echo "$comp_out" | grep -v "|ACTIVE|" | head -n 10 | while IFS='|' read -r slug status uid cid; do
+      # tampilkan ACTIVE dulu, lalu non-ACTIVE (guard exit-code: pipeline kosong tidak boleh bunuh script via set -e)
+      local act_rows nonact_rows
+      act_rows=$(echo "$comp_out" | grep "|ACTIVE|" | head -n 10 || true)
+      nonact_rows=$(echo "$comp_out" | grep -v "|ACTIVE|" | head -n 10 || true)
+      while IFS='|' read -r slug status uid cid; do
+        [ -z "$slug" ] && continue
+        # pendekkan uid panjang (UUID/conn-id) agar 1 baris tetap rapi
+        local uid_disp="$uid"
+        [ "${#uid_disp}" -gt 20 ] && uid_disp="${uid_disp:0:17}…"
+        if [ -n "$uid" ]; then info "  ✅ $slug — ACTIVE — user:$uid_disp ($cid)"; else info "  ✅ $slug — ACTIVE ($cid)"; fi
+      done <<< "$act_rows"
+      while IFS='|' read -r slug status uid cid; do
+        [ -z "$slug" ] && continue
         info "  ⚠️  $slug — $status ($cid)"
-      done
+      done <<< "$nonact_rows"
       # ringkasan toolkit unik
       local uniq_active uniq_all
       uniq_active=$(echo "$comp_out" | grep "|ACTIVE|" | cut -d'|' -f1 | sort -u | paste -sd ',' - | sed 's/,/, /g')
