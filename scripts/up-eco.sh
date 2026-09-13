@@ -26,7 +26,8 @@ SKILLS_DIR="$NIUMINATION/skills"
 INDEX_FILE="$SKILLS_DIR/INDEX.md"
 SYNC_SCRIPT="$SKILLS_DIR/sync-to-agents.sh"
 SYNC_LOG="$NIUMINATION/.sync-log"
-MC_URL="http://localhost:5200"
+MC_URL="http://localhost:3000"        # MC modern = Next.js apex-ui
+MC_API_URL="http://localhost:5200"    # legacy FastAPI skill-monitor (sudah dihapus dari repo)
 HERMES_HOME="${HOME}/.hermes"
 NOW=$(date "+%Y-%m-%d %H:%M:%S WIB")
 DIVERGE_FILE=$(mktemp)
@@ -625,21 +626,30 @@ check_skill_sync() {
 check_mission_control() {
   section "🎛️ Mission Control — Skill Monitor Dashboard"
 
-  # ── 8a: Cek apakah server MC berjalan
+  # ── 8a: Cek apakah server MC berjalan (modern: apex-ui Next.js :3000)
   local mc_health
-  mc_health=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 3 --max-time 5 "$MC_URL/health" 2>/dev/null || echo "000")
+  mc_health=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 3 --max-time 5 "$MC_URL/" 2>/dev/null || echo "000")
   mc_health="${mc_health:0:3}"  # Trim to 3 chars (curl may repeat digits on some macOS versions)
 
   if [ "$mc_health" = "000" ]; then
-    warn "Mission Control server tidak merespon di port 5200"
-    rec "→ Start MC: cd services/niu-mission-control && python3 server.py"
+    info "Mission Control (apex-ui :3000) tidak aktif — bukan insiden"
     return
   fi
-  pass "MC Server: HTTP $mc_health"
+  pass "MC UI (apex-ui :3000): HTTP $mc_health"
+
+  # API skill-monitor hidup di FastAPI legacy (:5200). Kalau mati, sisa seksi dilewati.
+  local api_health
+  api_health=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 3 --max-time 5 "$MC_API_URL/health" 2>/dev/null || echo "000")
+  api_health="${api_health:0:3}"
+  if [ "$api_health" = "000" ]; then
+    info "Skill-monitor API (:5200, FastAPI legacy) tidak aktif — data skill via bank/up-eco"
+    return
+  fi
+  pass "MC Skill API: HTTP $api_health"
 
   # ── 8b: Skill API — total skills & active
   local skills_json
-  skills_json=$(curl -s --connect-timeout 3 --max-time 5 "$MC_URL/api/mc/skills" 2>/dev/null || echo "{}")
+  skills_json=$(curl -s --connect-timeout 3 --max-time 5 "$MC_API_URL/api/mc/skills" 2>/dev/null || echo "{}")
   local total_skills_api
   total_skills_api=$(echo "$skills_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('total','?'))" 2>/dev/null || echo "?")
   local active_skills_api
@@ -654,7 +664,7 @@ check_mission_control() {
 
   # ── 8c: Stale skills (>30 hari)
   local stale_json
-  stale_json=$(curl -s --connect-timeout 3 --max-time 5 "$MC_URL/api/mc/skills/stale" 2>/dev/null || echo "{}")
+  stale_json=$(curl -s --connect-timeout 3 --max-time 5 "$MC_API_URL/api/mc/skills/stale" 2>/dev/null || echo "{}")
   local stale_count
   stale_count=$(echo "$stale_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('count',0))" 2>/dev/null || echo "0")
 
@@ -675,7 +685,7 @@ for s in d.get('stale', [])[:5]:
 
   # ── 8d: Skill conflicts
   local conflict_json
-  conflict_json=$(curl -s --connect-timeout 3 --max-time 5 "$MC_URL/api/mc/skills/conflicts" 2>/dev/null || echo "{}")
+  conflict_json=$(curl -s --connect-timeout 3 --max-time 5 "$MC_API_URL/api/mc/skills/conflicts" 2>/dev/null || echo "{}")
   local conflict_count
   conflict_count=$(echo "$conflict_json" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('count',0))" 2>/dev/null || echo "0")
 
@@ -707,7 +717,7 @@ for c in d.get('conflicts', []):
 
   # ── 8f: Skill usage stats (hari ini)
   local stats_json
-  stats_json=$(curl -s --connect-timeout 3 --max-time 5 "$MC_URL/api/mc/skills/stats" 2>/dev/null || echo "{}")
+  stats_json=$(curl -s --connect-timeout 3 --max-time 5 "$MC_API_URL/api/mc/skills/stats" 2>/dev/null || echo "{}")
   local today_loaded
   today_loaded=$(echo "$stats_json" | python3 -c "
 import sys, json

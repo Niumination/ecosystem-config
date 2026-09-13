@@ -60,7 +60,7 @@ Ketika user (Afrizal Munthe) tidak berada di sekitar machine-nya, seluruh workfl
 ## 📁 Struktur File Skill
 
 ```
-skills/free-tier-reels-workflow/
+skills/creative/free-tier-reels/
 ├── SKILL.md              <-- skill ini
 ├── references/
 │   └── ide5-reels-workflow.md     <!-- Condensed workflow guide -->

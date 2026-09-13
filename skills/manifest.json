@@ -1,6 +1,6 @@
 {
-  "fileCount": 585,
-  "generatedAt": "2026-09-13T15:09:26.241322+00:00",
+  "fileCount": 588,
+  "generatedAt": "2026-09-13T15:23:00.735024+00:00",
   "skillCount": 121,
   "skills": {
     "9router-model-mapping": {
@@ -309,10 +309,13 @@
       }
     },
     "free-tier-reels": {
-      "bundleHash": "926a28929c97e26b70628415c67951432c2621bfb1b80d028404dca96b8b7e94",
+      "bundleHash": "defab3c50a2d173a9c47ac3aaabf455685c0d8680eaca410c1c9d233f72fcd82",
       "domain": "creative",
       "files": {
-        "SKILL.md": "7b8757e11e3b402dc8ffedaa87e02d5a7ec934c13facffcb21667b8d5da2fb91"
+        "SKILL.md": "83dbab1282dea0d52d22301a1b22af43a0522d58e2e9c359537d899e877f7337",
+        "references/ide5-reels-workflow.md": "af64608cea101baccbb98b262fcc2e2209e36b5e9471c15e0b6ae1266a9cbe27",
+        "scripts/generate-html.sh": "482f457466dc0251de55196f5ff46a54161d0f1865e7743e929ba340185cfd1d",
+        "templates/reels-html-scaffold.html": "3a2c55c137f51e0473304f2f1e09c048fbca5cf6e23d1d1882724be09c01aeee"
       }
     },
     "frontend-design": {
@@ -1247,10 +1250,10 @@
       }
     },
     "up-eco": {
-      "bundleHash": "610d0f775b87852accc7bb43df1f032d2505a0aa6b32a27a3bba3d49c4871e0a",
+      "bundleHash": "f857f3d31fd5c737af9da9e15bc079d1425f11fe0827d0bc8c10de0d1b878354",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "9a483d714897cfe4b77ce11900e1338e11593965d55d0c33ecd8c8a15b080803"
+        "SKILL.md": "a8ba74628700f6d2137c70da17a439aa842d55136c892ce008c5839b41cb8ec8"
       }
     },
     "vercel-deploy-check": {

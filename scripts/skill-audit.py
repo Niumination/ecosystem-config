@@ -93,6 +93,24 @@ ALLOWED_DOMAINS = {
     "go.id",
     # contoh & loopback
     "example.com", "example.org", "example.net", "localhost", "127.0.0.1",
+    # dokumentasi tool/agent yang dipakai ekosistem
+    "opencode.ai", "composio.dev", "nousresearch.com", "rustup.rs", "exa.ai",
+    # referensi riset (skill research-paper-writing, blogwatcher, weathernext)
+    "xkcd.com", "minepi.com", "semanticscholar.org", "crossref.org",
+    "4open.science", "neurips.cc", "icml.cc", "alignmentforum.org",
+    "inaproc.id", "ucsd.edu", "ethanperez.net", "approximatelycorrect.com",
+    "sebastianfarquhar.com",
+    # referensi akademik & tooling riset
+    "open-meteo.com", "openalex.org", "iclr.cc", "aclrollingreview.org", "aaai.org",
+    "overleaf.com", "ctan.org", "swift.org", "berkeley.edu", "mit.edu", "crowl.org",
+    "ghost.io", "citely.ai", "reciteworks.com", "uni-koeln.de",
+    # bibliografi & panduan penulisan (research-paper-writing)
+    "aclanthology.org", "aclweb.org", "latex-project.org", "tug.org", "openreview.net",
+    "jmlr.org", "science.sciencemag.org", "sciencedirect.com", "nasa.gov",
+    "apastyle.apa.org", "ncbi.nlm.nih.gov", "pmc.ncbi.nlm.nih.gov", "purl.org",
+    "enago.com", "byteiota.com", "prolific.co", "colmweb.org", "ams.org",
+    "heptapod.host", "titlecaseconverter.com", "texblog.org", "classroom.net",
+    "ctstateu.edu", "cas.usf.edu", "nlc-bnc.ca", "cljournal.org",
 }
 
 
@@ -211,9 +229,11 @@ def scan_skill(skill_dir: Path, domain: str, skill: str):
             if any(t in url for t in ("...", "$(", "*")):
                 continue  # placeholder/template, bukan URL nyata
             try:
-                host = url.split("//", 1)[1].split("/", 1)[0].split(":")[0]
+                authority = url.split("//", 1)[1].split("/", 1)[0]
             except IndexError:
                 continue
+            authority = authority.rsplit("@", 1)[-1]   # buang userinfo (oauth2:token@host)
+            host = authority.split(":")[0]
             host = host.lower().rstrip(".")
             if not host or host in {"test", "example.invalid"}:
                 continue  # placeholder host

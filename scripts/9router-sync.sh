@@ -15,7 +15,7 @@ DEBOUNCE_WINDOW=120
 
 mkdir -p "$CACHE_DIR"
 
-MODELS_JSON=$(curl -s -m 30 "$MODELS_URL/v1/models" 2>/dev/null)
+MODELS_JSON=$(curl -s -m 30 "$MODELS_URL/models" 2>/dev/null)
 if [ -z "$MODELS_JSON" ] || ! echo "$MODELS_JSON" | python3 -c "import sys,json; json.load(sys.stdin)" >/dev/null 2>&1; then
   echo "$(date -Iseconds) fetch failed" >> "$LOG_FILE"
   exit 0
