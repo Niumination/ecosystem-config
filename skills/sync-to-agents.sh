@@ -28,6 +28,7 @@ JCODE_DIR="$_REAL_HOME/.jcode/skills"
 HERMES_DIR="$_REAL_HOME/.hermes/skills"
 # HERMES_USB_DIR="/Volumes/HermesAgent/HermesAgentUSB/data/skills"  # diparkir 2026-08-20
 AGENTS_MD="$_REAL_HOME/Desktop/Niumination/AGENTS.md"
+REGISTRY_MD="$_REAL_HOME/Desktop/Niumination/docs/reference/skill-registry.md"
 LOCK_DIR="$_REAL_HOME/Desktop/Niumination/.sync-lock"
 LOG_FILE="$_REAL_HOME/Desktop/Niumination/.sync-log"
 
@@ -215,8 +216,8 @@ if ! $DRY_RUN; then
 
 _Last sync: $(date '+%Y-%m-%d %H:%M:%S')_"
 
-  # Check if AGENTS.md has skill registry section
-  if grep -q "$REGISTRY_START" "$AGENTS_MD" 2>/dev/null; then
+  # Registry hidup di docs/reference/skill-registry.md (root AGENTS.md v4 mendelegasikan ke sana)
+  if grep -q "$REGISTRY_START" "$REGISTRY_MD" 2>/dev/null; then
     # Use Python to build registry and replace between markers
     python3 << 'PYEOF'
 import os
@@ -235,7 +236,7 @@ def _resolve_home():
 
 _real_home = _resolve_home()
 bank = os.path.join(_real_home, 'Desktop', 'Niumination', 'skills')
-agents = os.path.join(_real_home, 'Desktop', 'Niumination', 'AGENTS.md')
+agents = os.path.join(_real_home, 'Desktop', 'Niumination', 'docs', 'reference', 'skill-registry.md')
 
 # Build registry table
 rows = []
@@ -304,32 +305,30 @@ if s >= 0 and e >= 0:
     content = before + marker_start + '\n' + registry + '\n' + marker_end + '\n' + after
     with open(agents, 'w') as f:
         f.write(content)
-    print('AGENTS.md registry updated')
+    print('skill-registry.md updated')
 else:
     print('ERROR: markers not found')
 PYEOF
-    log "   ↑ AGENTS.md: skill registry diperbarui"
+    log "   ↑ docs/reference/skill-registry.md: registry diperbarui"
   else
-    # Append before footer
-    # Find the last --- line before the footer
-    footer_line=$(grep -n "^> \\*\\*Dibuat:" "$AGENTS_MD" | head -1 | cut -d: -f1 || true)
+    # Fallback: sisipkan sebelum footer kalau file registry kehilangan marker
+    footer_line=$(grep -n "^> \\*\\*Dibuat:" "$REGISTRY_MD" | head -1 | cut -d: -f1 || true)
     if [ -n "$footer_line" ]; then
       insert_line=$((footer_line - 2))
-      head -n "$insert_line" "$AGENTS_MD" > /tmp/agents-new.md
-      echo "" >> /tmp/agents-new.md
-      echo "$registry_block" >> /tmp/agents-new.md
-      echo "" >> /tmp/agents-new.md
-      echo "$REGISTRY_END" >> /tmp/agents-new.md
-      echo "" >> /tmp/agents-new.md
-      echo "---" >> /tmp/agents-new.md
-      tail -n +$((insert_line + 1)) "$AGENTS_MD" >> /tmp/agents-new.md
-      mv /tmp/agents-new.md "$AGENTS_MD"
-      log "   ↑ AGENTS.md: skill registry ditambahkan"
+      head -n "$insert_line" "$REGISTRY_MD" > /tmp/registry-new.md
+      echo "" >> /tmp/registry-new.md
+      echo "$registry_block" >> /tmp/registry-new.md
+      echo "" >> /tmp/registry-new.md
+      echo "$REGISTRY_END" >> /tmp/registry-new.md
+      echo "" >> /tmp/registry-new.md
+      echo "---" >> /tmp/registry-new.md
+      tail -n +$((insert_line + 1)) "$REGISTRY_MD" >> /tmp/registry-new.md
+      mv /tmp/registry-new.md "$REGISTRY_MD"
+      log "   ↑ docs/reference/skill-registry.md: registry ditambahkan"
     else
-      # AGENTS.md v4 mendelegasikan registry ke docs/reference/skill-registry.md
-      # (lihat bagian "Skill Registry" di root DOX), sehingga tidak ada footer
-      # atau marker yang bisa disisipi tabel. Ini kondisi normal, bukan error.
-      log "   ℹ️  AGENTS.md tanpa marker/footer registry — dilewati (registry eksternal: docs/reference/skill-registry.md)"
+      # Marker registry ada di docs/reference/skill-registry.md, bukan root AGENTS.md
+      # (root DOX v4 mendelegasikan ke sana). Ini kondisi normal, bukan error.
+      log "   ℹ️  docs/reference/skill-registry.md tanpa marker/footer registry — dilewati"
     fi
   fi
 fi
@@ -337,7 +336,7 @@ fi
 # ── 4. Write log ─────────────────────────────────────────────────────────────
 if ! $DRY_RUN; then
   echo "[$(date '+%Y-%m-%d %H:%M:%S')] Sync selesai: $SKILL_COUNT skill × 2 target (Jcode/Hermes) + AGENTS.md ✅" >> "$LOG_FILE"
-  log "✅ Sync selesai — $SKILL_COUNT skill disinkronkan ke Hermes/AGENTS.md"
+  log "✅ Sync selesai — $SKILL_COUNT skill disinkronkan ke Hermes + docs/reference/skill-registry.md"
   
   # Notify mission-control (fire-and-forget, non-blocking)
   if command -v curl &>/dev/null; then
