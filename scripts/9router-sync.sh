@@ -37,7 +37,7 @@ NOW=$(date +%s)
 LAST_CHANGE=0
 [ -f "$STABLE_FILE" ] && LAST_CHANGE=$(cat "$STABLE_FILE" 2>/dev/null | tr -d ' \n')
 
-if [ "$LAST_CHANGE" = "0" ] || [ $((NOW - LAST_CHANGE)) -ge $DEBOUNCE_WINDOW ]; then
+if [ "$LAST_CHANGE" = "0" ] || [ $((NOW - LAST_CHANGE)) -lt $DEBOUNCE_WINDOW ]; then
   echo "$NOW" > "$STABLE_FILE"
   echo "$(date -Iseconds) change pending: $COUNT models hash ${HASH:0:8} (debounce ${DEBOUNCE_WINDOW}s)" >> "$LOG_FILE"
   exit 0
@@ -63,4 +63,9 @@ print(f"{state['updated_at']} sync: {state['model_count']} models hash {state['h
 PYEOF
 
 echo "$(date -Iseconds) change: $COUNT models hash ${HASH:0:8} -> updated" >> "$LOG_FILE"
+# macOS notification (silent if not available) — dikirim di titik commit, setelah
+# debounce, supaya tidak spam saat model list masih berubah-ubah.
+if command -v osascript >/dev/null 2>&1; then
+  osascript -e "display notification \"$COUNT models (hash ${HASH:0:8})\" with title \"9router sync\" subtitle \"Model list changed\"" 2>/dev/null || true
+fi
 exit 0

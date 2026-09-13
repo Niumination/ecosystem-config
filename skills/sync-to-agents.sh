@@ -64,18 +64,20 @@ log()  { echo "[$(date '+%H:%M:%S')] $*"; }
 vlog() { $VERBOSE && echo "  $*" || true; }
 
 # ── Sync satu skill (SELURUH folder — references/scripts/assets ikut) ────────
-# Non-destruktif: copy/add only, never delete. Skip jika target lebih baru.
-# Prioritas rsync (tersedia di macOS); fallback cp -R -u (portable).
+# Non-destruktif: copy/add only, never delete. Bank SELALU menang (single source
+# of truth) — tanpa flag -u, karena -u membuat edit di sisi target menang
+# diam-diam dan menyimpang dari bank selamanya.
+# Prioritas rsync (tersedia di macOS); fallback cp -R (portable).
 sync_skill_dir() {
   local src_dir="$1"    # skills/<domain>/<skill>/  (bank)
   local tgt_dir="$2"    # <target>/[<domain>/]<skill>/  (agent)
   if [ ! -d "$src_dir" ]; then return 1; fi
 
   if command -v rsync &>/dev/null; then
-    rsync -a -u --quiet "$src_dir/" "$tgt_dir/"
+    rsync -a --quiet "$src_dir/" "$tgt_dir/"
   else
     mkdir -p "$tgt_dir"
-    cp -R -u "$src_dir/." "$tgt_dir/"
+    cp -R "$src_dir/." "$tgt_dir/"
   fi
 }
 
@@ -324,7 +326,10 @@ PYEOF
       mv /tmp/agents-new.md "$AGENTS_MD"
       log "   ↑ AGENTS.md: skill registry ditambahkan"
     else
-      log "   ⚠️  Footer AGENTS.md tidak ditemukan, registry tidak ditambahkan"
+      # AGENTS.md v4 mendelegasikan registry ke docs/reference/skill-registry.md
+      # (lihat bagian "Skill Registry" di root DOX), sehingga tidak ada footer
+      # atau marker yang bisa disisipi tabel. Ini kondisi normal, bukan error.
+      log "   ℹ️  AGENTS.md tanpa marker/footer registry — dilewati (registry eksternal: docs/reference/skill-registry.md)"
     fi
   fi
 fi
