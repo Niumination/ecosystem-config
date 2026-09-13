@@ -18,7 +18,7 @@ Desktop/Niumination/
 ├── archive/projects/   📦 2 proyek — archived (niuterm, terax-ai)
 ├── docs/               📚 Dokumentasi terpadu (reference/, reports/, notebooklm/, dox/)
 ├── scripts/            ⚙️ 21 ecosystem automation scripts
-├── skills/             🧠 **68 skill terpusat** (Layer 1-4 ✅, ecosystem domain, design, software-development, dll)
+├── skills/             🧠 **121 skill terpusat** (Layer 1-4 ✅, ecosystem domain, design, software-development, dll)
 ├── tools/              🛠️ Ponytail MCP + pdf-inspector
 ├── vault/              🔐 Secrets & credentials (gitignored)
 ├── brain/              🧠 Obsidian vault (git, terpisah)
