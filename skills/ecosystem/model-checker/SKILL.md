@@ -7,8 +7,12 @@ tags:
   - checker
   - niumination
   - latency
-last_updated: "2026-08-30"
-version: 1.0.0
+last_updated: "2026-09-14"
+version: 2.0.0
+changes:
+  - Updated for 511 models across 13 providers (per 14-Sep-2026)
+  - Added rapid sample approach (avoid 2-hour full test)
+  - Added status of disabled providers
 ---
 
 # 🔍 /model-check — Model 9router Availability Checker

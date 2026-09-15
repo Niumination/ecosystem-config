@@ -43,8 +43,10 @@ python3 ~/.hermes/skills/niu-9router-maintain/scripts/audit_models.py
 
 ## Provider Gratis vs Berbayar
 9router **tidak punya flag paid/free**. Kriteria: tes akses langsung. Yang 0/OK = disable.
-Provider yang diketahui gratis (per 29-Agu-2026): `gemini` (AI Studio key), `github` (Copilot free), `ag` (antigravity free), `kimi` (sering 500), `nvidia` (nim, sering retired 410), `ollama` (cloud, banyak 402/410).
-→ Disable `kimi`, `nvidia`, `ollama` jika semua model gagal.
+**Penting:** 9router listing 511 model dari 13 provider, tapi 94% tidak accessible (400/403/410/429/503). Provider yang 0 model OK → disable via sqlite.
+Provider yang diketahui punya akses (per 14-Sep-2026): `gemini` (AI Studio key), `github` (Copilot free tier, banyak model 400), `kr` (Kiro free tier), `cf` (Cloudflare Workers). Provider yang DISABLE (0 model OK): `explabs` (342 model, payment required), `antigravity` (timeout), `kimi` (quota exhausted), `nvidia` (410 retired), `ollama` (410 retired), `bazaarlink` (402 credits), `byteplus` (400 subscription), `poolside` (404), `bpm` (503), `ps` (503), `api-airforce` (503).
+→ Disable provider yang 0 model OK via sqlite `providerConnections.isActive=0`, lalu restart server.
+→ Nonaktifkan provider TIDAK menghapus data — model tetap ada di catalog tapi tidak di-return ke Telegram.
 
 ## Manual Provider Disable (sqlite)
 ```python

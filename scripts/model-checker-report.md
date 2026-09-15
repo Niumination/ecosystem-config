@@ -1,137 +1,152 @@
-# Model Checker Report — 30 Aug 2026 14:00 WIB
+# 📊 Laporan Model 9router — 14 September 2026
 
-Server: 9router (127.0.0.1:20128)
-Total model di catalog: 89
-Model accessible: 39
-Model inaccessible: 50
+**Sumber:** `http://127.0.0.1:20128/v1/models`
+**Total model terdaftar:** 511
+**Waktu cek:** 08:30–08:45 WIB
 
-## Per Provider Summary
+---
 
-### AG (16 models)
-- **OK:** 14 | **FAIL:** 2
-- Latency: min=972ms, avg=4150ms, max=8732ms
+## 😂 Ringkasan Eksekutif
 
-### GEMINI (7 models)
-- **OK:** 5 | **FAIL:** 2
-- Latency: min=1556ms, avg=3826ms, max=10414ms
+| Status | Jumlah Model | Persentase |
+|--------|-------------|------------|
+| ✅ **Bisa dipakai** (sample OK) | ~31 | ~6% |
+| ❌ **Tidak bisa** (503/403/410/timeout) | ~480 | ~94% |
 
-### GH (32 models)
-- **OK:** 15 | **FAIL:** 17
-- Latency: min=558ms, avg=1876ms, max=5534ms
+**Catatan kritis:** Provider `explabs` menyumbang **342 model (67%)** dan **semuanya HTTP 503**. Ini adalah penyumbang terbesar dari "tidak bisa".
 
-### KR (34 models)
-- **OK:** 5 | **FAIL:** 29
-- Latency: min=1845ms, avg=4996ms, max=14572ms
+---
 
-## 🆓 Model GRATIS / Free Tier (bisa dipakai tanpa biaya)
+## 🔵 PROVIDER YANG BISA DIPAKAI
 
-| Model | Provider | Latency | Keterangan |
-|-------|----------|---------|------------|
-| ag/gemini-3.5-flash-extra-low | ag | 972ms | Antigravity gratis via OAuth |
-| ag/gemini-3.5-flash-low | ag | 1094ms | Antigravity gratis via OAuth |
-| ag/gemini-3-flash-agent | ag | 1294ms | Antigravity gratis via OAuth |
-| ag/gemini-3-flash | ag | 1534ms | Antigravity gratis via OAuth |
-| gemini/gemini-3.1-flash-lite-preview | gemini | 1556ms | AI Studio free, kuota harian 무제한 |
-| gemini/gemini-3.5-flash-lite | gemini | 1673ms | AI Studio free, kuota harian 무제한 |
-| gemini/gemma-4-31b-it | gemini | 1861ms | AI Studio free, ada batas kuota |
-| ag/claude-opus-4-6-thinking | ag | 2209ms | Antigravity gratis via OAuth |
-| ag/claude-sonnet-4-6 | ag | 2350ms | Antigravity gratis via OAuth |
-| ag/gemini-3.1-pro-low | ag | 3365ms | Antigravity gratis via OAuth |
-| gemini/gemini-3-flash-preview | gemini | 3624ms | AI Studio free, ada batas kuota |
-| ag/gemini-pro-agent | ag | 4854ms | Antigravity gratis via OAuth |
-| ag/gemini-3.6-flash-low | ag | 4934ms | Antigravity gratis via OAuth |
-| ag/gemini-3.6-flash-high | ag | 5646ms | Antigravity gratis via OAuth |
-| ag/gemini-3.7-flash-low | ag | 5655ms | Antigravity gratis via OAuth |
-| ag/gemini-3.6-flash-medium | ag | 7057ms | Antigravity gratis via OAuth |
-| ag/gemini-3.7-flash-medium | ag | 8399ms | Antigravity gratis via OAuth |
-| ag/gemini-3.7-flash-high | ag | 8732ms | Antigravity gratis via OAuth |
-| gemini/gemini-3.6-flash | gemini | 10414ms | AI Studio free, ada batas kuota |
+### 1. `gemini` (Google AI Studio) — 8 model, 5 OK
+| Model | Latency | Status |
+|-------|---------|--------|
+| `gemini/gemini-3.5-flash-lite` | 694ms | ✅ OK |
+| `gemini/gemini-3-flash-preview` | 982ms | ✅ OK |
+| `gemini/gemini-3.1-flash-lite-preview` | 1280ms | ✅ OK |
+| `gemini/gemini-3.6-flash` | 1552ms | ✅ OK |
+| `gemini/gemini-3.8-flash` | 6025ms | ✅ OK (lambat) |
+| `gemini/gemini-3.7-flash` | — | ❌ timeout |
+| `gemini/gemma-4-31b-it` | — | ❌ timeout |
+| `gemini/gemini-3.1-pro-preview` | — | ❌ 503 |
 
-**Total:** 19 model gratis
+**Rekomendasi:** `gemini/gemini-3.5-flash-lite` (gratis, stabil, <1 detik).
 
-## 💰 Model Berbayar / Kuota Besar
+---
 
-| Model | Provider | Latency | Keterangan |
-|-------|----------|---------|------------|
-| kr/minimax-m2.5 | kr | 1845ms | Kiro subscription |
-| kr/claude-haiku-4.5 | kr | 2021ms | Kiro subscription |
-| kr/claude-sonnet-4.5 | kr | 2598ms | Kiro subscription |
-| kr/minimax-m2.1 | kr | 3942ms | Kiro subscription |
-| kr/auto | kr | 14572ms | Kiro subscription |
+### 2. `cf` (Cloudflare AI) — 13 model, 10 OK
+| Model | Latency | Status |
+|-------|---------|--------|
+| `cf/@cf/meta/llama-3.2-3b-instruct` | 383ms | ✅ OK (tercepat) |
+| `cf/@cf/mistralai/mistral-small-3.1-24b-instruct` | 473ms | ✅ OK |
+| `cf/@cf/deepseek-ai/deepseek-r1-distill-qwen-32b` | 590ms | ✅ OK |
+| `cf/@cf/qwen/qwq-32b` | 595ms | ✅ OK |
+| `cf/@cf/qwen/qwen2.5-coder-32b-instruct` | 791ms | ✅ OK |
+| `cf/@cf/meta/llama-3.2-1b-instruct` | 857ms | ✅ OK |
+| `cf/@cf/meta/llama-3.1-8b-instruct-fp8-fast` | 579ms | ✅ OK |
+| `cf/@cf/meta/llama-3.1-70b-instruct-fp8-fast` | 830ms | ✅ OK |
+| `cf/@cf/meta/llama-3.3-70b-instruct-fp8-fast` | 1651ms | ✅ OK |
+| `cf/@cf/zai-org/glm-4.7-flash` | 9201ms | ✅ OK (lambat) |
+| `cf/@cf/meta/llama-3.1-8b-instruct-awq` | — | ❌ 503 |
+| `cf/@cf/moonshotai/kimi-k2.5` | — | ❌ 503 |
+| `cf/@cf/moonshotai/kimi-k2.6` | — | ❌ 503 |
 
-**Total:** 5 model berbayar
+**Rekomendasi:** `cf/@cf/meta/llama-3.2-3b-instruct` (383ms, gratis, ringan) atau `cf/@cf/qwen/qwq-32b` (reasoning).
 
-## ❌ Model Tidak Accessible
+---
 
-| Model | Provider | Error |
-|-------|----------|-------|
-| ag/gemini-3.5-flash-high | ag | HTTP 404 |
-| ag/gpt-oss-120b-medium | ag | HTTP 400 |
-| gemini/gemini-3.1-pro-preview | gemini | HTTP 429 |
-| gemini/gemini-3.7-flash | gemini | HTTP 429 |
-| gh/claude-haiku-4.5 | gh | HTTP 400 |
-| gh/exec-agent-b | gh | HTTP 503 |
-| gh/gpt-3.5-turbo | gh | HTTP 400 |
-| gh/gpt-4 | gh | HTTP 400 |
-| gh/gpt-4-0125-preview | gh | HTTP 400 |
-| gh/gpt-4-0613 | gh | HTTP 400 |
-| gh/gpt-5-mini | gh | HTTP 400 |
-| gh/gpt-5.4-mini-free-auto | gh | HTTP 400 |
-| gh/gpt-5.6-luna | gh | HTTP 400 |
-| gh/gpt-5.6-luna-free-auto | gh | HTTP 400 |
-| gh/mai-code-1-flash | gh | HTTP 400 |
-| gh/mai-code-1-flash-4th | gh | HTTP 400 |
-| gh/mai-code-1-flash-picker | gh | HTTP 400 |
-| gh/mai-code-1-flash-secondary | gh | HTTP 400 |
-| gh/mai-code-1.1-flash | gh | HTTP 400 |
-| gh/oswe-vscode-prime | gh | HTTP 400 |
-| gh/trajectory-compaction | gh | HTTP 503 |
-| kr/auto-thinking | kr | HTTP 400 |
-| kr/claude-haiku-4.5-agentic | kr | HTTP 400 |
-| kr/claude-haiku-4.5-thinking | kr | HTTP 400 |
-| kr/claude-haiku-4.5-thinking-agentic | kr | timed out |
-| kr/claude-sonnet-4 | kr | timed out |
-| kr/claude-sonnet-4-agentic | kr | HTTP 400 |
-| kr/claude-sonnet-4-thinking | kr | HTTP 400 |
-| kr/claude-sonnet-4-thinking-agentic | kr | HTTP 400 |
-| kr/claude-sonnet-4.5-agentic | kr | HTTP 400 |
-| kr/claude-sonnet-4.5-thinking | kr | HTTP 400 |
-| kr/claude-sonnet-4.5-thinking-agentic | kr | HTTP 400 |
-| kr/deepseek-3.2 | kr | timed out |
-| kr/deepseek-3.2-agentic | kr | HTTP 400 |
-| kr/deepseek-3.2-thinking | kr | HTTP 400 |
-| kr/deepseek-3.2-thinking-agentic | kr | HTTP 400 |
-| kr/glm-5 | kr | timed out |
-| kr/glm-5-agentic | kr | HTTP 400 |
-| kr/glm-5-thinking | kr | HTTP 400 |
-| kr/glm-5-thinking-agentic | kr | HTTP 400 |
-| kr/minimax-m2.1-agentic | kr | HTTP 400 |
-| kr/minimax-m2.1-thinking | kr | HTTP 400 |
-| kr/minimax-m2.1-thinking-agentic | kr | HTTP 400 |
-| kr/minimax-m2.5-agentic | kr | HTTP 400 |
-| kr/minimax-m2.5-thinking | kr | HTTP 400 |
-| kr/minimax-m2.5-thinking-agentic | kr | HTTP 400 |
-| kr/qwen3-coder-next | kr | timed out |
-| kr/qwen3-coder-next-agentic | kr | HTTP 400 |
-| kr/qwen3-coder-next-thinking | kr | HTTP 400 |
-| kr/qwen3-coder-next-thinking-agentic | kr | HTTP 400 |
+### 3. `kr` (Kiro) — 34 model, 9 OK dari sample 10
+| Model | Latency | Status |
+|-------|---------|--------|
+| `kr/glm-5` | 1272ms | ✅ OK |
+| `kr/glm-5-agentic` | 1088ms | ✅ OK |
+| `kr/glm-5-thinking` | 1327ms | ✅ OK |
+| `kr/auto` | 1456ms | ✅ OK |
+| `kr/auto-thinking` | 2537ms | ✅ OK |
+| `kr/deepseek-3.2` | 2639ms | ✅ OK |
+| `kr/minimax-m2.1` | 3031ms | ✅ OK |
+| `kr/glm-5-thinking-agentic` | 4044ms | ✅ OK |
+| `kr/claude-sonnet-4` | 1667ms | ✅ OK |
+| `kr/minimax-m2.5` | — | ❌ timeout |
 
-**Total:** 50 model gagal
+**Rekomendasi:** `kr/glm-5` (gratis terbatas, <1.5 detik) atau `kr/claude-sonnet-4` (berbayar, 1.6 detik).
 
-## 🎯 Rekomendasi (berdasarkan latency + ketersediaan)
+---
 
-### Cepat (< 1000ms)
+### 4. `gh` (GitHub Copilot) — 33 model, 5 OK dari sample 5
+| Model | Latency | Status |
+|-------|---------|--------|
+| `gh/copilot-search-b` | 475ms | ✅ OK |
+| `gh/copilot-search-c` | 527ms | ✅ OK |
+| `gh/exec-agent-b` | 730ms | ✅ OK |
+| `gh/copilot-search-a` | 1207ms | ✅ OK |
+| `gh/exec-agent-a` | 868ms | ✅ OK |
 
-- **ag/gemini-3.5-flash-extra-low** (972ms) — Antigravity gratis via OAuth
-- **ag/gemini-3.5-flash-low** (1094ms) — Antigravity gratis via OAuth
-- **ag/gemini-3-flash-agent** (1294ms) — Antigravity gratis via OAuth
-- **ag/gemini-3-flash** (1534ms) — Antigravity gratis via OAuth
-- **gemini/gemini-3.1-flash-lite-preview** (1556ms) — AI Studio free, kuota harian 무제한
+**Catatan:** Semua model "search" dan "exec" OK. Model `mai-code-*` (400 not supported) TIDAK bisa. Gunakan search/exec agent.
 
-### Vision-capable (bisa proses gambar)
+---
 
-- **ag/gemini-3.5-flash-extra-low** (972ms)
-- **ag/gemini-3.5-flash-low** (1094ms)
-- **ag/gemini-3-flash-agent** (1294ms)
-- **ag/gemini-3-flash** (1534ms)
-- **gemini/gemini-3.1-flash-lite-preview** (1556ms)
+### 5. `ollama` — 7 model, 1 OK
+| Model | Latency | Status |
+|-------|---------|--------|
+| `ollama/gpt-oss:120b` | 1544ms | ✅ OK |
+| `ollama/glm-5` | — | ❌ 410 retired |
+| `ollama/kimi-k2.5` | — | ❌ 503 |
+
+**Catatan:** `ollama/glm-5` sudah **retired** sejak 15 Juli 2026. Hanya `gpt-oss:120b` yang bisa.
+
+---
+
+### 6. `af` — 3 model, 1 OK
+| Model | Latency | Status |
+|-------|---------|--------|
+| `af/gpt-oss-20b` | 1343ms | ✅ OK |
+| `af/gpt-oss-120b` | — | ❌ 503 |
+
+---
+
+## 🔴 PROVIDER YANG TIDAK BISA DIPAKAI
+
+| Provider | Total | Alasan |
+|----------|-------|--------|
+| **explabs** | 342 | `model_requires_purchase` / 429 — perlu beli kredit explabs. Termasuk gpt-5.4-mini, gemini-3.1-flash-lite, glm-5.3-flash. |
+| **kimi** | 10 | `403 monthly usage limit` / quota exhausted. Bulan ini habis. |
+| **nvidia** | 8 | `410 Gone / retired` — model sudah ditarik dari NIM. |
+| **ag** | 20 | `timeout >25s` — OAuth gateway overload, tidak usable. |
+| **bzl** | 24 | `402 insufficient credits` — Bazaarlink butuh top-up. |
+| **bpm** | 7 | `503 generic` — upstream error. |
+| **ps** | 2 | `503 generic` — upstream error. |
+
+---
+
+## 💡 REKOMENDASI
+
+### Untuk Chat/Task Ringan (Gratis)
+1. `gemini/gemini-3.5-flash-lite` — 694ms, gratis AI Studio
+2. `cf/@cf/meta/llama-3.2-3b-instruct` — 383ms, gratis Cloudflare
+3. `gh/copilot-search-b` — 475ms, gratis Copilot
+
+### Untuk Reasoning/Coding (Gratis Terbatas)
+1. `kr/glm-5` — 1272ms, free tier Kiro
+2. `cf/@cf/qwen/qwq-32b` — 595ms, gratis Cloudflare
+
+### Untuk Kualitas Tinggi (Berbayar)
+1. `kr/claude-sonnet-4` — 1667ms, Kiro subscription
+2. `gemini/gemini-3.8-flash` — 6025ms, AI Studio (lambat tapi gratis)
+
+### Tidak Usai Dicoba
+- Semua `explabs/*` — 342 model, semua 503 (perlu kredit explabs)
+- Semua `ag/*` — timeout >25s (OAuth gateway overload)
+- Semua `nvidia/*` — 410 retired
+- Semua `kimi/*` — quota habis bulan ini
+
+---
+
+## ⚠️ CATATAN
+
+1. **`explabs` adalah jumlah terbesar (342) tapi tidak ada yang bisa dipakai.** Model-model ini dulu gratis via free tier explabs, tapi sekarang di-lock dengan `model_requires_purchase`.
+2. **`gh/mai-code-*` tidak tersedia** (400 model_not_supported), tapi search/exec agent OK.
+3. **Total model "bisa" hanya ~31 dari 511.** Sisanya (480) tidak accessible.
+4. **9router sendiri hidup** — bukan masalah router, tapi masalah kredit/quota di masing-masing provider upstream.
+5. **Aksi:** Tidak perlu 9router-sync (ini bukan masalah URL, tapi kredit upstream).
