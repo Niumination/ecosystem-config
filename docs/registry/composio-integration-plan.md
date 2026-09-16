@@ -4,19 +4,10 @@
 
 ## A. Klasifikasi Toolkit: Luar vs Dalam Composio
 
-### 𝟭. KELAS A: TOOLKIT GRATIS LUAR (Free Tier, Bukan Composio)
+### 𝟭. KELAS A: TOOLKIT GRATIS LUAR (Free Tier, Bukan Composio) — DIPINDAH
 
-| Tool | Free Tier | Platform | Cocok Buat Pilar |
-|---|---|---|---|
-| **Meta Business Suite** | Unlimited | FB & IG | `Behind the Build`, `Aceh Pride` |
-| **Buffer (free)** | 3 akun, 10 post/profil | IG, FB, TT, LI, YT, Pinterest, X | Kalender 30-hari posting |
-| **Pallyy** | Free forever, 1 profile | IG | `AI Tools Gratis` demo, reels distribution |
-| **Postiz (self-hosted)** | Total GRATIS | Semua platform | Semua pilar, deploy VM Cloud |
-| **Make.com** | 1,000 ops/bln | Visual workflow | Otomatisasi pipa produksi |
-| **Canva (free)** | Desain & video edit | 9:16 video, infografis | `baoyu-infographic`, `impeccable` |
-| **Ocoya** | AI caption + scheduling | Basic analytics | Copy hook & naskah cepat |
-| **Zernio** | Unified API 15 platforms | Posting, comments, DMs, analytics | API layer untuk multi-platform |
-| **Meta Ads Manager** | Free (native) | Campaign boosting reels | Promo paid jika butuh |
+> Katalog lengkap (9 tool + status verifikasi): `docs/registry/composio-free-tier-tools.md`
+> Dipindah 2026-09-16 ke satu rumah (One-home rule) — jangan salin tabelnya kembali ke sini.
 
 ### 𝟮. KELAS B: TOOLKIT DALAM COMPOSIO.dev (MCP/API Integrations)
 

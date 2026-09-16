@@ -1,6 +1,6 @@
 {
   "fileCount": 588,
-  "generatedAt": "2026-09-16T06:14:05.447754+00:00",
+  "generatedAt": "2026-09-16T06:19:57.853744+00:00",
   "skillCount": 121,
   "skills": {
     "9router-model-mapping": {
@@ -309,10 +309,10 @@
       }
     },
     "free-tier-reels": {
-      "bundleHash": "9d8e05f181abbbf652b295d16977f335227e2358d66ca55249d596166f98b6ee",
+      "bundleHash": "88363462d377353f9e784dbe6fbe833972124e34e053b9fcec1bc37b4eeb8297",
       "domain": "creative",
       "files": {
-        "SKILL.md": "59971eee0fbfc74a4e2028fb282659f7e4b1e1a20dd733602fe7d76e05987601",
+        "SKILL.md": "da64fbf237b968b6f2055a91548a3d41bc059a1f9fb2ad6364f7e34078fba237",
         "references/ide5-reels-workflow.md": "af64608cea101baccbb98b262fcc2e2209e36b5e9471c15e0b6ae1266a9cbe27",
         "scripts/generate-html.sh": "482f457466dc0251de55196f5ff46a54161d0f1865e7743e929ba340185cfd1d",
         "templates/reels-html-scaffold.html": "3a2c55c137f51e0473304f2f1e09c048fbca5cf6e23d1d1882724be09c01aeee"
