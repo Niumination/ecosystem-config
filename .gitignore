@@ -79,6 +79,8 @@ scripts/.trio-status.json
 
 # Hermes runtime state
 .hermes-memory/
+# Artefak kerja agent (plan, draft) — salinannya yang final ada di docs/reports/
+.hermes/
 
 # Logs / runtime artifacts
 logs/
