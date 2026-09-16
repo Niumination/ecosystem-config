@@ -19,6 +19,10 @@ credentials-backup.zip
 secrets.zsh
 api-key.md
 
+# Dokumen pribadi (PII) — memuat NIK di nama file & inventaris dokumen pribadi.
+# Repo ini PUBLIC: jangan di-commit. Salinan lokal tetap ada di tempatnya.
+docs/reports/CLEANUP-PLAN-DOWNLOADS-DOCUMENTS-2026-09-16.md
+
 # Sub-project directories (each has its own git repo)
 apps/
 services/
