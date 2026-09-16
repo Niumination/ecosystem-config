@@ -116,7 +116,7 @@
 
 File ini disimpan di:
 ```
-/Users/zaryu/Desktop/Niumination/docs/reference/composio-integration-plan.md
+/Users/zaryu/Desktop/Niumination/docs/registry/composio-integration-plan.md
 ```
 
 File lengkap ini sekarang adalah bagian dari dokumentasi referensi ekosistem, dapat diakses bersama:

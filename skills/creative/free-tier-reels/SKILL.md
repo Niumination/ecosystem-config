@@ -145,9 +145,9 @@ npm install hyperframes@latest
 
 ## 🔗 Referensi Lain di Ekosistem
 
-- `docs/reference/composio-integration-plan.md` - Integrasi toolkit ke ekosistem
-- `docs/reference/composio-free-tier-tools.md` - Daftar toolkit gratis luar composio
-- `docs/reference/ide5-reels-full-guide.md` - Guide IDE 5 (sudah dibuat)
+- `docs/registry/composio-integration-plan.md` - Integrasi toolkit ke ekosistem
+- `docs/registry/composio-free-tier-tools.md` - Daftar toolkit gratis luar composio
+- `docs/registry/ide5-reels-full-guide.md` - Guide IDE 5 (sudah dibuat)
 - `BACKLOG.md` - Prioritas master proyek
 - `AGENTS.md` - Global rules Niumination
 

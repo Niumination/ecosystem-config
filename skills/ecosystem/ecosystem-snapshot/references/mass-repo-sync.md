@@ -49,4 +49,4 @@ Saat user kirim arsip studi (zip berisi audit/blueprint/scripts), simpan ke:
 docs/references/<topik>-<YYYY-MM-DD>/   # extract isi paket, pertahankan struktur
 docs/references/<nama>-<YYYY-MM-DD>.md  # dokumen tunggal
 ```
-Lalu commit ke ecosystem root (bukan brain/). Jangan campur ke `docs/reference/` (singular — folder lama dokumen status internal). Laporkan path lengkap hasil simpan.
+Lalu commit ke ecosystem root (bukan brain/). Jangan campur ke `docs/registry/` (singular — folder lama dokumen status internal). Laporkan path lengkap hasil simpan.

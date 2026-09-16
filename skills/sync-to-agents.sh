@@ -28,7 +28,7 @@ JCODE_DIR="$_REAL_HOME/.jcode/skills"
 HERMES_DIR="$_REAL_HOME/.hermes/skills"
 # HERMES_USB_DIR="/Volumes/HermesAgent/HermesAgentUSB/data/skills"  # diparkir 2026-08-20
 AGENTS_MD="$_REAL_HOME/Desktop/Niumination/AGENTS.md"
-REGISTRY_MD="$_REAL_HOME/Desktop/Niumination/docs/reference/skill-registry.md"
+REGISTRY_MD="$_REAL_HOME/Desktop/Niumination/docs/registry/skill-registry.md"
 LOCK_DIR="$_REAL_HOME/Desktop/Niumination/.sync-lock"
 LOG_FILE="$_REAL_HOME/Desktop/Niumination/.sync-log"
 
@@ -216,7 +216,7 @@ if ! $DRY_RUN; then
 
 _Last sync: $(date '+%Y-%m-%d %H:%M:%S')_"
 
-  # Registry hidup di docs/reference/skill-registry.md (root AGENTS.md v4 mendelegasikan ke sana)
+  # Registry hidup di docs/registry/skill-registry.md (root AGENTS.md v4 mendelegasikan ke sana)
   if grep -q "$REGISTRY_START" "$REGISTRY_MD" 2>/dev/null; then
     # Use Python to build registry and replace between markers
     python3 << 'PYEOF'
@@ -236,7 +236,7 @@ def _resolve_home():
 
 _real_home = _resolve_home()
 bank = os.path.join(_real_home, 'Desktop', 'Niumination', 'skills')
-agents = os.path.join(_real_home, 'Desktop', 'Niumination', 'docs', 'reference', 'skill-registry.md')
+agents = os.path.join(_real_home, 'Desktop', 'Niumination', 'docs', 'registry', 'skill-registry.md')
 
 # Build registry table
 rows = []
@@ -309,7 +309,7 @@ if s >= 0 and e >= 0:
 else:
     print('ERROR: markers not found')
 PYEOF
-    log "   ↑ docs/reference/skill-registry.md: registry diperbarui"
+    log "   ↑ docs/registry/skill-registry.md: registry diperbarui"
   else
     # Fallback: sisipkan sebelum footer kalau file registry kehilangan marker
     footer_line=$(grep -n "^> \\*\\*Dibuat:" "$REGISTRY_MD" | head -1 | cut -d: -f1 || true)
@@ -324,11 +324,11 @@ PYEOF
       echo "---" >> /tmp/registry-new.md
       tail -n +$((insert_line + 1)) "$REGISTRY_MD" >> /tmp/registry-new.md
       mv /tmp/registry-new.md "$REGISTRY_MD"
-      log "   ↑ docs/reference/skill-registry.md: registry ditambahkan"
+      log "   ↑ docs/registry/skill-registry.md: registry ditambahkan"
     else
-      # Marker registry ada di docs/reference/skill-registry.md, bukan root AGENTS.md
+      # Marker registry ada di docs/registry/skill-registry.md, bukan root AGENTS.md
       # (root DOX v4 mendelegasikan ke sana). Ini kondisi normal, bukan error.
-      log "   ℹ️  docs/reference/skill-registry.md tanpa marker/footer registry — dilewati"
+      log "   ℹ️  docs/registry/skill-registry.md tanpa marker/footer registry — dilewati"
     fi
   fi
 fi
@@ -336,7 +336,7 @@ fi
 # ── 4. Write log ─────────────────────────────────────────────────────────────
 if ! $DRY_RUN; then
   echo "[$(date '+%Y-%m-%d %H:%M:%S')] Sync selesai: $SKILL_COUNT skill × 2 target (Jcode/Hermes) + AGENTS.md ✅" >> "$LOG_FILE"
-  log "✅ Sync selesai — $SKILL_COUNT skill disinkronkan ke Hermes + docs/reference/skill-registry.md"
+  log "✅ Sync selesai — $SKILL_COUNT skill disinkronkan ke Hermes + docs/registry/skill-registry.md"
   
   # Notify mission-control (fire-and-forget, non-blocking)
   if command -v curl &>/dev/null; then

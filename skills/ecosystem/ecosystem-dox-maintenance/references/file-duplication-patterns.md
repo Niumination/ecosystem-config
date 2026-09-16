@@ -49,7 +49,7 @@ diff -u repo1/file repo2/file
 ## Ownership decision tree
 1. **Project-specific docs** → project repo
 2. **Global config** → dotfiles or ecosystem-config root
-3. **Reference docs** → ecosystem-config `docs/reference/`
+3. **Reference docs** → ecosystem-config `docs/registry/`
 4. **Temporary/transient files** → not tracked at all
 
 ## Quick fix command sequence
@@ -81,8 +81,8 @@ git commit -m "DOX: deduplicate STATUS-CC.md via one-home rule"
 |------|-----------------------------|-------------|
 | `STATUS-CC.md` | ecosystem-config/docs/, cc-acehtengah/docs/ | Project repo |
 | `SOUL.md` | dotfiles/, JHermUSB-portable/ | dotfiles |
-| `model-mapping.md` | docs/reference/, scripts/model-checker-report.md | ecosystem-config/docs/reference/ |
-| `skill-registry.md` | docs/reference/, AGENTS.md inline table | docs/reference/ |
+| `model-mapping.md` | docs/registry/, scripts/model-checker-report.md | ecosystem-config/docs/registry/ |
+| `skill-registry.md` | docs/registry/, AGENTS.md inline table | docs/registry/ |
 
 ---
 

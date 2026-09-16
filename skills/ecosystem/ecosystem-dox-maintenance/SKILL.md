@@ -24,14 +24,14 @@ Clean, verify, and enforce DOX hygiene across ecosystem repos.
 ```bash
 wc -c <repo>/AGENTS.md
 ```
-Keep root AGENTS.md < 20KB. Child DOX should also stay under the truncation-sensitive floor; if not, extract the largest tables/sections to `docs/reference/<project>-*.md` and replace with pointers.
+Keep root AGENTS.md < 20KB. Child DOX should also stay under the truncation-sensitive floor; if not, extract the largest tables/sections to `docs/registry/<project>-*.md` and replace with pointers.
 
 ### 2. Extract large sections
 - Candidate sections: Environment Variables, API route tables, folder structure listings, long deployment notes
-- Pattern: extract to `docs/reference/<repo>-<topic>.md`, then replace with:
+- Pattern: extract to `docs/registry/<repo>-<topic>.md`, then replace with:
   ```
   ## Section Name
-  > Detail ada di `docs/reference/<repo>-<topic>.md` (auto-generated).
+  > Detail ada di `docs/registry/<repo>-<topic>.md` (auto-generated).
   > Jangan menyalin tabelnya kembali ke sini.
   ```
 - Commit extracted files in the same DOX cleanup commit

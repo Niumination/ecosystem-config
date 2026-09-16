@@ -13,6 +13,7 @@
 | `docs/architecture/` | Konsep arsitektur (autoskills-pattern, personal-ai-os) | 🟢 Referensi |
 | `docs/audit/` | Audit historis (AGENTS.md.pre-slim-53k.bak, CORE-REPAIR, ERRATA-AUDIT-V1) | 🟡 Arsip |
 | `docs/references/` | **148 file** — snapshot rekonstruksi, draft keputusan model, studi per-repo | 🟡 Mixed (arsip+draft) |
+| `docs/registry/` | **8 file** — registry hidup (skill-registry auto-generated, project-catalog, deployment-status, ai-ecosystem, model-mapping, a2a-hermes-mac-vps, composio-integration-plan, composio-free-tier-tools) | 🟢 Hidup |
 | `docs/reports/` | Laporan status (healthcheck, prioritas kerja, status hukum/otoritas model, rekonstruksi) | 🟢 Aktif |
 | `docs/superpowers/` | Kosong (hanya .DS_Store) | ⚪ Kosong |
 | `docs/notebooklm/` | README + RECONNECT_GUIDE (integrasi NotebookLM) | 🟢 Aktif |

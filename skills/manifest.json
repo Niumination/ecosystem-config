@@ -1,6 +1,6 @@
 {
   "fileCount": 588,
-  "generatedAt": "2026-09-13T17:20:57.748829+00:00",
+  "generatedAt": "2026-09-16T06:14:05.447754+00:00",
   "skillCount": 121,
   "skills": {
     "9router-model-mapping": {
@@ -178,11 +178,11 @@
       }
     },
     "ecosystem-dox-maintenance": {
-      "bundleHash": "7f85a5bc19ac18e7428801045abc82e482f0a6d7a680024a485f5275e7916328",
+      "bundleHash": "dfcf11ccfc5638e9cdaff58ad8e2bac065b877eab5a3a529de9cdc60363e4efd",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "13f13fdd37b57078e0087932b3d4f66a3d9be16280a344b21727f662be3677e2",
-        "references/file-duplication-patterns.md": "e18c0d91024c457fad21c25b3d395245e2767b7a974e57f0ddcb1d7f194f78be",
+        "SKILL.md": "773194c75ed80144e28d5ed653a123472242a8bf3ddb2c3488b74cd722db7bd6",
+        "references/file-duplication-patterns.md": "b0f3bf75ac4fb8294bbb2a84f8bdab2618c766909be9e43896f3c693ca8f46b4",
         "references/stale-brief-handling.md": "7e5344ec25cf4f73fa3b2eca1959bf6ac4d13325a065eb34fc1f94e4e7e167ec"
       }
     },
@@ -221,12 +221,12 @@
       }
     },
     "ecosystem-snapshot": {
-      "bundleHash": "9dc9b8331fd909ced9e86127b7e379b66a138002ce018e67d699408243fd3dde",
+      "bundleHash": "a261076123c7e1f9c4af39bc295604380ce58e353ce88bf72e4b98f5e08b9510",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "c7d716db6a7dc7a217a19cdca5a242f1f02d31a5143d7c1a6409cd03a20bd37b",
+        "SKILL.md": "4d81b93ac619a3c93bb6afcae081998f3aa06e3b52715f76df07cd5f43e524aa",
         "references/anomaly-audit-playbook.md": "7d339fb09a612d3c420acbcbcf160915c3dfee1bfeb2438a1c11751cc0ce92fb",
-        "references/mass-repo-sync.md": "fa81d3fbcf10cc86ecd99d6f0c65a38f4b1b3988b6cafe3a363a9595d69159eb",
+        "references/mass-repo-sync.md": "ffb6231c8d0b7a15d0710b2b3db169e91c758e991a2cca7aaf0e69b5e00a972d",
         "references/niumination-core-v2.md": "99073530fb00fe93f2ee9716559e5efbd2a8716be4b004dcf74165362de8ee26",
         "references/snapshot-template.md": "b1ad596334865dada1f841e84924b9d1c6089063d84b08eac6f9c13c1e7176e9"
       }
@@ -309,10 +309,10 @@
       }
     },
     "free-tier-reels": {
-      "bundleHash": "defab3c50a2d173a9c47ac3aaabf455685c0d8680eaca410c1c9d233f72fcd82",
+      "bundleHash": "9d8e05f181abbbf652b295d16977f335227e2358d66ca55249d596166f98b6ee",
       "domain": "creative",
       "files": {
-        "SKILL.md": "83dbab1282dea0d52d22301a1b22af43a0522d58e2e9c359537d899e877f7337",
+        "SKILL.md": "59971eee0fbfc74a4e2028fb282659f7e4b1e1a20dd733602fe7d76e05987601",
         "references/ide5-reels-workflow.md": "af64608cea101baccbb98b262fcc2e2209e36b5e9471c15e0b6ae1266a9cbe27",
         "scripts/generate-html.sh": "482f457466dc0251de55196f5ff46a54161d0f1865e7743e929ba340185cfd1d",
         "templates/reels-html-scaffold.html": "3a2c55c137f51e0473304f2f1e09c048fbca5cf6e23d1d1882724be09c01aeee"
@@ -723,10 +723,10 @@
       }
     },
     "model-checker": {
-      "bundleHash": "9f5b067ac288311cffe0a4237a41be2aaabde94e5fc459ed3af4815d73f109de",
+      "bundleHash": "ad49a29a6524b981290dfcea8139cacbf7e7ca76aee79427e11206339644b58c",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "a3648af611cf8340114039ff028acf8093349dcae3f56dad66215a438f6de79c",
+        "SKILL.md": "c3ad533b72389d9b60447f8259e4cae22d25b4ab3016b677ed79dd8c9b938b1f",
         "references/kiro-models-status-2026-08-30.md": "6df9541106a8af692941b8c402edabdfe0b76aa2c97fb207e386dc2c59e46559"
       }
     },
@@ -738,10 +738,10 @@
       }
     },
     "niu-9router-maintain": {
-      "bundleHash": "e1b5254ceb7e62d1832d586b61c815e7a516d5fe58bfe96c4a9c1c5a006c23e7",
+      "bundleHash": "fac0bde80c99299844deabd87a4264327823e91e6b44061d77b6b609818843e8",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "9d4b1d621050743c347dac740eae48602073d15b5696862f7146a8e0d627cba5",
+        "SKILL.md": "b2bdb8e31669bce42c3fac86e8f4b429a1eadab62e0c35f30d3982e5d1eea936",
         "references/9router-catalog-2026-08-31.md": "48506b9e9e36830576be69dc4acb7dd394e85b17727b429e4e0a33822d8a6f43",
         "references/9router-models-and-connectivity.md": "d3126f43b651ca8907b5ad5a1c1162971cad86d044f8a7afa325881ac6a05dcb",
         "scripts/audit_models.py": "2e272a4562d0779cde985ae49b7595baaa5aa5a1ee3602407ebe1e402015302d"
