@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Gate kredensial pre-commit (repo ekosistem Niumination).
+# Aktifkan sekali per clone:  git config core.hooksPath .githooks
+# Melewati gate (JANGAN kecuali darurat): git commit --no-verify
+set -euo pipefail
+
+ROOT="$(git rev-parse --show-toplevel)"
+exec python3 "$ROOT/scripts/secret-scan-staged.py"

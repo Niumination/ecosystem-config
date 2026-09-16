@@ -20,6 +20,7 @@
 - **UI/theme (semua proyek UI):** gunakan CSS theme tokens; dilarang hardcode overlay warna / transparansi yang menyimpang dari token proyek.
 - **One-home rule:** satu file hanya punya satu repo-home. Berbagi lintas repo hanya via pointer/symlink, bukan salinan yang di-track git.
 - **Struktur docs (WAJIB):** semua dokumen hanya di dalam `docs/`. Laporan, rencana, strategi, ide, dan prompt → `docs/reports/`. Registry hidup (skill-registry, project-catalog, deployment-status, ai-ecosystem, model-mapping) → `docs/registry/`. Arsip studi → `docs/references/`. **Dilarang membuat folder baru di bawah `docs/`** dan dilarang menulis ke `docs/reference/` (dihapus 16 Sep 2026 — regresi ini pernah terulang dua kali, terakhir oleh thread #General MC). Peta folder resmi: `docs/dox/INDEX.md`.
+- **Kredensial & `git add -f` (WAJIB):** dilarang meng-commit berkas yang di-ignore `.gitignore` (`.env`, `vault/`, `apps/**/.env`, `*.key`). `git add -f` adalah satu-satunya jalan berkas rahasia lolos ke history — insiden 16 Sep 2026 (`apps/pi-app-studio-mata/server/.env` berisi `PI_API_KEY` sampai masuk repo publik) lahir dari sana. Rahasia hanya di `~/.hermes/.env`, `vault/`, atau berkas git-ignored; repo hanya memuat contoh (`.env.example`). Gate otomatis: `scripts/secret-scan-staged.py` + `.githooks/pre-commit` — aktifkan per clone dengan `git config core.hooksPath .githooks`.
 
 ## Core Contract
 
