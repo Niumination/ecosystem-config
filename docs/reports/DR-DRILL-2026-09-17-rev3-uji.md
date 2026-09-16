@@ -24,6 +24,9 @@
 - `--clobber` **mengganti** aset bernama sama (jumlah aset tetap 2), `delete-asset` bekerja
 - `gh release view --json assets` memberi nama + ukuran → cukup untuk `verify.sh`
 
+**Uji tuntas di repo yang benar (setelah sesi dibersihkan dari token mati):**
+repo privat `Niumination/dr-uji-tuntas-<pid>` → commit awal `d8fdb96` → `gh release create v1` → unggah 2 bagian (3.145.728 B + 2.097.152 B) → `gh release download` ke direktori bersih → gabung → **ROUND-TRIP LULUS** → `--clobber` jumlah aset tetap **2** → release + repo uji dihapus. Verifikasi akhir: repo `dr-*` tersisa **0**, release di `ecosystem-config` **0**. Alur `restore.sh` (buat repo → commit → release → unggah → unduh → verifikasi hash) sudah terbukti bekerja dari ujung ke ujung.
+
 **Batasan yang ditemukan (masuk rencana):**
 
 1. **Repo tanpa commit tidak bisa punya release.** Percobaan pertama gagal: `gh release create` → *"Repository is empty."* → repo `niumination-restore` **wajib punya minimal satu commit** sebelum release pertama; urutannya: init repo → commit skrip/README → baru `gh release create`.
