@@ -338,6 +338,6 @@ DATA SOURCE:
 
 | File | Location |
 |------|----------|
-| This plan | `docs/reference/pi-app-studio-mata-implementation.md` |
+| This plan | `docs/reports/pi-app-studio-mata-implementation.md` |
 | Demo data | `labs/mata-aihackfest-2026/mata/data/demo_api.json` |
 | API spec | `labs/mata-aihackfest-2026/docs/api-spec.md` |

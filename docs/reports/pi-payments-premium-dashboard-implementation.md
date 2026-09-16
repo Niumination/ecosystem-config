@@ -357,7 +357,7 @@ CREATE TABLE api_keys (
 
 | File | Location |
 |------|----------|
-| This plan | `docs/reference/pi-payments-premium-dashboard-implementation.md` |
+| This plan | `docs/reports/pi-payments-premium-dashboard-implementation.md` |
 | Database schema | `services/mata-payments/schema.sql` |
 | API spec | `services/mata-payments/api-spec.md` |
 | Payment flow | `services/mata-payments/payment-flow.md` |
