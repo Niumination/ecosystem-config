@@ -1,6 +1,6 @@
 # DOX — Index Dokumentasi Niumination
 
-**Dibuat:** 2026-08-22 · **Sumber:** filesystem `docs/` (184 file, terverifikasi)
+**Dibuat:** 2026-08-22 · **Diperbarui:** 2026-09-16 · **Sumber:** filesystem `docs/` (142 file, 135 tracked)
 **Tujuan:** Peta tunggal seluruh dokumentasi di `docs/` agar tidak ada file yang "tersesat".
 
 ---
@@ -12,7 +12,7 @@
 | `docs/dox/` | **Index ini + analisis dox** (joy-connect-for-mac, trancast-protocol, niu-cast) | 🟢 Aktif |
 | `docs/architecture/` | Konsep arsitektur (autoskills-pattern, personal-ai-os) | 🟢 Referensi |
 | `docs/audit/` | Audit historis (AGENTS.md.pre-slim-53k.bak, CORE-REPAIR, ERRATA-AUDIT-V1) | 🟡 Arsip |
-| `docs/references/` | **148 file** — snapshot rekonstruksi, draft keputusan model, studi per-repo | 🟡 Mixed (arsip+draft) |
+| `docs/references/` | **74 file** — arsip studi/analisis (`archive/` 8 entri + `drafts/` 1 entri) | 🟡 Arsip + draft |
 | `docs/registry/` | **8 file** — registry hidup (skill-registry auto-generated, project-catalog, deployment-status, ai-ecosystem, model-mapping, a2a-hermes-mac-vps, composio-integration-plan, composio-free-tier-tools) | 🟢 Hidup |
 | `docs/reports/` | Laporan status (healthcheck, prioritas kerja, status hukum/otoritas model, rekonstruksi) | 🟢 Aktif |
 | `docs/superpowers/` | Kosong (hanya .DS_Store) | ⚪ Kosong |
@@ -33,14 +33,13 @@
 
 ## 🟡 Arsip / Draft (bukan runtime)
 - `docs/audit/` — hasil audit 18 Aug, sudah digantikan D-0004/STATE
-- `docs/references/niumination-rebuild-v2-2026-08-18/` (~75 file) — snapshot penuh rekonstruksi (copy reference, BUKAN live)
-- `docs/references/migration-portable-to-native/` — log migrasi portable→native
-- `docs/references/niumination-model-selection/` — **DRAFT** OPSI-2 (model asing/berbayar) — TIDAK dipakai, D-0004 lah yang sealed
-- `docs/references/STATUS-REFERENSI-2026-08-13.md` — tracker lama (superseeded)
+- `docs/references/archive/` — **8 entri** (dibersihkan 16 Sep 2026): `niumination-rebuild-2026-08-18/` (13 file — snapshot rekonstruksi, BUKAN live), `hermes-config-penutup-archive/`, `hermes-config-arena-archive/`, `stale-hermes-config-2026-08-20/`, `migration-portable-to-native/`, `STATUS-REFERENSI-2026-08-13.md`, `ekosistem-status.md`, `ai-memory-collection.md`. Peta lengkap: `docs/references/README.md`
+- `docs/references/drafts/` — `niumination-model-selection/` (**DRAFT** OPSI-2, TIDAK dipakai — D-0004 yang sealed)
 
 ## ⚪ Perlu dibersihkan
 - `docs/superpowers/` — kosong (hapus atau isi)
-- `docs/references/niumination-rebuild-v2-2026-08-18/preview-root/` — duplikat 1:1 (37 file redundan)
+- `docs/references/akun-login.md` — perlu dipindah ke `vault/` (kemungkinan kredensial; lihat `docs/references/README.md`)
+- ~~`docs/references/niumination-rebuild-v2-2026-08-18/preview-root/`~~ — **sudah tidak ada** (terverifikasi 16 Sep 2026)
 
 ---
 
