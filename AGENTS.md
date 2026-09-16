@@ -19,6 +19,7 @@
 - **Model mapping:** jangan pakai combo/generic model sebagai mapping utama thread/DM. Sumber mapping sah: hasil auto-discovery (lihat `docs/registry/model-mapping.md`) — fallback chain harus lolos probe HTTP-200 sebelum dicatat.
 - **UI/theme (semua proyek UI):** gunakan CSS theme tokens; dilarang hardcode overlay warna / transparansi yang menyimpang dari token proyek.
 - **One-home rule:** satu file hanya punya satu repo-home. Berbagi lintas repo hanya via pointer/symlink, bukan salinan yang di-track git.
+- **Struktur docs (WAJIB):** semua dokumen hanya di dalam `docs/`. Laporan, rencana, strategi, ide, dan prompt → `docs/reports/`. Registry hidup (skill-registry, project-catalog, deployment-status, ai-ecosystem, model-mapping) → `docs/registry/`. Arsip studi → `docs/references/`. **Dilarang membuat folder baru di bawah `docs/`** dan dilarang menulis ke `docs/reference/` (dihapus 16 Sep 2026 — regresi ini pernah terulang dua kali, terakhir oleh thread #General MC). Peta folder resmi: `docs/dox/INDEX.md`.
 
 ## Core Contract
 
