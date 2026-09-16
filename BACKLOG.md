@@ -97,6 +97,7 @@ Desktop/Niumination/
 || Proyek | Status | Deploy | Aktivitas Terakhir | Notes |
 ||--------|:------:|:------:|:------------------:|-------|
 || **niu-gayo-agroclimate** | 🟢 Active | Vercel | 2026-09-07 | React 19/Vite 6 |
+|| **pi-app-studio-mata** | 🟢 Active | Pi App Studio (Testnet) | 2026-09-16 | MATA Watchdog di Pi Network — `web/` repo mandiri `Niumination/mata-watchdog-pi`, `server/` Express Pi Payments |
 
 ### 🖥️ desktop/ — 4 Native
 
@@ -371,3 +372,14 @@ Ultra, AuditTI-AT, Niu-Flow, didong-code, x-downloader, flame-ade, niu-vermilion
 ## 🔴 Mendesak — 11 Sep 2026 — AI HackFest Batch 3: MATA (Hari-1/5)
 
 - [ACTIVE] **MATA × AI HackFest 2026 — sprint 11–15 Sep** — Watchdog akuntabilitas pengadaan (Python, rule engine D1–D6, dossier PDF). Lokasi: `labs/mata-aihackfest-2026/` (DOX proyek + sub-BACKLOG harian). Sumber: `~/Downloads/aihackfest.zip`. VPS dikelola owner via Kitty; Hermes tidak menyentuh VPS. Deadline karya: 15 Sep (VM dinonaktifkan pasca-batch). Detail harian: `labs/mata-aihackfest-2026/BACKLOG.md` @mata-aihackfest
+
+---
+
+## 🔴 Perubahan — 16 Sep 2026 — Proyek baru: pi-app-studio-mata (MATA di Pi Network)
+
+- 🆕 **`apps/pi-app-studio-mata/`** — MATA Watchdog dibawa ke Pi Network via Pi App Studio AI (Beta). Isi: DOX proyek (`AGENTS.md`), BACKLOG sprint, 3 dokumen teknis + prompt, 2 referensi strategi, demo data 48 records.
+- 🌐 **`web/`** — front-end Pi (repo mandiri `github.com/Niumination/mata-watchdog-pi`, sudah punya remote).
+- 🔐 **`server/`** — Express backend Pi Payments; `PI_API_KEY` di `.env` **tidak di-track** (`.env.example` disediakan sebagai gantinya).
+- 📦 **Repo proyek** — `git init` + commit awal `fe6b3c0` (17 file). `web/` di-ignore di repo proyek karena punya repo sendiri.
+- 🧹 **Higiene ekosistem** — `docs/reference/` (regresi dari thread #General MC) dihapus ulang; 5 dokumen PI dipindah ke `docs/reports/`; aturan struktur docs ditambahkan ke Global Agent Rules + prompt 5 thread MC.
+- 🧠 **SOUL.md** — pointer lama `docs/reference/` → `docs/registry/` di ketiga salinan (kanonik + portable).

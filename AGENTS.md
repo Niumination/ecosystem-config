@@ -65,7 +65,7 @@
 ├── BACKLOG.md                 ← Prioritas master semua proyek
 ├── README.md                  ← Root overview & maturity pipeline
 │
-├── apps/                      🏭 15 proyek — deployed, battle-tested
+├── apps/                      🏭 16 proyek — deployed, battle-tested
 │   ├── JHermUSB-portable/     ← Backup DR Hermes Portable (21MB+ skills) ✅
 │   ├── niu-lkh/               ← LKH v3.1.1 — 100% Done — Vercel live ✅
 │   ├── PemdiAcehTengah/       ← Portal Pemda — 52 OPD, 70 pages — 🟢 Vercel
@@ -79,6 +79,7 @@
 │   ├── niu-dash/              ← v2.16.8 GH Pages — Audit 27/27 ✅
 │   ├── niu-vermilion/         ← Second Brain — 🟢 Vercel ✅
 │   └── pabrik-aplikasi-gas/   ← Pabrik Aplikasi GAS — Pilot Inventaris Aset TI LIVE (GAS v3) — repo mandiri Niumination/pabrik-aplikasi-gas
+│   └── pi-app-studio-mata/    ← MATA Watchdog di Pi Network — Pi App Studio AI Beta (web/ repo mandiri) 🆕
 │
 ├── services/                  🔧 9 proyek — backend & engines
 │   ├── cc-acehtengah/         ← AI Command Center — Next.js 16
