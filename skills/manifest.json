@@ -1,6 +1,6 @@
 {
   "fileCount": 588,
-  "generatedAt": "2026-09-16T07:52:52.370114+00:00",
+  "generatedAt": "2026-09-16T08:32:48.692040+00:00",
   "skillCount": 121,
   "skills": {
     "9router-model-mapping": {
@@ -75,7 +75,7 @@
       }
     },
     "cc-acehtengah-ops": {
-      "bundleHash": "59c5f9905134cc917b58e5ba206c1a361b6031140c08bd30c06b9635829c68fb",
+      "bundleHash": "65edd9f3dd1a9ff54275622d3a081c004abb4081e651f7f3d996e494b9a311d2",
       "domain": "software-development",
       "files": {
         "SKILL.md": "a05ccf1124a8df44641dd80961b6dc68a3c02893c99edd93dce48e70a36e0514",
@@ -86,7 +86,7 @@
         "references/deltas-2026-08-29-branch-root-localdev.md": "03f5a6ac54ba67cd9a9e905e272cd31e3c06ebeb0bf5a0399e8156b1e4260aa4",
         "references/dtsen-bappeda-import.md": "e5aa7cbee5d6f4317c13841b6582ba151cc44ad068a7888c1676b8967dd28e25",
         "references/dtsen-root-encrypted-identity-2026-08-29.md": "939fdf087c499a6a5fd624edecc1d5e9047e3e1e8017e0ef99422a78a655cdb2",
-        "references/dtsen-v2-import-fixes.md": "4964d22d8013ac95993236c5fa7d03fc3ee4e222061af38ea25fdfd0d21ebc94",
+        "references/dtsen-v2-import-fixes.md": "adfc9ffa5741b253ef122d10c322d9400bc06bd92171660c8316b8e6ecd0790a",
         "references/executive-ui-breakdown-pitfall-2026-08-30.md": "2ead1a9d4561cadb26d95bc65f2b2932e5a2960b4643f943ee75e896d70fe0d8",
         "references/lost-feature-probe.md": "27000eb69cc0be3874c28f5efa26cc807eb0494c0d5009b6c9959b806bbb2819",
         "references/merge-hotfix-to-v3-recipe.md": "6cee54e611b48f8b96aeeb839ffc590429642388eea687a83cf8db4b2145de52",
