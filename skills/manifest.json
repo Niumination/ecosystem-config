@@ -1,6 +1,6 @@
 {
   "fileCount": 588,
-  "generatedAt": "2026-09-16T06:19:57.853744+00:00",
+  "generatedAt": "2026-09-16T07:52:52.370114+00:00",
   "skillCount": 121,
   "skills": {
     "9router-model-mapping": {
@@ -178,11 +178,11 @@
       }
     },
     "ecosystem-dox-maintenance": {
-      "bundleHash": "dfcf11ccfc5638e9cdaff58ad8e2bac065b877eab5a3a529de9cdc60363e4efd",
+      "bundleHash": "3af978327405051587a8efb289ae006b192a4c905983f5ba55c5516331be7ce9",
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "773194c75ed80144e28d5ed653a123472242a8bf3ddb2c3488b74cd722db7bd6",
-        "references/file-duplication-patterns.md": "b0f3bf75ac4fb8294bbb2a84f8bdab2618c766909be9e43896f3c693ca8f46b4",
+        "references/file-duplication-patterns.md": "9fe62d704dccb5db08a51071c722681c4f1d394e497955e1555b3e11e8ea4974",
         "references/stale-brief-handling.md": "7e5344ec25cf4f73fa3b2eca1959bf6ac4d13325a065eb34fc1f94e4e7e167ec"
       }
     },

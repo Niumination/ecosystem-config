@@ -20,16 +20,19 @@
 
 ### Example 2: `SOUL.md`
 **Context**: Agent identity document
-**Before**:
-- `dotfiles/hermes/SOUL.md` (source of truth)
-- `apps/JHermUSB-portable/SOUL.md` (portable copy)
-- `~/.hermes/SOUL.md` (active symlink)
+**Canonical (source of truth)**: `dotfiles/zaryu-terminal-dotfiles/hermes/SOUL.md`
+  — dimiliki repo `Niumination/zaryu-terminal-dotfiles` (repo terpisah di dalam `dotfiles/`, bukan repo root)
+**Copies**:
+- `apps/JHermUSB-portable/SOUL.md` (portable snapshot, repo `Niumination/JHermUSB-portable`)
+- `~/.hermes/SOUL.md` (symlink → kanonik; **jangan diedit langsung**)
 
 **Decision**:
-- Owning repo: **dotfiles**
-- Portable copy: read-only snapshot
-- Symlink: `~/.hermes/SOUL.md` → dotfiles
-- SHA-256 drift guard in `up-eco` Phase 6c
+- Owning repo: **zaryu-terminal-dotfiles** (bukan folder `dotfiles/`, bukan repo `Niumination/dotfiles`)
+- Portable copy: read-only snapshot, disinkronkan setelah kanonik berubah
+- Symlink: `~/.hermes/SOUL.md` → kanonik
+- SHA-256 drift guard in `up-eco` Phase 6c (`scripts/up-eco.sh` L385)
+
+**Pitfall:** repo root meng-ignore `dotfiles/` (`.gitignore:37`), jadi file apa pun di `dotfiles/<nama>/` — di luar repo `zaryu-terminal-dotfiles/` — **tidak ter-track repo mana pun**. Jangan pernah menganggap `dotfiles/hermes/SOUL.md` (atau path serupa) sebagai kanonik. Sebelum mengedit file identitas: jalankan `readlink ~/.hermes/SOUL.md` dan edit **target symlink**-nya; mengedit salinan berarti mengira SOUL berubah padahal yang aktif tidak bergerak.
 
 **Rule**: Configuration files live in their designated source repo; copies are snapshots.
 
