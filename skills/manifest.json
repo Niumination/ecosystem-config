@@ -1,6 +1,6 @@
 {
   "fileCount": 716,
-  "generatedAt": "2026-09-17T16:55:34.149328+00:00",
+  "generatedAt": "2026-09-17T17:02:16.326205+00:00",
   "skillCount": 148,
   "skills": {
     ".archive/cc-acehtengah-maintain": {
@@ -509,7 +509,7 @@
       }
     },
     "ecosystem/device-migration-disaster-recovery": {
-      "bundleHash": "85d28fa52e83205b7010942b763296a29c0c56e0d09985a88f1d940a19aaba58",
+      "bundleHash": "1562e58c18eeff8db69e9489eff5465696235f9ae7bf56f9e5cb329f58f05df4",
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "77c47b72719f3b316bedaa61760c9702575a68838a9ba4e38b3bc65d88942cc0",
@@ -517,7 +517,7 @@
         "references/hermes-home-backup.md": "5ddc76d3d2846bbd58de339c24d662e292f17a4a24a87880c9e665a7d9b5acdb",
         "references/ignored-path-sweep.md": "e2bf1131165e9e365bfc67a2cf73627a7f185f3d03f0cb88151793b4b266f23f",
         "references/offsite-artifact-staging.md": "d7e6554b2f1114b2f7760a71f4046e96c60fc7a3f27ef1023eb15f9f88cb6707",
-        "references/restore-repo-layout.md": "9c884ce3358289ce7a7fa238193878783b1a362dc6a0ad4a7ecb567a3cd5da55"
+        "references/restore-repo-layout.md": "f4c465d4d0dec1b9d8501b218c077828e0c352e1af534b9586314844df82912a"
       }
     },
     "ecosystem/dotfiles-maintenance": {

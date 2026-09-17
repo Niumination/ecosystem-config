@@ -133,6 +133,15 @@ Structure it so freshness is one command, not a remembered sequence:
   the same as untested.
 
 Prefer a scheduled job on the platform's existing scheduler over a filesystem watcher or a new daemon: the ecosystem
-rule against standing processes exists because every extra watcher competes for RAM and fires on every save. When the
-scheduler reads credentials from a place that non-interactive processes cannot reach (macOS Keychain), the job must
-fail loudly rather than silently skip the layer it could not unlock.
+rule against standing processes exists because every extra watcher competes for RAM and fires on every save.
+
+For a deterministic refresh, schedule it **without an agent** where the scheduler supports it (a script-only job whose
+stdout is delivered verbatim): no token cost, and — the part that matters — no dependency on model quota, so the backup
+does not stop working the week the model is unavailable. Reserve agent-scheduled variants for jobs that genuinely need
+judgement.
+
+Measure what a non-interactive process can actually reach instead of assuming. On macOS, `security
+find-generic-password` **works** from a background job (verified, exit 0) — but a CLI that keeps its own copy in the
+keyring is a separate matter: a revoked token there surfaces as `Bad credentials`, which reads like a permissions
+problem and is not. Give the job the credential path it can really use, and make an unreachable credential a loud
+failure rather than a silently skipped layer.
