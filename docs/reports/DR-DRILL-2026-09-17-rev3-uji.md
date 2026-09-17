@@ -148,6 +148,23 @@ Import complete: 2588 files restored in 10.2s     exit=0
 
 ---
 
+### Detail: ada DUA token GitHub tersimpan, keduanya mati
+
+| Token | Prefix | Panjang | Tersimpan di | Status |
+|---|---|---|---|---|
+| `GH_TOKEN` (yang dipakai Hermes & script) | `ghp_YdIJ…` | 40 char | `~/.hermes/.env`, `vault/github-pat.md`, `vault/hermes.env.bak`, `vault/_backup-credentials/hermes.env.bak.20260915` | **401 — tidak valid** |
+| `GITHUB_TOKEN` | `ghp_hvjD…` | 40 char | `vault/_backup-credentials/github.env`, `vault/_backup-credentials/github_token.txt` | **401 — tidak valid** |
+
+Keduanya classic PAT (40 char, prefix `ghp_`). Diuji langsung lewat `gh api user` dengan token tersebut → `exit=1`, jawaban error JSON → **dua-duanya sudah dicabut/kedaluwarsa**.
+
+Yang **masih hidup** justru token gh CLI di **keyring** (dipakai hanya oleh sesi terminal interaktif): `gh api user` → `Niumination` berhasil. Itu sebabnya kondisi ini membingungkan — terminal bisa, script tidak.
+
+**Konsekuensi:** token baru perlu dibuat owner, lalu ditempatkan di (a) `~/.hermes/.env` sebagai `GH_TOKEN`, dan (b) `vault/_backup-credentials/github.env` sebagai `GITHUB_TOKEN`. Setelah itu skrip ekosistem (`up-eco.sh`, `model-status-probe-cron.sh`, `model-health-probe-wrapper.sh`) dan sync otomatis DR akan bisa jalan dari proses non-interaktif.
+
+**Penting:** token mati di `~/.hermes/.env` **lebih merusak daripada tidak ada** — ia menimpa keyring yang sehat sehingga semua perintah `gh` gagal selama ia ada di environment.
+
+---
+
 ## TEMUAN BESAR — kredensial mati di `~/.hermes/.env`
 
 Selama uji ini, `gh` mengembalikan **401 Bad credentials** berkali-kali. Penelusuran:
