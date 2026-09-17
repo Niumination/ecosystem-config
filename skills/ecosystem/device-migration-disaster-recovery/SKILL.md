@@ -63,7 +63,9 @@ Design work in this ecosystem opens with lookups, not a blank page. Three checks
 Packaging recipe for the Hermes home layer — what the archive includes, what to trim, split rules, and the drill that
 proves it: `references/hermes-home-backup.md`. Restoring onto a different OS or a different username:
 `references/cross-os-restore.md`. Staging the archive at an offsite destination and fetching it back:
-`references/offsite-artifact-staging.md`.
+`references/offsite-artifact-staging.md`. Structuring the deliverable itself — a private restore repo with a build
+side and a restore side, release-hosted blobs, and a repeatable drill harness:
+`references/restore-repo-layout.md`.
 
 ### 1. Measure the real exposure — never assume a layer exists
 ```bash
@@ -196,7 +198,9 @@ the one thing worth keeping. Decide file by file inside each ignored tree.
   into the dotfiles repo (restore Hermes first and the agent comes up on default identity), local patches living
   only on a `backup-*` branch (restore `main` and the fixes vanish silently), absolute paths embedded in dozens of
   config files assuming the same username. Enumerate symlinks, non-main-branch patches and absolute paths before
-  writing the order, and make each step verify the one before it.
+  writing the order, and make each step verify the one before it. Clone the config repos **first**: `git clone`
+  refuses a non-empty destination, so any earlier step that writes into the target tree (a decrypted `vault/`, an
+  extracted blob) makes the clone fail — and a script that logs per step renders that failure as one more quiet line.
 - **Config-repo coverage is decided by symlink targets, not by files present in `$HOME`.** In a stow-based
   dotfiles repo only the stowed packages are covered; a real file sitting in `$HOME` (shell history, a
   tool-generated `~/.config/<cli>/` tree, an app's support dir) is outside the repo and simply absent on the
@@ -227,6 +231,36 @@ the one thing worth keeping. Decide file by file inside each ignored tree.
   script that did nothing exit 0. Wrap expected no-match greps with `|| true`, and make "found nothing where
   something was expected" exit non-zero. Print which method produced each verdict, and test scripts in both
   environments they must survive — interactive foreground and non-interactive background.
+- **The build side and the restore side drift silently, and every drift looks like a skip rather than an error.**
+  The writer and the reader are separate programs that must agree on file names, extensions and KDF parameters.
+  A restore loop over `*.age` when the writer emitted `*.enc` iterates zero times and reports completion; a reader
+  looking for `data.tar.zst.age` while the writer produced `.enc` logs "data not restored" and continues; a file
+  target pointing at a directory path writes the payload where a directory belongs. None of this reddens a green run.
+  Count what the loop processed and exit non-zero when the count is zero where payload was expected, and diff the two
+  sides against each other (every filename and flag the writer emits must appear in the reader) before trusting the pair.
+- **Parameters the artifact does not store must be asserted on both sides.** `openssl enc` writes salt only — not the
+  KDF iteration count — so encrypting with `-iter 200000` and decrypting with the default (10000) fails on every file,
+  on the target machine, after the original is gone. Pin such parameters as one explicit constant shared by both
+  scripts; a drill that used the writer's own defaults proves nothing about the reader.
+- **A credential that lives only in the OS keychain is lost with the device.** Generate the backup key into Keychain
+  for convenience, but the restore of a blank machine cannot read Keychain and the owner must enter the passphrase
+  from outside; say the retrieval command out loud and treat the plan as *incomplete* until an off-device copy exists.
+  This is the failure that surfaces at the worst possible moment, so it is a gate, not a note.
+- **Every layer must be ciphertext before it reaches the host — including large blobs staged as release assets.**
+  A private repo is not encryption: an unencrypted `hermes-backup.zip` holding `.env` puts the entire credential set
+  on the host, breaks the ecosystem's own credential rule, and is the pattern that gets tokens revoked automatically.
+  Encrypt before splitting, upload only `*.enc.part-NN` plus checksums, delete the plaintext release, and make the
+  fetch side decrypt and then assert the result is a readable archive (`unzip -l`) rather than trusting the download.
+- **Pick the transfer endpoint by measurement, not by habit — the spread is ~100x.** On the same host at the same
+  moment, `codeload` and git-over-HTTPS served ~30 KB/s while `api.github.com/.../releases/assets` served 2.3 MB/s; a
+  130 MB blob is minutes on one path and hours on the other, and a background-context run can land on the slow path.
+  Fetch release assets from the API with `curl --retry 4 -C -` (resumable), assert each asset's byte count, and keep
+  `gh` for metadata and API calls rather than bulk transfer. Time one probe before promising a restore duration.
+- **`… | grep -q` under `set -o pipefail` turns a match into a failure.** `grep -q` exits at the first hit, the
+  producer takes SIGPIPE (141), and the pipeline reports failure — so a coverage check announced `config.yaml`
+  MISSING for a file that was present, and only the drill exposed it (present *and* absent were both reported
+  wrongly at different times). Capture the listing to a file, or use `grep -c` and test the count, before letting
+  the result drive a verdict.
 
 ## Verification
 
@@ -237,7 +271,9 @@ just on disk.
 - Archive coverage confirmed entry by entry for the paths that matter (credentials, skills, cron jobs, state DB)
   — listed from the artifact itself, not assumed from the tool's description.
 - Crypto/archival tools named in the plan all resolve on the target machine, or their install is an explicit step.
-- One restore drill performed, with the result written down (what worked, what failed, what was assumed).
+- One restore drill performed, with the result written down (what worked, what failed, what was assumed), run against
+  the repo **as fetched from its remote** into a clean HOME — a working copy that sits on the same disk as the source
+  shares a filesystem with it and hides clone, fetch and missing-asset failures.
 - Drift check re-run against the **restored** copy (hash + live-only key names); comparing only the source proves
   nothing about the target.
 - **Count the skill layer with a whole-tree enumeration, and name the counter.** A project's own manifest or lockfile
@@ -246,3 +282,10 @@ just on disk.
   tool aborted silently on the root-level ones. Verify the layer with `find <home>/skills -name SKILL.md | wc -l`
   (or an interpreter's `rglob`) rather than a tool's summary, and when a tool's count disagrees with the tree, treat
   the tool as the thing to fix before trusting either number.
+- **A skill edit must land in the bank, then sync outward — editing the target copy is reverted without an error.**
+  The sync tool is non-destructive and the bank always wins, so a lesson written into the agent's own `skills/` copy
+  is overwritten by the next `sync-to-agents.sh` run, and the edit tool's success response says nothing about what
+  survives. Write the edit in the bank, run the official manifest + sync, then `grep` the distinctive phrase in
+  **both** copies before reporting it recorded. Recovering a reverted skill is possible from the curator's blob
+  backups (`~/.hermes/.curator_backups/blobs/`) — pick the candidate by grepping for the missing phrases rather than
+  by size or timestamp, and re-install it into the bank.
