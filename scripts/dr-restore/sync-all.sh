@@ -74,6 +74,22 @@ bash "$E/scripts/dr-restore/build-credentials.sh" >/tmp/sync-cred.log 2>&1 \
   || { tail -5 /tmp/sync-cred.log; die "build kredensial gagal"; }
 tail -1 /tmp/sync-cred.log | sed 's/^/         /'
 
+# ── KONTRAK build↔restore ────────────────────────────────────────────────────
+# Setiap berkas .enc yang dibangun WAJIB punya pemetaan nama→tujuan di
+# restore.sh. Tanpa ini, kredensial baru akan hilang di device baru (dulu
+# hanya diperingatkan sebagai "tak dikenal" lalu dilewati).
+tak_terpetakan=""
+for f in "$R"/credentials/*.enc; do
+  b=$(basename "$f" .enc)
+  grep -qE "^ *($b|env-hermes\|hermes-\.env)\)" "$R/restore.sh" \
+    || tak_terpetakan="$tak_terpetakan $b"
+done
+if [[ -n "$tak_terpetakan" ]]; then
+  say "         ⚠ kredensial TANPA pemetaan di restore.sh:$tak_terpetakan"
+  die "kontrak kredensial tidak sinkron — tambahkan pemetaannya di restore.sh, lalu ulangi"
+fi
+say "         kontrak OK: $(ls -1 "$R"/credentials/*.enc | wc -l | tr -d ' ') kredensial semuanya punya pemetaan"
+
 say "2/6 data ekosistem (gitignored) → l2-data + allowlist"
 bash "$E/scripts/dr-restore/build-l2.sh" >/tmp/sync-l2.log 2>&1 \
   || { tail -5 /tmp/sync-l2.log; die "build L2 gagal"; }
@@ -92,8 +108,10 @@ grep -E 'terenkripsi|bagian:|Selesai' /tmp/sync-l1.log | sed 's/^/         /'
 # ── 5. commit (selektif, hanya berkas milik repo ini) ────────────────────────
 say "5/6 commit di repo restore"
 cd "$R"
+# pastikan gate kredensial aktif: commit otomatis TIDAK boleh melewatinya
+git config core.hooksPath .githooks 2>/dev/null || true
 git add credentials l2-data hermes scripts README.md MANIFEST.md RESTORE-PATHS.md \
-        AGENTS.md docs restore.sh verify.sh .gitattributes .gitignore 2>/dev/null || true
+        AGENTS.md docs restore.sh verify.sh .gitattributes .gitignore .githooks 2>/dev/null || true
 if git diff --cached --quiet; then
   say "         tidak ada perubahan berkas — snapshot sudah mutakhir"
 else
