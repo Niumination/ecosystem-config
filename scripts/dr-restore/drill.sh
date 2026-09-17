@@ -49,13 +49,13 @@ to() { local l="$1"; shift
 clone_ok=0
 for coba in 1 2; do
   rm -rf "$WORK/src"
-  if to 180 gh repo clone "$REPO_SLUG" "$WORK/src" -- --depth 1 >>"$CLONE_LOG" 2>&1; then clone_ok=1; break; fi
-  echo "   percobaan $coba gagal/timeout (180s) — ulangi"
+  if to 120 gh repo clone "$REPO_SLUG" "$WORK/src" -- --depth 1 >>"$CLONE_LOG" 2>&1; then clone_ok=1; break; fi
+  echo "   percobaan $coba gagal/timeout (120s) — ulangi"
 done
 if [ "$clone_ok" -ne 1 ]; then
   echo "   jalur gh gagal — mencoba SSH…"
   rm -rf "$WORK/src"
-  if to 180 git clone --depth 1 "git@github.com:$REPO_SLUG.git" "$WORK/src" >>"$CLONE_LOG" 2>&1; then clone_ok=1; fi
+  if to 120 git clone --depth 1 "git@github.com:$REPO_SLUG.git" "$WORK/src" >>"$CLONE_LOG" 2>&1; then clone_ok=1; fi
 fi
 if [ "$clone_ok" -ne 1 ]; then
   rm -rf "$WORK/src"
@@ -72,8 +72,16 @@ if [ "$clone_ok" -ne 1 ]; then
   tail -3 "$CLONE_LOG" 2>/dev/null | sed 's/^/      /' >&2
   echo "GAGAL: tidak bisa mengklon $REPO_SLUG (gh, HTTPS, SSH, tarball)" >&2; exit 1
 fi
-HEAD=$(git -C "$WORK/src" rev-parse --short HEAD)
-echo "   HEAD: $HEAD"
+HEAD=""
+SRC_MODE="git"
+if [ -d "$WORK/src/.git" ]; then
+  HEAD=$(git -C "$WORK/src" rev-parse --short HEAD)
+else
+  # jalur fallback tarball: tidak ada .git, jadi HEAD diambil dari API
+  SRC_MODE="tarball (tanpa .git → integrity pakai mode ternormalisasi)"
+  HEAD=$(gh api "repos/$REPO_SLUG/commits/main" --jq '.sha[0:7]' 2>/dev/null || echo "tarball")
+fi
+echo "   HEAD: $HEAD  [$SRC_MODE]"
 
 echo "== 2. unduh blob L1 dari aset Release"
 ( cd "$WORK/src" && bash scripts/fetch-release.sh --out l1-hermes )
