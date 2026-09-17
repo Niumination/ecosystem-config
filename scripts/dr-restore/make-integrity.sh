@@ -42,7 +42,8 @@ git ls-files -z | while IFS= read -r -d '' f; do
   fi
 
   if [ -f "$f" ]; then
-    nh="$(tr -d '\r' < "$f" | h_stdin)"
+    # LC_ALL=C wajib: tanpa itu `tr` gagal pada berkas biner (Illegal byte sequence)
+    nh="$(LC_ALL=C tr -d '\r' < "$f" | h_stdin)"
   else
     nh="-"
   fi
