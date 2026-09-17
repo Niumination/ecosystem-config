@@ -1,6 +1,6 @@
 {
   "fileCount": 716,
-  "generatedAt": "2026-09-17T16:23:25.979819+00:00",
+  "generatedAt": "2026-09-17T16:31:32.941937+00:00",
   "skillCount": 148,
   "skills": {
     ".archive/cc-acehtengah-maintain": {
@@ -509,10 +509,10 @@
       }
     },
     "ecosystem/device-migration-disaster-recovery": {
-      "bundleHash": "e41961236ad8989661557992d37dbf876d852b58a196e319b7ec824b42065f61",
+      "bundleHash": "b92a921c7ccb029fce7bd1f15ed79b109fe3b5343d88feb47198c2baa6daaf04",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "c33c4537195809c6ef0924e61e64ea00eeba308f7a61078b3e7323fdc4ac1a77",
+        "SKILL.md": "77c47b72719f3b316bedaa61760c9702575a68838a9ba4e38b3bc65d88942cc0",
         "references/cross-os-restore.md": "dbc7c0a556d50b5412181ab5aa9e8b2f0e6029ea3e30fb991cb88ccae56c830e",
         "references/hermes-home-backup.md": "5ddc76d3d2846bbd58de339c24d662e292f17a4a24a87880c9e665a7d9b5acdb",
         "references/ignored-path-sweep.md": "e2bf1131165e9e365bfc67a2cf73627a7f185f3d03f0cb88151793b4b266f23f",

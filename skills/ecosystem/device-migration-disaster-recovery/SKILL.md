@@ -289,3 +289,8 @@ just on disk.
   **both** copies before reporting it recorded. Recovering a reverted skill is possible from the curator's blob
   backups (`~/.hermes/.curator_backups/blobs/`) — pick the candidate by grepping for the missing phrases rather than
   by size or timestamp, and re-install it into the bank.
+- **Check a live service's database on a copy, or with `mode=ro` — never by opening it in place.** A bare
+  `sqlite3 <path> "PRAGMA integrity_check"` opens the file read-write; if the service is running without a WAL it
+  creates `-wal`/`-shm` beside a database another process has open, and the audit's "read-only" claim became false
+  the moment it ran. Copy the file to a temp dir (or `sqlite3 "file:<path>?mode=ro"`) before inspecting, and when the
+  audit itself touches a live service, say so plainly instead of describing it as a read.
