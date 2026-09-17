@@ -123,28 +123,19 @@ sync_target() {
   log "→ $label: $target"
 
   while IFS= read -r src_file; do
-    rel_path="${src_file#$BANK_DIR/}"        # software-development/ponytail-core/SKILL.md
-    domain_dir="${rel_path%%/*}"             # software-development
-    skill_dir="${rel_path#*/}"               # ponytail-core/SKILL.md
-    skill_name="${skill_dir%/*}"             # ponytail-core
-    src_skill_folder="$BANK_DIR/$domain_dir/$skill_name"
-
-    # Skill nonstandar (root-level, atau kedalaman >2 seperti mlops/inference/x)
-    # tidak cocok pola <domain>/<skill>. SEBELUMNYA kondisi ini mematikan skrip
-    # tanpa pesan sama sekali lewat `return 1` + `set -e` — jangan diulang:
-    # sekarang dilewati dengan peringatan yang terlihat, sync tetap selesai.
-    if [ ! -d "$src_skill_folder" ]; then
-      log "   ⚠️  SKIP (struktur nonstandar): ${rel_path%/SKILL.md}"
-      skipped=$((skipped + 1)) || true
-      continue
-    fi
+    # rel path penuh dari bank (mendukung root-level, 2-level, 3-level):
+    # camofox-browser/SKILL.md · software-development/ponytail-core/SKILL.md ·
+    # mlops/inference/llama-cpp/SKILL.md — skill_dir = rel tanpa /SKILL.md
+    rel_path="${src_file#$BANK_DIR/}"
+    skill_dir="${rel_path%/SKILL.md}"
+    src_skill_folder="$BANK_DIR/$skill_dir"
 
     if [ "$structure" = "flat" ]; then
-      tgt="$target/$skill_name"
-      display="$skill_name"
+      tgt="$target/${skill_dir##*/}"
+      display="${skill_dir##*/}"
     else
-      tgt="$target/$domain_dir/$skill_name"
-      display="$domain_dir/$skill_name"
+      tgt="$target/$skill_dir"
+      display="$skill_dir"
     fi
 
     if $DRY_RUN; then
@@ -153,7 +144,7 @@ sync_target() {
     else
       sync_skill_dir "$src_skill_folder" "$tgt"
       ((copied++)) || true
-      vlog "  ✅ $skill_name ($(count_skill_files "$tgt") file)"
+      vlog "  ✅ ${skill_dir##*/} ($(count_skill_files "$tgt") file)"
     fi
   done <<< "$SKILL_FILES"
 
@@ -173,7 +164,7 @@ if [ ! -d "$BANK_DIR" ]; then
   exit 1
 fi
 
-SKILL_FILES=$(find "$BANK_DIR" -maxdepth 3 -name 'SKILL.md' | sort)
+SKILL_FILES=$(find "$BANK_DIR" -name 'SKILL.md' -not -path '*/.git/*' | sort)
 SKILL_COUNT=$(echo "$SKILL_FILES" | wc -l | tr -d ' ')
 
 if [ "$SKILL_COUNT" -eq 0 ]; then
@@ -201,19 +192,17 @@ if ! $DRY_RUN; then
 
   while IFS= read -r src_file; do
     rel_path="${src_file#$BANK_DIR/}"
-    domain_dir="${rel_path%%/*}"
-    skill_dir="${rel_path#*/}"
-    skill_name="${skill_dir%/*}"
+    skill_dir="${rel_path%/SKILL.md}"
 
     # Extract description from frontmatter (handle both quoted and folded YAML)
-    desc=$(awk '/^description:/ { 
-      if ($2 ~ /^"/) { 
+    desc=$(awk '/^description:/ {
+      if ($2 ~ /^"/) {
         # Quoted: description: "..."
         sub(/^description: "/, ""); sub(/"$/, ""); print
       } else if ($2 == ">") {
         # Folded: description: > ... (take next non-empty, non-indented line)
         getline nextline
-        while (nextline ~ /^$/ || nextline ~ /^  /) { 
+        while (nextline ~ /^$/ || nextline ~ /^  /) {
           if (nextline !~ /^$/) { gsub(/^  /, ""); print nextline; break }
           getline nextline
         }
@@ -223,7 +212,7 @@ if ! $DRY_RUN; then
       }
     }' "$src_file" 2>/dev/null || echo "—")
     registry_block+="
-| \`$skill_name\` | $domain_dir | $(count_skill_files "$BANK_DIR/$domain_dir/$skill_name") | Bank Pusat | $desc |"
+| \`${skill_dir}\` | ${skill_dir%%/*} | $(count_skill_files "$BANK_DIR/$skill_dir") | Bank Pusat | $desc |"
   done <<< "$SKILL_FILES"
 
   registry_block+="
@@ -258,9 +247,8 @@ for root, dirs, files in os.walk(bank):
     if 'SKILL.md' in files:
         sk = os.path.join(root, 'SKILL.md')
         rel = os.path.relpath(sk, bank)  # e.g. software-development/ponytail-core/SKILL.md
-        parts = rel.split('/')
-        domain = parts[0]
-        skill = parts[1]
+        skill_dir = rel[:-len('/SKILL.md')]  # full rel path (root-level, 2-level, 3-level)
+        domain = skill_dir.split('/')[0]
         # Extract description
         desc = '—'
         with open(sk, 'r') as f:
@@ -293,8 +281,8 @@ for root, dirs, files in os.walk(bank):
                     else:
                         desc = val
                         break
-        file_count = sum(len(files) for _, _, files in os.walk(root))
-        rows.append((skill, domain, desc, file_count))
+        file_count = sum(len(fs) for _, _, fs in os.walk(root))
+        rows.append((skill_dir, domain, desc, file_count))
 
 registry = '### 🧠 Bank Skill — Active Registry (auto-synced)\n\n'
 registry += '| Skill | Domain | File | Source | Description |\n'
@@ -357,8 +345,8 @@ if ! $DRY_RUN; then
     # Seed each skill as loaded
     while IFS= read -r src_file; do
       rel_path="${src_file#$BANK_DIR/}"
-      skill_dir="${rel_path#*/}"
-      skill_name="${skill_dir%/*}"
+      skill_dir="${rel_path%/SKILL.md}"
+      skill_name="${skill_dir##*/}"
       curl -s -X POST "http://localhost:5200/api/mc/skills/event" \
         -H "Content-Type: application/json" \
         -d '{"skill_name":"'"$skill_name"'","agent":"sync-to-agents.sh","event_type":"load"}' \

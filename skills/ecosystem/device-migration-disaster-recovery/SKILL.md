@@ -240,3 +240,9 @@ just on disk.
 - One restore drill performed, with the result written down (what worked, what failed, what was assumed).
 - Drift check re-run against the **restored** copy (hash + live-only key names); comparing only the source proves
   nothing about the target.
+- **Count the skill layer with a whole-tree enumeration, and name the counter.** A project's own manifest or lockfile
+  only sees the layouts it was written for: one manifest built over `<domain>/<skill>` reported 140 skills while the
+  tree held 148 — four skill directories sat at the root and four three levels deep, invisible to it, and its sync
+  tool aborted silently on the root-level ones. Verify the layer with `find <home>/skills -name SKILL.md | wc -l`
+  (or an interpreter's `rglob`) rather than a tool's summary, and when a tool's count disagrees with the tree, treat
+  the tool as the thing to fix before trusting either number.

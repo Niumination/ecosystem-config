@@ -56,24 +56,35 @@ def sha256_file(path: Path) -> str:
 
 
 def iter_skills(bank: Path):
-    """Yield (domain, skill_name, skill_dir) untuk setiap folder berisi SKILL.md."""
+    """Yield (rel_path, skill_dir) untuk SETIAP direktori berisi SKILL.md, berapa pun kedalamannya.
+
+    rel_path = path skill relatif ke bank — jadi key manifest yang unik untuk struktur apa pun:
+    root-level ('camofox-browser'), 2-level ('software-development/ponytail-core'),
+    3-level ('mlops/inference/llama-cpp'). Sebelumnya walker hanya mengenali pola
+    2-level; 4 skill root-level dan 4 skill kedalaman-3 tidak pernah masuk
+    manifest/lockfile/verifikasi (temuan 17 Sep 2026).
+    """
     if not bank.is_dir():
         return
-    for domain in sorted(p for p in bank.iterdir() if p.is_dir() and p.name not in SKIP_DIRS):
-        for skill_dir in sorted(p for p in domain.iterdir() if p.is_dir() and p.name not in SKIP_DIRS):
-            if (skill_dir / "SKILL.md").is_file():
-                yield domain.name, skill_dir.name, skill_dir
+    for skill_md in sorted(bank.rglob("SKILL.md")):
+        skill_dir = skill_md.parent
+        rel = skill_dir.relative_to(bank)
+        if any(part in SKIP_DIRS for part in rel.parts):
+            continue
+        yield rel.as_posix(), skill_dir
 
 
-def build_skill_entry(domain: str, skill_name: str, skill_dir: Path) -> dict:
+def build_skill_entry(rel: str, skill_dir: Path) -> dict:
     files = {}
     for f in sorted(skill_dir.rglob("*")):
         if f.is_file() and f.name not in SKIP_FILES:
-            rel = f.relative_to(skill_dir).as_posix()
-            files[rel] = sha256_file(f)
+            fr = f.relative_to(skill_dir).as_posix()
+            files[fr] = sha256_file(f)
     # bundleHash = SHA-256 dari gabungan "rel:hash" sorted (pola autoskills)
-    bundle_src = "\n".join(f"{rel}:{h}" for rel, h in sorted(files.items()))
+    bundle_src = "\n".join(f"{fr}:{h}" for fr, h in sorted(files.items()))
     bundle_hash = hashlib.sha256(bundle_src.encode()).hexdigest()
+    # domain = direktori induk (metadata); "." untuk skill root-level
+    domain = rel.rsplit("/", 1)[0] if "/" in rel else "."
     return {
         "domain": domain,
         "bundleHash": bundle_hash,
@@ -83,8 +94,8 @@ def build_skill_entry(domain: str, skill_name: str, skill_dir: Path) -> dict:
 
 def generate_manifest() -> dict:
     skills = {}
-    for domain, skill_name, skill_dir in iter_skills(BANK_DIR):
-        skills[skill_name] = build_skill_entry(domain, skill_name, skill_dir)
+    for rel, skill_dir in iter_skills(BANK_DIR):
+        skills[rel] = build_skill_entry(rel, skill_dir)
     manifest = {
         "version": 1,
         "generatedAt": datetime.now(timezone.utc).isoformat(),
@@ -111,29 +122,29 @@ def check_bank() -> int:
     known_skills = set(manifest["skills"].keys())
     disk_skills = set()
 
-    for domain, skill_name, skill_dir in iter_skills(BANK_DIR):
-        disk_skills.add(skill_name)
-        if skill_name not in manifest["skills"]:
-            errors.append(f"  [baru] {skill_name} — ada di filesystem, TIDAK di manifest")
+    for rel, skill_dir in iter_skills(BANK_DIR):
+        disk_skills.add(rel)
+        if rel not in manifest["skills"]:
+            errors.append(f"  [baru] {rel} — ada di filesystem, TIDAK di manifest")
             continue
-        entry = manifest["skills"][skill_name]
+        entry = manifest["skills"][rel]
         # cek file hilang
-        for rel in entry["files"]:
-            if not (skill_dir / rel).is_file():
-                errors.append(f"  [hilang] {skill_name}/{rel}")
+        for fr in entry["files"]:
+            if not (skill_dir / fr).is_file():
+                errors.append(f"  [hilang] {rel}/{fr}")
         # cek hash berubah
-        for rel, expected in entry["files"].items():
-            p = skill_dir / rel
+        for fr, expected in entry["files"].items():
+            p = skill_dir / fr
             if p.is_file() and sha256_file(p) != expected:
-                errors.append(f"  [ubah] {skill_name}/{rel}")
+                errors.append(f"  [ubah] {rel}/{fr}")
         # cek file baru (tidak terdaftar)
         disk_files = {
             f.relative_to(skill_dir).as_posix()
             for f in skill_dir.rglob("*")
             if f.is_file() and f.name not in SKIP_FILES
         }
-        for rel in sorted(disk_files - set(entry["files"])):
-            errors.append(f"  [baru] {skill_name}/{rel} — tidak di manifest")
+        for fr in sorted(disk_files - set(entry["files"])):
+            errors.append(f"  [baru] {rel}/{fr} — tidak di manifest")
 
     # skill di manifest tapi hilang dari disk
     for skill_name in sorted(known_skills - disk_skills):
@@ -157,10 +168,12 @@ def verify_target(target: Path, structure: str = "flat") -> int:
     mismatch = []
     checked = 0
     for skill_name, entry in manifest["skills"].items():
+        # skill_name kini = rel path dari bank ('camofox-browser', 'a/b/c');
+        # target 'domain' = target/<rel>/, target 'flat' = target/<nama-skill>/
         if structure == "domain":
-            skill_dir = target / entry["domain"] / skill_name
-        else:
             skill_dir = target / skill_name
+        else:
+            skill_dir = target / Path(skill_name).name
         if not skill_dir.is_dir():
             missing.append(f"  [hilang-skill] {skill_name}")
             continue
