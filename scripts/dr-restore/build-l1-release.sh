@@ -114,10 +114,31 @@ if ! $UPLOAD; then
 fi
 
 echo "== 5. unggah ke Release (target EKSPLISIT: $REPO@$TAG)"
+
+# Jaringan ke GitHub di sini fluktuatif (terukur 27 KB/s – 2,3 MB/s) dan
+# `gh release upload` TIDAK punya retry sendiri. Unggah per bagian dengan
+# backoff supaya satu reset koneksi tidak membuang seluruh pekerjaan.
+ULOG="$TMP/upload.log"
+NAIK_LIMIT=4
+
+naik() { # $1 = berkas
+  local f="$1" coba=1 jeda=8
+  while [[ $coba -le $NAIK_LIMIT ]]; do
+    if gh release upload "$TAG" --repo "$REPO" --clobber "$f" >>"$ULOG" 2>&1; then
+      echo "   ✓ $(basename "$f") ($(du -h "$f" | cut -f1))"
+      return 0
+    fi
+    echo "   ⚠ $(basename "$f") gagal (percobaan $coba/$NAIK_LIMIT): $(tail -1 "$ULOG" | cut -c1-110)"
+    coba=$((coba+1))
+    if [[ $coba -le $NAIK_LIMIT ]]; then sleep $jeda; jeda=$((jeda*2)); fi
+  done
+  return 1
+}
+
 if gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1; then
   echo "   Release $TAG sudah ada — aset ditimpa (--clobber)"
-  gh release upload "$TAG" --repo "$REPO" --clobber "$TMP"/hermes-backup.zip.enc.part-* "$TMP/SHA256SUMS" >/dev/null
 else
+  # rilis dibuat TANPA aset dulu; aset menyusul dengan retry
   gh release create "$TAG" --repo "$REPO" \
     --title "L1 — Hermes home + sesi ($TAG)" \
     --notes "Snapshot Hermes home TERENKRIPSI (AES-256-CBC, pbkdf2 200k).
@@ -126,9 +147,15 @@ Isi: config.yaml, .env, auth.json, state.db + seluruh sesi, skills/, cron/, memo
 Dibuang: bin/, lsp/, cache/, logs/, checkpoints/, firefox-profile-backup/ (regenerable).
 Dienkripsi karena memuat .env (seluruh token) — rahasia tidak disimpan plaintext di GitHub.
 
-Unduh + gabung + dekripsi: bash scripts/fetch-release.sh --out l1-hermes --tag $TAG" \
-    "$TMP"/hermes-backup.zip.enc.part-* "$TMP/SHA256SUMS" >/dev/null
+Unduh + gabung + dekripsi: bash scripts/fetch-release.sh --out l1-hermes --tag $TAG" >/dev/null \
+    || { echo "GAGAL: tidak bisa membuat Release $TAG"; exit 1; }
+  echo "   Release $TAG dibuat (aset menyusul)"
 fi
+
+for bagian in "$TMP"/hermes-backup.zip.enc.part-*; do
+  naik "$bagian" || { echo "GAGAL: unggah $(basename "$bagian") gagal setelah $NAIK_LIMIT percobaan"; exit 1; }
+done
+naik "$TMP/SHA256SUMS" || { echo "GAGAL: unggah SHA256SUMS gagal"; exit 1; }
 
 echo "== 6. verifikasi aset benar-benar ada di GitHub"
 gh release view "$TAG" --repo "$REPO" --json assets \
