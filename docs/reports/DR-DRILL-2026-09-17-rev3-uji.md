@@ -212,6 +212,33 @@ Yang **masih hidup** justru token gh CLI di **keyring** (dipakai hanya oleh sesi
 
 ---
 
+## UJI 7 — Drill dari GITHUB (repo nyata) : SUKSES 20/20
+
+**Metode:** `scripts/dr-restore/drill.sh` — mengklon repo `niumination-restore` **dari GitHub** (bukan salinan lokal), mengunduh blob L1 dari aset Release, lalu restore ke HOME KOSONG dengan **path home berbeda** (`/tmp/dr-drill-230559/home`). Inilah bukti sah untuk device baru.
+
+**Hasil bertahap:**
+1. klon repo dari GitHub ✓
+2. unduh L1: 3 bagian → gabung 124.872.144 B → **SHA-256 OK** → dekripsi → **zip valid 119 MB** ✓
+3. klon ekosistem + dotfiles ✓
+4. `hermes import` ✓ + **SOUL.md symlink** dibuat otomatis ✓
+5. kredensial: **7 berkas dipulihkan, 0 dilewati** ✓ (gate "0 kredensial = GAGAL" tervalidasi)
+6. L2 diekstrak ke path gitignored ✓
+7. substitusi: **berkas kena 125 — 32 placeholder + 355 path-lama diganti** → terverifikasi 0 sisa ✓ (**mode B username-berbeda terbukti bekerja**)
+8. `verify.sh`: **20 lulus, 0 gagal** ✓
+
+**Temuan kecepatan (menentukan arsitektur):** pada endpoint yang sama dan waktu yang sama —
+| Endpoint | Kecepatan terukur |
+|---|---|
+| `codeload` (tarball) | 27 KB/s (dan 1,1 MB/s di lain waktu) |
+| git-over-HTTPS | 33 KB/s (dan 600 KB/s di lain waktu) |
+| **`api.github.com/…/assets`** | **2,35 MB/s — 35 MB dalam 15 detik** |
+
+Blob L1 berukuran 130 MB: pada jalur lambat restore menjadi berjam-jam. Karena itu `fetch-release.sh` memakai **API + curl** (jalur utama, dengan `--retry` dan `-C -` untuk melanjutkan unduhan terputus), bukan `gh`/codeload.
+
+**Insiden yang ditutup di tahap ini:** blob L1 versi pertama diunggah **plaintext** (memuat `~/.hermes/.env`). Release lama dihapus total, digantikan `*.zip.enc.part-NN`; kini seluruh tiga lapis ciphertext di GitHub — rincian di `DR-BUILD-2026-09-17.md`.
+
+---
+
 ## TEMUAN BESAR — kredensial mati di `~/.hermes/.env`
 
 Selama uji ini, `gh` mengembalikan **401 Bad credentials** berkali-kali. Penelusuran:
