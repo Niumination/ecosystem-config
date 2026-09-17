@@ -66,11 +66,28 @@ done
 echo "   jumlah entri: $(grep -cE ' +[0-9]+ +[0-9-]+' "$ZLIST" || true)"
 rm -f "$ZLIST"
 
-echo "== 4. pecah & checksum"
-( cd "$TMP" && split -b "$SIZE" -d -a 2 hermes-backup.zip hermes-backup.zip.part- )
-( cd "$TMP" && shasum -a 256 hermes-backup.zip > SHA256SUMS )
+echo "== 4. ENKRIPSI lalu pecah & checksum"
+# Blob L1 WAJIB terenkripsi. Isinya termasuk ~/.hermes/.env (seluruh token).
+# Menaruhnya plaintext sebagai aset Release = rahasia tersimpan di GitHub —
+# melanggar aturan kredensial ekosistem, dan cukup untuk memicu pencabutan
+# token otomatis bila GitHub memindainya.
+DR_PASS=$(security find-generic-password -s niumination-restore-dr -w) \
+  || { echo "GAGAL: passphrase tidak ada di Keychain" >&2; exit 1; }
+export DR_PASS
+openssl enc -aes-256-cbc -pbkdf2 -iter 200000 -salt \
+  -in "$TMP/hermes-backup.zip" -out "$TMP/hermes-backup.zip.enc" -pass env:DR_PASS
+# bukti: dekripsi balik & bandingkan hash (hash, bukan keberadaan)
+_h1=$(shasum -a 256 "$TMP/hermes-backup.zip" | cut -d' ' -f1)
+_h2=$(openssl enc -d -aes-256-cbc -pbkdf2 -iter 200000 -in "$TMP/hermes-backup.zip.enc" \
+      -pass env:DR_PASS 2>/dev/null | shasum -a 256 | cut -d' ' -f1)
+[[ "$_h1" == "$_h2" ]] || { echo "GAGAL: hash roundtrip enkripsi L1 tidak cocok" >&2; exit 1; }
+echo "   ✓ terenkripsi $(du -h "$TMP/hermes-backup.zip.enc" | cut -f1), hash roundtrip cocok"
+rm -f "$TMP/hermes-backup.zip"          # jangan tinggalkan plaintext
+
+( cd "$TMP" && split -b "$SIZE" -d -a 2 hermes-backup.zip.enc hermes-backup.zip.enc.part- )
+( cd "$TMP" && shasum -a 256 hermes-backup.zip.enc > SHA256SUMS )
 ls -1 "$TMP" | grep -c 'part-' | sed 's/^/   bagian: /'
-echo "   sha256(zip gabungan): $(cut -c1-16 < "$TMP/SHA256SUMS")…"
+echo "   sha256: $(cut -c1-16 < "$TMP/SHA256SUMS")…"
 
 if ! $UPLOAD; then
   echo; echo "(--no-upload) berkas siap di: $TMP"; ls -lh "$TMP" | tail -n +2; exit 0
@@ -79,17 +96,18 @@ fi
 echo "== 5. unggah ke Release (target EKSPLISIT: $REPO@$TAG)"
 if gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1; then
   echo "   Release $TAG sudah ada — aset ditimpa (--clobber)"
-  gh release upload "$TAG" --repo "$REPO" --clobber "$TMP"/hermes-backup.zip.part-* "$TMP/SHA256SUMS" >/dev/null
+  gh release upload "$TAG" --repo "$REPO" --clobber "$TMP"/hermes-backup.zip.enc.part-* "$TMP/SHA256SUMS" >/dev/null
 else
   gh release create "$TAG" --repo "$REPO" \
     --title "L1 — Hermes home + sesi ($TAG)" \
-    --notes "Snapshot Hermes home tanpa berkas yang bisa dibangun ulang.
+    --notes "Snapshot Hermes home TERENKRIPSI (AES-256-CBC, pbkdf2 200k).
 
 Isi: config.yaml, .env, auth.json, state.db + seluruh sesi, skills/, cron/, memories/, kanban.db, plugins/.
 Dibuang: bin/, lsp/, cache/, logs/, checkpoints/, firefox-profile-backup/ (regenerable).
+Dienkripsi karena memuat .env (seluruh token) — rahasia tidak disimpan plaintext di GitHub.
 
-Unduh + gabung: bash scripts/fetch-release.sh --out l1-hermes --tag $TAG" \
-    "$TMP"/hermes-backup.zip.part-* "$TMP/SHA256SUMS" >/dev/null
+Unduh + gabung + dekripsi: bash scripts/fetch-release.sh --out l1-hermes --tag $TAG" \
+    "$TMP"/hermes-backup.zip.enc.part-* "$TMP/SHA256SUMS" >/dev/null
 fi
 
 echo "== 6. verifikasi aset benar-benar ada di GitHub"
