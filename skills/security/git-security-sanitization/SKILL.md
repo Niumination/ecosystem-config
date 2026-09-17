@@ -23,6 +23,13 @@ Class-level workflow for removing leaked credentials and PII from repositories, 
 3. **Self-exclusion:** the scanner script must not flag its own credential patterns
 4. **`.env` exclusion:** env files are allowed to contain secret-shaped strings; exclude them from doc/code scans
 5. **Pre-commit must not block on false positives.** If a gate triggers on its own config, fix the exclusion before enforcing it
+6. **Never print the secret value.** Audit scripts read the value from the source file themselves and emit only masked context, counts, or byte lengths — the value never reaches stdout, a log, a doc, or a commit message. Grepping with the literal on the command line is the same leak in a different stream.
+7. **Before committing a document, check repo visibility and grep the document — filenames included.** A status-check tool can recommend "commit these dirty files" for a file whose *name* carries a NIK and whose target repo is public; following that recommendation manufactures a fresh leak. PII hides in filenames, evidence lists, and personal-document inventories, not just in bodies.
+8. **Inspect the commits you are about to publish, not only your own.** In a repo where other agents or threads commit, a plain `git push` publishes their commits too. Run `git log --oneline origin/main..HEAD --name-only` before pushing a public repo; a credential-bearing path in that list is a leak you are about to create even though you did not author it.
+9. **`git rm --cached` is mitigation, not containment.** It stops future tracking and leaves the blob in history, and it often lands as its own commit seconds later, which reads like a fix. Treat any "removed .env from tracking" commit as evidence the leak is still live until history is purged and the host blob stops answering.
+10. **Never `git add -f` an ignored path.** A parent-directory ignore is not a credential gate — forcing an ignored file in is exactly how a `.env` reaches a repo whose `.gitignore` looked like it protected it. When a project directory is ignored wholesale, that is a reason to `git init` the project, never to force-add single files into the parent.
+11. **A gate that checks "is this path ignored?" must call `git check-ignore --no-index -q <path>`.** Without `--no-index`, a path that is already staged counts as tracked, so `check-ignore` answers "not ignored" — the `git add -f` branch never fires, and it fails exactly on the case it was written for. The content branch keeps passing, so the gate looks healthy.
+12. **A gate self-test must not leave a commit behind.** Exercising the hook with a throwaway file is the only way to know it blocks, but when the gate misses, the test itself creates a real commit. After every gate test: confirm the tip SHA is unchanged, and if a commit appeared, `git reset --soft HEAD~1` plus unstage the file before any push — on a public repo the next push publishes whatever the test carried.
 
 ## Workflow
 
@@ -74,6 +81,27 @@ npx vitest run                             # expect 0 failed
 git status --short                         # only intended files
 ```
 
+Then prove the gate itself still blocks, one branch at a time. The two branches fail independently: a gate can reject secrets and silently skip ignored paths (or the reverse), and neither test reveals the other's miss.
+
+```bash
+BEFORE=$(git rev-parse HEAD)
+
+# branch 1: ignored path, innocuous content (the `git add -f` case)
+printf 'note\n' > <ignored-dir>/gate-test.txt
+git add -f <ignored-dir>/gate-test.txt
+git commit -m gate-test        # EXPECT refusal naming the ignore rule
+
+# branch 2: secret-shaped content in a normal, tracked path
+printf 'PI_API_KEY=%s\n' "$(python3 -c 'print("x"*64)')" > gate-test.env
+git add gate-test.env
+git commit -m gate-test        # EXPECT refusal naming the credential pattern
+
+# cleanup + proof nothing slipped through
+git reset -q HEAD <ignored-dir>/gate-test.txt gate-test.env 2>/dev/null
+rm -f <ignored-dir>/gate-test.txt gate-test.env
+[ "$(git rev-parse HEAD)" = "$BEFORE" ] || echo 'LEAK: the gate let a test commit through'
+```
+
 ## Pitfalls
 
 - **Over-aggressive regex redaction:** replacing `\d{16}` inside arrays/objects without preserving quotes breaks TS syntax. Always redact the complete literal.
@@ -85,5 +113,9 @@ git status --short                         # only intended files
 ## Reference
 
 - `references/redaction-patterns.md` — exact-string replacement recipes
-- `references/pii-gate-config.md` — tested scanner config with exclusions
-- `references/pre-commit-template.sh` — copy-paste pre-commit hook template
+- `references/pii-gate-config.md` — tested scanner config, the two staged-file branches (ignored path vs credential content), and per-clone hook activation
+- `references/public-repo-leak-audit.md` — auditing a public repo, and what to leave alone
+- `references/history-rewrite-dry-run.md` — backup → dry run → verify → apply → force-push sequence
+- `references/secret-alert-triage.md`, `references/github-secret-alert-triage.md` — host alert triage (overlapping; consolidate)
+- `scripts/masked_pii_triage.py` — masked triage scan, never prints the value
+- `scripts/history_secret_scan.py` — scan every blob in every ref for known secret values (plain + separator-formatted), no size cap; answers "is it really gone from history?"

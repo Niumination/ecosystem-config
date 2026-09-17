@@ -124,6 +124,23 @@ When MCP servers fail with `Connection closed` after 3 attempts, they enter park
 6. **Restart** gateway if needed: `hermes gateway restart` (from separate shell)
 7. **Monitor** `~/.hermes/logs/errors.log` for new errors
 
+### Editing JSON-valued keys (`channel_prompts`, `channel_skill_bindings`)
+
+`platforms.telegram.extra.channel_prompts` is a per-thread map (thread id → prompt) stored as a single JSON string. Use it when a gateway thread must obey a standing rule: a per-thread prompt is injected on every message, whereas AGENTS.md/DOX only applies if that agent chooses to read it. A thread that keeps misbehaving (e.g. writing documents into a folder that was deleted) is fixed here, not only in the file it wrote to.
+
+1. Backup first: `cp ~/.hermes/config.yaml /tmp/config.yaml.bak-$(date +%Y%m%d-%H%M%S)`
+2. Read: `hermes config get platforms.telegram.extra.channel_prompts`
+3. Write from Python: build the dict, then `subprocess.run(["hermes","config","set",KEY,json_string])` — an argv list avoids shell quoting problems on long JSON values.
+4. Make it idempotent: insert a fixed marker (e.g. `ATURAN DOKUMEN`) and skip threads already containing it, so the script can be re-run safely.
+5. Verify before reporting done (pitfalls below).
+
+Pitfalls:
+- **`config get` output for a JSON string-valued key is not re-parseable JSON** — it prints a Python-style repr (single quotes, literal `\n`), so `json.loads` fails. Verify by loading `~/.hermes/config.yaml` with PyYAML via the Hermes venv (`/Users/zaryu/src/hermes-agent/.venv/bin/python`), not by parsing CLI output.
+- **Never verify with `grep -c`.** YAML folds long single-quoted scalars at column boundaries, so the marker can split mid-word and grep undercounts (it reported 4 of 5 threads while all 5 were correct). Count with a parser.
+- **Verify with the runtime resolver, not by eye:** `resolve_channel_prompt(extra, channel_id)` in `gateway/platforms/base.py` (a thread inherits its parent prompt) called with `load_config_readonly()` proves each thread resolves the new rule.
+- **There is no shared prompt block.** Prompts are per-thread: add the rule to every thread that must obey it, in one loop — do not rely on one thread (e.g. the general channel) to relay it.
+- **No restart required.** The config cache is keyed on `(st_mtime_ns, st_size)` (`hermes_cli/config.py`), so an edited config takes effect on the next turn. Do not restart the gateway — it drops the active session — for a prompt-only change.
+
 ### Config Restoration from Backup
 
 When config drifts (e.g., model provider changed unexpectedly):
@@ -280,13 +297,50 @@ Native installs never mount the old portable-USB path. Treat its absence as conf
 | `agentrouter` | `https://agentrouter.org/v1` | `chat_completions` | `AGENTROUTER_API_KEY` |
 | `huancheng` | `https://api.hcnsec.cn/v1` | `chat_completions` | `HUANCHENG_API_KEY` |
 
-## Pitfalls
+## Runtime Model Verification — State.DB is Source of Truth
 
-- **Shared Google quota:** `ag/gemini-*` models all share one quota pool → mix with `gh/*`, `gemini/*`, `kr/*`
-- **USB-mounted hooks:** `/Volumes/HermesAgent/HermesAgentUSB/` may not be mounted → use local paths or `hooks_auto_accept: true`
-- **MCP parking mode:** Failed MCP servers park until reconnect → disable if backend unavailable
-- **Config file path:** Always use `~/.hermes/config.yaml`, not `/Volumes/HermesAgent/...`
-- **Default model:** Should be a verified model in the 9router catalog, not a generic/combo model
+**Never claim which model is active in any session based on config.yaml.** Runtime model state lives in `~/.hermes/state.db` (sessions table). Config.yaml is the DEFAULT — every session can differ via `/model` switch, channel override, or fallback.
+
+### Rule
+When asked "what model is active" or "which model does channel X use", READ the source:
+
+```bash
+# Quick: all sessions with models from last 7 days
+sqlite3 ~/.hermes/state.db "SELECT session_key, chat_id, thread_id, display_name, model, last_activity_at FROM sessions WHERE archived=0 ORDER BY last_activity_at DESC;"
+
+# Or run the audit script
+python3 ~/Desktop/Niumination/scripts/hermes_model_audit.py
+```
+
+### Pitfall
+If you report a model based on config.yaml alone, you will be WRONG. Channels and sessions override the model at runtime. The user will act on your report (troubleshooting, switching, quota decisions) and you will cause real harm.
+
+### Audit Script
+`~/Desktop/Niumination/scripts/hermes_model_audit.py` — reads state.db, lists DM and group channel sessions with their actual active models, compares against config.yaml default.
+
+## Model Health Probe — Cron Pattern
+
+For model health checks that run on schedule:
+
+1. **Use `no_agent=True`** — bypasses LLM entirely, no credentials needed in cron session
+2. **Script runs via bash** — `source ~/.hermes/.env` first, then run Python
+3. **Output goes to Telegram** — deliver to channel + local file
+4. **Cache results** — `~/.hermes/cron/output/model-status-cache.json` for 24h TTL
+
+Example wrapper script (`~/.hermes/scripts/model-status-probe-cron.sh`):
+```bash
+#!/bin/bash
+set -a; source ~/.hermes/.env; set +a
+python3 ~/Desktop/Niumination/scripts/model_status_checker.py
+python3 ~/Desktop/Niumination/scripts/model_status_report.py
+```
+
+**Probe scope:**
+- OpenRouter API: `GET https://openrouter.ai/api/v1/models` — free, returns pricing + capabilities
+- 9router local: `GET http://localhost:20128/v1/models` — local catalog only
+- Probe critical models from config with max_tokens=1, timeout=15s
+- Identify `explabs/*` as internal Hermes routing (skip probe)
+- Identify Nous Portal models (`inclusionai/`, `meituan/`) as internal route via 9router (skip probe, mark ACTIVE if in session)
 - **Config version does NOT auto-populate runtime fields:** `_config_version` migration steps only handle specific schema fields. `home_channel` (PlatformConfig field) is NOT in DEFAULT_CONFIG and must be set separately via `/set home` or direct config.yaml edit. It is NOT preserved through updates.
 - **`home_channel` requires a `platform` field:** `gateway/config.py:309` (`HomeChannel.from_dict()`) accesses `data["platform"]` unconditionally. If `home_channel` lacks `platform`, the gateway crashes with `KeyError: 'platform'` on every startup attempt (crash-loop, ExitStatus 256). Always set BOTH `chat_id` AND `platform` when configuring `home_channel`. Use `hermes config set platforms.telegram.home_channel.platform telegram` after setting `chat_id`.
 - **Update does NOT reset existing config:** `hermes update` calls `_check_and_apply_config_migration()` which deep-merges defaults and runs migration steps. It does NOT wipe or reset user-configured values. The issue is missing fields (like `home_channel`) that were never in DEFAULT_CONFIG, not deleted fields.

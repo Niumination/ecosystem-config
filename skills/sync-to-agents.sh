@@ -119,6 +119,7 @@ write_lockfile() {
 sync_target() {
   local target="$1" label="$2" structure="$3"
   local copied=0
+  local skipped=0
   log "→ $label: $target"
 
   while IFS= read -r src_file; do
@@ -127,6 +128,16 @@ sync_target() {
     skill_dir="${rel_path#*/}"               # ponytail-core/SKILL.md
     skill_name="${skill_dir%/*}"             # ponytail-core
     src_skill_folder="$BANK_DIR/$domain_dir/$skill_name"
+
+    # Skill nonstandar (root-level, atau kedalaman >2 seperti mlops/inference/x)
+    # tidak cocok pola <domain>/<skill>. SEBELUMNYA kondisi ini mematikan skrip
+    # tanpa pesan sama sekali lewat `return 1` + `set -e` — jangan diulang:
+    # sekarang dilewati dengan peringatan yang terlihat, sync tetap selesai.
+    if [ ! -d "$src_skill_folder" ]; then
+      log "   ⚠️  SKIP (struktur nonstandar): ${rel_path%/SKILL.md}"
+      skipped=$((skipped + 1)) || true
+      continue
+    fi
 
     if [ "$structure" = "flat" ]; then
       tgt="$target/$skill_name"
@@ -147,6 +158,9 @@ sync_target() {
   done <<< "$SKILL_FILES"
 
   log "   ↑ $label: $copied skill disinkronkan"
+  if [ "$skipped" -gt 0 ]; then
+    log "   ⚠️  $skipped skill DILEWATI (struktur nonstandar: root-level atau kedalaman >2)"
+  fi
   if ! $DRY_RUN; then
     verify_target "$target" "$label" "$structure"
     write_lockfile "$target" "$label"

@@ -60,6 +60,22 @@ Run these checks in a fresh session:
 - Blind `git add .` is refused
 - No truncation warning for root AGENTS.md in session logs
 
+### 6. Regression: path yang sudah dihapus muncul kembali
+
+Folder yang sengaja dihapus/di-rename bisa tercipta ulang oleh agent yang masih memegang path lama. Re-delete saja tidak menyelesaikan — sumber instruksinya yang harus dibetulkan. Sweep berurutan:
+
+1. Root `AGENTS.md` (global rules + pointer per folder)
+2. File identitas: `~/.hermes/SOUL.md` — ikuti symlink-nya dan edit **target**, plus salinan portable; file di bawah `dotfiles/` yang bukan bagian repo bersarang tidak ter-track repo mana pun (salinan yatim), jadi jangan pernah menganggapnya kanonik
+3. Instruksi skill yang memerintahkan generate/ekstraksi ke path itu (mis. instruksi "extract to `docs/<x>/`") — ini akar yang memproduksi pelanggaran berikutnya
+4. `channel_prompts` per-thread gateway (`platforms.telegram.extra` di `~/.hermes/config.yaml`) — aturan penempatan dokumen harus ada di prompt **setiap** thread, karena prompt inilah yang dibaca agent thread. Tidak ada prompt bersama: append ke tiap thread id, lalu verifikasi dengan resolver produksi. Resep lengkap: `references/channel-prompts-editing.md`
+5. Script/cron yang menyusun path dari komponen terpisah (`os.path.join('docs','x',...)`) — penggantian string biasa melewatkannya dan sync akan gagal setelah rename
+
+Aturan:
+- Setelah re-delete, **cek ulang folder itu tepat sebelum melapor selesai**: agent lain bisa menulis ke sana selama sesi kita berjalan (file baru muncul di tengah pengerjaan). Pindahkan file yang baru muncul ke lokasi benar, jangan sekadar menghapus folder.
+- Setelah memindahkan dokumen, perbarui rujukan path **di dalam** dokumen yang dipindah (tabel "lokasi file" di dalam plan sering menyebut path lamanya sendiri).
+- Rujukan di dokumen yang memang **mendokumentasikan** migrasi adalah riwayat yang sah — jangan ikut dibersihkan. Pisahkan "rujukan mati" (perbaiki) dari "rujukan historis" (biarkan).
+- Pilih tujuan pindah dari konvensi yang sudah tertulis (`docs/dox/INDEX.md`) dan preseden file sejenis, bukan dari tebakan.
+
 ## Mobile-Harness DOX Pattern
 
 Mobile-Harness (`apps/Mobile-Harness/`) requires its own `AGENTS.md` at the project root (not in `docs/`).
