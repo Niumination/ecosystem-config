@@ -383,3 +383,17 @@ Ultra, AuditTI-AT, Niu-Flow, didong-code, x-downloader, flame-ade, niu-vermilion
 - 📦 **Repo proyek** — `git init` + commit awal `fe6b3c0` (17 file). `web/` di-ignore di repo proyek karena punya repo sendiri.
 - 🧹 **Higiene ekosistem** — `docs/reference/` (regresi dari thread #General MC) dihapus ulang; 5 dokumen PI dipindah ke `docs/reports/`; aturan struktur docs ditambahkan ke Global Agent Rules + prompt 5 thread MC.
 - 🧠 **SOUL.md** — pointer lama `docs/reference/` → `docs/registry/` di ketiga salinan (kanonik + portable).
+
+---
+
+## 🔴 Perubahan — 17 Sep 2026 — DR: repo `niumination-restore` DIBANGUN & TERVERIFIKASI
+
+- 🆕 **Repo privat `Niumination/niumination-restore`** — memulihkan Hermes + kredensial + data ekosistem ke device baru **dari GitHub** (tanpa disk eksternal). Tiga lapis, semua **ciphertext**: L1 Hermes (aset Release `*.zip.enc.part-NN`, 130 MB), L1 kredensial (`credentials/*.enc`), L2 data gitignored (`l2-data/*.tar.zst.enc`, 105 berkas → 31 MB).
+- ✅ **Drill macOS end-to-end dari GitHub: 20 lulus / 0 gagal** — klon repo dari remote → unduh+verifikasi+dekripsi L1 → `hermes import` (77 sesi) → SOUL.md symlink otomatis → 7 kredensial → L2 156 entri → substitusi **125 berkas** (32 placeholder + **355 path lama**, aman untuk username berbeda) → verify.
+- 🧭 **Sisi BUILD** di `scripts/dr-restore/` — `build-credentials.sh`, `build-l2.sh`, `build-services.sh`, `build-l1-release.sh`, `sync-all.sh` (satu perintah refresh), `drill.sh` (bukti dari GitHub).
+- 🧯 **Insiden ditutup di hari yang sama:** blob L1 versi pertama terunggah **plaintext** (memuat `~/.hermes/.env`). Release lama dihapus total → diganti ciphertext. Aturan baru: rahasia terenkripsi di **semua** lapis sebelum menyentuh GitHub.
+- 🐞 **9 cacat ditemukan & diperbaiki** lewat build+drill (semuanya kelas "lolos-diam-diam"): urutan restore salah (credentials sebelum clone), `openssl -iter` beda build/restore (semua dekripsi akan gagal), `*.age` vs `*.enc` (loop 0 berkas), nama blob L2 (dilewati senyap), target `9router-auth` ke path direktori, `unzip -l | grep -q` + pipefail (laporan "HILANG" palsu), `GH_TOKEN` warisan basi, `python3` di jalur pra-restore, `mapfile` (bash 3.2).
+- 📈 **Temuan kecepatan:** `api.github.com/…/assets` **2,35 MB/s** vs `codeload`/git-over-HTTPS **30 KB/s** pada saat yang sama → `fetch-release.sh` memakai API + `curl -C -` (resume).
+- 📚 **Docs:** `docs/reports/DR-BUILD-2026-09-17.md` (baru), UJI 7 di `DR-DRILL-2026-09-17-rev3-uji.md`; di repo restore: `README.md` (panduan macOS/Linux/Windows), `docs/UPDATE.md` (mekanisme refresh), `AGENTS.md` (kontrak 9 aturan).
+- ⏭️ **Berikutnya:** uji nyata di **Windows** dan **Arch Linux** (belum divalidasi — status ditandai eksplisit, tidak diklaim). Layanan launchd/systemd/Task Scheduler disiapkan tapi belum dijalankan saat drill (sengaja: me-restart gateway dari dalam sesi akan memutus sesi).
+- 🔐 **Gate ditutup:** passphrase enkripsi sudah disalin ke cloud oleh pemilik (sebelumnya hanya di Keychain = satu titik kegagalan total).
