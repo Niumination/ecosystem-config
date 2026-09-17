@@ -1,8 +1,0 @@
-apps/ai-file-manager-android/play-store/signing/ai-organizer-release.jks
-apps/ai-file-manager-android/play-store/signing/upload_certificate.pem
-services/cc-acehtengah/.env
-services/cc-acehtengah/.env.local
-apps/kune-ya.com/.env
-apps/niu-lkh/.env
-services/sapa-ai/.env
-services/niu-mission-control/.env
