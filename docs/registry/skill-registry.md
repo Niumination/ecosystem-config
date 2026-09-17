@@ -4,25 +4,34 @@
 | Skill | Domain | File | Source | Description |
 |-------|--------|-----:|--------|-------------|
 | `9router-model-mapping` | ecosystem | 1 | Bank Pusat | Configure and maintain 9router model mapping for Hermes — fallback chain, channel overrides, quota-aware model selection |
+| `SKILL.md` | camofox-browser | 1 | Bank Pusat | Manage Camofox stealth browser at localhost:9377. |
+| `SKILL.md` | credential-vault-backup | 1 | Bank Pusat | Back up Niumination credentials into a single vault. |
+| `SKILL.md` | polling-script-management | 1 | Bank Pusat | Stop polling script notification spam via debounce. |
+| `SKILL.md` | repo-zip-overlay | 1 | Bank Pusat | Overlay a zip onto a git repo, preserving local config. |
 | `accessibility` | design | 3 | Bank Pusat | Audit and improve web accessibility following WCAG 2.2 guidelines. Use when asked to "improve accessibility", "a11y audit", "WCAG compliance", "screen reader support", "keyboard navigation", or "make accessible". |
 | `agent-reach` | software-development | 2 | Bank Pusat | Internet capability layer for AI agents. Use when the agent needs to read/search web pages, YouTube, GitHub, RSS, or other platforms. Trigger words: search the web, read this URL, check GitHub repo, get YouTube transcript, monitor RSS, internet research. |
 | `ai-agency` | note-taking | 1 | Bank Pusat | AI Agency — generate laporan otomatis, draft konten, data mining dari brain. Use when user says: buat laporan, draft konten, tulis artikel, mining data, ekstrak informasi, agency. Trigger words: laporan otomatis, draft, artikel, mining, ekstrak, agency. |
 | `android-adb-testing` | software-development | 2 | Bank Pusat | Use when testing Android apps on-device via ADB. |
+| `ascii-art` | creative | 1 | Bank Pusat | ASCII art: pyfiglet, cowsay, boxes, image-to-ascii. |
 | `blogwatcher` | research | 1 | Bank Pusat | Monitor blogs and RSS/Atom feeds via blogwatcher-cli tool. |
 | `brainstorming` | software-development | 1 | Bank Pusat | Use BEFORE any creative work — creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation. |
 | `bridge-migration` | software-development | 3 | Bank Pusat | Migrate bridge modules lost in refactor to a new runtime. |
+| `cc-acehtengah-maintain` | .archive | 1 | Bank Pusat | Merge hotfix into v3, catch silent merge bugs. |
 | `cc-acehtengah-maintenance` | ecosystem | 3 | Bank Pusat | cc-acehtengah branch reconciliation and UI or role fixes. |
 | `cc-acehtengah-ops` | software-development | 18 | Bank Pusat | Operate cc-acehtengah: AI model, DTSEN sources, deploy. |
+| `comfyui` | creative | 33 | Bank Pusat | Generate images, video, and audio via diffusion workflows. |
 | `compliance-checklist-dashboard` | software-development | 3 | Bank Pusat | Build compliance/evaluation checklist dashboards from structured documents (Markdown, Excel, PermenPANRB instruments). End-to-end: parse checklist → JSON with status tracking → Next.js dashboard with filters, progress bars, grouped expandable items, and embedded document previews (iframe for HTML, PDF viewer). Covers document-to-indicator mapping, batch status updates from verified sources, and the 'lampiran' pattern for linking evidence files. Use when building dashboards for government compliance (Pemdi, SPBE, IKD, RB), audit tracking, or any scenario where a checklist of items needs status visualization with embedded source documents. |
 | `composio` | ecosystem | 4 | Bank Pusat | Route and complete Composio work across Composio For You and Composio Platform. Use when the user mentions Composio; wants an agent to use apps such as Gmail, Slack, GitHub, Notion, Calendar, or Linear; needs first-time setup, an SDK or MCP integration, CLI operation, migration guidance, current documentation, or help diagnosing a connection or tool call. |
 | `config-history-review` | ecosystem | 2 | Bank Pusat | Review Hermes config history using filesystem evidence (backup files, changelogs, git logs) — NOT session search or memory. Use when user asks to retrace changes, audit history, or check what happened over time. |
+| `containerization-readiness-audit` | devops | 2 | Bank Pusat | Use when asked which projects need Docker. |
 | `dark-theme-a11y` | design | 1 | Bank Pusat | Accessibility pitfalls specific to dark/glassmorphism themes. Covers CSS variable fallback mismatches, computed style verification, contrast ratio checking for transparent backgrounds, and the :focus/:focus-visible interaction pattern. Use when auditing a11y on dark UIs, fixing contrast issues in glassmorphism, or when computed styles don't match CSS source. |
 | `delegated-output-verification` | software-development | 2 | Bank Pusat | Verify files produced by delegated/parallel subagents BEFORE integration. Catches corrupted output (JSON-escaped quotes written literally), stub files that pass syntax checks, and self-reports that claim success. Use after every delegate_task/swarm batch that writes files, before claiming the build works. |
+| `device-migration-disaster-recovery` | ecosystem | 5 | Bank Pusat | Use when planning backup, restore, or device migration. |
 | `document-content-pipeline` | software-development | 9 | Bank Pusat | High-accuracy PDF extraction (opendataloader-pdf / ODL-PDF), batch markdown cleanup, and content pipeline for website injection. Covers PPT→PDF→Markdown→JSON→Next.js page workflows. |
 | `dotfiles-maintenance` | ecosystem | 1 | Bank Pusat | Use when developing or fixing zaryu-terminal-dotfiles. |
 | `ecosystem-architecture-adoption` | ecosystem | 2 | Bank Pusat | Adapt external architecture into existing project. |
 | `ecosystem-bulk-push` | ecosystem | 1 | Bank Pusat | Use when pushing many ecosystem repos to GitHub at once. |
-| `ecosystem-dox-maintenance` | ecosystem | 3 | Bank Pusat | Audit and repair DOX/SOUL hygiene across the ecosystem. |
+| `ecosystem-dox-maintenance` | ecosystem | 6 | Bank Pusat | Audit and repair DOX/SOUL hygiene across the ecosystem. |
 | `ecosystem-gitops` | ecosystem | 3 | Bank Pusat | Use when migrating GitHub remotes HTTPS/SSH or bulk remotes. |
 | `ecosystem-provider-management` | ecosystem | 8 | Bank Pusat | Provider AI lintas 3 agent + pilih model produksi. |
 | `ecosystem-recovery` | ecosystem | 5 | Bank Pusat | Full ecosystem recovery after delete or up-eco failures. |
@@ -31,6 +40,9 @@
 | `ekosistem-content-verification` | ecosystem | 2 | Bank Pusat | Verify web/JSON content accuracy against source documents (DOCX/XLSX) for Niumination ecosystem projects — extract, compare, report, fix. Covers Pemdi data verification and general content audit patterns. |
 | `ekosistem-scaffold` | ecosystem | 1 | Bank Pusat | Scaffold new or missing projects in the Niumination ecosystem. Creates AGENTS.md + BACKLOG.md + brain/projects/ entry with standardized templates. Validates git, deploy, and DOX completeness. |
 | `env-doctor` | devops | 8 | Bank Pusat | Recover dotfiles and shell after Stow or bulk delete. |
+| `evaluation` | mlops | 4 | Bank Pusat | W&B: log ML experiments, sweeps, model registry, dashboards. |
+| `evaluation` | mlops | 5 | Bank Pusat | lm-eval-harness: benchmark LLMs (MMLU, GSM8K, etc.). |
+| `excalidraw` | creative | 5 | Bank Pusat | Hand-drawn Excalidraw JSON diagrams (arch, flow, seq). |
 | `external-patch-adoption` | ecosystem | 1 | Bank Pusat | Apply an external patch stack to an ecosystem repo safely. |
 | `fastapi-python` | software-development | 1 | Bank Pusat | Expert in FastAPI Python development with best practices for APIs and async operations |
 | `fastapi-templates` | software-development | 1 | Bank Pusat | Create production-ready FastAPI projects with async patterns, dependency injection, and comprehensive error handling. Use when building new FastAPI applications or setting up backend API projects. |
@@ -39,13 +51,15 @@
 | `free-tier-reels` | creative | 4 | Bank Pusat | Free-tier Reels creation workflow. |
 | `frontend-design` | design | 2 | Bank Pusat | Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates creative, polished code and UI design that avoids generic AI aesthetics. |
 | `gdpr-compliance` | governance | 5 | Bank Pusat | Expert GDPR compliance assistant covering all four core workflows: (1) auditing code and systems for GDPR violations, (2) drafting GDPR-compliant documents such as privacy policies, Data Processing Agreements (DPAs), and consent notices, (3) answering GDPR compliance questions with authoritative article citations, and (4) reviewing data flows and PII handling practices. Use this skill whenever the user mentions GDPR, data protection, privacy compliance, lawful basis, data subject rights, DPA, privacy notices, consent management, data breaches, DPIAs, controller/ processor relationships, cross-border data transfers, or any EU/UK data privacy topic. Also trigger for questions like "is this GDPR compliant?", "how do I handle personal data?", "what does a privacy policy need?", or any request involving PII, personal data, or data retention in a regulatory context. |
+| `gh-pages-build-fix` | devops | 1 | Bank Pusat | Fix GitHub Pages Jekyll checkout failures. |
 | `ghost` | creative | 1 | Bank Pusat | Rewrite AI-generated or stilted text so it reads naturally and human — stripping common AI writing tells while preserving all factual content. |
-| `git-security-sanitization` | security | 6 | Bank Pusat | Clean credential/PII leaks and add secret-scanning gates. |
+| `git-security-sanitization` | security | 10 | Bank Pusat | Clean credential/PII leaks and add secret-scanning gates. |
 | `github-auth` | github | 3 | Bank Pusat | GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login. |
 | `github-auth-recovery` | github | 1 | Bank Pusat | Recover broken GitHub auth and rotate compromised keys. |
 | `github-code-review` | github | 2 | Bank Pusat | Review PRs: diffs, inline comments via gh or REST. |
 | `github-issue-to-pr` | github | 1 | Bank Pusat | Carry a GitHub issue to a verified PR with honest CI state. |
 | `github-issues` | github | 3 | Bank Pusat | Create, triage, label, assign GitHub issues via gh or REST. |
+| `github-pages-deploy` | devops | 2 | Bank Pusat | Deploy static HTML to GitHub Pages via clean branch. |
 | `github-pr-workflow` | github | 5 | Bank Pusat | GitHub PR lifecycle: branch, commit, open, CI, merge. |
 | `github-repo-management` | github | 2 | Bank Pusat | Clone/create/fork repos; manage remotes, releases. |
 | `hermes-agent-skill-authoring` | ecosystem | 1 | Bank Pusat | Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles. |
@@ -56,14 +70,19 @@
 | `hermes-terminal-workflows` | software-development | 1 | Bank Pusat | Hermes terminal shell pitfalls. |
 | `hermes-uiux-technical` | ecosystem | 1 | Bank Pusat | Capability profile UI/UX & technical skills Hermes Agent — intelligent message routing, end-to-end workflow automation, API/multi-agent interoperability, fast NLP & tool-calling, event-driven architecture, conversational UX, micro-interactions, agentic transparency, tone matching. |
 | `hermes-zero-defect-architect` | software-development | 1 | Bank Pusat | Sistem resolusi bug absolut dengan toleransi kegagalan 0% (Zero-Defect Protocol). Mengeksekusi perbaikan full-stack (Rust, Python, React) dan arsitektur agen (MCP, n8n) melalui pipeline terisolasi: Diagnosa -> Eksekusi Idempotent -> Verifikasi -> Rollback otomatis jika gagal. Terintegrasi dengan JCode AI untuk parallel task dengan jaring pengaman. |
+| `huggingface-hub` | mlops | 1 | Bank Pusat | HuggingFace hf CLI: search/download/upload models, datasets. |
 | `hyperframes` | creative | 1 | Bank Pusat | HyperFrames — open-source framework dari HeyGen untuk mengubah HTML + CSS + animasi menjadi video MP4. 'Write HTML. Render video. Built for agents.' |
 | `impeccable` | design | 152 | Bank Pusat | Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks. |
+| `inference` | mlops | 7 | Bank Pusat | llama.cpp local GGUF inference + HF Hub model discovery. |
+| `inference` | mlops | 5 | Bank Pusat | vLLM: high-throughput LLM serving, OpenAI API, quantization. |
 | `integration-verification` | ecosystem | 3 | Bank Pusat | Verify whether external services, APIs, or toolkits are actually connected and working end-to-end. Use when checking Composio, API keys, providers, webhooks, or local gateways. |
 | `kanban-ecosystem-management` | ecosystem | 20 | Bank Pusat | Track Niumination project portfolio via Hermes kanban. Covers: mapping AGENTS.md project catalog → kanban tasks by category/priority, syncing BACKLOG.md, fixing empty-dashboard DB_PATH issues, and the Plan→DOX→Execute workflow for ecosystem-wide kanban updates. |
 | `macos-launchd-services` | devops | 8 | Bank Pusat | Keep macOS always-on services alive; recover launchd plists. |
+| `mata-ops` | ecosystem | 1 | Bank Pusat | Pull repo MATA dari GitHub & jalankan dashboard lokal :8080. |
 | `merge-reconciler` | autonomous-ai-agents | 1 | Bank Pusat | Neutral third-party resolution of agent merge conflicts. |
 | `mobile-harness-integration` | ecosystem | 3 | Bank Pusat | Add new agent runtimes to Mobile-Harness Android app. |
 | `model-checker` | ecosystem | 2 | Bank Pusat | Cek semua model 9router yang tersedia, test aksesibilitas, kategorikan gratis vs berbayar. Trigger via chat "/model-check" atau "cek model". Hasil: laporan markdown di scripts/model-checker-report.md + data JSON. |
+| `model-status-checker` | ecosystem | 3 | Bank Pusat | Model status checker. 3-tier probe for daily health cron. |
 | `nano-pdf` | productivity | 1 | Bank Pusat | Edit text in existing PDFs via natural-language prompts. |
 | `niu-9router-maintain` | ecosystem | 4 | Bank Pusat | Maintenance router model lokal 9router (localhost:20128) untuk ekosistem Niumination — health check, tes akses semua model, disable provider/model yang gagal, restart daemon otomatis. Gunakan saat user tambah provider/model manual ke 9router atau minta "cek/rawat 9router". |
 | `niu-core-governance` | governance | 2 | Bank Pusat | Operasikan sistem tata kelola inti Niumination (core/) yang dipasang rekonstruksi F1-F5 (19-20 Ags 2026): konstitusi tersegel, kebijakan model 2-otak, pagar (fence) tanpa LLM, hook niu-* di agent-hooks, handoff ganti-model, ledger no-agent, dan script niu_* pendukung. Use when: fence aktif/blokir core, ganti model butuh HANDOFF, test_niu_corelib.py, core/ muncul error, hook tidak jalan, atau perlu dokumentasi keputusan ke ledger. |
@@ -71,9 +90,13 @@
 | `niu-mission-control-ui` | ecosystem | 5 | Bank Pusat | Frontend Niumination Mission Control — unified dashboard (ORB iframe + 12 floating windows), WCAG 2.1 AA accessibility, SEO pipeline, redesign v3.0. Use when working on dashboard styling, accessibility, SEO, floating windows, build_unified.py, or redesign tasks. |
 | `niumination-reference-adoption` | ecosystem | 2 | Bank Pusat | Adopt ecosystem references and zips into skill bank. |
 | `ocr-and-documents` | productivity | 4 | Bank Pusat | Extract text from PDFs/scans (pymupdf, marker-pdf). |
+| `openhue` | smart-home | 1 | Bank Pusat | Control Philips Hue lights, scenes, rooms via OpenHue CLI. |
 | `optimization` | software-development | 1 | Bank Pusat | Improve performance, latency, and throughput of code and systems. Systematic profiling → bottleneck detection → targeted optimization. |
 | `pemdi-evidence-management` | software-development | 6 | Bank Pusat | >- |
 | `pemdi-uiux-refinement` | software-development | 1 | Bank Pusat | Refine UI/UX portal Pemdi Aceh Tengah dengan impeccable + hermes-uiux-technical — sistem animasi global, fix anti-pattern, audit pasca-deploy. Trigger: perubahan desain/animasi/UX PemdiAcehTengah. |
+| `pi-app-studio` | development | 5 | Bank Pusat | Use when building Pi apps via App Studio. Auth and payments. |
+| `pi-app-studio-development` | ecosystem | 1 | Bank Pusat | Build Pi Network apps via Pi App Studio or Pi SDK payments. |
+| `pi-network-ecosystem` | ecosystem | 2 | Bank Pusat | Pi Network — App Studio, Payments, Browser integration. |
 | `pi-solohost-development` | ecosystem | 7 | Bank Pusat | Build and submit apps to Pi Network SoloHost. |
 | `plan` | software-development | 1 | Bank Pusat | Write a markdown plan to .hermes/plans/; no execution. |
 | `plan-compliance-audit` | software-development | 6 | Bank Pusat | Audit a running ecosystem against its written specification/plan document — check each layer (scripts, crons, hooks, configs, DB, credentials, docs) for compliance, categorize gaps by severity, and produce actionable fix recommendations. |
@@ -85,6 +108,7 @@
 | `ponytail-review` | software-development | 1 | Bank Pusat | Code review focused exclusively on over-engineering. Finds what to delete: reinvented standard library, unneeded dependencies, speculative abstractions, dead flexibility. One line per finding: location, what to cut, what replaces it. Use when the user says "review for over-engineering", "what can we delete", "is this over-engineered", "simplify review", or invokes /ponytail-review. Complements correctness-focused review, this one only hunts complexity. |
 | `positive-verification` | software-development | 1 | Bank Pusat | Verify hand-edited escapes before claiming the fix correct. |
 | `premortem` | software-development | 1 | Bank Pusat | Assume a project or plan has already failed, then work backward to identify the most likely causes before committing to it. Catches failure modes that forward-looking planning misses. |
+| `pretext` | creative | 4 | Bank Pusat | Build creative browser demos with DOM-free text layout. |
 | `project-orientation` | software-development | 1 | Bank Pusat | Establish situational awareness before working on any user-referenced project. Verify project existence, state, location, and documentation against primary sources — not memory or compressed summaries. |
 | `provider-fallback` | ecosystem | 7 | Bank Pusat | Handle AI provider failures and fallback to working providers |
 | `python-testing-patterns` | software-development | 2 | Bank Pusat | Implement comprehensive testing strategies with pytest, fixtures, mocking, and test-driven development. Use when writing Python tests, setting up test suites, or implementing testing best practices. |
@@ -100,6 +124,7 @@
 | `seo` | design | 1 | Bank Pusat | Optimize for search engine visibility and ranking. Use when asked to "improve SEO", "optimize for search", "fix meta tags", "add structured data", "sitemap optimization", or "search engine optimization". |
 | `session-librarian` | productivity | 1 | Bank Pusat | Organize sessions by prompt: find, rename, archive, prune. |
 | `simplify-code` | software-development | 1 | Bank Pusat | Parallel 4-agent cleanup of recent code changes. |
+| `sketch` | creative | 1 | Bank Pusat | Throwaway HTML mockups: 2-3 design variants to compare. |
 | `skill-bank-integrity` | ecosystem | 2 | Bank Pusat | Jaga integritas & keamanan Skill Bank Niumination — manifest SHA-256, kelengkapan sync (references/scripts/data), audit konten anti prompt-injection, lockfile traceability. Load saat menangani sync-to-agents.sh, manifest skill, audit isi skill, atau mengadopsi pola autoskills (midudev) ke ekosistem. |
 | `skill-bank-maintenance` | ecosystem | 1 | Bank Pusat | Maintain the Niumination Skill Bank — manifest SHA-256 integrity, full-folder sync to agents, drift handling, lockfiles. Use when working with ~/Desktop/Niumination/skills, skill-manifest.py, sync-to-agents.sh, or when up-eco reports skill bank integrity/sync issues. |
 | `skill-bank-management` | ecosystem | 2 | Bank Pusat | Kelola Skill Bank Niumination (single source of truth ~/Desktop/Niumination/skills/) — generate & verifikasi manifest SHA-256, sync seluruh folder skill ke agent target (Hermes/USB) dengan verifikasi hash + lockfile, tangani drift antar target, dan adopsi skill dari registry eksternal (autoskills, GitHub). Gunakan saat ada skill baru masuk bank, sync-to-agents.sh dijalankan/gagal, up-eco melaporkan manifest mismatch, drift file antara bank vs target, atau user minta adopsi skill X. |
@@ -107,11 +132,13 @@
 | `skill-bank-ops` | ecosystem | 2 | Bank Pusat | Operasi Skill Bank Niumination — manifest SHA-256, sync seluruh folder ke agent, resolve drift bank<->target, adopsi skill eksternal. Use when regenerating skills/manifest.json, verifikasi integritas skill, sync-to-agents.sh error/mismatch, drift USB vs bank, menambah skill baru ke bank (dari autoskills registry atau repo lain), atau up-eco Phase 6 melaporkan manifest mismatch. |
 | `skill-bank-sync` | ecosystem | 3 | Bank Pusat | Maintain the Niumination Skill Bank with integrity verification — manifest SHA-256, full-folder sync to agent targets, drift resolution, and the Hermes HOME-cache path pitfall. Use when sync-to-agents.sh --verify reports GAGAL, when skill-manifest.py --check flags mismatch, when skills look truncated at a target, or when writing scripts that resolve the real user home under Hermes env. |
 | `skp-e-kinerja` | productivity | 4 | Bank Pusat | Generate SKP concept from session data for reporting. |
+| `snapshot-verification` | devops | 3 | Bank Pusat | Verify static snapshot deployment and content. |
 | `subagent-driven-development` | software-development | 1 | Bank Pusat | Use when executing implementation plans with independent tasks in the current session — dispatches fresh subagent per task with two-stage review. |
 | `surgical-refactor` | software-development | 2 | Bank Pusat | Keep UI intact, replace only data/backend logic. |
 | `swift-cli-development` | software-development | 3 | Bank Pusat | Swift CLI tools with SPM without Xcode.app — concurrency. |
 | `systematic-debugging` | software-development | 1 | Bank Pusat | 4-phase root cause debugging: understand bugs before fixing. |
 | `telegram-router-orchestration` | autonomous-ai-agents | 1 | Bank Pusat | Mengelola persona, skills, dan model override per-thread Telegram di Hermes Gateway, termasuk integrasi dengan ekosistem Niumination. |
+| `touchdesigner-mcp` | creative | 23 | Bank Pusat | Control TouchDesigner via twozero MCP. |
 | `tripwire` | software-development | 1 | Bank Pusat | Identify the single most critical risk that could derail a project — forcing prioritization down to one thing when a full risk analysis has produced too many findings to act on all at once. |
 | `ui-ux-pro-max` | design | 35 | Bank Pusat | UI/UX design intelligence. 67 styles, 96 palettes, 57 font pairings, 25 charts, 13 stacks (React, Next.js, Vue, Svelte, SwiftUI, React Native, Flutter, Tailwind, shadcn/ui). Actions: plan, build, create, design, implement, review, fix, improve, optimize, enhance, refactor, check UI/UX code. Projects: website, landing page, dashboard, admin panel, e-commerce, SaaS, portfolio, blog, mobile app, .html, .tsx, .vue, .svelte. Elements: button, modal, navbar, sidebar, card, table, form, chart. Styles: glassmorphism, claymorphism, minimalism, brutalism, neumorphism, bento grid, dark mode, responsive, skeuomorphism, flat design. Topics: color palette, accessibility, animation, layout, typography, font pairing, spacing, hover, shadow, gradient. Integrations: shadcn/ui MCP for component search and examples. |
 | `ultrathink` | software-development | 1 | Bank Pusat | Force deep architectural and system-level reasoning before writing code — channels a master craftsman who thinks in trade-offs, invariants, and long-term maintainability rather than rushing to implementation. |
@@ -125,9 +152,10 @@
 | `web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-09-16 15:32:54_
+_Last sync: 2026-09-17 12:30:39_
 
 <!-- SKILL_REGISTRY_END -->
+
 
 
 

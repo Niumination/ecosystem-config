@@ -1,7 +1,7 @@
 {
-  "fileCount": 588,
-  "generatedAt": "2026-09-16T08:32:48.692040+00:00",
-  "skillCount": 121,
+  "fileCount": 690,
+  "generatedAt": "2026-09-17T05:28:02.943585+00:00",
+  "skillCount": 140,
   "skills": {
     "9router-model-mapping": {
       "bundleHash": "9e39ed1739ea42b1a76e22094ff5a2c2f8fcf4807ace43bfb3642974165df2d1",
@@ -42,6 +42,13 @@
         "references/app-data-backup-restore.md": "51aeb438ffa753287bfcbd52a9b60e33f7b559891de42fddb60551fbc73d2c8e"
       }
     },
+    "ascii-art": {
+      "bundleHash": "04de4b57cb1b5fcf96414a2d6e172764db648fef8ff9dec7837493069257045a",
+      "domain": "creative",
+      "files": {
+        "SKILL.md": "f3b77e9d50f06944211bed92779f669ba0fe3e261e2da262cf1a31b719132d84"
+      }
+    },
     "blogwatcher": {
       "bundleHash": "da5d3954018c476fcde3f9949577bb0880237c9086f3728b8ecfd64a4a6127ca",
       "domain": "research",
@@ -63,6 +70,13 @@
         "SKILL.md": "5637d743ea0b31e859ea998904e121d91e663ea027ef7825d3d6d653b05e19d1",
         "references/mc-bridge-opsi-c-2026-09-07.md": "78cf92b6f567e27a9640f24fe0799001db95e18a55481e1c028088c9e5c91b7c",
         "references/mission-control-bridge-migration.md": "b6b0830e7719e96bc3405e928e652ccdfcf80f0f62b6b3e9e6c51a4f690d5362"
+      }
+    },
+    "cc-acehtengah-maintain": {
+      "bundleHash": "32b5feb59071ca379695444602a07e7efa62598a9e4d25437d60cdef4a8d55aa",
+      "domain": ".archive",
+      "files": {
+        "SKILL.md": "5630ceaeff1b4de20bd8d2a9b4cf06fb9a5854a4db74aea51b2093944ca64c4d"
       }
     },
     "cc-acehtengah-maintenance": {
@@ -98,6 +112,45 @@
         "references/wp7-wiring-verification-2026-09-01.md": "02f305ddc269d9f2aac1059ff753d695d4dc292f0395852cb993b51181ad0048"
       }
     },
+    "comfyui": {
+      "bundleHash": "59539b6f6005c1396614794a9e2addbdfb8005b4e758e3242ea2abd12a204e81",
+      "domain": "creative",
+      "files": {
+        "SKILL.md": "1013a06bf6accc0cbcb43a7dbb6e31130ed7e692b4db454877ccb38fbe66815e",
+        "references/official-cli.md": "9d62db1d40af7a4639ede8b9ac599c4e180451342570b08b125d656f4b68e1bc",
+        "references/rest-api.md": "01077c38f6d5d737e2f0ec126ccce7eceef64fc754f15c852a63dbcd58da493c",
+        "references/template-integrity.md": "746caa050d4e321b142efecf5a16c72d609e3c08cec9061ba4108781d14aa7d9",
+        "references/workflow-format.md": "c5749b962b8e438b777e7f4d6529469c53b945728cc847083110e5a742fd0af4",
+        "scripts/_common.py": "9cc7cb65f7b0dd313d5271bc8b7d8eeff8a91d46dde0ffaca25fd82f2e0a78cf",
+        "scripts/auto_fix_deps.py": "969a8f57e27dd836d944f29ca71ea6ed84479907f4cefcf63990ba3eac6a1186",
+        "scripts/check_deps.py": "62f43d4ecdd600eb8f5c0d9d3c7223616afa2a8a3d5a4a30bfb22cf92306ef72",
+        "scripts/comfyui_setup.sh": "9284df8240cc5c626bb02d865ace02fd49ccdd35e9583ed34de8f9e417f5e74d",
+        "scripts/extract_schema.py": "d8e2e23bc0fdb64f60da71f600be3942a5da5317b906ac3f13278b5e474d3676",
+        "scripts/fetch_logs.py": "3bc3b537a72f3a825001e9c91486e7a5acc58fa6d955ff737d8505907933cdfc",
+        "scripts/hardware_check.py": "a32af92534d9aa56d27df67703a12770f5c8fe5a19728dcd5e11338875440090",
+        "scripts/health_check.py": "5f3d5fcbacd18705205533291994eeb0262c93b4ac0a501591e1cc92485cddba",
+        "scripts/run_batch.py": "8a69048e0ca013803e7330d4a2144c20a7db0ea736aeefda5a60b341b2c17a0d",
+        "scripts/run_workflow.py": "9dd3b3d1f7cc2201f169381dd7362761677e452ddbc79aecb3114732f58f8843",
+        "scripts/ws_monitor.py": "3c8f920578b4996d4accd806f17c5b0028ef93dc77982327caeb47177cbe817d",
+        "tests/README.md": "9f039913b8b11be4f2874e346098213a81f2989dc254084db28a92ec90c42f94",
+        "tests/conftest.py": "a36f5667289ad39cc36b3f9e705d084ee2cf0ffbdeaf222e034bf90da47c7141",
+        "tests/pytest.ini": "9cb092ce40432ff6caf766ceb1b9f32ff4d0f91de693bdbeec8d9916a9839ce8",
+        "tests/test_check_deps.py": "82e250c9d8d42132408f3869f0229d845bffdf6ccc5d2a8539d83c951db3d08a",
+        "tests/test_cloud_integration.py": "23a6ed9ecc5287a748352bf8f99972b08845b31961825c59cb98acf9d0dcae54",
+        "tests/test_common.py": "c760a68c53f12e54609a9330dbbe2f378d06b4d107f7acb9b8ac83ff22abd517",
+        "tests/test_extract_schema.py": "d5624eaf8cf912d094a108188475de82bd4ae834597fc275a32f8082e6cce898",
+        "tests/test_run_workflow.py": "52da38afde5b9f2f03252c3478612a5caaf6f8225373c2a2ce5e43885ddc8c78",
+        "workflows/README.md": "2e1cd819ff6da81b1c41daa74f95f3c4df564bf512d18a63e566890cea4c6bbd",
+        "workflows/animatediff_video.json": "96742617937e0294d421e1b3dc53c44c431081577598257bfd6121abe1c3ada2",
+        "workflows/flux_dev_txt2img.json": "db0afca70c46f552b7bc4c4b9d63761da81232f6ce78e3dd98b2af0488bfb16c",
+        "workflows/sd15_txt2img.json": "db6ef4f9bf3b8e0f0c88c08ab8f0a45ae3816fb2ea2ad4460443b1ac424052a5",
+        "workflows/sdxl_img2img.json": "0b6888ec7e55310020d6d12f6af32502eb3374b7ebefaad3734df8b5596bdac5",
+        "workflows/sdxl_inpaint.json": "c9cd10adb7ce9e3c17df3c38c1a597229dc939ff5ae6f8a24d505ea8a053b54c",
+        "workflows/sdxl_txt2img.json": "5266fa4f35fb9a0fa485e8d7700a23ba4917f1a91c0abe17c1b4f6beb68a8e1f",
+        "workflows/upscale_4x.json": "9f97b0da2826cf2afb8347f8099c691dd7682143eb6966ad874572b91d560ebe",
+        "workflows/wan_video_t2v.json": "29425bee0ffbb2d558de19ca787d23b76f91257f663098041a81931fe623441b"
+      }
+    },
     "compliance-checklist-dashboard": {
       "bundleHash": "d3e4f62b9c2325858f8fec54011c699aef4338c39c7687d07ec9159683830b3b",
       "domain": "software-development",
@@ -125,6 +178,14 @@
         "references/provider-evolution-niumination.md": "a59729b3fb3fac80978e03bdf0c3b31766879dfd9cee18108ee9d20a70b8caf9"
       }
     },
+    "containerization-readiness-audit": {
+      "bundleHash": "b4f299f55586f0721342943e8afa422875602710cd05d23524561baeb53114b2",
+      "domain": "devops",
+      "files": {
+        "SKILL.md": "04d6f4b9dea13355fd18e006ef21acfc14bcbddcf90a87b0238ebf19554e1a44",
+        "scripts/scan_docker_need.py": "341c2a61ad24ae5fa91dd6ab53acd22516f09e317bebf5a23cfc0853da13cbdb"
+      }
+    },
     "dark-theme-a11y": {
       "bundleHash": "6356067cccb831194afa28b8723a7aed57ee0a7a724594c45f9181bd72f841de",
       "domain": "design",
@@ -138,6 +199,17 @@
       "files": {
         "SKILL.md": "2b41c9991104ed2d86709abd8e1e2ade9396a843ae29ef6387331ae84d25715b",
         "references/rebuild-gutted-dashboard.md": "0c091ed37796287a49f5edee71ec92eaa1f7c75163e31cf1a2be7aaa44111a33"
+      }
+    },
+    "device-migration-disaster-recovery": {
+      "bundleHash": "57a8a4a19deb3425d53f711488c81f42af1db52de2d45d0253006a525fe95b11",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "22725ded164d3b9db755dd6c4dce703765f43c5d0c4826d3402f46b7561cac36",
+        "references/cross-os-restore.md": "dbc7c0a556d50b5412181ab5aa9e8b2f0e6029ea3e30fb991cb88ccae56c830e",
+        "references/hermes-home-backup.md": "e5bf5b3748f0279c4eeef4d0b33a63aa7710110241c69da1e44021c924e394c0",
+        "references/ignored-path-sweep.md": "e2bf1131165e9e365bfc67a2cf73627a7f185f3d03f0cb88151793b4b266f23f",
+        "references/offsite-artifact-staging.md": "d7e6554b2f1114b2f7760a71f4046e96c60fc7a3f27ef1023eb15f9f88cb6707"
       }
     },
     "document-content-pipeline": {
@@ -178,12 +250,15 @@
       }
     },
     "ecosystem-dox-maintenance": {
-      "bundleHash": "3af978327405051587a8efb289ae006b192a4c905983f5ba55c5516331be7ce9",
+      "bundleHash": "18845082e3389b3eb51f122b9a391e0c574b96ab70e35673edb7e35699232c18",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "773194c75ed80144e28d5ed653a123472242a8bf3ddb2c3488b74cd722db7bd6",
+        "SKILL.md": "5104a0d94ddb47364c58297dfc659404ade54e5db9871465970a7318f5b98267",
+        "references/channel-prompts-editing.md": "3fd6dafc099042b175d944d2b63cbe19ac47be4b6cfdf96dabbda2fc2b448789",
         "references/file-duplication-patterns.md": "9fe62d704dccb5db08a51071c722681c4f1d394e497955e1555b3e11e8ea4974",
-        "references/stale-brief-handling.md": "7e5344ec25cf4f73fa3b2eca1959bf6ac4d13325a065eb34fc1f94e4e7e167ec"
+        "references/path-migration-sweep.md": "a4ddfaa594bfe733e0f026d6cd25954799e1ddd42831f69ba67c0aaefad4f773",
+        "references/stale-brief-handling.md": "7e5344ec25cf4f73fa3b2eca1959bf6ac4d13325a065eb34fc1f94e4e7e167ec",
+        "scripts/identity-drift-audit.py": "c52198a4f7daef74c5d8abf5c82d11c75253e2b505b2c0874c191a0703937b7e"
       }
     },
     "ecosystem-gitops": {
@@ -267,6 +342,17 @@
         "references/splp-bapokting-chip-2026-08-28.md": "7006e5b3e601d6c1c81962090b9e9d73fd77914445b0c5c55d6f4e611cf7905e"
       }
     },
+    "excalidraw": {
+      "bundleHash": "df72f956c0b58820ea7a75ada4148788937dc3772d40c445c773249dd3c3aed3",
+      "domain": "creative",
+      "files": {
+        "SKILL.md": "cb0558445251fc1087a99dd85b445b83565a98aef6d3e0874641000f7e89e253",
+        "references/colors.md": "4546bb6756acb1ea2fd3a917c6883b2cee054345d3268fe8b377275fa590092c",
+        "references/dark-mode.md": "ef1ceeea938fe62ec745a4abec478188098f99573cac6f38db3992eacedbe6df",
+        "references/examples.md": "411e4c571135a94264becb365b7963f4370c7564aa7fb6eefa822b4538a1c399",
+        "scripts/upload.py": "d3d88dfd8930942a5f4ab51f830dbcf245939bfb546dd00d073205d888996a65"
+      }
+    },
     "external-patch-adoption": {
       "bundleHash": "32ff22f93faec4ffe7ab939cb93d7a54308d8faca029983b8a07a7418d61aad6",
       "domain": "ecosystem",
@@ -337,6 +423,13 @@
         "references/updates-2025.md": "dd3bd14579fdfc7473ae99ee10a502e3bcd789df1d40f720e6d2995ac1ebffb0"
       }
     },
+    "gh-pages-build-fix": {
+      "bundleHash": "45b4041abc1a950e0c57b486b7b70ba4d1baba21026f38db40f82fcdbc869c73",
+      "domain": "devops",
+      "files": {
+        "SKILL.md": "54159ee8af820e1a92dd6313ed43a4d9b46eb73cec425156350d40f1ff09e387"
+      }
+    },
     "ghost": {
       "bundleHash": "dd980595ad287cfb4c3ff26c925400a59ca826b7e1254b43e96429b8d5355ef9",
       "domain": "creative",
@@ -345,15 +438,19 @@
       }
     },
     "git-security-sanitization": {
-      "bundleHash": "0f0f7d8ea278881b993d6b7f46c563ef77e46422ce7451a4d70d49013e712e50",
+      "bundleHash": "0f68f8e5b348496636aad8099bc606264bac3417a0ebdff9411393f0628c9a8e",
       "domain": "security",
       "files": {
-        "SKILL.md": "07499ae514104e062f7d21139fd52f1377868945bcc560d4236b8febc90a9438",
+        "SKILL.md": "79997e625245098eda18dd74902155d1e5636c7c65cc9031404d6f6c2badb77e",
         "references/github-secret-alert-triage.md": "d39706398ab6f3ecaaa55aa45b6dc5521b4a7cca725f239c8ed7ff4e459e020a",
-        "references/pii-gate-config.md": "4808d134424a6f15cd48ccbf96ef6a455c5f3e9076b11e10f5d7221a9dda28aa",
+        "references/history-rewrite-dry-run.md": "1c0d3feed116d2d39aa9bde111c1e77395d50971c6be0f2e47935e911b37ece0",
+        "references/pii-gate-config.md": "631f36425b985653855ed61259ea3d0172d7b347ee2306191bc1cc5977a7685f",
         "references/pre-commit-template.sh": "29ebbe1d40fed4dc47b27cf042c0b21eb0e3266a5e51b9fb847cff8aa8d850e2",
+        "references/public-repo-leak-audit.md": "691c813fb7d62fc62baf2d00e2e251c8e0c89ea0368266a632f102d95ea22557",
         "references/redaction-patterns.md": "8efb678119a08b66242dba445a55c50f0d1ae52bd5b1a58d42f9b06bdaada09f",
-        "references/secret-alert-triage.md": "a443f5c3719f9b6fbb07430ae97f27e24114f665a5ba3384d2fc8c75848ef7cf"
+        "references/secret-alert-triage.md": "a443f5c3719f9b6fbb07430ae97f27e24114f665a5ba3384d2fc8c75848ef7cf",
+        "scripts/history_secret_scan.py": "9d07b724b997bc8e7885eaf81bfdf188af0eed5bb368654b6798927e4688f0e8",
+        "scripts/masked_pii_triage.py": "6174b498704b94371bf1dfdc68586b8ab4c9c6a98771ffd988e8c29587f1d446"
       }
     },
     "github-auth": {
@@ -396,6 +493,14 @@
         "templates/feature-request.md": "43962f5a398b4badeeb94280299ba4511940ad0e32afcfce5f2a6e1afd21c7a8"
       }
     },
+    "github-pages-deploy": {
+      "bundleHash": "fce65dd7faa65c5866ae2a81eba6451887302b07c2c33957c8fdbaf811590810",
+      "domain": "devops",
+      "files": {
+        "SKILL.md": "87adae46bd6bbcc809e619e62a278aedc98ef9d14a75deec08693d500983c011",
+        "references/dns-cloudflare.md": "ef9f1f900b8b2b4b66a464199e1bfac6dbc5c61545ca8798a0b55740b10e7b76"
+      }
+    },
     "github-pr-workflow": {
       "bundleHash": "534629393033f76e6c934338ce3ad6fd465a17ff16fd9587d9be74d77cc6606d",
       "domain": "github",
@@ -423,10 +528,10 @@
       }
     },
     "hermes-configuration": {
-      "bundleHash": "50d8de8c647c4274cfa87f8f75a72e178f8074722883b2d261629c9ac5ceb2f7",
+      "bundleHash": "d823e9606a36ff41753139926e4398a432eaa2b8bf95e9e531ee413f9b7c5e01",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "68d468319cbc4c3d4e753dea7716f46ee5080bc3d60508ad6d94b0f2d542c7da",
+        "SKILL.md": "1827f2ceecd3a6be2b29ceb8e0024294eb8e9b1a16ea3e1edd2d0e1e25dec244",
         "references/config-drift-restoration-2026-09-08.md": "2f4c084caa3e2831e58247213fba54e1da7d722cce974759418e0048ce64a606",
         "references/config-migration-internals.md": "2530117ce125c93b4838cdd204ba6e8effffac5284f0869980f2b575dab75677",
         "references/gateway-notification-system.md": "ed55a43e60824441efeebf781bd6dc624844745ad01f464ab9c4dae937377aa2",
@@ -490,6 +595,13 @@
       "domain": "software-development",
       "files": {
         "SKILL.md": "998a24de33c7e8271e1f51efb0a424d89dd5f0e440b06351ba5a46dfb698c08a"
+      }
+    },
+    "huggingface-hub": {
+      "bundleHash": "e90d62e1a8eebb5761fc505c26e0db3bf5cd99f332eb812a242e99e98b8d2682",
+      "domain": "mlops",
+      "files": {
+        "SKILL.md": "68ee2e5ae17e0f2968f8550534f3fce1c7eae461b95cbe1dbc34b8d487665bc5"
       }
     },
     "hyperframes": {
@@ -706,6 +818,13 @@
         "templates/nosleep.plist": "c14bb97527e74220f10b3a8300cabef7ecf5ebe0d1ca071110f7273d2262f99f"
       }
     },
+    "mata-ops": {
+      "bundleHash": "5fbd57b79554557c9682f6b14581d028087e041db8a393074d83a53c4c07014b",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "dae18846865208217593faca44fbe0ad498989d41fd603fb6bf05c0f818c4568"
+      }
+    },
     "merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
       "domain": "autonomous-ai-agents",
@@ -728,6 +847,15 @@
       "files": {
         "SKILL.md": "c3ad533b72389d9b60447f8259e4cae22d25b4ab3016b677ed79dd8c9b938b1f",
         "references/kiro-models-status-2026-08-30.md": "6df9541106a8af692941b8c402edabdfe0b76aa2c97fb207e386dc2c59e46559"
+      }
+    },
+    "model-status-checker": {
+      "bundleHash": "f09134914db3e38104bbee42cf590c0afb8384fc84eab157923a6c77c67b4e84",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "8054a3cb224626c6fd454e1e6e321b3931c22485ebb18dc9788f4eb246c3c9cd",
+        "references/lessons-learned.md": "d062b58139d850c93c133994762671eb4754b21a4a14fec8b409d6bb851c7521",
+        "scripts/model_status_checker.py": "5a38f55001a1c67c867bc250302a5210d768cc1ca67f9d00d512af8374df380d"
       }
     },
     "nano-pdf": {
@@ -794,6 +922,13 @@
         "scripts/extract_pymupdf.py": "8476bafbf0becc09a74a5329e0c54aeeb92badd4d3eb6ee7a25519656ed8ae60"
       }
     },
+    "openhue": {
+      "bundleHash": "acd8a84a30f85215b05998da08372a65f761a7b356e48d4cba257fceacadaadd",
+      "domain": "smart-home",
+      "files": {
+        "SKILL.md": "65a27110487bf296285ac1730a81fd0b5be3451a7a9abac767588be2986e454c"
+      }
+    },
     "optimization": {
       "bundleHash": "4c2a02578a52d7b04279da2ffc5d5371ba1336d21d149b3eb27a736e5092b2f2",
       "domain": "software-development",
@@ -818,6 +953,32 @@
       "domain": "software-development",
       "files": {
         "SKILL.md": "d0d42dfb53d7f64ab7ec212ae4f0a6cf1e89b28d72e9abba5a18d4a1754cfede"
+      }
+    },
+    "pi-app-studio": {
+      "bundleHash": "94f5952859b052e138bb0f17acd97d3d3bef36521ac3503506ec180a7dc7a2f9",
+      "domain": "development",
+      "files": {
+        "SKILL.md": "e43e4bd51b69016ec6883229872af5037fb9b3589881a326865494f14ca138f9",
+        "references/authentication-flow.md": "c2e6425b0ac474419187658f0341e2f896f0af350219d63afa06002d2e0d1219",
+        "references/git-secret-remediation.md": "9e9784ba15dfd94949a67c87e66bbd044da63d7ae3a3ab9b674a0b35229068cf",
+        "references/payment-server.md": "4e8bd6e3f61c4445c267fdfec0490b5d84e1e9d31720f55a043810219a482d9d",
+        "references/testnet-checklist.md": "0d6b1f3b26da916322525fadb5356d5c144cc60c1352899c209528d72d249888"
+      }
+    },
+    "pi-app-studio-development": {
+      "bundleHash": "9c3f6acbd3e22a9cc52b070af80cf0e23a618d8e6a91d86a47f0052d90258ce6",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "fe22d38fe03f9860625b8e4aefacd931313cd6a4c3fd561671782566acf3e120"
+      }
+    },
+    "pi-network-ecosystem": {
+      "bundleHash": "bf772ca390d196b16bb3e85e92c43cb2b85069fc2dba99a7ff5fbf7cd83c6fb9",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "fe3ffd4ec4a56d9211b79e744d16e1d0220e39181a9d2edc6fcc84f9f36c41e0",
+        "references/app-studio-prompt-example.md": "aaa6ccbeffa428f48a56f5347d12c4bd3d096108c8a3e6fd22d32727352f69e0"
       }
     },
     "pi-solohost-development": {
@@ -906,6 +1067,16 @@
       "domain": "software-development",
       "files": {
         "SKILL.md": "4c1e8ac4dfb85f0df9c035fc26403d1831888b9ebf050662bdf2e4f73840b166"
+      }
+    },
+    "pretext": {
+      "bundleHash": "c4535a5be4c4470747cc609eafe042e629d301a066b9e98c329cb563c22702b7",
+      "domain": "creative",
+      "files": {
+        "SKILL.md": "c09691f63543573f876bf46e9c62ecb21374167991abdfc50ddac38c6443358c",
+        "references/patterns.md": "e8d50e198fefdeb83e68f84ef4fbe036583ff5f7d65a41a58e1ab8725027f13e",
+        "templates/donut-orbit.html": "8b0cd47880a9cc6ad16f90afe02b11aea1e2436c833924bb91e55dc460966fbe",
+        "templates/hello-orb-flow.html": "6a1c76b51e8e792fa2b00ed3a5bf1e314a17ada192289155dce6b33da149ddda"
       }
     },
     "project-orientation": {
@@ -1097,6 +1268,13 @@
         "SKILL.md": "c259970bff23997a9b395f514af12723e33218fca97f529b5e0fa914ac72660e"
       }
     },
+    "sketch": {
+      "bundleHash": "17b56179e42687ec2af7291efa026f33b09facc81a12405f6488d2c5c1bc74a5",
+      "domain": "creative",
+      "files": {
+        "SKILL.md": "c9472691dbd91b31710d9ace3d05a81a5cedcf524a1707f8b3e410b27ed0a243"
+      }
+    },
     "skill-bank-integrity": {
       "bundleHash": "57525d80274a8b3ba4e86c19d564e84a1e900107b3bdc9429353911fc95c7f4c",
       "domain": "ecosystem",
@@ -1156,6 +1334,15 @@
         "references/skp-draft-jul-aug-2026.md": "1dcfa40ce52d4b9c5b1442d027aab53613b77b2aecb24b129eec4ff3e8928b34"
       }
     },
+    "snapshot-verification": {
+      "bundleHash": "7ec14fb6c2414c4d1a52e5b1e23f4913731396834a2f849d1ec35d4a0120927f",
+      "domain": "devops",
+      "files": {
+        "SKILL.md": "ece4a6e3b3d5de4ff56d70f3b2cc51aca6c08d73d49d24a9d286c361e0e71922",
+        "scripts/verify_landing_links.py": "6bdc00b550a862199f966ff5e4d6755d807743f726cd68f89680780be61024b8",
+        "scripts/verify_snapshot.py": "cc10fcbe0d326da0b405d2517969e8d54896e1e80aee630ad250e258096fa5a4"
+      }
+    },
     "subagent-driven-development": {
       "bundleHash": "17df06a759a691a917ece5a110579321782fb9380022bfddbaae1a7d5a34fb0d",
       "domain": "software-development",
@@ -1192,6 +1379,35 @@
       "domain": "autonomous-ai-agents",
       "files": {
         "SKILL.md": "6211669d4cfacd6e07bfe8ec9ee3d75b647f3806ada4b05d5d85eadcf4063734"
+      }
+    },
+    "touchdesigner-mcp": {
+      "bundleHash": "fef8124b5ff02d875687a85e8c0f5dcc91d0cf4e6e7cab9691ec21ad77dbb850",
+      "domain": "creative",
+      "files": {
+        "SKILL.md": "925c387c16a3a0752e4670d48ab9bde94f930cd3dd27fe08cefda2e05c0765e9",
+        "references/3d-scene.md": "f0b17b4383333198474da7a58ea8c4063f46f1465f0f1275053c5a538028456b",
+        "references/animation.md": "9c7482f38e86f80a89d0df98db8ec2e99c8227fdceab099667730a1000e14386",
+        "references/audio-reactive.md": "3ea60c5954b4b1b682397a1f6bf85dccfc277354cc6f4e021b4ca68d18b623be",
+        "references/dat-scripting.md": "062ea3608ba9475d1c76bc59d8e4a5f0a0d1dd3a60006e2380e634367f460fe1",
+        "references/external-data.md": "0d7b782cba9a3045bfb67e1a3150588e4889db3fd7938071fa367daf6afaa932",
+        "references/geometry-comp.md": "f86b1e8333419ce23180cc7de06848744c4f3168124918745bfaa10b30479a42",
+        "references/glsl.md": "53809b02394c797615601bfb541a43b14105087d8465d76c604ec24168257f88",
+        "references/layout-compositor.md": "4e6dd1f86f5b85525554e4c33dbfa5f767326ae1eef0855a0aa6257bfb35bdcb",
+        "references/mcp-tools.md": "d702a7353c76711a0797885da87a1adf1fd2640533aa415dab06eb6df6304eb1",
+        "references/midi-osc.md": "1e9c8de828e6eda23425098cd9dd03edabf75d41b24484fca63d3f3b0cced192",
+        "references/network-patterns.md": "fd519867cc2ed9b2de8fd07fcb928b55547f39fa4767bc5d33c3a300b7a17236",
+        "references/operator-tips.md": "24ea49a21d78ddf7f5b40efc13e6a9d2705a6de0a0f40b51f8fac87444efa5f2",
+        "references/operators.md": "ad67bbe2880eb479e0eccabd72f9513939e87ecc6158baf43a7ffe1cc01d719e",
+        "references/panel-ui.md": "3acc029c90a1aab73b969380f96d987d41877dcba382e75d72166ca17a92a32d",
+        "references/particles.md": "066bb5ccb4d396c444651b7e245cbc214810e22b2144cc98316713dea3ee9a8b",
+        "references/pitfalls.md": "288f0da8ca0f1371b9d4bd6253c68f0de9f36c9aa2d89011e6b2eab30c040d0b",
+        "references/postfx.md": "eef5fee9615fa76b9dfcd92fa815157e2a67dead31a78618c4b68565f537e2db",
+        "references/projection-mapping.md": "b5ad7c4cb1c64360dcd1252f9868e4031b7e93eb1a4a726326ea89b84a86ff80",
+        "references/python-api.md": "f898b84a6c2155c39a94ce60865676b9db78aac0147ae6e6d3c9b1b41644f269",
+        "references/replicator.md": "b17907d2fb8a53447d854bb14e00295f37e1afff47693715b817163877e33317",
+        "references/troubleshooting.md": "c01460dd47d2a59ebf6d221d717b7563df1f823ac9b8e574787fe39e12e4e876",
+        "scripts/setup.sh": "173ef326c534751b38677e698f93a4baa76f9ae07bb0d26bec4beba565db45f7"
       }
     },
     "tripwire": {
