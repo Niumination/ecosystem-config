@@ -140,6 +140,27 @@ stdout is delivered verbatim): no token cost, and — the part that matters — 
 does not stop working the week the model is unavailable. Reserve agent-scheduled variants for jobs that genuinely need
 judgement.
 
+Wire the scheduled script as a thin wrapper, not as the build script itself, so the scheduler's constraints are handled
+in one place: capture the build log to a file so the full detail survives for later inspection while the delivered
+message stays short; print a compact summary on success and the failing step plus the log tail on error; and exit
+non-zero on failure so the scheduler raises its own alert as well.
+
+Fix PATH by **prepending, never by assigning** — assigning a "correct" list silently drops whatever the environment
+already had, so the job fails on a binary you never thought about (a `hermes` shim in `~/.local/bin` was the casualty:
+the wrapper's own fixed PATH removed it, and the failure surfaced four steps later as "command not found" during the
+slowest build step). Prepend the directories the build needs (`~/.local/bin`, `/usr/local/bin`, `/opt/homebrew/bin`,
+the tool's venv `bin`), then verify every required binary up front with `command -v` and fail immediately naming the
+ones missing — a prerequisite check that costs milliseconds beats discovering it after minutes of work, and it makes
+the failure message actionable instead of a mystery at step 4 of 6.
+
+A run that fails partway still leaves side effects: builders that ran before the failure rewrote their encrypted
+outputs in the working tree without committing them. Expect that, re-run the whole sequence after the fix rather than
+committing the partial result, and check `git status` before concluding nothing happened.
+
+Before scheduling, check the scheduler's own script timeout rather than assuming it is generous, and confirm how it
+treats exit codes and empty output — in one implementation the timeout is a full hour and empty stdout sends nothing
+at all, so a silent script is indistinguishable from a complete success.
+
 Measure what a non-interactive process can actually reach instead of assuming. On macOS, `security
 find-generic-password` **works** from a background job (verified, exit 0) — but a CLI that keeps its own copy in the
 keyring is a separate matter: a revoked token there surfaces as `Bad credentials`, which reads like a permissions
