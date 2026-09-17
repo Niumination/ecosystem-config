@@ -1,118 +1,44 @@
 {
-  "fileCount": 690,
-  "generatedAt": "2026-09-17T05:28:02.943585+00:00",
-  "skillCount": 140,
+  "fileCount": 715,
+  "generatedAt": "2026-09-17T05:43:29.205718+00:00",
+  "skillCount": 148,
   "skills": {
-    "9router-model-mapping": {
-      "bundleHash": "9e39ed1739ea42b1a76e22094ff5a2c2f8fcf4807ace43bfb3642974165df2d1",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "b8ad02eb26ac673af8a34b2ae0ccd3b04c526e5ae2a96a190c8a8b14a140916d"
-      }
-    },
-    "accessibility": {
-      "bundleHash": "f6196fb22b2e6bcf97ef5b048651abd02e08d056537bdd8fa3fb333fe91aec18",
-      "domain": "design",
-      "files": {
-        "SKILL.md": "9adc41cf26aa0afb32af4f3a58b7ef3c3cb38cf38b29f54b4c6c5f8727879e1d",
-        "references/A11Y-PATTERNS.md": "f10e238dd4dd3c4f51134c2056bc02d3dd4f8fb6ccc9145c2c1ba7aab4d58140",
-        "references/WCAG.md": "16683e025e3833d931c9d880645d98a448827f97e10189b6c8f12c832e7a2361"
-      }
-    },
-    "agent-reach": {
-      "bundleHash": "21edd8587fa19fe01d73da79c8eed5065b757fb0f21b718bcaaab0a9258d4090",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "c02e89a4e78ea1a3f27ff241dea835b850d5d1d9e34ee475d83bcdf33d4e3107",
-        "agent_reach.py": "11911b80bdf4a2e568af3e9af7c46bf34162fd7f1ec67deb850ad6d1025c193b"
-      }
-    },
-    "ai-agency": {
-      "bundleHash": "25c7ea540b77683344725ae4cf38bb285f19f80615a5b2c1747e50ea7e076c62",
-      "domain": "note-taking",
-      "files": {
-        "SKILL.md": "93a8d1e2397de8e8e0cc98986b680c306e1cd47de90ff6a0fd70e8f107508e2a"
-      }
-    },
-    "android-adb-testing": {
-      "bundleHash": "d46153853b09fd6f83483c8f02fdbcacfd8b7dee9cde9b10de333c2eb594f561",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "312f27c230033a38f6d003b9e372e8941508392eff4b9756ec1e43e7b026cd7f",
-        "references/app-data-backup-restore.md": "51aeb438ffa753287bfcbd52a9b60e33f7b559891de42fddb60551fbc73d2c8e"
-      }
-    },
-    "ascii-art": {
-      "bundleHash": "04de4b57cb1b5fcf96414a2d6e172764db648fef8ff9dec7837493069257045a",
-      "domain": "creative",
-      "files": {
-        "SKILL.md": "f3b77e9d50f06944211bed92779f669ba0fe3e261e2da262cf1a31b719132d84"
-      }
-    },
-    "blogwatcher": {
-      "bundleHash": "da5d3954018c476fcde3f9949577bb0880237c9086f3728b8ecfd64a4a6127ca",
-      "domain": "research",
-      "files": {
-        "SKILL.md": "b85be5a9b86b90287266dd142a0ae9740be926298fbcb772f56b8a4d6451bb12"
-      }
-    },
-    "brainstorming": {
-      "bundleHash": "2544caba536855d7bb0be21a9d3089f705099ea2a9c0d10084102b8b4abc567b",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "8da820c8f32f0d268a45c39b7ebbe4f2f2fd5f4faca09e0761062c8a98050932"
-      }
-    },
-    "bridge-migration": {
-      "bundleHash": "3396fa09c80f20e9f163674f9686aa77c6f95b407e928d80e90eed2952b9c2b1",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "5637d743ea0b31e859ea998904e121d91e663ea027ef7825d3d6d653b05e19d1",
-        "references/mc-bridge-opsi-c-2026-09-07.md": "78cf92b6f567e27a9640f24fe0799001db95e18a55481e1c028088c9e5c91b7c",
-        "references/mission-control-bridge-migration.md": "b6b0830e7719e96bc3405e928e652ccdfcf80f0f62b6b3e9e6c51a4f690d5362"
-      }
-    },
-    "cc-acehtengah-maintain": {
+    ".archive/cc-acehtengah-maintain": {
       "bundleHash": "32b5feb59071ca379695444602a07e7efa62598a9e4d25437d60cdef4a8d55aa",
       "domain": ".archive",
       "files": {
         "SKILL.md": "5630ceaeff1b4de20bd8d2a9b4cf06fb9a5854a4db74aea51b2093944ca64c4d"
       }
     },
-    "cc-acehtengah-maintenance": {
-      "bundleHash": "d0172b51d7246642e0efdb507a042964f1921e6b292f81345593efe7269b9566",
-      "domain": "ecosystem",
+    "autonomous-ai-agents/merge-reconciler": {
+      "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
+      "domain": "autonomous-ai-agents",
       "files": {
-        "SKILL.md": "f3737d70ec2547af7885ed092ee521d3a49aabe325722fe09255ef3822f93fd2",
-        "references/known-ui-pitfalls.md": "16f5547c701568441558675bc9b2560ef69f5cfba938ebb2544af67031ec0d9f",
-        "references/wp0-quality-gates-and-prisma-sync.md": "026f0f0941a0a2e8d1befead114929bd06894e2c73d61c8f68991b46796875d9"
+        "SKILL.md": "24ffd1be973b0e884876fe0db9f49783fffe6a2337a4e74a83cdd895cb6fce23"
       }
     },
-    "cc-acehtengah-ops": {
-      "bundleHash": "65edd9f3dd1a9ff54275622d3a081c004abb4081e651f7f3d996e494b9a311d2",
-      "domain": "software-development",
+    "autonomous-ai-agents/telegram-router-orchestration": {
+      "bundleHash": "311bdc6633e5289a62517f97b5befdaa0c34297fc337b9bc6b48145a15836d7d",
+      "domain": "autonomous-ai-agents",
       "files": {
-        "SKILL.md": "a05ccf1124a8df44641dd80961b6dc68a3c02893c99edd93dce48e70a36e0514",
-        "references/bapokting-deterministic-query-2026-08-31.md": "b25d897d39ea878109689e50aa7f6a1fe87254f98d78fe8ebc359fd9e24fd7af",
-        "references/bapokting-historical-data-verification-2026-08-31.md": "4c9386c42a9a7546160fa0a29f1c3cf27cb47e4ceb58f53b46088594fcc62860",
-        "references/breakdown-explorer-deterministic.md": "abe004235d6758b78e457bff31a4c33c271325c422e024c5775ff5ad1eebf92a",
-        "references/breakdown-individu-login-ux-2026-08-29.md": "0c05d6b116662e8841a26f809b441648da962a8db650f65e0d876dda0bf83c5d",
-        "references/deltas-2026-08-29-branch-root-localdev.md": "03f5a6ac54ba67cd9a9e905e272cd31e3c06ebeb0bf5a0399e8156b1e4260aa4",
-        "references/dtsen-bappeda-import.md": "e5aa7cbee5d6f4317c13841b6582ba151cc44ad068a7888c1676b8967dd28e25",
-        "references/dtsen-root-encrypted-identity-2026-08-29.md": "939fdf087c499a6a5fd624edecc1d5e9047e3e1e8017e0ef99422a78a655cdb2",
-        "references/dtsen-v2-import-fixes.md": "adfc9ffa5741b253ef122d10c322d9400bc06bd92171660c8316b8e6ecd0790a",
-        "references/executive-ui-breakdown-pitfall-2026-08-30.md": "2ead1a9d4561cadb26d95bc65f2b2932e5a2960b4643f943ee75e896d70fe0d8",
-        "references/lost-feature-probe.md": "27000eb69cc0be3874c28f5efa26cc807eb0494c0d5009b6c9959b806bbb2819",
-        "references/merge-hotfix-to-v3-recipe.md": "6cee54e611b48f8b96aeeb839ffc590429642388eea687a83cf8db4b2145de52",
-        "references/merge-rename-pitfall-2026-08-30.md": "fc2b1085020b46f82da491a57d96edeb0c02b268ac6d9da066ecae084c4dbf54",
-        "references/querybar-v2-v3-merge-2026-08-30.md": "a66f66a29656d43a441b54e95c5739c7e661485da4ec7ed9b09e107d3243dbd9",
-        "references/question-router-wp2-2026-08-31.md": "96ba90ff14d5f4361453f8f0a61c4617c1ae2e43d3bda586e57bd8eb3986364c",
-        "references/status-page-roles-format-2026-08-29.md": "f4edebf1fcc41c2a909c055c15eecf1833bb53966a407c94e7b511a655e936c9",
-        "references/wp7-statistics-wiring-2026-09-01.md": "00d84cc60b8421c5c3b06e7827c2d3b7c76a93eeb2477321230cfc00fae57adc",
-        "references/wp7-wiring-verification-2026-09-01.md": "02f305ddc269d9f2aac1059ff753d695d4dc292f0395852cb993b51181ad0048"
+        "SKILL.md": "6211669d4cfacd6e07bfe8ec9ee3d75b647f3806ada4b05d5d85eadcf4063734"
       }
     },
-    "comfyui": {
+    "camofox-browser": {
+      "bundleHash": "3ecb159a3985cd18682107b552e24b923be7b8c15b70a8c1a885d91c0bd4dda7",
+      "domain": ".",
+      "files": {
+        "SKILL.md": "0c6a9aaca63825b4b5d8e6f19b9c9fe7b5317dfad0d267b972614343fec4e6ad"
+      }
+    },
+    "creative/ascii-art": {
+      "bundleHash": "04de4b57cb1b5fcf96414a2d6e172764db648fef8ff9dec7837493069257045a",
+      "domain": "creative",
+      "files": {
+        "SKILL.md": "f3b77e9d50f06944211bed92779f669ba0fe3e261e2da262cf1a31b719132d84"
+      }
+    },
+    "creative/comfyui": {
       "bundleHash": "59539b6f6005c1396614794a9e2addbdfb8005b4e758e3242ea2abd12a204e81",
       "domain": "creative",
       "files": {
@@ -151,198 +77,7 @@
         "workflows/wan_video_t2v.json": "29425bee0ffbb2d558de19ca787d23b76f91257f663098041a81931fe623441b"
       }
     },
-    "compliance-checklist-dashboard": {
-      "bundleHash": "d3e4f62b9c2325858f8fec54011c699aef4338c39c7687d07ec9159683830b3b",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "b5f481100bb093081bcdadbf0ecf7300e234deaff9f5753b07ac7495eac58408",
-        "references/document-mapping-pattern.md": "73d1c76667302c8fc2fd7e7eae6f7b52e92cab81b666a2d92448095a8f071c26",
-        "references/pemdi-data-structure.md": "2a3cb447d0cc46f258af4e0de9a7b7b829fd68c2ced383db55e1659e1ddc1a12"
-      }
-    },
-    "composio": {
-      "bundleHash": "b89ee6eb633941a905c958d6a0f36868da5d639b4a578a9e33d50ba990f3006c",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "e0d862766f914584bcae2b0e0e39db28dd4ad35ee3c773831fe0e8d38b8a20a0",
-        "references/errors.md": "6e760fe92170adee0968d24ead200c62d3450fb56607fb05081ccbc12f9f3669",
-        "references/for-you.md": "91b471540f927b372a1371bf9fed24f564d1a408c209a50ff1f96f08b7a3fc07",
-        "references/platform.md": "3be5704543d19609ebca81148a5c1407dd9ae31b1e2f47c61029cc4a0bde0e73"
-      }
-    },
-    "config-history-review": {
-      "bundleHash": "b43a1c6a69bbf5f42d20d5ab495a0560e87d6d1977f62bef95eca78816cd9e20",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "ca3bf5e03fccf16c7a7797e8751f84caadc314f224a6907cfba0e3b3976c74f3",
-        "references/provider-evolution-niumination.md": "a59729b3fb3fac80978e03bdf0c3b31766879dfd9cee18108ee9d20a70b8caf9"
-      }
-    },
-    "containerization-readiness-audit": {
-      "bundleHash": "b4f299f55586f0721342943e8afa422875602710cd05d23524561baeb53114b2",
-      "domain": "devops",
-      "files": {
-        "SKILL.md": "04d6f4b9dea13355fd18e006ef21acfc14bcbddcf90a87b0238ebf19554e1a44",
-        "scripts/scan_docker_need.py": "341c2a61ad24ae5fa91dd6ab53acd22516f09e317bebf5a23cfc0853da13cbdb"
-      }
-    },
-    "dark-theme-a11y": {
-      "bundleHash": "6356067cccb831194afa28b8723a7aed57ee0a7a724594c45f9181bd72f841de",
-      "domain": "design",
-      "files": {
-        "SKILL.md": "09b7b4fe5b2f99a2722c9081837ec15cb970d7a97110aff104d48ece40c09be1"
-      }
-    },
-    "delegated-output-verification": {
-      "bundleHash": "7f66b727158d63d8ed1887e5c6f7f655eb16c0e6e1a190da7c86b7c04fb4f045",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "2b41c9991104ed2d86709abd8e1e2ade9396a843ae29ef6387331ae84d25715b",
-        "references/rebuild-gutted-dashboard.md": "0c091ed37796287a49f5edee71ec92eaa1f7c75163e31cf1a2be7aaa44111a33"
-      }
-    },
-    "device-migration-disaster-recovery": {
-      "bundleHash": "57a8a4a19deb3425d53f711488c81f42af1db52de2d45d0253006a525fe95b11",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "22725ded164d3b9db755dd6c4dce703765f43c5d0c4826d3402f46b7561cac36",
-        "references/cross-os-restore.md": "dbc7c0a556d50b5412181ab5aa9e8b2f0e6029ea3e30fb991cb88ccae56c830e",
-        "references/hermes-home-backup.md": "e5bf5b3748f0279c4eeef4d0b33a63aa7710110241c69da1e44021c924e394c0",
-        "references/ignored-path-sweep.md": "e2bf1131165e9e365bfc67a2cf73627a7f185f3d03f0cb88151793b4b266f23f",
-        "references/offsite-artifact-staging.md": "d7e6554b2f1114b2f7760a71f4046e96c60fc7a3f27ef1023eb15f9f88cb6707"
-      }
-    },
-    "document-content-pipeline": {
-      "bundleHash": "a08c96af46f410d4360f557ee0e34f8d8913d58128d4916b32f648308e0bac6c",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "6b5b798ce425d08d599e94f9db0e4f7ae9ca5f4215a8276780b96b0b5e91503a",
-        "references/agents-md-migration-case-study.md": "649cc236b43ef50467b2731e7f63f3e21e81912ec7c8b1fb5587476ade08957c",
-        "references/agents-md-migration-quickref.md": "76a4d6254f78d2ef61d2243393bfec1b15bb54c0b3bd1b959642b625c63d31d2",
-        "references/cleanup-build-scripts-reference.md": "33025029913ace92b8853e8039b938ed9f3f98fe84e5f00580c06ac56ab80dda",
-        "references/cleanup-build-scripts.md": "0fef86734ef9096b8fc89c8ee0b4707638d2736bf87fe54348e3e24ec3aa0432",
-        "references/modul-indikator-website-pattern.md": "e258983887e150dfc20731812f5085f2d5af53b11e4bce3a01e74d09c8cf645e",
-        "references/odl-pdf-setup.md": "8cbe4b9a1bd629a4c5fb222ab396a2c91ef22a73a33f61b804d022c0328ecc0f",
-        "references/pemdi-evaluation-evidence-audit.md": "55b919a3c7a7b5cfd06c18129b1eeaeb40b7a27429b206dce0e700fb4a4fc6f0",
-        "references/stow-symlink-fix.md": "0ca06617a4d6ce821889782a3416e9b3f38a239ca28cd8dc63bbbca3c8d9fa8f"
-      }
-    },
-    "dotfiles-maintenance": {
-      "bundleHash": "c36690b99e6688876cc24a5bbb754df4cc101391d80f98870e64f3b663a9d6ab",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "06c49e39c9904c8a63d1d008e83a6cc6ecc3fdd44acd3a4911dc4e76d1c76065"
-      }
-    },
-    "ecosystem-architecture-adoption": {
-      "bundleHash": "365c45d478489e1e783e92e3d664bc65299570a0f351b53ddea67713bbce0eb0",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "ded71fd4282fe2900d4daaa3e4bb1ccd8b2fd12c0f3f46e0ca6d1fc996490cb4",
-        "references/blueprint-template.md": "4d4689d69c18a384e381885421f7150e11f9fb83619b407d5267c2be1f0f8dd5"
-      }
-    },
-    "ecosystem-bulk-push": {
-      "bundleHash": "266a8f8ce0e2ccc2948b04475ead3a5289afbffacccc3a00790d7545299ad245",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "60b3e63c65d381b512905804a39c4d478f95de424c67e35cf0ea8ee0349fd353"
-      }
-    },
-    "ecosystem-dox-maintenance": {
-      "bundleHash": "18845082e3389b3eb51f122b9a391e0c574b96ab70e35673edb7e35699232c18",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "5104a0d94ddb47364c58297dfc659404ade54e5db9871465970a7318f5b98267",
-        "references/channel-prompts-editing.md": "3fd6dafc099042b175d944d2b63cbe19ac47be4b6cfdf96dabbda2fc2b448789",
-        "references/file-duplication-patterns.md": "9fe62d704dccb5db08a51071c722681c4f1d394e497955e1555b3e11e8ea4974",
-        "references/path-migration-sweep.md": "a4ddfaa594bfe733e0f026d6cd25954799e1ddd42831f69ba67c0aaefad4f773",
-        "references/stale-brief-handling.md": "7e5344ec25cf4f73fa3b2eca1959bf6ac4d13325a065eb34fc1f94e4e7e167ec",
-        "scripts/identity-drift-audit.py": "c52198a4f7daef74c5d8abf5c82d11c75253e2b505b2c0874c191a0703937b7e"
-      }
-    },
-    "ecosystem-gitops": {
-      "bundleHash": "14042e83687489195850079c0c4a561bbf3c8c07671dccc8b209c67201c21ff3",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "0aaca8b4a41ad74d9b0ae95d0faea5df2e240b5dbe84c0106cfab4469c68e501",
-        "references/github-ssh-migration.md": "f310bdcb87c80c66e954fe16d16b4e5eb6cab7bd4605802df6796942be7fa1a6",
-        "references/sapa-ai-laporan-status-merge.md": "121c7ba67232484a7e59425092c1dff336c5e901bdb8c38061309137190de07b"
-      }
-    },
-    "ecosystem-provider-management": {
-      "bundleHash": "9b7d5dd83e506b1e46e05088f0a62919753c2e11e21b9a5459e5b2a9757c9372",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "cb3f81dbd8465ee5f9b295a34f8737c3cde6dcedc13625a55e70b7769109efc8",
-        "references/cc-acehtengah-ai-output-2026-08-28.md": "79d9e482202cf892fcd4ecda4fe3975029c0c9429b75102c2cc281a4316f5186",
-        "references/cc-acehtengah-dtsen-restore-import-2026-08-29.md": "b5b82b8657a15663ec15762ed03a66a8e3309c83e2c3b06ccc5be8cb8d7dbe03",
-        "references/cc-acehtengah-role-auth-2026-08-29.md": "a4a210ba0487f896455eff19731876682cd6238ab7e037a5c93f4799822eb053",
-        "references/opencode-go-integration.md": "5326b4ab8744c0fa2037686c4be38f84c14abccb9e2120b345de0dd959641261",
-        "references/opencode-go-workspace-quirks.md": "dde493bd24ad9ef672c7a4b40c92f04845e7cfc897303a6321904860607f679d",
-        "references/opencode-provider-quirks.md": "a1aee984f6b53be6077d6e66979c717b7830e4898c70a99d0da431095fe05743",
-        "references/vault-credential-snapshot.md": "09aff9e0bec513767a2433f5cc3ab552087010ec6438719eae3c35c3382e97f2"
-      }
-    },
-    "ecosystem-recovery": {
-      "bundleHash": "bf0bf7775117791999bc840a4f336c4dc61e9af990438c783656342aa72e806d",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "c1ca6a181f224934b457f673dbf56d2f3ebe75f36dacf67e922aec151820a485",
-        "references/9router-3agent-hybrid-2026-08-28.md": "81b77203eb80eddd7511c7f537ebb8d3eb891a73e53e23196a4d5f24602660d2",
-        "references/dotfiles-rust-9router-ghauth-2026-08-28.md": "007e3d970569a576726a1d1908ef0f1f760079ec420bcb1f62066fb1cefdcf4c",
-        "references/full-recover-2026-08-28.md": "ecb8f7b071f8d7820a3eed0b196cb1d3c349d2fca6807e5a557f309b955c91dd",
-        "references/splp-bapokting-chip-2026-08-28.md": "770510e9cfc21f71f87fdb36a2d8f2cfbb7e572f1ca7de4e6feb5e12e63c6e62"
-      }
-    },
-    "ecosystem-snapshot": {
-      "bundleHash": "a261076123c7e1f9c4af39bc295604380ce58e353ce88bf72e4b98f5e08b9510",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "4d81b93ac619a3c93bb6afcae081998f3aa06e3b52715f76df07cd5f43e524aa",
-        "references/anomaly-audit-playbook.md": "7d339fb09a612d3c420acbcbcf160915c3dfee1bfeb2438a1c11751cc0ce92fb",
-        "references/mass-repo-sync.md": "ffb6231c8d0b7a15d0710b2b3db169e91c758e991a2cca7aaf0e69b5e00a972d",
-        "references/niumination-core-v2.md": "99073530fb00fe93f2ee9716559e5efbd2a8716be4b004dcf74165362de8ee26",
-        "references/snapshot-template.md": "b1ad596334865dada1f841e84924b9d1c6089063d84b08eac6f9c13c1e7176e9"
-      }
-    },
-    "ecosystem-tool-adoption": {
-      "bundleHash": "047afcb5be7df8aabfe683a6f08e4a3d40a8246aba3a90e105b192d45ffc9aba",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "4dfe123b837a0fdf78f5264dbb495f798cf41be79cd9baf42e3ba699bea4269f"
-      }
-    },
-    "ekosistem-content-verification": {
-      "bundleHash": "68c562d597349ea6da642d553312ed8ab4fc1a9f703263f6a8d61c27139c4496",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "eba7a58db5fcaa83669564bf841ab4a86108b8c65fa628c93006a3e93c101002",
-        "references/pemdi-audit-structure.md": "aea949ef8e2a573392740722b4c7eb5ac0248cc0e008c5182e0c14c6b5e8ecf0"
-      }
-    },
-    "ekosistem-scaffold": {
-      "bundleHash": "052cf3766e286242db1530725c94c40a84cc10f9770a358b8dd02406fa1d545f",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "bbf189b53bd93489f5a4de62b36056243610390d74ae4cb2dca8f5415ead2c14"
-      }
-    },
-    "env-doctor": {
-      "bundleHash": "465077d4766088cb135494caa744644910569c1edee3918a94d5de938d0efe5e",
-      "domain": "devops",
-      "files": {
-        "SKILL.md": "34814620fdaa1ff4500b3b0a460ebfc06d80a592707c2b27d2d7bc122f57a9af",
-        "references/dotfiles-doctor-agents-2026-08-28.md": "27766d2acb16c60469104a542a3c8e37324027904d05e3d06701ddbf8643547c",
-        "references/dotfiles-doctor-ci-2026-08-28.md": "22ecf3a5d5adb04dd8afb00deb47531f3d78c65b748b15c2bf763ae57905ae8c",
-        "references/full-restore-2026-08-28-dotfiles.md": "30e7c16f761fc845e460306158ee3d489276ca8a939a0965ebc24c722425ef13",
-        "references/gh-auth-up-eco-2026-08-28.md": "efdaabca21f879e09f292f5fe58e5105bea1ad7c34fa4ab287d1f255ced415b8",
-        "references/jcode-zen-free-default.md": "a9c84a06ecd523b0ed1cc9b3f8819f9aa65c7571624b5c5b4c64425df6be0ec9",
-        "references/post-incident-2026-08-27.md": "46b0267253706435f6e2094d753ea01a711f11e4601842c1c8b5fa4c9f2f8dc3",
-        "references/splp-bapokting-chip-2026-08-28.md": "7006e5b3e601d6c1c81962090b9e9d73fd77914445b0c5c55d6f4e611cf7905e"
-      }
-    },
-    "excalidraw": {
+    "creative/excalidraw": {
       "bundleHash": "df72f956c0b58820ea7a75ada4148788937dc3772d40c445c773249dd3c3aed3",
       "domain": "creative",
       "files": {
@@ -353,48 +88,7 @@
         "scripts/upload.py": "d3d88dfd8930942a5f4ab51f830dbcf245939bfb546dd00d073205d888996a65"
       }
     },
-    "external-patch-adoption": {
-      "bundleHash": "32ff22f93faec4ffe7ab939cb93d7a54308d8faca029983b8a07a7418d61aad6",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "48fe00620583ada12feb040cc1ca124fe16669993db6c9e3749bd08d1619aad8"
-      }
-    },
-    "fastapi-python": {
-      "bundleHash": "fbc07263c64b7e5d0a17eb713cb9c9f6a11f6b2e5a3275a3ea7f8a6908aa1091",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "0bc1cea9250ac9fb7dbc13ae1dae936327047eb60a2162f06cc6fda37c085291"
-      }
-    },
-    "fastapi-templates": {
-      "bundleHash": "bd679f471435239fd38dd372178c76641cf024e843c5ed4357d29dfbee7861eb",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "aa9849ae150d536a8021274155399ba009b381db1fbb96dc104b6215a355568c"
-      }
-    },
-    "finishing-a-development-branch": {
-      "bundleHash": "185185252bd53cafa757fcb133ca509e7181a16ec02b3346a09f01140fab41f4",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "284d73bf734a76b97f7664ca604b30050b175fa5d67a40cf799fdd0a9122db2f"
-      }
-    },
-    "flask-api-development": {
-      "bundleHash": "da18d25ac20859fc2ebaa2def9bc524d328bbe89244bb9b72687c836fb7aa616",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "0664711002de5c2f7e93764ba77e90c90dce94967fa9b22ba41d1132ee5fcc8c",
-        "references/application-factory-and-configuration.md": "557880ad869a4e4348e0cbf084acaf38d995e898e10cbecd2cbe1792cfebd5da",
-        "references/authentication-and-jwt.md": "de96ec4ae42fcf7a472150a8cfbd5aba824e347d071ec34b0b528412ee2ac143",
-        "references/blueprints-for-modular-api-design.md": "acfd38f1e70a9979e3b3909bde5f406f3afb680396ec0f8ec6dd1112cc77221b",
-        "references/database-models-with-sqlalchemy.md": "6c1f8cfd30acd7bffa505678b6db09e33cd8fc5cf4651dae97e954a5803d0262",
-        "references/flask-application-setup.md": "7fdce8c465c605a78b73e00b738d80f11cd20f970631f0c100dbfa429839b01e",
-        "references/request-validation.md": "c820ef443f0efd7e373bda5da3038f10f50a1cb90615c434c098ab6996fa753a"
-      }
-    },
-    "free-tier-reels": {
+    "creative/free-tier-reels": {
       "bundleHash": "88363462d377353f9e784dbe6fbe833972124e34e053b9fcec1bc37b4eeb8297",
       "domain": "creative",
       "files": {
@@ -404,7 +98,90 @@
         "templates/reels-html-scaffold.html": "3a2c55c137f51e0473304f2f1e09c048fbca5cf6e23d1d1882724be09c01aeee"
       }
     },
-    "frontend-design": {
+    "creative/ghost": {
+      "bundleHash": "dd980595ad287cfb4c3ff26c925400a59ca826b7e1254b43e96429b8d5355ef9",
+      "domain": "creative",
+      "files": {
+        "SKILL.md": "4d2efbcbfab4b8f8ab7f1ad092ad912499f7521aa8930b318c48c077ed20334b"
+      }
+    },
+    "creative/hyperframes": {
+      "bundleHash": "4ebc0414cb26affd3ac30ab2af9c6dee5d0c452f8d017ff937027ab6e46f1a5f",
+      "domain": "creative",
+      "files": {
+        "SKILL.md": "370201cabe7859c5039a2872628eb8e19b08fa549b25c63beaf5665318853494"
+      }
+    },
+    "creative/pretext": {
+      "bundleHash": "c4535a5be4c4470747cc609eafe042e629d301a066b9e98c329cb563c22702b7",
+      "domain": "creative",
+      "files": {
+        "SKILL.md": "c09691f63543573f876bf46e9c62ecb21374167991abdfc50ddac38c6443358c",
+        "references/patterns.md": "e8d50e198fefdeb83e68f84ef4fbe036583ff5f7d65a41a58e1ab8725027f13e",
+        "templates/donut-orbit.html": "8b0cd47880a9cc6ad16f90afe02b11aea1e2436c833924bb91e55dc460966fbe",
+        "templates/hello-orb-flow.html": "6a1c76b51e8e792fa2b00ed3a5bf1e314a17ada192289155dce6b33da149ddda"
+      }
+    },
+    "creative/sketch": {
+      "bundleHash": "17b56179e42687ec2af7291efa026f33b09facc81a12405f6488d2c5c1bc74a5",
+      "domain": "creative",
+      "files": {
+        "SKILL.md": "c9472691dbd91b31710d9ace3d05a81a5cedcf524a1707f8b3e410b27ed0a243"
+      }
+    },
+    "creative/touchdesigner-mcp": {
+      "bundleHash": "fef8124b5ff02d875687a85e8c0f5dcc91d0cf4e6e7cab9691ec21ad77dbb850",
+      "domain": "creative",
+      "files": {
+        "SKILL.md": "925c387c16a3a0752e4670d48ab9bde94f930cd3dd27fe08cefda2e05c0765e9",
+        "references/3d-scene.md": "f0b17b4383333198474da7a58ea8c4063f46f1465f0f1275053c5a538028456b",
+        "references/animation.md": "9c7482f38e86f80a89d0df98db8ec2e99c8227fdceab099667730a1000e14386",
+        "references/audio-reactive.md": "3ea60c5954b4b1b682397a1f6bf85dccfc277354cc6f4e021b4ca68d18b623be",
+        "references/dat-scripting.md": "062ea3608ba9475d1c76bc59d8e4a5f0a0d1dd3a60006e2380e634367f460fe1",
+        "references/external-data.md": "0d7b782cba9a3045bfb67e1a3150588e4889db3fd7938071fa367daf6afaa932",
+        "references/geometry-comp.md": "f86b1e8333419ce23180cc7de06848744c4f3168124918745bfaa10b30479a42",
+        "references/glsl.md": "53809b02394c797615601bfb541a43b14105087d8465d76c604ec24168257f88",
+        "references/layout-compositor.md": "4e6dd1f86f5b85525554e4c33dbfa5f767326ae1eef0855a0aa6257bfb35bdcb",
+        "references/mcp-tools.md": "d702a7353c76711a0797885da87a1adf1fd2640533aa415dab06eb6df6304eb1",
+        "references/midi-osc.md": "1e9c8de828e6eda23425098cd9dd03edabf75d41b24484fca63d3f3b0cced192",
+        "references/network-patterns.md": "fd519867cc2ed9b2de8fd07fcb928b55547f39fa4767bc5d33c3a300b7a17236",
+        "references/operator-tips.md": "24ea49a21d78ddf7f5b40efc13e6a9d2705a6de0a0f40b51f8fac87444efa5f2",
+        "references/operators.md": "ad67bbe2880eb479e0eccabd72f9513939e87ecc6158baf43a7ffe1cc01d719e",
+        "references/panel-ui.md": "3acc029c90a1aab73b969380f96d987d41877dcba382e75d72166ca17a92a32d",
+        "references/particles.md": "066bb5ccb4d396c444651b7e245cbc214810e22b2144cc98316713dea3ee9a8b",
+        "references/pitfalls.md": "288f0da8ca0f1371b9d4bd6253c68f0de9f36c9aa2d89011e6b2eab30c040d0b",
+        "references/postfx.md": "eef5fee9615fa76b9dfcd92fa815157e2a67dead31a78618c4b68565f537e2db",
+        "references/projection-mapping.md": "b5ad7c4cb1c64360dcd1252f9868e4031b7e93eb1a4a726326ea89b84a86ff80",
+        "references/python-api.md": "f898b84a6c2155c39a94ce60865676b9db78aac0147ae6e6d3c9b1b41644f269",
+        "references/replicator.md": "b17907d2fb8a53447d854bb14e00295f37e1afff47693715b817163877e33317",
+        "references/troubleshooting.md": "c01460dd47d2a59ebf6d221d717b7563df1f823ac9b8e574787fe39e12e4e876",
+        "scripts/setup.sh": "173ef326c534751b38677e698f93a4baa76f9ae07bb0d26bec4beba565db45f7"
+      }
+    },
+    "credential-vault-backup": {
+      "bundleHash": "446f09c81b53ba39ae7932a3d06ffc3e30e411ecdccecf6a4c1558b03b2e3087",
+      "domain": ".",
+      "files": {
+        "SKILL.md": "d3fd7ea14067e05170fd7ec05e37f063ce6aa475bb34896107a6ab06728139c8"
+      }
+    },
+    "design/accessibility": {
+      "bundleHash": "f6196fb22b2e6bcf97ef5b048651abd02e08d056537bdd8fa3fb333fe91aec18",
+      "domain": "design",
+      "files": {
+        "SKILL.md": "9adc41cf26aa0afb32af4f3a58b7ef3c3cb38cf38b29f54b4c6c5f8727879e1d",
+        "references/A11Y-PATTERNS.md": "f10e238dd4dd3c4f51134c2056bc02d3dd4f8fb6ccc9145c2c1ba7aab4d58140",
+        "references/WCAG.md": "16683e025e3833d931c9d880645d98a448827f97e10189b6c8f12c832e7a2361"
+      }
+    },
+    "design/dark-theme-a11y": {
+      "bundleHash": "6356067cccb831194afa28b8723a7aed57ee0a7a724594c45f9181bd72f841de",
+      "domain": "design",
+      "files": {
+        "SKILL.md": "09b7b4fe5b2f99a2722c9081837ec15cb970d7a97110aff104d48ece40c09be1"
+      }
+    },
+    "design/frontend-design": {
       "bundleHash": "1d2544dd7743b6eba75d3429bee31d310472cf9192e322dce79f854e9716b95a",
       "domain": "design",
       "files": {
@@ -412,206 +189,7 @@
         "SKILL.md": "c28bc7eaef6d3e66be25b8455ffa1ce56c9f15f3cceeecdb50ee53fa9cc5f8cc"
       }
     },
-    "gdpr-compliance": {
-      "bundleHash": "6b0ddefa40ee0615257a6f7352d24e4a4fb334510cbc966994fbb6427f52d102",
-      "domain": "governance",
-      "files": {
-        "SKILL.md": "7c8d45e1764e120d76af5c7f67cee8a3388a505bb12cfc00addac174a7fb74a0",
-        "references/documents.md": "715d597f30e38989caf88c3779631180b52e185126e4fe5e5b07d7b1157cf9e5",
-        "references/dpa-template.md": "52e7b3b48c4b8e72220b665c8f4e2483b0bea72314f3c47a009d021712973c8e",
-        "references/privacy-notice.md": "30b15051afbde09d9e6bbcd1b1bd540c68dac2a49825d3fc1333da21e2317c18",
-        "references/updates-2025.md": "dd3bd14579fdfc7473ae99ee10a502e3bcd789df1d40f720e6d2995ac1ebffb0"
-      }
-    },
-    "gh-pages-build-fix": {
-      "bundleHash": "45b4041abc1a950e0c57b486b7b70ba4d1baba21026f38db40f82fcdbc869c73",
-      "domain": "devops",
-      "files": {
-        "SKILL.md": "54159ee8af820e1a92dd6313ed43a4d9b46eb73cec425156350d40f1ff09e387"
-      }
-    },
-    "ghost": {
-      "bundleHash": "dd980595ad287cfb4c3ff26c925400a59ca826b7e1254b43e96429b8d5355ef9",
-      "domain": "creative",
-      "files": {
-        "SKILL.md": "4d2efbcbfab4b8f8ab7f1ad092ad912499f7521aa8930b318c48c077ed20334b"
-      }
-    },
-    "git-security-sanitization": {
-      "bundleHash": "0f68f8e5b348496636aad8099bc606264bac3417a0ebdff9411393f0628c9a8e",
-      "domain": "security",
-      "files": {
-        "SKILL.md": "79997e625245098eda18dd74902155d1e5636c7c65cc9031404d6f6c2badb77e",
-        "references/github-secret-alert-triage.md": "d39706398ab6f3ecaaa55aa45b6dc5521b4a7cca725f239c8ed7ff4e459e020a",
-        "references/history-rewrite-dry-run.md": "1c0d3feed116d2d39aa9bde111c1e77395d50971c6be0f2e47935e911b37ece0",
-        "references/pii-gate-config.md": "631f36425b985653855ed61259ea3d0172d7b347ee2306191bc1cc5977a7685f",
-        "references/pre-commit-template.sh": "29ebbe1d40fed4dc47b27cf042c0b21eb0e3266a5e51b9fb847cff8aa8d850e2",
-        "references/public-repo-leak-audit.md": "691c813fb7d62fc62baf2d00e2e251c8e0c89ea0368266a632f102d95ea22557",
-        "references/redaction-patterns.md": "8efb678119a08b66242dba445a55c50f0d1ae52bd5b1a58d42f9b06bdaada09f",
-        "references/secret-alert-triage.md": "a443f5c3719f9b6fbb07430ae97f27e24114f665a5ba3384d2fc8c75848ef7cf",
-        "scripts/history_secret_scan.py": "9d07b724b997bc8e7885eaf81bfdf188af0eed5bb368654b6798927e4688f0e8",
-        "scripts/masked_pii_triage.py": "6174b498704b94371bf1dfdc68586b8ab4c9c6a98771ffd988e8c29587f1d446"
-      }
-    },
-    "github-auth": {
-      "bundleHash": "b722c1e37c65585345bcda79d7de97891a608be1045577545e901fbc5936a84f",
-      "domain": "github",
-      "files": {
-        "SKILL.md": "83d908a495c34477a88e7a11bdba80179483e71d070278d23323586cc0883ff0",
-        "scripts/gh-env.sh": "eb04179d859635b56cdd0da71da59cd5d94d7a69c9a856f9f562d1cd5cb9412f",
-        "scripts/git-credential-token.py": "4c0f3dfdc75df9043fe7b62b0807e7b4392c59ee81082d2fcc8d39b75c593efb"
-      }
-    },
-    "github-auth-recovery": {
-      "bundleHash": "bd2088e4b2cd9908d0e05b17a272d0d61ab779f815bc59c6c85b4fd330fef081",
-      "domain": "github",
-      "files": {
-        "SKILL.md": "e5a9a08bcfbeccc0f730f90a9d544a7bb0d03f7733209fffd1bba6aee23b0340"
-      }
-    },
-    "github-code-review": {
-      "bundleHash": "a10cc1dab854fb27412effa09da241d2ad3ad2f364ff013c6b1983d32dfa6c98",
-      "domain": "github",
-      "files": {
-        "SKILL.md": "957c4d454ca71d7d62f05ef04aaf0e346e623e7f8be2eb718498a07e6d17139f",
-        "references/review-output-template.md": "4560662913e8f89d558c7ba4f34daf77a35a88367c2d480ad86de7085cbcaf34"
-      }
-    },
-    "github-issue-to-pr": {
-      "bundleHash": "e281ba6528afd69229a05b81cb65ea103ffd7250bc3625e2d94fc028c9453c6e",
-      "domain": "github",
-      "files": {
-        "SKILL.md": "d422963778ee3fadb182322aa65b742f47a73b456b00fd0935e8ab66caf118e0"
-      }
-    },
-    "github-issues": {
-      "bundleHash": "0175a07befcfebf300c6aa5f209f92ced919b75aea3ddba7ef76a755d56dceb8",
-      "domain": "github",
-      "files": {
-        "SKILL.md": "3e278a457786a741b439155e9d846257a4c6a0fc70324e2ab968800438e7bf8a",
-        "templates/bug-report.md": "4b3144ccf47a85dcec889c7610d6b739a7ae6f19aa8d4709942112ef09e11a5b",
-        "templates/feature-request.md": "43962f5a398b4badeeb94280299ba4511940ad0e32afcfce5f2a6e1afd21c7a8"
-      }
-    },
-    "github-pages-deploy": {
-      "bundleHash": "fce65dd7faa65c5866ae2a81eba6451887302b07c2c33957c8fdbaf811590810",
-      "domain": "devops",
-      "files": {
-        "SKILL.md": "87adae46bd6bbcc809e619e62a278aedc98ef9d14a75deec08693d500983c011",
-        "references/dns-cloudflare.md": "ef9f1f900b8b2b4b66a464199e1bfac6dbc5c61545ca8798a0b55740b10e7b76"
-      }
-    },
-    "github-pr-workflow": {
-      "bundleHash": "534629393033f76e6c934338ce3ad6fd465a17ff16fd9587d9be74d77cc6606d",
-      "domain": "github",
-      "files": {
-        "SKILL.md": "d752ffa2993cb64edee12b5be89030e007aaebffc5bdd0032466ef7a57dd1c8c",
-        "references/ci-troubleshooting.md": "c72b2301e9b85c545c4960722dbd4c0d49c5d883e6d86438e932bd47b1d8eee0",
-        "references/conventional-commits.md": "2d71a3b701b08c2e5ed5248d17928eb11e27d7b357f9e2dca27caee9cc017aab",
-        "templates/pr-body-bugfix.md": "e8c31915b87dba0454d7520a3aa45ef8650fd0e50e48e277db855ff919e6251a",
-        "templates/pr-body-feature.md": "875e815da6e0e3df2763a85c9c2a56a776461da39d4181a1487333c0bf5b9276"
-      }
-    },
-    "github-repo-management": {
-      "bundleHash": "60faf104dd67ea54a999f7cf379a78a4588810f4d5a47666d32b309167667fa5",
-      "domain": "github",
-      "files": {
-        "SKILL.md": "7b528746118c94d2d468f5d805ed3266b16bc97054dde80f57411cbea9ef1d7b",
-        "references/github-api-cheatsheet.md": "a9081d4a108b67b4edd3c92c73d823fd1730e37e23be6f069d9bd67dd3b32486"
-      }
-    },
-    "hermes-agent-skill-authoring": {
-      "bundleHash": "ad68e0615e442da7462186f369f5818357316eab4d170424849ceda48019c651",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "7d3aa79739df5c17424869fe3c783ddeb5c340d6b4b30a993100f982b24eadd6"
-      }
-    },
-    "hermes-configuration": {
-      "bundleHash": "d823e9606a36ff41753139926e4398a432eaa2b8bf95e9e531ee413f9b7c5e01",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "1827f2ceecd3a6be2b29ceb8e0024294eb8e9b1a16ea3e1edd2d0e1e25dec244",
-        "references/config-drift-restoration-2026-09-08.md": "2f4c084caa3e2831e58247213fba54e1da7d722cce974759418e0048ce64a606",
-        "references/config-migration-internals.md": "2530117ce125c93b4838cdd204ba6e8effffac5284f0869980f2b575dab75677",
-        "references/gateway-notification-system.md": "ed55a43e60824441efeebf781bd6dc624844745ad01f464ab9c4dae937377aa2",
-        "references/hermes-update-procedure-2026-09-09.md": "efa90e6416dcede501a00e9053b736aae44b5e89e37e68da08a8beaaeb34468e",
-        "references/local-patch-preservation-during-update.md": "d931dcca8a448518dfd875311e9f0424c1ac031f102bdfbb807c7ef4e385695c",
-        "references/nous-portal-oauth2-config-2026-09-09.md": "bf3930ecc0650afdd3f81bda7482c389e75daa1d271cbdfb68c596d40064ddbe",
-        "references/opencode-provider-config-2026-09-08.md": "b6c72f33d1eb807010ccd1355a5f4c43a3ed261ba1352b8026d1032fb0a354bf"
-      }
-    },
-    "hermes-desktop-launcher": {
-      "bundleHash": "469b4da1b33d1f066985ff30f6d51c1c921f289ebd396fc11498dcc0852abcaa",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "bdb5fb84d972785dfb029f2942ec4a0de3803e88680582165bb583d28d663a4f",
-        "references/cli-reference.md": "4c3faa1aab9811ad7b90f03a4d7fc485ca9baa02c3745aacd1324725463d1cbf",
-        "references/desktop-build-stamp.json": "ee8dce7cc5ecb21636ddb5d720448648f5e66440295cdd8ea1be31b583a91008",
-        "scripts/launch-hermes.sh": "39458440bb04c587d9b201aaff8db95f97f6a5869c04d82b69cd44c135577839"
-      }
-    },
-    "hermes-gateway-dm-troubleshooting": {
-      "bundleHash": "5a5a29c9c2c98dbedae5cbb17d93b69b76619855bec2d8e2352b23b912c4d141",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "244337acf608d92b9141bfd3248f1bcb3caec0f04b03363fcd1fa82538208f1b"
-      }
-    },
-    "hermes-provider-config": {
-      "bundleHash": "29a3cca4ca2d6a06f881a65a6c2bf90c8cf758741d41b1987a9e93edf3dc3f79",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "62345b02f9edd9d58fe46c752402ae4c5270e22cb6c0dd7ac62afb773d738b3f",
-        "references/9router-gateway-admin.md": "d4b718f0ad1b63419c2248d0d4d3105a441065dbcd57915cc1ee3a69c8d1bac5",
-        "references/juan-router-integration.md": "737c490e199201370c75d62c2f51693f5242b41ea79228fe49636e2a7df64b42",
-        "references/model-catalog-structure.md": "ba5b28126411702689a793b6e4cea6433ac3841e2e0c37580d7041ec936d1f4d",
-        "references/model-mapping-report.md": "c2cd66027323b705e12a8eac4af4eba74117a50ab13a978ed0b087acf26aaf39",
-        "references/oauth2-vs-apikey.md": "c32e08dd3fb02d8ae7bfaf4ff164f85ad3539229cb6cacc912420265a0da56b7",
-        "references/openrouter-free-tier.md": "3ec3fde62fdff79950ec8bfaa31bbd6d42baf14622a0be467632542a4a9cc986",
-        "references/provider-audit-2026-08-18.md": "c1ded25561d5476646fede92811e007f8dcf3e341c1dc3558f79441df540a310",
-        "references/rtk-verification.md": "68eade5a4f4f2e5417ee798824b5a72075f025b61e795fa1b79eb74e7b241f47",
-        "scripts/probe-provider-models.py": "39dfbc4fa90a210a0c9135b32d9a160fc66e5f657e10dd7b596653b6d0bc9a5f",
-        "scripts/stress-test-models.py": "1c7022f0b56584d371b11a92b90ab14781281fc9d18c829593764450c451520c",
-        "scripts/test-vision-endpoint.py": "23426710553f9407890df8e25b451d1b233c3430dac481af8ab0ab3efddd56c1"
-      }
-    },
-    "hermes-terminal-workflows": {
-      "bundleHash": "aa76897781c2e9a3e063313e52be121d52c0b70474f1ad76e6251d635bc46c86",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "21f242e60d829f6cdafb5b291567b4221b50a7bb9a7bf1a3d48e4486e142e28d"
-      }
-    },
-    "hermes-uiux-technical": {
-      "bundleHash": "36b803feeb695dc6337524270a713f394f641e76e3b2ebebc0aba32f7881ea63",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "8d23174df6f88851d816fceb90ee54ef5eb9ee3646fb07cae6bfce4499ba8eef"
-      }
-    },
-    "hermes-zero-defect-architect": {
-      "bundleHash": "56aaec36896a66421e0764244f5475fa46d02beda5cce869f58382ab0f0e6a8a",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "998a24de33c7e8271e1f51efb0a424d89dd5f0e440b06351ba5a46dfb698c08a"
-      }
-    },
-    "huggingface-hub": {
-      "bundleHash": "e90d62e1a8eebb5761fc505c26e0db3bf5cd99f332eb812a242e99e98b8d2682",
-      "domain": "mlops",
-      "files": {
-        "SKILL.md": "68ee2e5ae17e0f2968f8550534f3fce1c7eae461b95cbe1dbc34b8d487665bc5"
-      }
-    },
-    "hyperframes": {
-      "bundleHash": "4ebc0414cb26affd3ac30ab2af9c6dee5d0c452f8d017ff937027ab6e46f1a5f",
-      "domain": "creative",
-      "files": {
-        "SKILL.md": "370201cabe7859c5039a2872628eb8e19b08fa549b25c63beaf5665318853494"
-      }
-    },
-    "impeccable": {
+    "design/impeccable": {
       "bundleHash": "d3f833b74330f768e35e47b0d6ad7abb5e7071c54eb9d4ef427d2c7a1f33bf9a",
       "domain": "design",
       "files": {
@@ -769,7 +347,340 @@
         "scripts/surface-brief.mjs": "acd03bf38f6aef2b5d5287cefccacac018063b5b5356c99d191b3bd012f28ed3"
       }
     },
-    "integration-verification": {
+    "design/seo": {
+      "bundleHash": "bd94b55e4b3dd4a9f555cc0eee5cc54623e6d3b70c6b7f0a6a06e7dfc724dd32",
+      "domain": "design",
+      "files": {
+        "SKILL.md": "a65b8654017fc03ceddddf24bb4b98e3effcf8ea6ad22dd6f125d7ac039935a3"
+      }
+    },
+    "design/ui-ux-pro-max": {
+      "bundleHash": "79015a3e9bee12d8ad295d81ae668f863368c255a5c2ff757969dc27850e3cb2",
+      "domain": "design",
+      "files": {
+        "SKILL.md": "3e9a7eb7f03f7f53d093145f4b76ee8edb53d8b68cd0bce8d7d943ee382b99a0",
+        "data/charts.csv": "b754c0efffcf54cb889114a9314be1d5af6ceebe65c4c436d713b52018e752c9",
+        "data/colors.csv": "4cc0df2785f340b8bd0ace50bd4068dc13a7c4c6fa4d9d2723271244ce904614",
+        "data/icons.csv": "351fe61ba45b8146c66de6ea7d67297654639d79a94f537b4d0bad570058c28f",
+        "data/landing.csv": "010e1e46db271b94e0af6f18973bea86ddba62feeccd62aeeaa6ed40e2ae2db1",
+        "data/products.csv": "5359e3037dcb84e99c792ea13dd44f5b78ab6a53557afb309cf19140512aaf5b",
+        "data/react-performance.csv": "904c8afcda229629545912dde0e8ac37503757131f0169f80b016f1f58c4fd3f",
+        "data/stacks/astro.csv": "ad18dae3ab6d148d37d144592df80dc1825b6c9e86d9d2d68fdda77434206a37",
+        "data/stacks/flutter.csv": "e470e6bc2bcd8562667cc764d1e1afb0be0a30ca4dc9ec12fa18b19d46f156bd",
+        "data/stacks/html-tailwind.csv": "1f004891dd189f6bc2a7717401e3100244326e7e2f3963a79bf7b2349d85e091",
+        "data/stacks/jetpack-compose.csv": "6c8fd4b0391c342c12b0af15610cd5becbeccaef0bbe8dcfc01d928c3195d93e",
+        "data/stacks/nextjs.csv": "06a8e8c13bd44696c6ebb4cb6c4d8dea440e3de8cce77616512529ed29258f0c",
+        "data/stacks/nuxt-ui.csv": "05d6e74501b2b6a636faed32450622759f49a5bcafad971f5f4e7eba0eb7be71",
+        "data/stacks/nuxtjs.csv": "f7a3f2d9542856d00199f85c6c023b7c284cc698e2e6e12d61afce2edacb24d6",
+        "data/stacks/react-native.csv": "a08ca77fcf6b6d9531982dce465366296013bfcf12d2938ac72ad57cf0c4f085",
+        "data/stacks/react.csv": "b6e3eb0e4c9c01bd00ffb951d5ca224a19d488b4544c75436f48cf92ff12bf45",
+        "data/stacks/shadcn.csv": "395c2e415ef6f48a474acccdc8eb2c7258a6ed751a5037ba171a2d8823e02ded",
+        "data/stacks/svelte.csv": "bc8d158994a8bdf412830a9dd5e5a5534edd2f367a6e50e0ebd4d76f592dfa3f",
+        "data/stacks/swiftui.csv": "e87cb9eee208bb753bdab96d4a261c7f830c4317ee90ec098316b248fc32be85",
+        "data/stacks/vue.csv": "9b793c3f4eec85f77a758c09322f2b62f3b3ca549bb713ccf0849ef885934395",
+        "data/styles.csv": "ad3c3236134d833bda01a2faf31ddeaaa1dbd5005fa430dec571fa91b26e5fea",
+        "data/typography.csv": "64695e05ac335ba534aff396c4ba9241c642f80ea53b424251d2669b71c4772b",
+        "data/ui-reasoning.csv": "58fc52fff69f62709f8c7dd460de6f6693699ea820f24287f3301a427c2b554e",
+        "data/ux-guidelines.csv": "1870ee048f2a2bdd60709f8f7adf7f3b6dcad560bc005c8b2915a8ac8639820d",
+        "data/web-interface.csv": "10bfc24e09a6a15db8309e6ef9b6881e1d4af97dffb7c99418aefb8e30df7d54",
+        "references/dark-nexus-theme-pattern.md": "614d0235752024df1dad49b7b57f4ef4153d6ff361b85dca10b2f66bd3db5c3f",
+        "references/design-code-audit-methodology.md": "bf7eed8cba7572c420e84cf51112affc9b0820cc2b142f88f7bb135f645a812e",
+        "references/japanese-zen-studio-pattern.md": "de29cc7f4c33355e6008d827a530af9058ea211a973230f4b92c486741c34995",
+        "references/jetpack-compose-ui-polish.md": "dc5478ed8ad6277fe9e3493ac214fc8943464fe406eabef251b2cd1339559e7b",
+        "references/retrofit-kanban-dashboard-case-study.md": "86eaf3412586c369f4ca8db3c9eac6dd651eed3dd327e617593adfbb9b0a54c6",
+        "references/theme-color-audit.md": "791d91668528e1ab05b565e12bdbe161b389ef505ce55bf4232bd4f8f69e286c",
+        "scripts/core.py": "5459d1f04eea03dfb913742d0c03edc5065ac67f6227e4807fa87699662588cb",
+        "scripts/design_system.py": "4da1d341f3c7749df51b51db4a543a48a427c3c746eb0e9882a1ab86acf3bb54",
+        "scripts/search.py": "a449e57060ef5134e98e62fd11f6e240153afd68c27dab89cbb72a3ce55f1498",
+        "scripts/uiux-search": "a057e0d8fbd851371bf3f580b2529967ca041916bebedbb8a51de95a9bafd86b"
+      }
+    },
+    "design/web-accessibility-wcag": {
+      "bundleHash": "52210abf1064a1b840044cb4b771f5fefafd51f1a858cfef1e6efa484e56cc14",
+      "domain": "design",
+      "files": {
+        "SKILL.md": "3208507f2699f2ed0fe223559445c074f7980883fe87454da509e6ff75baad21",
+        "scripts/wcag-contrast.py": "f0a050c7dceab4edf90a68c5d08b20d1861b565391f0d532ee7f6d863f4617be"
+      }
+    },
+    "development/pi-app-studio": {
+      "bundleHash": "94f5952859b052e138bb0f17acd97d3d3bef36521ac3503506ec180a7dc7a2f9",
+      "domain": "development",
+      "files": {
+        "SKILL.md": "e43e4bd51b69016ec6883229872af5037fb9b3589881a326865494f14ca138f9",
+        "references/authentication-flow.md": "c2e6425b0ac474419187658f0341e2f896f0af350219d63afa06002d2e0d1219",
+        "references/git-secret-remediation.md": "9e9784ba15dfd94949a67c87e66bbd044da63d7ae3a3ab9b674a0b35229068cf",
+        "references/payment-server.md": "4e8bd6e3f61c4445c267fdfec0490b5d84e1e9d31720f55a043810219a482d9d",
+        "references/testnet-checklist.md": "0d6b1f3b26da916322525fadb5356d5c144cc60c1352899c209528d72d249888"
+      }
+    },
+    "devops/containerization-readiness-audit": {
+      "bundleHash": "b4f299f55586f0721342943e8afa422875602710cd05d23524561baeb53114b2",
+      "domain": "devops",
+      "files": {
+        "SKILL.md": "04d6f4b9dea13355fd18e006ef21acfc14bcbddcf90a87b0238ebf19554e1a44",
+        "scripts/scan_docker_need.py": "341c2a61ad24ae5fa91dd6ab53acd22516f09e317bebf5a23cfc0853da13cbdb"
+      }
+    },
+    "devops/env-doctor": {
+      "bundleHash": "465077d4766088cb135494caa744644910569c1edee3918a94d5de938d0efe5e",
+      "domain": "devops",
+      "files": {
+        "SKILL.md": "34814620fdaa1ff4500b3b0a460ebfc06d80a592707c2b27d2d7bc122f57a9af",
+        "references/dotfiles-doctor-agents-2026-08-28.md": "27766d2acb16c60469104a542a3c8e37324027904d05e3d06701ddbf8643547c",
+        "references/dotfiles-doctor-ci-2026-08-28.md": "22ecf3a5d5adb04dd8afb00deb47531f3d78c65b748b15c2bf763ae57905ae8c",
+        "references/full-restore-2026-08-28-dotfiles.md": "30e7c16f761fc845e460306158ee3d489276ca8a939a0965ebc24c722425ef13",
+        "references/gh-auth-up-eco-2026-08-28.md": "efdaabca21f879e09f292f5fe58e5105bea1ad7c34fa4ab287d1f255ced415b8",
+        "references/jcode-zen-free-default.md": "a9c84a06ecd523b0ed1cc9b3f8819f9aa65c7571624b5c5b4c64425df6be0ec9",
+        "references/post-incident-2026-08-27.md": "46b0267253706435f6e2094d753ea01a711f11e4601842c1c8b5fa4c9f2f8dc3",
+        "references/splp-bapokting-chip-2026-08-28.md": "7006e5b3e601d6c1c81962090b9e9d73fd77914445b0c5c55d6f4e611cf7905e"
+      }
+    },
+    "devops/gh-pages-build-fix": {
+      "bundleHash": "45b4041abc1a950e0c57b486b7b70ba4d1baba21026f38db40f82fcdbc869c73",
+      "domain": "devops",
+      "files": {
+        "SKILL.md": "54159ee8af820e1a92dd6313ed43a4d9b46eb73cec425156350d40f1ff09e387"
+      }
+    },
+    "devops/github-pages-deploy": {
+      "bundleHash": "fce65dd7faa65c5866ae2a81eba6451887302b07c2c33957c8fdbaf811590810",
+      "domain": "devops",
+      "files": {
+        "SKILL.md": "87adae46bd6bbcc809e619e62a278aedc98ef9d14a75deec08693d500983c011",
+        "references/dns-cloudflare.md": "ef9f1f900b8b2b4b66a464199e1bfac6dbc5c61545ca8798a0b55740b10e7b76"
+      }
+    },
+    "devops/macos-launchd-services": {
+      "bundleHash": "418619fd7e5432073948be9e4a5db68f95d1595ae1bdd6b56b3d2231cc0e5b9b",
+      "domain": "devops",
+      "files": {
+        "SKILL.md": "c9a7ae938f89011ea8534696f024a8c78e9870480899d921bde88db4c5994b43",
+        "references/browser-capture-waf-bypass.md": "b649043f2cad785f6980f720bf58081ad40ad3d688c2af0af8abf671b9be6822",
+        "references/gateway-network-wait-fix-2026-08-30.md": "11f0f6199c8515fb107f50afed0dc6c9b525a912bbb91f918945f56c3d6da794",
+        "references/services-inventory.md": "8380ce32f37e8166b4e64b978b51a3414e9df6ec7131c5982ec7716f79619cec",
+        "scripts/wait-for-network.sh": "1af243c93b6e462b692d3a0ce303ad87733403c8005d36e573138aca6ae63a66",
+        "templates/9router-sync.plist": "6aa395c91ea87e6e5ce807d06f8c73a0137257603736b0f77151fa037212eb63",
+        "templates/network-wait-launchagent.plist.xml": "65de20059123fc7f4a54780928d6ee93b60d9445526a1702cc3f340707e6fe11",
+        "templates/nosleep.plist": "c14bb97527e74220f10b3a8300cabef7ecf5ebe0d1ca071110f7273d2262f99f"
+      }
+    },
+    "devops/snapshot-verification": {
+      "bundleHash": "7ec14fb6c2414c4d1a52e5b1e23f4913731396834a2f849d1ec35d4a0120927f",
+      "domain": "devops",
+      "files": {
+        "SKILL.md": "ece4a6e3b3d5de4ff56d70f3b2cc51aca6c08d73d49d24a9d286c361e0e71922",
+        "scripts/verify_landing_links.py": "6bdc00b550a862199f966ff5e4d6755d807743f726cd68f89680780be61024b8",
+        "scripts/verify_snapshot.py": "cc10fcbe0d326da0b405d2517969e8d54896e1e80aee630ad250e258096fa5a4"
+      }
+    },
+    "ecosystem/9router-model-mapping": {
+      "bundleHash": "9e39ed1739ea42b1a76e22094ff5a2c2f8fcf4807ace43bfb3642974165df2d1",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "b8ad02eb26ac673af8a34b2ae0ccd3b04c526e5ae2a96a190c8a8b14a140916d"
+      }
+    },
+    "ecosystem/cc-acehtengah-maintenance": {
+      "bundleHash": "d0172b51d7246642e0efdb507a042964f1921e6b292f81345593efe7269b9566",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "f3737d70ec2547af7885ed092ee521d3a49aabe325722fe09255ef3822f93fd2",
+        "references/known-ui-pitfalls.md": "16f5547c701568441558675bc9b2560ef69f5cfba938ebb2544af67031ec0d9f",
+        "references/wp0-quality-gates-and-prisma-sync.md": "026f0f0941a0a2e8d1befead114929bd06894e2c73d61c8f68991b46796875d9"
+      }
+    },
+    "ecosystem/composio": {
+      "bundleHash": "b89ee6eb633941a905c958d6a0f36868da5d639b4a578a9e33d50ba990f3006c",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "e0d862766f914584bcae2b0e0e39db28dd4ad35ee3c773831fe0e8d38b8a20a0",
+        "references/errors.md": "6e760fe92170adee0968d24ead200c62d3450fb56607fb05081ccbc12f9f3669",
+        "references/for-you.md": "91b471540f927b372a1371bf9fed24f564d1a408c209a50ff1f96f08b7a3fc07",
+        "references/platform.md": "3be5704543d19609ebca81148a5c1407dd9ae31b1e2f47c61029cc4a0bde0e73"
+      }
+    },
+    "ecosystem/config-history-review": {
+      "bundleHash": "b43a1c6a69bbf5f42d20d5ab495a0560e87d6d1977f62bef95eca78816cd9e20",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "ca3bf5e03fccf16c7a7797e8751f84caadc314f224a6907cfba0e3b3976c74f3",
+        "references/provider-evolution-niumination.md": "a59729b3fb3fac80978e03bdf0c3b31766879dfd9cee18108ee9d20a70b8caf9"
+      }
+    },
+    "ecosystem/device-migration-disaster-recovery": {
+      "bundleHash": "d219789c9e1694902efe2274426736652448497046d281703b5136f669241d20",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "5f3564d8e9499a72f51082989b377350db73d8dd9260456f30711751a4bc7467",
+        "references/cross-os-restore.md": "dbc7c0a556d50b5412181ab5aa9e8b2f0e6029ea3e30fb991cb88ccae56c830e",
+        "references/hermes-home-backup.md": "5ddc76d3d2846bbd58de339c24d662e292f17a4a24a87880c9e665a7d9b5acdb",
+        "references/ignored-path-sweep.md": "e2bf1131165e9e365bfc67a2cf73627a7f185f3d03f0cb88151793b4b266f23f",
+        "references/offsite-artifact-staging.md": "d7e6554b2f1114b2f7760a71f4046e96c60fc7a3f27ef1023eb15f9f88cb6707"
+      }
+    },
+    "ecosystem/dotfiles-maintenance": {
+      "bundleHash": "c36690b99e6688876cc24a5bbb754df4cc101391d80f98870e64f3b663a9d6ab",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "06c49e39c9904c8a63d1d008e83a6cc6ecc3fdd44acd3a4911dc4e76d1c76065"
+      }
+    },
+    "ecosystem/ecosystem-architecture-adoption": {
+      "bundleHash": "365c45d478489e1e783e92e3d664bc65299570a0f351b53ddea67713bbce0eb0",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "ded71fd4282fe2900d4daaa3e4bb1ccd8b2fd12c0f3f46e0ca6d1fc996490cb4",
+        "references/blueprint-template.md": "4d4689d69c18a384e381885421f7150e11f9fb83619b407d5267c2be1f0f8dd5"
+      }
+    },
+    "ecosystem/ecosystem-bulk-push": {
+      "bundleHash": "266a8f8ce0e2ccc2948b04475ead3a5289afbffacccc3a00790d7545299ad245",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "60b3e63c65d381b512905804a39c4d478f95de424c67e35cf0ea8ee0349fd353"
+      }
+    },
+    "ecosystem/ecosystem-dox-maintenance": {
+      "bundleHash": "18845082e3389b3eb51f122b9a391e0c574b96ab70e35673edb7e35699232c18",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "5104a0d94ddb47364c58297dfc659404ade54e5db9871465970a7318f5b98267",
+        "references/channel-prompts-editing.md": "3fd6dafc099042b175d944d2b63cbe19ac47be4b6cfdf96dabbda2fc2b448789",
+        "references/file-duplication-patterns.md": "9fe62d704dccb5db08a51071c722681c4f1d394e497955e1555b3e11e8ea4974",
+        "references/path-migration-sweep.md": "a4ddfaa594bfe733e0f026d6cd25954799e1ddd42831f69ba67c0aaefad4f773",
+        "references/stale-brief-handling.md": "7e5344ec25cf4f73fa3b2eca1959bf6ac4d13325a065eb34fc1f94e4e7e167ec",
+        "scripts/identity-drift-audit.py": "c52198a4f7daef74c5d8abf5c82d11c75253e2b505b2c0874c191a0703937b7e"
+      }
+    },
+    "ecosystem/ecosystem-gitops": {
+      "bundleHash": "14042e83687489195850079c0c4a561bbf3c8c07671dccc8b209c67201c21ff3",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "0aaca8b4a41ad74d9b0ae95d0faea5df2e240b5dbe84c0106cfab4469c68e501",
+        "references/github-ssh-migration.md": "f310bdcb87c80c66e954fe16d16b4e5eb6cab7bd4605802df6796942be7fa1a6",
+        "references/sapa-ai-laporan-status-merge.md": "121c7ba67232484a7e59425092c1dff336c5e901bdb8c38061309137190de07b"
+      }
+    },
+    "ecosystem/ecosystem-provider-management": {
+      "bundleHash": "9b7d5dd83e506b1e46e05088f0a62919753c2e11e21b9a5459e5b2a9757c9372",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "cb3f81dbd8465ee5f9b295a34f8737c3cde6dcedc13625a55e70b7769109efc8",
+        "references/cc-acehtengah-ai-output-2026-08-28.md": "79d9e482202cf892fcd4ecda4fe3975029c0c9429b75102c2cc281a4316f5186",
+        "references/cc-acehtengah-dtsen-restore-import-2026-08-29.md": "b5b82b8657a15663ec15762ed03a66a8e3309c83e2c3b06ccc5be8cb8d7dbe03",
+        "references/cc-acehtengah-role-auth-2026-08-29.md": "a4a210ba0487f896455eff19731876682cd6238ab7e037a5c93f4799822eb053",
+        "references/opencode-go-integration.md": "5326b4ab8744c0fa2037686c4be38f84c14abccb9e2120b345de0dd959641261",
+        "references/opencode-go-workspace-quirks.md": "dde493bd24ad9ef672c7a4b40c92f04845e7cfc897303a6321904860607f679d",
+        "references/opencode-provider-quirks.md": "a1aee984f6b53be6077d6e66979c717b7830e4898c70a99d0da431095fe05743",
+        "references/vault-credential-snapshot.md": "09aff9e0bec513767a2433f5cc3ab552087010ec6438719eae3c35c3382e97f2"
+      }
+    },
+    "ecosystem/ecosystem-recovery": {
+      "bundleHash": "bf0bf7775117791999bc840a4f336c4dc61e9af990438c783656342aa72e806d",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "c1ca6a181f224934b457f673dbf56d2f3ebe75f36dacf67e922aec151820a485",
+        "references/9router-3agent-hybrid-2026-08-28.md": "81b77203eb80eddd7511c7f537ebb8d3eb891a73e53e23196a4d5f24602660d2",
+        "references/dotfiles-rust-9router-ghauth-2026-08-28.md": "007e3d970569a576726a1d1908ef0f1f760079ec420bcb1f62066fb1cefdcf4c",
+        "references/full-recover-2026-08-28.md": "ecb8f7b071f8d7820a3eed0b196cb1d3c349d2fca6807e5a557f309b955c91dd",
+        "references/splp-bapokting-chip-2026-08-28.md": "770510e9cfc21f71f87fdb36a2d8f2cfbb7e572f1ca7de4e6feb5e12e63c6e62"
+      }
+    },
+    "ecosystem/ecosystem-snapshot": {
+      "bundleHash": "a261076123c7e1f9c4af39bc295604380ce58e353ce88bf72e4b98f5e08b9510",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "4d81b93ac619a3c93bb6afcae081998f3aa06e3b52715f76df07cd5f43e524aa",
+        "references/anomaly-audit-playbook.md": "7d339fb09a612d3c420acbcbcf160915c3dfee1bfeb2438a1c11751cc0ce92fb",
+        "references/mass-repo-sync.md": "ffb6231c8d0b7a15d0710b2b3db169e91c758e991a2cca7aaf0e69b5e00a972d",
+        "references/niumination-core-v2.md": "99073530fb00fe93f2ee9716559e5efbd2a8716be4b004dcf74165362de8ee26",
+        "references/snapshot-template.md": "b1ad596334865dada1f841e84924b9d1c6089063d84b08eac6f9c13c1e7176e9"
+      }
+    },
+    "ecosystem/ecosystem-tool-adoption": {
+      "bundleHash": "047afcb5be7df8aabfe683a6f08e4a3d40a8246aba3a90e105b192d45ffc9aba",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "4dfe123b837a0fdf78f5264dbb495f798cf41be79cd9baf42e3ba699bea4269f"
+      }
+    },
+    "ecosystem/ekosistem-content-verification": {
+      "bundleHash": "68c562d597349ea6da642d553312ed8ab4fc1a9f703263f6a8d61c27139c4496",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "eba7a58db5fcaa83669564bf841ab4a86108b8c65fa628c93006a3e93c101002",
+        "references/pemdi-audit-structure.md": "aea949ef8e2a573392740722b4c7eb5ac0248cc0e008c5182e0c14c6b5e8ecf0"
+      }
+    },
+    "ecosystem/ekosistem-scaffold": {
+      "bundleHash": "052cf3766e286242db1530725c94c40a84cc10f9770a358b8dd02406fa1d545f",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "bbf189b53bd93489f5a4de62b36056243610390d74ae4cb2dca8f5415ead2c14"
+      }
+    },
+    "ecosystem/external-patch-adoption": {
+      "bundleHash": "32ff22f93faec4ffe7ab939cb93d7a54308d8faca029983b8a07a7418d61aad6",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "48fe00620583ada12feb040cc1ca124fe16669993db6c9e3749bd08d1619aad8"
+      }
+    },
+    "ecosystem/hermes-agent-skill-authoring": {
+      "bundleHash": "ad68e0615e442da7462186f369f5818357316eab4d170424849ceda48019c651",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "7d3aa79739df5c17424869fe3c783ddeb5c340d6b4b30a993100f982b24eadd6"
+      }
+    },
+    "ecosystem/hermes-configuration": {
+      "bundleHash": "d823e9606a36ff41753139926e4398a432eaa2b8bf95e9e531ee413f9b7c5e01",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "1827f2ceecd3a6be2b29ceb8e0024294eb8e9b1a16ea3e1edd2d0e1e25dec244",
+        "references/config-drift-restoration-2026-09-08.md": "2f4c084caa3e2831e58247213fba54e1da7d722cce974759418e0048ce64a606",
+        "references/config-migration-internals.md": "2530117ce125c93b4838cdd204ba6e8effffac5284f0869980f2b575dab75677",
+        "references/gateway-notification-system.md": "ed55a43e60824441efeebf781bd6dc624844745ad01f464ab9c4dae937377aa2",
+        "references/hermes-update-procedure-2026-09-09.md": "efa90e6416dcede501a00e9053b736aae44b5e89e37e68da08a8beaaeb34468e",
+        "references/local-patch-preservation-during-update.md": "d931dcca8a448518dfd875311e9f0424c1ac031f102bdfbb807c7ef4e385695c",
+        "references/nous-portal-oauth2-config-2026-09-09.md": "bf3930ecc0650afdd3f81bda7482c389e75daa1d271cbdfb68c596d40064ddbe",
+        "references/opencode-provider-config-2026-09-08.md": "b6c72f33d1eb807010ccd1355a5f4c43a3ed261ba1352b8026d1032fb0a354bf"
+      }
+    },
+    "ecosystem/hermes-gateway-dm-troubleshooting": {
+      "bundleHash": "5a5a29c9c2c98dbedae5cbb17d93b69b76619855bec2d8e2352b23b912c4d141",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "244337acf608d92b9141bfd3248f1bcb3caec0f04b03363fcd1fa82538208f1b"
+      }
+    },
+    "ecosystem/hermes-provider-config": {
+      "bundleHash": "29a3cca4ca2d6a06f881a65a6c2bf90c8cf758741d41b1987a9e93edf3dc3f79",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "62345b02f9edd9d58fe46c752402ae4c5270e22cb6c0dd7ac62afb773d738b3f",
+        "references/9router-gateway-admin.md": "d4b718f0ad1b63419c2248d0d4d3105a441065dbcd57915cc1ee3a69c8d1bac5",
+        "references/juan-router-integration.md": "737c490e199201370c75d62c2f51693f5242b41ea79228fe49636e2a7df64b42",
+        "references/model-catalog-structure.md": "ba5b28126411702689a793b6e4cea6433ac3841e2e0c37580d7041ec936d1f4d",
+        "references/model-mapping-report.md": "c2cd66027323b705e12a8eac4af4eba74117a50ab13a978ed0b087acf26aaf39",
+        "references/oauth2-vs-apikey.md": "c32e08dd3fb02d8ae7bfaf4ff164f85ad3539229cb6cacc912420265a0da56b7",
+        "references/openrouter-free-tier.md": "3ec3fde62fdff79950ec8bfaa31bbd6d42baf14622a0be467632542a4a9cc986",
+        "references/provider-audit-2026-08-18.md": "c1ded25561d5476646fede92811e007f8dcf3e341c1dc3558f79441df540a310",
+        "references/rtk-verification.md": "68eade5a4f4f2e5417ee798824b5a72075f025b61e795fa1b79eb74e7b241f47",
+        "scripts/probe-provider-models.py": "39dfbc4fa90a210a0c9135b32d9a160fc66e5f657e10dd7b596653b6d0bc9a5f",
+        "scripts/stress-test-models.py": "1c7022f0b56584d371b11a92b90ab14781281fc9d18c829593764450c451520c",
+        "scripts/test-vision-endpoint.py": "23426710553f9407890df8e25b451d1b233c3430dac481af8ab0ab3efddd56c1"
+      }
+    },
+    "ecosystem/hermes-uiux-technical": {
+      "bundleHash": "36b803feeb695dc6337524270a713f394f641e76e3b2ebebc0aba32f7881ea63",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "8d23174df6f88851d816fceb90ee54ef5eb9ee3646fb07cae6bfce4499ba8eef"
+      }
+    },
+    "ecosystem/integration-verification": {
       "bundleHash": "6d74635a013e128193cd3978a13455f01eba0d166a42e5276f18344c82314319",
       "domain": "ecosystem",
       "files": {
@@ -778,7 +689,7 @@
         "references/hermes-config-inspection.md": "c5133cd1001f4465e0b26e39a769c22c4ce77ea9025a0229212f71e43d0c1230"
       }
     },
-    "kanban-ecosystem-management": {
+    "ecosystem/kanban-ecosystem-management": {
       "bundleHash": "4d40c49ba11ec415d9fa8f9ca734c83b93712a8af9f7f315e39b57749424909f",
       "domain": "ecosystem",
       "files": {
@@ -804,35 +715,14 @@
         "references/third-party-integration-assessment.md": "bf40132d59bb247eee83ba03089eaa8686b9c2ed7000d2e66ad434b792982b20"
       }
     },
-    "macos-launchd-services": {
-      "bundleHash": "418619fd7e5432073948be9e4a5db68f95d1595ae1bdd6b56b3d2231cc0e5b9b",
-      "domain": "devops",
-      "files": {
-        "SKILL.md": "c9a7ae938f89011ea8534696f024a8c78e9870480899d921bde88db4c5994b43",
-        "references/browser-capture-waf-bypass.md": "b649043f2cad785f6980f720bf58081ad40ad3d688c2af0af8abf671b9be6822",
-        "references/gateway-network-wait-fix-2026-08-30.md": "11f0f6199c8515fb107f50afed0dc6c9b525a912bbb91f918945f56c3d6da794",
-        "references/services-inventory.md": "8380ce32f37e8166b4e64b978b51a3414e9df6ec7131c5982ec7716f79619cec",
-        "scripts/wait-for-network.sh": "1af243c93b6e462b692d3a0ce303ad87733403c8005d36e573138aca6ae63a66",
-        "templates/9router-sync.plist": "6aa395c91ea87e6e5ce807d06f8c73a0137257603736b0f77151fa037212eb63",
-        "templates/network-wait-launchagent.plist.xml": "65de20059123fc7f4a54780928d6ee93b60d9445526a1702cc3f340707e6fe11",
-        "templates/nosleep.plist": "c14bb97527e74220f10b3a8300cabef7ecf5ebe0d1ca071110f7273d2262f99f"
-      }
-    },
-    "mata-ops": {
+    "ecosystem/mata-ops": {
       "bundleHash": "5fbd57b79554557c9682f6b14581d028087e041db8a393074d83a53c4c07014b",
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "dae18846865208217593faca44fbe0ad498989d41fd603fb6bf05c0f818c4568"
       }
     },
-    "merge-reconciler": {
-      "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
-      "domain": "autonomous-ai-agents",
-      "files": {
-        "SKILL.md": "24ffd1be973b0e884876fe0db9f49783fffe6a2337a4e74a83cdd895cb6fce23"
-      }
-    },
-    "mobile-harness-integration": {
+    "ecosystem/mobile-harness-integration": {
       "bundleHash": "9d0fcac42676b504a7a6ce3d05404ada0f777bcbdb9df43efc1737ed78cdf44e",
       "domain": "ecosystem",
       "files": {
@@ -841,7 +731,7 @@
         "references/opencode-endpoint-quirks.md": "e70c9a2b2b9d5084c06833324e837e19d529f085e04f4ce192b835e119abfe5d"
       }
     },
-    "model-checker": {
+    "ecosystem/model-checker": {
       "bundleHash": "ad49a29a6524b981290dfcea8139cacbf7e7ca76aee79427e11206339644b58c",
       "domain": "ecosystem",
       "files": {
@@ -849,7 +739,7 @@
         "references/kiro-models-status-2026-08-30.md": "6df9541106a8af692941b8c402edabdfe0b76aa2c97fb207e386dc2c59e46559"
       }
     },
-    "model-status-checker": {
+    "ecosystem/model-status-checker": {
       "bundleHash": "f09134914db3e38104bbee42cf590c0afb8384fc84eab157923a6c77c67b4e84",
       "domain": "ecosystem",
       "files": {
@@ -858,14 +748,7 @@
         "scripts/model_status_checker.py": "5a38f55001a1c67c867bc250302a5210d768cc1ca67f9d00d512af8374df380d"
       }
     },
-    "nano-pdf": {
-      "bundleHash": "5d66454de5dcbe1a44a6845e7c68e5c0f1b42dabdaaa075c0b6be26d7e9f2a54",
-      "domain": "productivity",
-      "files": {
-        "SKILL.md": "e0bdce5fe2d2c8f657f520337cc1cd8d26b13edb60decaafdd9865d4567289ea"
-      }
-    },
-    "niu-9router-maintain": {
+    "ecosystem/niu-9router-maintain": {
       "bundleHash": "fac0bde80c99299844deabd87a4264327823e91e6b44061d77b6b609818843e8",
       "domain": "ecosystem",
       "files": {
@@ -875,25 +758,7 @@
         "scripts/audit_models.py": "2e272a4562d0779cde985ae49b7595baaa5aa5a1ee3602407ebe1e402015302d"
       }
     },
-    "niu-core-governance": {
-      "bundleHash": "932ffd65f1a997b366adef736615aa4972edb3d17d70f9ad1262e31a96830505",
-      "domain": "governance",
-      "files": {
-        "SKILL.md": "eecc6c841c20759da89f8b8d08348517cba3f0183829229613bfd7cb3dc4ff55",
-        "references/f5-cleanup-2026-08-20.md": "6524d3dbbd7c34e21654a3f36d17a3091a5daedaf969ebaf9db7c4624edcf8e9"
-      }
-    },
-    "niu-mission-control-ops": {
-      "bundleHash": "0310d2845ca5833490faa5dd2429b63de5750407bc43bc1acd7fbd4b65499b14",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "f26b736747ec591e8a7f2d5b38d3f52d2a3165f46da3ae74d1a0e3d49e17db30",
-        "references/cost-telegram-p1-fix-2026-08-20.md": "7246d5172061c6f712729a8d8212e69f18887d89d7f4502498cacf9c61853719",
-        "references/deploy-p2-fix-2026-08-20.md": "fda37d07e7b1b1d95ff9969cab5cce762c6a8d502aee485c12728beccb07766d",
-        "references/quick-wins-cleanup-2026-08-20.md": "bc7dd27983ac5e2581ef2e25d6353a9bf390a6b5f25da7aaf2cb11919a3912b1"
-      }
-    },
-    "niu-mission-control-ui": {
+    "ecosystem/niu-mission-control-ui": {
       "bundleHash": "03101f4c24217b22ce55f38f07747d08bc9fc0da8c592a59d4f90746cc4e3976",
       "domain": "ecosystem",
       "files": {
@@ -904,7 +769,7 @@
         "references/orb-fusion-engine.md": "179a0bf2d1e48d571eb696f9e0a68f289d37c0750a3399b5d9ea47024055baad"
       }
     },
-    "niumination-reference-adoption": {
+    "ecosystem/niumination-reference-adoption": {
       "bundleHash": "86d168c3c136517231c11a9aa4aef0906eb5276ac55dc956fb7414ca1b8e98b5",
       "domain": "ecosystem",
       "files": {
@@ -912,68 +777,14 @@
         "references/free-stack-merge.md": "75ed9ac442a790e7a645a0e395096712698b507e1cd86700efe3a105492a600f"
       }
     },
-    "ocr-and-documents": {
-      "bundleHash": "4cb22155f2b50dcd0e71ed2ed9347394666af9dd46be36af1b85fd5dab22c045",
-      "domain": "productivity",
-      "files": {
-        "DESCRIPTION.md": "0da2ba89cf066f7e554dc00fcfa05b2d10c300ec693394a9136d27ce3fc2d1e2",
-        "SKILL.md": "856c1bce359ca7da0cc83f06e7b6b59f9445c16084d0510fc1541101af57f263",
-        "scripts/extract_marker.py": "7e4b66050b61fd50680ab506fcf075441f52d2d43336ca49a662ff19d64d3dbd",
-        "scripts/extract_pymupdf.py": "8476bafbf0becc09a74a5329e0c54aeeb92badd4d3eb6ee7a25519656ed8ae60"
-      }
-    },
-    "openhue": {
-      "bundleHash": "acd8a84a30f85215b05998da08372a65f761a7b356e48d4cba257fceacadaadd",
-      "domain": "smart-home",
-      "files": {
-        "SKILL.md": "65a27110487bf296285ac1730a81fd0b5be3451a7a9abac767588be2986e454c"
-      }
-    },
-    "optimization": {
-      "bundleHash": "4c2a02578a52d7b04279da2ffc5d5371ba1336d21d149b3eb27a736e5092b2f2",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "76d6983f48f9f85af35864d244a5c134e421cfc22d678482495ca5ac9a9ea838"
-      }
-    },
-    "pemdi-evidence-management": {
-      "bundleHash": "22dad7a0c010c492823a4f381bbab6d7cb008478d29f5f39fd778ec86b4a6c55",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "37a71d97ea1493c31101c9c6a893109488a1e11ff2b0c042da88cb892b345eba",
-        "references/bukti-dokumen-keyword-map.md": "be055f057252de5627b7442d531439600ade5feb74e926a61d65be6ea0719be9",
-        "references/bukti-dukung-pemdi-aceh-tengah.md": "660b573f3f20bab5c5350406c523149392baa904719e950c60181377d044be61",
-        "references/macos-vision-ocr.md": "68b0f0bbcdc0a8962b07e4e92399d79424f2edac4e04c9768c3341d919615a40",
-        "scripts/audit_sync.py": "66d0f504b633c2dbd417f5696666f20e924a7bbb87e424a2016cf9816b3045e1",
-        "scripts/ocr_macos_vision.py": "a964fdc30c99c8ec7bb302691f2844fea7dad74622602eeb4085056e60b9a75c"
-      }
-    },
-    "pemdi-uiux-refinement": {
-      "bundleHash": "c188d4729ed17af1285aa9455ed486f455359facfa7645cc10b3fee783f4a700",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "d0d42dfb53d7f64ab7ec212ae4f0a6cf1e89b28d72e9abba5a18d4a1754cfede"
-      }
-    },
-    "pi-app-studio": {
-      "bundleHash": "94f5952859b052e138bb0f17acd97d3d3bef36521ac3503506ec180a7dc7a2f9",
-      "domain": "development",
-      "files": {
-        "SKILL.md": "e43e4bd51b69016ec6883229872af5037fb9b3589881a326865494f14ca138f9",
-        "references/authentication-flow.md": "c2e6425b0ac474419187658f0341e2f896f0af350219d63afa06002d2e0d1219",
-        "references/git-secret-remediation.md": "9e9784ba15dfd94949a67c87e66bbd044da63d7ae3a3ab9b674a0b35229068cf",
-        "references/payment-server.md": "4e8bd6e3f61c4445c267fdfec0490b5d84e1e9d31720f55a043810219a482d9d",
-        "references/testnet-checklist.md": "0d6b1f3b26da916322525fadb5356d5c144cc60c1352899c209528d72d249888"
-      }
-    },
-    "pi-app-studio-development": {
+    "ecosystem/pi-app-studio-development": {
       "bundleHash": "9c3f6acbd3e22a9cc52b070af80cf0e23a618d8e6a91d86a47f0052d90258ce6",
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "fe22d38fe03f9860625b8e4aefacd931313cd6a4c3fd561671782566acf3e120"
       }
     },
-    "pi-network-ecosystem": {
+    "ecosystem/pi-network-ecosystem": {
       "bundleHash": "bf772ca390d196b16bb3e85e92c43cb2b85069fc2dba99a7ff5fbf7cd83c6fb9",
       "domain": "ecosystem",
       "files": {
@@ -981,7 +792,7 @@
         "references/app-studio-prompt-example.md": "aaa6ccbeffa428f48a56f5347d12c4bd3d096108c8a3e6fd22d32727352f69e0"
       }
     },
-    "pi-solohost-development": {
+    "ecosystem/pi-solohost-development": {
       "bundleHash": "cc1c257409e7381a382eedb4888cf10f8a5d6b012b56012b2e76c2d993308e05",
       "domain": "ecosystem",
       "files": {
@@ -994,99 +805,7 @@
         "templates/create-solohost-app.sh": "854e17ac8f25730d5a60e27998dfd5e5290b0232804478b8d5a1f0f14041258c"
       }
     },
-    "plan": {
-      "bundleHash": "6063ac63cd004b4742d8672587b12878abd799304dc9424283e3632cf6105f48",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "7513da40fbbbf899bc94ffdf05921a8187866745e67e2d81a55790b70daca72c"
-      }
-    },
-    "plan-compliance-audit": {
-      "bundleHash": "606a9789dd99daac1193408575d80716118fd595ce193c6f327991ee0cfe6b93",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "38702d5a2c4e9888e8ccaf3af14b72e6a217863d6dba3b9fbfa50d41a3e5acba",
-        "references/inventory-cross-reference.md": "fa4deed05e55650ad6e899ed9e22192d85d791547dd642f7fe8b144268b168c1",
-        "references/iterative-audit-loop.md": "b9bf1fbdc9fc8e3539f1a18669049a698318a550b63e8e05359d35cc1e042aa4",
-        "references/org-wide-pr-detection.md": "c9c7c774aa6487d2dd3dce82dcc9115ae98f1dc61eaf5741bcc7ed9e8ec9c6ed",
-        "references/post-implementation-feature-audit.md": "4cd488099e9157b318785df15a6aa9b3725998e31bf70bba257251fcb1aba5c4",
-        "references/real-audit-findings.md": "350713c491c7bb8bba8b3e9b5d6ed70f8920cdbd0481bdb2d262421573937fb6"
-      }
-    },
-    "ponytail-audit": {
-      "bundleHash": "95ed14577f9b88c5462a1bd5c3529bd27705c92d310bcbe40ebc52a9e8102600",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "5560b8e383dbe2ddfddc873a1e2bf2e586e23e0cd7d995537482b2315331f6d1"
-      }
-    },
-    "ponytail-core": {
-      "bundleHash": "14ece30d7caaa353fdb33221c52f6035ad18091933746ce02290b866d97634fe",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "d11df477b1a4e807155a7e578b135a4d9c52beef06eb3a44322940c331a06942"
-      }
-    },
-    "ponytail-debt": {
-      "bundleHash": "e3288ded15ddbb06eaf9d6816db71ef7da70b96813eb6e3b5faffcf51e11f375",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "99bf4eea94802fcf27bbc4bc7755008fec13e4ae12e80d415bdf16fb56c727ff"
-      }
-    },
-    "ponytail-gain": {
-      "bundleHash": "2e4f8cc9938023e61e997651a913e771c467342060ba93eb915aa1252c82166a",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "24e01d1c9715cb136ba1c4f1e52a95940c0193558b876828e537736480d6408b"
-      }
-    },
-    "ponytail-help": {
-      "bundleHash": "895e6c845f2a2af283ac283520c1f7008c9d9dd01d07ad0e2988d8e436ffadef",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "23ee3856c727129f87ab850985f9e9ed6368f10449816aa7ff043bf2dd45ab4d"
-      }
-    },
-    "ponytail-review": {
-      "bundleHash": "acdbaa424b7b8c9b719d24e009d3b7d437a66c0c3a57072984c97c39b5860049",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "9c570e3f99ce5cf4ac4c2ca45b9000e9404b2f5f7abbc7d0d5b697527b1ed539"
-      }
-    },
-    "positive-verification": {
-      "bundleHash": "ea519132fb2e63b8f92f56a5bd1e7143cfa4dbea025d6cfe0248e77c7fd5c891",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "6da8a19fda4fc92e06baaf4a7657acfa98e861992efa88b002637cbc2fc762a7"
-      }
-    },
-    "premortem": {
-      "bundleHash": "86d6f0f0f76269d8fc2cdfe123035b788be9f148b60b047f82515b080392a7e3",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "4c1e8ac4dfb85f0df9c035fc26403d1831888b9ebf050662bdf2e4f73840b166"
-      }
-    },
-    "pretext": {
-      "bundleHash": "c4535a5be4c4470747cc609eafe042e629d301a066b9e98c329cb563c22702b7",
-      "domain": "creative",
-      "files": {
-        "SKILL.md": "c09691f63543573f876bf46e9c62ecb21374167991abdfc50ddac38c6443358c",
-        "references/patterns.md": "e8d50e198fefdeb83e68f84ef4fbe036583ff5f7d65a41a58e1ab8725027f13e",
-        "templates/donut-orbit.html": "8b0cd47880a9cc6ad16f90afe02b11aea1e2436c833924bb91e55dc460966fbe",
-        "templates/hello-orb-flow.html": "6a1c76b51e8e792fa2b00ed3a5bf1e314a17ada192289155dce6b33da149ddda"
-      }
-    },
-    "project-orientation": {
-      "bundleHash": "ee15fcbac0395cc6db38a18ad0b3e0a18a442c9d382b9a242e9c474562ee2889",
-      "domain": "software-development",
-      "files": {
-        "SKILL.md": "7dfb7935d82b623238724abb668cee0423d6d99e591ae47acf705cac16c4b95f"
-      }
-    },
-    "provider-fallback": {
+    "ecosystem/provider-fallback": {
       "bundleHash": "bdccc2ce9294111ca35e7fca19a1a9a988cb8bd3527d22d7ebbf3fb950201b17",
       "domain": "ecosystem",
       "files": {
@@ -1099,44 +818,303 @@
         "scripts/stress_test_models.py": "d33af11d6d8f03816b2ce64f6a74c2f873118d7602e46ad308e4c385b13e0f16"
       }
     },
-    "python-testing-patterns": {
-      "bundleHash": "2fd0da67d9ae4c7bda24e4b1210095abf78860f9096e7532b7c0357e858e9f96",
-      "domain": "software-development",
+    "ecosystem/sapa-ai-ops": {
+      "bundleHash": "a820967fb7c67d1b518c571493d31625253e6278db8e1370f666a2b1c97087f2",
+      "domain": "ecosystem",
       "files": {
-        "SKILL.md": "a01102f46c6e7351181a7e0cbeb41d6ea37ce16a3a1527b4a06e40d08cd01970",
-        "references/advanced-patterns.md": "f560ee8b3cffc0fe971e78269bed21dc74f541c2056eae58d34259d9e537176a"
+        "SKILL.md": "78bc71811976d29610cdae331e71dccc7ddbe8c84b4b6123ee11f9504e3324a6",
+        "references/arena-patch-stack-2026-09-05.md": "83cd71c0e6dd3d1141835fee02162f2b32fa425e8dc620693de983b48089740b",
+        "references/chip-probe-hygiene-2026-09-03.md": "dc0e359eda3520090e62adeea1899562cd3f8bb4b45a18e825281bd9f59bcc63",
+        "references/executive-lead-2026-09-02.md": "4e59903f577424d576881ee28ab879ebcbf5e06a112398530cae96dedeba4f03",
+        "references/executive-port-splp-2026-09-02.md": "0fd9aa30c6bbce59b99ef684c512ef661b388746ced88e85f15b1fa142db3764",
+        "references/format-selar-opd-port-2026-09-03.md": "ffb7b267d788f74c52a2f4849c190376d02d4fa9bd93e4ed2f67ec27e26d9d76",
+        "references/grounding-maximal-2026-09-02.md": "8a751eb6ee637bc0c8888ec80c11309cf55c9c1d712487851e22d2e524954c0f",
+        "references/isr-4a-stable-2026-09-04.md": "9e60a67f50672c2d2593175365ea4dad7eccc428497a8c26153356a49cb269ab",
+        "references/isr-4b-propagasi-2026-09-04.md": "cf759a7152735d21dca3c64b29486bb8e1a224b9925356145dd095bdcb927a25",
+        "references/kpi-curation-2026-09-02.md": "d591bdb1e1e3ef5309f0a841e8b937336578e9122722e3dc720b69003ef2969b",
+        "references/perf-audit-react-next-cache-2026-09-03.md": "f5c157042c491d37273bf0995cbd282a247fa600e7bebf9856ee126a5340e479",
+        "references/rebrand-cc-to-sapa-ai-2026-09-03.md": "c621ed9782399b396dfded3d59489fb8649b3649473fcbfae8d1307358340d6f",
+        "references/recharts-dynamic-2026-09-03.md": "de4480eabb7b53e06da2715932ddc162505b50703f6c19ccb90f793eaafd80ee",
+        "references/rekons-4stage-pipeline-2026-09-02.md": "cfcfc8c2c1b73b1ab3d2e0eea97a468411a64cddff9cebf11b2007a5ff9a6f2f",
+        "references/render-topic-gating-2026-09-03.md": "34e1f517fa20d5395cac6a6f4aec99c3fb10d56b5fa348d30293ea70636b8a20",
+        "references/rsc-analytics-pilot-2026-09-04.md": "5b893673dc7f30b5e5a8b51490bfa723c5da5af668b374e47ea8f1eb0a1eb835",
+        "references/rsc-dashboard-kpi-2026-09-04.md": "fe13deecee1dc48a23f00c96ac0715ae6e7fe21d54654d285633b03337999c43",
+        "references/selaras-opd-status-rebrand-perf-2026-09-03.md": "94910d90de5c32799b3c848697300f980e237fea322a3670116005db4793a06d",
+        "references/shadow-eval-real-model-2026-09-05.md": "8278da267932db7f5c18aa27c16e05ef414dda5b39c7677517cec19a7198624b",
+        "references/ui-hardening-2026-09-03.md": "7a079d05e989427d5cf1ecffc07df7e1d74b0fa5346f3f061b2e750a11e895e5"
       }
     },
-    "redesign-verification": {
-      "bundleHash": "64b7c7dd6037cda38c0e4a487698ced3990e98853bec5c6284839d7c5c7a77cc",
-      "domain": "software-development",
+    "ecosystem/skill-bank-integrity": {
+      "bundleHash": "57525d80274a8b3ba4e86c19d564e84a1e900107b3bdc9429353911fc95c7f4c",
+      "domain": "ecosystem",
       "files": {
-        "SKILL.md": "90d1b6ef72ba9685a6b9581ca9ef0e4202abcd6b98c9de4d26e5bef1d717b601",
-        "references/mc-v3-redesign-lessons.md": "3a75dca754c76edfbe297520cc1f1e9a027a29545f65ed9ac435c051c93344a2"
+        "SKILL.md": "3441de22f0be0230635539983620e21a8b2e9092f8dd8ccffd698feb828eb41f",
+        "references/autoskills-patterns.md": "8b9c362c22b5c38f31079616d74e32f51f5ec643b9be1b08a4f57f3ba2e06eb9"
       }
     },
-    "redteam": {
-      "bundleHash": "677444b22519f018b0d005e4d9d2358c6b4bbb0be2c2e207b6242a68b61123d6",
-      "domain": "security",
+    "ecosystem/skill-bank-maintenance": {
+      "bundleHash": "035cb1c906489e3e2f830ea8c4ec87416347e270e3dfd43306eb1d9c1db194a8",
+      "domain": "ecosystem",
       "files": {
-        "SKILL.md": "2b7e65c045f3b0c2efe2f939701294d1ce8f1fc1ebb169f50c5504f12f29778e"
+        "SKILL.md": "4a1dc864fee4c6cb83d4842dfaa3162151799d9877ace48ee9073dafd52317c5"
       }
     },
-    "repo-release-hygiene": {
-      "bundleHash": "3b896e66c201f9b15f32407fc81d2ebbb235890f74fe7995f3eaa27a5bb50431",
-      "domain": "software-development",
+    "ecosystem/skill-bank-management": {
+      "bundleHash": "6b585b3cdcd8204afac93e041e9563bca9eea4200023602dc25ea52028008a35",
+      "domain": "ecosystem",
       "files": {
-        "SKILL.md": "294442601cf2be6416c2720a1f88552c85cc5ea1d2b7efcd119adb3ce87539df"
+        "SKILL.md": "a6f4e04caa1dcb749363f56321bafae913d63f5da6693ccfbe6de52462e8b006",
+        "references/adopt-external-skill.md": "2dca01c269cc3dd11ecf6d66f31159468d58fb8edb370649839e426a7358f2ec"
       }
     },
-    "requesting-code-review": {
-      "bundleHash": "c7a14169999d4385a290ce26d47b57c4bbad17f46872bf7c87802193a99f729c",
-      "domain": "software-development",
+    "ecosystem/skill-bank-operations": {
+      "bundleHash": "1039d52eadc39da3e67fa383f7eb5392bcecd6038713383718263b9beffb08cd",
+      "domain": "ecosystem",
       "files": {
-        "SKILL.md": "78f67841ed14e178b98a526d2479e8b64248b26d3e9a42ae4884752594954ecd"
+        "SKILL.md": "2310d0358a7cdecb56e55529c0f5cf17f9ff99c653a46ecc1d1cef71f75f6e02",
+        "references/autoskills-patterns.md": "f7e805e9ef05d1bd18b14be03c4534b24dc4f2cdff81972acc97ea227017a048",
+        "references/cases-2026-08.md": "a87f0a8f980145dbf119480097f3e851f49c1976c100a9497764f1e023e97b85"
       }
     },
-    "research-paper-writing": {
+    "ecosystem/skill-bank-ops": {
+      "bundleHash": "9596fc90a7471fe1a73d51db9542a0207e2c18f908f07dfca0e8da50ef51f0b2",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "4ee54b050574e9970bf93a80f5186d2da694337078c80c0c2692100d8c1b3469",
+        "references/skill-bank-manifest-sync.md": "ed73748fe07bd9718d8c2493742dfc1e0cad006dd474be4d6e469d16c1e7714a"
+      }
+    },
+    "ecosystem/skill-bank-sync": {
+      "bundleHash": "ef0a59841117c2bfdb6c3656bc3c8b59790800aef71d13b38009792fa532a3f2",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "2d9e7b63410714219afaa7bfadb9f27b17dba5715949e2bc1c1cccbd054a2a97",
+        "references/home-pruning-f4-2026-08-20.md": "245cf99bb02a59a5a73ce617c11363db7754ba061d4b22a4be10eed736989bd9",
+        "scripts/check-rtk.sh": "0b3065e58ace02078848b7141ffb08ee2a86333121ec1222f3ab3d6b2696c4b3"
+      }
+    },
+    "ecosystem/up-eco": {
+      "bundleHash": "16d51eceb4a5dab13223dd2d3bc6880127d6f8c74f8888f5e6964b3fa992bc2b",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "6399d32f99eca92d1aa66be3f6cd27708a50a4b33c4a8892e312c6ad98cbda83"
+      }
+    },
+    "ecosystem/weathernext-gayo": {
+      "bundleHash": "0c1522b797963f1ac44197a2c3bb6bbc40ca0f8c50b55e1976457064a9c6c5b6",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "b7e50fa937baf717d269f37cd9fe59ffd7da39b2bb2a3b50a90541bb30e0f0b7",
+        "scripts/weathernext_gayo.py": "300dc3117e5774de1e2c32a5099b933b9dc4ca7ec9ecf37863fa7d2b049404f5"
+      }
+    },
+    "github/github-auth": {
+      "bundleHash": "b722c1e37c65585345bcda79d7de97891a608be1045577545e901fbc5936a84f",
+      "domain": "github",
+      "files": {
+        "SKILL.md": "83d908a495c34477a88e7a11bdba80179483e71d070278d23323586cc0883ff0",
+        "scripts/gh-env.sh": "eb04179d859635b56cdd0da71da59cd5d94d7a69c9a856f9f562d1cd5cb9412f",
+        "scripts/git-credential-token.py": "4c0f3dfdc75df9043fe7b62b0807e7b4392c59ee81082d2fcc8d39b75c593efb"
+      }
+    },
+    "github/github-auth-recovery": {
+      "bundleHash": "bd2088e4b2cd9908d0e05b17a272d0d61ab779f815bc59c6c85b4fd330fef081",
+      "domain": "github",
+      "files": {
+        "SKILL.md": "e5a9a08bcfbeccc0f730f90a9d544a7bb0d03f7733209fffd1bba6aee23b0340"
+      }
+    },
+    "github/github-code-review": {
+      "bundleHash": "a10cc1dab854fb27412effa09da241d2ad3ad2f364ff013c6b1983d32dfa6c98",
+      "domain": "github",
+      "files": {
+        "SKILL.md": "957c4d454ca71d7d62f05ef04aaf0e346e623e7f8be2eb718498a07e6d17139f",
+        "references/review-output-template.md": "4560662913e8f89d558c7ba4f34daf77a35a88367c2d480ad86de7085cbcaf34"
+      }
+    },
+    "github/github-issue-to-pr": {
+      "bundleHash": "e281ba6528afd69229a05b81cb65ea103ffd7250bc3625e2d94fc028c9453c6e",
+      "domain": "github",
+      "files": {
+        "SKILL.md": "d422963778ee3fadb182322aa65b742f47a73b456b00fd0935e8ab66caf118e0"
+      }
+    },
+    "github/github-issues": {
+      "bundleHash": "0175a07befcfebf300c6aa5f209f92ced919b75aea3ddba7ef76a755d56dceb8",
+      "domain": "github",
+      "files": {
+        "SKILL.md": "3e278a457786a741b439155e9d846257a4c6a0fc70324e2ab968800438e7bf8a",
+        "templates/bug-report.md": "4b3144ccf47a85dcec889c7610d6b739a7ae6f19aa8d4709942112ef09e11a5b",
+        "templates/feature-request.md": "43962f5a398b4badeeb94280299ba4511940ad0e32afcfce5f2a6e1afd21c7a8"
+      }
+    },
+    "github/github-pr-workflow": {
+      "bundleHash": "534629393033f76e6c934338ce3ad6fd465a17ff16fd9587d9be74d77cc6606d",
+      "domain": "github",
+      "files": {
+        "SKILL.md": "d752ffa2993cb64edee12b5be89030e007aaebffc5bdd0032466ef7a57dd1c8c",
+        "references/ci-troubleshooting.md": "c72b2301e9b85c545c4960722dbd4c0d49c5d883e6d86438e932bd47b1d8eee0",
+        "references/conventional-commits.md": "2d71a3b701b08c2e5ed5248d17928eb11e27d7b357f9e2dca27caee9cc017aab",
+        "templates/pr-body-bugfix.md": "e8c31915b87dba0454d7520a3aa45ef8650fd0e50e48e277db855ff919e6251a",
+        "templates/pr-body-feature.md": "875e815da6e0e3df2763a85c9c2a56a776461da39d4181a1487333c0bf5b9276"
+      }
+    },
+    "github/github-repo-management": {
+      "bundleHash": "60faf104dd67ea54a999f7cf379a78a4588810f4d5a47666d32b309167667fa5",
+      "domain": "github",
+      "files": {
+        "SKILL.md": "7b528746118c94d2d468f5d805ed3266b16bc97054dde80f57411cbea9ef1d7b",
+        "references/github-api-cheatsheet.md": "a9081d4a108b67b4edd3c92c73d823fd1730e37e23be6f069d9bd67dd3b32486"
+      }
+    },
+    "governance/gdpr-compliance": {
+      "bundleHash": "6b0ddefa40ee0615257a6f7352d24e4a4fb334510cbc966994fbb6427f52d102",
+      "domain": "governance",
+      "files": {
+        "SKILL.md": "7c8d45e1764e120d76af5c7f67cee8a3388a505bb12cfc00addac174a7fb74a0",
+        "references/documents.md": "715d597f30e38989caf88c3779631180b52e185126e4fe5e5b07d7b1157cf9e5",
+        "references/dpa-template.md": "52e7b3b48c4b8e72220b665c8f4e2483b0bea72314f3c47a009d021712973c8e",
+        "references/privacy-notice.md": "30b15051afbde09d9e6bbcd1b1bd540c68dac2a49825d3fc1333da21e2317c18",
+        "references/updates-2025.md": "dd3bd14579fdfc7473ae99ee10a502e3bcd789df1d40f720e6d2995ac1ebffb0"
+      }
+    },
+    "governance/niu-core-governance": {
+      "bundleHash": "932ffd65f1a997b366adef736615aa4972edb3d17d70f9ad1262e31a96830505",
+      "domain": "governance",
+      "files": {
+        "SKILL.md": "eecc6c841c20759da89f8b8d08348517cba3f0183829229613bfd7cb3dc4ff55",
+        "references/f5-cleanup-2026-08-20.md": "6524d3dbbd7c34e21654a3f36d17a3091a5daedaf969ebaf9db7c4624edcf8e9"
+      }
+    },
+    "mlops/evaluation/evaluating-llms-harness": {
+      "bundleHash": "2f5ef9a90832c5d46f4ef6e197a24a7d32669b64ff14e2afac1ed1bbc428e116",
+      "domain": "mlops/evaluation",
+      "files": {
+        "SKILL.md": "d6f1d357a6561cfe42b7230b8bb449f720212038f180e74a33f9a22c67a963ff",
+        "references/api-evaluation.md": "433372d84b8bbd6c28e5b971c1aae7c5d2d032aae9ff23dd7d7a47a51277dc78",
+        "references/benchmark-guide.md": "6f3e6daf78cee21453cebc1c4688ee126fbf0d4566782496dd5841dd669ae295",
+        "references/custom-tasks.md": "c6b5591c77c16570b43fa5f497405a65f35ef73d1702a3871cc0c8a257c76aeb",
+        "references/distributed-eval.md": "3ddc4551f25ce0d3cb09f971f27191331fb65b5b4c882efd4a9bde7bdfb82353"
+      }
+    },
+    "mlops/evaluation/weights-and-biases": {
+      "bundleHash": "111c5c360eca846a09eccc67f6f48ba9c0cea2ba942449d7b7b96d05ce967e9a",
+      "domain": "mlops/evaluation",
+      "files": {
+        "SKILL.md": "bc87d8c94c656ed76aaae6123b1f62c2f0341fcf8e44bb9556efc04c52a2cda1",
+        "references/artifacts.md": "3e4c2ebe70b310e74fdadb5e08af9822eba5b585ef6ad1e66012016b8fc6d461",
+        "references/integrations.md": "b11f806e19002e589d959d6f56d9d03986520923ee89ee4328822a6fff190251",
+        "references/sweeps.md": "c59012acf49ec73b0bbf4b2ff7713d0611d1372ba92a9e21337ae76d153a1f0d"
+      }
+    },
+    "mlops/huggingface-hub": {
+      "bundleHash": "e90d62e1a8eebb5761fc505c26e0db3bf5cd99f332eb812a242e99e98b8d2682",
+      "domain": "mlops",
+      "files": {
+        "SKILL.md": "68ee2e5ae17e0f2968f8550534f3fce1c7eae461b95cbe1dbc34b8d487665bc5"
+      }
+    },
+    "mlops/inference/llama-cpp": {
+      "bundleHash": "7743f283f8d3b43268608b4efefc2d5ee74116eb603e73a8b6b36218e0e47a70",
+      "domain": "mlops/inference",
+      "files": {
+        "SKILL.md": "9c1ef45f6197fbc08b643416d5f2c2e5469dbd45fb01e17cf48a0406ffacf8c2",
+        "references/advanced-usage.md": "ee7ed3b7c06b393b85109d5aa4816cf7d6e6fd2f0a8fdbb90db5eb03ad301f88",
+        "references/hub-discovery.md": "b53ab078551d41089c6af7180ce7bcaec469b05966bd2282804697043168e640",
+        "references/optimization.md": "4e89811c0827f5eb9deb9fc609cd441eb197fb0fa85e79dd8c1f272b14a669fd",
+        "references/quantization.md": "6e3039e2230d75d1d97a3d5712be3b31f6ed3b6feb58cbf313c84e1968f7f51b",
+        "references/server.md": "bd1dadb7e72f6b98086ea57772263485008990e11309b31c2f84ef2cc7d20321",
+        "references/troubleshooting.md": "a83f9df40a6db7857b4b3ce3a982da7e939680ee89079170d4d258392804e09c"
+      }
+    },
+    "mlops/inference/serving-llms-vllm": {
+      "bundleHash": "5a531d58296868f52271b227a432a793dc8afe722dee723eb6015e279353f125",
+      "domain": "mlops/inference",
+      "files": {
+        "SKILL.md": "1c64cbeec7e77ffc682da5fcf06d03741f1ecd7055a8f5c2fa12408716644c17",
+        "references/optimization.md": "0f860d337adb1d0723d4070d8b3144517f111ad7f653606927bc67a7a019b1ac",
+        "references/quantization.md": "5fb30ea9e8fbec4a7f3047f37d10c0900d10cd2df66555818ffd425a3b29b270",
+        "references/server-deployment.md": "7db618ec40b865fe2efacf46c04c3d5dc233fc64a3c63d26451afb97b795113e",
+        "references/troubleshooting.md": "307acd908e60674017bd2363726e6b9be19410062e3db0645290a69802976283"
+      }
+    },
+    "note-taking/ai-agency": {
+      "bundleHash": "25c7ea540b77683344725ae4cf38bb285f19f80615a5b2c1747e50ea7e076c62",
+      "domain": "note-taking",
+      "files": {
+        "SKILL.md": "93a8d1e2397de8e8e0cc98986b680c306e1cd47de90ff6a0fd70e8f107508e2a"
+      }
+    },
+    "note-taking/routines": {
+      "bundleHash": "842252c1b46fb11e08f83194dc6adb9b1e13cb2c0f48ace28552b5da44595f90",
+      "domain": "note-taking",
+      "files": {
+        "SKILL.md": "f34e9e1f47676c785548af2e7cb9df7d4a784781df8a28414c94f8d641857774"
+      }
+    },
+    "note-taking/second-brain": {
+      "bundleHash": "4265206bdbdcb8c468202e2a9d855255283a01ae19e0ffd3cbb55fcf0516b252",
+      "domain": "note-taking",
+      "files": {
+        "SKILL.md": "458d8938e32fd4545dafb0a7544a7fe6699946b4357a8ced807421c3e3ea247f"
+      }
+    },
+    "polling-script-management": {
+      "bundleHash": "c73251f681e53988d1f374f82f7e436048832012c034dcc4f719b99069041e64",
+      "domain": ".",
+      "files": {
+        "SKILL.md": "1514e8d807d534462765dc4a159f8619eaca44f59c17eb5d6b41f6c0ce9dd312"
+      }
+    },
+    "productivity/nano-pdf": {
+      "bundleHash": "5d66454de5dcbe1a44a6845e7c68e5c0f1b42dabdaaa075c0b6be26d7e9f2a54",
+      "domain": "productivity",
+      "files": {
+        "SKILL.md": "e0bdce5fe2d2c8f657f520337cc1cd8d26b13edb60decaafdd9865d4567289ea"
+      }
+    },
+    "productivity/ocr-and-documents": {
+      "bundleHash": "4cb22155f2b50dcd0e71ed2ed9347394666af9dd46be36af1b85fd5dab22c045",
+      "domain": "productivity",
+      "files": {
+        "DESCRIPTION.md": "0da2ba89cf066f7e554dc00fcfa05b2d10c300ec693394a9136d27ce3fc2d1e2",
+        "SKILL.md": "856c1bce359ca7da0cc83f06e7b6b59f9445c16084d0510fc1541101af57f263",
+        "scripts/extract_marker.py": "7e4b66050b61fd50680ab506fcf075441f52d2d43336ca49a662ff19d64d3dbd",
+        "scripts/extract_pymupdf.py": "8476bafbf0becc09a74a5329e0c54aeeb92badd4d3eb6ee7a25519656ed8ae60"
+      }
+    },
+    "productivity/session-librarian": {
+      "bundleHash": "6239c29ba9be7854642ea01b61bc31542dd01fb3ee76c8b91bb5c8796baf96a8",
+      "domain": "productivity",
+      "files": {
+        "SKILL.md": "9da2d0ba82b771ae83560965ffaa910db01e76bba8c1d914133a0d8c6957f2ba"
+      }
+    },
+    "productivity/skp-e-kinerja": {
+      "bundleHash": "ed3202077b4dd00d94e1bb4f90d983ce3278c39de25d8f1e2d8849fe0ea2237d",
+      "domain": "productivity",
+      "files": {
+        "SKILL.md": "ac02002ca5995289579b9d3a794665ba3eb8ac48aeea8e28b87fd7d78b16867e",
+        "references/activity-extraction-rules.md": "2f91f3682ec148894004453e3dd47d3814c00823e494f68e1ac1509bbe687abc",
+        "references/evidence-standards.md": "908d167d9563fdb8c28db0b9e3020a76d1c645994ce8dcd823507326eecdd133",
+        "references/skp-draft-jul-aug-2026.md": "1dcfa40ce52d4b9c5b1442d027aab53613b77b2aecb24b129eec4ff3e8928b34"
+      }
+    },
+    "repo-zip-overlay": {
+      "bundleHash": "4d5e107a3dd3f2d35b06e9b28c2e026c0bad228a8a6c36e8a123cc3016a05fed",
+      "domain": ".",
+      "files": {
+        "SKILL.md": "72c21094f6a0a0f27bca39bc726903242744a24b9e39211826afb69926afe6a5"
+      }
+    },
+    "research/blogwatcher": {
+      "bundleHash": "da5d3954018c476fcde3f9949577bb0880237c9086f3728b8ecfd64a4a6127ca",
+      "domain": "research",
+      "files": {
+        "SKILL.md": "b85be5a9b86b90287266dd142a0ae9740be926298fbcb772f56b8a4d6451bb12"
+      }
+    },
+    "research/research-paper-writing": {
       "bundleHash": "892e26a5f896034ecfd966a7959131de42185ab5b4e1232e1f6813f7271a2bc6",
       "domain": "research",
       "files": {
@@ -1198,14 +1176,331 @@
         "templates/neurips2025/neurips.sty": "ef7a55f0a7c9da12fea39af7990a6a314a721b74a23b1544f252e55fcba940cd"
       }
     },
-    "routines": {
-      "bundleHash": "842252c1b46fb11e08f83194dc6adb9b1e13cb2c0f48ace28552b5da44595f90",
-      "domain": "note-taking",
+    "security/git-security-sanitization": {
+      "bundleHash": "0f68f8e5b348496636aad8099bc606264bac3417a0ebdff9411393f0628c9a8e",
+      "domain": "security",
       "files": {
-        "SKILL.md": "f34e9e1f47676c785548af2e7cb9df7d4a784781df8a28414c94f8d641857774"
+        "SKILL.md": "79997e625245098eda18dd74902155d1e5636c7c65cc9031404d6f6c2badb77e",
+        "references/github-secret-alert-triage.md": "d39706398ab6f3ecaaa55aa45b6dc5521b4a7cca725f239c8ed7ff4e459e020a",
+        "references/history-rewrite-dry-run.md": "1c0d3feed116d2d39aa9bde111c1e77395d50971c6be0f2e47935e911b37ece0",
+        "references/pii-gate-config.md": "631f36425b985653855ed61259ea3d0172d7b347ee2306191bc1cc5977a7685f",
+        "references/pre-commit-template.sh": "29ebbe1d40fed4dc47b27cf042c0b21eb0e3266a5e51b9fb847cff8aa8d850e2",
+        "references/public-repo-leak-audit.md": "691c813fb7d62fc62baf2d00e2e251c8e0c89ea0368266a632f102d95ea22557",
+        "references/redaction-patterns.md": "8efb678119a08b66242dba445a55c50f0d1ae52bd5b1a58d42f9b06bdaada09f",
+        "references/secret-alert-triage.md": "a443f5c3719f9b6fbb07430ae97f27e24114f665a5ba3384d2fc8c75848ef7cf",
+        "scripts/history_secret_scan.py": "9d07b724b997bc8e7885eaf81bfdf188af0eed5bb368654b6798927e4688f0e8",
+        "scripts/masked_pii_triage.py": "6174b498704b94371bf1dfdc68586b8ab4c9c6a98771ffd988e8c29587f1d446"
       }
     },
-    "safe-branch-refactor": {
+    "security/redteam": {
+      "bundleHash": "677444b22519f018b0d005e4d9d2358c6b4bbb0be2c2e207b6242a68b61123d6",
+      "domain": "security",
+      "files": {
+        "SKILL.md": "2b7e65c045f3b0c2efe2f939701294d1ce8f1fc1ebb169f50c5504f12f29778e"
+      }
+    },
+    "smart-home/openhue": {
+      "bundleHash": "acd8a84a30f85215b05998da08372a65f761a7b356e48d4cba257fceacadaadd",
+      "domain": "smart-home",
+      "files": {
+        "SKILL.md": "65a27110487bf296285ac1730a81fd0b5be3451a7a9abac767588be2986e454c"
+      }
+    },
+    "software-development/agent-reach": {
+      "bundleHash": "21edd8587fa19fe01d73da79c8eed5065b757fb0f21b718bcaaab0a9258d4090",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "c02e89a4e78ea1a3f27ff241dea835b850d5d1d9e34ee475d83bcdf33d4e3107",
+        "agent_reach.py": "11911b80bdf4a2e568af3e9af7c46bf34162fd7f1ec67deb850ad6d1025c193b"
+      }
+    },
+    "software-development/android-adb-testing": {
+      "bundleHash": "d46153853b09fd6f83483c8f02fdbcacfd8b7dee9cde9b10de333c2eb594f561",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "312f27c230033a38f6d003b9e372e8941508392eff4b9756ec1e43e7b026cd7f",
+        "references/app-data-backup-restore.md": "51aeb438ffa753287bfcbd52a9b60e33f7b559891de42fddb60551fbc73d2c8e"
+      }
+    },
+    "software-development/brainstorming": {
+      "bundleHash": "2544caba536855d7bb0be21a9d3089f705099ea2a9c0d10084102b8b4abc567b",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "8da820c8f32f0d268a45c39b7ebbe4f2f2fd5f4faca09e0761062c8a98050932"
+      }
+    },
+    "software-development/bridge-migration": {
+      "bundleHash": "3396fa09c80f20e9f163674f9686aa77c6f95b407e928d80e90eed2952b9c2b1",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "5637d743ea0b31e859ea998904e121d91e663ea027ef7825d3d6d653b05e19d1",
+        "references/mc-bridge-opsi-c-2026-09-07.md": "78cf92b6f567e27a9640f24fe0799001db95e18a55481e1c028088c9e5c91b7c",
+        "references/mission-control-bridge-migration.md": "b6b0830e7719e96bc3405e928e652ccdfcf80f0f62b6b3e9e6c51a4f690d5362"
+      }
+    },
+    "software-development/cc-acehtengah-ops": {
+      "bundleHash": "65edd9f3dd1a9ff54275622d3a081c004abb4081e651f7f3d996e494b9a311d2",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "a05ccf1124a8df44641dd80961b6dc68a3c02893c99edd93dce48e70a36e0514",
+        "references/bapokting-deterministic-query-2026-08-31.md": "b25d897d39ea878109689e50aa7f6a1fe87254f98d78fe8ebc359fd9e24fd7af",
+        "references/bapokting-historical-data-verification-2026-08-31.md": "4c9386c42a9a7546160fa0a29f1c3cf27cb47e4ceb58f53b46088594fcc62860",
+        "references/breakdown-explorer-deterministic.md": "abe004235d6758b78e457bff31a4c33c271325c422e024c5775ff5ad1eebf92a",
+        "references/breakdown-individu-login-ux-2026-08-29.md": "0c05d6b116662e8841a26f809b441648da962a8db650f65e0d876dda0bf83c5d",
+        "references/deltas-2026-08-29-branch-root-localdev.md": "03f5a6ac54ba67cd9a9e905e272cd31e3c06ebeb0bf5a0399e8156b1e4260aa4",
+        "references/dtsen-bappeda-import.md": "e5aa7cbee5d6f4317c13841b6582ba151cc44ad068a7888c1676b8967dd28e25",
+        "references/dtsen-root-encrypted-identity-2026-08-29.md": "939fdf087c499a6a5fd624edecc1d5e9047e3e1e8017e0ef99422a78a655cdb2",
+        "references/dtsen-v2-import-fixes.md": "adfc9ffa5741b253ef122d10c322d9400bc06bd92171660c8316b8e6ecd0790a",
+        "references/executive-ui-breakdown-pitfall-2026-08-30.md": "2ead1a9d4561cadb26d95bc65f2b2932e5a2960b4643f943ee75e896d70fe0d8",
+        "references/lost-feature-probe.md": "27000eb69cc0be3874c28f5efa26cc807eb0494c0d5009b6c9959b806bbb2819",
+        "references/merge-hotfix-to-v3-recipe.md": "6cee54e611b48f8b96aeeb839ffc590429642388eea687a83cf8db4b2145de52",
+        "references/merge-rename-pitfall-2026-08-30.md": "fc2b1085020b46f82da491a57d96edeb0c02b268ac6d9da066ecae084c4dbf54",
+        "references/querybar-v2-v3-merge-2026-08-30.md": "a66f66a29656d43a441b54e95c5739c7e661485da4ec7ed9b09e107d3243dbd9",
+        "references/question-router-wp2-2026-08-31.md": "96ba90ff14d5f4361453f8f0a61c4617c1ae2e43d3bda586e57bd8eb3986364c",
+        "references/status-page-roles-format-2026-08-29.md": "f4edebf1fcc41c2a909c055c15eecf1833bb53966a407c94e7b511a655e936c9",
+        "references/wp7-statistics-wiring-2026-09-01.md": "00d84cc60b8421c5c3b06e7827c2d3b7c76a93eeb2477321230cfc00fae57adc",
+        "references/wp7-wiring-verification-2026-09-01.md": "02f305ddc269d9f2aac1059ff753d695d4dc292f0395852cb993b51181ad0048"
+      }
+    },
+    "software-development/compliance-checklist-dashboard": {
+      "bundleHash": "d3e4f62b9c2325858f8fec54011c699aef4338c39c7687d07ec9159683830b3b",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "b5f481100bb093081bcdadbf0ecf7300e234deaff9f5753b07ac7495eac58408",
+        "references/document-mapping-pattern.md": "73d1c76667302c8fc2fd7e7eae6f7b52e92cab81b666a2d92448095a8f071c26",
+        "references/pemdi-data-structure.md": "2a3cb447d0cc46f258af4e0de9a7b7b829fd68c2ced383db55e1659e1ddc1a12"
+      }
+    },
+    "software-development/delegated-output-verification": {
+      "bundleHash": "7f66b727158d63d8ed1887e5c6f7f655eb16c0e6e1a190da7c86b7c04fb4f045",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "2b41c9991104ed2d86709abd8e1e2ade9396a843ae29ef6387331ae84d25715b",
+        "references/rebuild-gutted-dashboard.md": "0c091ed37796287a49f5edee71ec92eaa1f7c75163e31cf1a2be7aaa44111a33"
+      }
+    },
+    "software-development/document-content-pipeline": {
+      "bundleHash": "a08c96af46f410d4360f557ee0e34f8d8913d58128d4916b32f648308e0bac6c",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "6b5b798ce425d08d599e94f9db0e4f7ae9ca5f4215a8276780b96b0b5e91503a",
+        "references/agents-md-migration-case-study.md": "649cc236b43ef50467b2731e7f63f3e21e81912ec7c8b1fb5587476ade08957c",
+        "references/agents-md-migration-quickref.md": "76a4d6254f78d2ef61d2243393bfec1b15bb54c0b3bd1b959642b625c63d31d2",
+        "references/cleanup-build-scripts-reference.md": "33025029913ace92b8853e8039b938ed9f3f98fe84e5f00580c06ac56ab80dda",
+        "references/cleanup-build-scripts.md": "0fef86734ef9096b8fc89c8ee0b4707638d2736bf87fe54348e3e24ec3aa0432",
+        "references/modul-indikator-website-pattern.md": "e258983887e150dfc20731812f5085f2d5af53b11e4bce3a01e74d09c8cf645e",
+        "references/odl-pdf-setup.md": "8cbe4b9a1bd629a4c5fb222ab396a2c91ef22a73a33f61b804d022c0328ecc0f",
+        "references/pemdi-evaluation-evidence-audit.md": "55b919a3c7a7b5cfd06c18129b1eeaeb40b7a27429b206dce0e700fb4a4fc6f0",
+        "references/stow-symlink-fix.md": "0ca06617a4d6ce821889782a3416e9b3f38a239ca28cd8dc63bbbca3c8d9fa8f"
+      }
+    },
+    "software-development/fastapi-python": {
+      "bundleHash": "fbc07263c64b7e5d0a17eb713cb9c9f6a11f6b2e5a3275a3ea7f8a6908aa1091",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "0bc1cea9250ac9fb7dbc13ae1dae936327047eb60a2162f06cc6fda37c085291"
+      }
+    },
+    "software-development/fastapi-templates": {
+      "bundleHash": "bd679f471435239fd38dd372178c76641cf024e843c5ed4357d29dfbee7861eb",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "aa9849ae150d536a8021274155399ba009b381db1fbb96dc104b6215a355568c"
+      }
+    },
+    "software-development/finishing-a-development-branch": {
+      "bundleHash": "185185252bd53cafa757fcb133ca509e7181a16ec02b3346a09f01140fab41f4",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "284d73bf734a76b97f7664ca604b30050b175fa5d67a40cf799fdd0a9122db2f"
+      }
+    },
+    "software-development/flask-api-development": {
+      "bundleHash": "da18d25ac20859fc2ebaa2def9bc524d328bbe89244bb9b72687c836fb7aa616",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "0664711002de5c2f7e93764ba77e90c90dce94967fa9b22ba41d1132ee5fcc8c",
+        "references/application-factory-and-configuration.md": "557880ad869a4e4348e0cbf084acaf38d995e898e10cbecd2cbe1792cfebd5da",
+        "references/authentication-and-jwt.md": "de96ec4ae42fcf7a472150a8cfbd5aba824e347d071ec34b0b528412ee2ac143",
+        "references/blueprints-for-modular-api-design.md": "acfd38f1e70a9979e3b3909bde5f406f3afb680396ec0f8ec6dd1112cc77221b",
+        "references/database-models-with-sqlalchemy.md": "6c1f8cfd30acd7bffa505678b6db09e33cd8fc5cf4651dae97e954a5803d0262",
+        "references/flask-application-setup.md": "7fdce8c465c605a78b73e00b738d80f11cd20f970631f0c100dbfa429839b01e",
+        "references/request-validation.md": "c820ef443f0efd7e373bda5da3038f10f50a1cb90615c434c098ab6996fa753a"
+      }
+    },
+    "software-development/hermes-desktop-launcher": {
+      "bundleHash": "469b4da1b33d1f066985ff30f6d51c1c921f289ebd396fc11498dcc0852abcaa",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "bdb5fb84d972785dfb029f2942ec4a0de3803e88680582165bb583d28d663a4f",
+        "references/cli-reference.md": "4c3faa1aab9811ad7b90f03a4d7fc485ca9baa02c3745aacd1324725463d1cbf",
+        "references/desktop-build-stamp.json": "ee8dce7cc5ecb21636ddb5d720448648f5e66440295cdd8ea1be31b583a91008",
+        "scripts/launch-hermes.sh": "39458440bb04c587d9b201aaff8db95f97f6a5869c04d82b69cd44c135577839"
+      }
+    },
+    "software-development/hermes-terminal-workflows": {
+      "bundleHash": "aa76897781c2e9a3e063313e52be121d52c0b70474f1ad76e6251d635bc46c86",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "21f242e60d829f6cdafb5b291567b4221b50a7bb9a7bf1a3d48e4486e142e28d"
+      }
+    },
+    "software-development/hermes-zero-defect-architect": {
+      "bundleHash": "56aaec36896a66421e0764244f5475fa46d02beda5cce869f58382ab0f0e6a8a",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "998a24de33c7e8271e1f51efb0a424d89dd5f0e440b06351ba5a46dfb698c08a"
+      }
+    },
+    "software-development/niu-mission-control-ops": {
+      "bundleHash": "0310d2845ca5833490faa5dd2429b63de5750407bc43bc1acd7fbd4b65499b14",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "f26b736747ec591e8a7f2d5b38d3f52d2a3165f46da3ae74d1a0e3d49e17db30",
+        "references/cost-telegram-p1-fix-2026-08-20.md": "7246d5172061c6f712729a8d8212e69f18887d89d7f4502498cacf9c61853719",
+        "references/deploy-p2-fix-2026-08-20.md": "fda37d07e7b1b1d95ff9969cab5cce762c6a8d502aee485c12728beccb07766d",
+        "references/quick-wins-cleanup-2026-08-20.md": "bc7dd27983ac5e2581ef2e25d6353a9bf390a6b5f25da7aaf2cb11919a3912b1"
+      }
+    },
+    "software-development/optimization": {
+      "bundleHash": "4c2a02578a52d7b04279da2ffc5d5371ba1336d21d149b3eb27a736e5092b2f2",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "76d6983f48f9f85af35864d244a5c134e421cfc22d678482495ca5ac9a9ea838"
+      }
+    },
+    "software-development/pemdi-evidence-management": {
+      "bundleHash": "22dad7a0c010c492823a4f381bbab6d7cb008478d29f5f39fd778ec86b4a6c55",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "37a71d97ea1493c31101c9c6a893109488a1e11ff2b0c042da88cb892b345eba",
+        "references/bukti-dokumen-keyword-map.md": "be055f057252de5627b7442d531439600ade5feb74e926a61d65be6ea0719be9",
+        "references/bukti-dukung-pemdi-aceh-tengah.md": "660b573f3f20bab5c5350406c523149392baa904719e950c60181377d044be61",
+        "references/macos-vision-ocr.md": "68b0f0bbcdc0a8962b07e4e92399d79424f2edac4e04c9768c3341d919615a40",
+        "scripts/audit_sync.py": "66d0f504b633c2dbd417f5696666f20e924a7bbb87e424a2016cf9816b3045e1",
+        "scripts/ocr_macos_vision.py": "a964fdc30c99c8ec7bb302691f2844fea7dad74622602eeb4085056e60b9a75c"
+      }
+    },
+    "software-development/pemdi-uiux-refinement": {
+      "bundleHash": "c188d4729ed17af1285aa9455ed486f455359facfa7645cc10b3fee783f4a700",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "d0d42dfb53d7f64ab7ec212ae4f0a6cf1e89b28d72e9abba5a18d4a1754cfede"
+      }
+    },
+    "software-development/plan": {
+      "bundleHash": "6063ac63cd004b4742d8672587b12878abd799304dc9424283e3632cf6105f48",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "7513da40fbbbf899bc94ffdf05921a8187866745e67e2d81a55790b70daca72c"
+      }
+    },
+    "software-development/plan-compliance-audit": {
+      "bundleHash": "606a9789dd99daac1193408575d80716118fd595ce193c6f327991ee0cfe6b93",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "38702d5a2c4e9888e8ccaf3af14b72e6a217863d6dba3b9fbfa50d41a3e5acba",
+        "references/inventory-cross-reference.md": "fa4deed05e55650ad6e899ed9e22192d85d791547dd642f7fe8b144268b168c1",
+        "references/iterative-audit-loop.md": "b9bf1fbdc9fc8e3539f1a18669049a698318a550b63e8e05359d35cc1e042aa4",
+        "references/org-wide-pr-detection.md": "c9c7c774aa6487d2dd3dce82dcc9115ae98f1dc61eaf5741bcc7ed9e8ec9c6ed",
+        "references/post-implementation-feature-audit.md": "4cd488099e9157b318785df15a6aa9b3725998e31bf70bba257251fcb1aba5c4",
+        "references/real-audit-findings.md": "350713c491c7bb8bba8b3e9b5d6ed70f8920cdbd0481bdb2d262421573937fb6"
+      }
+    },
+    "software-development/ponytail-audit": {
+      "bundleHash": "95ed14577f9b88c5462a1bd5c3529bd27705c92d310bcbe40ebc52a9e8102600",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "5560b8e383dbe2ddfddc873a1e2bf2e586e23e0cd7d995537482b2315331f6d1"
+      }
+    },
+    "software-development/ponytail-core": {
+      "bundleHash": "14ece30d7caaa353fdb33221c52f6035ad18091933746ce02290b866d97634fe",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "d11df477b1a4e807155a7e578b135a4d9c52beef06eb3a44322940c331a06942"
+      }
+    },
+    "software-development/ponytail-debt": {
+      "bundleHash": "e3288ded15ddbb06eaf9d6816db71ef7da70b96813eb6e3b5faffcf51e11f375",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "99bf4eea94802fcf27bbc4bc7755008fec13e4ae12e80d415bdf16fb56c727ff"
+      }
+    },
+    "software-development/ponytail-gain": {
+      "bundleHash": "2e4f8cc9938023e61e997651a913e771c467342060ba93eb915aa1252c82166a",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "24e01d1c9715cb136ba1c4f1e52a95940c0193558b876828e537736480d6408b"
+      }
+    },
+    "software-development/ponytail-help": {
+      "bundleHash": "895e6c845f2a2af283ac283520c1f7008c9d9dd01d07ad0e2988d8e436ffadef",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "23ee3856c727129f87ab850985f9e9ed6368f10449816aa7ff043bf2dd45ab4d"
+      }
+    },
+    "software-development/ponytail-review": {
+      "bundleHash": "acdbaa424b7b8c9b719d24e009d3b7d437a66c0c3a57072984c97c39b5860049",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "9c570e3f99ce5cf4ac4c2ca45b9000e9404b2f5f7abbc7d0d5b697527b1ed539"
+      }
+    },
+    "software-development/positive-verification": {
+      "bundleHash": "ea519132fb2e63b8f92f56a5bd1e7143cfa4dbea025d6cfe0248e77c7fd5c891",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "6da8a19fda4fc92e06baaf4a7657acfa98e861992efa88b002637cbc2fc762a7"
+      }
+    },
+    "software-development/premortem": {
+      "bundleHash": "86d6f0f0f76269d8fc2cdfe123035b788be9f148b60b047f82515b080392a7e3",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "4c1e8ac4dfb85f0df9c035fc26403d1831888b9ebf050662bdf2e4f73840b166"
+      }
+    },
+    "software-development/project-orientation": {
+      "bundleHash": "ee15fcbac0395cc6db38a18ad0b3e0a18a442c9d382b9a242e9c474562ee2889",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "7dfb7935d82b623238724abb668cee0423d6d99e591ae47acf705cac16c4b95f"
+      }
+    },
+    "software-development/python-testing-patterns": {
+      "bundleHash": "2fd0da67d9ae4c7bda24e4b1210095abf78860f9096e7532b7c0357e858e9f96",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "a01102f46c6e7351181a7e0cbeb41d6ea37ce16a3a1527b4a06e40d08cd01970",
+        "references/advanced-patterns.md": "f560ee8b3cffc0fe971e78269bed21dc74f541c2056eae58d34259d9e537176a"
+      }
+    },
+    "software-development/redesign-verification": {
+      "bundleHash": "64b7c7dd6037cda38c0e4a487698ced3990e98853bec5c6284839d7c5c7a77cc",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "90d1b6ef72ba9685a6b9581ca9ef0e4202abcd6b98c9de4d26e5bef1d717b601",
+        "references/mc-v3-redesign-lessons.md": "3a75dca754c76edfbe297520cc1f1e9a027a29545f65ed9ac435c051c93344a2"
+      }
+    },
+    "software-development/repo-release-hygiene": {
+      "bundleHash": "3b896e66c201f9b15f32407fc81d2ebbb235890f74fe7995f3eaa27a5bb50431",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "294442601cf2be6416c2720a1f88552c85cc5ea1d2b7efcd119adb3ce87539df"
+      }
+    },
+    "software-development/requesting-code-review": {
+      "bundleHash": "c7a14169999d4385a290ce26d47b57c4bbad17f46872bf7c87802193a99f729c",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "78f67841ed14e178b98a526d2479e8b64248b26d3e9a42ae4884752594954ecd"
+      }
+    },
+    "software-development/safe-branch-refactor": {
       "bundleHash": "a76ba3cefee7e51f4e4bfa79d02e9f8a34fde514baebb1f733ecb48437ef6f6a",
       "domain": "software-development",
       "files": {
@@ -1214,143 +1509,21 @@
         "references/sapa-ai-refactor-2026-09-02.md": "c5fdfd3ecd710f165c30b0563223863f1c2e95a99f6e371a540ce7073c45efb2"
       }
     },
-    "sapa-ai-ops": {
-      "bundleHash": "a820967fb7c67d1b518c571493d31625253e6278db8e1370f666a2b1c97087f2",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "78bc71811976d29610cdae331e71dccc7ddbe8c84b4b6123ee11f9504e3324a6",
-        "references/arena-patch-stack-2026-09-05.md": "83cd71c0e6dd3d1141835fee02162f2b32fa425e8dc620693de983b48089740b",
-        "references/chip-probe-hygiene-2026-09-03.md": "dc0e359eda3520090e62adeea1899562cd3f8bb4b45a18e825281bd9f59bcc63",
-        "references/executive-lead-2026-09-02.md": "4e59903f577424d576881ee28ab879ebcbf5e06a112398530cae96dedeba4f03",
-        "references/executive-port-splp-2026-09-02.md": "0fd9aa30c6bbce59b99ef684c512ef661b388746ced88e85f15b1fa142db3764",
-        "references/format-selar-opd-port-2026-09-03.md": "ffb7b267d788f74c52a2f4849c190376d02d4fa9bd93e4ed2f67ec27e26d9d76",
-        "references/grounding-maximal-2026-09-02.md": "8a751eb6ee637bc0c8888ec80c11309cf55c9c1d712487851e22d2e524954c0f",
-        "references/isr-4a-stable-2026-09-04.md": "9e60a67f50672c2d2593175365ea4dad7eccc428497a8c26153356a49cb269ab",
-        "references/isr-4b-propagasi-2026-09-04.md": "cf759a7152735d21dca3c64b29486bb8e1a224b9925356145dd095bdcb927a25",
-        "references/kpi-curation-2026-09-02.md": "d591bdb1e1e3ef5309f0a841e8b937336578e9122722e3dc720b69003ef2969b",
-        "references/perf-audit-react-next-cache-2026-09-03.md": "f5c157042c491d37273bf0995cbd282a247fa600e7bebf9856ee126a5340e479",
-        "references/rebrand-cc-to-sapa-ai-2026-09-03.md": "c621ed9782399b396dfded3d59489fb8649b3649473fcbfae8d1307358340d6f",
-        "references/recharts-dynamic-2026-09-03.md": "de4480eabb7b53e06da2715932ddc162505b50703f6c19ccb90f793eaafd80ee",
-        "references/rekons-4stage-pipeline-2026-09-02.md": "cfcfc8c2c1b73b1ab3d2e0eea97a468411a64cddff9cebf11b2007a5ff9a6f2f",
-        "references/render-topic-gating-2026-09-03.md": "34e1f517fa20d5395cac6a6f4aec99c3fb10d56b5fa348d30293ea70636b8a20",
-        "references/rsc-analytics-pilot-2026-09-04.md": "5b893673dc7f30b5e5a8b51490bfa723c5da5af668b374e47ea8f1eb0a1eb835",
-        "references/rsc-dashboard-kpi-2026-09-04.md": "fe13deecee1dc48a23f00c96ac0715ae6e7fe21d54654d285633b03337999c43",
-        "references/selaras-opd-status-rebrand-perf-2026-09-03.md": "94910d90de5c32799b3c848697300f980e237fea322a3670116005db4793a06d",
-        "references/shadow-eval-real-model-2026-09-05.md": "8278da267932db7f5c18aa27c16e05ef414dda5b39c7677517cec19a7198624b",
-        "references/ui-hardening-2026-09-03.md": "7a079d05e989427d5cf1ecffc07df7e1d74b0fa5346f3f061b2e750a11e895e5"
-      }
-    },
-    "second-brain": {
-      "bundleHash": "4265206bdbdcb8c468202e2a9d855255283a01ae19e0ffd3cbb55fcf0516b252",
-      "domain": "note-taking",
-      "files": {
-        "SKILL.md": "458d8938e32fd4545dafb0a7544a7fe6699946b4357a8ced807421c3e3ea247f"
-      }
-    },
-    "seo": {
-      "bundleHash": "bd94b55e4b3dd4a9f555cc0eee5cc54623e6d3b70c6b7f0a6a06e7dfc724dd32",
-      "domain": "design",
-      "files": {
-        "SKILL.md": "a65b8654017fc03ceddddf24bb4b98e3effcf8ea6ad22dd6f125d7ac039935a3"
-      }
-    },
-    "session-librarian": {
-      "bundleHash": "6239c29ba9be7854642ea01b61bc31542dd01fb3ee76c8b91bb5c8796baf96a8",
-      "domain": "productivity",
-      "files": {
-        "SKILL.md": "9da2d0ba82b771ae83560965ffaa910db01e76bba8c1d914133a0d8c6957f2ba"
-      }
-    },
-    "simplify-code": {
+    "software-development/simplify-code": {
       "bundleHash": "1f1beb133d3ef2294d1e993b4e31cba4f7752589e02e602cac39217442c5eda9",
       "domain": "software-development",
       "files": {
         "SKILL.md": "c259970bff23997a9b395f514af12723e33218fca97f529b5e0fa914ac72660e"
       }
     },
-    "sketch": {
-      "bundleHash": "17b56179e42687ec2af7291efa026f33b09facc81a12405f6488d2c5c1bc74a5",
-      "domain": "creative",
-      "files": {
-        "SKILL.md": "c9472691dbd91b31710d9ace3d05a81a5cedcf524a1707f8b3e410b27ed0a243"
-      }
-    },
-    "skill-bank-integrity": {
-      "bundleHash": "57525d80274a8b3ba4e86c19d564e84a1e900107b3bdc9429353911fc95c7f4c",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "3441de22f0be0230635539983620e21a8b2e9092f8dd8ccffd698feb828eb41f",
-        "references/autoskills-patterns.md": "8b9c362c22b5c38f31079616d74e32f51f5ec643b9be1b08a4f57f3ba2e06eb9"
-      }
-    },
-    "skill-bank-maintenance": {
-      "bundleHash": "035cb1c906489e3e2f830ea8c4ec87416347e270e3dfd43306eb1d9c1db194a8",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "4a1dc864fee4c6cb83d4842dfaa3162151799d9877ace48ee9073dafd52317c5"
-      }
-    },
-    "skill-bank-management": {
-      "bundleHash": "6b585b3cdcd8204afac93e041e9563bca9eea4200023602dc25ea52028008a35",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "a6f4e04caa1dcb749363f56321bafae913d63f5da6693ccfbe6de52462e8b006",
-        "references/adopt-external-skill.md": "2dca01c269cc3dd11ecf6d66f31159468d58fb8edb370649839e426a7358f2ec"
-      }
-    },
-    "skill-bank-operations": {
-      "bundleHash": "1039d52eadc39da3e67fa383f7eb5392bcecd6038713383718263b9beffb08cd",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "2310d0358a7cdecb56e55529c0f5cf17f9ff99c653a46ecc1d1cef71f75f6e02",
-        "references/autoskills-patterns.md": "f7e805e9ef05d1bd18b14be03c4534b24dc4f2cdff81972acc97ea227017a048",
-        "references/cases-2026-08.md": "a87f0a8f980145dbf119480097f3e851f49c1976c100a9497764f1e023e97b85"
-      }
-    },
-    "skill-bank-ops": {
-      "bundleHash": "9596fc90a7471fe1a73d51db9542a0207e2c18f908f07dfca0e8da50ef51f0b2",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "4ee54b050574e9970bf93a80f5186d2da694337078c80c0c2692100d8c1b3469",
-        "references/skill-bank-manifest-sync.md": "ed73748fe07bd9718d8c2493742dfc1e0cad006dd474be4d6e469d16c1e7714a"
-      }
-    },
-    "skill-bank-sync": {
-      "bundleHash": "ef0a59841117c2bfdb6c3656bc3c8b59790800aef71d13b38009792fa532a3f2",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "2d9e7b63410714219afaa7bfadb9f27b17dba5715949e2bc1c1cccbd054a2a97",
-        "references/home-pruning-f4-2026-08-20.md": "245cf99bb02a59a5a73ce617c11363db7754ba061d4b22a4be10eed736989bd9",
-        "scripts/check-rtk.sh": "0b3065e58ace02078848b7141ffb08ee2a86333121ec1222f3ab3d6b2696c4b3"
-      }
-    },
-    "skp-e-kinerja": {
-      "bundleHash": "ed3202077b4dd00d94e1bb4f90d983ce3278c39de25d8f1e2d8849fe0ea2237d",
-      "domain": "productivity",
-      "files": {
-        "SKILL.md": "ac02002ca5995289579b9d3a794665ba3eb8ac48aeea8e28b87fd7d78b16867e",
-        "references/activity-extraction-rules.md": "2f91f3682ec148894004453e3dd47d3814c00823e494f68e1ac1509bbe687abc",
-        "references/evidence-standards.md": "908d167d9563fdb8c28db0b9e3020a76d1c645994ce8dcd823507326eecdd133",
-        "references/skp-draft-jul-aug-2026.md": "1dcfa40ce52d4b9c5b1442d027aab53613b77b2aecb24b129eec4ff3e8928b34"
-      }
-    },
-    "snapshot-verification": {
-      "bundleHash": "7ec14fb6c2414c4d1a52e5b1e23f4913731396834a2f849d1ec35d4a0120927f",
-      "domain": "devops",
-      "files": {
-        "SKILL.md": "ece4a6e3b3d5de4ff56d70f3b2cc51aca6c08d73d49d24a9d286c361e0e71922",
-        "scripts/verify_landing_links.py": "6bdc00b550a862199f966ff5e4d6755d807743f726cd68f89680780be61024b8",
-        "scripts/verify_snapshot.py": "cc10fcbe0d326da0b405d2517969e8d54896e1e80aee630ad250e258096fa5a4"
-      }
-    },
-    "subagent-driven-development": {
+    "software-development/subagent-driven-development": {
       "bundleHash": "17df06a759a691a917ece5a110579321782fb9380022bfddbaae1a7d5a34fb0d",
       "domain": "software-development",
       "files": {
         "SKILL.md": "d2c5059ef726e48543385b4fe71e20842edb9b2f38d1b8d46635f7c15224e3b4"
       }
     },
-    "surgical-refactor": {
+    "software-development/surgical-refactor": {
       "bundleHash": "533d18c49f28cd5a1bf9c58cbed49e84a4f665f4242780d88bc3985fc3f4009e",
       "domain": "software-development",
       "files": {
@@ -1358,7 +1531,7 @@
         "references/sapa-ai-refactor-notes.md": "aa79dd9414f2279e7f8f3cb7fcdbc32f0cf33e5766abd23dc95011a505498c59"
       }
     },
-    "swift-cli-development": {
+    "software-development/swift-cli-development": {
       "bundleHash": "00bd13df4eb17069c9af704f36801deb6f7d713d67054daa9a7c121399f73ebc",
       "domain": "software-development",
       "files": {
@@ -1367,126 +1540,42 @@
         "references/swift6-concurrency-errors.md": "7e30c376436366f055b5ab72d3a39cdb12b38ba47bb9fd66203f60fb7010ce11"
       }
     },
-    "systematic-debugging": {
+    "software-development/systematic-debugging": {
       "bundleHash": "b6c837740b8f7043023c1edc9d9ef771a5aadcbd3cca97761d28c9cea420c233",
       "domain": "software-development",
       "files": {
         "SKILL.md": "85757fe973d82af359cfc5497e48057f981462b7f99b53e923a7a3b6665b7d3b"
       }
     },
-    "telegram-router-orchestration": {
-      "bundleHash": "311bdc6633e5289a62517f97b5befdaa0c34297fc337b9bc6b48145a15836d7d",
-      "domain": "autonomous-ai-agents",
-      "files": {
-        "SKILL.md": "6211669d4cfacd6e07bfe8ec9ee3d75b647f3806ada4b05d5d85eadcf4063734"
-      }
-    },
-    "touchdesigner-mcp": {
-      "bundleHash": "fef8124b5ff02d875687a85e8c0f5dcc91d0cf4e6e7cab9691ec21ad77dbb850",
-      "domain": "creative",
-      "files": {
-        "SKILL.md": "925c387c16a3a0752e4670d48ab9bde94f930cd3dd27fe08cefda2e05c0765e9",
-        "references/3d-scene.md": "f0b17b4383333198474da7a58ea8c4063f46f1465f0f1275053c5a538028456b",
-        "references/animation.md": "9c7482f38e86f80a89d0df98db8ec2e99c8227fdceab099667730a1000e14386",
-        "references/audio-reactive.md": "3ea60c5954b4b1b682397a1f6bf85dccfc277354cc6f4e021b4ca68d18b623be",
-        "references/dat-scripting.md": "062ea3608ba9475d1c76bc59d8e4a5f0a0d1dd3a60006e2380e634367f460fe1",
-        "references/external-data.md": "0d7b782cba9a3045bfb67e1a3150588e4889db3fd7938071fa367daf6afaa932",
-        "references/geometry-comp.md": "f86b1e8333419ce23180cc7de06848744c4f3168124918745bfaa10b30479a42",
-        "references/glsl.md": "53809b02394c797615601bfb541a43b14105087d8465d76c604ec24168257f88",
-        "references/layout-compositor.md": "4e6dd1f86f5b85525554e4c33dbfa5f767326ae1eef0855a0aa6257bfb35bdcb",
-        "references/mcp-tools.md": "d702a7353c76711a0797885da87a1adf1fd2640533aa415dab06eb6df6304eb1",
-        "references/midi-osc.md": "1e9c8de828e6eda23425098cd9dd03edabf75d41b24484fca63d3f3b0cced192",
-        "references/network-patterns.md": "fd519867cc2ed9b2de8fd07fcb928b55547f39fa4767bc5d33c3a300b7a17236",
-        "references/operator-tips.md": "24ea49a21d78ddf7f5b40efc13e6a9d2705a6de0a0f40b51f8fac87444efa5f2",
-        "references/operators.md": "ad67bbe2880eb479e0eccabd72f9513939e87ecc6158baf43a7ffe1cc01d719e",
-        "references/panel-ui.md": "3acc029c90a1aab73b969380f96d987d41877dcba382e75d72166ca17a92a32d",
-        "references/particles.md": "066bb5ccb4d396c444651b7e245cbc214810e22b2144cc98316713dea3ee9a8b",
-        "references/pitfalls.md": "288f0da8ca0f1371b9d4bd6253c68f0de9f36c9aa2d89011e6b2eab30c040d0b",
-        "references/postfx.md": "eef5fee9615fa76b9dfcd92fa815157e2a67dead31a78618c4b68565f537e2db",
-        "references/projection-mapping.md": "b5ad7c4cb1c64360dcd1252f9868e4031b7e93eb1a4a726326ea89b84a86ff80",
-        "references/python-api.md": "f898b84a6c2155c39a94ce60865676b9db78aac0147ae6e6d3c9b1b41644f269",
-        "references/replicator.md": "b17907d2fb8a53447d854bb14e00295f37e1afff47693715b817163877e33317",
-        "references/troubleshooting.md": "c01460dd47d2a59ebf6d221d717b7563df1f823ac9b8e574787fe39e12e4e876",
-        "scripts/setup.sh": "173ef326c534751b38677e698f93a4baa76f9ae07bb0d26bec4beba565db45f7"
-      }
-    },
-    "tripwire": {
+    "software-development/tripwire": {
       "bundleHash": "a51bec7842de4735f5b40f11a56397543b6550bd2e6103c409d45e242afd532f",
       "domain": "software-development",
       "files": {
         "SKILL.md": "99938dee2198a9289c21a4a189572a06b1c96a8ed8fe474d72b640db1954e936"
       }
     },
-    "ui-ux-pro-max": {
-      "bundleHash": "79015a3e9bee12d8ad295d81ae668f863368c255a5c2ff757969dc27850e3cb2",
-      "domain": "design",
-      "files": {
-        "SKILL.md": "3e9a7eb7f03f7f53d093145f4b76ee8edb53d8b68cd0bce8d7d943ee382b99a0",
-        "data/charts.csv": "b754c0efffcf54cb889114a9314be1d5af6ceebe65c4c436d713b52018e752c9",
-        "data/colors.csv": "4cc0df2785f340b8bd0ace50bd4068dc13a7c4c6fa4d9d2723271244ce904614",
-        "data/icons.csv": "351fe61ba45b8146c66de6ea7d67297654639d79a94f537b4d0bad570058c28f",
-        "data/landing.csv": "010e1e46db271b94e0af6f18973bea86ddba62feeccd62aeeaa6ed40e2ae2db1",
-        "data/products.csv": "5359e3037dcb84e99c792ea13dd44f5b78ab6a53557afb309cf19140512aaf5b",
-        "data/react-performance.csv": "904c8afcda229629545912dde0e8ac37503757131f0169f80b016f1f58c4fd3f",
-        "data/stacks/astro.csv": "ad18dae3ab6d148d37d144592df80dc1825b6c9e86d9d2d68fdda77434206a37",
-        "data/stacks/flutter.csv": "e470e6bc2bcd8562667cc764d1e1afb0be0a30ca4dc9ec12fa18b19d46f156bd",
-        "data/stacks/html-tailwind.csv": "1f004891dd189f6bc2a7717401e3100244326e7e2f3963a79bf7b2349d85e091",
-        "data/stacks/jetpack-compose.csv": "6c8fd4b0391c342c12b0af15610cd5becbeccaef0bbe8dcfc01d928c3195d93e",
-        "data/stacks/nextjs.csv": "06a8e8c13bd44696c6ebb4cb6c4d8dea440e3de8cce77616512529ed29258f0c",
-        "data/stacks/nuxt-ui.csv": "05d6e74501b2b6a636faed32450622759f49a5bcafad971f5f4e7eba0eb7be71",
-        "data/stacks/nuxtjs.csv": "f7a3f2d9542856d00199f85c6c023b7c284cc698e2e6e12d61afce2edacb24d6",
-        "data/stacks/react-native.csv": "a08ca77fcf6b6d9531982dce465366296013bfcf12d2938ac72ad57cf0c4f085",
-        "data/stacks/react.csv": "b6e3eb0e4c9c01bd00ffb951d5ca224a19d488b4544c75436f48cf92ff12bf45",
-        "data/stacks/shadcn.csv": "395c2e415ef6f48a474acccdc8eb2c7258a6ed751a5037ba171a2d8823e02ded",
-        "data/stacks/svelte.csv": "bc8d158994a8bdf412830a9dd5e5a5534edd2f367a6e50e0ebd4d76f592dfa3f",
-        "data/stacks/swiftui.csv": "e87cb9eee208bb753bdab96d4a261c7f830c4317ee90ec098316b248fc32be85",
-        "data/stacks/vue.csv": "9b793c3f4eec85f77a758c09322f2b62f3b3ca549bb713ccf0849ef885934395",
-        "data/styles.csv": "ad3c3236134d833bda01a2faf31ddeaaa1dbd5005fa430dec571fa91b26e5fea",
-        "data/typography.csv": "64695e05ac335ba534aff396c4ba9241c642f80ea53b424251d2669b71c4772b",
-        "data/ui-reasoning.csv": "58fc52fff69f62709f8c7dd460de6f6693699ea820f24287f3301a427c2b554e",
-        "data/ux-guidelines.csv": "1870ee048f2a2bdd60709f8f7adf7f3b6dcad560bc005c8b2915a8ac8639820d",
-        "data/web-interface.csv": "10bfc24e09a6a15db8309e6ef9b6881e1d4af97dffb7c99418aefb8e30df7d54",
-        "references/dark-nexus-theme-pattern.md": "614d0235752024df1dad49b7b57f4ef4153d6ff361b85dca10b2f66bd3db5c3f",
-        "references/design-code-audit-methodology.md": "bf7eed8cba7572c420e84cf51112affc9b0820cc2b142f88f7bb135f645a812e",
-        "references/japanese-zen-studio-pattern.md": "de29cc7f4c33355e6008d827a530af9058ea211a973230f4b92c486741c34995",
-        "references/jetpack-compose-ui-polish.md": "dc5478ed8ad6277fe9e3493ac214fc8943464fe406eabef251b2cd1339559e7b",
-        "references/retrofit-kanban-dashboard-case-study.md": "86eaf3412586c369f4ca8db3c9eac6dd651eed3dd327e617593adfbb9b0a54c6",
-        "references/theme-color-audit.md": "791d91668528e1ab05b565e12bdbe161b389ef505ce55bf4232bd4f8f69e286c",
-        "scripts/core.py": "5459d1f04eea03dfb913742d0c03edc5065ac67f6227e4807fa87699662588cb",
-        "scripts/design_system.py": "4da1d341f3c7749df51b51db4a543a48a427c3c746eb0e9882a1ab86acf3bb54",
-        "scripts/search.py": "a449e57060ef5134e98e62fd11f6e240153afd68c27dab89cbb72a3ce55f1498",
-        "scripts/uiux-search": "a057e0d8fbd851371bf3f580b2529967ca041916bebedbb8a51de95a9bafd86b"
-      }
-    },
-    "ultrathink": {
+    "software-development/ultrathink": {
       "bundleHash": "c1dd86d94c1c28699f1f3927080eba226070d746bb39113f0b68d484c071654a",
       "domain": "software-development",
       "files": {
         "SKILL.md": "d560d7223263e40999d3f0dabe33706c53c11b4c6e30617f38c97375d191d1ed"
       }
     },
-    "up-eco": {
-      "bundleHash": "16d51eceb4a5dab13223dd2d3bc6880127d6f8c74f8888f5e6964b3fa992bc2b",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "6399d32f99eca92d1aa66be3f6cd27708a50a4b33c4a8892e312c6ad98cbda83"
-      }
-    },
-    "vercel-deploy-check": {
+    "software-development/vercel-deploy-check": {
       "bundleHash": "883250d888a4e4a0b30f167c3d008fbbaa1d9e314c0a4fe11cabd065af221d87",
       "domain": "software-development",
       "files": {
         "SKILL.md": "d881f31e7704e08e3f0096e7a6db22c8ec1b0bc85d368b230efd9d0429e3c95a"
       }
     },
-    "verification-before-completion": {
+    "software-development/verification-before-completion": {
       "bundleHash": "02cda48d9af839432166cfc1bdd9e78060104c02f4d43fbdb3d1b7f9ec98de2e",
       "domain": "software-development",
       "files": {
         "SKILL.md": "6245c092aae5da292770f1c383a20eb080790163e604cdd34998528f0acff5df"
       }
     },
-    "vnc-rfb-debugging": {
+    "software-development/vnc-rfb-debugging": {
       "bundleHash": "7ae573aa1310254aff76427518eee747cd7905114886e0d96ad7146efd4bbe4b",
       "domain": "software-development",
       "files": {
@@ -1495,7 +1584,7 @@
         "references/session-2026-09-03.md": "b83b2e0112c16d3491a09ddc0a9a6190e2f8c4c09b4df1d2d90cb79301593367"
       }
     },
-    "vnc-server-python": {
+    "software-development/vnc-server-python": {
       "bundleHash": "a8c3b00fe5cac0ec4e2330783185592c939f92d0ec01fa031036871de01d025f",
       "domain": "software-development",
       "files": {
@@ -1503,30 +1592,14 @@
         "references/session-2026-09-03.md": "bfdc58bde1fd2c2153190000cb638b5426a7567ee1c91b14ac8bfe0c9420858c"
       }
     },
-    "weathernext-gayo": {
-      "bundleHash": "0c1522b797963f1ac44197a2c3bb6bbc40ca0f8c50b55e1976457064a9c6c5b6",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "b7e50fa937baf717d269f37cd9fe59ffd7da39b2bb2a3b50a90541bb30e0f0b7",
-        "scripts/weathernext_gayo.py": "300dc3117e5774de1e2c32a5099b933b9dc4ca7ec9ecf37863fa7d2b049404f5"
-      }
-    },
-    "web-accessibility-wcag": {
-      "bundleHash": "52210abf1064a1b840044cb4b771f5fefafd51f1a858cfef1e6efa484e56cc14",
-      "domain": "design",
-      "files": {
-        "SKILL.md": "3208507f2699f2ed0fe223559445c074f7980883fe87454da509e6ff75baad21",
-        "scripts/wcag-contrast.py": "f0a050c7dceab4edf90a68c5d08b20d1861b565391f0d532ee7f6d863f4617be"
-      }
-    },
-    "web-dashboard-maintenance": {
+    "software-development/web-dashboard-maintenance": {
       "bundleHash": "5629f43612a7d04043f0d85b762c491d1f9daf4279f05d83631fcf6fed3f7663",
       "domain": "software-development",
       "files": {
         "SKILL.md": "182a890f3b86865dc901ea9bbc279ab0302bd831142aa34b44f49472010ac3cb"
       }
     },
-    "writing-plans": {
+    "software-development/writing-plans": {
       "bundleHash": "38dfaf56b69b65a84fcb7a1920cae61323a5eba1f3b8d41c75aeedf017393532",
       "domain": "software-development",
       "files": {

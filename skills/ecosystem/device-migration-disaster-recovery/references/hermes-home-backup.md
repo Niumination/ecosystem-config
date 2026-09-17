@@ -20,6 +20,10 @@ hand-rolled copy gets wrong:
   matching `hermes-agent` inside `skills/`.
 - On import, runtime files are skipped: `gateway_state.json`, `gateway.pid`, `cron.pid`, `gateway.lock`,
   `processes.json`.
+- Sockets cannot be archived, and the tool says so on every run of a host with the gateway up:
+  `gateway.sock` and `state/gateway.loop-tick.*.sock` are reported as `[Errno 102] Operation not supported on
+  socket`. A socket has no contents, so the archive is complete — read those lines as informational, not as a
+  failed backup, and say so when reporting the run.
 
 Measured on a full Niumination host: **201 MB, 2,565 entries, 560 MB uncompressed, ~60 s**.
 
@@ -82,6 +86,21 @@ sqlite3 state.db "VACUUM INTO 'state-trimmed.db'"   # after dropping tables that
 Decide this while planning. Discovering it on the first push wastes the approval cycle.
 
 ## Restore order for this layer
+
+### The skills layer has two copies — reconcile them by hash, not by whichever count you see
+
+`hermes backup` carries the authored skill tree. That archive is current by construction; the config repo's skill
+bank is hand-maintained and can lag or drift behind it, so the two disagree the moment either side is edited alone.
+
+Treat the archive as the source for the restore and the repo as the long-lived home, then reconcile on purpose:
+hash each skill folder on both sides, copy the new and drifted ones across, verify each folder's hash before = after,
+and only then run the repo's own manifest + sync tooling **as the verifier**. Exclude the application's own built-in
+skills from that copy — they belong to the app, never to the bank.
+
+Do not judge coverage from that tooling. A manifest written for `<domain>/<skill>` cannot see skills sitting at the
+root of the tree or three levels deep, and its sync aborts with no message at all when it meets the first kind —
+so a run can look clean while part of the layer was never verified. Count the tree itself (see the parent skill's
+verification rule) and reconcile both sides by hash.
 
 1. **Key material first** — SSH key + `.ssh/config` + dotfiles repo before anything that clones. The private
    backup repo needs the key it is supposed to contain, so the key also exists outside it (cloud copy / paper).
