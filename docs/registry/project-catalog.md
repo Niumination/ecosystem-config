@@ -101,3 +101,15 @@
 | **TEDEO-Kanban** | `sites/tedeo-kanban/` | Kanban board untuk TEDEO — ✅ Vercel deployed |
 
 ---
+
+### 🛟 Backup & Disaster Recovery
+
+| Projek | Path | Deskripsi | GitHub | Status |
+|--------|------|-----------|--------|--------|
+| **niumination-restore** | `apps/niumination-restore/` 🔒 | Restore penuh (Hermes + kredensial + data ekosistem) ke device baru dari GitHub — 3 lapis terenkripsi, tanpa disk eksternal | `github.com/Niumination/niumination-restore` (privat) | ✅ **Drill macOS 20/20** — Windows/Arch belum divalidasi |
+| **Sisi BUILD DR** | `scripts/dr-restore/` | Membangun snapshot dari device hidup: kredensial, L2 (gitignored), template layanan, L1 Hermes → Release, plus `sync-all.sh` & `drill.sh` | (bagian ekosistem) | 🟢 Aktif |
+| **JHermUSB-portable** | `apps/JHermUSB-portable/` 🔒 | Backup Hermes portable (USB) — jalur alternatif bila jaringan lambat | `github.com/Niumination/JHermUSB-portable` | 🟡 snapshot terakhir 10 Agu 2026 |
+
+**Catatan:** repo restore adalah **snapshot**, bukan sinkronisasi hidup — ia hanya berubah saat `bash scripts/dr-restore/sync-all.sh` dijalankan di device hidup. Mekanisme lengkap: `apps/niumination-restore/docs/UPDATE.md`.
+
+---

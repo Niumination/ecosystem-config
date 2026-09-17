@@ -81,6 +81,7 @@
 │   ├── niu-vermilion/         ← Second Brain — 🟢 Vercel ✅
 │   └── pabrik-aplikasi-gas/   ← Pabrik Aplikasi GAS — Pilot Inventaris Aset TI LIVE (GAS v3) — repo mandiri Niumination/pabrik-aplikasi-gas
 │   └── pi-app-studio-mata/    ← MATA Watchdog di Pi Network — Pi App Studio AI Beta (web/ repo mandiri) 🆕
+│   └── niumination-restore/   ← 🛟 DR: restore penuh (Hermes + kredensial + data ekosistem) ke device baru dari GitHub — privat, macOS drill 20/20 ✅
 │
 ├── services/                  🔧 9 proyek — backend & engines
 │   ├── cc-acehtengah/         ← AI Command Center — Next.js 16

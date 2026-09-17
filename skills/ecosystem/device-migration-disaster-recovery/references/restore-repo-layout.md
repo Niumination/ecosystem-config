@@ -108,3 +108,31 @@ Make the drill a script, not a sequence of remembered commands:
 Budget wall-clock before promising anything: measure throughput against the same host first (a plain HTTPS fetch of a
 similar-sized object is the control). A multi-hundred-MB payload on a slow link is hours, not minutes, and the
 honest conclusion may be to carry the blobs on physical media instead of re-downloading them.
+
+## Keeping the snapshot fresh (the part that decides whether it still works next month)
+
+A restore repo is a **snapshot, not a live sync**. Nothing inside it pulls changes from the machine; it only changes
+when the build side runs. State that plainly in the repo's own docs, because the failure mode is silent and slow: the
+machine keeps changing, the snapshot quietly ages, and the gap is discovered on the day the machine dies.
+
+Structure it so freshness is one command, not a remembered sequence:
+
+- One entry point on the build side (`sync-all.sh`) that runs every layer builder in order, aborts on the first error,
+  commits **selectively** (never `git add -A`), pushes, and prunes old large releases.
+- A `--dry-run` that only checks prerequisites (credentials reachable, token valid, passphrase retrievable) — this is
+  what an unattended run fails on first, and the failure must be loud, never a skipped step.
+- Document **what triggers a refresh** as a concrete list tied to real events: a new API key, a new skill, a new
+  project carrying its own `.env`/keystore/DB, a changed signing key, a config change, plus a weekly floor for when
+  nothing obvious happened. The trigger list is what stops "I added a key three weeks ago" from being a surprise.
+- Prune by policy: large release assets accumulate one full copy per refresh, so keep the last N and delete the rest
+  in the same command that creates them.
+- Name the growth cost honestly in the docs: a binary layer committed to git adds its compressed size to history on
+  **every** refresh, so the shallow clone a new machine performs grows monotonically. Record the number and the
+  escape hatch (move that layer to release assets) even while it is still small.
+- Refresh on demand before any planned migration, and treat "the drill has not been re-run since the last change" as
+  the same as untested.
+
+Prefer a scheduled job on the platform's existing scheduler over a filesystem watcher or a new daemon: the ecosystem
+rule against standing processes exists because every extra watcher competes for RAM and fires on every save. When the
+scheduler reads credentials from a place that non-interactive processes cannot reach (macOS Keychain), the job must
+fail loudly rather than silently skip the layer it could not unlock.
