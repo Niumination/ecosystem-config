@@ -165,6 +165,53 @@ Yang **masih hidup** justru token gh CLI di **keyring** (dipakai hanya oleh sesi
 
 ---
 
+## UJI 6 — Drill restore macOS END-TO-END: SUKSES 100% (skor → 100%)
+
+**Metode:** membangun staging `/tmp/niumination-restore-drill` yang **meniru struktur repo `niumination-restore`** (14 berkas, 211 MB) dari sumber nyata, lalu menjalankan `restore.sh --apply` ke HOME kosong `/tmp/restore-home`. Build repo asli tetap ditahan; ini proof-of-concept terisolasi.
+
+**Isi staging:**
+- `l1-hermes/hermes-backup.zip` — `hermes backup` nyata (203 MB) yang sudah dibuang sampah
+- `credentials/*.age` — SSH key, 9router (auth/jwt/machine-id/db), vault/secrets.zsh, ssh-config (dienkripsi pass drill)
+- `l2-data/ecosystem-ignored.tar.zst.age` — signing keys .jks/.pem + swarm_state.db + placeholder dtsen-raw (non-PII)
+- `scripts/subst-paths.sh` + `allowlist-paths.txt`, `restore.sh`, `verify.sh`
+
+**Urutan yang terbukti benar (jangan ditukar):**
+
+1. **clone_repos** (ekosistem dulu jadi root `$ECO`; dotfiles bersarang di `dotfiles/`) — GH_TOKEN via env
+2. **restore_hermes** (`hermes import --force` → .env, config, skills, 77 sesi) + **SOUL.md symlink** diperbaiki otomatis
+3. **restore_credentials** (dekripsi SSH/9router/vault)
+4. **restore_data** (L2 → signing keys, dtsen-raw, swarm)
+5. **subst_paths** (placeholder → path device)
+6. **verify.sh** — hanya pada `--apply`; kegagalan tetap exit 1
+
+**Hasil verify.sh: `20 lulus, 0 gagal, exit 0`**
+- `~/.hermes`, `config.yaml`, `.env`, `auth.json`, `kanban.db`, `cron/jobs.json`, `memories` ✓
+- `state.db` integrity `ok`, **77 sesi** ✓
+- `SOUL.md` symlink → dotfiles (bukan template bawaan) ✓
+- skill filesystem 148 = manifest 148 ✓
+- signing `ai-organizer-release.jks` + `upload_certificate.pem` ✓
+- `vault/secrets.zsh`, `dtsen-raw`, `~/.ssh/id_ed25519_niumination` ✓
+- `~/.9router/db/data.sqlite` integrity `ok` ✓
+- 0 placeholder di berkas yang disubstitusi ✓
+
+**Lima bug nyata ditemukan & diperbaiki selama drill ini (bukti bahwa drill menangkap yang tidak terlihat dari rencana):**
+
+1. **Urutan `restore.sh` salah** — awalnya credentials sebelum clone; `$ECO/vault/secrets.zsh` membuat `$ECO` tidak kosong sehingga `gh repo clone` ditolak (`git clone` ke dir non-empty). *Fix: clone paling pertama.*
+2. **`subst-paths.sh` salah-gagal** — "0 placeholder = GAGAL" padahal repos klon memang bersih (tidak perlu substitusi). *Fix: 0 placeholder = sukses; verify tetap memastikan target bersih.*
+3. **`verify.sh` error bash** — `local` dipakai di body utama (di luar fungsi) → `local: can only be used in a function`. *Fix: hapus `local` di main body.*
+4. **`verify.sh` false positive** — memindai seluruh `$ECO` untuk `{{HOME}}`; tapi `DR-PLAN-rev3.md`, `DR-DRILL`, `skill cross-os-restore.md` justru **mendokumentasikan konsep placeholder** sebagai teks contoh → 55 file `{{` termasuk binary spell/terminfo + packfiles. *Fix: scan HANYA berkas yang disubstitusi (allowlist) + kredensial, bukan seluruh tree.*
+5. **Exit-code palsu** — `RESTORE_EXIT=0` padahal restore gagal, karena `$?` ditangkap dari `tail` (pipeline). Pada zsh juga `PIPESTATUS` (kapital) tidak terisi — pakai `pipestatus`. *Fix: tangkap exit lewat baris terpisah / `${pipestatus[1]}`.*
+
+**Keputusan desain yang terkonfirmasi:**
+- `.env` Hermes **tidak didekripsi dari .age** — ia sudah dipulihkan via `hermes import` (sumber-tunggal), jadi `env-hermes.age` dilewati dengan catatan.
+- `GH_TOKEN` untuk restore pertama harus dari **env** (device kosong belum punya `.env`) — kunci pasangan di luar repo, sesuai desain anti-mati-lampu.
+
+**Artefak final tersimpan di ekosistem:** `scripts/dr-restore/{restore.sh, verify.sh, subst-paths.sh, allowlist-paths.txt}` (menunggu dipindah ke repo `niumination-restore` saat build disetujui).
+
+**Skor update: macOS = 100%** (drill SUKSES end-to-end). Windows & Arch tetap 0% sampai diuji di device nyata (menyusul).
+
+---
+
 ## TEMUAN BESAR — kredensial mati di `~/.hermes/.env`
 
 Selama uji ini, `gh` mengembalikan **401 Bad credentials** berkali-kali. Penelusuran:
