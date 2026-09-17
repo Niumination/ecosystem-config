@@ -153,6 +153,35 @@ the tool's venv `bin`), then verify every required binary up front with `command
 ones missing — a prerequisite check that costs milliseconds beats discovering it after minutes of work, and it makes
 the failure message actionable instead of a mystery at step 4 of 6.
 
+Measurably prefer the scheduler's own primitives over ad-hoc loops: check the job timeout, how it treats exit codes, and what empty stdout means before relying on it.
+
+## Integrity manifests must hash repository objects, not working-tree files
+
+A checksum manifest built from files on disk breaks on any repository that carries eol attributes: a fresh clone writes
+different bytes than the build machine did (`*.ps1 text eol=crlf` produced exactly this), so a perfectly healthy clone
+is reported corrupt and the restore halts at its own preflight. Hash the **git blob** and compare blob against blob —
+that is immune to line endings, platform, and checkout settings.
+
+- Build the manifest from the **index** (after staging) so it describes what is actually about to ship, not the previous
+  commit.
+- In a git checkout, also fail on **uncommitted local edits**. Otherwise "integrity OK" happily covers a script that was
+  patched on the spot — the exact case the check exists to catch.
+- Keep a fallback comparison for a tree with no `.git` (a tarball download), since the emergency path may never produce
+  a git directory.
+- `tr` needs `LC_ALL=C` whenever it may touch binary files: under a UTF-8 locale it aborts with "Illegal byte sequence"
+  and the resulting hash is wrong while looking plausible.
+
+## Adding a no-git fallback changes assumptions downstream
+
+After introducing a tarball fallback, every later step that assumed `.git` breaks — `git rev-parse HEAD` dies with
+"fatal: not a git repository" *after* the download succeeded, which reads like a fetch failure and is not. Take the
+revision from the API when the directory is not a checkout, and report which path was used so the strength of the
+verification (blob-level vs normalised) is visible rather than implied.
+
+Give the primary clone path a **hard timeout**. Measured here: `git clone` stalled at 0 KB for 30 seconds with the
+process still alive and no error, so "still running" and "stuck forever" look identical from the outside. Two attempts
+plus a fallback is enough; a stalled clone that is retried five times only delays the path that works.
+
 A run that fails partway still leaves side effects: builders that ran before the failure rewrote their encrypted
 outputs in the working tree without committing them. Expect that, re-run the whole sequence after the fix rather than
 committing the partial result, and check `git status` before concluding nothing happened.
