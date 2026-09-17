@@ -79,6 +79,30 @@ repo privat `Niumination/dr-uji-tuntas-<pid>` → commit awal `d8fdb96` → `gh 
 
 ---
 
+## UJI 4 — Paket L2 nyata (data + kredensial) via allowlist
+
+**Metode:** allowlist eksplisit **28 objek → 73 berkas** (kunci signing Android, `.env` 13 proyek, `.vercel/`, DB proyek, `data/dtsen-raw`, `vault/`, kunci SSH) → `tar` → `openssl enc -aes-256-cbc -pbkdf2` → dekripsi → ekstrak ke direktori bersih → **verifikasi hash per berkas** (tanpa menampilkan isi kredensial).
+
+| Tahap | Hasil |
+|---|---|
+| Objek terkumpul | 28 (2 tidak ada → dilewati dengan catatan) |
+| Berkas | **73** · total **71,96 MB** |
+| `tar.gz` | **19,01 MB** |
+| Terenkripsi | **19,01 MB** |
+| Verifikasi hash | **cocok 73/73 · beda 0 · hilang 0** |
+| Integritas DB | `swarm_state.db` → **ok** · `prisma/dev.db` → **ok** |
+| Izin berkas setelah restore | `id_ed25519_niumination` **0o600** · `vault` **0o700** |
+
+**Konsekuensi untuk rencana (menyederhanakan):**
+1. **Paket L2 penuh hanya 19 MB** — jauh di bawah batas 50/100 MB GitHub. Artinya L2 bisa disimpan sebagai **berkas biasa di repo** (terenkripsi), tidak perlu split dan tidak wajib jadi aset Release. Yang tetap butuh Release hanya paket Hermes L1 (116 MB).
+2. **`data/dtsen-raw` 70 MB → ~18 MB terkompresi** — CSV/ZIP memampat baik, jadi dataset besar ternyata tidak mahal.
+3. **Izin berkas (`0600`/`0700`) ikut terjaga** lewat `tar` — syarat keamanan untuk berkas kredensial di device baru terpenuhi tanpa langkah tambahan.
+4. Objek yang tidak ada dilewati **dengan catatan tercetak**, bukan diam — konsisten dengan aturan anti-senyap.
+
+**Catatan ukuran objek kritis:** `ai-organizer-release.jks` 4.434 B · `upload_certificate.pem` 2.016 B — dua berkas ini yang paling mahal nilainya, dan totalnya **6 KB**.
+
+---
+
 ## TEMUAN BESAR — kredensial mati di `~/.hermes/.env`
 
 Selama uji ini, `gh` mengembalikan **401 Bad credentials** berkali-kali. Penelusuran:
