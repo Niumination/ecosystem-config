@@ -107,11 +107,15 @@ grep -E 'terenkripsi|bagian:|Selesai' /tmp/sync-l1.log | sed 's/^/         /'
 
 # ── 5. commit (selektif, hanya berkas milik repo ini) ────────────────────────
 say "5/6 commit di repo restore"
+# pola autoskills #1: manifest SHA-256 dibangun ULANG sebelum commit, agar
+# manifest yang di-push selalu sejalan dengan berkas yang benar-benar dikirim.
+bash "$E/scripts/dr-restore/make-integrity.sh" "$R" | sed 's/^/         /'
 cd "$R"
 # pastikan gate kredensial aktif: commit otomatis TIDAK boleh melewatinya
 git config core.hooksPath .githooks 2>/dev/null || true
 git add credentials l2-data hermes scripts README.md MANIFEST.md RESTORE-PATHS.md \
-        AGENTS.md docs restore.sh verify.sh .gitattributes .gitignore .githooks 2>/dev/null || true
+        AGENTS.md docs restore.sh verify.sh .gitattributes .gitignore .githooks \
+        integrity.sha256 2>/dev/null || true
 if git diff --cached --quiet; then
   say "         tidak ada perubahan berkas — snapshot sudah mutakhir"
 else
