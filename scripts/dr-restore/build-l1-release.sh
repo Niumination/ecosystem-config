@@ -20,19 +20,39 @@ SIZE="45m"          # di bawah batas 100 MB/berkas, menyisakan ruang aman
 TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT
 UPLOAD=true
-[[ "${1:-}" == "--no-upload" ]] && UPLOAD=false
+KEEP_DIR=""
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --no-upload) UPLOAD=false; shift ;;
+    --keep) KEEP_DIR="$2"; shift 2 ;;
+    *) echo "opsi tidak dikenal: $1" >&2; exit 2 ;;
+  esac
+done
 
-# GH_TOKEN: proses non-interaktif TIDAK bisa membaca Keychain macOS, dan
-# lingkungan bisa membawa GH_TOKEN warisan yang sudah basi. Karena itu SELALU
-# ambil dari ~/.hermes/.env (menimpanya), bukan "hanya bila kosong".
-if [[ -f "$HOME/.hermes/.env" ]]; then
-  set -a; . "$HOME/.hermes/.env"; set +a
-  echo "== GH_TOKEN diambil dari ~/.hermes/.env (menimpa nilai warisan)"
+# TMP dibersihkan saat keluar — kecuali diminta disimpan (untuk drill/uji lokal)
+if [[ -n "$KEEP_DIR" ]]; then
+  mkdir -p "$KEEP_DIR"
+  trap 'cp -f "$TMP"/hermes-backup.zip.enc.part-* "$TMP"/SHA256SUMS "$KEEP_DIR"/ 2>/dev/null || true; rm -rf "$TMP"' EXIT
+else
+  trap 'rm -rf "$TMP"' EXIT
 fi
-[[ -n "${GH_TOKEN:-}" ]] || { echo "GAGAL: GH_TOKEN tidak tersedia" >&2; exit 1; }
-if ! _err=$(gh api user 2>&1 >/dev/null); then
-  echo "GAGAL: GH_TOKEN tidak valid — pesan gh: $(printf '%s' "$_err" | head -2 | tr '\n' ' ')" >&2
-  exit 1
+
+# GH_TOKEN hanya perlu untuk MENGUNGGAH — mode --no-upload tidak butuh token.
+# Catatan: proses non-interaktif TIDAK bisa membaca Keychain macOS, dan
+# lingkungan bisa membawa GH_TOKEN warisan yang sudah basi → SELALU ambil dari
+# ~/.hermes/.env (menimpanya), bukan "hanya bila kosong".
+if $UPLOAD; then
+  if [[ -f "$HOME/.hermes/.env" ]]; then
+    set -a; . "$HOME/.hermes/.env"; set +a
+    echo "== GH_TOKEN diambil dari ~/.hermes/.env (menimpa nilai warisan)"
+  fi
+  [[ -n "${GH_TOKEN:-}" ]] || { echo "GAGAL: GH_TOKEN tidak tersedia" >&2; exit 1; }
+  if ! _err=$(gh api user 2>&1 >/dev/null); then
+    echo "GAGAL: GH_TOKEN tidak valid — pesan gh: $(printf '%s' "$_err" | head -2 | tr '\n' ' ')" >&2
+    exit 1
+  fi
+else
+  echo "== mode --no-upload: token tidak diperlukan (artefak disimpan lokal)"
 fi
 
 echo "== 1. hermes backup"
