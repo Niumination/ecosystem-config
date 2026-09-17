@@ -103,6 +103,51 @@ repo privat `Niumination/dr-uji-tuntas-<pid>` → commit awal `d8fdb96` → `gh 
 
 ---
 
+## UJI 5 — Restore ke device yang SUDAH punya Hermes (skenario paling realistis)
+
+**Metode:** HOME palsu disimulasikan sebagai "device baru yang baru saja di-install Hermes" — `config.yaml` bawaan (`model-default-bawaan-fresh-install`), `SOUL.md` bawaan 60 B, dan 1 skill lokal dummy. Lalu `hermes import` dijalankan dari backup nyata (202 MB).
+
+### 5A — TANPA `--force`: ABORT, nol berkas dipulihkan
+
+```
+Warning: Target directory already has Hermes configuration.
+Importing will overwrite existing files with backup contents.
+Continue? [y/N]
+Aborted.   exit=1
+```
+
+Verifikasi sesudahnya: skill tetap **1**, config tetap default, `.env` **HILANG**, `state.db` **HILANG**, `cron/jobs.json` **HILANG**.
+
+**Inilah "Hermes ter-reset ke default" yang nyata:** skrip restore non-interaktif (cron/otomasi) akan **berhenti di prompt** dan meninggalkan device dengan konfigurasi kosong — tanpa error yang mencolok selain `exit=1`.
+
+### 5B — DENGAN `--force`: berhasil
+
+```
+Import complete: 2588 files restored in 10.2s     exit=0
+```
+
+| Pemeriksaan | Hasil |
+|---|---|
+| `.env` | ADA |
+| `state.db` | ADA 247 MB · `PRAGMA integrity_check` → **ok** · **77 sesi** |
+| `cron/jobs.json` | ADA |
+| `memories/` | ADA (4 berkas) |
+| `kanban.db` | ADA |
+| Skill | **203** = 202 dari backup **+ 1 dummy lokal** |
+| `SOUL.md` | **60 B, hash `bdb5aeb67833bca3`** = SOUL bawaan device baru (tidak ditimpa) |
+
+### Lima temuan yang mengubah rencana restore
+
+1. **`--force` wajib untuk restore otomatis.** Tanpa itu, import berhenti di prompt konfirmasi. Karena device baru hampir selalu sudah punya `~/.hermes` hasil instalasi, tabrakan ini **pasti** terjadi — bukan kasus pinggiran.
+2. **`hermes import` itu *merge*, bukan *mirror*.** Berkas lokal yang tidak ada di backup **tetap tinggal** (skill dummy masih ada). Artinya sisa konfigurasi/skill lama dari instalasi bersih tidak dibersihkan → untuk restore yang benar-benar bersih, urutannya: **cadangkan `~/.hermes` lama → hapus → baru import**, bukan import di atasnya.
+3. **`SOUL.md` kembali terbukti tidak ikut** (tidak ada di backup karena symlink → tidak ditimpa) → tetap SOUL bawaan. Ini konfirmasi kedua dari jalur berbeda: perbaikan SOUL.md + verifikasi hash adalah **langkah wajib**, bukan opsional.
+4. **Tidak ada cadangan otomatis** saat penimpaan (yang ditemukan `.bak` justru milik device lama yang ikut backup). Jadi skrip restore **wajib** membuat cadangan sendiri sebelum menimpa.
+5. **Kode hermes-agent & layanan gateway tetap terpisah** — output import menyebut `hermes update` (kode) dan `hermes gateway install` (layanan) sebagai langkah terpisah. Konfirmasi ketiga bahwa langkah 5 & 11 di rencana memang prasyarat independen.
+
+**Catatan tambahan:** `hermes backup` melaporkan dua berkas yang tidak bisa disalin — `gateway.sock` dan `state/gateway.loop-tick.987.sock` (`Errno 102 Operation not supported on socket`). Wajar (socket tidak punya isi), tidak fatal, tetapi terlihat di output — jadi bukan kegagalan tersembunyi.
+
+---
+
 ## TEMUAN BESAR — kredensial mati di `~/.hermes/.env`
 
 Selama uji ini, `gh` mengembalikan **401 Bad credentials** berkali-kali. Penelusuran:
