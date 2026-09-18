@@ -1,7 +1,7 @@
 {
-  "fileCount": 711,
-  "generatedAt": "2026-09-18T16:11:52.970370+00:00",
-  "skillCount": 144,
+  "fileCount": 712,
+  "generatedAt": "2026-09-18T18:40:34.911502+00:00",
+  "skillCount": 145,
   "skills": {
     ".archive/cc-acehtengah-maintain": {
       "bundleHash": "32b5feb59071ca379695444602a07e7efa62598a9e4d25437d60cdef4a8d55aa",
@@ -463,6 +463,13 @@
         "templates/9router-sync.plist": "6aa395c91ea87e6e5ce807d06f8c73a0137257603736b0f77151fa037212eb63",
         "templates/network-wait-launchagent.plist.xml": "65de20059123fc7f4a54780928d6ee93b60d9445526a1702cc3f340707e6fe11",
         "templates/nosleep.plist": "c14bb97527e74220f10b3a8300cabef7ecf5ebe0d1ca071110f7273d2262f99f"
+      }
+    },
+    "devops/production-env-vars": {
+      "bundleHash": "88d881f17b1767d951a10fcdd1d399980ac749f08ccde45f752f244ab5dfa9f4",
+      "domain": "devops",
+      "files": {
+        "SKILL.md": "4d63515324de08f4c61960c3a7eb707a1cc5d259eeae44fe8c8907f998c1c5e5"
       }
     },
     "devops/snapshot-verification": {
