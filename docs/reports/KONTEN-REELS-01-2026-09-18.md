@@ -221,9 +221,24 @@ umumnya memberi akses fal.ai untuk tugas media, dan fal.ai menyediakan banyak mo
 Uji cepat ke fal.ai gagal karena akun terkunci (`403 {"detail":"User is locked. Reason: TOP_UP."}`),
 jadi jalur ini tidak bisa diverifikasi dari Mac ini.
 
-**Kesimpulan:** engine pembuat `vo-manual` MATA **bukan edge-tts, bukan gTTS, bukan Gemini TTS**, dan
-berganti voice per adegan. Yang paling cepat menutup ini: task arena.ai yang menghasilkan
-`audio/vo-manual/` (memuat perintah/audisi voice) — belum tersedia di zip.
+**Dua metrik, hasil sepakat (dua-duanya sudah dikontrol):**
+
+| Metrik | Terdekat dari semua kandidat | Kontrol "identik" |
+|---|---|---|
+| DTW log-mel, 45 voice edge-tts × 2 rate (98 render) | `en-US-BrianMultilingualNeural` **9,99** | 0,117 |
+| Timbre (spektrum mel rata-rata), 45 voice × 2 rate | `en-NZ-MollyNeural` **0,0428** | 0,0000 |
+| Timbre, 25 voice tambahan | `en-US-JennyNeural` **0,0275** | 0,0000 |
+| macOS `say` voice `Damayanti` (id_ID) | **0,1009** (paling jauh dari semua) | 0,0000 |
+
+**Kesimpulan:** engine pembuat `vo-manual` MATA **bukan edge-tts (324 voice tersedia, 45 diuji), bukan
+gTTS, bukan Gemini TTS, bukan macOS `say`**, dan **berganti voice per adegan**. Kandidat yang tidak
+dapat diuji dari Mac ini: fal.ai (akun terkunci `403 … TOP_UP`), Kokoro-82M (paket tidak terpasang),
+dan mesin yang mungkin hanya ada di sandbox arena.ai.
+
+**Jalur yang tersisa (urut biaya):**
+1. Task arena.ai yang menghasilkan `audio/vo-manual/` — satu-satunya cara mereproduksi persis.
+2. Pilih dari audisi timbre (`~/Downloads/niu-konten/audisi2/audisi_timbre_4voice.mp3`) → render ulang.
+3. Pakai reels v2 yang sudah jadi (`…-v2-vo-emma.mp4`) — lapis delivery MATA sudah diterapkan.
 
 ### 9.6 Tindak lanjut
 
