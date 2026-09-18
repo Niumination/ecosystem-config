@@ -32,6 +32,20 @@ Alurnya: hasil dari luar → **konfirmasi ke ekosistem sebelum adopsi besar** �
 
 ---
 
+## 🧠 Bank Skill — Konsolidasi 18 Sep 2026
+
+Enam skill `skill-bank-*` mendokumentasikan prosedur yang sama (manifest SHA-256 + sync seluruh folder + lockfile) dengan trigger nyaris identik → prosedur yang dipakai bergantung urutan load, bukan mana yang benar. Dikonsolidasikan menjadi **satu**: `ecosystem/skill-bank-management` (naik ke v2.0.0).
+
+- Diserap ke dalamnya: `skill-bank-integrity` (10 poin unik), `skill-bank-maintenance` (10), `skill-bank-ops` (3), `skill-bank-operations` (2), `skill-bank-sync` (0 — murni duplikat)
+- Berkas pendukung **dipindah, bukan dibuang**: `autoskills-patterns.md` (gabungan dua versi lama), `cases-2026-08.md`, `skill-bank-manifest-sync.md`, `home-pruning-f4-2026-08-20.md`, `scripts/check-rtk.sh`
+- Dihapus di **dua tempat** (bank + target Hermes) karena sync bersifat non-destruktif — skill yang dihapus dari bank tetap hidup di target bila tidak dibersihkan
+- **Bank: 149 → 144 skill**, 711 berkas · `--check` 0 mismatch · `--verify-target --structure domain` 0 masalah · lockfile 144 = manifest 144
+- `skills/INDEX.md` diperbarui: 5 baris dihapus, counter 121 → 144
+
+**Fakta yang ikut terdokumentasi** (temuan saat verifikasi): target Hermes berisi **bank + skill bawaan Hermes** (±54 skill, author `Hermes Agent`/`Nous Research`/`community` — mis. `apple/*`, `autonomous-ai-agents/codex`). Angka otoritatif "skill kita" adalah isi `manifest.json`, **bukan** jumlah direktori di target. Sinkronisasi sengaja tidak pernah menghapus agar skill bawaan Hermes aman.
+
+---
+
 ## 💤 Pensiun Proyek — 18 Sep 2026
 
 **`JHermUSB-portable` dipensiunkan** (keputusan pemilik). Digantikan oleh `niumination-restore`, yang menyimpan kredensial sebagai ciphertext terenkripsi alih-alih `.env` plaintext.

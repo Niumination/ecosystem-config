@@ -68,12 +68,7 @@
 | `ecosystem/pi-solohost-development` | ecosystem | 7 | Bank Pusat | Build and submit apps to Pi Network SoloHost. |
 | `ecosystem/provider-fallback` | ecosystem | 7 | Bank Pusat | Handle AI provider failures and fallback to working providers |
 | `ecosystem/sapa-ai-ops` | ecosystem | 20 | Bank Pusat | Operate sapa-ai SPLP service. |
-| `ecosystem/skill-bank-integrity` | ecosystem | 2 | Bank Pusat | Jaga integritas & keamanan Skill Bank Niumination — manifest SHA-256, kelengkapan sync (references/scripts/data), audit konten anti prompt-injection, lockfile traceability. Load saat menangani sync-to-agents.sh, manifest skill, audit isi skill, atau mengadopsi pola autoskills (midudev) ke ekosistem. |
-| `ecosystem/skill-bank-maintenance` | ecosystem | 1 | Bank Pusat | Maintain the Niumination Skill Bank — manifest SHA-256 integrity, full-folder sync to agents, drift handling, lockfiles. Use when working with ~/Desktop/Niumination/skills, skill-manifest.py, sync-to-agents.sh, or when up-eco reports skill bank integrity/sync issues. |
-| `ecosystem/skill-bank-management` | ecosystem | 2 | Bank Pusat | Kelola Skill Bank Niumination (single source of truth ~/Desktop/Niumination/skills/) — generate & verifikasi manifest SHA-256, sync seluruh folder skill ke agent target (Hermes/USB) dengan verifikasi hash + lockfile, tangani drift antar target, dan adopsi skill dari registry eksternal (autoskills, GitHub). Gunakan saat ada skill baru masuk bank, sync-to-agents.sh dijalankan/gagal, up-eco melaporkan manifest mismatch, drift file antara bank vs target, atau user minta adopsi skill X. |
-| `ecosystem/skill-bank-operations` | ecosystem | 3 | Bank Pusat | Operate the Niumination Skill Bank — manifest SHA-256 integrity (scripts/skill-manifest.py), full-folder sync to Hermes + USB (sync-to-agents.sh), drift resolution between bank and agent targets, and adoption of third-party skills (from autoskills registry or elsewhere) into the bank. Use when adding/removing skills, verifying sync integrity, resolving [ubah]/[hilang] drift, or adopting external skills. Patterns adopted from autoskills (midudev). |
-| `ecosystem/skill-bank-ops` | ecosystem | 2 | Bank Pusat | Operasi Skill Bank Niumination — manifest SHA-256, sync seluruh folder ke agent, resolve drift bank<->target, adopsi skill eksternal. Use when regenerating skills/manifest.json, verifikasi integritas skill, sync-to-agents.sh error/mismatch, drift USB vs bank, menambah skill baru ke bank (dari autoskills registry atau repo lain), atau up-eco Phase 6 melaporkan manifest mismatch. |
-| `ecosystem/skill-bank-sync` | ecosystem | 3 | Bank Pusat | Maintain the Niumination Skill Bank with integrity verification — manifest SHA-256, full-folder sync to agent targets, drift resolution, and the Hermes HOME-cache path pitfall. Use when sync-to-agents.sh --verify reports GAGAL, when skill-manifest.py --check flags mismatch, when skills look truncated at a target, or when writing scripts that resolve the real user home under Hermes env. |
+| `ecosystem/skill-bank-management` | ecosystem | 7 | Bank Pusat | Kelola Skill Bank Niumination (single source of truth ~/Desktop/Niumination/skills/) — manifest SHA-256, sync seluruh folder ke target Hermes/USB + verifikasi hash + lockfile, tangani drift, adopsi skill pihak ketiga, audit konten skill, hapus/promosi skill, prune bloat. Gunakan saat ada skill baru masuk bank, sync-to-agents.sh dijalankan/gagal, up-eco melaporkan manifest mismatch, drift bank vs target, atau user minta adopsi skill X. Sejak 18 Sep 2026 skill ini menyerap skill-bank-integrity, -maintenance, -operations, -ops, dan -sync (kelimanya dihapus — semua prosedurnya ada di sini). |
 | `ecosystem/up-eco` | ecosystem | 1 | Bank Pusat | Ecosystem status check & sync workflow. Triggered via Telegram /up-eco command. Checks git status, detects unknown/foreign folders, syncs BACKLOG/docs with filesystem, and recommends actions to align local ecosystem with GitHub. |
 | `ecosystem/weathernext-gayo` | ecosystem | 2 | Bank Pusat | Analisis cuaca mikro dan peringatan dini bencana untuk dataran tinggi Gayo (Aceh Tengah) berbasis pipeline WeatherNext / meteorologi resolusi tinggi. Digunakan saat membutuhkan data cuaca presisi, analisis iklim perkebunan kopi Arabika (risiko karat daun, rekomendasi penjemuran), serta mitigasi bencana hidrometeorologi (longsor lereng terjal, luapan Danau Lut Tawar). |
 | `github/github-auth` | github | 3 | Bank Pusat | GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login. |
@@ -153,9 +148,10 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-09-18 22:16:16_
+_Last sync: 2026-09-18 22:28:51_
 
 <!-- SKILL_REGISTRY_END -->
+
 
 
 

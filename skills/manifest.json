@@ -1,7 +1,7 @@
 {
-  "fileCount": 717,
-  "generatedAt": "2026-09-18T15:17:18.760783+00:00",
-  "skillCount": 149,
+  "fileCount": 711,
+  "generatedAt": "2026-09-18T15:28:44.574682+00:00",
+  "skillCount": 144,
   "skills": {
     ".archive/cc-acehtengah-maintain": {
       "bundleHash": "32b5feb59071ca379695444602a07e7efa62598a9e4d25437d60cdef4a8d55aa",
@@ -852,52 +852,16 @@
         "references/ui-hardening-2026-09-03.md": "7a079d05e989427d5cf1ecffc07df7e1d74b0fa5346f3f061b2e750a11e895e5"
       }
     },
-    "ecosystem/skill-bank-integrity": {
-      "bundleHash": "57525d80274a8b3ba4e86c19d564e84a1e900107b3bdc9429353911fc95c7f4c",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "3441de22f0be0230635539983620e21a8b2e9092f8dd8ccffd698feb828eb41f",
-        "references/autoskills-patterns.md": "8b9c362c22b5c38f31079616d74e32f51f5ec643b9be1b08a4f57f3ba2e06eb9"
-      }
-    },
-    "ecosystem/skill-bank-maintenance": {
-      "bundleHash": "035cb1c906489e3e2f830ea8c4ec87416347e270e3dfd43306eb1d9c1db194a8",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "4a1dc864fee4c6cb83d4842dfaa3162151799d9877ace48ee9073dafd52317c5"
-      }
-    },
     "ecosystem/skill-bank-management": {
-      "bundleHash": "6b585b3cdcd8204afac93e041e9563bca9eea4200023602dc25ea52028008a35",
+      "bundleHash": "d9038d048652f05d7cbed8763926956c37ce832da2b9256560e8be767fd58126",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "a6f4e04caa1dcb749363f56321bafae913d63f5da6693ccfbe6de52462e8b006",
-        "references/adopt-external-skill.md": "2dca01c269cc3dd11ecf6d66f31159468d58fb8edb370649839e426a7358f2ec"
-      }
-    },
-    "ecosystem/skill-bank-operations": {
-      "bundleHash": "1039d52eadc39da3e67fa383f7eb5392bcecd6038713383718263b9beffb08cd",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "2310d0358a7cdecb56e55529c0f5cf17f9ff99c653a46ecc1d1cef71f75f6e02",
-        "references/autoskills-patterns.md": "f7e805e9ef05d1bd18b14be03c4534b24dc4f2cdff81972acc97ea227017a048",
-        "references/cases-2026-08.md": "a87f0a8f980145dbf119480097f3e851f49c1976c100a9497764f1e023e97b85"
-      }
-    },
-    "ecosystem/skill-bank-ops": {
-      "bundleHash": "9596fc90a7471fe1a73d51db9542a0207e2c18f908f07dfca0e8da50ef51f0b2",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "4ee54b050574e9970bf93a80f5186d2da694337078c80c0c2692100d8c1b3469",
-        "references/skill-bank-manifest-sync.md": "ed73748fe07bd9718d8c2493742dfc1e0cad006dd474be4d6e469d16c1e7714a"
-      }
-    },
-    "ecosystem/skill-bank-sync": {
-      "bundleHash": "ef0a59841117c2bfdb6c3656bc3c8b59790800aef71d13b38009792fa532a3f2",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "2d9e7b63410714219afaa7bfadb9f27b17dba5715949e2bc1c1cccbd054a2a97",
+        "SKILL.md": "ad359af49d3f33c0f1d0f1da614af247d381c207a6e3301a962a8070ebf92acf",
+        "references/adopt-external-skill.md": "2dca01c269cc3dd11ecf6d66f31159468d58fb8edb370649839e426a7358f2ec",
+        "references/autoskills-patterns.md": "7b4c14732f6874e4a6e7e2896c3845c23867d5f132f93f52af75dd1d1e7dbed8",
+        "references/cases-2026-08.md": "a87f0a8f980145dbf119480097f3e851f49c1976c100a9497764f1e023e97b85",
         "references/home-pruning-f4-2026-08-20.md": "245cf99bb02a59a5a73ce617c11363db7754ba061d4b22a4be10eed736989bd9",
+        "references/skill-bank-manifest-sync.md": "ed73748fe07bd9718d8c2493742dfc1e0cad006dd474be4d6e469d16c1e7714a",
         "scripts/check-rtk.sh": "0b3065e58ace02078848b7141ffb08ee2a86333121ec1222f3ab3d6b2696c4b3"
       }
     },
