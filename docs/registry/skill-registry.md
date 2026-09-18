@@ -30,6 +30,7 @@
 | `devops/gh-pages-build-fix` | devops | 1 | Bank Pusat | Fix GitHub Pages Jekyll checkout failures. |
 | `devops/github-pages-deploy` | devops | 2 | Bank Pusat | Deploy static HTML to GitHub Pages via clean branch. |
 | `devops/macos-launchd-services` | devops | 8 | Bank Pusat | Keep macOS always-on services alive; recover launchd plists. |
+| `devops/production-env-vars` | devops | 1 | Bank Pusat | Use when changing or rotating env vars on a live app (Vercel). Decode pulled values, verify functionally, keep a rollback path. |
 | `devops/snapshot-verification` | devops | 3 | Bank Pusat | Verify static snapshot deployment and content. |
 | `ecosystem/9router-model-mapping` | ecosystem | 1 | Bank Pusat | Configure and maintain 9router model mapping for Hermes — fallback chain, channel overrides, quota-aware model selection |
 | `ecosystem/cc-acehtengah-maintenance` | ecosystem | 3 | Bank Pusat | cc-acehtengah branch reconciliation and UI or role fixes. |
@@ -148,9 +149,11 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-09-18 23:12:08_
+_Last sync: 2026-09-19 01:40:54_
 
 <!-- SKILL_REGISTRY_END -->
+
+
 
 
 
