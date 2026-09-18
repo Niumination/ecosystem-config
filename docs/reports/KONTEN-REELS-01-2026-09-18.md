@@ -266,6 +266,39 @@ edge-tts. Jadi tebakan "Ardi" tidak berlaku untuk VO MATA (Ardi = suara cadangan
 juga menyebut `audio/uji-voice-00.mp3` dan `vo_bebas.py` — **keduanya tidak ada di mesin ini** (sudah
 dicari di `~` dan `/tmp`), jadi bukti reproduksibilitas itu belum bisa diverifikasi.
 
+### 9.7 JAWABAN DEFINITIF (19 Sep 2026) — paket `tts-hermes.zip`
+
+Pemilik menyerahkan `~/Downloads/tts-hermes.zip` (21.769 bita, sha256 `783cb396…c196fa9`) berisi
+`hermes-tts/` (6 berkas): `tts_hermes.py` · `suara.json` · `kamus_pelafalan.json` · `contoh_naskah.txt` ·
+`pasang-hermes-tts.sh` · `INSTRUKSI-TTS-HERMES.md` (320 baris).
+
+**Identitas voice-00 terjawab eksplisit** (`INSTRUKSI-TTS-HERMES.md` §0): voice-00 adalah **"mesin TTS Arena,
+narator pria"** dan **tidak bisa dipanggil dari laptop**. Pengganti terdekat yang bisa dipakai sendiri =
+**`id-ID-ArdiNeural`** via `edge-tts` (gratis, tanpa kunci) — di `suara.json` ia disebut
+*"velvet paling dekat dengan voice-00"*. Jadi tebakan "Ardi" dari pemilik **benar sebagai pengganti**,
+tetapi bukan voice-00 itu sendiri.
+
+**Paket dijalankan & diverifikasi (bukan hanya dibaca):**
+
+| Uji | Hasil |
+|---|---|
+| `--cek` pada `contoh_naskah.txt` | 7 potongan · 10 span · 2 bahasa · **bersih** (tanpa jaringan) |
+| render teks S0 (`--keluar`) | 1 panggilan TTS (batas 200) · `S1.mp3` **44,1 kHz stereo 192 kbps** · 22,23 s · `durations.json` |
+| routing bahasa `<id>` vs `<en>` | f0 **107,0 Hz vs 126,0 Hz** → dua suara berbeda, klaim terbukti |
+| timbre Ardi(−12%/−2 Hz) vs `S0.mp3` (voice-00) | **0,0494** vs kontrol teks-beda 0,0013 → **bukan voice-00**, sesuai klaim dokumen |
+| `~/piper-voices/` | belum ada (model offline belum diunduh) |
+
+**Fitur yang membuat paket ini bernilai (dan tidak ada di skrip reels saya):**
+- **Eja angka otomatis** (`Rp 3.117.360.000` → "tiga miliar seratus tujuh belas juta tiga ratus enam puluh ribu rupiah")
+- **Kamus akronim** 55 entri (SKPD→"es ka pe de", KPK, BPKP, D4→"de empat", IDwebhost) — bisa ditambah tanpa ubah skrip
+- **Tag bahasa** `<en>…</en>` sebaris + blok `@en` → istilah Inggris pakai suara Inggris (Andrew), Indonesia pakai Ardi
+- **Pengaman biaya**: `--maks-panggilan 200`, berkas yang ada dilewati, kunci `.tts.lock`, timeout 60 s, retry maks 2×
+- **Standar keluaran identik** `tts.py` (44,1 kHz stereo 192 kbps, lead 0,60 s, tail 0,80 s, `durations.json`) → langsung bisa masuk `audio/vo-manual/`
+- Tiga mesin: `edge` (gratis) · `piper` (offline penuh) · `azure` (SSML penuh, butuh kunci)
+
+**Catatan berkas acuan:** dokumen §11 menyebut `../audio/uji-voice-00.mp3` — berkas itu **tidak ada di zip ini**
+maupun di mesin (sudah dicari). Jadi A/B terhadap voice-00 asli tetap memakai `S0.mp3`/`R1.mp3` dari paket MATA.
+
 **Jalur yang tersisa (urut biaya):**
 1. Task arena.ai yang menghasilkan `audio/vo-manual/` (atau `audio/uji-voice-00.mp3`) — satu-satunya cara mereproduksi persis.
 2. Pilih dari audisi: `audisi2/ab_voice00_vs_kandidat.mp3` (MATA → Charon → Puck → Ardi) atau `audisi2/audisi_timbre_4voice.mp3` (Jenny/Seraphina/Brian/Emma) → render ulang.
