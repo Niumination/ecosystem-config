@@ -1,6 +1,6 @@
 {
   "fileCount": 711,
-  "generatedAt": "2026-09-18T15:39:16.133870+00:00",
+  "generatedAt": "2026-09-18T16:11:52.970370+00:00",
   "skillCount": 144,
   "skills": {
     ".archive/cc-acehtengah-maintain": {
@@ -932,10 +932,10 @@
       }
     },
     "github/github-repo-management": {
-      "bundleHash": "60faf104dd67ea54a999f7cf379a78a4588810f4d5a47666d32b309167667fa5",
+      "bundleHash": "a3526202a7758096a36e1caffc1f365adca4b23300519d8cdb0a753d20c2dabd",
       "domain": "github",
       "files": {
-        "SKILL.md": "7b528746118c94d2d468f5d805ed3266b16bc97054dde80f57411cbea9ef1d7b",
+        "SKILL.md": "dc4544a5b4a47b6851b21666b38587a3fa3a5e8e00ae8c37ddb3f6dd761f042f",
         "references/github-api-cheatsheet.md": "a9081d4a108b67b4edd3c92c73d823fd1730e37e23be6f069d9bd67dd3b32486"
       }
     },

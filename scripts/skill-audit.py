@@ -79,6 +79,17 @@ ALLOWED_DOMAINS = {
     "juan.web.id", "hcnsec.cn", "aerolink.lat", "router.juan.web.id", "api.hcnsec.cn",
     # komunitas
     "discord.gg", "discord.com",
+    # Dokumentasi & tooling yang lazim dirujuk skill — ditambahkan 18 Sep 2026
+    # setelah audit konten: 126 dari 161 temuan ternyata hanya URL dokumentasi
+    # (cloud/docs/registry comfy.org, jsdelivr, esm.sh, hf.co CLI, dll) sehingga
+    # sinyal aslinya tenggelam. Semua ditambahkan setelah diperiksa manual.
+    "comfy.org", "jsdelivr.net", "esm.sh", "excalidraw.com",
+    "pytorch.org", "pypa.io", "hf.co", "openhue.io", "civitai.com",
+    "comfyworkflows.com", "pretext.cool", "chenglou.me", "404zero.com",
+    "thelicato.io", "ascii.co.uk", "composio.dev", "rustup.rs",
+    "nousresearch.com", "piappengine.com",
+    # URL lokal (dev server / gateway) — bukan tujuan eksfiltrasi
+    "localhost", "127.0.0.1",
     # google & sosial
     "google.com", "gstatic.com", "twitter.com", "linkedin.com",
     # wikipedia/stackoverflow
@@ -125,11 +136,17 @@ def host_allowed(host: str) -> bool:
 ZERO_WIDTH = re.compile(r"[\u200b\u200c\u200d\u200e\u200f\ufeff]")
 
 HTML_COMMENT = re.compile(r"<!--(.*?)-->", re.S)
+# Kata kunci high-signal untuk komentar HTML. Sengaja TIDAK memuat verba generik
+# (run/install/download/curl/wget/execute): komentar dokumentasi biasa memuatnya,
+# dan itu menghasilkan false positive (mis. marker tooling `ascii-guard-ignore`).
 INSTR_KEYWORDS = re.compile(
-    r"\b(ignore|disregard|override|execute|run|install|download|"
-    r"curl|wget|bypass|jailbreak|you are|system prompt|sudo|rm -rf|chmod)\b",
+    r"\b(ignore\s+(all\s+)?(previous|prior|above)|disregard|override|bypass|"
+    r"jailbreak|you\s+are\s+now|system\s+prompt|execute\s+the\s+following|"
+    r"sudo|rm\s+-rf|chmod)\b",
     re.I,
 )
+# Marker tooling (satu token, tanpa spasi) bukan instruksi — mis. `ascii-guard-ignore`
+HTML_MARKER = re.compile(r"^[\w\-:.]+$")
 
 EXFIL_CURL_BASH = re.compile(
     r"\b(curl|wget)\b[^\n|]{0,160}\|\s*(sudo\s+)?(ba|z|fi)?sh\b", re.I
@@ -171,14 +188,22 @@ INJ_YOUARE = re.compile(
 )
 INJ_DISREGARD = re.compile(r"\bdisregard\s+(all\s+)?(previous|prior|above)\b", re.I)
 INJ_OVERRIDE = re.compile(
-    r"\b(override|bypass|ignore)\s+(the\s+)?(system|developer|safety)\b", re.I
+    r"\b(override|bypass|ignore)\s+(the\s+)?(system|developer|safety)\s+"
+    r"(prompt|instruction|message|rule|guardrail)s?\b",
+    re.I,
 )
-INJ_JAILBREAK = re.compile(r"\bjailbreak\b|\bdeveloper\s+mode\b|\bDAN\s+mode\b", re.I)
+# `developer mode` sah di konteks OS/Android (tablet, Developer Options) — bukan
+# jailbreak. Pola jailbreak dibatasi ke istilah yang memang khusus: jailbreak/DAN.
+INJ_JAILBREAK = re.compile(r"\bjailbreak\b|\bDAN\s+mode\b", re.I)
+
+# Baris yang mendokumentasikan tool audit ini sendiri (mis. daftar kategori atau
+# catatan allowlist) menyebut pola seperti `curl|bash` — itu bukan instruksi.
+SELF_REFERENCE = re.compile(r"skill-audit|ALLOWED_DOMAINS", re.I)
 
 # (category, label, regex) — diterapkan per-baris
 LINE_RULES = [
     ("hidden", "zero-width char", ZERO_WIDTH),
-    ("exfil", "curl|bash / wget|sh", EXFIL_CURL_BASH),
+    ("exfil", "curl|bash / wget|sh — verifikasi sumber sebelum dijalankan", EXFIL_CURL_BASH),
     ("exfil", "base64 blob (>200)", BASE64_BLOB),
     ("secret", "token sk-", SECRET_SK),
     ("secret", "secret=/password= literal", SECRET_ASSIGN),
@@ -245,6 +270,9 @@ def scan_skill(skill_dir: Path, domain: str, skill: str):
         # Komentar HTML berisi instruksi
         for m in HTML_COMMENT.finditer(text):
             body = m.group(1)
+            # Marker tooling satu token (mis. `ascii-guard-ignore`) bukan instruksi
+            if HTML_MARKER.match(body.strip()):
+                continue
             if INSTR_KEYWORDS.search(body):
                 line = text.count("\n", 0, m.start()) + 1
                 snippet = re.sub(r"\s+", " ", body).strip()[:120]
@@ -252,8 +280,16 @@ def scan_skill(skill_dir: Path, domain: str, skill: str):
 
         # Pola per-baris
         for lineno, line in enumerate(text.splitlines(), 1):
+            # Baris yang mendokumentasikan tool audit ini sendiri (daftar kategori,
+            # catatan allowlist) menyebut pola seperti `curl|bash` — bukan instruksi.
+            if SELF_REFERENCE.search(line):
+                continue
             for cat, label, rx in LINE_RULES:
                 for m in rx.finditer(line):
+                    # SELF_MOD: panduan authoring skill (write_file / skill_manage)
+                    # adalah instruksi sah, bukan modifikasi senyap SKILL.md
+                    if cat == "self-mod" and re.search(r"write_file|skill_manage", line, re.I):
+                        continue
                     findings.append(_f(domain, skill, rel, lineno, cat, label, line.strip()[:120]))
             # api_key/token assignment — hanya jika value mengandung digit (hindari nama variabel)
             for m in SECRET_APIKEY.finditer(line):

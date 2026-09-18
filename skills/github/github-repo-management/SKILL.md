@@ -310,6 +310,12 @@ gh secret list
 gh secret delete API_KEY
 ```
 
+> ⚠️ **Kunci privat: pakai hanya bila benar-benar perlu.** Baris `gh secret set SSH_KEY < ~/.ssh/id_rsa`
+> mengunggah **kunci privat** ke GitHub Secrets — siapa pun yang bisa membaca secret itu (atau log CI yang
+> membocorkannya) memegang kunci tersebut. Untuk keperluan deploy/CI, **utamakan deploy key** (kunci
+> terpisah, per-repo, tanpa passphrase, dan bisa dicabut) atau token berumur pendek. Kunci utama pemilik
+> (yang juga memberi akses ke repo lain) jangan diunggah ke secret repo apa pun.
+
 **With curl:**
 
 Secrets require encryption with the repo's public key — more involved via API:
