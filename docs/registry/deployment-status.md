@@ -1,3 +1,34 @@
+## Custom Domains (idwebhost.com)
+
+| Domain | Status | Catatan |
+|--------|--------|---------|
+| `niumination.web.id` | ✅ Registered | idwebhost.com — Ecosystem Portal (hub) |
+| `abstract.biz.id` | ✅ Registered | idwebhost.com — Emerging Tech Sandbox |
+
+---
+
+## Domain Allocation Plan
+
+### niumination.web.id — Stable Hub
+
+| Subdomain | Target | Status |
+|-----------|--------|--------|
+| `niumination.web.id` | Landing page (link ke semua proyek) | 🔴 Planned |
+| `mata.niumination.web.id` | MATA Watchdog | ✅ Existing (Cloudflare) |
+| `dash.niumination.web.id` | Deployment status / monitoring | 🔴 Planned |
+| `docs.niumination.web.id` | Dokumentasi ekosistem | 🔴 Planned |
+
+### abstract.biz.id — Experimental Sandbox
+
+| Subdomain | Target | Status |
+|-----------|--------|--------|
+| `abstract.biz.id` | Pi Network App Studio aggregator | 🔴 Planned |
+| `agents.abstract.biz.id` | A2A agent registry / directory | 🔴 Planned |
+| `api.abstract.biz.id` | API gateway (microservices) | 🔴 Planned |
+| `lab.abstract.biz.id` | Playground / experimental UI | 🔴 Planned |
+
+---
+
 ## Deployment Status
 
 ### 🟢 Vercel (4 Live, 1 Down)
