@@ -6,8 +6,9 @@
 
 ### 𝟭. KELAS A: TOOLKIT GRATIS LUAR (Free Tier, Bukan Composio) — DIPINDAH
 
-> Katalog lengkap (9 tool + status verifikasi): `docs/registry/composio-free-tier-tools.md`
+> Katalog lengkap (**10 tool + 1 koreksi**, angka diverifikasi ulang langsung ke halaman resmi 18 Sep 2026): `docs/registry/composio-free-tier-tools.md`
 > Dipindah 2026-09-16 ke satu rumah (One-home rule) — jangan salin tabelnya kembali ke sini.
+> Fakta yang mengubah rencana: Postiz Cloud **tanpa** free plan (self-hosted gratis), Canva Free **tidak** menjadwalkan ke sosial, Pallyy Free **gambar saja** (reels tidak bisa), Ocoya **tidak gratis**.
 
 ### 𝟮. KELAS B: TOOLKIT DALAM COMPOSIO.dev (MCP/API Integrations)
 
@@ -29,9 +30,9 @@
 ## B. Rencana Integrasi ke Hermes Thread (8 Langkah)
 
 ### ✅ Langkah 1: Daftarkan Akun Gratis (One-time)
-- Buat akun **Meta Business Suite** (gratis total)
-- Daftar **Buffer** (free plan: 3 akun)
-- Daftar **Make.com** (free: 1,000 ops/bulan)
+- Buat akun **Meta Business Suite** (gratis total; jendela jadwal FB 20 menit–29 hari)
+- Daftar **Buffer** (free plan: 3 kanal × 10 post terjadwal per kanal)
+- Daftar **Make.com** (free: 1.000 credit/bulan, **maksimum 2 skenario aktif**)
 - (Opsional) Daftar **composio.dev** kalau butuh MCP integrations advanced
 
 ### ✅ Langkah 2: Buat File Integrasi di Docs Ekosistem
@@ -65,16 +66,17 @@
 - Posting: Manual ke Meta Suite / Buffer
 
 **6. Pallyy → Hermes (Scheduling IG)**
-- Aksi: Schedule reels ke IG gratis forever
+- Aksi: Schedule **gambar/carousel** ke IG
+- ⚠️ Free tier **tidak** bisa publikasi video: 1 social set, **15 post terjadwal/bulan, hanya gambar** (diverifikasi 18 Sep 2026). Untuk reels pakai penjadwal native IG, Buffer, atau Postiz self-hosted
 - Integrasi: Buka pallyy.com → hubungkan 1 IG proyek Niumination → setting kalender
 
 **7. Zernio API → Hermes (Layer API)**
-- Fungsi: Unified API buat posting ke 15 platform sekaligus
+- Fungsi: API terpadu untuk social + blogs + ads + messaging (angka "15 platform" lama tidak ditemukan di halaman resmi — jangan dipakai sebagai klaim)
 - Integrasi: Hermes terminal → curl ke Zernio endpoint → post sama sekali
-- Free tier: 2 akun awal, lalu $6→$1/account/bln (graduated)
+- Free tier (diverifikasi 18 Sep 2026): **2 akun pertama gratis tanpa kartu kredit**, lalu $6/akun/bln untuk akun ke-3–10 dan $3/akun untuk 11–100
 
 **8. Google Cloud + BigQuery → Hermes (Analitik)**
-- Simpan data: Performansi reels/karousel ke Cloud Storage → BigQuery free 1TB/bln
+- Simpan data: Performansi reels/karousel ke Cloud Storage → BigQuery free tier **1 TiB query + 10 GiB penyimpanan per bulan** (terverifikasi 18 Sep 2026, `cloud.google.com/bigquery`)
 - Query: SQL buat laporan progress 30-hari, engagement trend, best posting time
 - Input ke: `docs/reports/` & `BACKLOG.md` buat evaluasi
 
@@ -84,7 +86,7 @@
 |---|---|---|
 | Mg 1-3 | Generate 3 reels + setup Meta Business Suite account | Meta Suite, Canva, hyperframes |
 | Mg 4-6 | Setup Buffer account + schedule 3 reel pertama | Buffer, Make.com workflow |
-| Mg 7-9 | Deploy Postiz di VM Cloud + test posting cross-platform | Postiz, Zernio API |
+| Mg 7-9 | Deploy **Postiz self-hosted** di VM Cloud (cloud Postiz tidak punya free plan) + test posting cross-platform | Postiz, Zernio API |
 | Mg 10-12 | Buat Make.com workflow: Sheet → posting otomatis | Make.com, Google Sheets |
 | Mg 13-15 | Integrasi analytics: input BigQuery insights ke Hermes | BigQuery, Google Sheets |
 | Mg 16-18 | Test Pallyy scheduling + cek performa minggu 1 | Pallyy, Meta Suite insights |
@@ -95,7 +97,7 @@
 
 ### ✅ Langkah 5: Catatan Penting
 
-1. **Semua tool free tier bisa jalan tanpa kartu kredit** kecuali kalau butuh upgrade buat volume tinggi.
+1. **Free tier yang diklaim sudah diverifikasi 18 Sep 2026** (kecuali disebut lain). Yang berubah dari asumsi lama: **Ocoya tidak gratis**, **Postiz Cloud tanpa free plan**, **Canva Free tidak menjadwalkan ke sosial**, **Pallyy Free hanya gambar (bukan reels)**, dan **jendela jadwal Meta FB hanya 29 hari**.
 2. **Composio.dev** butuh signup dan API key, tapi kadang free tier ada buat tool tertentu (Buffer, Instagram, TikTok MCP).
 3. **Prioritas awalan:** Mulai dari Meta Business Suite (gratis total) → Buffer (free plan) → Make.com workflow → Postiz self-hosted.
 4. **Tracking wajib:** Semua link post + insights simpan di `docs/reports/` + catat di `BACKLOG.md` per minggu.
