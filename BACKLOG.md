@@ -26,9 +26,11 @@ Alurnya: hasil dari luar → **konfirmasi ke ekosistem sebelum adopsi besar** �
 | Perubahan DB | aditif saja (`CREATE OR REPLACE FUNCTION`), 0 perintah destruktif |
 | Skill vendored `.agents/skills/` + `skills-lock.json` | sesuai pola autoskills; sumber + hash + lisensi tercatat |
 
-**Syarat sebelum merge:** (1) keluarkan 3 dokumen `audit/` dari repo publik (peta kelemahan + pernyataan internal sensitif), (2) perbaiki regresi `.gitignore` (`.data/*.bak-*` → `data/*.bak-*`; 4 berkas backup di disk jadi tidak ter-ignore), (3) `/api/health` berhenti membocorkan `error.message` + nama env ke pemanggil anonim. **Catatan pasca-merge:** jalankan SQL RPC (`bump_rate_limit`, `skm_stats_dimensi` + RLS) di Supabase — sampai itu, rate limit berjalan di jalur cadangan non-atomik.
+**Syarat sebelum merge:** (1) keluarkan 3 dokumen `audit/` dari repo publik (peta kelemahan + pernyataan internal sensitif), (2) perbaiki regresi `.gitignore` (`.data/*.bak-*` → `data/*.bak-*`; 4 berkas backup di disk jadi tidak ter-ignore), (3) `/api/health` berhenti membocorkan `error.message` + nama env ke pemanggil anonim.
 
-**Status: belum di-merge, menunggu keputusan pemilik.**
+**Status: MERGED 18 Sep 2026** sebagai squash `96e018a` (squash dipilih agar commit yang menambahkan `audit/` tidak masuk riwayat `main`; cabang Arena dihapus). Arena mengerjakan ketiganya di cabang (`89f6d4a`); diverifikasi independen: `audit/` 0 entri di cabang & `main`, `.gitignore` membaik, `/api/health` respons generik (detail hanya di `console.error`), 20/20 tes regresi dijalankan sendiri (`node --test`), CI hijau. Tindak lanjut: `ci.yml` menambahkan langkah `npm test` (`c5bdb0a`, dikerjakan pemilik — token GitHub App ditolak GitHub untuk berkas workflow).
+
+**Catatan pasca-merge: SELESAI 18 Sep 2026** — SQL RPC (`bump_rate_limit`, `skm_stats_dimensi`, `rate_limits` + RLS) sudah diterapkan di Supabase (dicek di SQL Editor: 4 fungsi + RLS aktif, counter atomik 1→2). Rate limit kini berjalan di jalur atomik, dan `/api/skm/stats` memakai 1 panggilan RPC. Diverifikasi dari luar: `/api/health` 200 `db:ok`, `/api/skm/stats` 200 terisi, `/api/skm` 200 (view tetap benar setelah ditimpa).
 
 ---
 
