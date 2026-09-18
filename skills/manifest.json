@@ -1,7 +1,7 @@
 {
-  "fileCount": 716,
-  "generatedAt": "2026-09-17T18:38:47.825529+00:00",
-  "skillCount": 148,
+  "fileCount": 717,
+  "generatedAt": "2026-09-18T15:17:18.760783+00:00",
+  "skillCount": 149,
   "skills": {
     ".archive/cc-acehtengah-maintain": {
       "bundleHash": "32b5feb59071ca379695444602a07e7efa62598a9e4d25437d60cdef4a8d55aa",
@@ -626,6 +626,13 @@
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "48fe00620583ada12feb040cc1ca124fe16669993db6c9e3749bd08d1619aad8"
+      }
+    },
+    "ecosystem/external-pr-audit": {
+      "bundleHash": "5b5217991cf7385ba378dd651d5c5c6f2334d7bce6ed065d6f4713f163a4eff5",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "ec60c210436499c5151a175304eddfe52c25d15bf3c14eb31a4c3681c00da339"
       }
     },
     "ecosystem/hermes-agent-skill-authoring": {

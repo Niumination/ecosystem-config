@@ -4,6 +4,34 @@
 
 ---
 
+## 🔄 Alur Kerja Multi-Tempat — 18 Sep 2026
+
+**Klarifikasi pemilik (dikonfirmasi 18 Sep 2026):** ekosistem ini adalah platform utama, tetapi **bukan satu-satunya tempat kerja**. Proyek ekosistem juga dikerjakan di luar (arena.ai, designarena.ai) dan eksperimen berjalan di sandbox terpisah — itu **disengaja** (agar fokus per proyek; pelajaran dari insiden jcode yang merusak internal Mac), **bukan drift**.
+
+Alurnya: hasil dari luar → **konfirmasi ke ekosistem sebelum adopsi besar** → ekosistem memeriksa & melaporkan → keputusan akhir tetap di pemilik. Konflik di masa lalu muncul karena ekosistem memperlakukan pekerjaan luar sebagai anomali; aturan ini menutup celah itu.
+
+- Aturan mengikat ada di `AGENTS.md` → Global Agent Rules: *"Kerja di luar ekosistem & gerbang adopsi"*
+- Prosedur auditnya: skill bank `ecosystem/external-pr-audit`
+- Pola `skills-lock.json` + skill vendored dari registry upstream (Vercel/Anthropic/addyosmani) = **pola autoskills yang sudah diadopsi ekosistem** (lihat `docs/architecture/autoskills-pattern-adoption.md`), bukan hal asing
+
+**Kasus pertama di bawah aturan ini — PR #5 `PemdiAcehTengah`** (245 berkas, `app/arena-ai-coding-agent`), diaudit 18 Sep 2026:
+
+| Pemeriksaan | Hasil |
+|---|---|
+| CI (`lint-build`, Vercel) | hijau — tapi **`npm test` belum dijalankan CI** |
+| Rahasia di seluruh diff (termasuk dokumen baru) | 0 temuan |
+| Import ke 20 komponen yang dihapus | 0 tersisa (bukan fitur hilang) |
+| CSP `connect-src 'self'` | aman — Supabase selalu server-side (diverifikasi via grep) |
+| SEO (`robots.txt`/sitemap dihapus dari repo) | aman — `next-sitemap` + `postbuild` tetap membuatnya |
+| Perubahan DB | aditif saja (`CREATE OR REPLACE FUNCTION`), 0 perintah destruktif |
+| Skill vendored `.agents/skills/` + `skills-lock.json` | sesuai pola autoskills; sumber + hash + lisensi tercatat |
+
+**Syarat sebelum merge:** (1) keluarkan 3 dokumen `audit/` dari repo publik (peta kelemahan + pernyataan internal sensitif), (2) perbaiki regresi `.gitignore` (`.data/*.bak-*` → `data/*.bak-*`; 4 berkas backup di disk jadi tidak ter-ignore), (3) `/api/health` berhenti membocorkan `error.message` + nama env ke pemanggil anonim. **Catatan pasca-merge:** jalankan SQL RPC (`bump_rate_limit`, `skm_stats_dimensi` + RLS) di Supabase — sampai itu, rate limit berjalan di jalur cadangan non-atomik.
+
+**Status: belum di-merge, menunggu keputusan pemilik.**
+
+---
+
 ## 💤 Pensiun Proyek — 18 Sep 2026
 
 **`JHermUSB-portable` dipensiunkan** (keputusan pemilik). Digantikan oleh `niumination-restore`, yang menyimpan kredensial sebagai ciphertext terenkripsi alih-alih `.env` plaintext.
