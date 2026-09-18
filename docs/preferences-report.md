@@ -95,6 +95,13 @@ Tujuan: bahan pembaruan `SOUL.md` agar preferensi tidak hilang waktu.
 - **Eksternal skill references** yang dikirim harus dipelajari + diverifikasi + dilaporkan, dieksekusi hanya setelah instruksi.
 - **UU 27/2022 compliance** adalah prioritas untuk data per-orang.
 
+## 15. Workflow Kerja Multi-Tempat (ekosistem & sandbox luar)
+- Ekosistem `~/Desktop/Niumination` = **platform utama & titik keputusan**, tetapi **bukan satu-satunya tempat kerja**.
+- Proyek ekosistem juga dikerjakan di luar (arena.ai, designarena.ai) dan eksperimen berjalan di sandbox terpisah — disengaja, agar fokus per proyek.
+- Hasil dari luar **tidak pernah masuk langsung**: pemilik konfirmasi dulu ke ekosistem sebelum perubahan besar; ekosistem memeriksa lalu melaporkan, keputusan akhir di pemilik.
+- Agent **tidak boleh** memperlakukan pekerjaan luar sebagai pelanggaran/anomali, dan **tidak mengubah sandbox luar dari ekosistem** tanpa izin.
+- Prosedur audit artefak luar (PR/branch GitHub dari agen/App pihak ketiga): skill `ecosystem/external-pr-audit`.
+
 ---
 
 *Dibuat: 30 Ags 2026 — dari session aktif + skill terdokumen + AGENTS.md + request dumps.*

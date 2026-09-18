@@ -48,6 +48,7 @@
 | `ecosystem/ekosistem-content-verification` | ecosystem | 2 | Bank Pusat | Verify web/JSON content accuracy against source documents (DOCX/XLSX) for Niumination ecosystem projects — extract, compare, report, fix. Covers Pemdi data verification and general content audit patterns. |
 | `ecosystem/ekosistem-scaffold` | ecosystem | 1 | Bank Pusat | Scaffold new or missing projects in the Niumination ecosystem. Creates AGENTS.md + BACKLOG.md + brain/projects/ entry with standardized templates. Validates git, deploy, and DOX completeness. |
 | `ecosystem/external-patch-adoption` | ecosystem | 1 | Bank Pusat | Apply an external patch stack to an ecosystem repo safely. |
+| `ecosystem/external-pr-audit` | ecosystem | 1 | Bank Pusat | Use when an external-agent PR/branch/artifact arrives for an ecosystem repo (Arena/designarena/agen luar lain). Audit before merge — CI truth, rahasia, dampak runtime, import mati, sisa sisi provider — lapor temuan, JANGAN merge tanpa perintah eksplisit pemilik. |
 | `ecosystem/hermes-agent-skill-authoring` | ecosystem | 1 | Bank Pusat | Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles. |
 | `ecosystem/hermes-configuration` | ecosystem | 8 | Bank Pusat | Configure Hermes for Niumination: model mapping, hooks, MCP. |
 | `ecosystem/hermes-gateway-dm-troubleshooting` | ecosystem | 1 | Bank Pusat | Diagnose Hermes gateway errors and Telegram DM delays |
@@ -152,9 +153,10 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-09-18 01:39:22_
+_Last sync: 2026-09-18 22:16:16_
 
 <!-- SKILL_REGISTRY_END -->
+
 
 
 
