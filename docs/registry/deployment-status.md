@@ -185,7 +185,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 
 ### `arena.ai untuk PemdiAcehTengah/`
 - **PROMPT_DEEPSEEK.md** (416 baris) — 12 langkah perbaikan
-- **LAPORAN_AUDIT_PemdiAcehTengah.md** — 4🔴 kritis, 5🟡 tinggi (✅ all fixed)
+- **Laporan audit eksternal** — hasilnya sudah ditindaklanjuti (rincian temuan disimpan di vault lokal, tidak untuk repo publik)
 
 ### 8 Kemampuan Tersimpan
 1. L0-L10 Audit Framework
