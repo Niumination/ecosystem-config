@@ -4,6 +4,18 @@
 
 ---
 
+## 💤 Pensiun Proyek — 18 Sep 2026
+
+**`JHermUSB-portable` dipensiunkan** (keputusan pemilik). Digantikan oleh `niumination-restore`, yang menyimpan kredensial sebagai ciphertext terenkripsi alih-alih `.env` plaintext.
+
+- Repo `Niumination/JHermUSB-portable`: **diarsipkan (read-only)**, tetap privat
+- `config/.env` (20 rahasia nyata) **dikeluarkan dari repo** — commit `d7f5703`; berkas lokal tetap utuh. Nilai lama masih ada di riwayat repo privat
+- Folder lokal dipindah: `apps/JHermUSB-portable/` → `inactive-2026-09/JHermUSB-portable/` (27 MB)
+- Diverifikasi sebelum dipindah: tidak ada skrip/cron/wrapper maupun entri allowlist DR yang merujuk repo ini
+- Temuan sampingan (gate kredensial repo itu): gate **memblokir penghapusan `.env`** (positif palsu yang menghalangi perbaikan) dan punya bug `grep -c … || echo 0` yang menghasilkan nilai `0\n0` sehingga **bisa meloloskan `.env` asli**. Keduanya diperbaiki dan diuji dua arah: `git add -f` berkas `.env` → **diblokir**; penghapusan `.env` → **lolos**.
+
+---
+
 ## 🗂️ Struktur Root Ekosistem — Niumination v4.0 — Aug 26, 2026
 
 ```
