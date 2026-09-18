@@ -164,7 +164,10 @@ if [ ! -d "$BANK_DIR" ]; then
   exit 1
 fi
 
-SKILL_FILES=$(find "$BANK_DIR" -name 'SKILL.md' -not -path '*/.git/*' | sort)
+SKILL_FILES=$(find "$BANK_DIR" -name 'SKILL.md' -not -path '*/.*' | sort)
+# `-not -path '*/.*'` (bukan hanya '*/.git/*'): skill yang diarsipkan di
+# .archive/ tidak boleh ikut terkirim ke agent target — aturan sama dengan
+# up-eco.sh dan skill-manifest.py supaya semua hitungan konsisten.
 SKILL_COUNT=$(echo "$SKILL_FILES" | wc -l | tr -d ' ')
 
 if [ "$SKILL_COUNT" -eq 0 ]; then
@@ -244,6 +247,7 @@ agents = os.path.join(_real_home, 'Desktop', 'Niumination', 'docs', 'registry', 
 # Build registry table
 rows = []
 for root, dirs, files in os.walk(bank):
+    dirs[:] = [d for d in dirs if not d.startswith('.')]  # .git/.archive jangan masuk registry
     if 'SKILL.md' in files:
         sk = os.path.join(root, 'SKILL.md')
         rel = os.path.relpath(sk, bank)  # e.g. software-development/ponytail-core/SKILL.md

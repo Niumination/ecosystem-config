@@ -1,15 +1,8 @@
 {
-  "fileCount": 712,
-  "generatedAt": "2026-09-18T18:40:34.911502+00:00",
-  "skillCount": 145,
+  "fileCount": 711,
+  "generatedAt": "2026-09-18T19:17:55.191833+00:00",
+  "skillCount": 144,
   "skills": {
-    ".archive/cc-acehtengah-maintain": {
-      "bundleHash": "32b5feb59071ca379695444602a07e7efa62598a9e4d25437d60cdef4a8d55aa",
-      "domain": ".archive",
-      "files": {
-        "SKILL.md": "5630ceaeff1b4de20bd8d2a9b4cf06fb9a5854a4db74aea51b2093944ca64c4d"
-      }
-    },
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
       "domain": "autonomous-ai-agents",

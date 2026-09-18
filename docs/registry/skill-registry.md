@@ -3,7 +3,6 @@
 
 | Skill | Domain | File | Source | Description |
 |-------|--------|-----:|--------|-------------|
-| `.archive/cc-acehtengah-maintain` | .archive | 1 | Bank Pusat | Merge hotfix into v3, catch silent merge bugs. |
 | `autonomous-ai-agents/merge-reconciler` | autonomous-ai-agents | 1 | Bank Pusat | Neutral third-party resolution of agent merge conflicts. |
 | `autonomous-ai-agents/telegram-router-orchestration` | autonomous-ai-agents | 1 | Bank Pusat | Mengelola persona, skills, dan model override per-thread Telegram di Hermes Gateway, termasuk integrasi dengan ekosistem Niumination. |
 | `camofox-browser` | camofox-browser | 1 | Bank Pusat | Manage Camofox stealth browser at localhost:9377. |
@@ -149,9 +148,10 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-09-19 01:40:54_
+_Last sync: 2026-09-19 02:18:22_
 
 <!-- SKILL_REGISTRY_END -->
+
 
 
 
