@@ -5,7 +5,7 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 121 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 138 skill)
+> **Hermes Integration:** ✅ Semua 144 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
 > **Status:** 144 ✅ Aktif
 >
@@ -92,6 +92,12 @@
 | **seo** | ✅ Aktif | autoskills (MIT) | 13.9 KB | Technical SEO — meta tags, structured data, sitemap, Lighthouse SEO audits |
 
 ## Domain: Ecosystem
+| **device-migration-disaster-recovery** | ✅ Aktif | Bank Pusat | 23.6 KB | Use when planning backup, restore, or device migration. |
+| **external-pr-audit** | ✅ Aktif | Bank Pusat | 8.2 KB | Use when an external-agent PR/branch/artifact arrives for an ecosystem repo (Arena/designarena/agen luar lain)… |
+| **mata-ops** | ✅ Aktif | Bank Pusat | 5.3 KB | Pull repo MATA dari GitHub & jalankan dashboard lokal :8080. |
+| **model-status-checker** | ✅ Aktif | Bank Pusat | 4.9 KB | Model status checker. 3-tier probe for daily health cron. |
+| **pi-app-studio-development** | ✅ Aktif | Bank Pusat | 8.5 KB | Build Pi Network apps via Pi App Studio or Pi SDK payments. |
+| **pi-network-ecosystem** | ✅ Aktif | Bank Pusat | 5.3 KB | Pi Network — App Studio, Payments, Browser integration. |
 
 | Skill | Status | Source | Ukuran | Deskripsi |
 |-------|:------:|--------|-------:|-----------|
@@ -126,6 +132,12 @@
 |-------|:------:|--------|-----------|
 | **redteam** | ✅ Aktif | Agentpedia + Niumination | 4.0 KB | Adversarial security testing — stress-test plan dari sudut pandang attacker |
 | **git-security-sanitization** | ✅ Aktif | Hermes (dipromosikan) | 3.4 KB | Clean credential/PII leaks and add secret-scanning gates. |
+| **ascii-art** | ✅ Aktif | Bank Pusat | 10.3 KB | ASCII art: pyfiglet, cowsay, boxes, image-to-ascii. |
+| **comfyui** | ✅ Aktif | Bank Pusat | 23.5 KB | Generate images, video, and audio via diffusion workflows. |
+| **excalidraw** | ✅ Aktif | Bank Pusat | 7.1 KB | Hand-drawn Excalidraw JSON diagrams (arch, flow, seq). |
+| **pretext** | ✅ Aktif | Bank Pusat | 13.6 KB | Build creative browser demos with DOM-free text layout. |
+| **sketch** | ✅ Aktif | Bank Pusat | 9.6 KB | Throwaway HTML mockups: 2-3 design variants to compare. |
+| **touchdesigner-mcp** | ✅ Aktif | Bank Pusat | 14.9 KB | Control TouchDesigner via twozero MCP. |
 
 ## Domain: Creative
 
@@ -154,6 +166,10 @@
 | **merge-reconciler** | ✅ Aktif | Hermes (dipromosikan) | 7.4 KB | Neutral third-party resolution of agent merge conflicts. |
 
 ---
+| **containerization-readiness-audit** | ✅ Aktif | Bank Pusat | 4.6 KB | Use when asked which projects need Docker. |
+| **gh-pages-build-fix** | ✅ Aktif | Bank Pusat | 1.7 KB | Fix GitHub Pages Jekyll checkout failures. |
+| **github-pages-deploy** | ✅ Aktif | Bank Pusat | 11.5 KB | Deploy static HTML to GitHub Pages via clean branch. |
+| **snapshot-verification** | ✅ Aktif | Bank Pusat | 7.3 KB | Verify static snapshot deployment and content. |
 
 ## Domain: DevOps
 
@@ -195,6 +211,49 @@
 |-------|:------:|--------|-------:|-----------|
 | **blogwatcher** | ✅ Aktif | Hermes (dipromosikan) | 5.0 KB | Monitor blogs and RSS/Atom feeds via blogwatcher-cli tool. |
 | **research-paper-writing** | ✅ Aktif | Hermes (dipromosikan) | 70.5 KB | Write ML papers for NeurIPS/ICML/ICLR: design→submit. |
+
+---
+
+---
+
+## Domain: Development
+
+Pengembangan aplikasi (bank) — proyek & tooling development.
+
+| Skill | Status | Source | Ukuran | Deskripsi |
+|-------|:------:|--------|-------:|-----------|
+| **pi-app-studio** | ✅ Aktif | Bank Pusat | 6.1 KB | Use when building Pi apps via App Studio. Auth and payments. |
+
+## Domain: MLOps
+
+MLOps & inference — subkategori: `inference/`, `evaluation/`.
+
+| Skill | Status | Source | Ukuran | Deskripsi |
+|-------|:------:|--------|-------:|-----------|
+| **evaluating-llms-harness** | ✅ Aktif | Bank Pusat | 11.9 KB | lm-eval-harness: benchmark LLMs (MMLU, GSM8K, etc.). |
+| **weights-and-biases** | ✅ Aktif | Bank Pusat | 12.4 KB | W&B: log ML experiments, sweeps, model registry, dashboards. |
+| **huggingface-hub** | ✅ Aktif | Bank Pusat | 3.6 KB | HuggingFace hf CLI: search/download/upload models, datasets. |
+| **llama-cpp** | ✅ Aktif | Bank Pusat | 8.7 KB | llama.cpp local GGUF inference + HF Hub model discovery. |
+| **serving-llms-vllm** | ✅ Aktif | Bank Pusat | 9.1 KB | vLLM: high-throughput LLM serving, OpenAI API, quantization. |
+
+## Domain: Smart Home
+
+Otomasi rumah.
+
+| Skill | Status | Source | Ukuran | Deskripsi |
+|-------|:------:|--------|-------:|-----------|
+| **openhue** | ✅ Aktif | Bank Pusat | 2.8 KB | Control Philips Hue lights, scenes, rooms via OpenHue CLI. |
+
+## Domain: Standalone (root bank)
+
+Skill yang tidak berada dalam folder domain (langsung di `skills/`).
+
+| Skill | Status | Source | Ukuran | Deskripsi |
+|-------|:------:|--------|-------:|-----------|
+| **camofox-browser** | ✅ Aktif | Bank Pusat | 6.9 KB | Manage Camofox stealth browser at localhost:9377. |
+| **credential-vault-backup** | ✅ Aktif | Bank Pusat | 4.1 KB | Back up Niumination credentials into a single vault. |
+| **polling-script-management** | ✅ Aktif | Bank Pusat | 2.7 KB | Stop polling script notification spam via debounce. |
+| **repo-zip-overlay** | ✅ Aktif | Bank Pusat | 2.0 KB | Overlay a zip onto a git repo, preserving local config. |
 
 ---
 

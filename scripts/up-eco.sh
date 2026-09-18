@@ -186,6 +186,10 @@ check_backlog_sync() {
     # Skip known non-directory entries
     case "$proj" in
       "TEDEO"|"Niu-Flow"|"ecosystem-config"|"Niumination"|"brain"|Total|Ekosistem|Dirty) continue ;;
+      # Nama berkas/folder DI DALAM proyek bukan nama proyek — mis. baris yang
+      # menulis **`web/`** lalu menyebut URL GitHub, ikut terjaring regex di atas.
+      # Nama proyek tidak pernah memuat '/' maupun backtick.
+      *"/"*|*'`'*) continue ;;
     esac
 
     # Cari di semua subfolder
@@ -508,7 +512,10 @@ check_skill_bank() {
     while IFS= read -r -d '' sk; do
       local rel="${sk#$SKILLS_DIR/}"
       local skill_name
-      skill_name=$(echo "$rel" | cut -d/ -f2)
+      # Nama skill = direktori yang memuat SKILL.md (basename), BUKAN komponen
+      # path ke-2: bank mendukung subkategori (`mlops/inference/llama-cpp`), dan
+      # `cut -d/ -f2` menghasilkan "inference" → false positive "tidak di INDEX".
+      skill_name=$(basename "$(dirname "$rel")")
       if ! grep -qi "\*\*${skill_name}\*\*" "$INDEX_FILE" 2>/dev/null; then
         warn "  '${skill_name}' ada di filesystem tapi TIDAK di INDEX.md"
         rec "→ INDEX.md: tambah baris untuk \`$skill_name\`"
@@ -543,7 +550,9 @@ check_skill_bank() {
   while IFS= read -r -d '' sk; do
     local rel="${sk#$SKILLS_DIR/}"
     local skill_name
-    skill_name=$(echo "$rel" | cut -d/ -f2)
+    # Basename direktori skill — mendukung subkategori (mlops/inference/<skill>).
+    # `cut -d/ -f2` dulu melaporkan "inference" muncul 2x (false positive konflik).
+    skill_name=$(basename "$(dirname "$rel")")
     if grep -q "^${skill_name}|" "$name_check_file" 2>/dev/null; then
       local prev_path
       prev_path=$(grep "^${skill_name}|" "$name_check_file" | cut -d'|' -f2)
