@@ -67,7 +67,6 @@
 ├── README.md                  ← Root overview & maturity pipeline
 │
 ├── apps/                      🏭 16 proyek — deployed, battle-tested
-│   ├── JHermUSB-portable/     ← Backup DR Hermes Portable (21MB+ skills) ✅
 │   ├── niu-lkh/               ← LKH v3.1.1 — 100% Done — Vercel live ✅
 │   ├── PemdiAcehTengah/       ← Portal Pemda — 52 OPD, 70 pages — 🟢 Vercel
 │   ├── ai-file-manager-android/
@@ -123,7 +122,8 @@
 │   ├── niude/
 │   ├── niutui/
 │   ├── x-downloader-backup/
-│   └── zen/
+│   ├── zen/
+│   └── JHermUSB-portable/     ← 💤 dipensiunkan 18 Sep 2026 — digantikan niumination-restore (repo GitHub diarsipkan, read-only)
 │
 ├── vault/                     🔐 RAHASIA — API keys, credentials (chmod 600)
 ├── brain/                     📚 Obsidian vault — knowledge base
