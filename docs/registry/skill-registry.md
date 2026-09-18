@@ -52,7 +52,7 @@
 | `ecosystem/hermes-agent-skill-authoring` | ecosystem | 1 | Bank Pusat | Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles. |
 | `ecosystem/hermes-configuration` | ecosystem | 8 | Bank Pusat | Configure Hermes for Niumination: model mapping, hooks, MCP. |
 | `ecosystem/hermes-gateway-dm-troubleshooting` | ecosystem | 1 | Bank Pusat | Diagnose Hermes gateway errors and Telegram DM delays |
-| `ecosystem/hermes-provider-config` | ecosystem | 12 | Bank Pusat | Understand and manage Hermes Agent model provider configuration. Covers: API-key providers (config.yaml), OAuth2 providers (hermes auth), model_catalog.json, provider status investigation, and cleanup of disabled/broken providers. Use when: configuring new providers, debugging "provider not found" or auth errors, investigating why a provider works in one context but not another, or cleaning up provider config. |
+| `ecosystem/hermes-provider-config` | ecosystem | 13 | Bank Pusat | Understand and manage Hermes Agent model provider configuration. Covers: API-key providers (config.yaml), OAuth2 providers (hermes auth), model_catalog.json, provider status investigation, and cleanup of disabled/broken providers. Use when: configuring new providers, debugging "provider not found" or auth errors, investigating why a provider works in one context but not another, or cleaning up provider config. |
 | `ecosystem/hermes-uiux-technical` | ecosystem | 1 | Bank Pusat | Capability profile UI/UX & technical skills Hermes Agent — intelligent message routing, end-to-end workflow automation, API/multi-agent interoperability, fast NLP & tool-calling, event-driven architecture, conversational UX, micro-interactions, agentic transparency, tone matching. |
 | `ecosystem/integration-verification` | ecosystem | 3 | Bank Pusat | Verify whether external services, APIs, or toolkits are actually connected and working end-to-end. Use when checking Composio, API keys, providers, webhooks, or local gateways. |
 | `ecosystem/kanban-ecosystem-management` | ecosystem | 20 | Bank Pusat | Track Niumination project portfolio via Hermes kanban. Covers: mapping AGENTS.md project catalog → kanban tasks by category/priority, syncing BACKLOG.md, fixing empty-dashboard DB_PATH issues, and the Plan→DOX→Execute workflow for ecosystem-wide kanban updates. |
@@ -68,7 +68,7 @@
 | `ecosystem/pi-solohost-development` | ecosystem | 7 | Bank Pusat | Build and submit apps to Pi Network SoloHost. |
 | `ecosystem/provider-fallback` | ecosystem | 7 | Bank Pusat | Handle AI provider failures and fallback to working providers |
 | `ecosystem/sapa-ai-ops` | ecosystem | 20 | Bank Pusat | Operate sapa-ai SPLP service. |
-| `ecosystem/skill-bank-management` | ecosystem | 7 | Bank Pusat | Kelola Skill Bank Niumination (single source of truth ~/Desktop/Niumination/skills/) — manifest SHA-256, sync seluruh folder ke target Hermes/USB + verifikasi hash + lockfile, tangani drift, adopsi skill pihak ketiga, audit konten skill, hapus/promosi skill, prune bloat. Gunakan saat ada skill baru masuk bank, sync-to-agents.sh dijalankan/gagal, up-eco melaporkan manifest mismatch, drift bank vs target, atau user minta adopsi skill X. Sejak 18 Sep 2026 skill ini menyerap skill-bank-integrity, -maintenance, -operations, -ops, dan -sync (kelimanya dihapus — semua prosedurnya ada di sini). |
+| `ecosystem/skill-bank-management` | ecosystem | 6 | Bank Pusat | Kelola Skill Bank Niumination (single source of truth ~/Desktop/Niumination/skills/) — manifest SHA-256, sync seluruh folder ke target Hermes/USB + verifikasi hash + lockfile, tangani drift, adopsi skill pihak ketiga, audit konten skill, hapus/promosi skill, prune bloat. Gunakan saat ada skill baru masuk bank, sync-to-agents.sh dijalankan/gagal, up-eco melaporkan manifest mismatch, drift bank vs target, atau user minta adopsi skill X. Sejak 18 Sep 2026 skill ini menyerap skill-bank-integrity, -maintenance, -operations, -ops, dan -sync (kelimanya dihapus — semua prosedurnya ada di sini). |
 | `ecosystem/up-eco` | ecosystem | 1 | Bank Pusat | Ecosystem status check & sync workflow. Triggered via Telegram /up-eco command. Checks git status, detects unknown/foreign folders, syncs BACKLOG/docs with filesystem, and recommends actions to align local ecosystem with GitHub. |
 | `ecosystem/weathernext-gayo` | ecosystem | 2 | Bank Pusat | Analisis cuaca mikro dan peringatan dini bencana untuk dataran tinggi Gayo (Aceh Tengah) berbasis pipeline WeatherNext / meteorologi resolusi tinggi. Digunakan saat membutuhkan data cuaca presisi, analisis iklim perkebunan kopi Arabika (risiko karat daun, rekomendasi penjemuran), serta mitigasi bencana hidrometeorologi (longsor lereng terjal, luapan Danau Lut Tawar). |
 | `github/github-auth` | github | 3 | Bank Pusat | GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login. |
@@ -148,9 +148,10 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-09-18 22:28:51_
+_Last sync: 2026-09-18 22:39:22_
 
 <!-- SKILL_REGISTRY_END -->
+
 
 
 

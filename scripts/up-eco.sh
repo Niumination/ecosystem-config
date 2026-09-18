@@ -217,6 +217,13 @@ check_backlog_sync() {
   done < <(grep -E 'github.com/Niumination/' "$NIUMINATION/BACKLOG.md" 2>/dev/null || true)
 
   [ "$issues" -eq 0 ] && pass "BACKLOG.md sinkron dengan filesystem"
+
+  # PENTING (fix 2026-09-18): tanpa `return 0`, pernyataan `[ ... ] && pass` di atas
+  # bernilai false saat ada issue → fungsi mengembalikan 1 → `set -euo pipefail`
+  # MEMATIKAN seluruh script. Akibatnya Phase 5 s/d 12 (GitHub Pages, PR, integritas
+  # bank skill, SOUL drift, sync, Mission Control, MCP, plugin, Composio) tidak pernah
+  # berjalan — tanpa pesan error, jadi terlihat seperti laporan yang normal.
+  return 0
 }
 
 # ── Status GitHub Pages ────────────────────────────────────────────────────
@@ -507,6 +514,26 @@ check_skill_bank() {
         rec "→ INDEX.md: tambah baris untuk \`$skill_name\`"
       fi
     done < <(find "$SKILLS_DIR" -name SKILL.md -type f -not -path '*/\.*' -print0 2>/dev/null || true)
+  fi
+
+  # ── 6b-2: Verifikasi baris COUNTER INDEX.md vs angka otoritatif (manifest)
+  # Baris `> **Status:** N ✅ Aktif` adalah angka manual, terpisah dari tabel.
+  # 6b hanya membandingkan jumlah BARIS TABEL, sehingga counter pernah basi
+  # (tertulis 121 padahal bank berisi 149) tanpa terdeteksi — dicek di sini.
+  # Patokan = skillCount di skills/manifest.json (angka otoritatif; ia memasukkan
+  # skill di dalam folder arsip `.archive/`, yang tidak dihitung scan filesystem).
+  local index_counter manifest_count expected_count
+  index_counter=$(grep -oE '^> \*\*Status:\*\* [0-9]+' "$INDEX_FILE" 2>/dev/null | head -1 | grep -oE '[0-9]+$' || true)
+  manifest_count=$(python3 -c "import json;print(json.load(open('$SKILLS_DIR/manifest.json'))['skillCount'])" 2>/dev/null || true)
+  expected_count="${manifest_count:-$total_skills}"
+  if [ -z "$index_counter" ]; then
+    warn "Baris counter INDEX.md tidak ditemukan (pola: '> **Status:** N ✅ Aktif')"
+    rec "→ Tambahkan baris counter di INDEX.md"
+  elif [ "$index_counter" -eq "$expected_count" ]; then
+    pass "Counter INDEX.md sinkron ($index_counter skill${manifest_count:+ — dari manifest})"
+  else
+    warn "Counter INDEX.md: $index_counter skill, seharusnya $expected_count${manifest_count:+ (manifest)} — mismatch!"
+    rec "→ Perbarui baris counter INDEX.md menjadi $expected_count"
   fi
 
   # ── 6c: Cek duplikasi / konflik naming

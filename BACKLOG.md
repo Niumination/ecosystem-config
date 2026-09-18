@@ -44,6 +44,13 @@ Enam skill `skill-bank-*` mendokumentasikan prosedur yang sama (manifest SHA-256
 
 **Fakta yang ikut terdokumentasi** (temuan saat verifikasi): target Hermes berisi **bank + skill bawaan Hermes** (±54 skill, author `Hermes Agent`/`Nous Research`/`community` — mis. `apple/*`, `autonomous-ai-agents/codex`). Angka otoritatif "skill kita" adalah isi `manifest.json`, **bukan** jumlah direktori di target. Sinkronisasi sengaja tidak pernah menghapus agar skill bawaan Hermes aman.
 
+**Tindak lanjut (sesi yang sama):**
+
+- **`scripts/up-eco.sh` diperbaiki — bug serius.** `check_backlog_sync` berakhir dengan `[ "$issues" -eq 0 ] && pass ...`; saat ada issue, fungsi mengembalikan *false* → di bawah `set -euo pipefail` **seluruh script mati**. Akibatnya **Phase 5 s/d 12 tidak pernah berjalan** (GitHub Pages, PR, integritas bank skill, SOUL drift, sync status, Mission Control, Telegram, MCP, plugin, Composio) — tanpa pesan error, jadi tampak seperti laporan normal. Bukti perbaikan: keluaran 27 → **245 baris**, exit 0. Dipindai: hanya 1 dari 15 fungsi yang punya pola rawan ini; diberi `return 0` + komentar.
+- **Guard baru di Phase 6b-2:** baris counter `> **Status:** N ✅ Aktif` di `skills/INDEX.md` kini dibandingkan dengan `skillCount` manifest (angka otoritatif). Diuji dua arah: counter 999 → ⚠️ mismatch + rekomendasi; counter 144 → ✅ sinkron.
+- **`scripts/check-rtk.sh` dipindah** dari bank skill ke `ecosystem/hermes-provider-config/scripts/` (RTK = plugin shell-rewrite, bukan urusan bank; rumah baru sudah punya `references/rtk-verification.md`). Lokasi lama dibersihkan juga di target Hermes.
+- **Temuan tersisa — belum dikerjakan (menunggu keputusan):** `skills/INDEX.md` kehilangan **27 baris skill** (ecosystem 6 · creative 6 · mlops 5 · devops 4 · root 4 · development 1 · smart-home 1) — drift lama yang baru terlihat karena up-eco sekarang berjalan penuh. Phase 6c juga melaporkan nama skill `inference` muncul di 2 path, dan entri BACKLOG `web/` menunjuk folder yang tidak ada (pemicu awal berhentinya up-eco).
+
 ---
 
 ## 💤 Pensiun Proyek — 18 Sep 2026

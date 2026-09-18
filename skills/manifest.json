@@ -1,6 +1,6 @@
 {
   "fileCount": 711,
-  "generatedAt": "2026-09-18T15:28:44.574682+00:00",
+  "generatedAt": "2026-09-18T15:39:16.133870+00:00",
   "skillCount": 144,
   "skills": {
     ".archive/cc-acehtengah-maintain": {
@@ -664,10 +664,10 @@
       }
     },
     "ecosystem/hermes-provider-config": {
-      "bundleHash": "29a3cca4ca2d6a06f881a65a6c2bf90c8cf758741d41b1987a9e93edf3dc3f79",
+      "bundleHash": "a08ea29ec2bd529ed9efcc5ce65db04b7d39dceb8914a427fbf53fe18dcead00",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "62345b02f9edd9d58fe46c752402ae4c5270e22cb6c0dd7ac62afb773d738b3f",
+        "SKILL.md": "2760c946f01a2046632c711db1f01b1ef1951ba117f6f0cee9276e085acebcfd",
         "references/9router-gateway-admin.md": "d4b718f0ad1b63419c2248d0d4d3105a441065dbcd57915cc1ee3a69c8d1bac5",
         "references/juan-router-integration.md": "737c490e199201370c75d62c2f51693f5242b41ea79228fe49636e2a7df64b42",
         "references/model-catalog-structure.md": "ba5b28126411702689a793b6e4cea6433ac3841e2e0c37580d7041ec936d1f4d",
@@ -676,6 +676,7 @@
         "references/openrouter-free-tier.md": "3ec3fde62fdff79950ec8bfaa31bbd6d42baf14622a0be467632542a4a9cc986",
         "references/provider-audit-2026-08-18.md": "c1ded25561d5476646fede92811e007f8dcf3e341c1dc3558f79441df540a310",
         "references/rtk-verification.md": "68eade5a4f4f2e5417ee798824b5a72075f025b61e795fa1b79eb74e7b241f47",
+        "scripts/check-rtk.sh": "0b3065e58ace02078848b7141ffb08ee2a86333121ec1222f3ab3d6b2696c4b3",
         "scripts/probe-provider-models.py": "39dfbc4fa90a210a0c9135b32d9a160fc66e5f657e10dd7b596653b6d0bc9a5f",
         "scripts/stress-test-models.py": "1c7022f0b56584d371b11a92b90ab14781281fc9d18c829593764450c451520c",
         "scripts/test-vision-endpoint.py": "23426710553f9407890df8e25b451d1b233c3430dac481af8ab0ab3efddd56c1"
@@ -853,16 +854,15 @@
       }
     },
     "ecosystem/skill-bank-management": {
-      "bundleHash": "d9038d048652f05d7cbed8763926956c37ce832da2b9256560e8be767fd58126",
+      "bundleHash": "109624209ae993973d6363193ed13eac2bb2cec6198fd42d494f07a4dafabd43",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "ad359af49d3f33c0f1d0f1da614af247d381c207a6e3301a962a8070ebf92acf",
+        "SKILL.md": "8aab147ef3cac021a8901e4c06cf645d101ed53acd6ab7244dca7de69ae7bc90",
         "references/adopt-external-skill.md": "2dca01c269cc3dd11ecf6d66f31159468d58fb8edb370649839e426a7358f2ec",
         "references/autoskills-patterns.md": "7b4c14732f6874e4a6e7e2896c3845c23867d5f132f93f52af75dd1d1e7dbed8",
         "references/cases-2026-08.md": "a87f0a8f980145dbf119480097f3e851f49c1976c100a9497764f1e023e97b85",
         "references/home-pruning-f4-2026-08-20.md": "245cf99bb02a59a5a73ce617c11363db7754ba061d4b22a4be10eed736989bd9",
-        "references/skill-bank-manifest-sync.md": "ed73748fe07bd9718d8c2493742dfc1e0cad006dd474be4d6e469d16c1e7714a",
-        "scripts/check-rtk.sh": "0b3065e58ace02078848b7141ffb08ee2a86333121ec1222f3ab3d6b2696c4b3"
+        "references/skill-bank-manifest-sync.md": "ed73748fe07bd9718d8c2493742dfc1e0cad006dd474be4d6e469d16c1e7714a"
       }
     },
     "ecosystem/up-eco": {
