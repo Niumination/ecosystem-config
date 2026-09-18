@@ -54,3 +54,45 @@
   - Changing 9router API keys
   - Detecting new model availability
 - Update this reference by re-running the checker; it overwrites the report files.
+
+## Mapping Aktif — 19 Sep 2026 (semua ke provider `nous` bawaan Hermes)
+
+Seluruh mapping dipindahkan dari `9router`/`explabs` ke **provider `nous`** (bawaan Hermes
+Agent; autentikasi OAuth device-code di `~/.hermes/auth.json`, bukan API key).
+
+**Status akun nous:** tier gratis tanpa kredit → hanya model `:free` yang bisa dipakai.
+Model berbayar (`openai/gpt-5.4-mini`, `anthropic/claude-sonnet-4.6`,
+`google/gemini-3.8-flash`, `x-ai/grok-4.20`) menjawab `HTTP 404 — requires available
+credits`. Isi kredit di portal Nous bila ingin memakai nama model persis seperti semula
+(katalog nous menyajikan 400 model, termasuk nama-nama itu).
+
+**Mapping aktif** — semua diuji pada 19 Sep 2026: katalog nous ✚ probe HTTP-200 ✚ tool-calling OK:
+
+| Lokasi config | Model | Provider |
+|---|---|---|
+| `auxiliary.delegation` | `stepfun/step-3.7-flash:free` | nous |
+| `x_search` | `upstage/solar-pro4:free` | nous |
+| `channel_overrides.1` | `inclusionai/ling-3.0-flash-fin:free` | nous |
+| `channel_overrides.802` | `inclusionai/ling-3.0-flash-sante:free` | nous |
+| `channel_overrides.803` | `meituan/longcat-2.0:free` | nous |
+| `channel_overrides.804` | `stepfun/step-3.7-flash:free` | nous |
+| `channel_overrides.1172` | `poolside/laguna-s-2.1:free` | nous |
+| `cron.model` | `meituan/longcat-2.0:free` | nous |
+
+**Model `:free` yang tersedia di nous (7, semuanya lolos tool-calling):** `inclusionai/ling-3.0-flash-fin:free`
+· `inclusionai/ling-3.0-flash-sante:free` · `meituan/longcat-2.0:free` ·
+`poolside/laguna-s-2.1:free` · `poolside/laguna-xs-2.1:free` · `stepfun/step-3.7-flash:free`
+· `upstage/solar-pro4:free`.
+
+**Yang mati — jangan dipakai lagi:**
+
+- `explabs/*` — provider tidak ada lagi di katalog 9router (7 mapping pernah menunjuk ke sini:
+  5 channel Telegram, delegasi, x_search; terbukti menimbulkan error nyata di log).
+- `meituan/longcat-2.0:free` **via 9router** — modelnya sudah tidak disajikan router; kini
+  hanya lewat nous (itulah akar cron gagal 9–11 hari).
+- `gemini/gemini-3.8-flash` via 9router — dipakai sesaat sebagai perbaikan sementara cron;
+  sudah dikembalikan ke nous.
+
+**Catatan kebersihan config:** `model.key_env: NINE_ROUTER_API_KEY` di bagian provider nous
+menyesatkan — itu kunci 9router, bukan nous (401 bila dipakai langsung ke endpoint nous).
+Autentikasi nous yang sebenarnya berasal dari `credential_pool.nous` (status `ok`).
