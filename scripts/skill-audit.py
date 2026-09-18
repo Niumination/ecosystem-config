@@ -167,6 +167,14 @@ SECRET_ASSIGN = re.compile(
 SECRET_AWS = re.compile(r"\bAKIA[0-9A-Z]{16}\b")
 SECRET_GHP = re.compile(r"\bghp_[A-Za-z0-9]{36}\b")
 SECRET_PRIVKEY = re.compile(r"-----BEGIN (RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----")
+# JWT utuh (mis. Supabase anon / service_role, token API berbasis JWT).
+# Pola sengaja KETAT: tiga segmen base64url dengan panjang nyata. Ini menghindari
+# dua false positive yang sudah terbukti ada di bank skill:
+#   - definisi regex gitleaks: eyJ[a-zA-Z0-9_-]+\.…  (mengandung '[' → tidak cocok)
+#   - contoh terpotong:         eyJhbGciOiJIUzI1NiIs  (tanpa titik → tidak cocok)
+SECRET_JWT = re.compile(
+    r"\beyJ[A-Za-z0-9_\-]{10,}\.[A-Za-z0-9_\-]{20,}\.[A-Za-z0-9_\-]{20,}"
+)
 
 PATH_SSH = re.compile(r"~/(\.ssh|\.aws|\.gnupg)(/|$)")
 PATH_ETC = re.compile(r"/etc/(passwd|shadow|sudoers)")
@@ -210,6 +218,7 @@ LINE_RULES = [
     ("secret", "AWS AKIA", SECRET_AWS),
     ("secret", "GitHub PAT ghp_", SECRET_GHP),
     ("secret", "private key block", SECRET_PRIVKEY),
+    ("secret", "JWT utuh (eyJ… — Supabase/API token)", SECRET_JWT),
     ("path", "~/.ssh ~/.aws ~/.gnupg", PATH_SSH),
     ("path", "/etc/passwd|shadow|sudoers", PATH_ETC),
     ("path", "chmod 777", CHMOD777),
