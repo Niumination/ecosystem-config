@@ -7,18 +7,13 @@
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
 > **Hermes Integration:** ✅ Semua 121 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 138 skill)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 121 ✅ Aktif
+> **Status:** 144 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
-| **skill-bank-integrity** | ✅ Aktif | ecosystem/skill-bank-integrity | Integrity verification skill bank — manifest SHA-256 |
 | **weathernext-gayo** | ✅ Aktif | ecosystem/weathernext-gayo | Analisis agro-klimatologi kopi Gayo & mitigasi bencana hidrometeorologi |
 | **integration-verification** | ✅ Aktif | ecosystem/integration-verification | Verify external services/APIs connected and working end-to-end |
-| **skill-bank-maintenance** | ✅ Aktif | ecosystem/skill-bank-maintenance | Maintenance skill bank harian |
-| **skill-bank-management** | ✅ Aktif | ecosystem/skill-bank-management | Management skill bank terpusat |
-| **skill-bank-operations** | ✅ Aktif | ecosystem/skill-bank-operations | Operasi skill bank (ops) |
-| **skill-bank-ops** | ✅ Aktif | ecosystem/skill-bank-ops | Operasi skill bank ringkas |
-| **skill-bank-sync** | ✅ Aktif | ecosystem/skill-bank-sync | Sync skill bank dengan verifikasi integritas |
+| **skill-bank-management** | ✅ Aktif | ecosystem/skill-bank-management | Kelola Bank Skill Niumination — manifest SHA-256, sync+verifikasi+lockfile, drift, adopsi skill pihak ketiga, audit konten, hapus/promosi skill (menyerap 5 skill bank-* yang dikonsolidasi 18 Sep 2026) |
 | **ecosystem-snapshot** | ✅ Aktif | ecosystem/ecosystem-snapshot | Generate snapshot konfigurasi ekosistem |
 | **ecosystem-tool-adoption** | ✅ Aktif | ecosystem/ecosystem-tool-adoption | Adopsi tool baru ke ekosistem |
 | **niu-core-governance** | ✅ Aktif | governance/niu-core-governance | Governance core Niumination |
