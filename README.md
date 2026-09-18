@@ -57,7 +57,7 @@ Niumination/
 | **ai-file-manager** | Android/Kotlin | GitHub | 🟢 Live |
 | **cc-switch** | Tauri 2/Rust | GitHub | 🟢 Active |
 | **pabrik-aplikasi-gas** | Google Apps Script | GAS Web App | 🟢 Active |
-| **jhermusb** | Python/Portable | GitHub | ✅ Done |
+| **jhermusb** | Python/Portable | GitHub | 💤 Dipensiunkan 18 Sep 2026 |
 | **ai-first-os** | Arch ISO | GitHub | ⚪ Minor |
 
 ---

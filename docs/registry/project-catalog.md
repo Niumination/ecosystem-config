@@ -21,7 +21,7 @@
 | Projek | Path | Stack | GitHub | Deploy | Last Push | Status |
 |--------|------|-------|--------|--------|-----------|--------|
 || **Flame-ADE** | `desktop/flame-ade/` | Tauri 2, Rust, React 19, TS | `github.com/Niumination/Flame-ADE` | ⚪ Desktop app | 20 Jun 2026 | ✅ v1.3.0 |
-|| **JHermUSB-portable** | `apps/JHermUSB-portable/` | Shell, Hermes Agent v25+v27 | `github.com/Niumination/JHermUSB-portable` 🔒 **PRIVATE** | 🟢 GitHub (🏭) | 10 Agu 2026 | ✅ **Backup DR penuh + kredensial — snapshot 10 Agu, RESTORE.md + snapshot-from-usb.sh** |
+|| **JHermUSB-portable** | `inactive-2026-09/JHermUSB-portable/` | Shell, Hermes Agent v25+v27 | `github.com/Niumination/JHermUSB-portable` 🔒 **PRIVATE · DIARSIPKAN** | 💤 Dipensiunkan 18 Sep 2026 | 10 Agu 2026 (snapshot terakhir) | 💤 **Dipensiunkan** — digantikan `niumination-restore` (kredensial sebagai ciphertext); `config/.env` dikeluarkan dari repo |
 || **Niu-Flow** | — (remote only) | Python, JCode bridge | `github.com/Niumination/niu-flow` | ⚪ Local | 20 Jun 2026 | 🟢 **Active** — 5 commits |
 || **VirtualAssistance** | — (remote only) | TS | `github.com/Niumination/VirtualAssistance` | 🟢 Vercel | 3 Jun 2026 | ✅ Live |
 || **Joy-Connect-for-Mac** | `desktop/joy-connect-for-mac/` | Swift 5.9, macOS 13+, ADB, scrcpy | `github.com/Niumination/joy-connect-for-mac` | ⚪ macOS Desktop | 3 Aug 2026 | 🟢 **Infinix device bridge — DOX pass done** |
@@ -108,7 +108,7 @@
 |--------|------|-----------|--------|--------|
 | **niumination-restore** | `apps/niumination-restore/` 🔒 | Restore penuh (Hermes + kredensial + data ekosistem) ke device baru dari GitHub — 3 lapis terenkripsi, tanpa disk eksternal | `github.com/Niumination/niumination-restore` (privat) | ✅ **Drill macOS 20/20** — Windows/Arch belum divalidasi |
 | **Sisi BUILD DR** | `scripts/dr-restore/` | Membangun snapshot dari device hidup: kredensial, L2 (gitignored), template layanan, L1 Hermes → Release, plus `sync-all.sh` & `drill.sh` | (bagian ekosistem) | 🟢 Aktif |
-| **JHermUSB-portable** | `apps/JHermUSB-portable/` 🔒 | Backup Hermes portable (USB) — jalur alternatif bila jaringan lambat | `github.com/Niumination/JHermUSB-portable` | 🟡 snapshot terakhir 10 Agu 2026 |
+| **JHermUSB-portable** | `inactive-2026-09/JHermUSB-portable/` 🔒 | 💤 **DIPENSIUNKAN 18 Sep 2026** — Backup Hermes portable (USB); digantikan `niumination-restore` (kredensial sebagai ciphertext). Repo GitHub **diarsipkan (read-only)**, `config/.env` dikeluarkan dari repo (commit `d7f5703`) | `github.com/Niumination/JHermUSB-portable` | 🟡 snapshot terakhir 10 Agu 2026 |
 
 **Catatan:** repo restore adalah **snapshot**, bukan sinkronisasi hidup — ia hanya berubah saat `bash scripts/dr-restore/sync-all.sh` dijalankan di device hidup. Mekanisme lengkap: `apps/niumination-restore/docs/UPDATE.md`.
 
