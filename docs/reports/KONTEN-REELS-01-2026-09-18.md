@@ -302,7 +302,66 @@ maupun di mesin (sudah dicari). Jadi A/B terhadap voice-00 asli tetap memakai `S
 **Jalur yang tersisa (urut biaya):**
 1. Task arena.ai yang menghasilkan `audio/vo-manual/` (atau `audio/uji-voice-00.mp3`) — satu-satunya cara mereproduksi persis.
 2. Pilih dari audisi: `audisi2/ab_voice00_vs_kandidat.mp3` (MATA → Charon → Puck → Ardi) atau `audisi2/audisi_timbre_4voice.mp3` (Jenny/Seraphina/Brian/Emma) → render ulang.
-3. Pakai reels v2/v3 yang sudah jadi (`…-v2-vo-emma.mp4`, `…-v3-vo-ardi.mp4`) — lapis delivery MATA sudah diterapkan.
+3. Pakai reels v2/v3/v4 yang sudah jadi (`…-v2-vo-emma.mp4`, `…-v3-vo-ardi.mp4`,
+   `…-v4-vo-ardi-ttshermes.mp4`) — lapis delivery MATA sudah diterapkan; v4 memakai mesin paket.
+
+**Usul adopsi ke bank skill (MENUNGGU APPROVAL — belum disentuh):** jadikan `hermes-tts` mesin VO
+standar di skill `skills/creative/free-tier-reels`, dengan `gen_vo3.sh` sebagai jembatan delivery
+per-adegan. Alasan: paket ini memberi eja-angka otomatis, kamus akronim 55 entri, routing bahasa
+`<en>…</en>`, dan pengaman biaya — semuanya tidak ada di skrip reels v1/v2.
+
+### 9.8 Produksi v4 — mesin `tts_hermes.py` + delivery per adegan (dijalankan)
+
+Keputusan pemilik ("ya lanjutkan"): pakai paket `tts-hermes` sebagai mesin VO produksi.
+
+**Celah yang harus dijembatani (temuan saya):** `tts_hermes.py` mengatur rate/pitch **per bahasa**
+(`suara.json` → `edge.id`), sedangkan lapis delivery MATA butuh **per adegan** (`VOICE.md` §2c).
+Paket tidak punya opsi CLI untuk rate/pitch per adegan.
+
+**Jembatan tanpa mengubah kode paket:** `gen_vo3.sh` (baru, `~/Downloads/niu-konten/`) menulis
+`suara.json` sementara berisi rate/pitch adegan itu, memanggil `tts_hermes.py`, lalu memulihkan
+`suara.json.orig` lewat `trap EXIT`. Jadi mesin paket dipakai apa adanya (dapat eja-angka otomatis +
+kamus akronim), sementara delivery tetap per adegan.
+
+**Temuan implementasi:**
+- `baca_naskah()` **mengabaikan label potongan** (`S1`/`R3`) dan selalu menamai keluaran satu-blok
+  `S1.mp3` → skrip harus me-rename hasilnya sendiri.
+- `--cek` (gratis, tanpa jaringan) adalah satu-satunya cara melihat akronim kamus mana yang terpakai;
+  mode render tidak mencetaknya.
+- `--tanpa-jeda` dipakai supaya lead/tail tidak dobel dengan `adelay` di tahap mux.
+- Kamus ditambah 3 entri: `OPD` → "o pe de" · `SPBE` → "es pe be e" · `APBD` → "a pe be de"
+  (sebelumnya 52 entri; `OPD` belum ada padahal dipakai di naskah reels).
+
+**Hasil v4 — enam adegan semua muat jendelanya:**
+
+| Scene | rate/pitch | durasi | akhir | jendela | kamus aktif |
+|---|---|---|---|---|---|
+| S1 hook | +10% / −2 Hz | 4,320 s | 4,82 s | 5 s | `AI` → "ei" |
+| S2 masalah | +8% / 0 | 4,776 s | 10,28 s | 6 s | — |
+| S3 angka | −4% / −3 Hz | 7,152 s | 18,75 s | 8 s | — |
+| S4 publik | +2% / 0 | 5,088 s | 24,79 s | 7 s | `OPD` → "o pe de" |
+| S5 cara | +6% / 0 | 6,216 s | 32,82 s | 7 s | — |
+| S6 penutup | −4% / −2 Hz | 4,344 s | 37,94 s | 5 s | — |
+
+Semua keluaran **44,1 kHz · stereo · 192 kbps** (standar paket, identik `tts.py`). Video:
+`~/Movies/Posting - Instagram/2026-09-18-reels-01-v4-vo-ardi-ttshermes.mp4` — 38,000 s · 1080×1920 ·
+30 fps · H.264+AAC · 4.733.534 bita · md5 `097069330dff7eeee385e8d82e994a67` · audio mean −20,3 dB /
+max −3,2 dB.
+
+**Verifikasi audio benar dari mesin baru (bukan sisa run lama).** Run pertama memakai `vo2_mix.wav`
+(Emma) yang tertinggal, jadi hasilnya salah; setelah `vo2_mix.wav` → `vo3_mix.wav` dan render ulang,
+dibuktikan dengan korelasi gelombang:
+
+| Uji | Korelasi |
+|---|---|
+| video v4 segmen hook vs `vo3/S1.mp3` (Ardi via tts_hermes) | **0,9991** |
+| video v4 segmen hook vs `vo2/S1.mp3` (Emma) | 0,1569 |
+| kontrol beda-voice `vo3/S1` vs `vo2/S1` | 0,1671 |
+| kontrol segmen S2 vs `vo3/S2` | 0,9998 |
+
+Catatan metode: timbre **tidak** cukup memisahkan di sini (0,0047 vs 0,0022) dan f0 median **ambigu**
+(113,6 Hz di antara 105,3 dan 120,3) — korelasi gelombang yang memutuskan. Estimator f0 divalidasi
+ulang pada nada sintetis (106→106,0 · 188→188,2 Hz).
 
 ### 9.6 Tindak lanjut
 
