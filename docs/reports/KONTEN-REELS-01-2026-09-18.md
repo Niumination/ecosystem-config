@@ -2,7 +2,7 @@
 
 **Pelaksana:** Hermes — thread Kreator (1172)
 **Pemicu:** permintaan Afrizal Munthe — lanjutkan rencana konten, seluruh produksi harus gratis (Rp 0)
-**Status:** **siap tayang** — video, narasi, dan paket caption selesai; distribusi menunggu keputusan kanal
+**Status:** **siap tayang** — video, narasi, dan paket caption selesai; distribusi menunggu keputusan kanal. **Revisi v2 (19 Sep 2026):** voice-over diperbaiki mengikuti lapis delivery pipeline MATA — lihat §9.
 
 ---
 
@@ -121,4 +121,68 @@ Untuk hasil identik di mesin lain (font & Chrome terpatok), gunakan mode Docker:
 
 ---
 
-*Produksi 18 Sep 2026. Semua angka di video diverifikasi dari sumber ekosistem pada hari yang sama; perbarui bila angka ekosistem berubah.*
+*Produksi 18 Sep 2026; revisi VO v2 19 Sep 2026. Semua angka di video diverifikasi dari sumber ekosistem pada hari yang sama; perbarui bila angka ekosistem berubah.*
+---
+
+## 9. Revisi v2 (19 Sep 2026) — lapis delivery voice-over
+
+Pemicu: penilaian pemilik bahwa VO reels v1 kalah dari VO video MATA. Investigasi atas paket pipeline MATA
+(`labs/mata-aihackfest-2026/assets/media/pipeline/hermes-video-pipeline.zip`) menghasilkan tiga aturan yang
+hilang di v1 dan dipakai ulang di v2.
+
+### 9.1 Yang diperbaiki
+
+| Lapis | Aturan (dari `VOICE.md` MATA) | v1 | v2 |
+|---|---|---|---|
+| Naskah | pass skill `ghost`: kalimat pendek berdiri sendiri, register lisan, buang basa-basi | kalimat sedang seragam | "Bikin konten itu mahal. Editing. Stok video. Penjadwal." |
+| Angka | dieja kata, bukan digit | sudah (143 → "seratus empat puluh tiga") | dipertahankan |
+| Jeda | hanya lewat tanda baca (edge-tts gratis tanpa SSML): titik = jeda penuh, em-dash = jeda dramatis | tanpa em-dash | em-dash dipakai di scene 1 & 4 |
+| Delivery | **rate & pitch per adegan**, bukan satu setelan | satu setelan (default) | hook +10%/−2 Hz · masalah +6% · angka −4%/−3 Hz · publik +2% · cara +6% · penutup −4%/−2 Hz |
+
+Setiap segmen VO diverifikasi **muat di jendela scene**-nya sebelum digabung (table di §9.3).
+
+### 9.2 Berkas hasil v2
+
+| Berkas | Isi |
+|---|---|
+| `~/Movies/Posting - Instagram/2026-09-18-reels-01-v2-vo-emma.mp4` | 38,000 s · 1080×1920 · 30 fps · H.264+AAC · 4.816.165 bita · VO `en-US-EmmaMultilingualNeural` |
+| `~/Downloads/niu-konten/audisi/audisi_hook_3voice.mp3` | audisi: Emma → Andrew → Ardi (hook, rate +10%, pitch −2 Hz) |
+| `~/Downloads/niu-konten/gen_vo2.sh` · `mix_vo2.sh` | skrip produksi v2 (ganti voice: `VOICE=<nama> bash gen_vo2.sh && bash mix_vo2.sh`) |
+
+Pemilihan `Emma` berbasis kedekatan f0 dengan VO MATA terpilih (`R1.mp3` ≈ 176–210 Hz pada dua estimator
+berbeda; Emma 188 Hz; Gadis 227 Hz; Andrew 110 Hz). Keputusan akhir tetap di telinga pemilik lewat audisi.
+
+### 9.3 Jadwal VO v2 (semua muat di jendelanya)
+
+| Scene | rate/pitch | mulai | durasi | akhir | jendela |
+|---|---|---|---|---|---|
+| S1 hook | +10% / −2 Hz | 0,50 s | 4,584 s | 5,08 s | 0–5 s |
+| S2 masalah | +6% / 0 | 5,50 s | 5,352 s | 10,85 s | 5–11 s |
+| S3 angka | −4% / −3 Hz | 11,60 s | 6,744 s | 18,34 s | 11–19 s |
+| S4 publik | +2% / 0 | 19,70 s | 5,520 s | 25,22 s | 19–26 s |
+| S5 cara | +6% / 0 | 26,60 s | 5,304 s | 31,90 s | 26–33 s |
+| S6 penutup | −4% / −2 Hz | 33,60 s | 3,576 s | 37,18 s | 33–38 s |
+
+### 9.4 Temuan forensik: VO MATA bukan edge-tts
+
+Pemilik memastikan VO MATA adalah murni TTS (bukan rekaman manusia) dan bisa dipilih/disesuaikan otomatis.
+Pemeriksaan berkas `audio/vo-manual/R1.mp3`:
+
+- Properti: MP3 24 kHz mono **32 kbps**, encoder `Lavf59.27.100` (diproses ffmpeg)
+- Durasi bicara (setelah trim sunyi) 11,267–11,546 s; f0 median 176–210 Hz (indikasi voice perempuan/tinggi)
+- Korelasi gelombang terhadap kandidat edge-tts dengan **teks & rate identik**: Seraphina +10% **0,038** ·
+  Ardi 0% 0,047 · Emma +10% 0,039 · Ava 0% 0,027 · Gadis +10% 0,035 · Thalita −5% 0,028 → semuanya ≈0
+  (dua render TTS deterministik dari voice yang sama seharusnya berkorelasi >0,8)
+- Uji gTTS (Google Translate, 24 kHz mono 32 kbps — kemiripan properti): korelasi 0,018 → juga bukan
+
+Kesimpulan: **engine pembuat VO MATA bukan edge-tts dan bukan gTTS.** Kandidat yang belum bisa diuji dari Mac
+ini karena sesi/VPS-nya tidak ada di `state.db` lokal: TTS yang tersedia lewat Hermes di VPS (mis. Gemini/OpenAI/
+Kokoro) atau tool lain yang dipakai pemilik saat audisi. Pertanyaan pelacak sudah diajukan ke pemilik (§9.5).
+
+### 9.5 Tindak lanjut
+
+1. Pemilik menyebutkan engine/alat yang dipakai untuk `audio/vo-manual/*.mp3` → reproduce persis (kalau gratis).
+2. Bila tidak reproduktif: v2 (Emma) dipakai apa adanya, atau pilih voice lain dari audisi 3 kandidat.
+3. Usul (menunggu approval): tambahkan **lapis delivery** ini ke skill `free-tier-reels` di bank skill —
+   aturan naskah `ghost`, angka dieja kata, jeda tanda baca, rate/pitch per adegan, langkah audisi voice.
+
