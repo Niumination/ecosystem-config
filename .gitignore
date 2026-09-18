@@ -86,6 +86,11 @@ scripts/.trio-status.json
 # Artefak kerja agent (plan, draft) — salinannya yang final ada di docs/reports/
 .hermes/
 
+# Laporan audit keamanan — memuat peta kelemahan internal (repo yang bocor, alert
+# yang belum dirotasi, isi rahasia, postur mesin). Repo ekosistem ini PUBLIK, jadi
+# laporan sengaja disimpan lokal saja. Keputusan pemilik: 18 Sep 2026.
+docs/reports/SECURITY-AUDIT-*.md
+
 # Logs / runtime artifacts
 logs/
 
