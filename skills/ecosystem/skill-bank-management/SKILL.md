@@ -179,7 +179,6 @@ Prosedur rinci + contoh: `references/adopt-external-skill.md`.
 - `references/cases-2026-08.md` — kasus nyata: drift USB 6 file, adopsi autoskills, fix `_get_home` MC
 - `references/skill-bank-manifest-sync.md` — skema `manifest.json` + `skills-lock.json`, kasus drift
 - `references/home-pruning-f4-2026-08-20.md` — teknik prune bloat HOME (arsip, bukan hapus)
-- `scripts/check-rtk.sh` — cek aktivasi RTK rewrite (dipertahankan dari `skill-bank-sync`; RTK = plugin shell-rewrite, di luar urusan bank)
 
 ## Catatan overlap & riwayat konsolidasi
 
