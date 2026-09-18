@@ -132,6 +132,41 @@ def host_allowed(host: str) -> bool:
     return any(host.endswith("." + d) for d in ALLOWED_DOMAINS)
 
 
+# ── Pengecualian terverifikasi (audit konten skill, 19 Sep 2026) ─────────────
+# Semua pola di bawah diperiksa satu per satu terhadap 41 temuan waktu itu:
+# setiap kemunculan adalah placeholder dokumentasi, fixture uji, atau installer
+# vendor resmi — bukan indikator risiko. Tidak ada aturan kategori `secret`
+# yang dilonggarkan.
+PLACEHOLDER_HOSTS = {
+    "url", "host", "port", "localhost", "external.com", "my-server.local",
+    "evil.example", "localhost.evil.com", "127.0.0.1.evil.com",
+}
+PLACEHOLDER_HOST_RE = re.compile(r"^[A-Z][A-Z0-9-]*$")  # HOST, HOST-VPS, PORT
+FIXTURE_PATH_RE = re.compile(r"(^|/)(tests?|fixtures?|examples?|samples?|mocks?)(/|$)", re.I)
+# Domain installer resmi — `curl … | sh` untuk memasang tool, bukan exfiltrasi.
+INSTALLER_DOMAINS = {
+    "sh.rustup.rs", "rustup.rs", "composio.dev", "hf.co", "get.docker.com",
+    "ollama.com", "brew.sh", "astral.sh", "bun.sh", "deno.land", "nodejs.org",
+}
+# Transmisi keluar — dipakai menilai apakah sebuah path sensitif benar-benar dikirim.
+TRANSMIT = re.compile(r"\b(curl|wget|scp|sftp|nc|netcat|ftp|base64|mail|pbpaste|xclip)\b", re.I)
+COMMENT_LINE = re.compile(r"^\s*(#|//|\*|<!--)")
+
+
+def installer_pipe(line: str) -> bool:
+    """True bila `curl … | sh` menunjuk domain vendor/allowlist (installer resmi)."""
+    for u in URL.findall(line):
+        try:
+            host = u.split("//", 1)[1].split("/", 1)[0].split(":")[0].lower().rstrip(".")
+        except IndexError:
+            continue
+        if host_allowed(host) or host in INSTALLER_DOMAINS:
+            return True
+        if any(host.endswith("." + d) for d in INSTALLER_DOMAINS):
+            return True
+    return False
+
+
 # ── Pola per kategori ────────────────────────────────────────────────────────
 ZERO_WIDTH = re.compile(r"[\u200b\u200c\u200d\u200e\u200f\ufeff]")
 
@@ -211,7 +246,6 @@ SELF_REFERENCE = re.compile(r"skill-audit|ALLOWED_DOMAINS", re.I)
 # (category, label, regex) — diterapkan per-baris
 LINE_RULES = [
     ("hidden", "zero-width char", ZERO_WIDTH),
-    ("exfil", "curl|bash / wget|sh — verifikasi sumber sebelum dijalankan", EXFIL_CURL_BASH),
     ("exfil", "base64 blob (>200)", BASE64_BLOB),
     ("secret", "token sk-", SECRET_SK),
     ("secret", "secret=/password= literal", SECRET_ASSIGN),
@@ -219,8 +253,6 @@ LINE_RULES = [
     ("secret", "GitHub PAT ghp_", SECRET_GHP),
     ("secret", "private key block", SECRET_PRIVKEY),
     ("secret", "JWT utuh (eyJ… — Supabase/API token)", SECRET_JWT),
-    ("path", "~/.ssh ~/.aws ~/.gnupg", PATH_SSH),
-    ("path", "/etc/passwd|shadow|sudoers", PATH_ETC),
     ("path", "chmod 777", CHMOD777),
     ("path", "rm -rf / | ~ | ..", RM_RF),
     ("path", "fork bomb", FORKBOMB),
@@ -269,8 +301,12 @@ def scan_skill(skill_dir: Path, domain: str, skill: str):
             authority = authority.rsplit("@", 1)[-1]   # buang userinfo (oauth2:token@host)
             host = authority.split(":")[0]
             host = host.lower().rstrip(".")
-            if not host or host in {"test", "example.invalid"}:
-                continue  # placeholder host
+            if (not host or host in PLACEHOLDER_HOSTS or PLACEHOLDER_HOST_RE.match(host)
+                    or any(c in host for c in "{}")                       # {args.host}, {HOST}
+                    or "." not in host                                   # localhost, host
+                    or host.endswith((".local", ".example", ".invalid", ".test"))
+                    or FIXTURE_PATH_RE.search(rel)):                     # tests/, examples/
+                continue  # placeholder / fixture uji — bukan URL nyata
             if host_allowed(host):
                 continue
             line = text.count("\n", 0, m.start()) + 1
@@ -306,6 +342,25 @@ def scan_skill(skill_dir: Path, domain: str, skill: str):
                     findings.append(
                         _f(domain, skill, rel, lineno, "secret", "api_key=/token= (value ber-digit)", line.strip()[:120])
                     )
+            # `curl … | sh` — temuan hanya bila sumbernya BUKAN vendor/allowlist
+            if EXFIL_CURL_BASH.search(line) and not installer_pipe(line):
+                findings.append(
+                    _f(domain, skill, rel, lineno, "exfil",
+                       "curl|bash dari sumber non-vendor — verifikasi sumber sebelum dijalankan",
+                       line.strip()[:120])
+                )
+            # Path sensitif — temuan hanya bila ada transmisi keluar di baris yang sama
+            # (membaca/menulis path ssh di dokumentasi adalah hal wajar; mengirimnya bukan).
+            # Kunci PUBLIK (.pub) memang untuk dibagikan — mis. upload ke api.github.com.
+            ssh_hit = PATH_SSH.search(line)
+            if ((ssh_hit or PATH_ETC.search(line))
+                    and not COMMENT_LINE.match(line) and TRANSMIT.search(line)
+                    and not (ssh_hit and ".pub" in line)):
+                findings.append(
+                    _f(domain, skill, rel, lineno, "path",
+                       "transmisi keluar dari path sensitif (~/.ssh|~/.aws|/etc/passwd)",
+                       line.strip()[:120])
+                )
 
     return findings
 
