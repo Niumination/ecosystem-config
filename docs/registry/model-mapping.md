@@ -70,12 +70,12 @@ credits`. Isi kredit di portal Nous bila ingin memakai nama model persis seperti
 
 | Lokasi config | Model | Provider |
 |---|---|---|
-| `auxiliary.delegation` | `stepfun/step-3.7-flash:free` | nous |
+| `auxiliary.delegation` | `nvidia/nemotron-3-ultra-550b-a55b:free` | openrouter |
 | `x_search` | `upstage/solar-pro4:free` | nous |
 | `channel_overrides.1` | `inclusionai/ling-3.0-flash-fin:free` | nous |
 | `channel_overrides.802` | `inclusionai/ling-3.0-flash-sante:free` | nous |
 | `channel_overrides.803` | `meituan/longcat-2.0:free` | nous |
-| `channel_overrides.804` | `stepfun/step-3.7-flash:free` | nous |
+| `channel_overrides.804` | `deepseek/deepseek-v4-flash-0731:free` | openrouter |
 | `channel_overrides.1172` | `poolside/laguna-s-2.1:free` | nous |
 | `cron.model` | `meituan/longcat-2.0:free` | nous |
 
@@ -96,3 +96,44 @@ credits`. Isi kredit di portal Nous bila ingin memakai nama model persis seperti
 **Catatan kebersihan config:** `model.key_env: NINE_ROUTER_API_KEY` di bagian provider nous
 menyesatkan — itu kunci 9router, bukan nous (401 bila dipakai langsung ke endpoint nous).
 Autentikasi nous yang sebenarnya berasal dari `credential_pool.nous` (status `ok`).
+
+## Inventaris Gratis Terverifikasi — 19 Sep 2026
+
+**Keputusan pemilik: seluruh mapping memakai tier gratis selamanya.** Karena itu inventaris
+di bawah adalah batas nyata yang tersedia (semua diuji HTTP-200 + tool-calling pada 19 Sep).
+
+**A. Provider `nous` — model `:free` (7, terverifikasi):** `inclusionai/ling-3.0-flash-fin:free` ·
+`inclusionai/ling-3.0-flash-sante:free` · `meituan/longcat-2.0:free` ·
+`poolside/laguna-s-2.1:free` · `poolside/laguna-xs-2.1:free` · `stepfun/step-3.7-flash:free` ·
+`upstage/solar-pro4:free`. Katalog nous menyajikan **400 model**, tetapi model berbayar menolak
+dengan `404 — requires available credits` (akun ini tanpa kredit).
+
+**B. Provider `openrouter` — model `:free` (22 ada, 12 terverifikasi tool-calling):**
+`deepseek/deepseek-v4-flash-0731:free` · `nvidia/nemotron-3-ultra-550b-a55b:free` ·
+`nvidia/nemotron-3.5-lightning:free` · `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free` ·
+`nex-agi/nex-n2.5-pro:free` · `nex-agi/nex-n2.5-mini:free` · `poolside/laguna-xs-2.1:free` ·
+`inclusionai/ling-3.0-flash-fin:free` · `inclusionai/ling-3.0-flash-sante:free` ·
+`inclusionai/ling-3.0-flash-vl:free` · `liquid/lfm-2.5-2.6b:free` ·
+`dots-studio/dots-3-note-preview:free`.
+Gagal/menolak saat diuji: `google/gemma-4-*:free` dan `qwen/qwen3.8-27b:free` (429 provider),
+`z-ai/glm-5.2:free` (404 — tidak ada endpoint yang mendukung tool use),
+`thinkingmachines/inkling*:free` (403 khusus pelanggan), `cohere/north-mini-code:free` (balasan kosong),
+`nvidia/nemotron-3-super-120b-a12b:free` (tidak mengeluarkan tool-call).
+
+**C. `opencode-free` — TIDAK BISA DIPAKAI dari Hermes.** Provider ini ada di Hermes (keyless,
+base `https://opencode.ai/zen/v1`, plugin `plugins/model-providers/opencode-free/`), tetapi
+upstream menolak klien luar: `403 FreeTierError — "OpenCode's free tier can only be used from
+within OpenCode"`. Berlaku untuk semua model `*-free` di sana (`big-pickle`,
+`ling-3.0-flash-fin-free`, `mimo-v2.5-free`, `nemotron-*-free`, `muse-spark-*-contributor-free`).
+Jangan jadikan target mapping sampai OpenCode membuka gate-nya.
+
+**D. Jalur gratis cadangan (9router lokal):** provider tier gratis — `kr` (Kiro), `gh` (Copilot),
+`cf` (Cloudflare Workers), `gemini` (AI Studio). Terverifikasi tool-calling: `gh/gpt-4o-mini`,
+`kr/claude-haiku-4.5`, `kr/claude-sonnet-4.5`, `gemini/gemini-3.5-flash-lite`,
+`cf/@cf/meta/llama-3.3-70b-instruct-fp8-fast`. Catatan: bergantung daemon 9router lokal dan
+katalognya pernah kehilangan provider tanpa pemberitahuan (insiden `meituan`), jadi dipakai
+sebagai cadangan, bukan mapping utama.
+
+**Batas yang perlu diingat:** model `:free` OpenRouter terkena limit harian per akun (tanpa saldo)
+— 429 bisa muncul pada pemakaian ramai, sedangkan model `:free` nous relatif lebih longgar.
+Itulah alasan slot percakapan ringan tetap di nous dan hanya slot berat yang memakai OpenRouter.
