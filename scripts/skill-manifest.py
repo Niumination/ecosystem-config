@@ -69,7 +69,10 @@ def iter_skills(bank: Path):
     for skill_md in sorted(bank.rglob("SKILL.md")):
         skill_dir = skill_md.parent
         rel = skill_dir.relative_to(bank)
-        if any(part in SKIP_DIRS for part in rel.parts):
+        if any(part.startswith(".") for part in rel.parts):
+            # Semua dot-directory (.git, .archive) diabaikan — aturan yang sama
+            # dipakai up-eco.sh (`find ... -not -path '*/.*'`) supaya hitungan
+            # manifest, INDEX, dan registry tidak pernah berbeda.
             continue
         yield rel.as_posix(), skill_dir
 
