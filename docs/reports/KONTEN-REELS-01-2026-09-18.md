@@ -186,10 +186,25 @@ Isinya pipeline + `audio/vo-manual/` (17 berkas) + `video/mata_demo.mp4` + `mata
 **Tidak ada** `audio/voice-samples/`, tidak ada history/log/cache → jejak perintah pembuat VO tidak ikut terbawa.
 `audio/vo-manual/R1.mp3` di zip md5-nya identik dengan salinan di media repo (`94d0e8662dfc9f173646ec8d07c05a59`).
 
-**Temuan korektif: VO MATA bukan satu voice.** f0 median berbeda antar adegan —
-R1 216 Hz · R2 186 Hz · R3 122 Hz · R4 123 Hz · S0 147 Hz · S3 123 Hz · S9 154 Hz.
-Kalimat pertama R1 dan S0 **teksnya identik** tetapi jarak DTW 15,13 (kontrol potongan sama = 0,00).
-Jadi agent arena memilih **voice berbeda per adegan** — bukan satu voice terpilih.
+**KOREKSI atas temuan sebelumnya — kesimpulan "voice berbeda per adegan" DITARIK.**
+Temuan itu berasal dari estimator f0 saya sendiri, bukan dari berkasnya. Kontrol D: f0 di **dalam satu
+berkas** berayun 45–56 Hz (S0 153,8 | 112,7 | 98,2 Hz; R1 160,0 | 200,0 | 205,1 Hz) — jadi variasi
+antar-adegan tidak bisa disimpulkan dari f0 median. DTW 15,13 antara R1 dan S0 juga bukan bukti:
+metrik DTW tidak punya skala kalibrasi jarak antar-teks.
+
+**Yang bertahan, diukur dengan timbre (tempo-invariant) dan kontrol yang ketat:**
+
+| Uji | Jarak | Arti |
+|---|---|---|
+| kontrol identik (berkas sama 2×) | 0,0000 | metode sah |
+| kontrol **teks beda**, voice+rate sama (Ardi S0-teks vs Ardi S1-teks) | **0,0013** | efek teks sangat kecil |
+| kontrol voice sama, rate beda 22% | 0,0002 | tahan tempo |
+| antar-adegan MATA (R1↔R2/R3/R6, S0↔S1/S3/S9, S0↔R1, S3↔R3) | **0,0075–0,0151** | semua adegan konsisten satu voice |
+| kandidat edge-tts terdekat (25 & 45 voice) | 0,0275 / 0,0428 | 2–3× lebih jauh dari variasi antar-adegan |
+| Ardi (kandidat asli) vs S0 | 0,0465 | jauh |
+
+Kesimpulan yang sah: **vo-manual MATA konsisten dengan satu voice**, dan voice itu **bukan** salah satu
+dari 5 kandidat edge-tts yang dirender untuk audisi (hook_ardi/andrew/brian/florian/gadis).
 
 **Metode & kontrol (dua metrik independen):**
 
@@ -212,9 +227,9 @@ Jadi agent arena memilih **voice berbeda per adegan** — bukan satu voice terpi
 | Teks `vo_lama` (pra-humanizer) × 4 voice | 14,26–18,57 |
 | Pitch shift 0,70–2,00× pada 5 voice terbaik | minimum 10,25 |
 | gTTS (3 domain: com, co.id, com.au) | 14,22–14,25 |
-| Gemini TTS (Kore, Puck, Charon, Fenrir, Aoede, Leda) | 12,99–18,69 |
+| Gemini TTS (probe lama) | **DITARIK** — probe lama tidak valid (PCM mentah didekode sbg wav). Lihat baris "Gemini" di bawah |
 | Kokoro-82M via `hyperframes tts` | gagal: `kokoro-onnx` tidak terpasang |
-| macOS `say` (Damayanti id_ID) | belum diuji |
+| macOS `say` (Damayanti id_ID) | timbre 0,1009 · f0 238,8 Hz → bukan |
 
 **Petunjuk terkuat yang tersisa:** mesin ini memiliki `FAL_KEY` di `~/.hermes/.env` — sandbox arena.ai
 umumnya memberi akses fal.ai untuk tugas media, dan fal.ai menyediakan banyak model TTS.
@@ -230,15 +245,31 @@ jadi jalur ini tidak bisa diverifikasi dari Mac ini.
 | Timbre, 25 voice tambahan | `en-US-JennyNeural` **0,0275** | 0,0000 |
 | macOS `say` voice `Damayanti` (id_ID) | **0,1009** (paling jauh dari semua) | 0,0000 |
 
-**Kesimpulan:** engine pembuat `vo-manual` MATA **bukan edge-tts (324 voice tersedia, 45 diuji), bukan
-gTTS, bukan Gemini TTS, bukan macOS `say`**, dan **berganti voice per adegan**. Kandidat yang tidak
-dapat diuji dari Mac ini: fal.ai (akun terkunci `403 … TOP_UP`), Kokoro-82M (paket tidak terpasang),
+**Gemini TTS diuji ULANG dengan decode PCM yang benar** (petunjuk kunci: Gemini mengembalikan
+`audio/L16;codec=pcm;rate=24000` — 24 kHz mono, persis properti berkas vo-manual MATA yang di-encode
+ffmpeg `Lavf59.27.100`). Hasil pada teks S0: **Charon 0,0234** · Puck 0,0332 · Kore 0,0897 · Zephyr 0,0928
+(pembanding: Ardi 0,0465 · kontrol teks-beda 0,0013). Kuota Gemini habis setelah 4 voice, 26 voice sisanya
+tidak teruji. Charon/Puck **lebih dekat** daripada Ardi, tetapi durasinya 17,2–17,6 s vs `S0.mp3` 19,48 s —
+belum cukup untuk menyimpulkan identik. A/B untuk telinga:
+`~/Downloads/niu-konten/audisi2/ab_voice00_vs_kandidat.mp3` (MATA → Charon → Puck → Ardi).
+
+**Kesimpulan final:** engine pembuat `vo-manual` MATA **bukan edge-tts (45 dari 324 voice diuji), bukan
+gTTS, bukan macOS `say`**. Gemini TTS **belum bisa dinyatakan tereliminasi** — dua voice-nya (Charon, Puck)
+justru kandidat terdekat yang pernah ditemukan, dengan format audio yang cocok. Tidak dapat diuji dari Mac
+ini: fal.ai (akun terkunci `403 … TOP_UP`), Kokoro-82M (paket tidak terpasang), 26 voice Gemini (kuota),
 dan mesin yang mungkin hanya ada di sandbox arena.ai.
 
+**Klarifikasi dari `VOICE.md` lengkap (218 baris, `~/Downloads/VOICE.md`, sha256 `ebe793b8…c70ee5`)** —
+berbeda dari `VOICE.md` di paket (8.282 bita): dokumen ini menyebut voice terpilih sebagai **"voice-00"**,
+yaitu **narator pria tenang** hasil audisi yang disetujui pemilik, **bukan** salah satu dari 5 kandidat
+edge-tts. Jadi tebakan "Ardi" tidak berlaku untuk VO MATA (Ardi = suara cadangan pipeline saja). Dokumen
+juga menyebut `audio/uji-voice-00.mp3` dan `vo_bebas.py` — **keduanya tidak ada di mesin ini** (sudah
+dicari di `~` dan `/tmp`), jadi bukti reproduksibilitas itu belum bisa diverifikasi.
+
 **Jalur yang tersisa (urut biaya):**
-1. Task arena.ai yang menghasilkan `audio/vo-manual/` — satu-satunya cara mereproduksi persis.
-2. Pilih dari audisi timbre (`~/Downloads/niu-konten/audisi2/audisi_timbre_4voice.mp3`) → render ulang.
-3. Pakai reels v2 yang sudah jadi (`…-v2-vo-emma.mp4`) — lapis delivery MATA sudah diterapkan.
+1. Task arena.ai yang menghasilkan `audio/vo-manual/` (atau `audio/uji-voice-00.mp3`) — satu-satunya cara mereproduksi persis.
+2. Pilih dari audisi: `audisi2/ab_voice00_vs_kandidat.mp3` (MATA → Charon → Puck → Ardi) atau `audisi2/audisi_timbre_4voice.mp3` (Jenny/Seraphina/Brian/Emma) → render ulang.
+3. Pakai reels v2/v3 yang sudah jadi (`…-v2-vo-emma.mp4`, `…-v3-vo-ardi.mp4`) — lapis delivery MATA sudah diterapkan.
 
 ### 9.6 Tindak lanjut
 
