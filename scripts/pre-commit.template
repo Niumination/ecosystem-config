@@ -7,8 +7,14 @@ echo "🔍 [Niumination] Running pre-commit checks..."
 # === CHECK 1: DOX Cross-Reference (WARNING only) ===
 # Jika source code (.ts,.tsx,.js,.jsx,.py,.go,.rs) berubah di stage
 # tapi AGENTS.md dan BACKLOG.md tidak berubah → warning
-changed_source=$(git diff --cached --name-only | grep -cE '\.(ts|tsx|js|jsx|py|go|rs)$' 2>/dev/null || echo 0)
-changed_dox=$(git diff --cached --name-only | grep -cE '(AGENTS\.md|BACKLOG\.md)$' 2>/dev/null || echo 0)
+#
+# CATATAN (18 Sep 2026): di bawah ini dipakai `|| true`, BUKAN `|| echo 0`.
+# `grep -c` mencetak 0 sekaligus keluar gagal saat tidak ada yang cocok, jadi
+# `|| echo 0` menambahkan 0 kedua kalinya → variabel berisi "0\n0" →
+# `[ "0\n0" -gt 0 ]` error → pemeriksaan dianggap false. Akibatnya peringatan
+# DOX tidak pernah muncul dan tiap commit mencetak error yang menyesatkan.
+changed_source=$(git diff --cached --name-only | grep -cE '\.(ts|tsx|js|jsx|py|go|rs)$' 2>/dev/null || true)
+changed_dox=$(git diff --cached --name-only | grep -cE '(AGENTS\.md|BACKLOG\.md)$' 2>/dev/null || true)
 if [ "$changed_source" -gt 0 ] && [ "$changed_dox" -eq 0 ]; then
   echo "⚠️  [DOX] Source code changed but AGENTS.md/BACKLOG.md not updated."
   echo "   Consider updating project DOX if architecture/API/credentials changed."
@@ -16,7 +22,7 @@ if [ "$changed_source" -gt 0 ] && [ "$changed_dox" -eq 0 ]; then
 fi
 
 # === CHECK 2: .env Blocker (BLOCK) ===
-env_staged=$(git diff --cached --name-only | grep -cE '\.env$' 2>/dev/null || echo 0)
+env_staged=$(git diff --cached --name-only | grep -cE '\.env$' 2>/dev/null || true)
 if [ "$env_staged" -gt 0 ]; then
   echo "❌ [ENV] .env files detected in staged changes! Commit blocked."
   echo "   Remove from staging: git reset HEAD -- <file>"
