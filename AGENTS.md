@@ -3,7 +3,7 @@
 **Lokasi:** `~/Desktop/Niumination/`
 **Pengguna:** Afrizal Munthe (Niumination) — Pranata Komputer, Diskominfo Aceh Tengah
 **DOX Version:** 4.0
-|| **Total Projek Lokal:** ~42 git repos
+|| **Total Projek Lokal:** ~43 git repos
 |||||| | **Kanban Board:** "Niumination Ecosystem" — terupdate 16 Jul 2026 ✅
 
 ---
@@ -91,11 +91,13 @@
 │   ├── sapa-ai/               ← SAPA Smart AI — SPLP-only, RSC+ISR 10m (kpi/stats/report/sapa cache, revalidate) ✅
 │   └── uacc/                  ← Universal AI Computer Control — 68 MCP tools ✅
 │
-├── sites/                     🌐 5 proyek — frontend apps
+├── sites/                     🌐 7 proyek — frontend apps
 │   ├── audit-ti-at/            ← Vercel Live ✅
 │   ├── tedeo-kanban/           ← 95% — Vite/React/Zustand — Vercel ✅
 │   ├── niu-dash-fullstack/    ← Next.js 16 Fullstack
 │   ├── niu-kanban-dash/       ← React/Vite (port 5199)
+│   ├── landing-web-id/        ← Landing page statis (HTML) niumination.web.id — Vercel deploy ready
+│   ├── niu-oss-dashboard/     ← 🆕 Next.js 15 — landing + dashboard OSS 91 repo, API publik v1, PWA, i18n id/en — repo Niu-OSS-Dashboard (fase 4 go-live pending)
 │   └── spatial-vision/        ← Rust/WASM — gesture+canvas
 │
 ├── desktop/                   🖥️ 4 proyek — native apps
