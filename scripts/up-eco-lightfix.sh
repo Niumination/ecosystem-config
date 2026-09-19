@@ -102,7 +102,21 @@ else
   say "✗ verifikasi target GAGAL: $(printf '%s' "$out" | tail -2)"; rc=1
 fi
 
-# 5) commit opsional — HANYA artefak turunan, tanpa push
+# 5) commit — HANYA artefak turunan, tanpa push
+#    a) selalu: churn timestamp pada manifest/registry di-commit otomatis, TAPI hanya bila
+#       perubahannya terbukti timestamp-saja (dibandingkan dengan versi HEAD setelah
+#       normalisasi). Perubahan konten nyata ditolak dan dibiarkan untuk peninjauan manusia.
+#       Tanpa ini setiap run cron meninggalkan 2 berkas "kotor" hanya karena stempel waktu.
+#    b) --commit: artefak turunan penuh (termasuk INDEX.md) ikut di-commit.
+if [ "$rc" = "0" ]; then
+  cd "$NIUMINATION"
+  if [ -x scripts/lightfix-autocommit.sh ]; then
+    say "─ autocommit (timestamp-saja):"
+    bash scripts/lightfix-autocommit.sh "$NIUMINATION" 2>&1 | sed 's/^/  /' | tee -a "$LOG"
+  else
+    say "⚠ scripts/lightfix-autocommit.sh tidak ada — churn timestamp dibiarkan"
+  fi
+fi
 if [ "$COMMIT" = "1" ] && [ "$rc" = "0" ]; then
   cd "$NIUMINATION"
   git add skills/manifest.json skills/INDEX.md docs/registry/skill-registry.md 2>/dev/null || true
