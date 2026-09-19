@@ -55,8 +55,22 @@ mkdir -p "$LOCK_PARENT" 2>/dev/null || true
 if mkdir "$LOCK_DIR" 2>/dev/null; then
   trap 'rm -rf "$LOCK_DIR"' EXIT
 else
-  echo "⚠️  Lock aktif — sync sedang berjalan. Skip."
-  exit 0
+  # Exit 3 = DILEWATI (bukan sukses). Sebelumnya exit 0 membuat caller (lightfix/cron)
+  # melaporkan "✓ sync" padahal tidak ada yang disinkronkan sama sekali.
+  echo "⚠️  Lock aktif — sync DILEWATI (bukan sukses)."
+  exit 3
+fi
+
+# ── Penjaga "never clobber": daftar skill yang TIDAK boleh ditimpa ────────────
+# Suntingan yang dibuat di target tidak boleh hilang seperti kasus 19 Sep 2026
+# (hermes-terminal-workflows). Detail + bukti: scripts/sync-guard.py
+GUARD="$BANK_DIR/../scripts/sync-guard.py"
+SKIP_RELS=""
+if [ -f "$GUARD" ] && ! $DRY_RUN; then
+  SKIP_RELS=$(python3 "$GUARD" --conflicts 2>/dev/null | cut -d: -f1 | sort -u || true)
+  if [ -n "$SKIP_RELS" ]; then
+    echo "⛔ Penjaga: $(printf '%s\n' "$SKIP_RELS" | wc -l | tr -d ' ') skill DILEWATI (konflik target)"
+  fi
 fi
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
@@ -74,7 +88,11 @@ sync_skill_dir() {
   if [ ! -d "$src_dir" ]; then return 1; fi
 
   if command -v rsync &>/dev/null; then
-    rsync -a --quiet "$src_dir/" "$tgt_dir/"
+    # --checksum wajib. Tanpa itu rsync memakai quick-check (ukuran + mtime) dan BISA
+    # MELEWATI berkas yang isinya berbeda bila ukuran & mtime kebetulan sama - terbukti di
+    # uji sandbox 19 Sep 2026 (bank "C-v2" vs target "C-v1", keduanya 52 B, mtime sama ->
+    # target tidak diperbarui padahal sync melaporkan sukses).
+    rsync -a --checksum --quiet "$src_dir/" "$tgt_dir/"
   else
     mkdir -p "$tgt_dir"
     cp -R "$src_dir/." "$tgt_dir/"
@@ -104,10 +122,12 @@ verify_target() {
 write_lockfile() {
   local target="$1" label="$2"
   if [ -f "$BANK_DIR/manifest.json" ]; then
-    if python3 "$BANK_DIR/../scripts/skill-manifest.py" --lockfile "$target" 2>/dev/null; then
+    # Jangan buang stderr: lockfile yang gagal senyap pernah menyamarkan regresi
+    # (3 entri lock basi tanpa peringatan apa pun).
+    if lock_out=$(python3 "$BANK_DIR/../scripts/skill-manifest.py" --lockfile "$target" 2>&1); then
       log "   ✅ $label: skills-lock.json ditulis"
     else
-      log "   ⚠️  $label: lockfile gagal ditulis"
+      log "   ⚠️  $label: lockfile GAGAL: $(printf '%s' "$lock_out" | tail -1)"
     fi
   fi
 }
@@ -120,6 +140,7 @@ sync_target() {
   local target="$1" label="$2"
   local copied=0
   local skipped=0
+  local quarantined=0
   log "→ $label: $target"
 
   while IFS= read -r src_file; do
@@ -132,6 +153,12 @@ sync_target() {
 
     tgt="$target/$skill_dir"
     display="$skill_dir"
+
+    if [ -n "$SKIP_RELS" ] && printf '%s\n' "$SKIP_RELS" | grep -qxF "$skill_dir"; then
+      log "   ⛔ $label: DILEWATI (konflik target - tidak ditimpa): $display"
+      quarantined=$((quarantined + 1))
+      continue
+    fi
 
     if $DRY_RUN; then
       echo "  [COPY] → $label: $display"
@@ -146,6 +173,9 @@ sync_target() {
   log "   ↑ $label: $copied skill disinkronkan"
   if [ "$skipped" -gt 0 ]; then
     log "   ⚠️  $skipped skill DILEWATI (struktur nonstandar: root-level atau kedalaman >2)"
+  fi
+  if [ "$quarantined" -gt 0 ]; then
+    log "   ⛔ $quarantined skill DIKARANTINA (disunting di target - dilaporkan up-eco)"
   fi
   if ! $DRY_RUN; then
     verify_target "$target" "$label" "domain"
@@ -175,6 +205,11 @@ $DRY_RUN && log "🏁 DRY RUN — tidak ada perubahan nyata"
 
 # ── 1. Sync ke Hermes (domain structure) ────────────────────────────
 sync_target "$HERMES_DIR" "Hermes"
+
+# ── 2. Snapshot state target (dasar deteksi "target disunting" berikutnya) ──
+if ! $DRY_RUN && [ -f "$GUARD" ]; then
+  python3 "$GUARD" --write-state 2>/dev/null || log "   ⚠️  gagal menulis state guard"
+fi
 
 # ── 3. Update AGENTS.md — Skill Registry ────────────────────────────────────
 if ! $DRY_RUN; then
