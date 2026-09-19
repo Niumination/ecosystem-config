@@ -1,6 +1,6 @@
 {
-  "fileCount": 715,
-  "generatedAt": "2026-09-19T09:44:04.481441+00:00",
+  "fileCount": 716,
+  "generatedAt": "2026-09-19T09:50:44.556349+00:00",
   "skillCount": 145,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -92,13 +92,14 @@
       }
     },
     "creative/gemini-vo-narration": {
-      "bundleHash": "89c09467399e3647fb30179553d7bd0dd78f0d6230f5c99f0a4e5124aa861834",
+      "bundleHash": "fdfb7703733fe3c058dbec0699c99153fabd4b033f69da2e549fbbf629392b50",
       "domain": "creative",
       "files": {
-        "SKILL.md": "98fe69d01a38dd6e21f529ad0ded32036ca9bb074a2466836a742bd83b9235dd",
-        "references/kasus-gagal.md": "0552dbdc2f791e0cca9cc8a6c555ae3a62f20490221d104b9c110a91b6fe93fe",
+        "SKILL.md": "bce8674fd137bd7e95c3d321a20b1f7d016c4ce633a49c733b8945cc06c7402d",
+        "references/kasus-gagal.md": "99dd5e0b6ca459bb3c6aa4382825c973b6c81bfc4af578d58cc79222c55f09cd",
         "references/prompt-dan-tag.md": "d0e9ee39a5f86e9ba2b420bad9b5f3a7638760a1f5240be7eb03dfceaf9baf1c",
-        "scripts/gemini_vo.py": "a8184a47e928b1c84ccebbb32acb6164d82d52e4b10e6172eab831d863b6e01c"
+        "scripts/gemini_vo.py": "a8184a47e928b1c84ccebbb32acb6164d82d52e4b10e6172eab831d863b6e01c",
+        "scripts/periksa_vo.py": "9914f94afafd558e067bccaceb1a7e37e3acc2283222bf76e5fe64e79d6bbb2a"
       }
     },
     "creative/ghost": {
@@ -625,10 +626,10 @@
       }
     },
     "ecosystem/ekosistem-scaffold": {
-      "bundleHash": "052cf3766e286242db1530725c94c40a84cc10f9770a358b8dd02406fa1d545f",
+      "bundleHash": "e0918a29941905bc1e7975889a69b388d651c3fac698b14e4c71a986548efec9",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "bbf189b53bd93489f5a4de62b36056243610390d74ae4cb2dca8f5415ead2c14"
+        "SKILL.md": "8c31716c60cc426f15853f9b689eaeb6d66e6079e7ddd084cab0cdb8e3163995"
       }
     },
     "ecosystem/external-patch-adoption": {
