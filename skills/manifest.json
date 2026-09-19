@@ -1,6 +1,6 @@
 {
-  "fileCount": 756,
-  "generatedAt": "2026-09-19T13:40:06.687053+00:00",
+  "fileCount": 789,
+  "generatedAt": "2026-09-19T16:05:29.401821+00:00",
   "skillCount": 159,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -11,10 +11,11 @@
       }
     },
     "autonomous-ai-agents/telegram-router-orchestration": {
-      "bundleHash": "311bdc6633e5289a62517f97b5befdaa0c34297fc337b9bc6b48145a15836d7d",
+      "bundleHash": "135386ca64d227b3c6402d906aaffc0c6fa4700c8a4386b882922f39d1f58ba6",
       "domain": "autonomous-ai-agents",
       "files": {
-        "SKILL.md": "6211669d4cfacd6e07bfe8ec9ee3d75b647f3806ada4b05d5d85eadcf4063734"
+        "SKILL.md": "6211669d4cfacd6e07bfe8ec9ee3d75b647f3806ada4b05d5d85eadcf4063734",
+        "references/model-mapping-2026-08-29.md": "54cc7d2e7e01cc82ffacc6bab07300ef203305290b4238f6ef31977697ccbe9b"
       }
     },
     "camofox-browser": {
@@ -91,11 +92,13 @@
       }
     },
     "creative/free-tier-reels": {
-      "bundleHash": "88363462d377353f9e784dbe6fbe833972124e34e053b9fcec1bc37b4eeb8297",
+      "bundleHash": "91ba6ee16ffb891a67e61fb1a05629daea8a8a3c7313518d4f200cf357b05083",
       "domain": "creative",
       "files": {
         "SKILL.md": "da64fbf237b968b6f2055a91548a3d41bc059a1f9fb2ad6364f7e34078fba237",
+        "references/hyperframes-composition.md": "40cd79e3da8cec0848b1a860581f354c1eeae3a01d775db9a8053c8ca7fd8e13",
         "references/ide5-reels-workflow.md": "af64608cea101baccbb98b262fcc2e2209e36b5e9471c15e0b6ae1266a9cbe27",
+        "references/voice-over-delivery.md": "7f895815e4a3ce6f9d8b2840329d8ae19b644b4be385c3ec18c020680901180d",
         "scripts/generate-html.sh": "482f457466dc0251de55196f5ff46a54161d0f1865e7743e929ba340185cfd1d",
         "templates/reels-html-scaffold.html": "3a2c55c137f51e0473304f2f1e09c048fbca5cf6e23d1d1882724be09c01aeee"
       }
@@ -569,7 +572,7 @@
       }
     },
     "ecosystem/device-migration-disaster-recovery": {
-      "bundleHash": "bb92e3d6f7683fa65340c79ff8a9fde6697f3cd0fcc7e584f01fe1ee831f8439",
+      "bundleHash": "83b61b21df18aee0b6f1a8abdb9b4c56b380cfd899ea0178ef4d0713391a46f0",
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "77c47b72719f3b316bedaa61760c9702575a68838a9ba4e38b3bc65d88942cc0",
@@ -577,6 +580,7 @@
         "references/hermes-home-backup.md": "5ddc76d3d2846bbd58de339c24d662e292f17a4a24a87880c9e665a7d9b5acdb",
         "references/ignored-path-sweep.md": "e2bf1131165e9e365bfc67a2cf73627a7f185f3d03f0cb88151793b4b266f23f",
         "references/offsite-artifact-staging.md": "d7e6554b2f1114b2f7760a71f4046e96c60fc7a3f27ef1023eb15f9f88cb6707",
+        "references/post-work-isolation-audit.md": "c8a1807ab71ee028195c95786c2da643e74e3f257b192b3d97960be4d11b7a60",
         "references/restore-repo-layout.md": "8f89be1b5aa0e8bc0868b668da6dcffd29b2c42e18f4cd0e8b6ece84c6690bdb"
       }
     },
@@ -603,11 +607,12 @@
       }
     },
     "ecosystem/ecosystem-dox-maintenance": {
-      "bundleHash": "18845082e3389b3eb51f122b9a391e0c574b96ab70e35673edb7e35699232c18",
+      "bundleHash": "25b2891272343705960165f7dc3970b7c9f41991f974ebd5c2e7839841760483",
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "5104a0d94ddb47364c58297dfc659404ade54e5db9871465970a7318f5b98267",
         "references/channel-prompts-editing.md": "3fd6dafc099042b175d944d2b63cbe19ac47be4b6cfdf96dabbda2fc2b448789",
+        "references/dox-claims-audit.md": "e046015fb5922f058d2547258d6beecf0fe734baee614e111a329906df0534e0",
         "references/file-duplication-patterns.md": "9fe62d704dccb5db08a51071c722681c4f1d394e497955e1555b3e11e8ea4974",
         "references/path-migration-sweep.md": "a4ddfaa594bfe733e0f026d6cd25954799e1ddd42831f69ba67c0aaefad4f773",
         "references/stale-brief-handling.md": "7e5344ec25cf4f73fa3b2eca1959bf6ac4d13325a065eb34fc1f94e4e7e167ec",
@@ -624,10 +629,11 @@
       }
     },
     "ecosystem/ecosystem-provider-management": {
-      "bundleHash": "9b7d5dd83e506b1e46e05088f0a62919753c2e11e21b9a5459e5b2a9757c9372",
+      "bundleHash": "67a768a3e92d4eab55be520b5988d1b78d45d3b1fbe001ed9b63172188168b0a",
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "cb3f81dbd8465ee5f9b295a34f8737c3cde6dcedc13625a55e70b7769109efc8",
+        "references/agentrouter-quirks.md": "c11ae9b37258503c39a0abb0a6879d26d6909de97c131f5a7162ec7250d3f744",
         "references/cc-acehtengah-ai-output-2026-08-28.md": "79d9e482202cf892fcd4ecda4fe3975029c0c9429b75102c2cc281a4316f5186",
         "references/cc-acehtengah-dtsen-restore-import-2026-08-29.md": "b5b82b8657a15663ec15762ed03a66a8e3309c83e2c3b06ccc5be8cb8d7dbe03",
         "references/cc-acehtengah-role-auth-2026-08-29.md": "a4a210ba0487f896455eff19731876682cd6238ab7e037a5c93f4799822eb053",
@@ -703,7 +709,7 @@
       }
     },
     "ecosystem/hermes-configuration": {
-      "bundleHash": "d823e9606a36ff41753139926e4398a432eaa2b8bf95e9e531ee413f9b7c5e01",
+      "bundleHash": "7d2886b59c01bbcb562d210096be820bd8d4b634c8e1e49c4fa4cbbc5ed5ca1e",
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "1827f2ceecd3a6be2b29ceb8e0024294eb8e9b1a16ea3e1edd2d0e1e25dec244",
@@ -712,32 +718,45 @@
         "references/gateway-notification-system.md": "ed55a43e60824441efeebf781bd6dc624844745ad01f464ab9c4dae937377aa2",
         "references/hermes-update-procedure-2026-09-09.md": "efa90e6416dcede501a00e9053b736aae44b5e89e37e68da08a8beaaeb34468e",
         "references/local-patch-preservation-during-update.md": "d931dcca8a448518dfd875311e9f0424c1ac031f102bdfbb807c7ef4e385695c",
+        "references/model-audit-tool.md": "67056d949aef4d9cfeb522ff637197c8918e8ccbe63b0af125014e53b8af1cec",
         "references/nous-portal-oauth2-config-2026-09-09.md": "bf3930ecc0650afdd3f81bda7482c389e75daa1d271cbdfb68c596d40064ddbe",
-        "references/opencode-provider-config-2026-09-08.md": "b6c72f33d1eb807010ccd1355a5f4c43a3ed261ba1352b8026d1032fb0a354bf"
+        "references/opencode-provider-config-2026-09-08.md": "b6c72f33d1eb807010ccd1355a5f4c43a3ed261ba1352b8026d1032fb0a354bf",
+        "references/opencode-session-header-fix.md": "a481010e88923fa72fa5131d77f9cef3dc367f369ba90126cb0bf59cef9b6a53",
+        "templates/non-agent-cron-wrapper.sh": "047694f2b7709395640726c057f75e243f7150c387c66395d457ff1320c0243c"
       }
     },
     "ecosystem/hermes-gateway-dm-troubleshooting": {
-      "bundleHash": "5a5a29c9c2c98dbedae5cbb17d93b69b76619855bec2d8e2352b23b912c4d141",
+      "bundleHash": "4de329fc5ca20cdb985d5a3f29d43a410fcccb40d50dcfd1531add903b4ba800",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "244337acf608d92b9141bfd3248f1bcb3caec0f04b03363fcd1fa82538208f1b"
+        "SKILL.md": "244337acf608d92b9141bfd3248f1bcb3caec0f04b03363fcd1fa82538208f1b",
+        "references/macos-gateway-lifecycle.md": "be0d62cf6040b781d5d31e231f029ef8ae56ddce325b669bb55fef0fbe124550"
       }
     },
     "ecosystem/hermes-provider-config": {
-      "bundleHash": "a08ea29ec2bd529ed9efcc5ce65db04b7d39dceb8914a427fbf53fe18dcead00",
+      "bundleHash": "e2d5964dc410acefd13cddaba74ec418f9095a655272c75b5337a37c5028b7fc",
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "2760c946f01a2046632c711db1f01b1ef1951ba117f6f0cee9276e085acebcfd",
         "references/9router-gateway-admin.md": "d4b718f0ad1b63419c2248d0d4d3105a441065dbcd57915cc1ee3a69c8d1bac5",
+        "references/9router-model-management.md": "ca706419601bc190ce3d1be74c758bcb922e83e52490875d42cefef767d0e385",
         "references/juan-router-integration.md": "737c490e199201370c75d62c2f51693f5242b41ea79228fe49636e2a7df64b42",
         "references/model-catalog-structure.md": "ba5b28126411702689a793b6e4cea6433ac3841e2e0c37580d7041ec936d1f4d",
+        "references/model-mapping-report-2026-08-29.md": "c0563ea59f82672407d6724da25f961dba68dae12dd61e5f5524acaba5332e09",
         "references/model-mapping-report.md": "c2cd66027323b705e12a8eac4af4eba74117a50ab13a978ed0b087acf26aaf39",
         "references/oauth2-vs-apikey.md": "c32e08dd3fb02d8ae7bfaf4ff164f85ad3539229cb6cacc912420265a0da56b7",
+        "references/opencode-provider-troubleshooting-2026-09-08.md": "ef251ab6790739090a843c2e09983ab3ae1989b90c69ba247f1ba9978772e48d",
         "references/openrouter-free-tier.md": "3ec3fde62fdff79950ec8bfaa31bbd6d42baf14622a0be467632542a4a9cc986",
         "references/provider-audit-2026-08-18.md": "c1ded25561d5476646fede92811e007f8dcf3e341c1dc3558f79441df540a310",
+        "references/provider-scan-2026-08-29.md": "ce49c4fc6bcaf11f3d9538505dc91348a5b97530d4a6f92ef7717016ec9741b1",
+        "references/provider-status-2026-08-29.md": "2d92a5f2eafbe2cb34ed0d5f58abb0b2f6bdf77e306f94be695d3bbe3fb18345",
+        "references/provider-sweep-2026-08-29.md": "9cf41e186156b1b3d80bb79953ecd55de4810878ec1ba528ea2e85b45d020614",
         "references/rtk-verification.md": "68eade5a4f4f2e5417ee798824b5a72075f025b61e795fa1b79eb74e7b241f47",
+        "scripts/apply-model-mapping.py": "a29013629fc9baeda1f0470aa793b65a7c26c278e618834875fe42fe61eb0b12",
+        "scripts/check-9router-model.py": "e0ecb9fb068d26f53f3ec53d68219907b919d7c24feaadbd6b87fb5e11b20d4e",
         "scripts/check-rtk.sh": "0b3065e58ace02078848b7141ffb08ee2a86333121ec1222f3ab3d6b2696c4b3",
         "scripts/probe-provider-models.py": "39dfbc4fa90a210a0c9135b32d9a160fc66e5f657e10dd7b596653b6d0bc9a5f",
+        "scripts/rapid-probe.py": "c29d2db4aa116e55103f9a6450996939da2c3fea458f84dd3ccff4c7a5e5c844",
         "scripts/stress-test-models.py": "1c7022f0b56584d371b11a92b90ab14781281fc9d18c829593764450c451520c",
         "scripts/test-vision-endpoint.py": "23426710553f9407890df8e25b451d1b233c3430dac481af8ab0ab3efddd56c1"
       }
@@ -849,10 +868,11 @@
       }
     },
     "ecosystem/niumination-reference-adoption": {
-      "bundleHash": "86d168c3c136517231c11a9aa4aef0906eb5276ac55dc956fb7414ca1b8e98b5",
+      "bundleHash": "177dcd596ed4dc229e7243b0bda72bca09c941a3ed2e3651cfa5dd3dd9940612",
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "8c35ca0a433cd2097039194791b9924dceaea0c24c235fafe0a6efe5fee23880",
+        "references/agent-local-skill-promotion.md": "05cd2c04b37333a1e6c5c9b9b5fe2ec69ccbcfaa4fc0b674f8f5ee6e90ec88d6",
         "references/free-stack-merge.md": "75ed9ac442a790e7a645a0e395096712698b507e1cd86700efe3a105492a600f"
       }
     },
@@ -885,10 +905,11 @@
       }
     },
     "ecosystem/provider-fallback": {
-      "bundleHash": "bdccc2ce9294111ca35e7fca19a1a9a988cb8bd3527d22d7ebbf3fb950201b17",
+      "bundleHash": "1cdea0892ff8332d48649e43673547ea4fd103f58e64aeeb5d74e0e0cbe643b1",
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "192b460081e9aae66defa4491c57079185538b847e6ffcd6d80318c0ca27d71a",
+        "references/agentrouter-integration-2026-09-15.md": "d05c2bb6b71568c570f73958e3e3d496e29f55cbefb09b47684548c2df72a750",
         "references/agentrouter-investigation-2026-08-13.md": "c78730422f289626372e7574c9b2b17ab068fb4d102130c8c14ffaf4cf2742a1",
         "references/fallback-chain-selection-2026-08-13.md": "f2bb06698c54e87daacd02524fedb6224223c0daf2160fa2dc74518e5e27e8fb",
         "references/openrouter-free-tier.md": "82c0abfadaf673ff48a0f80db515005fe4ff3c123811a34f59f4cb1cebf9daaf",
@@ -1228,17 +1249,23 @@
       }
     },
     "security/git-security-sanitization": {
-      "bundleHash": "0f68f8e5b348496636aad8099bc606264bac3417a0ebdff9411393f0628c9a8e",
+      "bundleHash": "c21ebfc76b5c943d233048c1f479df2515fba08d12164bec6053bd6bc5a20fb1",
       "domain": "security",
       "files": {
-        "SKILL.md": "79997e625245098eda18dd74902155d1e5636c7c65cc9031404d6f6c2badb77e",
+        "SKILL.md": "0181b1bfafef10b18b452e4a736fa365202430342022e5cea58c2b8aa5a986e2",
+        "references/account-and-host-posture-sweep.md": "fdbb098c74cb4c247621d42dda5be2c3fe46dc20c96b8d9383aa5af2f45e512c",
+        "references/credential-rotation.md": "f96e0c47b0476ad76fd28a0950c9da5dc0700695f16442b30acb943b2306cea1",
         "references/github-secret-alert-triage.md": "d39706398ab6f3ecaaa55aa45b6dc5521b4a7cca725f239c8ed7ff4e459e020a",
         "references/history-rewrite-dry-run.md": "1c0d3feed116d2d39aa9bde111c1e77395d50971c6be0f2e47935e911b37ece0",
+        "references/incoming-contribution-review.md": "5e421467523b7c78d164b5d3f64dd230fc6298263562a22d84bc1a301965a9c1",
+        "references/leaked-credential-blast-radius.md": "f492c5c782ef29ff90c2c4d2d5aa19e4f85253b257e5834d703f2b794f86365a",
         "references/pii-gate-config.md": "631f36425b985653855ed61259ea3d0172d7b347ee2306191bc1cc5977a7685f",
         "references/pre-commit-template.sh": "29ebbe1d40fed4dc47b27cf042c0b21eb0e3266a5e51b9fb847cff8aa8d850e2",
         "references/public-repo-leak-audit.md": "691c813fb7d62fc62baf2d00e2e251c8e0c89ea0368266a632f102d95ea22557",
         "references/redaction-patterns.md": "8efb678119a08b66242dba445a55c50f0d1ae52bd5b1a58d42f9b06bdaada09f",
         "references/secret-alert-triage.md": "a443f5c3719f9b6fbb07430ae97f27e24114f665a5ba3384d2fc8c75848ef7cf",
+        "scripts/alert_inventory.py": "5880e5159618f55694c1bb578d7fa37cde29807d16252d80f66b0f2b36a1c4f2",
+        "scripts/blob_history_pattern_scan.py": "63b9bf588ba5b98f96feba559ce96e3fcf8f45acfa98e4ff56c77156dbe3801e",
         "scripts/history_secret_scan.py": "9d07b724b997bc8e7885eaf81bfdf188af0eed5bb368654b6798927e4688f0e8",
         "scripts/masked_pii_triage.py": "6174b498704b94371bf1dfdc68586b8ab4c9c6a98771ffd988e8c29587f1d446"
       }
@@ -1282,10 +1309,10 @@
       }
     },
     "software-development/audit-finding-triage": {
-      "bundleHash": "c560772f407103c22777365868767fe34b6b3078d9475650dd16548498cffc53",
+      "bundleHash": "a7836e33a679ea6db9afbcb059e8300536b74ef61a6b8a4cd0bf3dbb3dfc709c",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "f92b7fe79b556ba67fdd45a21721ad8a37ece57b1b0dc5029fd0936e0c0e99d7",
+        "SKILL.md": "b4069960c78bb9437432f8ddc283e5d929eaff02a88b6e345ba08fb6d223fc56",
         "references/provider-schema-apply.md": "c70cf832620514d50afea7f176d5a3992e738dd87959811f5bbc09f4c994a95d",
         "scripts/bait-bank-check.sh": "80cfc842bbc98c718708dc10982dcee98febe17a67d424cc6229497b20553cab"
       }
@@ -1348,10 +1375,10 @@
       }
     },
     "software-development/derived-artifact-consistency": {
-      "bundleHash": "f8128d136d8db5cfbb7fbda63bded69ca291517024054dbe2f5e0a60e60a6907",
+      "bundleHash": "1a7dd414182779d2633880fa67395f3c85d6140b5a58eaecb21fe8fc0a415f05",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "6f656f9c5be49085a7b8eee131628054a635218df3631b8967121c9cfb706bb4",
+        "SKILL.md": "40b9ba8c44f19ee056d9d19a0f60d8423b0e4196d8d955601c2d52b70fb11c61",
         "references/regenerator-authoring.md": "3bf1f6727c3f2d1a176b0dc66d777fbca9c78b8236b47785ced5eaec216c13a1"
       }
     },
@@ -1415,10 +1442,10 @@
       }
     },
     "software-development/hermes-terminal-workflows": {
-      "bundleHash": "2a1b887a274ec8dc62ab5019e7022d512e6278753220bf0d965f5f2872171458",
+      "bundleHash": "27258c3177b450e151cf222b992148619151158e8e8e685dc8b6c6bb986718bc",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "b86a43150ef72dfbb07af71c6b801edf5dec9855f1b36d0be33b299c20f52033"
+        "SKILL.md": "24a002bb0e5ea1c05fb21224634d3a05a13ae6a2ed5cd9b913c419d2c473c600"
       }
     },
     "software-development/hermes-zero-defect-architect": {
@@ -1445,10 +1472,11 @@
       }
     },
     "software-development/niu-mission-control-ops": {
-      "bundleHash": "0310d2845ca5833490faa5dd2429b63de5750407bc43bc1acd7fbd4b65499b14",
+      "bundleHash": "86da8799962c74649cc7a83ec62a4a90df5e86562001d04ebb0f231beb6ebebc",
       "domain": "software-development",
       "files": {
         "SKILL.md": "f26b736747ec591e8a7f2d5b38d3f52d2a3165f46da3ae74d1a0e3d49e17db30",
+        "references/architecture-migration-2026-08-29.md": "bc646a7bd6d570f1912a987375a5fb32ff332eb98181d96dcfcf39dd9e48b746",
         "references/cost-telegram-p1-fix-2026-08-20.md": "7246d5172061c6f712729a8d8212e69f18887d89d7f4502498cacf9c61853719",
         "references/deploy-p2-fix-2026-08-20.md": "fda37d07e7b1b1d95ff9969cab5cce762c6a8d502aee485c12728beccb07766d",
         "references/quick-wins-cleanup-2026-08-20.md": "bc7dd27983ac5e2581ef2e25d6353a9bf390a6b5f25da7aaf2cb11919a3912b1"
@@ -1648,10 +1676,12 @@
       }
     },
     "software-development/systematic-debugging": {
-      "bundleHash": "b6c837740b8f7043023c1edc9d9ef771a5aadcbd3cca97761d28c9cea420c233",
+      "bundleHash": "4575c695182a5efbd69df6020b3f73fce39f90d441e57f918495b6c2787f292e",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "85757fe973d82af359cfc5497e48057f981462b7f99b53e923a7a3b6665b7d3b"
+        "SKILL.md": "85757fe973d82af359cfc5497e48057f981462b7f99b53e923a7a3b6665b7d3b",
+        "references/agentrouter-auth.md": "bfe7352d987b338636a400edcb7be345290288e8cbcb4c3305a5b236f7928b2e",
+        "references/pipeline-build-cost-control.md": "3c456108701a319382aa11f4fa82f0cfc610489307b8e5234a3f52e18f870129"
       }
     },
     "software-development/tripwire": {
@@ -1669,10 +1699,13 @@
       }
     },
     "software-development/vercel-deploy-check": {
-      "bundleHash": "883250d888a4e4a0b30f167c3d008fbbaa1d9e314c0a4fe11cabd065af221d87",
+      "bundleHash": "553606f161883277f2b477338a57e0508604ff4868a4bd9e9de9e51f35b3048b",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "d881f31e7704e08e3f0096e7a6db22c8ec1b0bc85d368b230efd9d0429e3c95a"
+        "SKILL.md": "d881f31e7704e08e3f0096e7a6db22c8ec1b0bc85d368b230efd9d0429e3c95a",
+        "references/build-vs-deploy-failures.md": "cc81f8e1963816a629b2c4a6fb1fb84ee600b699ece09e3f3724dcc7b1f555b3",
+        "references/deployment-storage-limits.md": "8f28574afc5c78047f535c485d0e7dba3e72d721b95da7dd6eae249c8c8d13f7",
+        "scripts/deploy_state_probe.sh": "569b65b6c3d829ba7bea8467f9a078cea109abab0ffa36c1dab3d80b1456b1da"
       }
     },
     "software-development/verification-before-completion": {

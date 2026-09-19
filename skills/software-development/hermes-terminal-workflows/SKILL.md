@@ -100,7 +100,10 @@ To protect mirror-side work while still propagating source updates:
    verify → commit. Promotion must run before the manifest is regenerated, or promoted items miss the
    index for a whole cycle.
 6. **Never auto-commit the results of a promotion/backport step** unless asked — leave the source tree
-   dirty so a human reviews what crossed the boundary.
+   dirty so a human reviews what crossed the boundary. When you do commit them, a repo-level secret gate
+   may reject a legitimately-planted fixture that came along with a promoted item — fix the fixture
+   (assemble the token at runtime so no key-shaped literal exists) and never bypass with `--no-verify`;
+   details in `git-security-sanitization`.
 
 **Test the whole pipeline in a sandbox first.** Support env-var path overrides (`BANK_DIR` /
 `MIRROR_DIR` read from `os.environ`) since scripts with hardcoded absolute paths cannot be exercised
@@ -117,6 +120,31 @@ curl -s --max-time 25 -o /tmp/x.json <url>   # inspectable bytes on disk
 python3 -c "import json; d=json.load(open('/tmp/x.json')); ..."
 ```
 Same data, no gate.
+
+## Changing a Multi-Layer Automation Pipeline (map first)
+
+Applies when the task is to change an existing pipeline of scripts (checker → sync → generators →
+cron) rather than to write a new one. The correction that produced this section: a day of
+individually-correct fixes was rejected as "kenapa hasil kerjamu jadi ribet gini" — the answers were
+right, the ordering was wrong.
+
+1. **Map before code.** Before proposing or writing anything, present two things: the structure as it
+   exists (which script calls which, which state files must stay consistent) and the list of problems
+   still open. Then offer options. Fixing problems one after another without that map loses the reader
+   even when every fix is correct.
+2. **Budget the layers out loud.** Count the two numbers that make a pipeline expensive: scripts in the
+   chain and state files that must stay consistent. Prefer changing a script that exists over adding a
+   new one; when a new layer is unavoidable, name its partner explicitly ("script X + state file Y")
+   instead of hiding it behind one feature name.
+3. **Normalize before refactoring.** Run the pipeline until green, then commit and push everything
+   dangling (generated artifacts, promoted content) BEFORE changing or deleting anything. Refactoring on
+   a dirty tree risks unsaved work and mixes unrelated diffs into the refactor.
+4. **State the data direction.** Say which side is the source of truth and which is the mirror. Adding a
+   second direction to a deliberately one-way pipeline has real costs (guard, state snapshot, ledger) —
+   write those costs down and get a decision before coding.
+5. **Offer decisions as numbered options (A/B/C) with a recommendation**, not as an open question. This
+   user answers in one word ("gas", "kerjakan", a letter) and works fastest when the trade-off is
+   already stated; do not make them read implementation detail to choose.
 
 ## User Continuation Signals
 
