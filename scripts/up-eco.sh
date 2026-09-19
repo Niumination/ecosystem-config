@@ -411,6 +411,26 @@ check_lightfix() {
     rec "→ pulihkan: git -C $NIUMINATION checkout -- scripts/lightfix-autocommit.sh && chmod +x"
   fi
 
+  # Pemberitahuan: commit timestamp dari lightfix TIDAK pernah di-push (kebijakan: tanpa
+  # push otomatis). Tanpa baris ini, commit menumpuk senyap di lokal dan baru ketahuan saat
+  # sesi berikutnya. Dihitung dari commit yang belum ter-push dengan subjek khas lightfix.
+  local upstream pending_auto pending_all
+  upstream=$(git -C "$NIUMINATION" rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null || true)
+  pending_auto=0
+  pending_all=0
+  if [ -n "$upstream" ]; then
+    pending_all=$(git -C "$NIUMINATION" rev-list --count "$upstream"..HEAD 2>/dev/null || echo 0)
+    pending_auto=$(git -C "$NIUMINATION" log --format='%s' "$upstream"..HEAD 2>/dev/null | grep -c 'lightfix otomatis' || true)
+    pending_auto=${pending_auto:-0}
+    pending_all=${pending_all:-0}
+  fi
+  if [ "$pending_auto" -gt 0 ]; then
+    warn "$pending_auto commit timestamp lightfix belum di-push (dari $pending_all commit belum ter-push)"
+    rec "→ push commit timestamp: git -C $NIUMINATION push origin main"
+  else
+    pass "tidak ada commit timestamp lightfix yang menunggu push"
+  fi
+
   # Cron Hermes hanya boleh menjalankan script di ~/.hermes/scripts/ → wrapper tipis
   if [ -x "$wrapper" ]; then
     pass "wrapper Hermes ada: ~/.hermes/scripts/up-eco-lightfix.sh"
