@@ -114,7 +114,7 @@
 | `software-development/flask-api-development` | software-development | 7 | Bank Pusat | Develop lightweight Flask APIs with routing, blueprints, database integration, authentication, and request/response handling. Use when building RESTful APIs, microservices, or lightweight web services with Flask. |
 | `software-development/hermes-desktop-launcher` | software-development | 4 | Bank Pusat | Install Hermes Desktop to /Applications for Launchpad. |
 | `software-development/hermes-terminal-workflows` | software-development | 1 | Bank Pusat | Hermes terminal shell pitfalls. |
-| `software-development/hermes-zero-defect-architect` | software-development | 1 | Bank Pusat | Sistem resolusi bug absolut dengan toleransi kegagalan 0% (Zero-Defect Protocol). Mengeksekusi perbaikan full-stack (Rust, Python, React) dan arsitektur agen (MCP, n8n) melalui pipeline terisolasi: Diagnosa -> Eksekusi Idempotent -> Verifikasi -> Rollback otomatis jika gagal. Terintegrasi dengan JCode AI untuk parallel task dengan jaring pengaman. |
+| `software-development/hermes-zero-defect-architect` | software-development | 1 | Bank Pusat | Sistem resolusi bug absolut dengan toleransi kegagalan 0% (Zero-Defect Protocol). Mengeksekusi perbaikan full-stack (Rust, Python, React) dan arsitektur agen (MCP, n8n) melalui pipeline terisolasi: Diagnosa -> Eksekusi Idempotent -> Verifikasi -> Rollback otomatis jika gagal. Parallel task lewat subagent Hermes (delegate_task) dengan jaring pengaman. |
 | `software-development/niu-mission-control-ops` | software-development | 4 | Bank Pusat | Operate the Niu-MissionControl dashboard server (port 5200): Next.js 15 runtime, SQLite backend, health checks, and deployment workflows. |
 | `software-development/optimization` | software-development | 1 | Bank Pusat | Improve performance, latency, and throughput of code and systems. Systematic profiling → bottleneck detection → targeted optimization. |
 | `software-development/pemdi-evidence-management` | software-development | 6 | Bank Pusat | >- |
@@ -149,6 +149,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-09-19 18:46:27_
+_Last sync: 2026-09-19 20:17:58_
 
 <!-- SKILL_REGISTRY_END -->

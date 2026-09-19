@@ -148,7 +148,7 @@ sync_target() {
     log "   ⚠️  $skipped skill DILEWATI (struktur nonstandar: root-level atau kedalaman >2)"
   fi
   if ! $DRY_RUN; then
-    verify_target "$target" "$label" "$structure"
+    verify_target "$target" "$label" "domain"
     write_lockfile "$target" "$label"
   fi
 }
