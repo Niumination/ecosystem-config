@@ -126,7 +126,34 @@ Perbaikan ringan berulang kini berjalan otomatis lewat cron Hermes, bukan lagi m
 | Job cron | `up-eco-lightfix` · `30 23 * * *` · mode `no-agent` | script-only, TANPA panggilan LLM (biaya nol) |
 | Log | `logs/up-eco-lightfix.log` | ringkas per run, rotasi otomatis |
 
-**Urutan kerja lightfix:** manifest (`skill-manifest.py`) → INDEX (`gen-skill-index.py`) → sync (`sync-to-agents.sh`, sekaligus meregenerasi `docs/registry/skill-registry.md`) → verifikasi (`--check` + `--verify-target ~/.hermes/skills --structure domain`) → tulis log. Keluar non-nol hanya bila ada kegagalan nyata.
+**Urutan kerja lightfix (diperbarui 19 Sep 2026):**
+
+1. **Penjaga "never clobber"** (`scripts/sync-guard.py --status`) — read-only, WAJIB pertama.
+   Mendeteksi berkas di target yang disunting lokal supaya tidak ditimpa sync. Snapshot
+   `~/.hermes/skills/.sync-state.json` jadi dasar pembanding; **skill yang konflik tidak
+   diperbarui state-nya** agar proteksi tidak hilang di siklus berikutnya.
+2. **Promosi konservatif** (`scripts/promote-skills.py`) — skill lokal BARU dari target →
+   bank, dengan 6 syarat: frontmatter valid, nama belum ada di bank, bukan `bundled`,
+   bukan dari hub, bukan tombstone, bebas pola kredensial. Keputusan dicatat di
+   `skills/.promotion-ledger.json`. **Tidak pernah menimpa** — skill yang sudah ada di bank
+   bukan urusan promosi (itu urusan penjaga).
+3. manifest (`skill-manifest.py`) → 4. INDEX (`gen-skill-index.py`) →
+5. sync (`sync-to-agents.sh`, regenerasi `docs/registry/skill-registry.md` + lockfile +
+   state penjaga) → 6. verifikasi (`--check` + `--verify-target --structure domain`) →
+7. autocommit (khusus churn timestamp).
+
+**Kode exit sync:** `0` selesai · **`3` DILEWATI (lock aktif — BUKAN sukses)** · lain = gagal.
+Lightfix wajib membedakannya; dulu skip ini terlihat sebagai `✓ sync:` kosong dengan `rc=0`
+sehingga cron bisa berhenti menyinkron sambil melaporkan sukses.
+
+**Kebijakan konflik (keputusan pemilik 19 Sep 2026):** sinkronisasi **tidak boleh menimpa**
+suntingan yang dibuat di target (kasus nyata: `hermes-terminal-workflows` 8.097 B tertimpa
+versi bank 5.391 B). Skill yang konflik **dilewati + dilaporkan**, bukan ditimpa.
+Promosi otomatis hanya untuk skill lokal baru; hasil promosi **tidak** di-commit otomatis.
+
+**Catatan `rsync`:** `sync_skill_dir` wajib memakai `rsync -a --checksum`. Tanpa `--checksum`,
+quick-check (ukuran + mtime) bisa menganggap dua berkas identik padahal isinya berbeda —
+terbukti di sandbox (52 B vs 52 B, mtime sama, isi beda, tidak tersalin).
 
 **Kebijakan "fix ringan" — hanya artefak turunan yang boleh ditulis ulang otomatis.**
 - **Boleh:** `skills/manifest.json`, `skills/INDEX.md`, `docs/registry/skill-registry.md`, salinan target `~/.hermes/skills/`.

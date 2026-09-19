@@ -1,7 +1,7 @@
 # Kajian: Promosi Skill Otomatis di `up-eco-lightfix` — Risiko Konflik & Kerusakan
 
 > **Tanggal:** 2026-09-19
-> **Status:** KAJIAN — belum ada perubahan perilaku yang dieksekusi
+> **Status:** SELESAI — keputusan pemilik sudah diimplementasikan & diuji (lihat §10)
 > **Konteks:** tujuan awal lightfix adalah **update skill otomatis** (termasuk promosi skill
 > lokal dari target Hermes ke bank pusat). Yang terbangun baru **artefak turunan**
 > (manifest/INDEX/sync). Kajian ini memetakan risiko agar penambahan promosi tidak konflik.
@@ -181,6 +181,37 @@ tersedia bila Anda ingin otomatis (tetap tanpa push).
 3. Uji idempoten: dua kali run berturut-turut → perubahan kedua = 0.
 4. Uji jalur gagal: lock aktif → dilaporkan "dilewati", bukan sukses; sync error → `rc≠0`.
 5. Baru setelah lulus semua, jalankan pada data nyata + verifikasi hash bank/target.
+
+---
+
+## 10. Keputusan pemilik & hasil implementasi (19 Sep 2026)
+
+| # | Keputusan | Implementasi |
+|---|-----------|--------------|
+| D1 | Promosi otomatis hanya untuk skill lokal **baru**; konflik dikarantina | `scripts/promote-skills.py` — 6 syarat wajib, ledger keputusan |
+| D2 | Skill yang ada di kedua sisi tapi berbeda → **jangan timpa**, karantina + lapor | `scripts/sync-guard.py` + integrasi di `sync-target` (skip per-skill) |
+| D3 | Tidak auto-commit hasil promosi | autocommit tetap khusus churn timestamp; saat dijalankan nyata, autocommit **menolak** (`ada berkas terlacak DI LUAR allowlist berubah`) |
+| D4 | Gabungkan pelajaran yang tertimpa ke bank | `92de863` — bank == backup, sha `dc5943a1912f17db` |
+
+**Urutan lightfix sekarang:** penjaga (read-only) → promosi → manifest → INDEX → sync
+(berpenjaga) → verifikasi → autocommit.
+
+**Hasil pada data nyata:** 14 skill lokal dipromosikan ke bank (145 → **159** skill, 756 file),
+INDEX +14 baris, sync 159 skill dengan verifikasi hash LULUS, target 0 masalah, penjaga
+159/159 aman.
+
+**Uji sandbox: 15/15 PASS** — skenario: skill lokal baru dipromosikan; `bundled` / `hub` /
+`tombstone` diabaikan; target-disunting → konflik; bank-berubah → bukan konflik; promosi
+idempoten (run kedua = 0); `write-state` tidak menghapus konflik; sync benar-benar melewati
+skill karantina sementara target sunting tetap utuh dan perubahan bank tetap tersalin.
+
+### Dua bug tambahan yang tertangkap saat implementasi
+1. **`rsync -a` quick-check bisa melewati berkas yang berbeda.** Uji sandbox: berkas bank
+   "C-v2" vs target "C-v1", **keduanya 52 B dan mtime identik** → rsync menganggap sama dan
+   tidak menyalin, padahal isinya berbeda. Diperbaiki dengan **`--checksum`** (bandingkan isi,
+   bukan ukuran+waktu). Ini bug lama yang bisa membuat bank tidak sampai ke target secara senyap.
+2. **Lock contention dulu = sukses palsu.** `sync` kini `exit 3` untuk "DILEWATI" dan lightfix
+   membedakan selesai / dilewati / gagal — tidak ada lagi `✓ sync:` kosong dengan `rc=0`.
 
 ---
 

@@ -68,14 +68,47 @@ say "── lightfix mulai (cron/up-eco) ──"
 rc=0
 before_index=$( [ -f "$SKILLS/INDEX.md" ] && shasum -a 256 "$SKILLS/INDEX.md" | cut -c1-16 || echo "-" )
 
-# 1) manifest bank
+# 0) PENJAGA "never clobber" - read-only, WAJIB paling awal.
+#    Mendeteksi file target yang disunting lokal supaya tidak ditimpa sync (kasus 19 Sep 2026).
+if [ -f "$NIUMINATION/scripts/sync-guard.py" ]; then
+  if g_out=$(python3 "$NIUMINATION/scripts/sync-guard.py" --status 2>&1); then
+    nkonf=$(printf '%s' "$g_out" | sed -n '1s/.*konflik: \([0-9]*\).*/\1/p')
+    if [ "${nkonf:-0}" -gt 0 ]; then
+      say "⚠ penjaga: ${nkonf} skill KONFLIK - tidak akan ditimpa sync (perlu tinjauan):"
+      printf '%s\n' "$g_out" | grep -E '^  KONFLIK|^      -' | head -12 | sed 's/^/   /'
+    else
+      say "✓ penjaga: $(printf '%s' "$g_out" | head -1 | sed 's/^ *//')"
+    fi
+    printf '%s\n' "$g_out" | grep 'catatan:' | sed 's/^/   /' || true
+  else
+    say "⚠ penjaga: gagal dijalankan - sync TIDAK akan melewati apa pun (risiko timpa)"; rc=1
+  fi
+else
+  say "⚠ penjaga sync-guard.py tidak ada - sync tanpa perlindungan (risiko timpa)"; rc=1
+fi
+
+# 1) PROMOSI skill lokal BARU dari target ke bank (D1: hanya yang baru; D3: tanpa commit).
+#    Dijalankan SEBELUM manifest/INDEX/sync supaya hasil promosi ikut tercatat & tersalin.
+if [ -f "$NIUMINATION/scripts/promote-skills.py" ]; then
+  if out=$(python3 "$NIUMINATION/scripts/promote-skills.py" 2>&1); then
+    head1=$(printf '%s' "$out" | head -1 | sed 's/^ *//')
+    say "✓ promosi: $head1"
+    printf '%s\n' "$out" | grep -E '^  [+!] ' | head -20 | sed 's/^/   /' || true
+  else
+    say "✗ promosi GAGAL: $(printf '%s' "$out" | tail -2)"; rc=1
+  fi
+else
+  say "⚠ scripts/promote-skills.py tidak ada - promosi otomatis dilewati"
+fi
+
+# 2) manifest bank
 if out=$(python3 "$NIUMINATION/scripts/skill-manifest.py" 2>&1); then
   say "✓ manifest: $(printf '%s' "$out" | tail -1)"
 else
   say "✗ manifest GAGAL: $(printf '%s' "$out" | tail -2)"; rc=1
 fi
 
-# 2) INDEX (turunan bank; akar drift sebelum ini karena tidak ada generatornya)
+# 3) INDEX (turunan bank; akar drift sebelum ini karena tidak ada generatornya)
 if out=$(python3 "$NIUMINATION/scripts/gen-skill-index.py" 2>&1); then
   say "✓ INDEX: $(printf '%s' "$out" | head -1 | sed 's/^ *//')"
   printf '%s\n' "$out" | grep -E '^\s+[+-]' | while IFS= read -r l; do say "   $l"; done || true
@@ -83,14 +116,23 @@ else
   say "✗ INDEX GAGAL: $(printf '%s' "$out" | tail -2)"; rc=1
 fi
 
-# 3) sinkronisasi satu arah ke target (Regenerasi registry + lockfile di dalamnya)
-if out=$(bash "$SKILLS/sync-to-agents.sh" 2>&1); then
-  say "✓ sync: $(printf '%s' "$out" | grep -E 'Sync selesai|verifikasi hash' | tail -2 | tr '\n' ' ')"
+# 4) sinkronisasi satu arah ke target (registry + lockfile + state penjaga di dalamnya).
+#    Exit 3 = DILEWATI (lock aktif) - WAJIB dibedakan dari sukses. Sebelumnya skip ini
+#    terlihat sebagai "✓ sync:" kosong dengan rc=0, jadi cron bisa diam-diam berhenti sync.
+set +e
+out=$(bash "$SKILLS/sync-to-agents.sh" 2>&1); sync_rc=$?
+set -e
+if [ "$sync_rc" -eq 0 ]; then
+  say "✓ sync: $(printf '%s' "$out" | grep -E 'Sync selesai|verifikasi hash|DIKARANTINA' | tail -2 | tr '\n' ' ')"
+elif [ "$sync_rc" -eq 3 ]; then
+  say "⚠ sync DILEWATI (bukan sukses): $(printf '%s' "$out" | tail -1)"
+  rc=1
 else
-  say "✗ sync GAGAL: $(printf '%s' "$out" | tail -2)"; rc=1
+  say "✗ sync GAGAL (rc=$sync_rc): $(printf '%s' "$out" | tail -2)"; rc=1
 fi
+printf '%s\n' "$out" | grep -E '⛔|⚠️  Lock' | head -8 | sed 's/^/   /' || true
 
-# 4) verifikasi (hash, bukan keberadaan)
+# 5) verifikasi (hash, bukan keberadaan)
 if out=$(python3 "$NIUMINATION/scripts/skill-manifest.py" --check 2>&1); then
   say "✓ verifikasi bank: $(printf '%s' "$out" | tail -1)"
 else
@@ -102,7 +144,7 @@ else
   say "✗ verifikasi target GAGAL: $(printf '%s' "$out" | tail -2)"; rc=1
 fi
 
-# 5) commit — HANYA artefak turunan, tanpa push
+# 6) commit — HANYA artefak turunan, tanpa push
 #    a) selalu: churn timestamp pada manifest/registry di-commit otomatis, TAPI hanya bila
 #       perubahannya terbukti timestamp-saja (dibandingkan dengan versi HEAD setelah
 #       normalisasi). Perubahan konten nyata ditolak dan dibiarkan untuk peninjauan manusia.
