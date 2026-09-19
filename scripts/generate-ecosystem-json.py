@@ -298,6 +298,15 @@ data = {
             "dox": True,
             "desc": "Lightweight ADE fork (TS)",
         },
+        {
+            "name": "Niu-OSS-Dashboard",
+            "tier": 2,
+            "status": "in_progress",
+            "priority": "P2",
+            "git": "Niumination/Niu-OSS-Dashboard",
+            "dox": True,
+            "desc": "Landing + dashboard OSS 91 repo (Next.js 15) — fase 4 go-live pending",
+        },
     ],
 }
 
