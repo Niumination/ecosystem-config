@@ -44,11 +44,22 @@ When using heredoc (`<<'EOF'`) in `terminal()`:
 
 1. The terminator (`EOF`) must be the **last thing on its own line** — no trailing spaces, no shell operators after it.
 2. Do not append `&` or redirection after the heredoc terminator.
-3. If the snippet is long or complex, prefer `write_file()` first, then run it with `terminal()`.
+3. If the snippet is long or complex, prefer `write_file()` first, then run it with `terminal()`. A heredoc-fed command can fail SILENTLY (empty stdout, no error line) — treat empty output from a heredoc-fed snippet as FAILURE and re-run it as a written file, never as a legitimate empty result. Anything that must be byte-exact (commit messages, multi-line scripts, generator probes) belongs in a file passed by path (`git commit -F /tmp/msg.txt`, `bash /tmp/x.sh`) rather than a heredoc.
 4. An apostrophe inside a `'''` Python string is legal — a `SyntaxError: unterminated string` there means a REAL quoting bug elsewhere in the snippet, so re-read the flagged line instead of re-escaping blindly.
 5. If the terminal tool refuses a file-editing command at the approval gate, do not reword and resend shell — switch to the patch/write_file tools for the edit; repeated terminal attempts after a refusal burn turns against the same gate.
-5. For batch multi-replacement scripts, assert each old string matches EXACTLY once (`count == 1`) and abort before any write on mismatch — a partial write is harder to unwind than a failed run.
-6. Tool output RENDERS text: non-ASCII separators (e.g. U+2028) display as familiar glyphs and line continuations may appear or vanish. When an exact match fails unexpectedly, `hexdump -C` the region and match the bytes, not the rendering.
+6. For batch multi-replacement scripts, assert each old string matches EXACTLY once (`count == 1`) and abort before any write on mismatch — a partial write is harder to unwind than a failed run. Re-include the matched text in the replacement unless you actually mean to delete it: swapping a heading for a new block and forgetting to re-emit the heading silently orphans the section under it. After a batch of replacements, re-read the file and confirm the sections you did NOT touch are still intact.
+7. Tool output RENDERS text: non-ASCII separators (e.g. U+2028) display as familiar glyphs and line continuations may appear or vanish. When an exact match fails unexpectedly, `hexdump -C` the region and match the bytes, not the rendering.
+
+## Shell Correctness in Checker/Automation Scripts
+
+Scripts that REPORT on state (checkers, auditors, generators) fail worst when they fail silently: they keep running and print a confident "all clean". Rules that each cost a real false-negative:
+
+- **`find ... -name .git -not -path '*/\.*'` matches NOTHING.** Every `.git` path contains `/.`, so the exclusion clause drops all of them; the loop body never runs and the script reports "no dirty repos". The `-not -path '*/\.*'` idiom is correct for scanning folders, wrong for `.git`. Verify a sweep by running the same `find` bare and comparing counts.
+- **`[ test ] && cmd` aborts the script under `set -e`.** When the test is false, the compound command returns 1 and the shell exits — mid-report, with no error message. Use `if ... then ... fi`.
+- **`grep -c` in command substitution exits 1 on zero matches** and kills the script under `set -e`. Guard with `|| true` and normalize with `${var:-0}`.
+- **`@{upstream}` is fatal when the branch has no upstream configured**: `git rev-list --count '@{upstream}'..HEAD` fails, the `|| echo 0` fallback turns it into a permanent 0, and "N commits ahead" is silently never reported. Resolve the ref defensively and fall back to `origin/<branch>`. Do not assume branches are uniform — in one repo the children tracked upstream and the root did not.
+- **Appending a block with `content + '\n' + after` grows the file when `after` already starts with a newline** — one blank line per run, forever. Strip leading newlines from the remainder before joining, then add exactly one separator. Symptom to watch for: a generated file whose line count creeps up on every run while the diff shows only blank lines.
+- **Before trusting a generator that rewrites a tracked file, prove idempotency in memory** (`build(build(x)) == build(x)`) rather than on disk, and verify it by running twice and diffing. A non-convergent generator rewrites the file on every cron run and masks the drift it was meant to expose.
 
 ## Piped Downloads
 

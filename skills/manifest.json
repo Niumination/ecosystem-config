@@ -1,6 +1,6 @@
 {
   "fileCount": 716,
-  "generatedAt": "2026-09-19T12:59:01.921301+00:00",
+  "generatedAt": "2026-09-19T13:22:47.664366+00:00",
   "skillCount": 145,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -1322,10 +1322,10 @@
       }
     },
     "software-development/hermes-terminal-workflows": {
-      "bundleHash": "aa76897781c2e9a3e063313e52be121d52c0b70474f1ad76e6251d635bc46c86",
+      "bundleHash": "5dd22747f029069ec55c4ba8935d9c570d094b5cfebf66bb0481afe7d2ab4cd3",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "21f242e60d829f6cdafb5b291567b4221b50a7bb9a7bf1a3d48e4486e142e28d"
+        "SKILL.md": "dc5943a1912f17db41c110ec736de80d3bf3ecd5ffc937d0719643219034736e"
       }
     },
     "software-development/hermes-zero-defect-architect": {
