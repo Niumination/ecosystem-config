@@ -1,6 +1,6 @@
 # Rencana Penerapan: Pola autoskills untuk Skill Bank Niumination
 
-> **Status:** Phase 1-4 SELESAI — 2026-08-22 (Jcode)
+> **Status:** Phase 1-4 SELESAI — 2026-08-22
 > **Tanggal:** 2026-08-16
 > **Penulis:** Hermes (analisis + rekomendasi)
 > **Referensi:** [autoskills.sh](https://www.autoskills.sh/) · [midudev/autoskills](https://github.com/midudev/autoskills) (6.8k⭐, CC BY-NC 4.0)
@@ -67,7 +67,7 @@ CLI (runtime) ──▶ pilih skill ──▶ download dari registry (bukan upst
 
 | # | Aspek | Kondisi sekarang | Masalah |
 |---|---|---|---|
-| G1 | **Sync references** | `sync-to-agents.sh` baris 84-194 hanya `cp "$src_file" "$jcode_file"` (SKILL.md saja) | ⚠️ **Kritis**: 8 skill punya file pendukung (total 213 file non-SKILL.md); references/scripts/data tidak pernah tersalin → skill rusak di target |
+| G1 | **Sync references** | `sync-to-agents.sh` hanya menyalin SKILL.md (tanpa `references/`) | ⚠️ **Kritis**: 8 skill punya file pendukung (total 213 file non-SKILL.md); references/scripts/data tidak pernah tersalin → skill rusak di target |
 | G2 | **Integritas** | up-eco Phase 6a/6b hanya cek frontmatter YAML + INDEX sync | Tidak ada hash → tidak bisa deteksi file diubah/di-tamper/drift antar target |
 | G3 | **Keamanan konten** | Tidak ada review/scan konten skill | Risiko prompt-injection via skill (skill = instruksi yang dieksekusi agent) |
 | G4 | **Duplikasi** | Copy penuh ke 3 target (Jcode, Hermes local, Hermes USB) | 254 file × 3 target; drift antar target mungkin; tidak ada traceability asal-usul |
@@ -113,7 +113,7 @@ CLI (runtime) ──▶ pilih skill ──▶ download dari registry (bukan upst
 - SHA-256 per file (path relatif terhadap folder skill), sorted
 - `bundleHash` = SHA-256 dari gabungan `rel:hash` sorted (pola autoskills)
 - `--check` mode: verifikasi manifest vs filesystem (deteksi: file berubah, hilang, baru)
-- `--verify-target <dir>` mode: verifikasi salinan di target agent (Jcode/Hermes/USB)
+- `--verify-target <dir>` mode: verifikasi salinan di target agent (Hermes)
 - Exit code: 0 = OK, 1 = mismatch (detail per file di stdout)
 
 **Perubahan `scripts/up-eco.sh` (Phase 6c baru):**
@@ -142,7 +142,7 @@ fi
 
 2a. **Copy seluruh folder** — ganti loop copy per-file dengan rsync (atau cp -R) per skill:
 ```bash
-# Lama: cp "$src_file" "$jcode_file"          # hanya SKILL.md
+# Lama: hanya SKILL.md yang disalin
 # Baru: rsync -a --delete "..."  →  TIDAK. Non-destruktif: rsync -a (tanpa --delete)
 rsync -a "$bank_skill_dir/" "$target_skill_dir/"
 ```
@@ -151,7 +151,7 @@ rsync -a "$bank_skill_dir/" "$target_skill_dir/"
 
 2b. **Verifikasi pasca-sync** (flag `--verify`, default ON):
 ```bash
-python3 "$ROOT/scripts/skill-manifest.py" --verify-target "$JCODE_DIR"
+python3 "$ROOT/scripts/skill-manifest.py" --verify-target "$HERMES_DIR"
 # hash-check tiap file target vs manifest; lapor mismatch
 ```
 
@@ -170,7 +170,7 @@ python3 "$ROOT/scripts/skill-manifest.py" --verify-target "$JCODE_DIR"
   }
 }
 ```
-Disimpan di: `~/.jcode/skills/skills-lock.json`, `~/.hermes/skills/skills-lock.json`, `/Volumes/HermesAgent/HermesAgentUSB/data/skills/skills-lock.json`.
+Disimpan di: `~/.hermes/skills/skills-lock.json`.json`.
 
 2d. **AGENTS.md registry** — tambah kolom `File` (jumlah file per skill) supaya DOX injection mencerminkan kelengkapan.
 
@@ -180,7 +180,7 @@ Disimpan di: `~/.jcode/skills/skills-lock.json`, `~/.hermes/skills/skills-lock.j
 - Ukuran bank naik (254 file vs 40) → tidak masalah; rsync incremental.
 
 **Kriteria sukses:**
-- [ ] `sync-to-agents.sh` (tanpa flag) menyalin seluruh folder impeccable (152 file) ke Jcode/Hermes/USB
+- [x] `sync-to-agents.sh` (tanpa flag) menyalin seluruh folder skill (termasuk `references/`) ke Hermes
 - [ ] `--verify` menemukan 0 mismatch setelah sync bersih
 - [ ] Lockfile ter-generate di 3 target
 - [ ] Re-run sync → skip cepat (up-to-date), tidak ada re-copy

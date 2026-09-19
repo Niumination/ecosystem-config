@@ -4,7 +4,6 @@
 |:-:|-------|------|----------------|:------:|
 | 1 | **Hermes Agent** | Main orchestrator | Opencode Zen — `opencode/hy3-free/nemotron-3-ultra-free` | ✅ **Live** — $1/M in, $5/M out |
 | 2 | **Claude Code CLI** | Side coding agent | Anthropic — `claude-sonnet-4` | ✅ **Live** — `claude -p "..."` |
-| 3 | **JCode** | Hermes↔OpenCode bridge | `OPENCODE_API_KEY` via Niu-Flow pipeline | ✅ **Live** — 5 commits |
 | 4 | **Codex CLI** | OpenAI coding agent | OpenAI — Codex CLI | ✅ **Live** — goals DB, logs |
 | 5 | **OpenCode CLI** | Standalone coding agent | OpenCode config — 146 skills | ✅ **Live** — ACP headless |
 | 6 | **GitHub Copilot** | IDE assistant | GitHub Copilot | ✅ **Live** — VS Code |
@@ -19,7 +18,6 @@
 |------|--------|-------------|
 | 01 — Claude Code CLI | 1.8 MB | History, project sessions |
 | 02 — Claude Desktop | 7.8 MB | Konfigurasi desktop agent |
-| 03 — JCode | 69 MB | **499 sessions**, memory events |
 | 04 — Codex | 3.0 MB | Goals DB, logs, memories |
 | 05 — OpenCode | 17 MB | Config, **146 skills**, plugins |
 | 06 — GitHub Copilot | 8 KB | Apps & versions |

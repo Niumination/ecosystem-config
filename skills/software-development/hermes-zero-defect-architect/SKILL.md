@@ -4,7 +4,7 @@ description: >
   Sistem resolusi bug absolut dengan toleransi kegagalan 0% (Zero-Defect Protocol).
   Mengeksekusi perbaikan full-stack (Rust, Python, React) dan arsitektur agen (MCP, n8n)
   melalui pipeline terisolasi: Diagnosa -> Eksekusi Idempotent -> Verifikasi -> Rollback otomatis jika gagal.
-  Terintegrasi dengan JCode AI untuk parallel task dengan jaring pengaman.
+  Parallel task lewat subagent Hermes (delegate_task) dengan jaring pengaman.
 model_optimization: deepseek-v4-flash-free
 execution_mode: strict_deterministic
 ---
@@ -60,9 +60,9 @@ Setiap kali dipanggil untuk mengatasi masalah, Anda wajib melewati alur ini tanp
 
 ---
 
-## ⚡ Integrasi JCode AI — Parallel Task dengan Zero-Defect
+## ⚡ Parallel Task dengan Zero-Defect
 
-### Arsitektur Zero-Defect + JCode
+### Arsitektur Zero-Defect + Subagent
 
 ```
 Error Input
@@ -70,15 +70,15 @@ Error Input
   ▼
 Hermes Diagnose + Rollback Plan
   │
-  ├── delegate_task ── child agent → jcode run "Fix A"
-  │     └─ jcode output → Hermes verifikasi (build/test)
+  ├── delegate_task ── child agent → "Fix A"
+  │     └─ child output → Hermes verifikasi (build/test)
   │          ├─ ✅ Pass → Merge
   │          └─ ❌ Fail → Rollback A, diagnosa ulang
   │
-  ├── delegate_task ── child agent → jcode run "Fix B"
+  ├── delegate_task ── child agent → "Fix B"
   │     └─ (sama: verify → rollback jika gagal)
   │
-  └── delegate_task ── child agent → jcode run "Fix C"
+  └── delegate_task ── child agent → "Fix C"
         └─ (sama: verify → rollback jika gagal)
   │
   ▼
@@ -89,13 +89,13 @@ Final Merge + Full Pipeline Test
 
 ### Pattern Delegasi Zero-Defect
 
-Setiap task yang didelegasikan ke JCode **wajib diverifikasi** setelahnya:
+Setiap task yang didelegasikan ke subagent **wajib diverifikasi** setelahnya:
 
 ```python
 # Step 1: Snapshot state (untuk rollback)
 git diff > /tmp/pre_fix_snapshot.patch
 
-# Step 2: Delegasikan fix ke JCode
+# Step 2: Delegasikan fix ke subagent Hermes
 delegate_task(tasks=[
     {"goal": "Hapus CSS lama section 21 di globals.css (footer.ft baris 443-444)",
      "toolsets": ["terminal"],
@@ -110,18 +110,17 @@ terminal("npm run build")
 # Jika gagal → rollback: git apply /tmp/pre_fix_snapshot.patch
 ```
 
-### Prasyarat: Verifikasi JCode Sebelum Delegasi
+### Prasyarat: Verifikasi Runtime Sebelum Delegasi
 
-Sebelum delegasi ke JCode, **wajib** lakukan health check:
+Sebelum delegasi, pastikan runtime subagent sehat:
 
 ```bash
-# Cek apakah JCode bisa dipakai
-timeout 10 jcode run --json --quiet --provider opencode -m deepseek-v4-flash-free "ping" 2>/dev/null || echo "JCode tidak merespon"
+hermes --version && python3 ~/Desktop/Niumination/scripts/hermes_model_audit.py
 ```
 
-Jika JCode gagal/timeout → **jangan delegasikan.** Kerjakan langsung dengan Hermes tools.
+Jika runtime/model gagal → **jangan delegasikan.** Kerjakan langsung dengan Hermes tools.
 
-**Zero-Defect Fallback:** Jika JCode tidak tersedia, Hermes mengerjakan semua task secara sequential dengan verifikasi di setiap langkah — tanpa parallel risk.
+**Zero-Defect Fallback:** Jika subagent tidak tersedia, Hermes mengerjakan semua task secara sequential dengan verifikasi di setiap langkah — tanpa parallel risk.
 
 ### Hybrid Mode — Zero-Defect dengan Fullstack-Architect
 
@@ -192,14 +191,14 @@ Dari pengalaman di Portal PemdiAcehTengah, pola eksekusi zero-defect yang terbuk
 6. vercel --prod --yes → alias set → curl verify (HTTP 200)
 ```
 
-### Aturan JCode Zero-Defect
+### Aturan Delegasi Zero-Defect
 
-1. **Health check dulu:** `timeout 10 jcode run --json --quiet --provider opencode -m deepseek-v4-flash-free "ping"` — jika gagal, jangan delegasikan
+1. **Health check dulu:** pastikan runtime subagent sehat (`hermes --version`) — jika gagal, jangan delegasikan
 2. **Snapshot dulu:** `git diff > /tmp/pre_fix.patch` sebelum modifikasi
 3. **Verify selalu:** `npm run build` / `cargo check` / `pytest` setelah setiap task
 4. **Rollback jika gagal:** `git checkout -- <files>` atau `git apply /tmp/pre_fix.patch`
-5. **Idempotent:** Pastikan JCode tidak menghapus kode yang masih dipakai
-6. **Anti-hallucination:** JCode cenderung menebak path file — selalu berikan path absolut dalam prompt
+5. **Idempotent:** Pastikan subagent tidak menghapus kode yang masih dipakai
+6. **Anti-hallucination:** subagent cenderung menebak path file — selalu berikan path absolut dalam prompt
 
 ---
 

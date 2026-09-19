@@ -24,7 +24,6 @@ if [ ! -d "$_REAL_HOME/Desktop/Niumination/skills" ]; then
   fi
 fi
 BANK_DIR="$_REAL_HOME/Desktop/Niumination/skills"
-JCODE_DIR="$_REAL_HOME/.jcode/skills"
 HERMES_DIR="$_REAL_HOME/.hermes/skills"
 # HERMES_USB_DIR="/Volumes/HermesAgent/HermesAgentUSB/data/skills"  # diparkir 2026-08-20
 AGENTS_MD="$_REAL_HOME/Desktop/Niumination/AGENTS.md"
@@ -114,10 +113,11 @@ write_lockfile() {
 }
 
 # ── Sync SEMUA skill ke satu target ───────────────────────────────────────────
-# structure: flat  = <target>/<skill>/        (Jcode)
-#            domain = <target>/<domain>/<skill>/ (Hermes, USB)
+# Struktur target: <target>/<domain>/<skill>/  (Hermes).
+# Jcode dihapus dari pipeline Sep 2026 (target ~/.jcode/skills dibekukan) — dukungan
+# struktur "flat" yang hanya dipakai Jcode ikut dihapus agar tidak ada jalur mati.
 sync_target() {
-  local target="$1" label="$2" structure="$3"
+  local target="$1" label="$2"
   local copied=0
   local skipped=0
   log "→ $label: $target"
@@ -130,13 +130,8 @@ sync_target() {
     skill_dir="${rel_path%/SKILL.md}"
     src_skill_folder="$BANK_DIR/$skill_dir"
 
-    if [ "$structure" = "flat" ]; then
-      tgt="$target/${skill_dir##*/}"
-      display="${skill_dir##*/}"
-    else
-      tgt="$target/$skill_dir"
-      display="$skill_dir"
-    fi
+    tgt="$target/$skill_dir"
+    display="$skill_dir"
 
     if $DRY_RUN; then
       echo "  [COPY] → $label: $display"
@@ -179,7 +174,7 @@ log "📦 Bank: $SKILL_COUNT skill ditemukan"
 $DRY_RUN && log "🏁 DRY RUN — tidak ada perubahan nyata"
 
 # ── 1. Sync ke Hermes (domain structure) ────────────────────────────
-sync_target "$HERMES_DIR" "Hermes" "domain"
+sync_target "$HERMES_DIR" "Hermes"
 
 # ── 3. Update AGENTS.md — Skill Registry ────────────────────────────────────
 if ! $DRY_RUN; then
@@ -347,7 +342,7 @@ fi
 
 # ── 4. Write log ─────────────────────────────────────────────────────────────
 if ! $DRY_RUN; then
-  echo "[$(date '+%Y-%m-%d %H:%M:%S')] Sync selesai: $SKILL_COUNT skill × 2 target (Jcode/Hermes) + AGENTS.md ✅" >> "$LOG_FILE"
+  echo "[$(date '+%Y-%m-%d %H:%M:%S')] Sync selesai: $SKILL_COUNT skill × 1 target (Hermes) + AGENTS.md ✅" >> "$LOG_FILE"
   log "✅ Sync selesai — $SKILL_COUNT skill disinkronkan ke Hermes + docs/registry/skill-registry.md"
   
   # Notify mission-control (fire-and-forget, non-blocking)

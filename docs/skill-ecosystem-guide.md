@@ -3,6 +3,8 @@
 > **Audiens:** Afrizal Munthe (Niumination)
 > **Tujuan:** Memahami bagaimana skill AI bekerja di ekosistem — mana yang auto-load, mana yang manual, mana yang terintegrasi
 > **Catatan Revisi v3:** Koreksi setelah tanggapan Hermes. Perubahan: (1) 148 skills → dibedakan "total installed" vs "~10-15 actively used", (2) Catalog injection dijelaskan lebih teknis — loading isi skill tetap manual via `skill_view()`, (3) Ditambahkan skill `document-content-pipeline` + UACC MCP server, (4) AI-Memory-Collection ditandai ⚪ belum diverifikasi, (5) Section 14 diisi jawaban Hermes untuk 6 pertanyaan, (6) Ditambahkan rekomendasi Hermes: update AGENTS.md dulu sebelum Layer 1.
+> ⚠️ **Status Sep 2026:** dokumen ini **komparatif/historis**. JCode sudah **dihapus dari pipeline** — bagian "Jcode Skills" di bawah adalah catatan perbandingan, BUKAN sistem aktif. Sistem skill aktif: **Hermes (bank pusat)**.
+>
 > **Update 29 Jul 2026 — AGENTS.md sync v4.0 ✅ + Layer 1 bank skill terisi 8 skill ✅.** Semua prasyarat Layer 1 terpenuhi. Siap lanjut ke Layer 2 (sync script).
 
 ---
@@ -657,7 +659,7 @@ Keduanya bekerja dengan pola: kirim prompt → akhiri dengan `---PROCESS---` →
 
 | Agent/Sistem | Auto-load? | Cara Aktivasi | Jumlah Skill | Persistence |
 |-------------|-----------|---------------|-------------|-------------|
-| **Jcode** | ❌ Tidak | `skill_manage load` atau `/nama` | 0 loaded, 3+ tersedia | Per sesi — hilang saat sesi berakhir |
+| **~~Jcode~~** (dihapus Sep 2026) | ❌ Tidak | — | — | — |
 | **Hermes** | ✅ **Catalog di system prompt** | Agent detect sendiri + `skill_view(name)` | Tergantung install | Stay aktif untuk sesi itu |
 | **Hermes (Ponytail via DOX)** | ✅ **YA — DOX injection** | Terbaca dari AGENTS.md | 1 | Stay sampai dimatikan |
 | **Claude Code** | ❌ Tidak | `/nama_skill` | ~2000+ (via Agentpedia) | Per sesi |
@@ -690,7 +692,7 @@ Apakah skill bisa otomatis terdeteksi berdasarkan task?
 | Hermes skills (via catalog) | ✅ **Catalog (nama+deskripsi) di system prompt** | Agent detect relevance, lalu `skill_view(name)` untuk load isi |
 | Ponytail (Hermes DOX) | ✅ Parsial | Keyword: "lazy", "yagni", "minimal", keluhan over-engineering |
 | Ponytail (via Hermes skill) | ✅ Catalog + agent decision | Agent lihat relevan dari konteks |
-| Ponytail (Jcode) | ❌ | Harus di-load manual |
+| Ponytail | ❌ | Harus di-load manual |
 | Jcode skills (general) | ❌ | Harus `skill_manage load` atau `/nama` |
 | Ultrathink | ❌ | Harus di-load atau `/ultrathink` |
 | Tripwire | ❌ | Harus dipanggil eksplisit |

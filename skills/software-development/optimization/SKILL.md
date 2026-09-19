@@ -2,8 +2,8 @@
 name: optimization
 description: "Improve performance, latency, and throughput of code and systems. Systematic profiling → bottleneck detection → targeted optimization."
 version: 1.0.0
-author: Jcode (bundled) + Hermes Agent
-source: "Jcode bundled — /optimization"
+author: Hermes Agent (Niumination)
+source: "Bank Pusat Niumination — software-development/optimization"
 tags: [software-development, performance, optimization, profiling]
 platforms: [macos, linux, windows]
 ---
