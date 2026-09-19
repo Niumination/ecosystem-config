@@ -49,15 +49,29 @@ dan terpenggal. **Jangan pernah memakai hasil uji pelafalan sebagai bukti kualit
 
 ---
 
-## 5. Transkrip STT menerapkan inverse text normalization
+## 5. Semua ASR menerapkan inverse text normalization — dan model kecil berhalusinasi
 
-**Aturan:** saat memeriksa transkrip, terima **bentuk digit maupun kata**.
+**Aturan:** baca transkripnya, jangan hanya mencocokkan pola; dan jangan pakai model STT
+lokal kecil untuk Bahasa Indonesia.
 
 Whisper mengubah bilangan yang *diucapkan* kembali menjadi *angka*. Frasa yang diucapkan
 sebagai "tiga miliar seratus tujuh belas juta …" muncul di transkrip sebagai
 `Rp 3.117.360.000.` — perhatikan titik pemisah ribuan. Pemeriksaan yang mencari kata
-`miliar` akan melaporkan **gagal palsu**. Sembilan dari tiga belas kasus pernah salah
-dinyatakan gagal karena hal ini.
+`miliar` melaporkan **gagal palsu**: sembilan dari tiga belas kasus pernah salah dinyatakan
+gagal karena hal ini.
+
+Lebih buruk lagi, whisper `base` berhalusinasi: "es ka pe de" pernah menjadi "Eskapi diri".
+Model yang akurat berukuran 1,5 GB dan butuh ~2,5 menit per potongan di CPU tanpa GPU —
+mahal untuk alat yang hanya dipakai sesekali.
+
+**Gantinya:** pakai `scripts/periksa_vo.py` (Gemini sebagai pentranskrip). Tanpa unduhan,
+kuota terpisah dari kuota TTS, dan lebih akurat untuk Bahasa Indonesia. Bukti bahwa model
+kecil menyesatkan: dua unsur pernah dinyatakan "tidak terbaca" oleh whisper, lalu
+dinyatakan **benar** saat diperiksa dengan cara ini.
+
+**Tetap hati-hati:** pentranskrip juga menormalkan bentuk dan nama tak lazim. Nama merek
+seperti `niumination` pernah tertranskrip `newmination` oleh dua sistem berbeda — belum
+pasti itu salah ucap mesin atau sekadar normalisasi. **Kalau ragu, dengarkan sendiri.**
 
 ---
 

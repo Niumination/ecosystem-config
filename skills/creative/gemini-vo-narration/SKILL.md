@@ -74,7 +74,23 @@ untuk isi lengkap dan cara menambah preset baru.
    prompt gagal dan hasilnya **tidak layak dipakai**. Yang menjamin: preamble +
    pembatas `#### TRANSCRIPT` (sudah ada di script).
 3. **Bedakan BENAR dari NATURAL.** Ucapan bisa sepenuhnya benar secara pelafalan tapi
-   terdengar kaku dan terpotong. STT hanya membuktikan yang pertama.
+   terdengar kaku dan terpotong. Transkripsi hanya membuktikan yang pertama.
+
+### Memeriksa apa yang benar-benar terdengar — tanpa unduhan
+
+```bash
+python3 scripts/periksa_vo.py out/vo_charon.mp3 --unsur "4.1.0" "Diskominfo" "0812"
+```
+
+`periksa_vo.py` memakai Gemini sebagai pentranskrip (audio masuk ke model, bukan teks).
+**Jangan unduh model STT lokal**: whisper `base` berhalusinasi pada Bahasa Indonesia, dan
+semua model ASR menerapkan normalisasi teks terbalik sehingga pemeriksaan kata kunci
+melahirkan **gagal palsu**. Pernah terjadi: 9 dari 13 kasus salah dinyatakan gagal, dan
+dua unsur dinyatakan "tidak terbaca" padahal mesin mengucapkannya dengan benar.
+
+Aturan membacanya: **baca transkripnya, jangan hanya mencocokkan pola.** Model transkripsi
+menuliskan kembali bilangan (mis. ucapan "tiga miliar seratus tujuh belas juta" bisa
+tertulis `3 miliar 117 juta`), dan menormalkan nama tak lazim ke kata yang lebih dikenal.
 
 ## Kesalahan yang sudah pernah terjadi — jangan diulang
 
