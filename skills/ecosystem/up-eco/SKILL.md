@@ -7,12 +7,14 @@ tags:
   - git
   - status
   - niumination
-last_updated: "2026-07-30"
-version: 2.0.0
+last_updated: "2026-09-19"
+version: 2.1.0
 changes:
   - Added Phase 6: Skill Bank Integrity (frontmatter, INDEX sync, duplicates)
   - Added Phase 7: Skill Sync Status (sync-to-agents.sh, Hermes/USB targets)
   - Added Phase 8: Mission Control Dashboard (Skill Monitor API, stale, conflicts, stats)
+  - Added "Lightfix & Cron" phase + generator INDEX (scripts/gen-skill-index.py)
+  - Fixed dirty-repo sweep (find clause excluded every .git) and INDEX row-count comparison
 ---
 
 # 🔄 /up-eco — Ecosystem Status & Sync Check
@@ -37,6 +39,7 @@ Output will show:
 - **🔄 Skill Sync Status** — sync-to-agents.sh last run, Hermes divergence
 - **🎛️ Mission Control Dashboard** — Skill Monitor API reachable, stale skills, conflicts, usage stats
 - **💬 Telegram Thread Status** — 5 mission-control thread activity, model/provider mapping, last error
+- **🪄 Lightfix & Cron** — skrip lightfix, wrapper Hermes, status job cron `up-eco-lightfix`, hasil run terakhir
 - **🔑 Credential Broker** — central AI-API key control plane (scripts/keys.sh): canonical terdefinisi vs tersimpan di Keychain, status migrasi (Phase B HOLD), scan plaintext leak di store lama (~/.hermes/.env, ~/.gemini/.env, ~/.continue/.env, vault/secrets.zsh)
 - **Recommendations list** (numbered)
 
@@ -109,6 +112,35 @@ After presenting the report, ask the user (if not already instructed):
 - `/up-eco` → run script, report
 - `/up-eco --fix` → run script + execute all non-destructive fixes (commit, push, register projects)
 - `/up-eco --dry-run` → run script without output colors (for cron/automation)
+- `/up-eco --fix-light` → jalankan `bash scripts/up-eco-lightfix.sh` sekarang (tidak menunggu cron 23:30)
+
+## 🪄 Lightfix & Cron (2026-09-19)
+
+Perbaikan ringan berulang kini berjalan otomatis lewat cron Hermes, bukan lagi manual.
+
+| Bagian | Path | Catatan |
+|--------|------|---------|
+| Skrip perbaikan | `scripts/up-eco-lightfix.sh` | idempoten · `--commit` opt-in (default: tidak commit) |
+| Generator INDEX | `scripts/gen-skill-index.py` | sebelumnya tidak ada — akar drift INDEX |
+| Wrapper Hermes | `~/.hermes/scripts/up-eco-lightfix.sh` | cron Hermes hanya menjalankan skrip di folder ini |
+| Job cron | `up-eco-lightfix` · `30 23 * * *` · mode `no-agent` | script-only, TANPA panggilan LLM (biaya nol) |
+| Log | `logs/up-eco-lightfix.log` | ringkas per run, rotasi otomatis |
+
+**Urutan kerja lightfix:** manifest (`skill-manifest.py`) → INDEX (`gen-skill-index.py`) → sync (`sync-to-agents.sh`, sekaligus meregenerasi `docs/registry/skill-registry.md`) → verifikasi (`--check` + `--verify-target ~/.hermes/skills --structure domain`) → tulis log. Keluar non-nol hanya bila ada kegagalan nyata.
+
+**Kebijakan "fix ringan" — hanya artefak turunan yang boleh ditulis ulang otomatis.**
+- **Boleh:** `skills/manifest.json`, `skills/INDEX.md`, `docs/registry/skill-registry.md`, salinan target `~/.hermes/skills/`.
+- **Tidak boleh (butuh penilaian manusia):** commit/push (kecuali `--commit`), menghapus atau memindahkan berkas, mengubah isi skill, menyentuh `SOUL.md`/`AGENTS.md`/config/kredensial, memperbaiki repo kotor.
+
+**up-eco memelihara dirinya sendiri.** Fase "🪄 Lightfix & Cron" memverifikasi skrip + wrapper, memastikan job cron terdaftar, dan **membuat ulang keduanya bila hilang** — satu kali `/up-eco` cukup setelah cron terhapus.
+
+### Pelajaran dari perbaikan 2026-09-19 (jangan diulang)
+- **`find -name .git -not -path '*/\.*'` mengecualikan SEMUA repo.** Setiap path `.git` selalu memuat `/.`, jadi loop dirty-repo tidak pernah berjalan dan up-eco melaporkan "Semua repos clean" padahal ada 9 repo kotor / 98 berkas. Klausa `-not -path '*/\.*'` benar untuk pemindaian folder, salah untuk `.git`.
+- **`[ ... ] && pass` di bawah `set -e` mematikan skrip.** Begitu repo kotor ditemukan, perintah uji mengembalikan 1 dan skrip berhenti sebelum bagian Rekomendasi. Pakai `if ... then ... fi`.
+- **Jangan bandingkan jumlah BARIS INDEX dengan jumlah skill bank.** INDEX mencantumkan sebagian skill dua kali (tabel "featured" di atas + tabel domainnya) → terbaca 163 vs 145 dan peringatan mismatch-nya palsu. Bandingkan **nama unik**.
+- **Identitas baris skill = NAMA FOLDER, bukan `name:` di frontmatter.** Kasus `ponytail-core` (frontmatter `name: ponytail`) membuat generator menganggap barisnya yatim lalu membuangnya.
+- **Generator INDEX harus memindai SELURUH berkas**, bukan berhenti di heading non-domain pertama — kalau tidak, section yang ditambahkan di akhir berkas tidak ikut diparsing dan ditambahkan lagi setiap putaran (tidak konvergen; pernah tumbuh 15 → 45 section).
+- **Skrip baru wajib `chmod +x`.** `[ -x file ]` gagal untuk berkas mode 644 sehingga fase baru melapor "skrip tidak ada" padahal ada.
 
 ## Current-State Addendum (2026-09-10)
 From a real `/up-eco` run on macOS, these additional checks and fixes are now part of the standard workflow:
