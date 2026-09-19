@@ -10,7 +10,7 @@
 | `creative/comfyui` | creative | 33 | Bank Pusat | Generate images, video, and audio via diffusion workflows. |
 | `creative/excalidraw` | creative | 5 | Bank Pusat | Hand-drawn Excalidraw JSON diagrams (arch, flow, seq). |
 | `creative/free-tier-reels` | creative | 4 | Bank Pusat | Free-tier Reels creation workflow. |
-| `creative/gemini-vo-narration` | creative | 5 | Bank Pusat | Voice-over narasi Bahasa Indonesia standar Niumination (Gemini TTS, gratis). Pakai saat membuat VO/narasi/dubbing untuk reels, video, atau pengumuman. |
+| `creative/gemini-vo-narration` | creative | 4 | Bank Pusat | Voice-over narasi Bahasa Indonesia standar Niumination (Gemini TTS, gratis). Pakai saat membuat VO/narasi/dubbing untuk reels, video, atau pengumuman. |
 | `creative/ghost` | creative | 1 | Bank Pusat | Rewrite AI-generated or stilted text so it reads naturally and human — stripping common AI writing tells while preserving all factual content. |
 | `creative/hyperframes` | creative | 1 | Bank Pusat | HyperFrames — open-source framework dari HeyGen untuk mengubah HTML + CSS + animasi menjadi video MP4. 'Write HTML. Render video. Built for agents.' |
 | `creative/pretext` | creative | 4 | Bank Pusat | Build creative browser demos with DOM-free text layout. |
@@ -149,9 +149,10 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-09-19 16:38:13_
+_Last sync: 2026-09-19 16:44:23_
 
 <!-- SKILL_REGISTRY_END -->
+
 
 
 
