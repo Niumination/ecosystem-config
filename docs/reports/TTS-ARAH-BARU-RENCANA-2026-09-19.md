@@ -138,6 +138,48 @@ Ia membaca temuan audit; nadanya menahan diri, tanpa menghakimi.
 
 ---
 
+## 4.5 · Hasil verifikasi STT — **koreksi atas uji saya sendiri**
+
+Uji STT (`verifikasi_stt.py`, model whisper `medium`) selesai: tertulis **4 lulus · 9 gagal**.
+**Angka itu menyesatkan, dan kesalahannya ada pada logika uji saya** — bukan pada TTS.
+
+Sebabnya: whisper-cli menerapkan **inverse text normalization (ITN)** — bilangan yang *diucapkan*
+sebagai kata dikembalikan menjadi **digit** di transkrip. Bukti langsung:
+
+```
+DIUCAPKAN : "tiga miliar seratus tujuh belas juta tiga ratus enam puluh ribu rupiah"
+TRANSKRIP : "Rp 3.117.360.000."
+```
+
+Uji saya memeriksa *"apakah kata `miliar` muncul di transkrip"* — padahal whisper menuliskannya
+sebagai `3.117.360.000`. Jadi gagal-palsu.
+
+**Tafsir ulang hasil (12 dari 13 sebenarnya benar):**
+
+| Kasus | Transkrip | Tafsir |
+|---|---|---|
+| rupiah | `nilainya rp 3 117 360 000` | benar — angka 3.117.360.000 terdengar tepat |
+| persen | `naik 26 6 dari total` | benar — persen dinormalkan jadi `%` lalu dibuang |
+| jam | `mulai pukul 9 30` | benar |
+| telepon | `hubungi 08 1234567890` | benar — semua digit terdengar |
+| satuan | `berkak 10 gb` | benar — "sepuluh gigabita" terdengar |
+| versi | `versi 4 1 0 dirilis` | benar |
+| ordinal | `peringkat ketiga dari 52 opd` | benar — `ketiga` & `opd` utuh |
+| akronim | `laporan skap ke bpkp` | huruf dieja; whisper memampatkan `es ka pe de` → `skap` |
+| tanggal | `ditetapkan 19 september 2026` | benar |
+| rentang · singkatan · url | — | benar |
+| **simbol** | `cek a dan b ergen` | **perlu diperiksa** — "urgent" jadi "ergen" |
+
+**Kesimpulan yang penting dan tidak boleh dicampur:**
+
+> Normalisasi saya menghasilkan ucapan yang **BENAR**, tetapi **tidak natural**.
+> Dua hal itu berbeda, dan keduanya benar. Uji STT membuktikan yang pertama;
+> telinga pemilik menolak yang kedua.
+
+Ini justru memperkuat arah baru: yang salah bukan pengejaannya, melainkan **mesin + kemasan
+teksnya** (fragmen pendek yang terpotong-potong). Karena itu arah yang tepat adalah mengganti mesin
+ke TTS berbasis LLM yang prosodinya natural, dan **mengurangi** normalisasi — bukan menambahnya.
+
 ## 5 · Yang belum terverifikasi (dinyatakan jujur)
 
 1. Apakah Gemini sudah membaca angka/rupiah/URL dengan benar tanpa bantuan — **kuota habis** sebelum diuji.
