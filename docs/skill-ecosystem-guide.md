@@ -3,7 +3,7 @@
 > **Audiens:** Afrizal Munthe (Niumination)
 > **Tujuan:** Memahami bagaimana skill AI bekerja di ekosistem — mana yang auto-load, mana yang manual, mana yang terintegrasi
 > **Catatan Revisi v3:** Koreksi setelah tanggapan Hermes. Perubahan: (1) 148 skills → dibedakan "total installed" vs "~10-15 actively used", (2) Catalog injection dijelaskan lebih teknis — loading isi skill tetap manual via `skill_view()`, (3) Ditambahkan skill `document-content-pipeline` + UACC MCP server, (4) AI-Memory-Collection ditandai ⚪ belum diverifikasi, (5) Section 14 diisi jawaban Hermes untuk 6 pertanyaan, (6) Ditambahkan rekomendasi Hermes: update AGENTS.md dulu sebelum Layer 1.
-> ⚠️ **Status Sep 2026:** dokumen ini **komparatif/historis**. JCode sudah **dihapus dari pipeline** — bagian "Jcode Skills" di bawah adalah catatan perbandingan, BUKAN sistem aktif. Sistem skill aktif: **Hermes (bank pusat)**.
+> ⚠️ **Status Sep 2026:** dokumen ini **komparatif/historis**. JCode sudah **dihapus dari pipeline** — sistem skill aktif adalah **Hermes Agent + Bank Skill Pusat** dengan arsitektur **Dual-Zone Coexistence & Two-Way Convergence** (159 skills, 789 files, auto-promosi & reverse-sync). JCode sudah **dihapus dari pipeline** — bagian "Jcode Skills" di bawah adalah catatan perbandingan, BUKAN sistem aktif. Sistem skill aktif: **Hermes (bank pusat)**.
 >
 > **Update 29 Jul 2026 — AGENTS.md sync v4.0 ✅ + Layer 1 bank skill terisi 8 skill ✅.** Semua prasyarat Layer 1 terpenuhi. Siap lanjut ke Layer 2 (sync script).
 
