@@ -23,6 +23,7 @@ in one of the tools.
 - Two tools report different totals for the same set (manifest 145 vs index 144, LOC counts,
   coverage, audit finding counts, "N files synced").
 - A generated artifact is regenerated and the diff is larger than the change you made.
+- A mirrored set (a repo copy plus the live directory a runtime loads) may have drifted member by member although every total agrees.
 - Before hand-editing a counter, a table row, or a regenerated file to make numbers match.
 
 ## Rules
@@ -94,6 +95,31 @@ in one of the tools.
     until someone inspects the machine by hand. Report the deferred count next to the policy's status
     line, isolate it from unrelated work by the recognizable marker the fixer writes (its commit
     subject), and state both numbers so a genuine backlog cannot hide inside an expected one.
+
+18. **A synced pair needs a per-member freshness check, and the side the consumer reads is the
+    operational truth — verify which side that is, never infer it from naming.** Count equality says
+    nothing about content: compare each shared member's bytes on both sides. For every mirrored set
+    (a repo copy plus a live directory a runtime loads), confirm the read path from the consumer's
+    own configuration; a directory labelled "single source of truth" is not read at runtime if the
+    consumer never points at it, and "source of truth" then applies to *writing* only. The archive
+    side still holds the two things the live side cannot: history/rollback and the reference hashes
+    every integrity check compares against.
+
+    **A back-sync automation that lifts only NEW members leaves edits to existing members
+    stranded.** A promotion step that copies members absent from the archive never carries a patch to
+    a member both sides already have; a guard protecting the live copy then classifies that patch as
+    a conflict and skips it on every later run, so both sides report green while the archive ages
+    silently. Detect it by diffing shared members, not totals, and report "N shared members differ"
+    as the number that matters; the repair is merging the live member into the archive (after proving
+    it is a superset), never editing a count.
+
+19. **Before adding a stage to a generator/fixer pipeline, present the current flow and the count of
+    moving parts.** Map what runs today first — each script with its role, the direction data moves,
+    and every state file each stage writes — then list the problems that are still open. State the
+    cost of the proposed stage in the same terms (one more script, one more state file per protection
+    added): growth in state files per goal is the signal that the design needs simplifying, not
+    extending. When the request is "show me the current structure and what is broken", deliver that
+    map and stop — do not write code in the same turn, and do not stack options on top of it.
 
 Depth for the generator side (harness, block-rebuild recipe, wiring a scheduled fixer):
 `references/regenerator-authoring.md`.

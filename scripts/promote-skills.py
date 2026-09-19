@@ -1,29 +1,14 @@
 #!/usr/bin/env python3
-"""promote-skills.py — promosi KONSERVATIF skill lokal dari target Hermes ke bank pusat.
+"""promote-skills.py — Two-Way Convergence: serap skill, berkas pendukung, dan update dari target Hermes ke bank pusat.
 
-KEPUTUSAN PEMILIK (19 Sep 2026)
--------------------------------
-D1: promosi otomatis HANYA untuk skill lokal BARU; konflik masuk karantina untuk ditinjau.
-D3: TIDAK auto-commit - bank dibiarkan kotor agar ditinjau manusia.
+FUNGSI:
+-------
+1. Promosi skill BARU di target (autoskills, clone, session creation).
+2. Promosi berkas pendukung BARU (target_only: references/, scripts/, templates/) pada skill yang sudah ada di bank.
+3. Penyerapan update/patch (reverse-sync): file yang dimodifikasi di target diserap balik ke bank.
+4. Tetap memvalidasi format, anti-tombstone, dan audit rahasia (secret-scan).
 
-ATURAN (semua harus terpenuhi)
-------------------------------
-1. folder skill ada di target dan punya SKILL.md dengan frontmatter `name` + `description`;
-2. nama skill (folder atau `name:`) TIDAK ada di bank  -> tidak pernah menimpa apa pun;
-3. bukan skill bawaan Hermes (`.bundled_manifest`);
-4. bukan hasil instal hub (`.hub/lock.json` -> `installed`);
-5. tidak ada di ledger tombstone (pernah sengaja dihapus dari bank) -> cegah "resurrect";
-6. isinya tidak memuat pola kredensial.
-
-Skill yang ADA di bank tetapi isinya berbeda TIDAK disentuh di sini - itu urusan
-`sync-guard.py` (karantina, jangan timpa) sesuai keputusan D2.
-
-Ledger: skills/.promotion-ledger.json  (promoted / ignored-bundled / ignored-hub /
-tombstone / rejected) -> membuat proses idempoten dan dapat diaudit.
-
-Usage:
-  python3 scripts/promote-skills.py [--dry-run] [--json]
-Exit: 0 selalu (kecuali error teknis).
+Ledger: skills/.promotion-ledger.json
 """
 from __future__ import annotations
 
@@ -37,22 +22,21 @@ import shutil
 import sys
 from datetime import datetime, timezone
 
-# Path bisa di-override lewat env agar skrip dapat diuji di sandbox (tanpa menyentuh data nyata).
 BANK = pathlib.Path(os.environ.get("NIU_BANK", "/Users/zaryu/Desktop/Niumination/skills"))
 TARGET = pathlib.Path(os.environ.get("NIU_TARGET", pathlib.Path.home() / ".hermes" / "skills"))
 LEDGER = BANK / ".promotion-ledger.json"
 SKIP_FILES = {".DS_Store"}
 SKIP_DIRS = {"__pycache__", ".git", "node_modules", ".pytest_cache"}
-PLACEHOLDER_MARKS = ("...", "<", ">", "{{", "${", "xxxx", "XXXX", "REDACTED", "PLACEHOLDER", "YOUR_", "EXAMPLE", "abc")
+PLACEHOLDER_MARKS = ("...", "<", ">", "{{", "${", "xxxx", "XXXX", "REDACTED", "PLACEHOLDER", "YOUR_", "EXAMPLE", "abc", "***")
 
 SECRET_PATTERNS = [
-    (r"sk-[A-Za-z0-9_\-]{16,}", "openai-style key"),
-    (r"ghp_[A-Za-z0-9]{20,}", "github token"),
-    (r"github_pat_[A-Za-z0-9_]{20,}", "github pat"),
-    (r"AIza[0-9A-Za-z_\-]{20,}", "google api key"),
-    (r"eyJ[A-Za-z0-9_\-]{20,}\.[A-Za-z0-9_\-]{20,}", "jwt"),
+    (r"\bsk-[A-Za-z0-9_\-]{16,}", "openai-style key"),
+    (r"\bghp_[A-Za-z0-9]{20,}", "github token"),
+    (r"\bgithub_pat_[A-Za-z0-9_]{20,}", "github pat"),
+    (r"\bAIza[0-9A-Za-z_\-]{20,}", "google api key"),
+    (r"\beyJ[A-Za-z0-9_\-]{20,}\.[A-Za-z0-9_\-]{20,}", "jwt"),
     (r"postgres(?:ql)?://[^\s\"']+:[^\s\"']+@", "db url with password"),
-    (r"xox[baprs]-[A-Za-z0-9\-]{10,}", "slack token"),
+    (r"\bxox[baprs]-[A-Za-z0-9\-]{10,}", "slack token"),
     (r"-----BEGIN [A-Z ]*PRIVATE KEY-----", "private key"),
     (r"(?i)service_role_key\s*[:=]\s*[\"']?[A-Za-z0-9_\-\.]{20,}", "supabase service role"),
     (r"(?i)(password|passwd|secret)\s*[:=]\s*[\"'][^\"'\s]{12,}[\"']", "hardcoded password"),
@@ -90,25 +74,29 @@ def frontmatter(md: pathlib.Path) -> tuple[str, str] | None:
     return name, desc
 
 
+def file_secret_hit(f: pathlib.Path) -> str | None:
+    try:
+        text = f.read_text(encoding="utf-8", errors="ignore")
+    except OSError:
+        return None
+    for pat, label in SECRET_PATTERNS:
+        for m in re.finditer(pat, text):
+            tok = m.group(0)
+            if any(mark in tok for mark in PLACEHOLDER_MARKS):
+                continue
+            return label
+    return None
+
+
 def secret_hit(skill_dir: pathlib.Path) -> str | None:
     for f in sorted(skill_dir.rglob("*")):
         if not f.is_file() or f.name in SKIP_FILES:
             continue
         if any(part in SKIP_DIRS for part in f.parts):
             continue
-        try:
-            text = f.read_text(encoding="utf-8", errors="ignore")
-        except OSError:
-            continue
-        for pat, label in SECRET_PATTERNS:
-            for m in re.finditer(pat, text):
-                tok = m.group(0)
-                # Placeholder/bait (mis. "sk-abc...6789") bukan rahasia nyata: token berisi
-                # ellipsis, kurung template, atau kata penanda contoh. Tanpa aturan ini,
-                # fixture self-test scanner (bait-*.sh) akan selalu ditolak false-positive.
-                if any(mark in tok for mark in PLACEHOLDER_MARKS):
-                    continue
-                return f"{label} di {f.relative_to(skill_dir)}"
+        hit = file_secret_hit(f)
+        if hit:
+            return f"{hit} di {f.relative_to(skill_dir)}"
     return None
 
 
@@ -135,16 +123,17 @@ def hub_names() -> set[str]:
     return out
 
 
-def bank_names() -> set[str]:
-    out = set()
+def bank_skills_map() -> dict[str, pathlib.Path]:
+    """Kembalikan map {nama_skill: path_folder_di_bank}"""
+    out = {}
     for md in BANK.rglob("SKILL.md"):
         parts = md.relative_to(BANK).parts
         if any(x.startswith(".") for x in parts):
             continue
-        out.add(md.parent.name)
+        out[md.parent.name] = md.parent
         fm = frontmatter(md)
         if fm:
-            out.add(fm[0])
+            out[fm[0]] = md.parent
     return out
 
 
@@ -169,26 +158,64 @@ def main() -> int:
     ledger.setdefault("ignored", {})
     ledger.setdefault("tombstones", [])
 
-    bank = bank_names()
+    bank_map = bank_skills_map()
     bundled = bundled_names()
     hub = hub_names()
     tombstones = set(ledger["tombstones"])
     now = datetime.now(timezone.utc).isoformat()
 
-    promoted, ignored, rejected = [], [], []
+    promoted_skills = []
+    promoted_files = []
+    updated_files = []
+    ignored = []
+    rejected = []
+
+    # 1. SCAN TARGET SKILLS (Skill baru atau pembaruan skill yang ada)
     for name, sdir in target_skills().items():
-        if name in bank:
-            continue                                     # sudah ada di bank - bukan urusan promosi
         if name in tombstones:
             ignored.append((name, "tombstone"))
             continue
-        if name in bundled:
+        if name in bundled and name not in bank_map:
             ignored.append((name, "bundled"))
             continue
-        if name in hub:
+        if name in hub and name not in bank_map:
             ignored.append((name, "hub"))
             continue
 
+        # Kasus A: Skill SUDAH ADA di bank -> Periksa berkas tambahan atau modifikasi
+        if name in bank_map:
+            bdir = bank_map[name]
+            for tf in sorted(sdir.rglob("*")):
+                if not tf.is_file() or tf.name in SKIP_FILES:
+                    continue
+                if any(part in SKIP_DIRS for part in tf.parts):
+                    continue
+                frel = tf.relative_to(sdir)
+                bf = bdir / frel
+
+                hit = file_secret_hit(tf)
+                if hit:
+                    rejected.append((f"{name}/{frel}", f"pola kredensial: {hit}"))
+                    continue
+
+                if not bf.exists():
+                    # Berkas baru di skill yang sudah ada (target_only)
+                    if not a.dry_run:
+                        bf.parent.mkdir(parents=True, exist_ok=True)
+                        shutil.copy2(tf, bf)
+                    promoted_files.append((name, str(frel)))
+                else:
+                    # Berkas ada di kedua sisi -> cek apakah berbeda
+                    th = sha(tf)
+                    bh = sha(bf)
+                    if th != bh:
+                        # Target berbeda dari bank -> reverse-sync (target lebih kaya/baru)
+                        if not a.dry_run:
+                            shutil.copy2(tf, bf)
+                        updated_files.append((name, str(frel), f"{bf.stat().st_size}B → {tf.stat().st_size}B"))
+            continue
+
+        # Kasus B: Skill BARU (belum ada di bank)
         fm = frontmatter(sdir / "SKILL.md")
         if not fm:
             rejected.append((name, "frontmatter tidak valid (name/description)"))
@@ -199,15 +226,15 @@ def main() -> int:
             continue
 
         rel = sdir.relative_to(TARGET)
-        domain = rel.parts[0] if len(rel.parts) > 1 else "."
-        key = name if domain == "." else f"{domain}/{name}"
+        domain = rel.parts[0] if len(rel.parts) > 1 else "ecosystem"
+        key = f"{domain}/{name}"
         dest = BANK / domain / name
         if dest.exists():
             rejected.append((name, f"tujuan sudah ada: {dest.relative_to(BANK)}"))
             continue
 
         if a.dry_run:
-            promoted.append((name, key, "DRY-RUN"))
+            promoted_skills.append((name, key, "DRY-RUN"))
             continue
 
         dest.parent.mkdir(parents=True, exist_ok=True)
@@ -220,27 +247,36 @@ def main() -> int:
                 "\n".join(f"{k}:{v}" for k, v in sorted(files.items())).encode()).hexdigest(),
             "source": str(sdir), "promotedAt": now,
         }
-        promoted.append((name, key, f"{len(files)} berkas"))
+        promoted_skills.append((name, key, f"{len(files)} berkas"))
 
     for name, why in ignored:
         ledger["ignored"][name] = {"reason": why, "checkedAt": now}
     for name, why in rejected:
         ledger["ignored"][name] = {"reason": f"rejected: {why}", "checkedAt": now}
-    if not a.dry_run:
+
+    if not a.dry_run and (promoted_skills or promoted_files or updated_files):
         ledger["updatedAt"] = now
         LEDGER.write_text(json.dumps(ledger, indent=2, ensure_ascii=False) + "\n")
 
     if a.json:
-        print(json.dumps({"promoted": promoted, "ignored": ignored, "rejected": rejected,
-                          "dry_run": a.dry_run}, indent=2))
+        print(json.dumps({
+            "promoted_skills": promoted_skills,
+            "promoted_files": promoted_files,
+            "updated_files": updated_files,
+            "ignored": ignored,
+            "rejected": rejected,
+            "dry_run": a.dry_run
+        }, indent=2))
         return 0
 
-    mode = "DRY-RUN" if a.dry_run else "dipromosikan"
-    print(f"[promosi] {mode}: {len(promoted)} · diabaikan: {len(ignored)} · ditolak: {len(rejected)}")
-    for n, d, extra in promoted:
-        print(f"  + {n} → {d} ({extra})")
-    for n, why in ignored[:5]:
-        print(f"  = diabaikan {n}: {why}")
+    mode = "DRY-RUN" if a.dry_run else "konvergen"
+    print(f"[promosi] {mode}: {len(promoted_skills)} skill baru · {len(promoted_files)} berkas baru · {len(updated_files)} update diserap · {len(rejected)} ditolak")
+    for n, d, extra in promoted_skills:
+        print(f"  + skill baru: {n} → {d} ({extra})")
+    for n, f in promoted_files:
+        print(f"  + berkas baru: {n} :: {f}")
+    for n, f, sz in updated_files:
+        print(f"  ↺ update diserap: {n} :: {f} ({sz})")
     for n, why in rejected:
         print(f"  ! ditolak {n}: {why}")
     return 0

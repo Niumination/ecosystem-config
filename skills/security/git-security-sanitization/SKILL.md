@@ -30,6 +30,9 @@ Class-level workflow for removing leaked credentials and PII from repositories, 
 10. **Never `git add -f` an ignored path.** A parent-directory ignore is not a credential gate — forcing an ignored file in is exactly how a `.env` reaches a repo whose `.gitignore` looked like it protected it. When a project directory is ignored wholesale, that is a reason to `git init` the project, never to force-add single files into the parent.
 11. **A gate that checks "is this path ignored?" must call `git check-ignore --no-index -q <path>`.** Without `--no-index`, a path that is already staged counts as tracked, so `check-ignore` answers "not ignored" — the `git add -f` branch never fires, and it fails exactly on the case it was written for. The content branch keeps passing, so the gate looks healthy.
 12. **A gate self-test must not leave a commit behind.** Exercising the hook with a throwaway file is the only way to know it blocks, but when the gate misses, the test itself creates a real commit. After every gate test: confirm the tip SHA is unchanged, and if a commit appeared, `git reset --soft HEAD~1` plus unstage the file before any push — on a public repo the next push publishes whatever the test carried.
+13. **Never bypass the gate with `--no-verify` to get a fixture committed.** The gate firing on a deliberately-planted bait token is the gate working. Remove the trigger instead of the guard: **assemble the token at run time** from concatenated fragments (`BAIT="sk-""EXAMPLE""$(printf '%08d' 0)"`) so no key-shaped literal ever exists in the tree, then substitute it into the generated fixture. Reject `--no-verify` even when the file is provably fake — a bypass becomes the precedent for the next commit.
+14. **A gate self-test fixture must be able to fire.** Align the bait with the scanner's actual rule regex: a rule like `\bsk-[A-Za-z0-9]{20,}\b` requires 20+ characters, so a "realistic-looking" short bait (`sk-abc...6789`, 3 chars) can never match — the fixture's expectation is unsatisfiable and the self-test reports detection loss that is really a fixture bug. Read the rule, size the bait to it, and after any scanner rule change re-run the self-test.
+15. **Exempt provably-placeholder tokens from your own scanner, and only those.** Fixtures, docs and installer templates legitimately contain token-shaped strings; a scanner that flags them trains people to bypass it. Exempt a match only when the token itself carries a placeholder marker (`...`, `<`, `>`, `{{`, `${`, `xxxx`, `REDACTED`, `PLACEHOLDER`, `YOUR_`, `EXAMPLE`) — never exempt by path alone, which is how a real key in an excluded directory survives.
 
 ## Workflow
 
@@ -104,6 +107,7 @@ rm -f <ignored-dir>/gate-test.txt gate-test.env
 
 ## Pitfalls
 
+- **A self-test that cannot fire looks like a detection regression.** When the bait is shorter or otherwise shaped differently from the scanner's rule, the expectation never matches and the fix appears to be "loosen the rule" — which would be the exact opposite of the intent. Compare the bait against the rule regex before touching the scanner.
 - **Over-aggressive regex redaction:** replacing `\d{16}` inside arrays/objects without preserving quotes breaks TS syntax. Always redact the complete literal.
 - **Test fixtures contain synthetic NIKs:** do not blindly exclude `__tests__`; redact the test data instead.
 - **Scanner self-trigger:** if the scanner contains its own credential pattern, it will always fail.
