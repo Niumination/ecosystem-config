@@ -403,6 +403,14 @@ check_lightfix() {
   fi
   pass "skrip lightfix tersedia: scripts/up-eco-lightfix.sh"
 
+  # Penjaga autocommit: hanya churn timestamp yang boleh di-commit otomatis.
+  if [ -x "$NIUMINATION/scripts/lightfix-autocommit.sh" ]; then
+    pass "penjaga autocommit tersedia: scripts/lightfix-autocommit.sh"
+  else
+    warn "penjaga autocommit tidak ada/tidak executable: scripts/lightfix-autocommit.sh"
+    rec "→ pulihkan: git -C $NIUMINATION checkout -- scripts/lightfix-autocommit.sh && chmod +x"
+  fi
+
   # Cron Hermes hanya boleh menjalankan script di ~/.hermes/scripts/ → wrapper tipis
   if [ -x "$wrapper" ]; then
     pass "wrapper Hermes ada: ~/.hermes/scripts/up-eco-lightfix.sh"
