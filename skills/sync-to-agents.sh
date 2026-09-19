@@ -307,8 +307,14 @@ e = content.find(marker_end, s)
 if s >= 0 and e >= 0:
     e += len(marker_end)
     before = content[:s]
-    after = content[e:]
-    content = before + marker_start + '\n' + registry + '\n' + marker_end + '\n' + after
+    # Fix 19 Sep 2026: `after` dimulai dengan newline milik berkas, lalu ditambah '\n' lagi
+    # -> satu baris kosong MENUMPUK setiap run (berkas pernah mencapai 41 baris kosong di
+    # ekor, tumbuh 1 per sync). Baris kosong di awal `after` dibuang dulu; separator hanya
+    # ditambahkan bila masih ada isi sesudah marker.
+    after = content[e:].lstrip('\n')
+    content = before + marker_start + '\n' + registry + '\n' + marker_end + '\n'
+    if after:
+        content += '\n' + after
     with open(agents, 'w') as f:
         f.write(content)
     print('skill-registry.md updated')
