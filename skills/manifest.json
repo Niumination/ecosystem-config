@@ -1,6 +1,6 @@
 {
   "fileCount": 716,
-  "generatedAt": "2026-09-19T10:30:05.909443+00:00",
+  "generatedAt": "2026-09-19T10:36:25.291090+00:00",
   "skillCount": 145,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -877,10 +877,10 @@
       }
     },
     "ecosystem/up-eco": {
-      "bundleHash": "1fc2e5e1f56cce1746f7ee78ee02816cf347132f69c4747acdeb24b4a9df4a6a",
+      "bundleHash": "bb36127b834add328b3f383a66964d7bd32222dc9cb839dba62db6da16cde722",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "16a4343352540dc0755e360525d0f946a557d6aafcbf1cbef049166903ff283b"
+        "SKILL.md": "1c1fc43bd31ca96439fcdd485113417253f2d13711163377aee206a583899983"
       }
     },
     "ecosystem/weathernext-gayo": {

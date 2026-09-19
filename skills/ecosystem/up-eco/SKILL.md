@@ -140,6 +140,7 @@ Perbaikan ringan berulang kini berjalan otomatis lewat cron Hermes, bukan lagi m
 - **Jangan bandingkan jumlah BARIS INDEX dengan jumlah skill bank.** INDEX mencantumkan sebagian skill dua kali (tabel "featured" di atas + tabel domainnya) → terbaca 163 vs 145 dan peringatan mismatch-nya palsu. Bandingkan **nama unik**.
 - **Identitas baris skill = NAMA FOLDER, bukan `name:` di frontmatter.** Kasus `ponytail-core` (frontmatter `name: ponytail`) membuat generator menganggap barisnya yatim lalu membuangnya.
 - **Generator INDEX harus memindai SELURUH berkas**, bukan berhenti di heading non-domain pertama — kalau tidak, section yang ditambahkan di akhir berkas tidak ikut diparsing dan ditambahkan lagi setiap putaran (tidak konvergen; pernah tumbuh 15 → 45 section).
+- **Repo "wajar kotor" bukan peringatan lagi (2026-09-19).** `brain/` dan `archive/` masuk allowlist `EXPECTED_DIRTY` di fase Dirty Repos: tetap **ditampilkan** sebagai info supaya tidak ada perubahan tersembunyi, tetapi tidak dihitung sebagai perlu tindakan dan tidak masuk Rekomendasi. Repo yang memang berubah harian → tambahkan polanya ke array `EXPECTED_DIRTY` di `scripts/up-eco.sh`.
 - **Skrip baru wajib `chmod +x`.** `[ -x file ]` gagal untuk berkas mode 644 sehingga fase baru melapor "skrip tidak ada" padahal ada.
 
 ## Current-State Addendum (2026-09-10)

@@ -1012,15 +1012,36 @@ main() {
   # ── Phase 2: Dirty repos dalam ekosistem ──
   section "🔍 Dirty Repos (uncommitted changes)"
   local dirty_count=0
+  local dirty_expected_count=0
+  local dirty_expected_files=0
+  local expected_list=""
+  # Repo yang WAJAR kotor (19 Sep 2026). Berubah harian tanpa perlu tindakan:
+  # brain/ = catatan harian, archive/ = cadangan arsip. Tetap DITAMPILKAN agar tidak ada
+  # perubahan tersembunyi, tetapi sebagai info — tidak dihitung sebagai perlu tindakan
+  # dan tidak masuk daftar Rekomendasi. Repo lain tetap fail + masuk Rekomendasi.
+  local EXPECTED_DIRTY=("brain" "archive/")
   while IFS= read -r repo; do
     local rel
     rel=${repo#$NIUMINATION/}
     local dirty_files
     dirty_files=$(cd "$repo" && git status --porcelain 2>/dev/null | wc -l | tr -d ' ')
     if [ "$dirty_files" -gt 0 ]; then
-      fail "$rel — $dirty_files file(s) dirty"
-      rec "→ $rel: commit & push ($dirty_files files)"
-      dirty_count=$((dirty_count + 1))
+      local is_expected=0 pat
+      for pat in "${EXPECTED_DIRTY[@]}"; do
+        case "$rel" in
+          "$pat"|"$pat"*) is_expected=1 ;;
+        esac
+      done
+      if [ "$is_expected" -eq 1 ]; then
+        info "(wajar kotor) $rel — $dirty_files file(s)"
+        dirty_expected_count=$((dirty_expected_count + 1))
+        dirty_expected_files=$((dirty_expected_files + dirty_files))
+        expected_list="$expected_list $rel($dirty_files)"
+      else
+        fail "$rel — $dirty_files file(s) dirty"
+        rec "→ $rel: commit & push ($dirty_files files)"
+        dirty_count=$((dirty_count + 1))
+      fi
     fi
   # Perbaikan 19 Sep 2026: klausa "-not -path '*/\..*'" mengecualikan SEMUA direktori .git
   # (setiap jalur .git memuat "/."), sehingga sweep selalu kosong dan selalu melaporkan
@@ -1030,9 +1051,14 @@ main() {
   # Perbaikan 19 Sep 2026: "[ ... ] && pass" mengembalikan status 1 saat ada repo kotor,
   # dan di bawah "set -e" itu MEMATIKAN sisa laporan tepat setelah sweep mulai bekerja.
   if [ "$dirty_count" -eq 0 ]; then
-    pass "Semua repos clean"
+    pass "Tidak ada repo yang perlu tindakan"
   else
     rec "→ $dirty_count repo kotor — commit & push per repo (lihat daftar di atas)"
+  fi
+  if [ "$dirty_expected_count" -gt 0 ]; then
+    info "Wajar kotor (info saja): $dirty_expected_count repo / $dirty_expected_files berkas —$expected_list"
+  else
+    pass "Tidak ada repo wajar-kotor"
   fi
 
   # ── Phase 3: Folder asing ──
