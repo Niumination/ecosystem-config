@@ -165,7 +165,7 @@ Desktop/Niumination/
 || **niu-kanban-dash** | P3 | ⏸️ | 2026-08-18 | Vite/React |
 ||| **AuditTI-AT** | P3 | ✅ Live | 2026-08-13 | GH Pages |
 ||| **landing-web-id** | P3 🆕 | ⚪ Ready | 2026-08-30 | Landing page Bahasa Indonesia — niumination.web.id — Vercel deploy ready |
-||| **niu-oss-dashboard** | P2 🆕 | 🟢 Active | 2026-09-19 | Next.js 15 — landing + dashboard OSS 91 repo, API v1, PWA, i18n id/en — repo `Niu-OSS-Dashboard`, CI/test/build hijau, fase 4 go-live pending |
+||| **niu-oss-dashboard** | P2 🆕 | 🟢 Active | 2026-09-19 | Next.js 16.3 + React 19.2 + TS 7 + Vitest 5 — landing + dashboard OSS 91 repo, API v1, PWA, i18n id/en — repo `Niu-OSS-Dashboard` (stack 2026, CVE-2025-66478 tertutup), fase 4 go-live pending |
 ||| **spatial-vision** | P3 | 🟢 Active | 2026-08-18 | Rust/WASM 3D vision |
 
 

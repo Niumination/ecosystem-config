@@ -13,7 +13,7 @@
 
 | Subdomain | Target | Status |
 |-----------|--------|--------|
-| `niumination.web.id` | Landing page (link ke semua proyek) | 🟡 **Kode siap — `Niu-OSS-Dashboard`** (Next.js 15, `sites/niu-oss-dashboard/`) · deploy Fase 4 pending (DNS belum ada) |
+| `niumination.web.id` | Landing page (link ke semua proyek) | 🟡 **Kode siap — `Niu-OSS-Dashboard`** (Next.js 16.3, `sites/niu-oss-dashboard/`) · deploy Fase 4 pending (DNS belum ada) |
 | `mata.niumination.web.id` | MATA Watchdog | ✅ Existing (Cloudflare) |
 | `dash.niumination.web.id` | Deployment status / monitoring | 🔴 Planned |
 | `docs.niumination.web.id` | Dokumentasi ekosistem | 🔴 Planned |
