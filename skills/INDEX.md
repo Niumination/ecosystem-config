@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 145 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 159 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 145 ✅ Aktif
+> **Status:** 159 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -83,6 +83,12 @@
 | **redesign-verification** | ✅ Aktif | Bank Pusat | 2.6 KB | Pitfall khusus untuk proyek redesign multi-fase: jangan klaim selesai tanpa verifikasi visual, jangan merge ba… |
 | **web-dashboard-maintenance** | ✅ Aktif | Bank Pusat | 1.5 KB | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | **ponytail-core** | ✅ Aktif | Bank Pusat | 6.3 KB | > |
+| **audit-finding-triage** | ✅ Aktif | Bank Pusat | 17.3 KB | Triage a large scanner/audit finding set. |
+| **derived-artifact-consistency** | ✅ Aktif | Bank Pusat | 10.4 KB | Use when two tools report different totals for one set. |
+| **live-ui-audit** | ✅ Aktif | Bank Pusat | 5.9 KB | Use when auditing a live web UI on mobile and desktop. |
+| **llm-call-reliability** | ✅ Aktif | Bank Pusat | 6.5 KB | Use when LLM calls stall, time out, or return bad JSON. |
+| **pre-cleanup-artifact-preservation** | ✅ Aktif | Bank Pusat | 7.1 KB | Before deleting refs or files, preserve the only copy. |
+| **project-handover-package** | ✅ Aktif | Bank Pusat | 13.4 KB | Use when handing a project over to another team. |
 
 ## Domain: Design
 
@@ -95,6 +101,9 @@
 | **seo** | ✅ Aktif | autoskills (MIT) | 13.9 KB | Technical SEO — meta tags, structured data, sitemap, Lighthouse SEO audits |
 | **dark-theme-a11y** | ✅ Aktif | Bank Pusat | 3.1 KB | Accessibility pitfalls specific to dark/glassmorphism themes. Covers CSS variable fallback mismatches, compute… |
 | **web-accessibility-wcag** | ✅ Aktif | Bank Pusat | 4.8 KB | Audit & remediasi aksesibilitas web WCAG 2.1 AA + polish frontend + SEO untuk dashboard/SPA. Use when user min… |
+| **mobile-viewport-remediation** | ✅ Aktif | Bank Pusat | 5.5 KB | Use when a page is not mobile-friendly on phones. |
+| **responsive-ui-audit** | ✅ Aktif | Bank Pusat | 8.6 KB | Use when auditing or fixing live web UI/UX. |
+| **web-ui-audit-measurement** | ✅ Aktif | Bank Pusat | 8.7 KB | Audit live web UI dengan bukti terukur. |
 
 ## Domain: Ecosystem
 | **device-migration-disaster-recovery** | ✅ Aktif | Bank Pusat | 23.6 KB | Use when planning backup, restore, or device migration. |
@@ -140,6 +149,8 @@
 | **provider-fallback** | ✅ Aktif | Bank Pusat | 13.7 KB | Handle AI provider failures and fallback to working providers |
 | **skill-bank-management** | ✅ Aktif | Bank Pusat | 12.9 KB | Kelola Skill Bank Niumination (single source of truth ~/Desktop/Niumination/skills/) — manifest SHA-256, sync… |
 | **weathernext-gayo** | ✅ Aktif | Bank Pusat | 2.7 KB | Analisis cuaca mikro dan peringatan dini bencana untuk dataran tinggi Gayo (Aceh Tengah) berbasis pipeline Wea… |
+| **model-mapping-repair** | ✅ Aktif | Bank Pusat | 7.7 KB | Use when a model mapping points at a dead provider. |
+| **sapa-ai** | ✅ Aktif | Bank Pusat | 13.3 KB | Use when working on sapa-ai. |
 
 ## Domain: Security
 
@@ -147,6 +158,7 @@
 |-------|:------:|--------|-----------|
 | **redteam** | ✅ Aktif | Agentpedia + Niumination | 4.0 KB | Adversarial security testing — stress-test plan dari sudut pandang attacker |
 | **git-security-sanitization** | ✅ Aktif | Hermes (dipromosikan) | 3.4 KB | Clean credential/PII leaks and add secret-scanning gates. |
+| **production-secret-rotation** | ✅ Aktif | Bank Pusat | Rotate a live production credential; prove the old is dead. |
 
 ## Domain: Creative
 
@@ -162,6 +174,8 @@
 | **pretext** | ✅ Aktif | Bank Pusat | Build creative browser demos with DOM-free text layout. |
 | **sketch** | ✅ Aktif | Bank Pusat | Throwaway HTML mockups: 2-3 design variants to compare. |
 | **touchdesigner-mcp** | ✅ Aktif | Bank Pusat | Control TouchDesigner via twozero MCP. |
+| **content-pipeline-readiness** | ✅ Aktif | Bank Pusat | Use when checking content production & publish readiness. |
+| **short-form-video-production** | ✅ Aktif | Bank Pusat | Make ready-to-post vertical video (Reels) at zero cost. |
 
 ---
 
@@ -286,8 +300,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **145** |
-| **Total** | **145** |
+| ✅ Aktif | **159** |
+| **Total** | **159** |
 
 ## Catatan Penting — Potensi Konflik
 

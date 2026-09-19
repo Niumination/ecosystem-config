@@ -60,6 +60,54 @@ Scripts that REPORT on state (checkers, auditors, generators) fail worst when th
 - **`@{upstream}` is fatal when the branch has no upstream configured**: `git rev-list --count '@{upstream}'..HEAD` fails, the `|| echo 0` fallback turns it into a permanent 0, and "N commits ahead" is silently never reported. Resolve the ref defensively and fall back to `origin/<branch>`. Do not assume branches are uniform — in one repo the children tracked upstream and the root did not.
 - **Appending a block with `content + '\n' + after` grows the file when `after` already starts with a newline** — one blank line per run, forever. Strip leading newlines from the remainder before joining, then add exactly one separator. Symptom to watch for: a generated file whose line count creeps up on every run while the diff shows only blank lines.
 - **Before trusting a generator that rewrites a tracked file, prove idempotency in memory** (`build(build(x)) == build(x)`) rather than on disk, and verify it by running twice and diffing. A non-convergent generator rewrites the file on every cron run and masks the drift it was meant to expose.
+- **A false positive is the same bug class as a false negative.** A secret scanner that flags a deliberate bait fixture (`sk-abc...6789` in a scanner self-test) refuses legitimate content forever. Skip candidates carrying placeholder markers (`...`, `<`, `{{`, `REDACTED`, `EXAMPLE`, `xxxx`) rather than loosening the whole pattern.
+- **"Skipped" is not "done".** A guard path that prints a notice and `exit 0` (lock contention, empty work queue, missing precondition) makes the caller print `✓` with empty output and `rc=0` — the pipeline can stop doing its job indefinitely while every report stays green. Give "skipped" its own code (e.g. `3`) and make the caller branch on all three cases: `0` done · `3` skipped · anything else failed. Capture with `out=$(cmd 2>&1); rc=$?` between `set +e`/`set -e`, never bare `if out=$(...); then`.
+
+## Copying a Source Tree Over a Mirror (one-way sync)
+
+Pattern: one directory is the source of truth (`bank/`, `dotfiles/`, a config repo) and gets copied
+onto one or more mirrors (`~/.hermes/skills/`, `$HOME`, agent config dirs). The copy is usually
+`rsync -a` **without** `--delete`, which has two consequences people get wrong in both directions:
+
+- **Mirror-only files survive; divergent same-path files are DESTROYED.** A file created in the mirror
+  is never touched (safe, but invisible to the source and to any generated index). A file that exists
+  on both sides but was edited in the mirror is silently overwritten by the source version — the newer,
+  richer side loses. Never assume `-u`/"only newer" semantics: verify the flags, then assume the source
+  wins.
+- **`rsync` without `--checksum` may skip a file whose content differs.** The default quick-check
+  compares size + mtime, so two files of equal size and equal timestamp but different bytes are treated
+  as identical and never copied — the mirror stays stale while the sync reports success. Use
+  `rsync -a --checksum` whenever the job is "make the mirror match the source".
+
+To protect mirror-side work while still propagating source updates:
+
+1. **Detect divergence before copying, per file** — compare each mirror file against both the current
+   source hash and a snapshot of the last synced state. Divergent + unchanged-since-last-sync means the
+   *source* moved (safe to overwrite); divergent + changed-since-last-sync means the *mirror* was edited
+   (quarantine: skip that item entirely and report it, never overwrite).
+2. **Quarantine, don't merge.** Skipping the item keeps the mirror edit intact and surfaces it for a
+   human decision; the sync must still propagate everything else in the same run.
+3. **Keep the snapshot honest.** A post-sync state snapshot must NOT record entries for items that were
+   quarantined: recording the mirror's edited hash makes the next run read "mirror == state" and conclude
+   the source changed, so the protection evaporates after exactly one cycle. Preserve the previous entry.
+4. **Ledger the decisions** (promoted / ignored / rejected, plus tombstones for items deliberately
+   deleted from the source). Without tombstones, a deleted item still present in the mirror gets
+   "re-promoted" and resurrects. Classify mirror-only items before acting: framework-bundled
+   (e.g. `.bundled_manifest`), package-manager-installed (e.g. `.hub/lock.json`), tombstoned, or
+   genuinely local — only the last class is a promotion candidate. Identify an item by BOTH its folder
+   name and its frontmatter `name:`; the two can diverge.
+5. **Order matters:** guard (read-only) → promote mirror → regenerate derived manifests → sync →
+   verify → commit. Promotion must run before the manifest is regenerated, or promoted items miss the
+   index for a whole cycle.
+6. **Never auto-commit the results of a promotion/backport step** unless asked — leave the source tree
+   dirty so a human reviews what crossed the boundary.
+
+**Test the whole pipeline in a sandbox first.** Support env-var path overrides (`BANK_DIR` /
+`MIRROR_DIR` read from `os.environ`) since scripts with hardcoded absolute paths cannot be exercised
+safely, then drive a matrix: new mirror item → promoted; bundled/installed/tombstoned → ignored;
+mirror-edited → conflict; source-changed → not a conflict; run twice → zero changes; state write while a
+conflict exists → conflict still detected; sync with a quarantine list → quarantined item untouched while
+source changes are still copied. Both defects above surfaced only because the sandbox ran before real data.
 
 ## Piped Downloads
 

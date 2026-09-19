@@ -1,7 +1,7 @@
 {
-  "fileCount": 716,
-  "generatedAt": "2026-09-19T13:22:47.664366+00:00",
-  "skillCount": 145,
+  "fileCount": 756,
+  "generatedAt": "2026-09-19T13:40:06.687053+00:00",
+  "skillCount": 159,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -70,6 +70,15 @@
         "workflows/wan_video_t2v.json": "29425bee0ffbb2d558de19ca787d23b76f91257f663098041a81931fe623441b"
       }
     },
+    "creative/content-pipeline-readiness": {
+      "bundleHash": "78f43c509587e1a7be30cbf9f80a840b4153bac08332885e09a3fffcf5d6cbf4",
+      "domain": "creative",
+      "files": {
+        "SKILL.md": "8ebe216fcf73f0399166ed650dfdf55856826064d9967ab200309dad1d8920bd",
+        "references/free-tier-channel-facts.md": "f37e5cee4e4ca18ccbe66f0d913edbaa0af7ed46bd409422ac77ff6cb0f0c8c0",
+        "references/pipeline-probes.md": "8bb4414f6c73470d1d418d26c6dce4024c1be908d64bd6a6011471c492a8d98f"
+      }
+    },
     "creative/excalidraw": {
       "bundleHash": "df72f956c0b58820ea7a75ada4148788937dc3772d40c445c773249dd3c3aed3",
       "domain": "creative",
@@ -124,6 +133,21 @@
         "references/patterns.md": "e8d50e198fefdeb83e68f84ef4fbe036583ff5f7d65a41a58e1ab8725027f13e",
         "templates/donut-orbit.html": "8b0cd47880a9cc6ad16f90afe02b11aea1e2436c833924bb91e55dc460966fbe",
         "templates/hello-orb-flow.html": "6a1c76b51e8e792fa2b00ed3a5bf1e314a17ada192289155dce6b33da149ddda"
+      }
+    },
+    "creative/short-form-video-production": {
+      "bundleHash": "f75004e182e05cb0223827bb0e373b4add4e783309703eba0e14720566f01141",
+      "domain": "creative",
+      "files": {
+        "SKILL.md": "9dbf7e90f83ba66aed7fef3c65503c17f5c8beb6b602e94798cc6fd09b063141",
+        "references/content-strategy-and-hooks.md": "fcca8637f2d55c8b66718875c521c6efa6064e952e57586a2ffcab8b88c43b7f",
+        "references/free-toolchain-verification.md": "60f000c8159a647195d4841ea60c789467b37616d58c1ebb48bc5b4ae7f4b8f3",
+        "references/voiceover-delivery.md": "c575de338d77544c4943a8fb44e41474be5d23ca7a67cda4191c328e2d79e602",
+        "scripts/audio-identity-check.py": "0ebab85c005830bec6f610dcfd3f4fec90aa6d117a8a1e9ca95c2790c481d447",
+        "scripts/audio-similarity.py": "5d143861e50667b0664028692a9a7ed3eb62b7a00032d71d792a41a807a33e1f",
+        "scripts/reels-qa.sh": "768508e3b746bfb63975c9efae3cd2804791cc41390babfd96dda2b50893b684",
+        "templates/pronunciation-golden-test.py": "f3a2decb344e2efc16aee7130487ff36235ad0985ad29ee5d73578d00d7a3a83",
+        "templates/reels-9x16-composition.html": "806c18283290c98ca61c17e38478530c9dfe48e8aca729e0f17c3b0c818633f9"
       }
     },
     "creative/sketch": {
@@ -351,6 +375,23 @@
         "scripts/surface-brief.mjs": "acd03bf38f6aef2b5d5287cefccacac018063b5b5356c99d191b3bd012f28ed3"
       }
     },
+    "design/mobile-viewport-remediation": {
+      "bundleHash": "186b776c86e93efd7a3dbe3c4a876ea198bb091c129440cf1cff15cddfe4c51f",
+      "domain": "design",
+      "files": {
+        "SKILL.md": "703a227c392f437cfef7638499d73939d9ec4f78409d8f38c5d72257e683b344",
+        "references/reflow-remediation.md": "82c3669de42ca443e5d84e91c0bb12246d1c4623c7a4b437782e0dcb208182f9",
+        "scripts/viewport-audit.py": "e69feb3324840eba85cf77fc76617619af859208705284b01394a6283925a3c8"
+      }
+    },
+    "design/responsive-ui-audit": {
+      "bundleHash": "772ef32c8999d54ca7661e4bb90c24718d19ed1a5d6ed878d050b594dcb505ac",
+      "domain": "design",
+      "files": {
+        "SKILL.md": "09e3b1316ea5d1efddb46e3081d0caf35dc6bc53a95407e83a39926ba5753dae",
+        "references/mobile-compact-layout.md": "30f6eaae9db3bb9f3b088bb31ef54dbb25a7ac55177dc510796e5cf511ab28f0"
+      }
+    },
     "design/seo": {
       "bundleHash": "bd94b55e4b3dd4a9f555cc0eee5cc54623e6d3b70c6b7f0a6a06e7dfc724dd32",
       "domain": "design",
@@ -405,6 +446,14 @@
       "files": {
         "SKILL.md": "3208507f2699f2ed0fe223559445c074f7980883fe87454da509e6ff75baad21",
         "scripts/wcag-contrast.py": "f0a050c7dceab4edf90a68c5d08b20d1861b565391f0d532ee7f6d863f4617be"
+      }
+    },
+    "design/web-ui-audit-measurement": {
+      "bundleHash": "07cb3ba06e80b6ad307fcb4344f7a3184c4ea74119d41e98fd448ba2392ba7c0",
+      "domain": "design",
+      "files": {
+        "SKILL.md": "0ec777dbdd0eaa17df0a96669356c84df2016817fb3cbca95280d8675d834dc9",
+        "templates/page-probe.js": "34cf67f020ac7b48ba148b384396d38ec283ca364a737b3fd1f55821a3ac4aea"
       }
     },
     "development/pi-app-studio": {
@@ -759,6 +808,16 @@
         "references/kiro-models-status-2026-08-30.md": "6df9541106a8af692941b8c402edabdfe0b76aa2c97fb207e386dc2c59e46559"
       }
     },
+    "ecosystem/model-mapping-repair": {
+      "bundleHash": "dc909c14ac6478c1101725d1e3ea4a6147409acee3e62471400e135fca5e1de5",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "51e32830e8240e9b7cd45e30f5cc2b70e19980f80f3cf0df6b13fa5e1c37c12c",
+        "references/free-tier-routing.md": "4c67f6d2b3f30fec50fc826ecc008a3ee68a01dd15c5c644e08af07a04159881",
+        "references/mapping-repair.md": "b07649fa6c6ad6d7e4df6686e4521fe9a5a872c8f8b40538224ca5efa6051f32",
+        "scripts/probe-tool-calling.py": "3a7635eb690be6ff1f28474a6477950fb086a743e06c2e1d724fcf4afd766048"
+      }
+    },
     "ecosystem/model-status-checker": {
       "bundleHash": "f09134914db3e38104bbee42cf590c0afb8384fc84eab157923a6c77c67b4e84",
       "domain": "ecosystem",
@@ -838,6 +897,15 @@
         "scripts/stress_test_models.py": "d33af11d6d8f03816b2ce64f6a74c2f873118d7602e46ad308e4c385b13e0f16"
       }
     },
+    "ecosystem/sapa-ai": {
+      "bundleHash": "95e45ad4f4a048bab81b28a980e324af83cd3ddced4aff77628766c8b8018c9a",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "27ea39053f0a29a3e76a741a48ea6106e2950bf6b4d89e95e6391f4812a52e34",
+        "references/serverless-runtime-gating.md": "4062ef9a9a7b171f951dcc0b8424adada196021c6f4aa8e46521d8045a35e645",
+        "references/vercel-latency-and-timeouts.md": "e6f2fe0487ed20336233a970dfe1dde960e46377dd0fe77eea5c70b0b0fda0c3"
+      }
+    },
     "ecosystem/sapa-ai-ops": {
       "bundleHash": "a820967fb7c67d1b518c571493d31625253e6278db8e1370f666a2b1c97087f2",
       "domain": "ecosystem",
@@ -877,10 +945,10 @@
       }
     },
     "ecosystem/up-eco": {
-      "bundleHash": "ed21f3c4ea2d04247e1035cba3089fd646d14cce092459c52aed495875c50088",
+      "bundleHash": "d355ca24437b0c88991d214f5a0cd066e13eb2441932791b959791bd416c92f9",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "5e2ceb7b5823f59c2e4d46e1175aa2bc75bcc5ec03114ca7b75ef4bb4072ac03"
+        "SKILL.md": "f1f085b50e79d5482967be42814064de2b1c09fc2724dafcc2a63e7fbe25c242"
       }
     },
     "ecosystem/weathernext-gayo": {
@@ -1175,6 +1243,14 @@
         "scripts/masked_pii_triage.py": "6174b498704b94371bf1dfdc68586b8ab4c9c6a98771ffd988e8c29587f1d446"
       }
     },
+    "security/production-secret-rotation": {
+      "bundleHash": "d9d1c9e1a590b6fdb9bc3e5fe734a54fe404caa98246f7f831b108e46dff402a",
+      "domain": "security",
+      "files": {
+        "SKILL.md": "f1004df95cebee7e2b8b1d8ad30796bd822131d6e15345c72838ce416578939b",
+        "references/dead-credential-forensics.md": "b5789d782bc11d2f1227e29ee21354d6155360dbc31a872414cf4737ec8bcb80"
+      }
+    },
     "security/redteam": {
       "bundleHash": "677444b22519f018b0d005e4d9d2358c6b4bbb0be2c2e207b6242a68b61123d6",
       "domain": "security",
@@ -1203,6 +1279,15 @@
       "files": {
         "SKILL.md": "312f27c230033a38f6d003b9e372e8941508392eff4b9756ec1e43e7b026cd7f",
         "references/app-data-backup-restore.md": "51aeb438ffa753287bfcbd52a9b60e33f7b559891de42fddb60551fbc73d2c8e"
+      }
+    },
+    "software-development/audit-finding-triage": {
+      "bundleHash": "c560772f407103c22777365868767fe34b6b3078d9475650dd16548498cffc53",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "f92b7fe79b556ba67fdd45a21721ad8a37ece57b1b0dc5029fd0936e0c0e99d7",
+        "references/provider-schema-apply.md": "c70cf832620514d50afea7f176d5a3992e738dd87959811f5bbc09f4c994a95d",
+        "scripts/bait-bank-check.sh": "80cfc842bbc98c718708dc10982dcee98febe17a67d424cc6229497b20553cab"
       }
     },
     "software-development/brainstorming": {
@@ -1260,6 +1345,14 @@
       "files": {
         "SKILL.md": "2b41c9991104ed2d86709abd8e1e2ade9396a843ae29ef6387331ae84d25715b",
         "references/rebuild-gutted-dashboard.md": "0c091ed37796287a49f5edee71ec92eaa1f7c75163e31cf1a2be7aaa44111a33"
+      }
+    },
+    "software-development/derived-artifact-consistency": {
+      "bundleHash": "f8128d136d8db5cfbb7fbda63bded69ca291517024054dbe2f5e0a60e60a6907",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "6f656f9c5be49085a7b8eee131628054a635218df3631b8967121c9cfb706bb4",
+        "references/regenerator-authoring.md": "3bf1f6727c3f2d1a176b0dc66d777fbca9c78b8236b47785ced5eaec216c13a1"
       }
     },
     "software-development/document-content-pipeline": {
@@ -1322,10 +1415,10 @@
       }
     },
     "software-development/hermes-terminal-workflows": {
-      "bundleHash": "5dd22747f029069ec55c4ba8935d9c570d094b5cfebf66bb0481afe7d2ab4cd3",
+      "bundleHash": "2a1b887a274ec8dc62ab5019e7022d512e6278753220bf0d965f5f2872171458",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "dc5943a1912f17db41c110ec736de80d3bf3ecd5ffc937d0719643219034736e"
+        "SKILL.md": "b86a43150ef72dfbb07af71c6b801edf5dec9855f1b36d0be33b299c20f52033"
       }
     },
     "software-development/hermes-zero-defect-architect": {
@@ -1333,6 +1426,22 @@
       "domain": "software-development",
       "files": {
         "SKILL.md": "9f7b65cdb4c82292cec7f67b13e788efcb6b951682e612856d71a875b80fdbe6"
+      }
+    },
+    "software-development/live-ui-audit": {
+      "bundleHash": "49b10e7631c282526013ac4634411f2aaa395ec15f4e918a553be83772d76518",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "9e52b20d9f9c9659ad2adf65b861db1931052092bc6a7eb220ac402108dae890",
+        "references/measurement-recipes.md": "8704db46635becb195102bc012429633a81789928cb6d001ac56ff1ddbae760d"
+      }
+    },
+    "software-development/llm-call-reliability": {
+      "bundleHash": "feb6e9a861e44ef446a831fbc39014afcd31fb43b701f52d99d52b54a884f47d",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "d4d24abbf028e99a0507b13f6f20468f3c6f9a2671dc545983080f03b1f0f344",
+        "scripts/sse_timing_probe.py": "26515207138a9abc29123264fedbed5a81f208fbc225a58ca784110441123e95"
       }
     },
     "software-development/niu-mission-control-ops": {
@@ -1439,11 +1548,26 @@
         "SKILL.md": "6da8a19fda4fc92e06baaf4a7657acfa98e861992efa88b002637cbc2fc762a7"
       }
     },
+    "software-development/pre-cleanup-artifact-preservation": {
+      "bundleHash": "cc236c2d2cff5759992bd64876241559db2adf326c2558b311c3a29c576df075",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "174565f5d9d6d40e3a1f30de8a81efe75b3064c628745cf355bf5e171c132a13"
+      }
+    },
     "software-development/premortem": {
       "bundleHash": "86d6f0f0f76269d8fc2cdfe123035b788be9f148b60b047f82515b080392a7e3",
       "domain": "software-development",
       "files": {
         "SKILL.md": "4c1e8ac4dfb85f0df9c035fc26403d1831888b9ebf050662bdf2e4f73840b166"
+      }
+    },
+    "software-development/project-handover-package": {
+      "bundleHash": "2f62cdcf4f123a1906dc9ee00232a2dabaf8d09317c1590472f0564092611a2f",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "42a664104f52edb4379fe3b5217f12b60525331e4b315218cdef40b974f314a6",
+        "references/handover-document-set.md": "1d32f54103d5a9d60cef4dd7c636794f0cdc9d32fef27d2613018eeb344a49c0"
       }
     },
     "software-development/project-orientation": {
