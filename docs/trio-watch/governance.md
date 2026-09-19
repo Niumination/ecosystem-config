@@ -9,7 +9,7 @@
 
 1. **Manusia = Sumber Aturan** — Anda bekerja di mana saja yang diperlukan (root, services/, labs/, dll). Agent tidak membatasi lokasi, tapi memahami **konteks dan tujuan**.
 2. **Agent = Executor + Reporter** — melaksanakan sesuai intent, melaporkan dampak, TIDAK bertindak asertif tanpa klarifikasi.
-3. **Tim = 3 Agen** — Hermes (ecosystem), JCode (cc-acehtengah), OpenCode (labs/experiment). Setiap agen punya **domain keahlian**, bukan **domain folder**.
+3. **Tim = 2 Agen** (sejak Sep 2026; JCode dihapus dari pipeline) — Hermes (ecosystem), OpenCode (labs/experiment). Setiap agen punya **domain keahlian**, bukan **domain folder**.
 
 ---
 
@@ -17,10 +17,10 @@
 
 | Lokasi Kerja | Agen Utamanya | Tapi bisa diakses agen lain jika: |
 |--------------|---------------|----------------------------------|
-| `services/cc-acehtengah/` | JCode | Hermes perlu update AGENTS.md, OpenCode mau clone untuk analisis |
-| `~/Desktop/Niumination/` (root) | Hermes | JCode perlu commit docs proyek, OpenCode mau tambahkan skill |
+| `services/cc-acehtengah/` | Hermes | OpenCode mau clone untuk analisis |
+| `~/Desktop/Niumination/` (root) | Hermes | OpenCode mau tambahkan skill |
 | `apps/*/` | Sub-repo mandiri | Setiap agen bisa akses sebagai reader, tapi commit hanya owner repo |
-| `labs/`, `desktop/` | OpenCode | JCode/Hermes butuh referensi untuk dokumentasi |
+| `labs/`, `desktop/` | OpenCode | Hermes butuh referensi untuk dokumentasi |
 
 **Prinsip:** Folder adalah organisasi, bukan penjara. Agent harus tanyakan:
 > "Anda mau saya kerjakan ini dari konteks cc-acehtengah atau ekosistem?"
@@ -31,7 +31,6 @@
 
 ```bash
 bash scripts/trio-watch.sh --from hermes
-bash scripts/trio-watch.sh --from jcode
 bash scripts/trio-watch.sh --from opencode
 # Output: scripts/.trio-status.json
 ```

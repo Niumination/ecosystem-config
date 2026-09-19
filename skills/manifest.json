@@ -1,6 +1,6 @@
 {
   "fileCount": 716,
-  "generatedAt": "2026-09-19T11:46:15.215524+00:00",
+  "generatedAt": "2026-09-19T12:58:33.865881+00:00",
   "skillCount": 145,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -427,10 +427,10 @@
       }
     },
     "devops/env-doctor": {
-      "bundleHash": "465077d4766088cb135494caa744644910569c1edee3918a94d5de938d0efe5e",
+      "bundleHash": "804832f3fe6bd18c9e3f0e1ba24fd0f94bc29c401b229220fb769910606ebe33",
       "domain": "devops",
       "files": {
-        "SKILL.md": "34814620fdaa1ff4500b3b0a460ebfc06d80a592707c2b27d2d7bc122f57a9af",
+        "SKILL.md": "1e46b5676fd3884f0f4326661ee50479dd54f5ae2c3dab4d9901eeaa10455651",
         "references/dotfiles-doctor-agents-2026-08-28.md": "27766d2acb16c60469104a542a3c8e37324027904d05e3d06701ddbf8643547c",
         "references/dotfiles-doctor-ci-2026-08-28.md": "22ecf3a5d5adb04dd8afb00deb47531f3d78c65b748b15c2bf763ae57905ae8c",
         "references/full-restore-2026-08-28-dotfiles.md": "30e7c16f761fc845e460306158ee3d489276ca8a939a0965ebc24c722425ef13",
@@ -1329,10 +1329,10 @@
       }
     },
     "software-development/hermes-zero-defect-architect": {
-      "bundleHash": "56aaec36896a66421e0764244f5475fa46d02beda5cce869f58382ab0f0e6a8a",
+      "bundleHash": "5b842ceb58de3e8e94611965af45570866887115c5ed54769e8244d1ee7b06b2",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "998a24de33c7e8271e1f51efb0a424d89dd5f0e440b06351ba5a46dfb698c08a"
+        "SKILL.md": "9f7b65cdb4c82292cec7f67b13e788efcb6b951682e612856d71a875b80fdbe6"
       }
     },
     "software-development/niu-mission-control-ops": {
@@ -1346,10 +1346,10 @@
       }
     },
     "software-development/optimization": {
-      "bundleHash": "4c2a02578a52d7b04279da2ffc5d5371ba1336d21d149b3eb27a736e5092b2f2",
+      "bundleHash": "9ed8dde2abbafe7cf009c7ab070853cacef9d7646a729eef7ffa1a8af73f4f32",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "76d6983f48f9f85af35864d244a5c134e421cfc22d678482495ca5ac9a9ea838"
+        "SKILL.md": "b7a85c3a0b4f02f72aeda9ea723cd7a22c7cca1d58e29da16add38630ccf0390"
       }
     },
     "software-development/pemdi-evidence-management": {

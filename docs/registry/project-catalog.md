@@ -22,7 +22,7 @@
 |--------|------|-------|--------|--------|-----------|--------|
 || **Flame-ADE** | `desktop/flame-ade/` | Tauri 2, Rust, React 19, TS | `github.com/Niumination/Flame-ADE` | ⚪ Desktop app | 20 Jun 2026 | ✅ v1.3.0 |
 || **JHermUSB-portable** | `inactive-2026-09/JHermUSB-portable/` | Shell, Hermes Agent v25+v27 | `github.com/Niumination/JHermUSB-portable` 🔒 **PRIVATE · DIARSIPKAN** | 💤 Dipensiunkan 18 Sep 2026 | 10 Agu 2026 (snapshot terakhir) | 💤 **Dipensiunkan** — digantikan `niumination-restore` (kredensial sebagai ciphertext); `config/.env` dikeluarkan dari repo |
-|| **Niu-Flow** | — (remote only) | Python, JCode bridge | `github.com/Niumination/niu-flow` | ⚪ Local | 20 Jun 2026 | 🟢 **Active** — 5 commits |
+|| **Niu-Flow** | — (remote only) | Python | `github.com/Niumination/niu-flow` | ⚪ Local | 20 Jun 2026 | 🟢 **Active** — 5 commits |
 || **VirtualAssistance** | — (remote only) | TS | `github.com/Niumination/VirtualAssistance` | 🟢 Vercel | 3 Jun 2026 | ✅ Live |
 || **Joy-Connect-for-Mac** | `desktop/joy-connect-for-mac/` | Swift 5.9, macOS 13+, ADB, scrcpy | `github.com/Niumination/joy-connect-for-mac` | ⚪ macOS Desktop | 3 Aug 2026 | 🟢 **Infinix device bridge — DOX pass done** |
 || **LatticeSend** | `services/latticesend/` | Rust, Flutter, QUIC, E2EE | lokal | ⚪ Spec phase | 22 Jul 2026 | 🆕 **P2P transfer — blueprint only** |

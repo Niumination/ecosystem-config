@@ -87,15 +87,6 @@ def hermes_status():
         pass
     return s
 
-# ── OpenCode (formerly JCode) ─────────────────────────────────────────
-def jcode_status():
-    """JCode compatibility wrapper — JCode no longer integrated in ecosystem.
-    Returns static zero state; historical session data preserved in ~/.jcode/."""
-    return {"sessions": 0, "active_sessions": 0, "total_sessions": 0,
-            "last_session": "", "pid": "", "git_dirty": [],
-            "note": "JCode no longer integrated — preserved for reference"}
-
-
 # ── OpenCode ─────────────────────────────────────────────────────────
 def opencode_status():
     s = {"sessions": 0, "active_sessions": 0, "last_session": "", "git_dirty": []}
@@ -152,7 +143,6 @@ def opencode_status():
 
 tools["hermes"]   = hermes_status()
 tools["opencode"] = opencode_status()
-tools.pop("jcode", None)  # JCode no longer integrated in ecosystem
 
 # ── Detector konflik (tanpa window) ─────────────────────────────────────────
 conflicts = []
@@ -178,7 +168,6 @@ def recent_tool_activity(repo):
                     found.add("opencode")
                 if "hermes" in author or "hermes" in email:
                     found.add("hermes")
-                # JCode author detection removed — no longer integrated
     except Exception:
         pass
     return found
@@ -189,7 +178,6 @@ for repo in [nium,
              f"{nium}/services/niu-mission-control"]:
     if os.path.isdir(repo) and os.path.isdir(f"{repo}/.git"):
         active = recent_tool_activity(repo)
-        active.discard("jcode")  # JCode no longer integrated
         if len(active) >= 2:
             conflicts.append({
                 "type": "overlap",

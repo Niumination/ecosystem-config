@@ -335,7 +335,7 @@ Sebelumnya (BACKLOG Jul 28) mencatat niu-dash/Niu-LKH dirty — sudah tidak vali
 | **Hermes (main)** | opencode-zen | **nemotron-3-ultra-free** (default) / hy3-free / big-pickle | ✅ **Live** (free tier) |
 | **Nous Portal** | OAuth2 Hermes | model `:free` ter-update | ✅ **Live** (login aktif, exp 13:43 WIB) |
 | **Claude Code** | ANTHROPIC_API_KEY | claude-sonnet-4 | ✅ **Live** |
-| **JCode** | OPENCODE_API_KEY | — | ⚪ Deprecated — not used in ecosystem
+| ~~**JCode**~~ | — | — | ⚪ **Dihapus Sep 2026** — referensi dibersihkan dari pipeline |
 | **Delegation** | gemini | gemini-2.5-flash | ✅ Off (concurrent=1, depth=0) |
 | **AI-Memory-Collection** | 12 AI tools | Snapshot ~1.7GB | ✅ **Referenced** |
 
@@ -429,14 +429,14 @@ Ultra, AuditTI-AT, Niu-Flow, didong-code, x-downloader, flame-ade, niu-vermilion
 - 🎨 **niu-mission-control PR#10** — MERGED → Redesign total APEX-MC (faithful replika https://apex-ui-xi.vercel.app). 12 pages → 1 orb view: golden ring R=220 + sound waves + particle core (SVG dots, pengganti three.js) + equalizer + reasoning graph nodes orbit + overview HUD + status bar. Vanilla JS/CSS (zero deps, no FontAwesome/-400k lines). Reduced-motion guard (Mac REDUCE-MOTION ON). Source APEX-UI: https://apex-ui-xi.vercel.app (bukan GitHub repo). PR#11 (apex5) — iterasi tambahan particle core + equalizer kiri/kanan, pending review.
 - 🎨 **niu-mission-control PR#6** — MERGED (`8a8b631`) → Mission Core retheme (token APEX gold-ring + cyan-core, 12 halaman). Produksi direstart (pid baru), `healthz`/`readyz` 200. WCAG AA lulus, reduce-motion hormati OS. Issue #5 auto-closed.
 - 📜 **Trio Governance v2** — commit `1442732`: intent-based, bukan folder-bound. Aturan dampak + klarifikasi sebelum eksekusi.
-- 🧠 **Skill Bank** — 70 skill (bank pusat), INDEX+manifest sinkron. Sync-to-agents jalan ke Hermes saja (JCode dihapus dari pipeline). 3 conflict MC = **abaikan** (bank = katalog, tidak jalan barengan).
+- 🧠 **Skill Bank** — 70 skill (bank pusat), INDEX+manifest sinkron. Sync-to-agents jalan ke Hermes saja (JCode dihapus dari pipeline Sep 2026). 3 conflict MC = **abaikan** (bank = katalog, tidak jalan barengan).
 - 📊 **Struktur** — apps 13 (tambah pabrik-aplikasi-gas), services 6, agents 4. Mac REDUCE-MOTION ON.
 
 *Status: ekosistem sehat & stabil. PR bot (Niu-LKH#1, afoa#2) masih menganggur — tahan review.*
 
 @cc-acehtengah
 
-- [HOLD] **Credential Broker Phase B — tunggu 2 session jcode selesai** — broker (scripts/keys.sh) sudah jalan & ter-test; migrasi live key DITAHAN karena PID 22342 & 1028 sedang kerja. Lanjut hanya kalau session selesai atau user bilang "lanjut". Ref: docs/references/credential-broker-handoff.md @scripts
+- [HOLD] **Credential Broker Phase B — tunggu verifikasi sesi paralel selesai** — broker (scripts/keys.sh) sudah jalan & ter-test; migrasi live key DITAHAN karena PID 22342 & 1028 sedang kerja. Lanjut hanya kalau session selesai atau user bilang "lanjut". Ref: docs/references/credential-broker-handoff.md @scripts
 
 @cc-acehtengah
 

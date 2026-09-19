@@ -147,10 +147,10 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 | **Obsidian Vault** | `brain/` |
 | **Niu-Flow Pipeline** | Ke remote: `github.com/Niumination/niu-flow` (tidak di lokal) |
 || **AI Agent Hooks** | `scripts/hooks/` — 13 hook scripts (claude, codex, copilot, dll) |
-|| **Skill Sync Script (Layer 2)** | `skills/sync-to-agents.sh` — auto-sync bank pusat ke Jcode + Hermes, cron every 6h |
+|| **Skill Sync Script (Layer 2)** | `skills/sync-to-agents.sh` — auto-sync bank pusat ke Hermes, cron every 6h |
 || **Profile README** | `agents/profile/` → `gh:Niumination/Niumination` |
 || **Agent Characters** | `agents/characters/` — 4 herdr agents (arsitek, pembangun, pengawas, penjaga) |
-|| **Skill Ecosystem Guide** | `docs/skill-ecosystem-guide.md` — Panduan lengkap sistem skill (Hermes, Jcode, Claude Code, OpenCode, Orca, Herdr) |
+|| **Skill Ecosystem Guide** | `docs/skill-ecosystem-guide.md` — Panduan lengkap sistem skill (Hermes, Claude Code, OpenCode, Orca, Herdr) |
 
 ---
 

@@ -7,7 +7,7 @@ license: MIT
 platforms: [linux, macos]
 metadata:
   hermes:
-    tags: [dotfiles, stow, zsh, opencode, jcode, hermes, disaster-recovery, env-health]
+    tags: [dotfiles, stow, zsh, opencode, hermes, disaster-recovery, env-health]
     related_skills: [opencode, hermes-agent, systematic-debugging]
 ---
 
@@ -38,20 +38,17 @@ Detail manual (kalau perlu probe spesifik di luar doctor):
 pwd; ls -la ~ | head -n 40
 ls -la ~/.config/ | sort
 cat ~/.config/opencode/opencode.jsonc 2>&1 | head -n 20
-cat ~/.jcode/config.toml 2>&1 | head -n 40
 cat ~/.hermes/.env 2>&1 | head -n 20; ls -la ~/.hermes/.env
 ls -la ~/.9router/ 2>&1 | head -n 20; ls -la ~/.config/9router 2>&1 | head
 cat ~/Desktop/Niumination/vault/secrets.zsh 2>&1 | head -n 20
 cat ~/Desktop/Niumination/docs/ECOSYSTEM-STATUS-*.md 2>&1 | head -n 120
 which -a opencode; opencode --version; opencode providers list 2>&1 | head -n 20
-which -a jcode; jcode --version; jcode auth status 2>&1 | head -n 40
 zsh -c 'source ~/.zshrc && echo DOTFILES_DIR=$DOTFILES_DIR && echo OK' 2>&1 | tail -n 20
 ls -la ~/.zshrc ~/.zshenv ~/.config/zsh/.zshrc 2>&1
 ```
 
 Interpretation:
 - `opencode.jsonc` with only `{"$schema":...}` is **valid minimal** — real auth lives in `~/.local/share/opencode/auth.json`. Empty ≠ broken.
-- `~/.jcode/config.toml` is canonical now; legacy `config.json` deletion is expected after migration.
 - `~/.9router` (not `~/.config/9router`) is current location on this ecosystem.
 - `DOTFILES_DIR=/Users/zaryu` is correct when `~/zsh/` and `~/shared/` live at `$HOME` (HOME itself is the stow dir, `.git -> Desktop/.../.git`).
 
@@ -109,8 +106,6 @@ zsh -c 'source ~/.zshrc && echo "✅ Zsh loaded successfully"' 2>&1 | tail -n 20
 ```bash
 opencode --version          # 1.18.x
 opencode providers list      # expect Zen + env vars
-jcode --version              # v0.81.x
-jcode auth status | grep -E "opencode|available"
 ```
 If `ECOSYSTEM-STATUS.md` says repair is still running (`~17:45-18:04` incident window), **do not** edit `~/.jcode/*`, `~/.hermes/.env`, `~/.config/opencode/*`, `vault/*`, nor run `scripts/keys.sh set` until user confirms repair done.
 
@@ -130,5 +125,4 @@ If `ECOSYSTEM-STATUS.md` says repair is still running (`~17:45-18:04` incident w
 ## Verification
 - `zsh -c 'source ~/.zshrc && echo $DOTFILES_DIR'` prints existing dir containing `zsh/` and `shared/environment.sh`
 - `opencode run 'Respond with exactly: OPENCODE_SMOKE_OK'` succeeds
-- `jcode auth status` shows `opencode` `available`
 - `ls -la ~/.zshrc ~/.zshenv ~/.config/zsh/.zshrc` all are symlinks, not regular files

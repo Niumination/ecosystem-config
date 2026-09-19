@@ -1,21 +1,20 @@
-# Trio Awareness — Hermes × JCode × OpenCode
+# Trio Awareness — Hermes × OpenCode
 
-**Tujuan:** Hermes (primary) aware aktivitas JCode (ke-2) & OpenCode-CLI (ke-3) secara passif — tanpa kontrol, spawn, atau delegasi. Cegah bentrok (2 tool garap repo sama) & ketinggalan info.
+**Tujuan:** Hermes (primary) aware aktivitas OpenCode-CLI secara passif — tanpa kontrol, spawn, atau delegasi. Cegah bentrok (2 tool garap repo sama) & ketinggalan info.
 
-**Paradigma:** Hermes = konduktor. JCode/OpenCode = eksekutor mandiri. Hermes hanya **memantau → memberi tahu → mencatat ke shared memory**.
+**Paradigma:** Hermes = konduktor. OpenCode = eksekutor mandiri. Hermes hanya **memantau → memberi tahu → mencatat ke shared memory**.
+
+> ⚠️ **Status Sep 2026:** JCode sudah **dihapus dari pipeline** ekosistem (bukan lagi target sync/monitor). Seksi bertanda JCode di bawah adalah catatan historis — pemantauan aktif kini hanya Hermes + OpenCode.
 
 ---
 
 ## 📍 Cara Pakai
 
 ```bash
-# di Hermes — lihat JCode + OpenCode
+# di Hermes — lihat OpenCode
 bash scripts/up-eco.sh --from hermes
 
-# di terminal JCode — lihat Hermes + OpenCode
-bash scripts/up-eco.sh --from jcode
-
-# di terminal OpenCode — lihat Hermes + JCode
+# di terminal OpenCode — lihat Hermes
 bash scripts/up-eco.sh --from opencode
 ```
 
@@ -32,7 +31,7 @@ Overwrite tiap run. Struktur:
   "called_from": "hermes",
   "tools": {
     "hermes":   { "sessions": 84, "last_session": "...", "model": "...", "git_dirty": [...] },
-    "jcode":    {
+    "opencode": {
       "sessions": 3,
       "active_sessions": 3,
       "total_sessions": 146,
