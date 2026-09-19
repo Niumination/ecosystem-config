@@ -3,7 +3,7 @@
 **Status:** selesai, terverifikasi
 **Mesin:** `hermes-tts` (`tts_hermes.py` + modul baru `pelafalan_tambahan.py`)
 **Lokasi kerja:** `~/Downloads/niu-konten/hermes-tts/` (di luar repo ekosistem, sesuai aturan)
-**Uji:** `uji_emas_pelafalan.py` — **28/28 lulus** (sebelum: 22/27)
+**Uji:** `uji_emas_pelafalan.py` — **37/37 lulus** (sebelum perbaikan: 22/27)
 
 ---
 
@@ -69,12 +69,28 @@ sengaja **tidak** masuk daftar, supaya `laporan.pdf` dan `data.csv` ikut dieja b
 2. Pola angka menelan **titik akhir kalimat** → jeda penutup hilang pada TTS.
 3. `tag_asing()` membuat tag bersarang bila naskah sudah memakai `<en>…</en>`.
 
+### 3.5 Celah lanjutan — teks dari dokumen/markdown
+
+Naskah sering disalin dari laporan atau catatan, jadi diuji juga. Lima celah ditemukan dan ditutup:
+
+| Masukan | Sebelum | Sesudah |
+|---|---|---|
+| `# Judul` | `# Judul` (# diucapkan) | `Judul` |
+| `#reels` (tagar) | `#reels` | `reels` |
+| `Selesai ✅ 😀` | emoji diucapkan | `Selesai` |
+| `• Poin satu` | `•` diucapkan | `Poin satu` |
+| `-5 derajat` | `-lima derajat` | `minus lima derajat` |
+| `Bab IV` | `Bab IV` (dieja huruf) | `Bab empat` |
+
+Angka Romawi **sengaja hanya** dikonversi setelah kata `Bab`/`Pasal`/`Jilid` — kalau diterapkan
+umum, kode seperti `IV` atau nama seperti `X` bisa salah dibaca sebagai bilangan.
+
 ## 4 · Verifikasi
 
 ### 4.1 Uji emas (harapan tulisan tangan, bukan pemeriksa otomatis)
 
-`uji_emas_pelafalan.py` memuat 28 kasus dengan **harapan eksplisit** lalu membandingkan
-teks yang benar-benar dikirim ke mesin TTS. **28 lulus · 0 gagal** (sebelum: 22 lulus · 5 gagal).
+`uji_emas_pelafalan.py` memuat **37 kasus** dengan **harapan eksplisit** lalu membandingkan
+teks yang benar-benar dikirim ke mesin TTS. **37 lulus · 0 gagal** (sebelum: 22 lulus · 5 gagal).
 
 > Catatan kejujuran: harness pertama saya menyatakan "26/33 bersih" padahal rekon memperlihatkan
 > kerusakan nyata — karena pemeriksanya memakai logika yang sama dengan yang diperiksa.
@@ -109,11 +125,13 @@ Korelasi gelombang antara rekaman "sebelum" dan "sesudah" per kasus:
 | singkatan umum | −0,0066 | **−2,376 s** |
 | versi & ukuran | −0,0735 | +0,264 s |
 | email & URL | 0,0626 | +0,528 s |
+| teks dokumen (markdown + emoji + Romawi) | −0,0430 | −1,224 s |
+| angka negatif | 0,0391 | +0,192 s |
 
-Kontrol 0,9974 membuktikan metodenya sah; semua kasus ≈0 = audio benar-benar berubah.
+Kontrol 0,9974 membuktikan metodenya sah; semua 9 kasus ≈0 = audio benar-benar berubah.
 
 **Audisi untuk telinga:** `audisi_pelafalan/audisi_pelafalan_sebelum_vs_sesudah.mp3`
-(107,9 s — tiap kasus: penanda "Sebelum." → versi lama → penanda "Sesudah." → versi baru).
+(128,8 s — tiap kasus: penanda "Sebelum." → versi lama → penanda "Sesudah." → versi baru).
 
 > **Batasan yang saya nyatakan jujur:** saya **tidak bisa mendengar** audio, dan dua proksi
 > otomatis untuk pelafalan **tidak layak** — (1) `whisper-cli` model *base* berhalusinasi
@@ -149,11 +167,12 @@ Render penuh end-to-end: 5 potongan → semua `44100 Hz · stereo · 192 kbps`, 
 | `hermes-tts/pelafalan_tambahan.py` | modul normalisasi pelafalan (baru) |
 | `hermes-tts/tts_hermes.py` | dipatch: impor modul, kamus tanpa-peka-huruf, panggilan normalisasi |
 | `hermes-tts/kamus_pelafalan.json` | 128 entri + `_peka_huruf_besar` (52 → 128) |
-| `uji_emas_pelafalan.py` | 28 kasus dengan harapan eksplisit |
+| `uji_emas_pelafalan.py` | 37 kasus dengan harapan eksplisit |
+| `verifikasi_stt.py` | cek balik lewat STT (whisper) — lihat catatan batasan |
 | `uji_regresi_naskah.py` | bandingkan lama vs baru pada 33 naskah MATA |
 | `buat_audisi_pelafalan.py` | render audisi A/B |
 | `verifikasi_audio_pelafalan.py` | korelasi gelombang sebelum vs sesudah |
-| `audisi_pelafalan/audisi_pelafalan_sebelum_vs_sesudah.mp3` | audisi untuk telinga (107,9 s) |
+| `audisi_pelafalan/audisi_pelafalan_sebelum_vs_sesudah.mp3` | audisi untuk telinga (128,8 s) |
 | `recon_pelafalan.py` · `analisis_varian_kamus.py` | analisis awal (diagnosis) |
 
 ## 7 · Menambah istilah baru (tanpa sentuh skrip)
