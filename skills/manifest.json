@@ -1,7 +1,7 @@
 {
-  "fileCount": 711,
-  "generatedAt": "2026-09-18T19:17:55.191833+00:00",
-  "skillCount": 144,
+  "fileCount": 716,
+  "generatedAt": "2026-09-19T09:37:23.679855+00:00",
+  "skillCount": 145,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -89,6 +89,17 @@
         "references/ide5-reels-workflow.md": "af64608cea101baccbb98b262fcc2e2209e36b5e9471c15e0b6ae1266a9cbe27",
         "scripts/generate-html.sh": "482f457466dc0251de55196f5ff46a54161d0f1865e7743e929ba340185cfd1d",
         "templates/reels-html-scaffold.html": "3a2c55c137f51e0473304f2f1e09c048fbca5cf6e23d1d1882724be09c01aeee"
+      }
+    },
+    "creative/gemini-vo-narration": {
+      "bundleHash": "0cba5a4249a1607df3a1a96dda01bb45bb01c98021746537b3491ac28bab2f21",
+      "domain": "creative",
+      "files": {
+        "SKILL.md": "98fe69d01a38dd6e21f529ad0ded32036ca9bb074a2466836a742bd83b9235dd",
+        "references/kasus-gagal.md": "0552dbdc2f791e0cca9cc8a6c555ae3a62f20490221d104b9c110a91b6fe93fe",
+        "references/prompt-dan-tag.md": "d0e9ee39a5f86e9ba2b420bad9b5f3a7638760a1f5240be7eb03dfceaf9baf1c",
+        "scripts/__pycache__/gemini_vo.cpython-314.pyc": "26cb89d9109b50ea585af065bff28438d136dd9784dc10e8a6c76a8047755c97",
+        "scripts/gemini_vo.py": "a8184a47e928b1c84ccebbb32acb6164d82d52e4b10e6172eab831d863b6e01c"
       }
     },
     "creative/ghost": {

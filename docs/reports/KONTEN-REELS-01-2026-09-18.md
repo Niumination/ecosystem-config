@@ -4,6 +4,8 @@
 **Pemicu:** permintaan Afrizal Munthe — lanjutkan rencana konten, seluruh produksi harus gratis (Rp 0)
 **Status:** **siap tayang** — video, narasi, dan paket caption selesai; distribusi menunggu keputusan kanal. **Revisi v2 (19 Sep 2026):** voice-over diperbaiki mengikuti lapis delivery pipeline MATA — lihat §9.
 
+> ⚠️ **USANG — jangan diikuti (19 Sep 2026).** Seluruh §9 (investigasi voice & produksi VO v1–v4) memakai mesin **edge-tts + normalisasi teks berlapis**, yang sudah **dibatalkan**. Standar yang berlaku sekarang: **Gemini TTS** — lihat [`TTS-STANDAR-VO-2026-09-19.md`](TTS-STANDAR-VO-2026-09-19.md) dan skill `skills/creative/gemini-vo-narration/`. Visual reels (naskah, storyboard, animasi) tetap berlaku; hanya lapis suaranya diganti.
+
 ---
 
 ## 0. Ringkasan
