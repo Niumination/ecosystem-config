@@ -61,8 +61,20 @@ check_git_status() {
   branch=$(cd "$dir" && git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "?")
   head=$(cd "$dir" && git rev-parse --short HEAD 2>/dev/null || echo "?")
   dirty=$(cd "$dir" && git status --porcelain 2>/dev/null | wc -l | tr -d ' ')
-  ahead=$(cd "$dir" && git rev-list --count '@{upstream}'..HEAD 2>/dev/null || echo "0")
-  behind=$(cd "$dir" && git rev-list --count HEAD..'@{upstream}' 2>/dev/null || echo "0")
+  # Fix 19 Sep 2026: '@{upstream}' gagal (fatal) bila branch tidak punya upstream tracking —
+  # kasus nyata di root ecosystem-config, sehingga pelaporan ahead/behind SELALU 0 dan commit
+  # yang menunggu push tidak pernah terlihat. Fallback ke origin/<branch>.
+  local upstream_ref
+  upstream_ref=$(cd "$dir" && git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null || true)
+  if [ -z "$upstream_ref" ] && git -C "$dir" rev-parse --verify -q "origin/$branch" >/dev/null 2>&1; then
+    upstream_ref="origin/$branch"
+  fi
+  ahead=0
+  behind=0
+  if [ -n "$upstream_ref" ]; then
+    ahead=$(cd "$dir" && git rev-list --count "$upstream_ref"..HEAD 2>/dev/null || echo "0")
+    behind=$(cd "$dir" && git rev-list --count HEAD.."$upstream_ref" 2>/dev/null || echo "0")
+  fi
   remote=$(cd "$dir" && git remote get-url origin 2>/dev/null || echo "none")
 
   info "Branch: $branch | HEAD: $head"
@@ -416,6 +428,13 @@ check_lightfix() {
   # sesi berikutnya. Dihitung dari commit yang belum ter-push dengan subjek khas lightfix.
   local upstream pending_auto pending_all
   upstream=$(git -C "$NIUMINATION" rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null || true)
+  if [ -z "$upstream" ]; then
+    local nb
+    nb=$(git -C "$NIUMINATION" rev-parse --abbrev-ref HEAD 2>/dev/null || true)
+    if [ -n "$nb" ] && git -C "$NIUMINATION" rev-parse --verify -q "origin/$nb" >/dev/null 2>&1; then
+      upstream="origin/$nb"
+    fi
+  fi
   pending_auto=0
   pending_all=0
   if [ -n "$upstream" ]; then
