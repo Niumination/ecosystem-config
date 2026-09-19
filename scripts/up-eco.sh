@@ -390,6 +390,66 @@ print(sum(1 for p in prs if (now - ts(p)).days > 14))
 # 🆕 Phase 6: Skill Bank Integrity
 # ═══════════════════════════════════════════════════════════════════════════
 # ── 6c: Verifikasi SOUL drift guard (dotfiles vs portable vs active) ────
+check_lightfix() {
+  section "🪄 Lightfix & Cron — perbaikan ringan otomatis"
+  local script="$NIUMINATION/scripts/up-eco-lightfix.sh"
+  local wrapper="$HOME/.hermes/scripts/up-eco-lightfix.sh"
+  local jobname="up-eco-lightfix"
+
+  if [ ! -x "$script" ]; then
+    fail "skrip lightfix tidak ada/tidak executable: $script"
+    rec "→ pulihkan dari git: git -C $NIUMINATION checkout -- scripts/up-eco-lightfix.sh"
+    return
+  fi
+  pass "skrip lightfix tersedia: scripts/up-eco-lightfix.sh"
+
+  # Cron Hermes hanya boleh menjalankan script di ~/.hermes/scripts/ → wrapper tipis
+  if [ -x "$wrapper" ]; then
+    pass "wrapper Hermes ada: ~/.hermes/scripts/up-eco-lightfix.sh"
+  else
+    mkdir -p "$HOME/.hermes/scripts" 2>/dev/null || true
+    if printf '#!/usr/bin/env bash\nexec bash %s "$@"\n' "$script" > "$wrapper" && chmod +x "$wrapper"; then
+      pass "wrapper dibuat otomatis: ~/.hermes/scripts/up-eco-lightfix.sh"
+    else
+      fail "gagal membuat wrapper di ~/.hermes/scripts/"
+      return
+    fi
+  fi
+
+  # Job cron: verifikasi, dan buat sendiri bila hilang (idempoten)
+  if ! command -v hermes >/dev/null 2>&1; then
+    warn "CLI 'hermes' tidak ditemukan — cron tidak dapat diverifikasi/dibuat"
+    rec "→ pastikan 'hermes' ada di PATH, lalu jalankan up-eco lagi"
+    return
+  fi
+  if "$TIMEOUT_BIN" 25 hermes cron list 2>/dev/null | grep -q "$jobname"; then
+    pass "cron '$jobname' terdaftar (30 23 * * * · script-only, tanpa panggilan LLM)"
+  else
+    if "$TIMEOUT_BIN" 25 hermes cron create '30 23 * * *' --name "$jobname" --script up-eco-lightfix.sh \
+         --no-agent --deliver local --workdir "$NIUMINATION" >/dev/null 2>&1; then
+      pass "cron '$jobname' tidak ada → dibuat otomatis (30 23 * * *)"
+    else
+      fail "cron '$jobname' tidak ada dan gagal dibuat otomatis"
+      rec "→ manual: hermes cron create '30 23 * * *' --name $jobname --script up-eco-lightfix.sh --no-agent --deliver local"
+      return
+    fi
+  fi
+
+  # Ringkasan hasil lightfix terakhir (bila ada) + drift INDEX saat ini
+  if python3 "$NIUMINATION/scripts/gen-skill-index.py" --check >/dev/null 2>&1; then
+    pass "INDEX.md sinkron dengan bank"
+  else
+    warn "INDEX.md drift — akan diperbaiki oleh lightfix/cron"
+    rec "→ jalankan sekarang: bash scripts/up-eco-lightfix.sh"
+  fi
+  local log="$NIUMINATION/logs/up-eco-lightfix.log"
+  if [ -f "$log" ]; then
+    info "lightfix terakhir: $(grep -E 'lightfix selesai rc=' "$log" | tail -1 | sed 's/^\[//;s/\]//')"
+  else
+    info "lightfix belum pernah dijalankan — log: logs/up-eco-lightfix.log"
+  fi
+}
+
 check_soul_drift() {
   section "🧠 SOUL Drift Guard"
 
@@ -502,10 +562,15 @@ check_skill_bank() {
   done < "$INDEX_FILE"
 
   # Compare filesystem count vs INDEX count
-  if [ "$total_skills" -eq "$index_skills" ]; then
+  # Perbaikan 19 Sep 2026: INDEX.md mencantumkan sebagian skill DUA KALI (tabel "featured"
+  # di atas + tabel domainnya) sehingga jumlah BARIS selalu > jumlah skill bank (163 vs 145)
+  # dan peringatan mismatch-nya palsu. Yang dibandingkan harus NAMA UNIK.
+  local index_unique
+  index_unique=$(grep -E '^\| \*\*[^*]+\*\* \| ✅ Aktif \|' "$INDEX_FILE" 2>/dev/null | sed 's/^| \*\*//; s/\*\* | ✅ Aktif |.*$//' | sort -u | wc -l | tr -d ' ')
+  if [ "$total_skills" -eq "$index_unique" ]; then
     pass "INDEX.md sinkron dengan filesystem ($total_skills skills)"
   else
-    warn "Filesystem: $total_skills skills, INDEX.md: $index_skills skills — mismatch!"
+    warn "Filesystem: $total_skills skills, INDEX.md memuat $index_unique nama unik — mismatch!"
     rec "→ Update INDEX.md: tambah/hapus entri yang tidak sinkron"
 
     # Find skills on disk not in INDEX
@@ -957,8 +1022,18 @@ main() {
       rec "→ $rel: commit & push ($dirty_files files)"
       dirty_count=$((dirty_count + 1))
     fi
-  done < <(find "$NIUMINATION" -maxdepth 3 -name ".git" -type d -not -path '*/\.*' -exec dirname {} \; 2>/dev/null || true)
-  [ "$dirty_count" -eq 0 ] && pass "Semua repos clean"
+  # Perbaikan 19 Sep 2026: klausa "-not -path '*/\..*'" mengecualikan SEMUA direktori .git
+  # (setiap jalur .git memuat "/."), sehingga sweep selalu kosong dan selalu melaporkan
+  # "Semua repos clean". Terbukti via bash -x: loop 0 iterasi. Klausa itu dihapus;
+  # node_modules tetap dikecualikan dan hasil diurutkan agar stabil.
+  done < <(find "$NIUMINATION" -maxdepth 3 -name ".git" -type d -not -path "*/node_modules/*" -exec dirname {} \; 2>/dev/null | sort || true)
+  # Perbaikan 19 Sep 2026: "[ ... ] && pass" mengembalikan status 1 saat ada repo kotor,
+  # dan di bawah "set -e" itu MEMATIKAN sisa laporan tepat setelah sweep mulai bekerja.
+  if [ "$dirty_count" -eq 0 ]; then
+    pass "Semua repos clean"
+  else
+    rec "→ $dirty_count repo kotor — commit & push per repo (lihat daftar di atas)"
+  fi
 
   # ── Phase 3: Folder asing ──
   check_unknown_folders
@@ -974,6 +1049,7 @@ main() {
 
   # ── Phase 6: Skill Bank Integrity 🆕 ──
   check_skill_bank
+  check_lightfix
 
   # ── Phase 6c: SOUL Drift Guard ──
   check_soul_drift

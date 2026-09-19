@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 144 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 145 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 144 ✅ Aktif
+> **Status:** 145 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -35,7 +35,6 @@
 
 | Skill | Status | Source | Ukuran | Deskripsi |
 |-------|:------:|--------|-------:|-----------|
-| **ponytail-core** | ✅ Aktif | tools/ponytail/ | 6.5 KB | Lazy senior dev mindset — YAGNI, stdlib first, minimal solution |
 | **ponytail-audit** | ✅ Aktif | tools/ponytail/ | 1.7 KB | Whole-repo audit for over-engineering — ranked deletion list |
 | **ponytail-review** | ✅ Aktif | tools/ponytail/ | 2.4 KB | Diff-level over-engineering review — satu baris per finding |
 | **ponytail-debt** | ✅ Aktif | tools/ponytail/ | 1.7 KB | Harvest `ponytail:` comments into debt ledger — track deferred shortcuts |
@@ -58,7 +57,6 @@
 | **requesting-code-review** | ✅ Aktif | superpowers | 3.0 KB | Dispatch code reviewer subagent — spec compliance + code quality assessment |
 | **pemdi-evidence-management** | ✅ Aktif | Hermes USB | 50.8 KB | Kelola bukti dukung Pemdi (PermenPANRB 8/2026) — cross-ref PemdiArena CSV, Excel master, modul JSON, JDIH/OpenData API → inject ke dashboard dengan inline PDF preview |
 | **pemdi-uiux-refinement** | ✅ Aktif | Hermes USB | 4.5 KB | Refine UI/UX portal Pemdi Aceh Tengah dengan impeccable + hermes-uiux-technical — sistem animasi global, fix anti-pattern, audit pasca-deploy |
-| **gdpr-compliance** | ✅ Aktif | GitHub (Sushegaad GRC) | 14.4 KB | Expert GDPR compliance — audit kode/sistem, draft privacy policy/DPA/consent, jawab dengan sitasi pasal. **Adaptasi Indonesia**: kerangka untuk finalisasi bukti I8 PDP (UU 27/2022) — uraian 7 kondisi PDP, kebijakan, hak subjek data, privacy notice, awareness. |
 | **compliance-checklist-dashboard** | ✅ Aktif | Hermes USB | 11.0 KB | Build compliance/checklist dashboards (Pemdi, SPBE, IKD) — parse checklist → JSON → Next.js dashboard + embedded previews |
 | **plan-compliance-audit** | ✅ Aktif | Hermes USB | 21.0 KB | Audit ekosistem/proyek terhadap spesifikasi tertulis — layer scripts/crons/configs/credentials/docs, gap by severity |
 | **agent-reach** | ✅ Aktif | Panniantong/Agent-Reach | 2.3 KB | Internet capability layer — read/search web, YouTube, GitHub, RSS via zero-config CLI with fallbacks |
@@ -80,6 +78,11 @@
 | **vercel-deploy-check** | ✅ Aktif | Hermes (dipromosikan) | 2.5 KB | Verify a Next.js app is ready to deploy on Vercel. |
 | **vnc-rfb-debugging** | ✅ Aktif | Hermes (dipromosikan) | 8.1 KB | Debug VNC/RFB protocol for macOS Screen Sharing.app. |
 | **vnc-server-python** | ✅ Aktif | Hermes (dipromosikan) | 9.4 KB | > Implement VNC/RFB server in Python + ADB integration. |
+| **delegated-output-verification** | ✅ Aktif | Bank Pusat | 8.0 KB | Verify files produced by delegated/parallel subagents BEFORE integration. Catches corrupted output (JSON-escap… |
+| **niu-mission-control-ops** | ✅ Aktif | Bank Pusat | 3.6 KB | Operate the Niu-MissionControl dashboard server (port 5200): Next.js 15 runtime, SQLite backend, health checks… |
+| **redesign-verification** | ✅ Aktif | Bank Pusat | 2.6 KB | Pitfall khusus untuk proyek redesign multi-fase: jangan klaim selesai tanpa verifikasi visual, jangan merge ba… |
+| **web-dashboard-maintenance** | ✅ Aktif | Bank Pusat | 1.5 KB | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
+| **ponytail-core** | ✅ Aktif | Bank Pusat | 6.3 KB | > |
 
 ## Domain: Design
 
@@ -90,6 +93,8 @@
 | **accessibility** | ✅ Aktif | autoskills (MIT) | 12.3 KB | Audit web accessibility WCAG 2.2 — screen reader, keyboard nav, A11Y patterns, Lighthouse |
 | **frontend-design** | ✅ Aktif | autoskills (Apache-2.0) | 4.4 KB | Anti-AI-slop frontend design — bold aesthetic direction, tipografi berkarakter, motion, komposisi spasial |
 | **seo** | ✅ Aktif | autoskills (MIT) | 13.9 KB | Technical SEO — meta tags, structured data, sitemap, Lighthouse SEO audits |
+| **dark-theme-a11y** | ✅ Aktif | Bank Pusat | 3.1 KB | Accessibility pitfalls specific to dark/glassmorphism themes. Covers CSS variable fallback mismatches, compute… |
+| **web-accessibility-wcag** | ✅ Aktif | Bank Pusat | 4.8 KB | Audit & remediasi aksesibilitas web WCAG 2.1 AA + polish frontend + SEO untuk dashboard/SPA. Use when user min… |
 
 ## Domain: Ecosystem
 | **device-migration-disaster-recovery** | ✅ Aktif | Bank Pusat | 23.6 KB | Use when planning backup, restore, or device migration. |
@@ -105,7 +110,6 @@
 | **ekosistem-scaffold** | ✅ Aktif | Hermes | 40.6 KB | Membuat struktur proyek baru sesuai standar Niumination |
 | **hermes-agent-skill-authoring** | ✅ Aktif | Hermes USB | 10.7 KB | Author in-repo SKILL.md — frontmatter, validator, structure, quality principles |
 | **hermes-uiux-technical** | ✅ Aktif | Niu-MissionControl | 4.2 KB | Capability profile UI/UX & technical Hermes Agent — routing, workflow automation, API/multi-agent, fast NLP, event-driven, conversational UX, agentic transparency, tone matching |
-| **telegram-router-orchestration** | ✅ Aktif | Hermes USB | 7.6 KB | Persona + model override per-thread Telegram (1/802/803/804/1172) — sync semua layer: Hermes config, gateway, mission-control swarm_config, dashboard |
 | **9router-model-mapping** | ✅ Aktif | Hermes (dipromosikan) | 5.0 KB | Configure and maintain 9router model mapping for Hermes — fallback chain, channel overrides, quota-aware model selection |
 | **cc-acehtengah-maintenance** | ✅ Aktif | Hermes (dipromosikan) | 10.0 KB | cc-acehtengah branch reconciliation and UI or role fixes. |
 | **composio** | ✅ Aktif | Hermes (dipromosikan) | 7.0 KB | Route and complete Composio work across Composio For You and Composio Platform. Use when the user mentions Composio; wants an agent to use apps such as Gmail, Slack, GitHub, Notion, Calendar, or Linea… |
@@ -125,6 +129,17 @@
 | **niumination-reference-adoption** | ✅ Aktif | Hermes (dipromosikan) | 4.5 KB | Adopt ecosystem references and zips into skill bank. |
 | **pi-solohost-development** | ✅ Aktif | Hermes (dipromosikan) | 2.3 KB | Build and submit apps to Pi Network SoloHost. |
 | **sapa-ai-ops** | ✅ Aktif | Hermes (dipromosikan) | 5.3 KB | Operate sapa-ai SPLP service. |
+| **config-history-review** | ✅ Aktif | Bank Pusat | 4.4 KB | Review Hermes config history using filesystem evidence (backup files, changelogs, git logs) — NOT session sear… |
+| **ecosystem-snapshot** | ✅ Aktif | Bank Pusat | 11.0 KB | Generate a comprehensive ecosystem configuration snapshot for Niumination. Produces a Markdown document captur… |
+| **ecosystem-tool-adoption** | ✅ Aktif | Bank Pusat | 12.5 KB | Workflow studi & adopsi tool/proyek pihak ketiga ke ekosistem Niumination — deep study (clone + baca source),… |
+| **ekosistem-content-verification** | ✅ Aktif | Bank Pusat | 7.4 KB | Verify web/JSON content accuracy against source documents (DOCX/XLSX) for Niumination ecosystem projects — ext… |
+| **hermes-provider-config** | ✅ Aktif | Bank Pusat | 47.4 KB | > |
+| **integration-verification** | ✅ Aktif | Bank Pusat | 1.9 KB | Verify whether external services, APIs, or toolkits are actually connected and working end-to-end. Use when ch… |
+| **kanban-ecosystem-management** | ✅ Aktif | Bank Pusat | 98.8 KB | Track Niumination project portfolio via Hermes kanban. Covers: mapping AGENTS.md project catalog → kanban task… |
+| **niu-mission-control-ui** | ✅ Aktif | Bank Pusat | 10.8 KB | Frontend Niumination Mission Control — unified dashboard (ORB iframe + 12 floating windows), WCAG 2.1 AA acces… |
+| **provider-fallback** | ✅ Aktif | Bank Pusat | 13.7 KB | Handle AI provider failures and fallback to working providers |
+| **skill-bank-management** | ✅ Aktif | Bank Pusat | 12.9 KB | Kelola Skill Bank Niumination (single source of truth ~/Desktop/Niumination/skills/) — manifest SHA-256, sync… |
+| **weathernext-gayo** | ✅ Aktif | Bank Pusat | 2.7 KB | Analisis cuaca mikro dan peringatan dini bencana untuk dataran tinggi Gayo (Aceh Tengah) berbasis pipeline Wea… |
 
 ## Domain: Security
 
@@ -132,12 +147,6 @@
 |-------|:------:|--------|-----------|
 | **redteam** | ✅ Aktif | Agentpedia + Niumination | 4.0 KB | Adversarial security testing — stress-test plan dari sudut pandang attacker |
 | **git-security-sanitization** | ✅ Aktif | Hermes (dipromosikan) | 3.4 KB | Clean credential/PII leaks and add secret-scanning gates. |
-| **ascii-art** | ✅ Aktif | Bank Pusat | 10.3 KB | ASCII art: pyfiglet, cowsay, boxes, image-to-ascii. |
-| **comfyui** | ✅ Aktif | Bank Pusat | 23.5 KB | Generate images, video, and audio via diffusion workflows. |
-| **excalidraw** | ✅ Aktif | Bank Pusat | 7.1 KB | Hand-drawn Excalidraw JSON diagrams (arch, flow, seq). |
-| **pretext** | ✅ Aktif | Bank Pusat | 13.6 KB | Build creative browser demos with DOM-free text layout. |
-| **sketch** | ✅ Aktif | Bank Pusat | 9.6 KB | Throwaway HTML mockups: 2-3 design variants to compare. |
-| **touchdesigner-mcp** | ✅ Aktif | Bank Pusat | 14.9 KB | Control TouchDesigner via twozero MCP. |
 
 ## Domain: Creative
 
@@ -146,6 +155,13 @@
 | **ghost** | ✅ Aktif | sisi-tarak + Niumination | 3.2 KB | AI text humanizer — rewrite AI-generated text to read naturally |
 | **hyperframes** | ✅ Aktif | heygen-com/hyperframes | 4.0 KB | HTML-to-video framework — 'Write HTML. Render video. Built for agents.' |
 | **free-tier-reels** | ✅ Aktif | Hermes (dipromosikan) | 7.3 KB | Free-tier Reels creation workflow. |
+| **ascii-art** | ✅ Aktif | Bank Pusat | ASCII art: pyfiglet, cowsay, boxes, image-to-ascii. |
+| **comfyui** | ✅ Aktif | Bank Pusat | Generate images, video, and audio via diffusion workflows. |
+| **excalidraw** | ✅ Aktif | Bank Pusat | Hand-drawn Excalidraw JSON diagrams (arch, flow, seq). |
+| **gemini-vo-narration** | ✅ Aktif | Bank Pusat | Voice-over narasi Bahasa Indonesia standar Niumination (Gemini TTS, gratis). Pakai saat membuat VO/narasi/dubb… |
+| **pretext** | ✅ Aktif | Bank Pusat | Build creative browser demos with DOM-free text layout. |
+| **sketch** | ✅ Aktif | Bank Pusat | Throwaway HTML mockups: 2-3 design variants to compare. |
+| **touchdesigner-mcp** | ✅ Aktif | Bank Pusat | Control TouchDesigner via twozero MCP. |
 
 ---
 
@@ -164,12 +180,9 @@
 | Skill | Status | Source | Ukuran | Deskripsi |
 |-------|:------:|--------|-------:|-----------|
 | **merge-reconciler** | ✅ Aktif | Hermes (dipromosikan) | 7.4 KB | Neutral third-party resolution of agent merge conflicts. |
+| **telegram-router-orchestration** | ✅ Aktif | Bank Pusat | 30.5 KB | Mengelola persona, skills, dan model override per-thread Telegram di Hermes Gateway, termasuk integrasi dengan… |
 
 ---
-| **containerization-readiness-audit** | ✅ Aktif | Bank Pusat | 4.6 KB | Use when asked which projects need Docker. |
-| **gh-pages-build-fix** | ✅ Aktif | Bank Pusat | 1.7 KB | Fix GitHub Pages Jekyll checkout failures. |
-| **github-pages-deploy** | ✅ Aktif | Bank Pusat | 11.5 KB | Deploy static HTML to GitHub Pages via clean branch. |
-| **snapshot-verification** | ✅ Aktif | Bank Pusat | 7.3 KB | Verify static snapshot deployment and content. |
 
 ## Domain: DevOps
 
@@ -178,6 +191,10 @@
 | **env-doctor** | ✅ Aktif | Hermes (dipromosikan) | 6.7 KB | Recover dotfiles and shell after Stow or bulk delete. |
 | **macos-launchd-services** | ✅ Aktif | Hermes (dipromosikan) | 9.0 KB | Keep macOS always-on services alive; recover launchd plists. |
 | **production-env-vars** | ✅ Aktif | Bank Pusat | 4.2 KB | Use when changing or rotating env vars on a live app (Vercel). Decode pulled values, verify functionally, keep a rollback path. |
+| **containerization-readiness-audit** | ✅ Aktif | Bank Pusat | 4.6 KB | Use when asked which projects need Docker. |
+| **gh-pages-build-fix** | ✅ Aktif | Bank Pusat | 1.7 KB | Fix GitHub Pages Jekyll checkout failures. |
+| **github-pages-deploy** | ✅ Aktif | Bank Pusat | 11.5 KB | Deploy static HTML to GitHub Pages via clean branch. |
+| **snapshot-verification** | ✅ Aktif | Bank Pusat | 7.3 KB | Verify static snapshot deployment and content. |
 
 ---
 
@@ -258,12 +275,19 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 ---
 
+## Domain: Governance
+
+| Skill | Status | Source | Ukuran | Deskripsi |
+|-------|:------:|--------|-------:|-----------|
+| **gdpr-compliance** | ✅ Aktif | Bank Pusat | 14.1 KB | > |
+| **niu-core-governance** | ✅ Aktif | Bank Pusat | 8.8 KB | > |
+
 ## Ringkasan
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **121** |
-| **Total** | **121** |
+| ✅ Aktif | **145** |
+| **Total** | **145** |
 
 ## Catatan Penting — Potensi Konflik
 
