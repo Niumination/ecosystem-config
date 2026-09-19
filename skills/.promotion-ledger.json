@@ -1,0 +1,337 @@
+{
+  "version": 1,
+  "promoted": {
+    "creative/content-pipeline-readiness": {
+      "name": "content-pipeline-readiness",
+      "domain": "creative",
+      "files": 3,
+      "bundleHash": "78f43c509587e1a7be30cbf9f80a840b4153bac08332885e09a3fffcf5d6cbf4",
+      "source": "/Users/zaryu/.hermes/skills/creative/content-pipeline-readiness",
+      "promotedAt": "2026-09-19T13:28:21.088120+00:00"
+    },
+    "creative/short-form-video-production": {
+      "name": "short-form-video-production",
+      "domain": "creative",
+      "files": 9,
+      "bundleHash": "f75004e182e05cb0223827bb0e373b4add4e783309703eba0e14720566f01141",
+      "source": "/Users/zaryu/.hermes/skills/creative/short-form-video-production",
+      "promotedAt": "2026-09-19T13:28:21.088120+00:00"
+    },
+    "design/mobile-viewport-remediation": {
+      "name": "mobile-viewport-remediation",
+      "domain": "design",
+      "files": 3,
+      "bundleHash": "186b776c86e93efd7a3dbe3c4a876ea198bb091c129440cf1cff15cddfe4c51f",
+      "source": "/Users/zaryu/.hermes/skills/design/mobile-viewport-remediation",
+      "promotedAt": "2026-09-19T13:28:21.088120+00:00"
+    },
+    "design/responsive-ui-audit": {
+      "name": "responsive-ui-audit",
+      "domain": "design",
+      "files": 2,
+      "bundleHash": "772ef32c8999d54ca7661e4bb90c24718d19ed1a5d6ed878d050b594dcb505ac",
+      "source": "/Users/zaryu/.hermes/skills/design/responsive-ui-audit",
+      "promotedAt": "2026-09-19T13:28:21.088120+00:00"
+    },
+    "design/web-ui-audit-measurement": {
+      "name": "web-ui-audit-measurement",
+      "domain": "design",
+      "files": 2,
+      "bundleHash": "07cb3ba06e80b6ad307fcb4344f7a3184c4ea74119d41e98fd448ba2392ba7c0",
+      "source": "/Users/zaryu/.hermes/skills/design/web-ui-audit-measurement",
+      "promotedAt": "2026-09-19T13:28:21.088120+00:00"
+    },
+    "ecosystem/model-mapping-repair": {
+      "name": "model-mapping-repair",
+      "domain": "ecosystem",
+      "files": 4,
+      "bundleHash": "dc909c14ac6478c1101725d1e3ea4a6147409acee3e62471400e135fca5e1de5",
+      "source": "/Users/zaryu/.hermes/skills/ecosystem/model-mapping-repair",
+      "promotedAt": "2026-09-19T13:28:21.088120+00:00"
+    },
+    "ecosystem/sapa-ai": {
+      "name": "sapa-ai",
+      "domain": "ecosystem",
+      "files": 3,
+      "bundleHash": "95e45ad4f4a048bab81b28a980e324af83cd3ddced4aff77628766c8b8018c9a",
+      "source": "/Users/zaryu/.hermes/skills/ecosystem/sapa-ai",
+      "promotedAt": "2026-09-19T13:28:21.088120+00:00"
+    },
+    "security/production-secret-rotation": {
+      "name": "production-secret-rotation",
+      "domain": "security",
+      "files": 2,
+      "bundleHash": "d9d1c9e1a590b6fdb9bc3e5fe734a54fe404caa98246f7f831b108e46dff402a",
+      "source": "/Users/zaryu/.hermes/skills/security/production-secret-rotation",
+      "promotedAt": "2026-09-19T13:28:21.088120+00:00"
+    },
+    "software-development/audit-finding-triage": {
+      "name": "audit-finding-triage",
+      "domain": "software-development",
+      "files": 3,
+      "bundleHash": "533c037b5f0bd4882b2549fde4aa7a17300c5be2e2222fac0467d2058dfca609",
+      "source": "/Users/zaryu/.hermes/skills/software-development/audit-finding-triage",
+      "promotedAt": "2026-09-19T13:28:21.088120+00:00"
+    },
+    "software-development/derived-artifact-consistency": {
+      "name": "derived-artifact-consistency",
+      "domain": "software-development",
+      "files": 2,
+      "bundleHash": "f8128d136d8db5cfbb7fbda63bded69ca291517024054dbe2f5e0a60e60a6907",
+      "source": "/Users/zaryu/.hermes/skills/software-development/derived-artifact-consistency",
+      "promotedAt": "2026-09-19T13:28:21.088120+00:00"
+    },
+    "software-development/live-ui-audit": {
+      "name": "live-ui-audit",
+      "domain": "software-development",
+      "files": 2,
+      "bundleHash": "49b10e7631c282526013ac4634411f2aaa395ec15f4e918a553be83772d76518",
+      "source": "/Users/zaryu/.hermes/skills/software-development/live-ui-audit",
+      "promotedAt": "2026-09-19T13:28:21.088120+00:00"
+    },
+    "software-development/llm-call-reliability": {
+      "name": "llm-call-reliability",
+      "domain": "software-development",
+      "files": 2,
+      "bundleHash": "feb6e9a861e44ef446a831fbc39014afcd31fb43b701f52d99d52b54a884f47d",
+      "source": "/Users/zaryu/.hermes/skills/software-development/llm-call-reliability",
+      "promotedAt": "2026-09-19T13:28:21.088120+00:00"
+    },
+    "software-development/pre-cleanup-artifact-preservation": {
+      "name": "pre-cleanup-artifact-preservation",
+      "domain": "software-development",
+      "files": 1,
+      "bundleHash": "cc236c2d2cff5759992bd64876241559db2adf326c2558b311c3a29c576df075",
+      "source": "/Users/zaryu/.hermes/skills/software-development/pre-cleanup-artifact-preservation",
+      "promotedAt": "2026-09-19T13:28:21.088120+00:00"
+    },
+    "software-development/project-handover-package": {
+      "name": "project-handover-package",
+      "domain": "software-development",
+      "files": 2,
+      "bundleHash": "2f62cdcf4f123a1906dc9ee00232a2dabaf8d09317c1590472f0564092611a2f",
+      "source": "/Users/zaryu/.hermes/skills/software-development/project-handover-package",
+      "promotedAt": "2026-09-19T13:28:21.088120+00:00"
+    }
+  },
+  "ignored": {
+    "apple-notes": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "apple-reminders": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "findmy": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "imessage": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "claude-code": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "codex": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "computer-use": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "hermes-agent": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "opencode": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "architecture-diagram": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "ascii-video": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "baoyu-infographic": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "claude-design": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "design-md": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "humanizer": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "manim-video": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "p5js": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "popular-web-designs": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "songwriting-and-ai-music": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "sdlc-review": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "email-inbox-triage": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "himalaya": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "gif-search": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "songsee": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "youtube-content": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "obsidian": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "airtable": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "box": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "document-to-action-items": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "docx": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "google-workspace": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "maps": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "meeting-action-items": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "notion": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "pdf": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "powerpoint": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "product-price-monitor": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "teams-meeting-pipeline": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "weekly-review-planning": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "xlsx": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "arxiv": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "competitor-news-monitor": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "grounded-citations": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "llm-wiki": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "xurl": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "codebase-inspection": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "dogfood": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "github": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "inspecting-hermes-desktop-dom": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "node-inspect-debugger": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "python-debugpy": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "spike": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "test-driven-development": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    },
+    "blocked-page-recovery": {
+      "reason": "bundled",
+      "checkedAt": "2026-09-19T13:40:06.375990+00:00"
+    }
+  },
+  "tombstones": [],
+  "updatedAt": "2026-09-19T13:40:06.375990+00:00"
+}
