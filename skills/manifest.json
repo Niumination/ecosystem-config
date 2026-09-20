@@ -1,7 +1,7 @@
 {
-  "fileCount": 789,
-  "generatedAt": "2026-09-19T16:30:07.445891+00:00",
-  "skillCount": 159,
+  "fileCount": 790,
+  "generatedAt": "2026-09-20T13:54:52.876919+00:00",
+  "skillCount": 160,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -916,6 +916,13 @@
         "references/provider-troubleshooting-13ags-2026.md": "6541ab039c46b589d6c36d33bc63322de6b9612460f7b859fac6ccaf8c94a0e8",
         "references/provider-troubleshooting.md": "74c45dd20e7ed48b9108a602a3643e936ad3d757df179cfed5abd459659c0a37",
         "scripts/stress_test_models.py": "d33af11d6d8f03816b2ce64f6a74c2f873118d7602e46ad308e4c385b13e0f16"
+      }
+    },
+    "ecosystem/provider-model-verification": {
+      "bundleHash": "8bd5d1c02149eb302bd3034e9e65004e4d290b12a4627d06e8c79777279947c7",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "c0009c2d6c6ae3f925a42a63fc0537e1322edcdad15b1bbd9a2be3a32281a549"
       }
     },
     "ecosystem/sapa-ai": {

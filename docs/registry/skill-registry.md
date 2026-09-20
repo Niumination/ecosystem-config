@@ -74,6 +74,7 @@
 | `ecosystem/pi-network-ecosystem` | ecosystem | 2 | Bank Pusat | Pi Network — App Studio, Payments, Browser integration. |
 | `ecosystem/pi-solohost-development` | ecosystem | 7 | Bank Pusat | Build and submit apps to Pi Network SoloHost. |
 | `ecosystem/provider-fallback` | ecosystem | 8 | Bank Pusat | Handle AI provider failures and fallback to working providers |
+| `ecosystem/provider-model-verification` | ecosystem | 1 | Bank Pusat | Verify an AI provider/model before relying on it. |
 | `ecosystem/sapa-ai` | ecosystem | 3 | Bank Pusat | Use when working on sapa-ai. |
 | `ecosystem/sapa-ai-ops` | ecosystem | 20 | Bank Pusat | Operate sapa-ai SPLP service. |
 | `ecosystem/skill-bank-management` | ecosystem | 6 | Bank Pusat | Kelola Skill Bank Niumination (single source of truth ~/Desktop/Niumination/skills/) — manifest SHA-256, sync seluruh folder ke target Hermes/USB + verifikasi hash + lockfile, tangani drift, adopsi skill pihak ketiga, audit konten skill, hapus/promosi skill, prune bloat. Gunakan saat ada skill baru masuk bank, sync-to-agents.sh dijalankan/gagal, up-eco melaporkan manifest mismatch, drift bank vs target, atau user minta adopsi skill X. Sejak 18 Sep 2026 skill ini menyerap skill-bank-integrity, -maintenance, -operations, -ops, dan -sync (kelimanya dihapus — semua prosedurnya ada di sini). |
@@ -163,6 +164,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-09-19 23:30:15_
+_Last sync: 2026-09-20 20:55:09_
 
 <!-- SKILL_REGISTRY_END -->
