@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 159 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 160 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 159 ✅ Aktif
+> **Status:** 160 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -151,6 +151,7 @@
 | **weathernext-gayo** | ✅ Aktif | Bank Pusat | 2.7 KB | Analisis cuaca mikro dan peringatan dini bencana untuk dataran tinggi Gayo (Aceh Tengah) berbasis pipeline Wea… |
 | **model-mapping-repair** | ✅ Aktif | Bank Pusat | 7.7 KB | Use when a model mapping points at a dead provider. |
 | **sapa-ai** | ✅ Aktif | Bank Pusat | 13.3 KB | Use when working on sapa-ai. |
+| **provider-model-verification** | ✅ Aktif | Bank Pusat | 3.3 KB | Verify an AI provider/model before relying on it. |
 
 ## Domain: Security
 
@@ -300,8 +301,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **159** |
-| **Total** | **159** |
+| ✅ Aktif | **160** |
+| **Total** | **160** |
 
 ## Catatan Penting — Potensi Konflik
 
