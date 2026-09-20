@@ -153,7 +153,7 @@ Desktop/Niumination/
 | **Niu-Flow** | P2 | 🟢 **Remote only** | 2026-07-28 | github.com/Niumination/niu-flow |
 | **latticesend** | P3 | 🟢 Active | 2026-08-10 | P2P file transfer — ✅ sudah punya remote |
 | **uacc** | P2 🆕 | 🟢 Active | 2026-08-18 | Universal AI Computer Control — MCP server |
-| **sapa-ai** | P2 🆕 | 🟢 Active | 2026-08-31 | SAPA Smart AI — SPLP-only public app |
+| **sapa-ai** | P2 🆕 | ⏸️ **Selesai — menunggu client** | 2026-09-20 | SAPA Smart AI — SPLP-only public app. Pengembangan tahap lanjut menunggu client & instruksi pemilik |
 | **camofox-browser** | P3 🆕 | ⚪ Third-party | 2026-08-18 | Anti-detection browser |
 
 ### 🌐 sites/ — 7 Frontend
