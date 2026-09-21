@@ -7,7 +7,7 @@ Tapi disederhanakan untuk Niumination: 6 mekanisme deteksi → map ke 68 SKILL.m
 
 Usage:
   python3 scripts/skill-detect.py                          # scan cwd
-  python3 scripts/skill-detect.py --dir services/cc-acehtengah
+  python3 scripts/skill-detect.py --dir services/niu-mission-control
   python3 scripts/skill-detect.py --dir services/niu-mission-control --json
   python3 scripts/skill-detect.py --dir /path/proyek --verbose
   python3 scripts/skill-detect.py --list-map               # lihat semua mapping tech→skill
