@@ -6,6 +6,14 @@
 | `autonomous-ai-agents/merge-reconciler` | autonomous-ai-agents | 1 | Bank Pusat | Neutral third-party resolution of agent merge conflicts. |
 | `autonomous-ai-agents/telegram-router-orchestration` | autonomous-ai-agents | 2 | Bank Pusat | Mengelola persona, skills, dan model override per-thread Telegram di Hermes Gateway, termasuk integrasi dengan ekosistem Niumination. |
 | `camofox-browser` | camofox-browser | 1 | Bank Pusat | Manage Camofox stealth browser at localhost:9377. |
+| `content/code-audit` | content | 1 | Bank Pusat | Audit kode hasil AI: celah, slop, biaya, dan laporan klien |
+| `content/content-legal` | content | 1 | Bank Pusat | Audit lisensi, AI disclosure, izin, dan kontrak konten |
+| `content/content-monetize` | content | 1 | Bank Pusat | Rate card, media kit, proposal, invoice, outreach klien |
+| `content/content-produce` | content | 1 | Bank Pusat | Produksi video, audio, gambar dengan stack open source |
+| `content/content-publish` | content | 1 | Bank Pusat | Adaptasi multi-platform, penjadwalan, dan analitik |
+| `content/content-research` | content | 1 | Bank Pusat | Riset tren, keyword, audiens, dan bedah kompetitor |
+| `content/content-script` | content | 1 | Bank Pusat | Hook, naskah, storyboard, caption, dan copywriting |
+| `content/content-studio` | content | 1 | Bank Pusat | Produser studio konten: pipeline ide sampai cuan |
 | `creative/ascii-art` | creative | 1 | Bank Pusat | ASCII art: pyfiglet, cowsay, boxes, image-to-ascii. |
 | `creative/comfyui` | creative | 33 | Bank Pusat | Generate images, video, and audio via diffusion workflows. |
 | `creative/content-pipeline-readiness` | creative | 3 | Bank Pusat | Use when checking content production & publish readiness. |
@@ -42,11 +50,13 @@
 | `ecosystem/composio` | ecosystem | 4 | Bank Pusat | Route and complete Composio work across Composio For You and Composio Platform. Use when the user mentions Composio; wants an agent to use apps such as Gmail, Slack, GitHub, Notion, Calendar, or Linear; needs first-time setup, an SDK or MCP integration, CLI operation, migration guidance, current documentation, or help diagnosing a connection or tool call. |
 | `ecosystem/config-history-review` | ecosystem | 2 | Bank Pusat | Review Hermes config history using filesystem evidence (backup files, changelogs, git logs) — NOT session search or memory. Use when user asks to retrace changes, audit history, or check what happened over time. |
 | `ecosystem/device-migration-disaster-recovery` | ecosystem | 7 | Bank Pusat | Use when planning backup, restore, or device migration. |
+| `ecosystem/devops/vercel-domain-pointing` | ecosystem | 1 | Bank Pusat | Point custom domain to Vercel — nameserver, DNS, verify. |
 | `ecosystem/dotfiles-maintenance` | ecosystem | 1 | Bank Pusat | Use when developing or fixing zaryu-terminal-dotfiles. |
 | `ecosystem/ecosystem-architecture-adoption` | ecosystem | 2 | Bank Pusat | Adapt external architecture into existing project. |
 | `ecosystem/ecosystem-bulk-push` | ecosystem | 1 | Bank Pusat | Use when pushing many ecosystem repos to GitHub at once. |
 | `ecosystem/ecosystem-dox-maintenance` | ecosystem | 7 | Bank Pusat | Audit and repair DOX/SOUL hygiene across the ecosystem. |
 | `ecosystem/ecosystem-gitops` | ecosystem | 3 | Bank Pusat | Use when migrating GitHub remotes HTTPS/SSH or bulk remotes. |
+| `ecosystem/ecosystem-hibernation` | ecosystem | 2 | Bank Pusat | Use when a project must be retired temporarily: archive GitHub, pause Vercel, back up to vault, delete the local folder, and update active references — fully reversible. Reused for cc-acehtengah 21 Sep 2026. |
 | `ecosystem/ecosystem-provider-management` | ecosystem | 9 | Bank Pusat | Provider AI lintas 3 agent + pilih model produksi. |
 | `ecosystem/ecosystem-recovery` | ecosystem | 5 | Bank Pusat | Full ecosystem recovery after delete or up-eco failures. |
 | `ecosystem/ecosystem-snapshot` | ecosystem | 5 | Bank Pusat | Generate a comprehensive ecosystem configuration snapshot for Niumination. Produces a Markdown document capturing macOS specs, git status, project registry, filesystem layout, Mission Control state, Telegram threads, Skill Bank summary, Hermes config, deployments, security notes, and open issues. Use when the user asks for "konfigurasi lengkap ekosistem", "ekspor snapshot ekosistem", "docs konfigurasi aktif", or requests a full current-state Markdown report. |
@@ -60,7 +70,7 @@
 | `ecosystem/hermes-gateway-dm-troubleshooting` | ecosystem | 2 | Bank Pusat | Diagnose Hermes gateway errors and Telegram DM delays |
 | `ecosystem/hermes-provider-config` | ecosystem | 22 | Bank Pusat | Understand and manage Hermes Agent model provider configuration. Covers: API-key providers (config.yaml), OAuth2 providers (hermes auth), model_catalog.json, provider status investigation, and cleanup of disabled/broken providers. Use when: configuring new providers, debugging "provider not found" or auth errors, investigating why a provider works in one context but not another, or cleaning up provider config. |
 | `ecosystem/hermes-uiux-technical` | ecosystem | 1 | Bank Pusat | Capability profile UI/UX & technical skills Hermes Agent — intelligent message routing, end-to-end workflow automation, API/multi-agent interoperability, fast NLP & tool-calling, event-driven architecture, conversational UX, micro-interactions, agentic transparency, tone matching. |
-| `ecosystem/integration-verification` | ecosystem | 3 | Bank Pusat | Verify whether external services, APIs, or toolkits are actually connected and working end-to-end. Use when checking Composio, API keys, providers, webhooks, or local gateways. |
+| `ecosystem/integration-verification` | ecosystem | 4 | Bank Pusat | Verify whether external services, APIs, or toolkits are actually connected and working end-to-end. Use when checking Composio, API keys, providers, webhooks, or local gateways. |
 | `ecosystem/kanban-ecosystem-management` | ecosystem | 20 | Bank Pusat | Track Niumination project portfolio via Hermes kanban. Covers: mapping AGENTS.md project catalog → kanban tasks by category/priority, syncing BACKLOG.md, fixing empty-dashboard DB_PATH issues, and the Plan→DOX→Execute workflow for ecosystem-wide kanban updates. |
 | `ecosystem/mata-ops` | ecosystem | 1 | Bank Pusat | Pull repo MATA dari GitHub & jalankan dashboard lokal :8080. |
 | `ecosystem/mobile-harness-integration` | ecosystem | 3 | Bank Pusat | Add new agent runtimes to Mobile-Harness Android app. |
@@ -164,6 +174,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-09-20 20:55:09_
+_Last sync: 2026-09-22 02:23:36_
 
 <!-- SKILL_REGISTRY_END -->

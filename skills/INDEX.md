@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 160 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 170 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 160 ✅ Aktif
+> **Status:** 170 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -152,6 +152,8 @@
 | **model-mapping-repair** | ✅ Aktif | Bank Pusat | 7.7 KB | Use when a model mapping points at a dead provider. |
 | **sapa-ai** | ✅ Aktif | Bank Pusat | 13.3 KB | Use when working on sapa-ai. |
 | **provider-model-verification** | ✅ Aktif | Bank Pusat | 3.3 KB | Verify an AI provider/model before relying on it. |
+| **vercel-domain-pointing** | ✅ Aktif | Bank Pusat | 4.1 KB | Point custom domain to Vercel — nameserver, DNS, verify. |
+| **ecosystem-hibernation** | ✅ Aktif | Bank Pusat | 10.7 KB | Use when a project must be retired temporarily: archive GitHub, pause Vercel, back up to vault, delete the loc… |
 
 ## Domain: Security
 
@@ -297,12 +299,25 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 | **gdpr-compliance** | ✅ Aktif | Bank Pusat | 14.1 KB | > |
 | **niu-core-governance** | ✅ Aktif | Bank Pusat | 8.8 KB | > |
 
+## Domain: Content
+
+| Skill | Status | Source | Ukuran | Deskripsi |
+|-------|:------:|--------|-------:|-----------|
+| **code-audit** | ✅ Aktif | Bank Pusat | 11.9 KB | Audit kode hasil AI: celah, slop, biaya, dan laporan klien |
+| **content-legal** | ✅ Aktif | Bank Pusat | 7.0 KB | Audit lisensi, AI disclosure, izin, dan kontrak konten |
+| **content-monetize** | ✅ Aktif | Bank Pusat | 8.1 KB | Rate card, media kit, proposal, invoice, outreach klien |
+| **content-produce** | ✅ Aktif | Bank Pusat | 10.4 KB | Produksi video, audio, gambar dengan stack open source |
+| **content-publish** | ✅ Aktif | Bank Pusat | 6.5 KB | Adaptasi multi-platform, penjadwalan, dan analitik |
+| **content-research** | ✅ Aktif | Bank Pusat | 5.4 KB | Riset tren, keyword, audiens, dan bedah kompetitor |
+| **content-script** | ✅ Aktif | Bank Pusat | 5.6 KB | Hook, naskah, storyboard, caption, dan copywriting |
+| **content-studio** | ✅ Aktif | Bank Pusat | 7.6 KB | Produser studio konten: pipeline ide sampai cuan |
+
 ## Ringkasan
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **160** |
-| **Total** | **160** |
+| ✅ Aktif | **170** |
+| **Total** | **170** |
 
 ## Catatan Penting — Potensi Konflik
 
