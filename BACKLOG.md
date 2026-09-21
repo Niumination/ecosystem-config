@@ -124,10 +124,11 @@ Desktop/Niumination/
 **Board:** Niumination Ecosystem
 **Status:** 15 apps, 9 services, 5 sites, 4 desktop, 3 agents, 2 labs, 5 sandbox, 6 archived, **70 skills**
 
-### 🏭 apps/ — 13 Proyek Production
+### 🏭 apps/ — 15 Proyek Production
 
 | Proyek | Status | Deploy | Aktivitas Terakhir | Notes |
 |--------|:------:|:------:|:------------------:|-------|
+| **abstract-studio** | 🆕 **Rumah Produksi Kreator** | Lokal (manual) | **2026-09-21** | `apps/abstract-studio/` 🔒 ZARYU ABSTRACT STUDIO — niche audit keamanan sistem AI; pilar terkancing 4→2→3; **repo PERTAMA ekosistem yang memakai Git LFS** (13 ekstensi biner); satu proyek = satu folder `project/<slug>/`; `output/` = source of truth, `~/Movies/` hanya tujuan unggah. Skill Hermes studio sengaja TIDAK masuk (milik `skills/content/`) — lihat `apps/abstract-studio/AGENTS.md` |
 | **PemdiAcehTengah** | 🟢 **Active** | Vercel | **PR#4 merged 2026-08-21** | Rumus resmi PermenPANRB 8/2026 + matriks kebutuhan bukti L1-L2 (NotebookLM). Masa penilaian mandiri selesai (bukti diupload eval.spbe.go.id) |
 | **Niu-LKH** | ✅ Done | GH Pages | 2026-08-18 | v3.1.1 — clean |
 | **niu-vermilion** | 🟢 Active | Vercel | 2026-08-07 | Stable — V1-V5 fixed |
