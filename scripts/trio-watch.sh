@@ -173,8 +173,8 @@ def recent_tool_activity(repo):
     return found
 
 # Check conflict: 2+ tools active in same repo
+# cc-acehtengah: hibernasi 21 Sep 2026 (folder dihapus, backup vault/_hibernasi-cc-acehtengah-2026-09-21)
 for repo in [nium,
-             f"{nium}/services/cc-acehtengah",
              f"{nium}/services/niu-mission-control"]:
     if os.path.isdir(repo) and os.path.isdir(f"{repo}/.git"):
         active = recent_tool_activity(repo)
@@ -187,7 +187,8 @@ for repo in [nium,
             })
 
 # Gap: commit lokal belum di-push (bukan "belum di BACKLOG" — itu false positive tiap commit baru)
-for repo in [nium, f"{nium}/services/cc-acehtengah"]:
+# cc-acehtengah: hibernasi 21 Sep 2026 (folder dihapus, backup vault/_hibernasi-cc-acehtengah-2026-09-21)
+for repo in [nium]:
     if not os.path.isdir(repo):
         continue
     try:
