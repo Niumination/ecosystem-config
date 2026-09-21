@@ -1,7 +1,7 @@
 {
-  "fileCount": 790,
-  "generatedAt": "2026-09-20T13:54:52.876919+00:00",
-  "skillCount": 160,
+  "fileCount": 802,
+  "generatedAt": "2026-09-21T19:22:59.561884+00:00",
+  "skillCount": 170,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -23,6 +23,62 @@
       "domain": ".",
       "files": {
         "SKILL.md": "0c6a9aaca63825b4b5d8e6f19b9c9fe7b5317dfad0d267b972614343fec4e6ad"
+      }
+    },
+    "content/code-audit": {
+      "bundleHash": "0b387d6b9ed5f58f9bf2b8863616b7d3f49e595928d73081992330671ce60139",
+      "domain": "content",
+      "files": {
+        "SKILL.md": "545cbf003455c2df3ef51e2ea50573bef70f23305d43deb577fb0bd764e50112"
+      }
+    },
+    "content/content-legal": {
+      "bundleHash": "799daa3ad5502a03a0f8605d756065f33333c690dee10a24feb3f855a3c54acb",
+      "domain": "content",
+      "files": {
+        "SKILL.md": "135abb8442048a01a1cbaef0950e008f82b20d8a68873153da8ed0e523565215"
+      }
+    },
+    "content/content-monetize": {
+      "bundleHash": "53270794d56c5c15b2d08b324fd9bc3b3665daefe7092e454a288b407a296228",
+      "domain": "content",
+      "files": {
+        "SKILL.md": "307f72b76d3463c866b66e197c8f6c441e6cb318df9d293e910b17d389180093"
+      }
+    },
+    "content/content-produce": {
+      "bundleHash": "a18a0c3edbeb3f5465f751db9f12a5b738ca91ff1afba14a14aac297c3fb0648",
+      "domain": "content",
+      "files": {
+        "SKILL.md": "4b0d64f7dbe507232b5ac946260c6cc65667337bd832b87e15ff0274d4d0563b"
+      }
+    },
+    "content/content-publish": {
+      "bundleHash": "2c4a96e34a8e3328f784fd6d49f25965b355687af2832ac1bef90936811fa1af",
+      "domain": "content",
+      "files": {
+        "SKILL.md": "e64797290d918e9f32569e7cb15419d35f1d999324bb80d2aa0aede0915766a6"
+      }
+    },
+    "content/content-research": {
+      "bundleHash": "3570768e952a313edb8789e22223f231e2cb50a325ebf26fc3fef29efe031a0e",
+      "domain": "content",
+      "files": {
+        "SKILL.md": "3001bdecf1a23ffc7928fcc7857e43c63b9a3be116446823e6a9c1ae663c1845"
+      }
+    },
+    "content/content-script": {
+      "bundleHash": "4ed6d9bbe45ab3d335e5e6f31561ecf6a92ded3f882a9ab3a5d64e9782071806",
+      "domain": "content",
+      "files": {
+        "SKILL.md": "9b1960496c795344ca201ba44f456d85f3413a7e0eca3b239f250209f62bd039"
+      }
+    },
+    "content/content-studio": {
+      "bundleHash": "0f5ca960ac3cdb48332aebbd231c19d444309e5ef305cbd5819ca1344e0d192b",
+      "domain": "content",
+      "files": {
+        "SKILL.md": "d1e17a7a016cae69474c83a0555cb9c14a965b234f3189f2f3df22bb7ae852ca"
       }
     },
     "creative/ascii-art": {
@@ -584,6 +640,13 @@
         "references/restore-repo-layout.md": "8f89be1b5aa0e8bc0868b668da6dcffd29b2c42e18f4cd0e8b6ece84c6690bdb"
       }
     },
+    "ecosystem/devops/vercel-domain-pointing": {
+      "bundleHash": "a59d54ba033370c2928e6b90e4f499612fac893511667d48f1b796986c3e1b88",
+      "domain": "ecosystem/devops",
+      "files": {
+        "SKILL.md": "cb962305c7d3a23e1abfeac3dc658debaada7ceebdc1f6e8eecac0ed81dc52ab"
+      }
+    },
     "ecosystem/dotfiles-maintenance": {
       "bundleHash": "c36690b99e6688876cc24a5bbb754df4cc101391d80f98870e64f3b663a9d6ab",
       "domain": "ecosystem",
@@ -626,6 +689,14 @@
         "SKILL.md": "0aaca8b4a41ad74d9b0ae95d0faea5df2e240b5dbe84c0106cfab4469c68e501",
         "references/github-ssh-migration.md": "f310bdcb87c80c66e954fe16d16b4e5eb6cab7bd4605802df6796942be7fa1a6",
         "references/sapa-ai-laporan-status-merge.md": "121c7ba67232484a7e59425092c1dff336c5e901bdb8c38061309137190de07b"
+      }
+    },
+    "ecosystem/ecosystem-hibernation": {
+      "bundleHash": "591d5250aa2b022b440dc8f62b9ff76514692f7ae4418f75fc9a638444d59c30",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "dddaca3dcd06fd9d209b93f8a67206ea209d444c4421c31014a6d78f5bfd23bc",
+        "scripts/generate-manifest.py": "584650d82d8a061bb7b0ebedf37fad96c4527000e4e2f43afadbc802cb32f47f"
       }
     },
     "ecosystem/ecosystem-provider-management": {
@@ -769,11 +840,12 @@
       }
     },
     "ecosystem/integration-verification": {
-      "bundleHash": "6d74635a013e128193cd3978a13455f01eba0d166a42e5276f18344c82314319",
+      "bundleHash": "21a8a9c6f18264dc0357631960ec0e28945389d6cc9c806a6960953481d5ed1c",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "4e45e94076ee422fab1f6c7fec28897b88c0019d2cb78922bc25b18956e1fe02",
+        "SKILL.md": "303a25ad30e1646f10759b0cebfbaaa02ae527409e2b21ef299d349ee0f419a4",
         "references/composio-sdk-patterns.md": "ffb3347558e5aeee5a26b13ba08d6387939b88b800f6f97f8a4baa7d15d5fe69",
+        "references/github-token-probe.md": "8ce9efb33d65ba5d24898534f7615d4c9f29d7d65142d32de386d7b52f45540c",
         "references/hermes-config-inspection.md": "c5133cd1001f4465e0b26e39a769c22c4ce77ea9025a0229212f71e43d0c1230"
       }
     },
