@@ -2,8 +2,8 @@
 
 | Domain | Status | Catatan |
 |--------|--------|---------|
-| `niumination.web.id` | ✅ Registered | idwebhost.com — Ecosystem Portal (hub) |
-| `abstract.biz.id` | ✅ Registered | idwebhost.com — Emerging Tech Sandbox |
+| `niumination.web.id` | ✅ **LIVE** (Verified Vercel, 21 Sep 2026) — DNS Cloudflare → A record ke Vercel IP (`216.198.79.65`, `64.29.17.65`) | Niu-OSS-Dashboard, Vercel ready |
+| `mata.niumination.web.id` | ✅ Existing (Cloudflare) |
 
 ---
 
@@ -13,8 +13,8 @@
 
 | Subdomain | Target | Status |
 |-----------|--------|--------|
-| `niumination.web.id` | Landing page (link ke semua proyek) | 🟡 **Kode siap — `Niu-OSS-Dashboard`** (Next.js 16.3, `sites/niu-oss-dashboard/`) · deploy Fase 4 pending (DNS belum ada) |
-| `mata.niumination.web.id` | MATA Watchdog | ✅ Existing (Cloudflare) |
+|| `niumination.web.id` | Landing page (link ke semua proyek) | 🟢 **LIVE** (Verified Vercel, DNS via Cloudflare → A record, 21 Sep 2026) |
+|| `mata.niumination.web.id` | MATA Watchdog | ✅ Existing (Cloudflare) |
 | `dash.niumination.web.id` | Deployment status / monitoring | 🔴 Planned |
 | `docs.niumination.web.id` | Dokumentasi ekosistem | 🔴 Planned |
 
@@ -31,10 +31,11 @@
 
 ## Deployment Status
 
-### 🟢 Vercel (4 Live, 1 Down)
+### 🟢 Vercel (5 Live, 1 Down)
 
-| URL | Status | Catatan |
+|| URL | Status | Catatan |
 |-----|--------|---------|
+| `niu-oss` (`niumination.web.id`) | ✅ **200 LIVE** | Niu-OSS-Dashboard — 206 halaman SSG, domain Verified, DNS via Cloudflare → Vercel |
 | `pemdi-aceh-tengah.vercel.app` | ✅ 200 | PemdiAcehTengah — 52 OPD SSG, 70 pages |
 | `kms-spbe.vercel.app` | ✅ 200 | KMS SPBE |
 | `kune-ya-com.vercel.app` | ✅ 200 | Kune-Ya AI Chat RAG — K1-K5 ✅ |
