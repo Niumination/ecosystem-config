@@ -147,7 +147,7 @@ Desktop/Niumination/
 
 | Proyek | Priority | Status | Aktivitas Terakhir | Notes |
 |--------|:--------:|:------:|:------------------:|-------|
-| **cc-acehtengah** | **P2 ⬆** | 🟢 **Active** | **2026-08-29** | DTSEN Multi-Source → AI Smart Query (sumber offline BAPPEDA Des 2025 aktif), EWS, KPI Pimpinan, Laporan Eksekutif. Model AI: huancheng auto |
+| **cc-acehtengah** | **P2** | 💤 **Hiatus** | **2026-09-21** | Proyek pindah ke `sapa-ai` sesuai permintaan client. Produksi Vercel di-pause pemilik; repo GitHub di-archive + private (tag `v-hiatus-2026-09-21`). Folder lokal `services/cc-acehtengah/` tetap utuh — tidak dihapus. Restore: `docs/reports/HIATUS-CC-ACEHTENGAH-2026-09-21.md` |
 | **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **2026-09-07** | v3.0.0 → Redesign APEX-MC (orb golden ring + particle core + reasoning graph + overview HUD + status bar; vanilla JS/CSS, reduced-motion safe). PR#10 merged, PR#11 apex5 draft. MC OFF (localhost mati per "matikan localhost & update dokumentasi"). Swarm orchestrator |
 | **niu-cast** | P2 | 🟢 **Active** | 2026-07-21 | v3.6.0 — Mac Connect Bridge |
 | **Niu-Flow** | P2 | 🟢 **Remote only** | 2026-07-28 | github.com/Niumination/niu-flow |
