@@ -9,7 +9,7 @@ Semua aset dipertahankan utuh. Tidak ada satu pun berkas lokal yang dihapus.
 
 | Aset | Kondisi | Lokasi |
 |------|---------|--------|
-| Folder lokal | **Utuh, 0 berkas dihapus** — 873 MB, working tree bersih, branch lokal tetap ada | `services/cc-acehtengah/` |
+| Folder lokal | **Dihapus permanen 21 Sep 2026** — diganti backup terenkripsi di vault | `vault/_hibernasi-cc-acehtengah-2026-09-21/` (75 MB, 656 berkas, chmod 600) |
 | Repo GitHub | **Archived + private** — read-only, branch & history aman | `github.com:Niumination/cc-acehtengah` |
 | Tag penanda | `v-hiatus-2026-09-21` (HEAD `hotfix/meeting-ready` `c8416f9`) | sudah ter-push |
 | Branch utama | `hotfix/meeting-ready` = sumber kebenaran (produksi terakhir); `main` tertinggal 2 commit (dokumen rilis) | keduanya ter-push |
@@ -37,16 +37,43 @@ curl -X PATCH -H "Authorization: Bearer $GH_TOKEN" \
   https://api.github.com/repos/Niumination/cc-acehtengah
 ```
 
-### Langkah 2 — Sinkronkan folder lokal
+### Langkah 2 — Kembalikan folder lokal dari backup vault
 
 ```bash
-cd ~/Desktop/Niumination/services/cc-acehtengah
-git fetch --all
+# Clone ulang dari GitHub (dapatkan seluruh history)
+cd ~/Desktop/Niumination/services
+git clone github.com:Niumination/cc-acehtengah
+cd cc-acehtengah
 git checkout hotfix/meeting-ready
-git pull --ff-only
-```
 
-Folder lokal tidak pernah dihapus, jadi `git pull` langsung mengambil semua perubahan.
+# Pulihkan berkas yang tidak ada di GitHub (PII, kredensial, .vercel)
+B=~/Desktop/Niumination/vault/_hibernasi-cc-acehtengah-2026-09-21
+cp -p "$B/.env"          .env
+cp -p "$B/.env.local"    .env.local
+cp -rp "$B/data/dtsen-raw" data/dtsen-raw
+cp -rp "$B/.vercel"      .vercel
+
+# Verifikasi integritas — bandingkan SHA-256 dengan manifest
+python3 - <<'EOF'
+import json, hashlib, os, sys
+B = os.path.expanduser("~/Desktop/Niumination/vault/_hibernasi-cc-acehtengah-2026-09-21")
+m = json.load(open(f"{B}/MANIFEST.sha256.json"))
+bad = 0
+for item in m["files"]:
+    # data/dtsen-raw, .env, .env.local, .vercel dikembalikan dari backup
+    # sisanya dari git clone — manifest hanya memeriksa berkas yang dipulihkan
+    p = os.path.join(".", item["path"])
+    if not os.path.exists(p):
+        continue
+    if hashlib.sha256(open(p, "rb").read()).hexdigest() != item["sha256"]:
+        print(f"MISMATCH: {item['path']}"); bad += 1
+print(f"verifikasi: {bad} mismatch" if bad else "verifikasi: SEMUA SHA-256 cocok")
+sys.exit(1 if bad else 0)
+EOF
+
+# Instal ulang dependensi (798 MB yang sengaja tidak dibackup)
+npm install
+```
 
 ### Langkah 3 — Aktifkan produksi Vercel
 
@@ -78,7 +105,7 @@ Saat restore: **jangan set repo menjadi public** sampai branch tersebut dibersih
 
 ## Yang TIDAK Diubah Saat Hiatus
 
-- Folder `services/cc-acehtengah/` — utuh, tidak dipindah, tidak dihapus
+- **Backup vault** `vault/_hibernasi-cc-acehtengah-2026-09-21/` — 75 MB, 656 berkas, SHA-256 di `MANIFEST.sha256.json`, chmod 600
 - Skill `sapa-ai-ops` + referensinya (riwayat rebrand cc→sapa-ai) — dokumentasi riwayat
 - Dokumen lama di `docs/` (`ECOSYSTEM-STATUS-*.md`, `docs/references/*`, dll.) — riwayat ekosistem
 - Referensi di `apps/niumination-restore/` (RESTORE-PATHS.md, SOUL.md) — skrip pemulihan, sebutan repo lama tetap
