@@ -2,7 +2,7 @@
 
 | Domain | Status | Catatan |
 |--------|--------|---------|
-| `niumination.web.id` | ✅ **LIVE** (Verified Vercel, 21 Sep 2026) — DNS Cloudflare → A record ke Vercel IP (`216.198.79.65`, `64.29.17.65`) | Niu-OSS-Dashboard, Vercel ready |
+| `niumination.web.id` | ✅ **LIVE** (Verified Vercel, 21 Sep 2026) — DNS Vercel (`ns1/ns2.vercel-dns.com`) — zona dikelola Vercel | Niu-OSS-Dashboard, Vercel ready |
 | `mata.niumination.web.id` | ✅ Existing (Cloudflare) |
 
 ---
@@ -35,7 +35,7 @@
 
 || URL | Status | Catatan |
 |-----|--------|---------|
-| `niu-oss` (`niumination.web.id`) | ✅ **200 LIVE** | Niu-OSS-Dashboard — 206 halaman SSG, domain Verified, DNS via Cloudflare → Vercel |
+| `niu-oss` (`niumination.web.id`) | ✅ **200 LIVE** | Niu-OSS-Dashboard — 206 halaman SSG, domain Verified, GITHUB_TOKEN ✅ (22 Sep 2026), DNS Vercel DNS |
 | `pemdi-aceh-tengah.vercel.app` | ✅ 200 | PemdiAcehTengah — 52 OPD SSG, 70 pages |
 | `kms-spbe.vercel.app` | ✅ 200 | KMS SPBE |
 | `kune-ya-com.vercel.app` | ✅ 200 | Kune-Ya AI Chat RAG — K1-K5 ✅ |
