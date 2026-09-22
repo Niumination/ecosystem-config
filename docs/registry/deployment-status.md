@@ -35,7 +35,7 @@
 
 || URL | Status | Catatan |
 |-----|--------|---------|
-| `niu-oss` (`niumination.web.id`) | ✅ **200 LIVE** | Niu-OSS-Dashboard — 206 halaman SSG, domain Verified, GITHUB_TOKEN ✅ live (22 Sep 2026, source: github-api), DNS Vercel DNS |
+| `niu-oss` (`niumination.web.id` + `www`) | ✅ **200 LIVE** | Niu-OSS-Dashboard — 206 halaman SSG, domain Verified + www configured-correctly (22 Sep 2026), GITHUB_TOKEN ✅ live (source: github-api), patch v8 `b069461` (2026.10: redaksi token docs + humanisasi i18n) |
 | `pemdi-aceh-tengah.vercel.app` | ✅ 200 | PemdiAcehTengah — 52 OPD SSG, 70 pages |
 | `kms-spbe.vercel.app` | ✅ 200 | KMS SPBE |
 | `kune-ya-com.vercel.app` | ✅ 200 | Kune-Ya AI Chat RAG — K1-K5 ✅ |
