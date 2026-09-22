@@ -22,11 +22,13 @@ Verify live connectivity before declaring status. Do not rely on config entries,
    - Generic APIs: `/whoami`, `/health`, `/v1/models`, or equivalent lightweight authenticated call.
    - Composio: instantiate client, list connected accounts, inspect status fields.
    - Local gateways: probe `localhost:<port>` with expected protocol.
+   - **GitHub tokens**: probe `/user` endpoint FIRST, then `/repos/<owner>/<repo>`, then `/orgs/<org>`. See `references/github-token-probe.md`. `/orgs/<org>` 404 means insufficient scope, NOT invalid token.
 
 3. **Classify result**
    - ACTIVE — token/account present, probe succeeds, expected fields returned.
    - EXPIRED — account exists but probe fails or status indicates expiry.
    - MISSING — no account entry, SDK init fails, or endpoint unreachable.
+   - **PARTIAL** — token valid for `/user` but not for specific org/repo endpoint. Token works, scope is limited. Report as ACTIVE with scope caveat.
 
 4. **Report with evidence**
    - State + evidence fields + exact status or error.
@@ -36,6 +38,8 @@ Verify live connectivity before declaring status. Do not rely on config entries,
 - **Surface-only checks:** installed CLI ≠ integration; env var ≠ valid token; config key ≠ connected.
 - **SDK discovery traps:** some SDKs require exact session/tool calls to reveal usable tools. Inspect returned objects/fields, not just names.
 - **Auth expiry:** OAuth tokens often expire silently. Always check scopes/expiry when available.
+- **GitHub PAT scope mismatch:** A fine-grained PAT may work for `/user` but return 404 for `/orgs/<org>`. This does NOT mean token is invalid — it means the token lacks `repo` or `read:org` scope. Verify at the `/user` level first.
+- **`/orgs/<org>` 404 is not "token invalid"**: GitHub returns 404 for org endpoints when the PAT lacks org membership or read:org scope, even though the token is perfectly valid for user-level API calls. See `references/github-token-probe.md`.
 
 ## References
 - `references/composio-sdk-patterns.md` — verified Composio Python SDK patterns from session.

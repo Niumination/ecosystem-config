@@ -117,225 +117,225 @@
   "ignored": {
     "apple-notes": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "apple-reminders": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "findmy": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "imessage": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "claude-code": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "codex": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "computer-use": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "hermes-agent": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "opencode": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "architecture-diagram": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "ascii-video": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "baoyu-infographic": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "claude-design": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "design-md": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "humanizer": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "manim-video": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "p5js": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "popular-web-designs": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "songwriting-and-ai-music": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "sdlc-review": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "email-inbox-triage": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "himalaya": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "gif-search": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "songsee": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "youtube-content": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "obsidian": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "airtable": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "box": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "document-to-action-items": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "docx": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "google-workspace": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "maps": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "meeting-action-items": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "notion": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "pdf": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "powerpoint": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "product-price-monitor": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "teams-meeting-pipeline": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "weekly-review-planning": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "xlsx": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "arxiv": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "competitor-news-monitor": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "grounded-citations": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "llm-wiki": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "xurl": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "codebase-inspection": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "dogfood": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "github": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "inspecting-hermes-desktop-dom": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "node-inspect-debugger": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "python-debugpy": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "spike": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "test-driven-development": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "blocked-page-recovery": {
       "reason": "bundled",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     },
     "ecosystem-recovery/references/9router-3agent-hybrid-2026-08-28.md": {
       "reason": "rejected: pola kredensial: openai-style key",
-      "checkedAt": "2026-09-19T16:30:05.366938+00:00"
+      "checkedAt": "2026-09-21T16:30:20.654062+00:00"
     }
   },
   "tombstones": [],
-  "updatedAt": "2026-09-19T16:30:05.366938+00:00"
+  "updatedAt": "2026-09-21T16:30:20.654062+00:00"
 }

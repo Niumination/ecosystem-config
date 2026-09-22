@@ -1,7 +1,7 @@
 {
-  "fileCount": 802,
-  "generatedAt": "2026-09-21T19:22:59.561884+00:00",
-  "skillCount": 170,
+  "fileCount": 803,
+  "generatedAt": "2026-09-22T14:44:08.514037+00:00",
+  "skillCount": 171,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -638,6 +638,13 @@
         "references/offsite-artifact-staging.md": "d7e6554b2f1114b2f7760a71f4046e96c60fc7a3f27ef1023eb15f9f88cb6707",
         "references/post-work-isolation-audit.md": "c8a1807ab71ee028195c95786c2da643e74e3f257b192b3d97960be4d11b7a60",
         "references/restore-repo-layout.md": "8f89be1b5aa0e8bc0868b668da6dcffd29b2c42e18f4cd0e8b6ece84c6690bdb"
+      }
+    },
+    "ecosystem/devops/vercel-dns-subdomain-debug": {
+      "bundleHash": "529576ef4fc4116dc091c13ab372d17da43dc7cea96b6f731a1604964df80b6c",
+      "domain": "ecosystem/devops",
+      "files": {
+        "SKILL.md": "659cfae8bb2e3da736bd0666bfe96bab4d31f959bfc37bc1ae39a95310367f4e"
       }
     },
     "ecosystem/devops/vercel-domain-pointing": {
