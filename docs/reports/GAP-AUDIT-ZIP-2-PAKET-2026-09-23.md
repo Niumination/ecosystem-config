@@ -137,39 +137,95 @@ Gemini Charon yang dikunci. Tidak perlu dikejar.
 
 ## 6. Yang tertunda dan layak dikerjakan
 
+> **Diperbarui 2026-09-23 — eksekusi.** Prioritas 1, 2, dan 3 sudah dikerjakan dalam sesi
+> ini. Repo `abstract-studio`, commit `1e53400` (push, SHA lokal = remote, tree bersih).
+> Riwayat lengkap di `docs/reports/ADAP-DOC07-PROYEK-EP2-2026-09-23.md`.
+
 Diurutkan dari yang paling berdampak, semuanya manual/on-demand (tanpa cron):
 
-### 6.1 Adaptasi niche 7 docs — prioritas utama
+### 6.1 Adaptasi niche 7 docs — **SELESAI (1 dokumen, 6 ditinjau tidak perlu)**
 
 Satu-satunya item yang disebut eksplisit oleh rencana (FASE 1.3) dan **belum selesai**.
-Yang paling berdampak dulu: `07-NICHE-VIBE-CODING.md` (bertentangan dengan identitas studio)
-dan `04-PLAYBOOK-KONTEN.md` (karena memuat aturan format yang dipakai setiap produksi).
 
-Ini editing dokumen — murah, tanpa unduhan, tanpa cron. Dan sesuai prinsip Anda sendiri bahwa
-yang sudah dikerjakan harus "disesuaikan dengan tepat untuk kondisi real ekosistem".
+**Yang dikerjakan:** `docs/07-NICHE-VIBE-CODING.md` — 7 zona dikoreksi (28.403 → 32.910 byte).
+Yang paling menyesatkan bukan hanya usang, tapi **aktif mengarahkan ke jalur yang terbukti
+gagal**: §6.1 menjadikan Piper jalur VO utama, dan §6.1a merekomendasikan trik ejaan fonetis
+buatan — dua hal yang masing-masing menyebabkan penolakan reels-003 v3 dan v2.
+
+**Yang sengaja tidak diedit:** `docs/01`–`docs/06`. Hasil peninjauan per dokumen:
+
+| Docs | Baris | Hasil peninjauan |
+|---|---|---|
+| 01-BLUEPRINT | 177 | niche-neutral — tidak menyebut vibe-coding, menyebut niche kita 0× |
+| 02-TOOLSTACK | 284 | niche-neutral; 1 sebutan Piper (konteks lisensi, bukan rekomendasi jalur) |
+| 03-MONETISASI | 299 | niche-neutral |
+| 04-PLAYBOOK-KONTEN | 302 | niche-neutral |
+| 05-LISENSI-DAN-LEGAL | 139 | niche-neutral |
+| 06-RADAR-TEKNOLOGI | 92 | niche-neutral; 4 sebutan cron (sudah disesuaikan di doc 07 §8) |
+
+Tidak ada sebutan niche generik di keenam dokumen itu, jadi mengubahnya hanya menambah teks
+tanpa memperbaiki kesalahan. Mengedit enam dokumen untuk tidak berbuat apa-apa tidak bernilai.
 
 ### 6.2 Jalur monetisasi — sudah punya mesin, belum pernah dijalankan
 
 `scripts/ratecard.py` ada, `templates/rate-card.md` ada, tapi `workspace/output/rate-card.md`
 tidak ada. Artinya satu pun dokumen rate card belum pernah diproduksi.
 
-Ini jalur yang paling sesuai dengan kondisi tanpa-cron: dijalankan on-demand saat ada klien.
-Niche pilar 4 (AI Code Doctor) sudah punya bahan nyata (audit 60 detik dari reels-003).
+**TIDAK Dikerjakan — menunggu klien.** Rate card diproduksi on-demand saat ada prospek, bukan
+disiakan. Mesinnya sudah ada; tidak ada yang perlu dikerjakan sebelum ada peminta.
 
-### 6.3 Proyek contoh niche vibe coding — keputusan, bukan pekerjaan
+### 6.3 Proyek contoh niche vibe coding — **DIKERJAKAN dengan sudut berbeda**
 
 `project/audit-60-detik-rls-bocor/` (10 berkas: BRIEF, NASKAH, SHOTLIST, SOURCES, STATUS,
 LEDGER, MANIFEST, ASSETS_LICENSE) **tidak ada** di repo.
 
-Saya mencatat ini sebagai **sengaja dilewati, bukan terlupakan**. Repo punya 3 proyek sendiri
-yang sudah melewati contoh itu: reels-001-behind-the-build, reels-002-niu-oss-dashboard,
-reels-003-kredensial-bocor-gitignore. Contoh zip untuk niche yang bukan niche Anda.
+Diputuskan untuk **tidak** membuat contoh zip itu — niche RLS bukan niche Anda. Sebagai
+gantinya dibuat proyek asli dengan struktur 10 berkas yang sama:
 
-### 6.4 Lengkapi `CONTENT_INDEX.csv`
+**`project/audit-60-detik-rotasi-kredensial/`** — episode 2 seri "Audit 60 Detik", sudut
+**rotasi kredensial**. 10 berkas fondasi selesai, status `1.BRIEF`, belum direkam.
+
+Mengapa sudut rotasi, bukan kasus `.gitignore` lagi: ep.1 (reels-003) sudah menghabiskan
+sudut "bagaimana secret lolos ke repo". Ep.2 memakai insiden yang sama sebagai pemicu tapi
+bertanya hal berbeda — "bagaimana token bocor tetap hidup setelah dicabut". Klaim intinya
+dirujuk ke skill ekosistem sendiri (`skills/security/production-secret-rotation/SKILL.md`):
+*"An unprobed rotation is an unverified claim."*
+
+Empat kegagalan produksi reels-003 dikunci ke dalam fondasi proyek ini supaya tidak diulang:
+`NASKAH.md` memuat aturan "APA ADANYA" + riwayat penolakan v2/v3; `META.json` mencatat
+engine Gemini (bukan `edge-tts` yang masih tercatat di META reels-003); `SHOTLIST.md`
+meninggalkan batas scene **sengaja kosong** dengan perintah mengukur dari jeda alami VO.
+
+### 6.4 `README-workspace.md` — **SELESAI**
+
+Tersalin dari zip ke `workspace/README-workspace.md` (2.843 byte). Versi zip mendeskripsikan
+struktur yang tidak sesuai realita (menyebut `output/`, `brand/voice/` yang tidak ada di
+workspace). Versi ini memetakan 11 symlink yang benar-benar ada dan mencatat satu gap nyata:
+`templates-local` menunjuk ke `../templates`, jadi bukan folder template buatan sendiri.
+
+
+
+### 6.5 Lengkapi `CONTENT_INDEX.csv` — **BELUM DIKERJAKAN (butuh keputusan Anda)**
 
 Reels-001 dan reels-002 sudah diproduksi tapi belum tercatat. Satu baris per reels, diisi manual
 saat menayangkannya. Ini juga gerbang untuk `repurpose-sore` — yang rencananya sendiri menunda
 sampai 2+ konten diarsip.
+
+> **Terkunci menunggu keputusan Anda** — jangan saya isi sepihak. Ada dua hal yang harus Anda
+> tentukan dulu, dan keduanya kontradiksi di data yang sudah ada:
+>
+> 1. **`CONTENT_INDEX.csv` baris 1 mengklaim `audit-60-detik-rls-bocor` sebagai
+>    "ep.1 seri Audit 60 Detik"** — status `QA`, skor `92`, durasi `58`. Tapi **folder proyek
+>    itu tidak ada** di repo. Verifikasi: `project/audit-60-detik-rls-bocor/` → TIDAK ADA.
+>    Satu baris menunjuk proyek hantu, dan klaim skor 92 tak bisa diaudit.
+> 2. **Konflik episode.** Reels-003 (`META.json`) juga mengklaim dirinya **episode 1** seri
+>    "Audit 60 Detik" — dan reels-003 memang **sudah jadi** (v4.1, disetujui). Jadi siapa
+>    pemegang nomor ep.1? Saya membuat proyek baru sebagai **episode 2** dengan asumsi reels-003
+>    = ep.1. Jika Anda punya rencana lain, nomor itu mudah digeser.
+>
+> Cara yang saya sarankan: hapus baris `audit-60-detik-rls-bocor` (proyek hantu), catat
+> reels-001, reels-002, dan reels-003 sebagai ep.1–? sesuai keputusan Anda, lalu tambahkan
+> ep.2 saat direkam. **Tapi ini mengubah registry hidup Anda, jadi menunggu izin.**
 
 ---
 
@@ -178,7 +234,8 @@ sampai 2+ konten diarsip.
 - **7 cron** — keputusan pemilik, ditahan. Laptop mobile, bukan server 24 jam.
 - **`podcast-script.md`** — niche tidak menyentuh podcast.
 - **Paket riset-eco** — substantiv sudah ada di `docs/registry/`; isunya routing, bukan konten.
-- **Proyek contoh vibe coding** — sudah digantikan 3 proyek sendiri.
+- **Proyek contoh vibe coding (`audit-60-detik-rls-bocor`)** — niche RLS bukan niche Anda;
+  sudah digantikan proyek asli `audit-60-detik-rotasi-kredensial` (lihat §6.3).
 - **WebLLM + Whisper local** (alur voice gratis) — sudah dibatalkan standar VO Gemini.
 
 ---
