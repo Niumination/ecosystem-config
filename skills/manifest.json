@@ -1,7 +1,7 @@
 {
-  "fileCount": 803,
-  "generatedAt": "2026-09-22T14:44:08.514037+00:00",
-  "skillCount": 171,
+  "fileCount": 809,
+  "generatedAt": "2026-09-23T07:19:24.330205+00:00",
+  "skillCount": 177,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -627,6 +627,34 @@
         "references/provider-evolution-niumination.md": "a59729b3fb3fac80978e03bdf0c3b31766879dfd9cee18108ee9d20a70b8caf9"
       }
     },
+    "ecosystem/content/hyperframes-vertical-video": {
+      "bundleHash": "8be240d9aa8819838c44cb2244c7bc4c1aa9125cedd9d9449e264699df889327",
+      "domain": "ecosystem/content",
+      "files": {
+        "SKILL.md": "1b0e2595df60addf69020e36460feb5789208370da5ca6d64b4e6227ed100c01"
+      }
+    },
+    "ecosystem/content/reels-motion-render": {
+      "bundleHash": "8f4dd9ce9ce1f39f1041c81aa38272fd0980a077a4c441d2caf74a6caa2b8c1b",
+      "domain": "ecosystem/content",
+      "files": {
+        "SKILL.md": "860605bf5f66550d540ed11412ee543577c28ef36b142952442b345592688524"
+      }
+    },
+    "ecosystem/creative/ffmpeg-ken-burns-motion": {
+      "bundleHash": "08de0deb78661701e45f16ac94732d60f33dd84d7c4838b34cb556ffe1f67f76",
+      "domain": "ecosystem/creative",
+      "files": {
+        "SKILL.md": "c8c69fd119b237ad509c2757e11531e9c342a03abaa0c91e2cd2f97de89a5fac"
+      }
+    },
+    "ecosystem/creative/revideo-motion-graphic": {
+      "bundleHash": "578cd83273d96d6491cb4fc4f842d1a83f0a3b19256d1c20b22a4b8cacb05626",
+      "domain": "ecosystem/creative",
+      "files": {
+        "SKILL.md": "d94fa41c370e504227e65c4399b36a8235d6479f447021402deca29e5863ad3e"
+      }
+    },
     "ecosystem/device-migration-disaster-recovery": {
       "bundleHash": "83b61b21df18aee0b6f1a8abdb9b4c56b380cfd899ea0178ef4d0713391a46f0",
       "domain": "ecosystem",
@@ -748,6 +776,20 @@
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "4dfe123b837a0fdf78f5264dbb495f798cf41be79cd9baf42e3ba699bea4269f"
+      }
+    },
+    "ecosystem/ecosystem/arena-patch-adoption": {
+      "bundleHash": "05636dd41d30bb3ed99ec42a57e6f20db161427471dc5656d888551961ba7bec",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "abce294a8cf95f131f27e59a2b80d88d2476bc458f83c368f9452362656d62e9"
+      }
+    },
+    "ecosystem/ecosystem/system-one-decisions": {
+      "bundleHash": "13650da96ccdd859288e73a839a9d06d3ad1d2bb0258e680c26a5868a925d6f7",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "09486847f781e73a001bfd46c2360617a1a9ab54477593a9356fb72f6a63406d"
       }
     },
     "ecosystem/ekosistem-content-verification": {
