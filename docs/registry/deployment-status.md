@@ -111,7 +111,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
   ├── apps/kune-ya.com/AGENTS.md                                         ✅
   ├── apps/niu-vermilion/AGENTS.md                                       ✅
   ├── apps/abstract-studio/AGENTS.md                                     ✅ (21 Sep 2026 — ZARYU ABSTRACT STUDIO, repo Kreator, Git LFS)
-  ├── ~~services/cc-acehtengah/AGENTS.md~~                                  💤 **HIATUS** (21 Sep 2026 — folder dihapus; backup di vault/_hibernasi-cc-acehtengah-2026-09-21)
+  ├── ~~services/cc-acehtengah/AGENTS.md~~                                  💤 **HIATUS** (21 Sep 2026 — folder dihapus; arsip sensitif di `vault/_arsip-sensitif/cc-acehtengah-2026-09-21/`, repo privat `arsip-sensitif`)
   ├── services/niu-cast/AGENTS.md                                        ✅
   ├── tools/camofox-browser/DOX.md                                        ✅ (3 Agu 2026 — clone upstream, AGENTS.md milik upstream)
   ├── sites/spatial-vision/AGENTS.md                                     ✅ (3 Aug 2026)
