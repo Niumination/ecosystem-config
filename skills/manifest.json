@@ -1,6 +1,6 @@
 {
   "fileCount": 809,
-  "generatedAt": "2026-09-23T07:19:24.330205+00:00",
+  "generatedAt": "2026-09-23T15:08:15.564990+00:00",
   "skillCount": 177,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -195,10 +195,10 @@
       }
     },
     "creative/short-form-video-production": {
-      "bundleHash": "f75004e182e05cb0223827bb0e373b4add4e783309703eba0e14720566f01141",
+      "bundleHash": "b297a52a4749178841906ef85a1d6fa32ca4032eee00da3a3f7c59830cb9ead8",
       "domain": "creative",
       "files": {
-        "SKILL.md": "9dbf7e90f83ba66aed7fef3c65503c17f5c8beb6b602e94798cc6fd09b063141",
+        "SKILL.md": "c4735d415d6c1b7042618ab7a2756e47dd3dbc209244d3223ec4db091001196e",
         "references/content-strategy-and-hooks.md": "fcca8637f2d55c8b66718875c521c6efa6064e952e57586a2ffcab8b88c43b7f",
         "references/free-toolchain-verification.md": "60f000c8159a647195d4841ea60c789467b37616d58c1ebb48bc5b4ae7f4b8f3",
         "references/voiceover-delivery.md": "c575de338d77544c4943a8fb44e41474be5d23ca7a67cda4191c328e2d79e602",

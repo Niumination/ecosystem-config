@@ -1,7 +1,7 @@
 ---
 name: short-form-video-production
 description: "Make ready-to-post vertical video (Reels) at zero cost."
-version: 1.3.0
+version: 1.4.0
 author: Hermes (curator)
 tags: [creative, video, reels, short-form, hyperframes, ffmpeg, tts, free-tier, content]
 platforms: [macos]
@@ -263,6 +263,35 @@ promotion, not a compliment. Do all four, in order:
   unreadable file, and every distance computed from it is garbage that reads as a confident "engine
   eliminated". Decode explicitly (`ffmpeg -f s16le -ar <rate> -ac 1 -i pipe:0`) and drop any candidate
   whose probe produced a 0 s duration.
+- **GSAP uses absolute time — changing scene boundaries alone does not fix sync.** GSAP timelines in
+  HyperFrames compositions use absolute frame times (`tl.fromTo(..., 5.55)`), not relative to `data-start`.
+  When you correct a scene's `data-start`, you **must** rewrite every GSAP timing inside that scene to
+  match the new boundary. Changing only the `data-start` attributes while leaving GSAP times untouched
+  produces exactly the sync bug seen in reels-003 v4 (VO sounded faster than the visuals).
+  Write the scene boundaries and GSAP timeline in the same pass, not sequentially.
+- **Pin HyperFrames version to match the reference project.** Version 0.8.62 produces 6 lint warnings
+  (text_not_painted on watermark `.wnum`, contrast errors) that are inherent to the composition pattern,
+  not regressions. Pin `npx --yes hyperframes@0.8.30` in the project's `package.json` scripts to match
+  the reference project (reels-002) — this gives 0 errors, 0 warnings. Do not assume the global install
+  version is correct; always pin the version in the project's `package.json`.
+- **Use `--low-memory-mode` when disk space is tight.** With 1628 frames at 1080×1920, `--workers 2`
+  needs ~13.5 GB temp space. If available disk is under 15 GB, use `--low-memory-mode --workers 1`
+  which streams frames instead of writing them all to disk. This is slower (~5m vs ~4m for 1600 frames)
+  but prevents disk-full failures.
+- **Loudness: match the reference take, do not pick a target number from memory.** There is no LUFS
+  standard written anywhere in this ecosystem — no SKILL.md, no report, no config. The value `-14` is
+  not sourced from anything here. The approved takes measure differently from the number people tend to
+  quote: the owner-approved VO files sit near **-19.6 LUFS** (reels-002 `vo_utuh.mp3` = -19.58,
+  reels-003 `vo_charon.mp3` = -19.85, both LRA 4.5–5.1), and the reels-003 v4.1 final delivered at
+  **-15.40 LUFS / TP -1.17 / LRA 3.70** and was accepted by the owner. Measure the accepted reference
+  with `ffmpeg -af loudnorm=print_format=json` and match it, rather than applying a target you remember.
+  If you do push toward -14, expect roughly 5 dB of gain over the approved VO and have the owner
+  confirm, because normalisation is not free loudness here — it changes how the take sits against
+  in-app trending audio.
+- **After changing scene boundaries, ALWAYS render and vision-check each scene.** Extract a frame at
+  each scene's midpoint and verify with vision_analyze that the correct scene content appears. A scene
+  that shows the wrong content at its boundary time means the GSAP timeline was not rewritten to match
+  the new `data-start` values.
 - **Read the project's own handoff doc before running audio forensics.** A `VOICE.md`-style doc names the
   voice, the per-scene settings, and often states which tooling held it — that answers the question
   directly. Forensics is the last resort, not the first step.
