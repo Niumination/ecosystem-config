@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 170 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 177 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 170 ✅ Aktif
+> **Status:** 177 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -154,6 +154,13 @@
 | **provider-model-verification** | ✅ Aktif | Bank Pusat | 3.3 KB | Verify an AI provider/model before relying on it. |
 | **vercel-domain-pointing** | ✅ Aktif | Bank Pusat | 4.1 KB | Point custom domain to Vercel — nameserver, DNS, verify. |
 | **ecosystem-hibernation** | ✅ Aktif | Bank Pusat | 10.7 KB | Use when a project must be retired temporarily: archive GitHub, pause Vercel, back up to vault, delete the loc… |
+| **vercel-dns-subdomain-debug** | ✅ Aktif | Bank Pusat | 5.3 KB | >- |
+| **arena-patch-adoption** | ✅ Aktif | Bank Pusat | 4.0 KB | Use when applying arena.ai zip patch stacks to a repo. |
+| **ffmpeg-ken-burns-motion** | ✅ Aktif | Bank Pusat | 2.2 KB | Use when making still cards move: FFmpeg zoompan + mux VO. |
+| **hyperframes-vertical-video** | ✅ Aktif | Bank Pusat | 0.1 KB | probe3 |
+| **reels-motion-render** | ✅ Aktif | Bank Pusat | 5.9 KB | Use when rendering a Reels/TikTok video with HyperFrames. |
+| **revideo-motion-graphic** | ✅ Aktif | Bank Pusat | 4.4 KB | Use for motion-graphic videos: Revideo, Piper VO, FFmpeg. |
+| **system-one-decisions** | ✅ Aktif | Bank Pusat | 4.7 KB | Use when calling decision models (jev/systemone) via 9router. |
 
 ## Domain: Security
 
@@ -316,8 +323,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **170** |
-| **Total** | **170** |
+| ✅ Aktif | **177** |
+| **Total** | **177** |
 
 ## Catatan Penting — Potensi Konflik
 
