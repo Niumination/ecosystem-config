@@ -6,7 +6,7 @@
 
 ## Alasan
 
-Tujuan proyek: modifikasi fork Mobile-Harness (`techjarves/Mobile-Harness`, MIT) agar dapat menjalankan **Hermes Agent** di Android. Setelah beberapa percobaan, integrasi Hermes tidak pernah mencapai end-to-end yang terverifikasi di perangkat.
+Tujuan proyek: modifikasi fork proyek open-source "Mobile Harness" (MIT, pihak ketiga) agar dapat menjalankan **Hermes Agent** di Android. Setelah beberapa percobaan, integrasi Hermes tidak pernah mencapai end-to-end yang terverifikasi di perangkat.
 
 Kronologi singkat dari bukti di repo (screenshot `docs/screenshots/`, sekarang hilang):
 
@@ -39,24 +39,13 @@ Bukan milik proyek ini, tidak boleh dihapus jika suatu saat proyek ini dibangun 
 
 ## Cara membedah ulang (kalau dibutuhkan)
 
-Sumber kode asli tetap hidup: **`github.com/techjarves/Mobile-Harness`** (MIT, 396⭐, tidak archived).
+Sumber kode asli (proyek open-source pihak ketiga, MIT) dapat dicari di GitHub
+berdasarkan nama "Mobile Harness". Niumination tidak menyimpan salinannya dan
+tidak mengelola repo upstream tersebut.
 
-```bash
-# 1. Kloning dari upstream (bukan Niumination — repo kita sudah tidak ada)
-git clone https://github.com/techjarves/Mobile-Harness.git apps/Mobile-Harness
-cd apps/Mobile-Harness
-git remote add origin git@github.com:Niumination/<repo-baru>.git
-
-# 2. Buat repo GitHub baru, push
-
-# 3. Referensi yang tersisa
-#    - Pola integrasi agent runtime: skill ini dihapus; tapi pola DOX
-#      ada di ecosystem-dox-maintenance, dan riwayat provider di
-#      hermes-provider-config/references/opencode-provider-troubleshooting-2026-09-08.md
-#    - Dokumen laporan ini + coretan di BACKLOG/AGENTS.md/project-catalog.md
-```
-
-**Catatan:** 49 komit kustomisasi Niumination (Hermes bridge, OpenCode Free provider, onboarding, CI signing) **tidak dapat dipulihkan** — repo GitHub sudah dihapus permanen tanpa cadangan.
+**Catatan:** 49 komit kustomisasi Niumination (Hermes bridge, OpenCode Free
+provider, onboarding, CI signing) **tidak dapat dipulihkan** — repo GitHub sudah
+dihapus permanen tanpa cadangan.
 
 ## Verifikasi pasca-hapus
 
