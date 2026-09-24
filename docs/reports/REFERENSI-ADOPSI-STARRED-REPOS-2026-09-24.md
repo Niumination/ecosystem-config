@@ -16,6 +16,7 @@
   1. **Konteks ekosistem kita sudah kuat** (hyperframes, UACC, autoskills, laya, opendataloader-pdf, Agent-Reach, impeccable, codebase-memory-mcp sudah dipakai/di-star).
   2. **Banyak repo AI-agent/harness baru** (ECC, deepseek-harness, prime-agent, orca, council-of-high-intelligence) — sinyal kuat arah "harness + skills".
   3. **Rumpun browser-agent** (browser-use: workflow-use, browsercode, jev-ultrafast, video-use; Agent-Reach) — sudah relevan dengan MC/agent stack kita.
+- **Fokus revisi (24 Sep 19:40):** 2 rumpun yang PALING BARU di-star — **`browser-use/*`** (browser agent framework) dan **`laya`** (System 1 decision engine) — ditambahkan ke P0. Rincian di seksi 4.2.
 
 ---
 
@@ -226,27 +227,29 @@
 
 ### 4.2 Kandidat adopsi BARU (belum dipakai, disarankan)
 **P0 — langsung berguna:**
-1. **`affaan-m/ECC` (MIT)** — agent harness performance optimization. Bisa jadi **blueprint skill-bank governance** (skills+instincts+cost). Gap: skill bank kita 180+ tapi belum ada sistem "instincts"/cost-aware routing per skill.
-2. **`thedotmack/claude-mem` (Apache-2.0)** — persistent context across sessions. Relevan masalah **memory Hermes penuh** (93% sekarang!). Pola capture/recall bisa ditiru untuk memory tiering Hermes.
-3. **`tashfeenahmed/freellmapi` (MIT)** — 34 free LLM providers, 635 free models, 7.4B token/bulan. Relevan **9router** — bisa jadi katalog tambahan model free tier. ⚠️ verifikasi kualitas dulu.
-4. **`diegosouzapw/OmniRoute` (MIT)** — free MIT AI gateway 359 providers. Relevan **9router replacement/alternatif** (9router sekarang single point of failure — lihat laporan audit).
-5. **`0xNyk/council-of-high-intelligence` (MIT)** — structured multi-perspective deliberation. Relevan **system-one-decisions** skill + arsitektur supervisor MC (thread 1 = supervisor).
+0. **`browser-use/*` (MIT/AGPL, 4 repo)** — browser-native agent framework. **2 dari 4 repo di-star PALING BARU** (`workflow-use`, `browsercode`, `jev-ultrafast`, `video-use`). Relevan: automation web scraping, RPA, video editing via coding agent, dan **anti-detect browsing** (komplemen camofox). `jev-ultrafast` = web agent termurah/tercepat. `workflow-use` = RPA 2.0 workflows. **Gap:** kita sudah punya camofox (stealth browser) + agent-reach (internet read), TAPI belum ada orkestrasi browser agent untuk RPA/workflow otomatis.
+1. **`NandhaKishorM/laya` (Apache-2.0)** + `mizorewww/laya-mlx` + `ipenywis/laya-ultrafast` — **System 1 decision engine, non-autoregressive, 7–14ms** (vs Jev 400ms+). **Kita SUDAH punya Jev via 9router** (`system-one-decisions` skill). Laya = generasi berikutnya: lebih cepat, lebih murah, MLX-native (cocok MBP 16GB). **Adopsi langsung**: tambah ke 9router + skill system-one-decisions sebagai backend decision. Ini evolusi natural dari Jev, bukan duplikasi.
+2. **`affaan-m/ECC` (MIT)** — agent harness performance optimization. Bisa jadi **blueprint skill-bank governance** (skills+instincts+cost). Gap: skill bank kita 180+ tapi belum ada sistem "instincts"/cost-aware routing per skill.
+3. **`thedotmack/claude-mem` (Apache-2.0)** — persistent context across sessions. Relevan masalah **memory Hermes penuh** (93% sekarang!). Pola capture/recall bisa ditiru untuk memory tiering Hermes.
+4. **`tashfeenahmed/freellmapi` (MIT)** — 34 free LLM providers, 635 free models, 7.4B token/bulan. Relevan **9router** — bisa jadi katalog tambahan model free tier. ⚠️ verifikasi kualitas dulu.
+5. **`diegosouzapw/OmniRoute` (MIT)** — free MIT AI gateway 359 providers. Relevan **9router replacement/alternatif** (9router sekarang single point of failure — lihat laporan audit).
+6. **`0xNyk/council-of-high-intelligence` (MIT)** — structured multi-perspective deliberation. Relevan **system-one-decisions** skill + arsitektur supervisor MC (thread 1 = supervisor).
 
 **P1 — bernilai untuk riset/eksperimen:**
-6. **`stablyai/orca` (MIT)** — ADE untuk fleet of parallel agents. Relevan **orkestrasi MC** (bisa ganti/komplemen orchestrator Python kita).
-7. **`deepseek-ai/deepseek-harness` (MIT)** — "everything is a plugin". Arsitektur plugin bisa ditiru untuk **MC plugin/hook** (niu-core-fence pola serupa).
-8. **`prime-agent` (MIT)** — self-improving RLM coding agent. Relevan **Hermes self-healing** & model drift guard.
-9. **`cactus-compute/needle` (Apache-2.0)** — automation foundation model tiny devices (2-bit, 8-29MB). Relevan **kopi-aceh-app-android** / IoT Aceh.
-10. **`semantica-agi/semantica` (MIT)** — graph-native context infra. Relevan **Second Brain** (brain/index.json 191 file).
+7. **`stablyai/orca` (MIT)** — ADE untuk fleet of parallel agents. Relevan **orkestrasi MC** (bisa ganti/komplemen orchestrator Python kita).
+8. **`deepseek-ai/deepseek-harness` (MIT)** — "everything is a plugin". Arsitektur plugin bisa ditiru untuk **MC plugin/hook** (niu-core-fence pola serupa).
+9. **`prime-agent` (MIT)** — self-improving RLM coding agent. Relevan **Hermes self-healing** & model drift guard.
+10. **`cactus-compute/needle` (Apache-2.0)** — automation foundation model tiny devices (2-bit, 8-29MB). Relevan **kopi-aceh-app-android** / IoT Aceh.
+11. **`semantica-agi/semantica` (MIT)** — graph-native context infra. Relevan **Second Brain** (brain/index.json 191 file).
 
 **P2 — video/content pipeline:**
-11. **`harry0703/MoneyPrinterTurbo` (MIT)** — short video otomatis. Relevan **content-produce** (Reels/TikTok) — bisa jadi pipeline tambahan.
-12. **`WyattBlue/auto-editor` (Unlicense)** — video editing otomatis. Relevan short-form-video-production.
-13. **`calesthio/OpenMontage` (AGPL-3.0, ⚠️ non-komersial?)** — agentic video production. Pola boleh, kode hati-hati (AGPL).
+12. **`harry0703/MoneyPrinterTurbo` (MIT)** — short video otomatis. Relevan **content-produce** (Reels/TikTok) — bisa jadi pipeline tambahan.
+13. **`WyattBlue/auto-editor` (Unlicense)** — video editing otomatis. Relevan short-form-video-production.
+14. **`calesthio/OpenMontage` (AGPL-3.0, ⚠️ non-komersial?)** — agentic video production. Pola boleh, kode hati-hati (AGPL).
 
 **P3 — riset/edukasi:**
-14. **`jingyaogong/minimind` (Apache-2.0)** — train 64M LLM dari nol. Referensi edukasi untuk tim Diskominfo.
-15. **`FareedKhan-dev/kimi-k3-in-c` (Apache-2.0)** — Kimi K3 inference CPU single. Inspirasi efisiensi di hardware lemah (MBP 2020 i5).
+15. **`jingyaogong/minimind` (Apache-2.0)** — train 64M LLM dari nol. Referensi edukasi untuk tim Diskominfo.
+16. **`FareedKhan-dev/kimi-k3-in-c` (Apache-2.0)** — Kimi K3 inference CPU single. Inspirasi efisiensi di hardware lemah (MBP 2020 i5).
 
 ### 4.3 Kategori yang TIDAK direkomendasikan (perhatikan risiko)
 - **OS-experiment/dotfiles** (49 repo) — Hyprland/NixOS/WSL/Docker-OSX — tidak relevan dengan Mac-first ecosystem. Kecuali nanti migrasi ke Linux/Windows.
