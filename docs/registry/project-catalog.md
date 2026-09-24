@@ -4,7 +4,7 @@
 
 | Projek | Path | Stack | GitHub | Deploy | Last Push | Status |
 |--------|------|-------|--------|--------|-----------|--------|
-|| **PemdiAcehTengah** | `apps/PemdiAcehTengah/` | Next.js 14, React 18, pure CSS (Ruang Kendali) | `github.com/Niumination/PemdiAcehTengah` | 🟢 Vercel — 52 OPD SSG, 63 pages, indeks asesor 1,24, menu Radial, rute `/asesor` | 29 Jul 2026 | 🟢 **Active — apps/ 🏭 Patch 8–15 (24 Sep)** |
+|| **PemdiAcehTengah** | `apps/PemdiAcehTengah/` | Next.js 14, React 18, pure CSS (Ruang Kendali) | `github.com/Niumination/PemdiAcehTengah` | 🟢 Vercel — 52 OPD SSG, 67 pages, indeks asesor 1,24, menu Radial, rute `/asesor` | 29 Jul 2026 | 🟢 **Active — apps/ 🏭 Patch 8–15 (24 Sep)** |
 ||| **LKH** | `apps/niu-lkh/` 🏭 | React 19, Vite 6, Tailwind v4, Supabase | `github.com/Niumination/Niu-LKH` | 🟢 GH Pages / Vercel — v3.2.0 | 07 Sep 2026 | ✅ **100% Done 🎉 — apps/ 🏭** |
 ||| **Niu-Gayo-Agroclimate** | `apps/niu-gayo-agroclimate/` 🏭 | React 19, Vite 6, Tailwind CSS, WeatherNext pipeline | `github.com/Niumination/niu-gayo-agroclimate` | ⚪ Local / GH Pages ready | 07 Sep 2026 | 🆕 **Agro-Climate Kopi Gayo & Mitigasi Bencana — apps/ 🏭** |
 | **DiskominfoAT** | — (remote only) | HTML, CSS | `github.com/Niumination/DiskominfoAT` | 🟢 GH Pages | 13 Okt 2025 | ✅ Live |
