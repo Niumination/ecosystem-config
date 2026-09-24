@@ -205,27 +205,62 @@ workspace). Versi ini memetakan 11 symlink yang benar-benar ada dan mencatat sat
 
 
 
-### 6.5 Lengkapi `CONTENT_INDEX.csv` — **BELUM DIKERJAKAN (butuh keputusan Anda)**
+### 6.5 Lengkapi `CONTENT_INDEX.csv` + `LEDGER_GLOBAL.csv` — **SELESAI**
 
-Reels-001 dan reels-002 sudah diproduksi tapi belum tercatat. Satu baris per reels, diisi manual
-saat menayangkannya. Ini juga gerbang untuk `repurpose-sore` — yang rencananya sendiri menunda
-sampai 2+ konten diarsip.
+Eksekusi 2026-09-23, commit `abstract-studio@2ca5964`. Backup penuh di
+`data/_backup/preriapi-2026-09-23/` sebelum menulis apa pun.
 
-> **Terkunci menunggu keputusan Anda** — jangan saya isi sepihak. Ada dua hal yang harus Anda
-> tentukan dulu, dan keduanya kontradiksi di data yang sudah ada:
+**Baris contoh hantu diarsipkan**, bukan dihapus. Dipindah ke
+`data/CONTENT_INDEX-CONTOH-ARSIP.csv` dengan catatan alasan. Catatan baris aslinya sendiri
+menulis "CONTOH TERISI = standar output" — itu template acuan dari zip, bukan rekaman
+produksi. Folder `project/audit-60-detik-rls-bocor/` memang tidak ada, jadi klaim skor 92
+tak bisa diaudit. Substansinya tetap utuh sebagai acuan format.
+
+**`CONTENT_INDEX.csv` diisi 3 proyek nyata** — 3 baris × 21 kolom. Semua angka dari sumber
+terukur, bukan ditebak:
+
+| Slug | Durasi (ffprobe) | Status | Skor QA |
+|---|---|---|---|
+| reels-001-behind-the-build | 38,0 dtk | `5.PPRODUK-BLOKIR` | — (tak tercatat) |
+| reels-002-niu-oss-dashboard | 56,6 dtk | `4.TAYANG` | — (tak tercatat) |
+| reels-003-kredensial-bocor-gitignore | 54,3 dtk | `5.PPRODUK` | 88 |
+
+**Konflik episode selesai sendiri.** Reels-001 dan reels-002 ternyata seri **Behind the
+Build**, bukan Audit 60 Detik. Yang masuk seri itu hanya reels-003 → **ep.1**, proyek rotasi
+kredensial → **ep.2**. Tidak ada lagi nomor yang rebutan.
+
+**`LEDGER_GLOBAL.csv`** — hanya reels-002 masuk sebagai `TAYANG`, satu-satunya yang sudah jadi
+fakta. Tiga lainnya tercatat `BELUM-*` dengan kolom `jam` dan `pendapatan` **sengaja kosong**:
+estimasi bukan hasil, dan menulisnya ke registry hidup berarti mengklaim sesuatu yang belum
+terjadi. Estimasi ±3,4 jam ep.2 tetap di `project/.../LEDGER.md` proyeknya.
+
+**Yang sengaja dibiarkan kosong** (tanpa sumber, jadi tidak dikarang): `skor_qa` reels-001 &
+002 (tidak pernah tercatat; reels-001 bahkan BLOKIR — VO edge-tts wajib render ulang Gemini,
+memberi skor berarti mengklaim sesuatu yang belum ada), `jam` produksi reels-002
+(`UNCHECKED`, tidak ada log waktu), `tanggal` 3 item LEDGER (belum Tayang), dan
+`hook_dipakai` reels-001 (naskahnya hanya berupa tabel di dokumen induk, bukan berkas terpisah).
+
+### 6.6 `CALENDAR.csv` — **putusan pemilik: rencana ke depan, bukan registry fakta**
+
+Temuan eksekusi 6.5: **30 dari 33 baris `CALENDAR.csv` menunjuk
+`reels-002-bocoran-rls`** — folder `project/reels-002-bocoran-rls/` tidak ada. Ini proyek
+hantu kedua, skalanya jauh lebih besar dari yang pertama (1 baris).
+
+> **Keputusan pemilik 2026-09-23:** "`CALENDAR.csv` jadikan bagian dari rencana ke depan aja."
 >
-> 1. **`CONTENT_INDEX.csv` baris 1 mengklaim `audit-60-detik-rls-bocor` sebagai
->    "ep.1 seri Audit 60 Detik"** — status `QA`, skor `92`, durasi `58`. Tapi **folder proyek
->    itu tidak ada** di repo. Verifikasi: `project/audit-60-detik-rls-bocor/` → TIDAK ADA.
->    Satu baris menunjuk proyek hantu, dan klaim skor 92 tak bisa diaudit.
-> 2. **Konflik episode.** Reels-003 (`META.json`) juga mengklaim dirinya **episode 1** seri
->    "Audit 60 Detik" — dan reels-003 memang **sudah jadi** (v4.1, disetujui). Jadi siapa
->    pemegang nomor ep.1? Saya membuat proyek baru sebagai **episode 2** dengan asumsi reels-003
->    = ep.1. Jika Anda punya rencana lain, nomor itu mudah digeser.
+> Artinya: slug yang belum punya folder **bukan cacat data**. `CALENDAR.csv` adalah jadwal
+> ke depan (22 Sep 2026 – 23 Nov 2026), jadi proyeknya memang **direncanakan jadi**. Berbeda
+> dengan `CONTENT_INDEX.csv` dan `LEDGER_GLOBAL.csv`, yang merekam apa yang **sudah** terjadi
+> dan karenanya wajib menunjuk proyek yang eksis.
 >
-> Cara yang saya sarankan: hapus baris `audit-60-detik-rls-bocor` (proyek hantu), catat
-> reels-001, reels-002, dan reels-003 sebagai ep.1–? sesuai keputusan Anda, lalu tambahkan
-> ep.2 saat direkam. **Tapi ini mengubah registry hidup Anda, jadi menunggu izin.**
+> Konsekuensi praktis:
+> - Jangan "perbaiki" CALENDAR dengan mengganti slug ke proyek yang sudah ada — itu
+>   merusak rencana yang disengaja.
+> - Jangan laporkan 30 baris itu sebagai proyek hantu.
+> - Yang perlu terjadi: saat episode pertama dari rangkaian `reels-002-bocoran-rls` mulai
+>   dikerjakan, buat foldernya. Rencana sudah ada, eksekusi menyusul.
+> - `repurpose-sore` (rencana menunda sampai 2+ konten diarsip) tidak terpengaruh.
+
 
 ---
 
