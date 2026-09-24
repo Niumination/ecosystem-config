@@ -35,7 +35,7 @@
 
 || URL | Status | Catatan |
 |-----|--------|---------|
-| `niu-oss` (`niumination.web.id` + `www`) | ✅ **200 LIVE** | Niu-OSS-Dashboard — 212 halaman SSG, domain Verified + www configured-correctly (22 Sep 2026), GITHUB_TOKEN ✅ live (source: github-api), patch v11 `dc54276` (2026.13–14: SEO Article+feed; a11y WCAG AA; HintCard onboarding; mode densitas repo; PWA offline+share) |
+| `niu-oss` (`niumination.web.id` + `www`) | ✅ **200 LIVE** | Niu-OSS-Dashboard — 216 halaman SSG, domain Verified + www configured-correctly (22 Sep 2026), GITHUB_TOKEN ✅ live (source: github-api), HEAD `6891b7e` (2026.17 audit + minor bumps next/framer-motion/marked + fix SEO not-found) |
 | `pemdi-aceh-tengah.vercel.app` | ✅ 200 | PemdiAcehTengah — 52 OPD SSG, 70 pages |
 | `kms-spbe.vercel.app` | ✅ 200 | KMS SPBE |
 | `kune-ya-com.vercel.app` | ✅ 200 | Kune-Ya AI Chat RAG — K1-K5 ✅ |
@@ -153,6 +153,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 || **Profile README** | `agents/profile/` → `gh:Niumination/Niumination` |
 || **Agent Characters** | `agents/characters/` — 4 herdr agents (arsitek, pembangun, pengawas, penjaga) |
 || **Skill Ecosystem Guide** | `docs/skill-ecosystem-guide.md` — Panduan lengkap sistem skill (Hermes, Claude Code, OpenCode, Orca, Herdr) |
+|| **Cron Routing Registry** | `docs/registry/hermes-cron-routing.md` — routing output cron Hermes ke thread Telegram (thread 7402 = Cron / Otomasi) |
 
 ---
 
