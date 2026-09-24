@@ -1,7 +1,7 @@
 {
-  "fileCount": 815,
-  "generatedAt": "2026-09-24T12:23:08.188203+00:00",
-  "skillCount": 181,
+  "fileCount": 812,
+  "generatedAt": "2026-09-24T14:55:45.193111+00:00",
+  "skillCount": 180,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -11,10 +11,10 @@
       }
     },
     "autonomous-ai-agents/telegram-router-orchestration": {
-      "bundleHash": "d3ecf753c9985f441018a105030d9043c7b71d1ce675cd9b1f65c4d59e8662ff",
+      "bundleHash": "135386ca64d227b3c6402d906aaffc0c6fa4700c8a4386b882922f39d1f58ba6",
       "domain": "autonomous-ai-agents",
       "files": {
-        "SKILL.md": "caf733e0ebbd92124f73e78eb3df3831d92b881b11df477564c874825bd302a9",
+        "SKILL.md": "6211669d4cfacd6e07bfe8ec9ee3d75b647f3806ada4b05d5d85eadcf4063734",
         "references/model-mapping-2026-08-29.md": "54cc7d2e7e01cc82ffacc6bab07300ef203305290b4238f6ef31977697ccbe9b"
       }
     },
@@ -160,13 +160,13 @@
       }
     },
     "creative/gemini-vo-narration": {
-      "bundleHash": "21dc6c87442f19ebe6ff7cadaf2690d5f9322bf81aa9c903b7673febf678d158",
+      "bundleHash": "fdfb7703733fe3c058dbec0699c99153fabd4b033f69da2e549fbbf629392b50",
       "domain": "creative",
       "files": {
-        "SKILL.md": "ca31c3ceda0b2ad6bbe39ca32da5dece4c0cb59a2e2036b0a576b93a7de80329",
+        "SKILL.md": "bce8674fd137bd7e95c3d321a20b1f7d016c4ce633a49c733b8945cc06c7402d",
         "references/kasus-gagal.md": "99dd5e0b6ca459bb3c6aa4382825c973b6c81bfc4af578d58cc79222c55f09cd",
         "references/prompt-dan-tag.md": "d0e9ee39a5f86e9ba2b420bad9b5f3a7638760a1f5240be7eb03dfceaf9baf1c",
-        "scripts/gemini_vo.py": "2fba45a276ad55a8d6d370c9f59dd89822a02a65d2f479c24967d6ee4f2d76a4",
+        "scripts/gemini_vo.py": "a8184a47e928b1c84ccebbb32acb6164d82d52e4b10e6172eab831d863b6e01c",
         "scripts/periksa_vo.py": "9914f94afafd558e067bccaceb1a7e37e3acc2283222bf76e5fe64e79d6bbb2a"
       }
     },
@@ -600,6 +600,14 @@
         "SKILL.md": "b8ad02eb26ac673af8a34b2ae0ccd3b04c526e5ae2a96a190c8a8b14a140916d"
       }
     },
+    "ecosystem/arena-patch-adoption": {
+      "bundleHash": "b5f4cc642f15394f8368e7ba6a6a75e627d9680fad05583f92e4e884aa88b45f",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "abce294a8cf95f131f27e59a2b80d88d2476bc458f83c368f9452362656d62e9",
+        "references/lighthouse-triage.md": "679e105fccd36da2f66e3585326698c6f73a449b81607f46f69dd336216c423a"
+      }
+    },
     "ecosystem/cc-acehtengah-maintenance": {
       "bundleHash": "d0172b51d7246642e0efdb507a042964f1921e6b292f81345593efe7269b9566",
       "domain": "ecosystem",
@@ -734,6 +742,13 @@
         "scripts/generate-manifest.py": "584650d82d8a061bb7b0ebedf37fad96c4527000e4e2f43afadbc802cb32f47f"
       }
     },
+    "ecosystem/ecosystem-live-status-reporting": {
+      "bundleHash": "cc47a8f425a981c6e248ff494b7640420c4e496d74bb573223e16de824f51e11",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "5b38d5f76468bbf93f14a120969862a2f69730506a792f79c657600253b9ecf2"
+      }
+    },
     "ecosystem/ecosystem-provider-management": {
       "bundleHash": "67a768a3e92d4eab55be520b5988d1b78d45d3b1fbe001ed9b63172188168b0a",
       "domain": "ecosystem",
@@ -776,42 +791,6 @@
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "4dfe123b837a0fdf78f5264dbb495f798cf41be79cd9baf42e3ba699bea4269f"
-      }
-    },
-    "ecosystem/ecosystem/arena-patch-adoption": {
-      "bundleHash": "b5f4cc642f15394f8368e7ba6a6a75e627d9680fad05583f92e4e884aa88b45f",
-      "domain": "ecosystem/ecosystem",
-      "files": {
-        "SKILL.md": "abce294a8cf95f131f27e59a2b80d88d2476bc458f83c368f9452362656d62e9",
-        "references/lighthouse-triage.md": "679e105fccd36da2f66e3585326698c6f73a449b81607f46f69dd336216c423a"
-      }
-    },
-    "ecosystem/ecosystem/ecosystem-live-status-reporting": {
-      "bundleHash": "cc47a8f425a981c6e248ff494b7640420c4e496d74bb573223e16de824f51e11",
-      "domain": "ecosystem/ecosystem",
-      "files": {
-        "SKILL.md": "5b38d5f76468bbf93f14a120969862a2f69730506a792f79c657600253b9ecf2"
-      }
-    },
-    "ecosystem/ecosystem/niumination-ecosystem-change-discipline": {
-      "bundleHash": "58fa97dfc46054874128252688b07ab78b798c760c1111c4d03dff9d11e99e22",
-      "domain": "ecosystem/ecosystem",
-      "files": {
-        "SKILL.md": "34a5fcf52e41ca41c50c5d0c705277dc43df07b8e87e67adaf4f6c25e27291c9"
-      }
-    },
-    "ecosystem/ecosystem/provider-vetting": {
-      "bundleHash": "677e3f0b24b438fece3aa760186450c05a35a6821217155ee4d0e76508cb0712",
-      "domain": "ecosystem/ecosystem",
-      "files": {
-        "SKILL.md": "8b740c2791bc47b7165f815841ccee9526ea50a82b62b8ae3319545df91c2696"
-      }
-    },
-    "ecosystem/ecosystem/system-one-decisions": {
-      "bundleHash": "13650da96ccdd859288e73a839a9d06d3ad1d2bb0258e680c26a5868a925d6f7",
-      "domain": "ecosystem/ecosystem",
-      "files": {
-        "SKILL.md": "09486847f781e73a001bfd46c2360617a1a9ab54477593a9356fb72f6a63406d"
       }
     },
     "ecosystem/ekosistem-content-verification": {
@@ -1002,6 +981,13 @@
         "references/orb-fusion-engine.md": "179a0bf2d1e48d571eb696f9e0a68f289d37c0750a3399b5d9ea47024055baad"
       }
     },
+    "ecosystem/niumination-ecosystem-change-discipline": {
+      "bundleHash": "58fa97dfc46054874128252688b07ab78b798c760c1111c4d03dff9d11e99e22",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "34a5fcf52e41ca41c50c5d0c705277dc43df07b8e87e67adaf4f6c25e27291c9"
+      }
+    },
     "ecosystem/niumination-reference-adoption": {
       "bundleHash": "177dcd596ed4dc229e7243b0bda72bca09c941a3ed2e3651cfa5dd3dd9940612",
       "domain": "ecosystem",
@@ -1060,6 +1046,13 @@
         "SKILL.md": "c0009c2d6c6ae3f925a42a63fc0537e1322edcdad15b1bbd9a2be3a32281a549"
       }
     },
+    "ecosystem/provider-vetting": {
+      "bundleHash": "677e3f0b24b438fece3aa760186450c05a35a6821217155ee4d0e76508cb0712",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "8b740c2791bc47b7165f815841ccee9526ea50a82b62b8ae3319545df91c2696"
+      }
+    },
     "ecosystem/sapa-ai": {
       "bundleHash": "95e45ad4f4a048bab81b28a980e324af83cd3ddced4aff77628766c8b8018c9a",
       "domain": "ecosystem",
@@ -1107,11 +1100,11 @@
         "references/skill-bank-manifest-sync.md": "ed73748fe07bd9718d8c2493742dfc1e0cad006dd474be4d6e469d16c1e7714a"
       }
     },
-    "ecosystem/software-development/niumination-repo-commit-discipline": {
-      "bundleHash": "7eef6cb85ad534180ae23bc6811f81e9890cb93f4985a174671d638fbcb510cc",
-      "domain": "ecosystem/software-development",
+    "ecosystem/system-one-decisions": {
+      "bundleHash": "13650da96ccdd859288e73a839a9d06d3ad1d2bb0258e680c26a5868a925d6f7",
+      "domain": "ecosystem",
       "files": {
-        "SKILL.md": "567680bc18a2c756fe25da04747a1091eec22f54e68aa42f49e840ba38c84be2"
+        "SKILL.md": "09486847f781e73a001bfd46c2360617a1a9ab54477593a9356fb72f6a63406d"
       }
     },
     "ecosystem/up-eco": {
@@ -1629,6 +1622,13 @@
         "references/cost-telegram-p1-fix-2026-08-20.md": "7246d5172061c6f712729a8d8212e69f18887d89d7f4502498cacf9c61853719",
         "references/deploy-p2-fix-2026-08-20.md": "fda37d07e7b1b1d95ff9969cab5cce762c6a8d502aee485c12728beccb07766d",
         "references/quick-wins-cleanup-2026-08-20.md": "bc7dd27983ac5e2581ef2e25d6353a9bf390a6b5f25da7aaf2cb11919a3912b1"
+      }
+    },
+    "software-development/niumination-repo-commit-discipline": {
+      "bundleHash": "7eef6cb85ad534180ae23bc6811f81e9890cb93f4985a174671d638fbcb510cc",
+      "domain": "software-development",
+      "files": {
+        "SKILL.md": "567680bc18a2c756fe25da04747a1091eec22f54e68aa42f49e840ba38c84be2"
       }
     },
     "software-development/optimization": {
