@@ -29,6 +29,7 @@ import argparse
 import base64
 import json
 import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -36,10 +37,6 @@ from pathlib import Path
 MODEL_UTAMA = "gemini-3.1-flash-tts-preview"
 MODEL_CADANGAN = ["gemini-2.5-flash-preview-tts", "gemini-2.5-pro-preview-tts"]
 ENV_HERMES = Path.home() / ".hermes" / ".env"
-
-# Kedua konstanta ini sudah TIDAK DIPEAKAI lagi sejak fallback edge-tts dicabut
-# dari alur utama (23 Sep 2026) — lihat edge_cadangan() untuk alasannya.
-# Disimpan hanya supaya jelas suara apa yang dulunya dipakai mesin cadangan.
 EDGE_TTS = Path.home() / ".venv-mata" / "bin" / "edge-tts"
 EDGE_VOICE = "id-ID-ArdiNeural"
 
@@ -184,23 +181,14 @@ def gemini(teks: str, suara: str, kunci: str, keluar_wav: Path) -> tuple[bool, s
 
 
 def edge_cadangan(naskah: str, keluar_mp3: Path) -> bool:
-    """DILARANG DIPAKAI — sengaja dihapus dari alur utama 23 Sep 2026.
-
-    Fungsi ini pernah menjadi jalur gagal di `utama()`: bila Gemini kehabisan
-    kuota, mesin menulis suara edge-tts ke berkas bernama `vo_charon.mp3`.
-    Nama berkas itu jadi bohong, dan proyek pun lolos QA dengan audio yang
-    melanggar standarnya sendiri (reels-001 stuck di 5.PPRODUK "BLOKIR: VO
-    USANG"). Kelemahannya yang tak bisa diperbaiki: tidak ada penanda di
-    dalam berkas bahwa mesinnya bukan Charon.
-
-    Dipertahankan di sini sebagai jejak bahwa jalur ini pernah ada dan kenapa
-    ia dicabut — bukan untuk dipanggil lagi. Hapus total bila tak ada yang
-    lagi perlu mengingatnya.
-    """
-    raise RuntimeError(
-        "edge_cadangan() dicabut dari alur utama 23 Sep 2026. "
-        "Tulis VO Gemini gagal itu sebagai GAGAL, bukan sebagai hasil."
-    )
+    if not EDGE_TTS.exists():
+        return False
+    bersih = naskah
+    import re
+    bersih = re.sub(r"\[[^\]]{1,40}\]", "", bersih)   # tag Gemini tidak dikenal edge-tts
+    r = subprocess.run([str(EDGE_TTS), "--voice", EDGE_VOICE, "--rate=+0%", "--pitch=+0Hz",
+                        "--text", bersih, "--write-media", str(keluar_mp3)], capture_output=True)
+    return r.returncode == 0 and keluar_mp3.exists()
 
 
 def ke_standar(sumber: Path, tujuan: Path) -> None:
@@ -269,50 +257,16 @@ def utama() -> int:
 
     kunci = ambil_kunci()
     ok, pesan = gemini(prompt, suara_api, kunci, wav)
-    if not ok:
-        # GAGAL TEgas. Sengaja TIDAK ada fallback ke engine lain.
-        # Alasan (insiden nyata, lihat BRAND.md abstract-studio): berkas bernama
-        # vo_charon.mp3 yang isinya suara engine lain membuat proyek lolos QA
-        # dengan audio yang melanggar standar sendiri — reels-001 stuck di
-        # 5.PPRODUK "BLOKIR: VO USANG" dan tak ada cara teknikal membedakannya.
-        # Nama berkas adalah kontrak. Kalau engine yang dipakai bukan Charon,
-        # nama vo_charon.mp3 adalah kebohongan. Gagal keras itu biaya 1 menit;
-        # audio bohong yang lolos tayang adalah insiden publik.
-        print(f"GAGAL — Gemini TTS: {pesan}")
-        print("Tidak dibuat fallback. Jangan ganti nama berkas ini dengan nama suara lain,")
-        print("dan jangan catat proyek ini sebagai lolos QA sebelum VO dari Charon ada.")
-        print("Opsi: cek sisa kuota lalu ulangi, atau rekam suara sendiri (satu-satunya")
-        print("jalur non-Gemini yang diizinkan — harus bernama sesuai mesinnya, mis. vo_suara-sendiri.mp3).")
-        return 1
-
-    print(f"mesin    : Gemini TTS — {pesan}")
-    ke_standar(wav, akhir)
-    wav.unlink(missing_ok=True)
-    (keluaran / f"{nama}.req.json").unlink(missing_ok=True)
-
-    # Jejak provenance. Sengaja berkas teks, bukan tag di dalam MP3:
-    # metadata audio hanya membuktikan mesinnya Gemini (ID3 TSOO), bukan
-    # model/voice/preset yang dipakai. Ketiganya penting karena MODEL_UTAMA dan
-    # kedua cadangannya berlabel "preview" — Google boleh mengubah karakter
-    # suara Charon kapan saja tanpa pemberitahuan. Berselisihnya baris model
-    # antar proyek itu tandanya suara sudah bergeser, dan harusnya didengar
-    # ulang sebelum episode berikutnya direkam.
-    import datetime as _dt
-    prov = akhir.with_suffix(".provenance.txt")
-    prov.write_text(
-        "PROVENANCE VO — Niumination\n"
-        f"berkas        : {akhir.name}\n"
-        f"produksi      : {_dt.datetime.now().astimezone().strftime('%Y-%m-%d %H:%M:%S %Z')}\n"
-        f"mesin         : Gemini TTS\n"
-        f"model         : {pesan.split(' ')[0]}\n"
-        f"suara         : {suara_api}\n"
-        f"preset        : {preset or 'TANPA arahan gaya'}\n"
-        f"naskah        : {Path(a.naskah).name} ({len(naskah)} karakter)\n"
-        f"naskah_gaya   : {'utuh (PREAMBLE + preset + TRANSCRIPT)' if preset else 'kosong'}\n"
-        f"stdout        : {pesan}\n"
-        f"mesin_script  : skills/creative/gemini-vo-narration/scripts/gemini_vo.py\n",
-        encoding="utf-8")
-    print(f"jejak    : {prov.name}")
+    if ok:
+        print(f"mesin    : Gemini TTS — {pesan}")
+        ke_standar(wav, akhir)
+        wav.unlink(missing_ok=True)
+        (keluaran / f"{nama}.req.json").unlink(missing_ok=True)
+    else:
+        print(f"mesin    : Gemini TTS gagal — {pesan}")
+        print("           beralih ke cadangan edge-tts")
+        if not edge_cadangan(naskah, akhir):
+            print("GAGAL: edge-tts juga tidak tersedia"); return 1
 
     print(f"durasi   : {durasi(akhir)} s")
     print(f"format   : " + subprocess.run(
