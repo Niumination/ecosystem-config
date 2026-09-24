@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 178 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 180 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 178 ✅ Aktif
+> **Status:** 180 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -161,6 +161,9 @@
 | **revideo-motion-graphic** | ✅ Aktif | Bank Pusat | 4.4 KB | Use for motion-graphic videos: Revideo, Piper VO, FFmpeg. |
 | **system-one-decisions** | ✅ Aktif | Bank Pusat | 4.7 KB | Use when calling decision models (jev/systemone) via 9router. |
 | **provider-vetting** | ✅ Aktif | Bank Pusat | 6.5 KB | Use when vetting a third-party AI model before adopting it. |
+| **ecosystem-live-status-reporting** | ✅ Aktif | Bank Pusat | 4.6 KB | Use when producing live verified ecosystem status reports. |
+| **niumination-ecosystem-change-discipline** | ✅ Aktif | Bank Pusat | 5.8 KB | Editing Niumination files or committing to repos. |
+| **niumination-repo-commit-discipline** | ✅ Aktif | Bank Pusat | 7.0 KB | Committing changes to Niumination git repos. |
 
 ## Domain: Security
 
@@ -323,8 +326,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **178** |
-| **Total** | **178** |
+| ✅ Aktif | **180** |
+| **Total** | **180** |
 
 ## Catatan Penting — Potensi Konflik
 
