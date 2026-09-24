@@ -89,6 +89,7 @@
 | **llm-call-reliability** | ✅ Aktif | Bank Pusat | 6.5 KB | Use when LLM calls stall, time out, or return bad JSON. |
 | **pre-cleanup-artifact-preservation** | ✅ Aktif | Bank Pusat | 7.1 KB | Before deleting refs or files, preserve the only copy. |
 | **project-handover-package** | ✅ Aktif | Bank Pusat | 13.4 KB | Use when handing a project over to another team. |
+| **niumination-repo-commit-discipline** | ✅ Aktif | Bank Pusat | 7.0 KB | Committing changes to Niumination git repos. |
 
 ## Domain: Design
 
@@ -163,7 +164,6 @@
 | **provider-vetting** | ✅ Aktif | Bank Pusat | 6.5 KB | Use when vetting a third-party AI model before adopting it. |
 | **ecosystem-live-status-reporting** | ✅ Aktif | Bank Pusat | 4.6 KB | Use when producing live verified ecosystem status reports. |
 | **niumination-ecosystem-change-discipline** | ✅ Aktif | Bank Pusat | 5.8 KB | Editing Niumination files or committing to repos. |
-| **niumination-repo-commit-discipline** | ✅ Aktif | Bank Pusat | 7.0 KB | Committing changes to Niumination git repos. |
 
 ## Domain: Security
 
