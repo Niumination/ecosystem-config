@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 177 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 178 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 177 ✅ Aktif
+> **Status:** 178 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -132,7 +132,6 @@
 | **external-patch-adoption** | ✅ Aktif | Hermes (dipromosikan) | 3.1 KB | Apply an external patch stack to an ecosystem repo safely. |
 | **hermes-configuration** | ✅ Aktif | Hermes (dipromosikan) | 20.9 KB | Configure Hermes for Niumination: model mapping, hooks, MCP. |
 | **hermes-gateway-dm-troubleshooting** | ✅ Aktif | Hermes (dipromosikan) | 6.8 KB | Diagnose Hermes gateway errors and Telegram DM delays |
-| **mobile-harness-integration** | ✅ Aktif | Hermes (dipromosikan) | 33.8 KB | Add new agent runtimes to Mobile-Harness Android app. |
 | **model-checker** | ✅ Aktif | Hermes (dipromosikan) | 2.6 KB | Cek semua model 9router yang tersedia, test aksesibilitas, kategorikan gratis vs berbayar. Trigger via chat "/model-check" atau "cek model". Hasil: laporan markdown di scripts/model-checker-report.md … |
 | **niu-9router-maintain** | ✅ Aktif | Hermes (dipromosikan) | 6.9 KB | Maintenance router model lokal 9router (localhost:20128) untuk ekosistem Niumination — health check, tes akses semua model, disable provider/model yang gagal, restart daemon otomatis. Gunakan saat use… |
 | **niumination-reference-adoption** | ✅ Aktif | Hermes (dipromosikan) | 4.5 KB | Adopt ecosystem references and zips into skill bank. |
@@ -161,6 +160,7 @@
 | **reels-motion-render** | ✅ Aktif | Bank Pusat | 5.9 KB | Use when rendering a Reels/TikTok video with HyperFrames. |
 | **revideo-motion-graphic** | ✅ Aktif | Bank Pusat | 4.4 KB | Use for motion-graphic videos: Revideo, Piper VO, FFmpeg. |
 | **system-one-decisions** | ✅ Aktif | Bank Pusat | 4.7 KB | Use when calling decision models (jev/systemone) via 9router. |
+| **provider-vetting** | ✅ Aktif | Bank Pusat | 6.5 KB | Use when vetting a third-party AI model before adopting it. |
 
 ## Domain: Security
 
@@ -323,8 +323,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **177** |
-| **Total** | **177** |
+| ✅ Aktif | **178** |
+| **Total** | **178** |
 
 ## Catatan Penting — Potensi Konflik
 

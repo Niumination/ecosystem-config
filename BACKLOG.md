@@ -245,7 +245,7 @@ apps/niu-vermilion                        23  🟡     yes     no
 apps/cc-switch                            26  🟡     yes     no
 apps/kune-ya.com                          38  ⏸️     yes     no
 apps/ai-first-os                          54  ⏸️     yes     no
-apps/Mobile-Harness                       0  🟢     yes     no
+apps/Mobile-Harness                       0  ❌ Dihapus permanen 24 Sep 2026 — integrasi Hermes tidak tercapai; lihat docs/reports/HAPUS-PERMANEN-MOBILE-HARNESS-2026-09-24.md
 apps/mac-web-dashboard/hexstrike/repo    115  📦     yes     no
 brain                                      0  🟢     yes     no
 desktop/joy-connect-for-mac               17  🟡     yes     no
