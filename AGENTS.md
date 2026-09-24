@@ -71,7 +71,7 @@
 │   ├── niu-lkh/               ← LKH v3.1.1 — 100% Done — Vercel live ✅
 │   ├── PemdiAcehTengah/       ← Portal Pemda — 52 OPD, 70 pages — 🟢 Vercel
 │   ├── ai-file-manager-android/
-│   ├── ~~Mobile-Harness (standalone)~~     ← ❌ Dihapus permanen 24 Sep 2026 (integrasi Hermes tidak tercapai; upstream techjarves/Mobile-Harness tetap hidup)
+│   ├── ~~Mobile-Harness (standalone)~~     ← ❌ Dihapus permanen 24 Sep 2026 (integrasi Hermes tidak tercapai)
 │   ├── ai-first-os/
 │   ├── arch-web-dashboard/
 │   ├── cc-switch/             ← Tauri 2 multi-CLI — 🟢 v3.17.0
