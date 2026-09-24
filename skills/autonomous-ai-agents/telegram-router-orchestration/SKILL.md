@@ -71,6 +71,10 @@ Berikut adalah semua persona dan skills dari semua thread Telegram yang aktif, b
 *   **Nama Persona:** General / Command Center
 *   **Skills:** `clarify`, `session_search`, `brainstorming`, `project-orientation`
 
+**Thread ID: 7402** (dibuat 24 Sep 2026)
+*   **Nama Persona:** Cron / Otomasi
+*   **Fungsi:** Jalur khusus notifikasi output cronjob Hermes — thread 1 General dibebaskan dari notifikasi otomatis. Bukan persona agent; tidak ada model mapping khusus (pakai mapping cron global).
+
 **Thread ID: 802**
 *   **Nama Persona:** Research / Riset
 *   **Skills:** `arxiv`, `blogwatcher`, `google-notebooklm`, `notebooklm-tools`, `llm-wiki`, `ocr-and-documents`, `youtube-content`
