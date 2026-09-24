@@ -953,15 +953,6 @@
         "SKILL.md": "dae18846865208217593faca44fbe0ad498989d41fd603fb6bf05c0f818c4568"
       }
     },
-    "ecosystem/mobile-harness-integration": {
-      "bundleHash": "9d0fcac42676b504a7a6ce3d05404ada0f777bcbdb9df43efc1737ed78cdf44e",
-      "domain": "ecosystem",
-      "files": {
-        "SKILL.md": "44e4ee4ea20f46e23148e1addafb52dcfbab0bb1344bca94784a0ef9f46713f9",
-        "references/build-apk-guide.md": "65d5830325cdbba8c2bf116860639e8c5e84eef40197163394277ecb728fc7b1",
-        "references/opencode-endpoint-quirks.md": "e70c9a2b2b9d5084c06833324e837e19d529f085e04f4ce192b835e119abfe5d"
-      }
-    },
     "ecosystem/model-checker": {
       "bundleHash": "ad49a29a6524b981290dfcea8139cacbf7e7ca76aee79427e11206339644b58c",
       "domain": "ecosystem",
