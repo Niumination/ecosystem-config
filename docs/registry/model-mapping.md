@@ -76,8 +76,9 @@ credits`. Isi kredit di portal Nous bila ingin memakai nama model persis seperti
 | `channel_overrides.802` | `inclusionai/ling-3.0-flash-sante:free` | nous |
 | `channel_overrides.803` | `meituan/longcat-2.0:free` | nous |
 | `channel_overrides.804` | `deepseek/deepseek-v4-flash-0731:free` | openrouter |
-| `channel_overrides.1172` | `poolside/laguna-s-2.1:free` | nous |
-| `cron.model` | `meituan/longcat-2.0:free` | nous |
+|| `channel_overrides.1172` | `poolside/laguna-s-2.1:free` | nous |
+|| `channel_overrides.7402` | `meituan/longcat-2.0:free` | nous |
+|| `cron.model` | `meituan/longcat-2.0:free` | nous |
 
 **Model `:free` yang tersedia di nous (7, semuanya lolos tool-calling):** `inclusionai/ling-3.0-flash-fin:free`
 · `inclusionai/ling-3.0-flash-sante:free` · `meituan/longcat-2.0:free` ·
