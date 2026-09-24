@@ -1,7 +1,7 @@
 ---
 name: gemini-vo-narration
 description: "Voice-over narasi Bahasa Indonesia standar Niumination (Gemini TTS, gratis). Pakai saat membuat VO/narasi/dubbing untuk reels, video, atau pengumuman."
-version: 1.0.0
+version: 1.1.0
 author: Afrizal Munthe (Niumination)
 tags: [creative, tts, voice-over, narasi, gemini, gratis, audio]
 platforms: [macos, linux]
@@ -45,10 +45,35 @@ python3 scripts/gemini_vo.py --daftar-suara
 python3 scripts/gemini_vo.py naskah.txt --tanpa-gaya --nama charon_polos
 ```
 
+**Versi mesin:** 1.1.0 — jalur fallback edge-tts dicabut dari alur utama (23 Sep 2026).
+
 Keluaran selalu dinormalkan ke standar MATA: **44,1 kHz · stereo · 192 kbps**.
 
 Model: `gemini-3.1-flash-tts-preview` (utama) → cadangan `gemini-2.5-flash-preview-tts` →
-`gemini-2.5-pro-preview-tts` → terakhir `edge-tts` bila kuota habis. Peralihan otomatis.
+`gemini-2.5-pro-preview-tts`. Ketiganya otomatis hanya saat kuotanya habis.
+
+**Bila semua model Gemini gagal: mesin berhenti dan mengembalikan exit 1.** Tidak ada
+fallback ke engine lain. Alasan dihapus — satu berkas bernama `vo_charon.mp3` yang isinya
+suara mesin lain membuat proyek lolos QA dengan audio yang melanggar standar sendiri;
+reels-001 stuck di `5.PPRODUK — BLOKIR: VO USANG` dan tak ada cara teknikal membedakannya.
+Nama berkas adalah kontrak.
+
+Satu-satunya jalur non-Gemini yang diizinkan: **rekam suara sendiri**, dan berkasnya harus
+dinamai sesuai mesinnya (`vo_suara-sendiri.mp3`), bukan `vo_charon.mp3`.
+
+## Jejak provenance
+
+Setiap produksi VO menulis berkas pendamping `<nama>.provenance.txt` di folder keluaran:
+model, suara, preset, nama naskah, panjang naskah, dan tanggal produksi.
+
+Ini ada karena ketiga model berlabel `preview` — Google boleh mengubah karakter suara Charon
+kapan saja tanpa pemberitahuan. Membandingkan baris `model:` antar proyek adalah cara paling
+murah menyadari suaranya sudah bergeser. **Bila baris `model:` berubah, dengarkan episode
+sebelumnya dulu sebelum merekam yang baru.**
+
+Berkas ini sengaja `.txt`, bukan tag di dalam MP3: metadata audio hanya membuktikan mesinnya
+Gemini, bukan model/voice/preset yang dipakai.
+
 
 ## Suara
 
