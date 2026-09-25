@@ -1,7 +1,9 @@
 # Claude Code CLI — koneksi ke AgentRouter
 
 **Tanggal:** 2026-09-25
-**Status:** ✅ Selesai & teruji
+**Status:** ❌ DIBATALKAN — dihapus atas permintaan user (2026-09-25)
+
+> **CATATAN PENGHAPUSAN (13:33):** Claude Code CLI v2.1.282, `~/.claude/`, `~/.claude.json`, proxy `agentrouter-proxy.py` (:8077), plist launchd, semua file tmp debugging — dihapus total. `npm uninstall -g` selesai (2 packages), 0 proses tersisa, port 8077 bersih. Penyebab pembatalan: mode TTY interaktif tidak stabil — dialog "custom API key" (`sk-ant-...` ghost), "Not logged in", streaming macet di "● high ·/effort", error `no_events` di chat kedua. Mode `-p` (print) sudah sukses, tapi pengalaman TTY gagal → user minta hapus total.
 
 ## Ringkasan
 
