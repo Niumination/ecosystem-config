@@ -40,7 +40,10 @@ Kill switch (berprioritas dari atas):
 import json, os, pathlib, re, sys, time, urllib.error, urllib.request
 
 BASE = os.environ.get("NINE_ROUTER_URL", "http://localhost:20128")
-MODEL = os.environ.get("SYSTEMONE_MODEL", "openrouter/typesafe/jev-1.13")
+# Default = jev GRATIS via opencode (cost None, terverifikasi stabil 3x 2026-09-26).
+# Alternatif berbayar: SYSTEMONE_MODEL=openrouter/typesafe/jev-1.13 (~1.2e-05/panggilan).
+# jev-1.13 tanpa -free dari opencode = 401 (butuh workspace), jangan dipakai.
+MODEL = os.environ.get("SYSTEMONE_MODEL", "opencode/jev-1.13-free")
 MAX_Q = 10          # abuse: jangan bombardedir endpoint
 MAX_CHARS = 8000    # abuse: jangan kirim dokumen penuh ke pihak ketiga
 DISABLE_FILE = pathlib.Path.home() / ".hermes/systemone.disabled"
@@ -151,8 +154,13 @@ def health(key):
     try:
         with urllib.request.urlopen(f"{BASE}/v1/models", timeout=10) as r:
             ms = [m["id"] for m in json.loads(r.read()).get("data", [])]
-        hit = [m for m in ms if "jev" in str(m)]
-        print(f"katalog  : {len(ms)} model, jev={'ADA ' + str(hit) if hit else 'TIDAK ADA'}")
+        hit = [m for m in ms if "jev" in str(m).lower()]
+        in_cat = MODEL in ms
+        print(f"katalog  : {len(ms)} model · jev terdaftar: {hit or 'tidak ada'}")
+        print(f"           model dipakai: {MODEL}")
+        if not in_cat:
+            print(f"           ⚠ {MODEL} TIDAK ada di /v1/models — 9router tetap menerimanya")
+            print(f"             lewat /systemone (katalog hanya mendaftarkan sebagian model).")
     except Exception as e:
         print(f"katalog  : GAGAL {type(e).__name__}: {str(e)[:100]}")
     st, resp = call({
@@ -163,8 +171,9 @@ def health(key):
     print(f"probe    : HTTP {st}")
     if st == 200 and isinstance(resp, dict):
         a = resp.get("answers", {}).get("ping", {})
-        audit(f"HEALTH cost={resp.get('usage', {}).get('cost')}", True)
-        print(f"jawaban  : noul skor={a.get('noul')}, cost={resp.get('usage', {}).get('cost')}")
+        c = resp.get("usage", {}).get("cost")
+        audit(f"HEALTH cost={c}", True)
+        print(f"jawaban  : noul skor={a.get('noul')}, cost={'GRATIS' if c is None else c}")
         return 0
     audit(f"HEALTH-FAIL http={st}", False)
     print(f"detail   : {str(resp)[:250]}")
@@ -250,7 +259,8 @@ def main():
 
     st, resp = call(body, key)
     if st == 200 and isinstance(resp, dict):
-        audit(f"OK q={len(qs)} in~{est_in} cost={resp.get('usage', {}).get('cost')}", True)
+        cost = resp.get("usage", {}).get("cost")
+        audit(f"OK q={len(qs)} in~{est_in} cost={cost}", True)
         if as_json:
             print(json.dumps(resp, ensure_ascii=False, indent=2))
         else:
@@ -265,7 +275,10 @@ def main():
                     print(f"  confidence: {a.get('confidence')}")
                     print(f"  probabilitas: {json.dumps(a.get('probabilities', {}), ensure_ascii=False)}")
             u = resp.get("usage", {})
-            print(f"\n  token: in={u.get('input_tokens')} out={u.get('output_tokens')} cost={u.get('cost')} USD")
+            # cost None = model gratis (opencode/jev-1.13-free), bukan 0
+            c = u.get("cost")
+            label = "GRATIS" if c is None else f"{c} USD"
+            print(f"\n  token: in={u.get('input_tokens')} out={u.get('output_tokens')} cost={label} [{MODEL}]")
         return 0
 
     audit(f"FAIL http={st}", False)

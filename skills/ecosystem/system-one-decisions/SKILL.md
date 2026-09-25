@@ -93,7 +93,30 @@ Safety gates (all fail-closed — a failed gate means DO NOT call):
 4. Caps: max 10 questions/request, max 20 criteria, max 8000 chars of context.
 5. API key read from `~/.hermes/.env`, never printed, never in argv.
 
-Response shape differs by type — do not assume `choice`:
+## Free tier exists — default is `opencode/jev-1.13-free`
+
+Tested 2026-09-26 against `/systemone`:
+
+| Model | Result |
+|---|---|
+| `opencode/jev-1.13-free` | 200, `usage.cost` = **None (free)**, 5/5 stable |
+| `openrouter/typesafe/jev-1.13` | 200, cost ~1.2e-05/call |
+| `opencode/jev-1.13` (no `-free`) | 401 "Rate-limited Zen models require a workspace" |
+| `oc/big-pickle`, `opencode/gpt-5` | 500 / 401 — not decisions models |
+
+`scripts/systemone.py` defaults to the free one. Override with
+`SYSTEMONE_MODEL=openrouter/typesafe/jev-1.13`. Do not use opencode `jev-1.13`
+without `-free` — it always 401s.
+
+`/systemone` filters models itself: only entries tagged `kind:"systemone"`
+resolve. That tag is internal 9router metadata (`8325.js`) and is **not**
+exposed by `/v1/models` — the catalog lists 0 `opencode/*` models yet
+`opencode/jev-1.13-free` still works. So `/v1/models` is not a valid
+availability check for a decisions model; `--health` warns when the configured
+model is absent from the catalog. `capabilities.tools: true` in the catalog
+does NOT mean the model supports systemone (that flag is generic tool-calling).
+
+## Response shape differs by type — do not assume `choice`
 - `choice` → `{"type":"choice","choice":...,"confidence":...,"probabilities":{...}}`
 - `noul` → `{"type":"noul","noul":0.82}` — a **float score** 0..1, no `choice` key.
 
