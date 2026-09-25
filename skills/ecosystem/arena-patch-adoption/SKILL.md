@@ -96,6 +96,36 @@ Update `~/Desktop/Niumination/docs/registry/deployment-status.md` row for `niu-o
 - Note new HEAD commit + patch version label (e.g. `2026.13-14`)
 - Commit + push root repo
 
+## Step 8 — Sapa-ai variant (arena → sapa-ai)
+When the zip is `sapa-branch-dev#N.zip` (kit serah terima, not cumulative niu-oss):
+```bash
+# 1. Inventory: kit berisi audit-sapa-ai/ (docs 01-33, seri-patch 0001-0050, bundel) + sapa-ai/ (klon repo) + 00-UNTUK-HERMES.md
+# 2. Baca 00-UNTUK-HERMES.md — ia menyebut patch mana yang HARUS diterapkan (mis. "terapkan 0050")
+# 3. Basis: pastikan HEAD lokal = origin/dev; klon zip = HEAD + patch baru (log -14 lihat komit teratas)
+#    MD5 patch lama zip1 vs zip2: BEDA = patch baru (bukan duplikat) — cek subject: git log pada klon
+# 4. SHA: shasum -a 256 -c SHA256SUMS.txt
+# 5. Audit: grep -nE 'ghp_|sk-[A-Za-z0-9]{20,}' pada patch (hanya placeholder boleh ada)
+# 6. Apply: git am <new-patch> (bukan bundle — bundle ulang dari zip bila dev masih lama)
+# 7. Verify: tree hash vs klon zip (git rev-parse HEAD^{tree} kedua sisi) — WAJIB identik
+#    npx vitest run (harap 719 / 44 berkas), npm run typecheck, npm run build, bash scripts/pii-gate.sh (LEAK_COUNT 0)
+# 8. Uji terima (4-6 server) — lihat pitfall env di bawah
+# 9. Push dev; main TIDAK tersentuh (harus tetap ff00eb8...)
+```
+Kit claim "byte-identik" — verifikasi dengan `git rev-parse HEAD^{tree}` BUKAN MD5 file (tree hash lebih kuat).
+
+## Step 9 — DOX update (kedua varian)
+Update `~/Desktop/Niumination/docs/registry/deployment-status.md` baris repo target:
+- Bump komit + versi patch (mis. `0050`)
+- Catat jumlah uji (mis. 719) — dari `vitest run` aktual, BUKAN klaim kit
+- Commit + push root repo
+
+## Pitfalls (sapa-ai variant)
+- **Bocor env REVALIDATE_SECRET**: `scripts/uji-segarkan.mjs` mewarisi `...process.env` saat spawn app B (tanpa rahasia → fail-closed HARUS menolak). Bila `REVALIDATE_SECRET` ada di env global, app B TIDAK menolak → 6h GAGAL 5 butir palsu ("aplikasi B melaporkan kegagalan tercatat", "penjadwal keluar kode 3", dll). Verdict: **artefak setup, bukan cacat kode** — jalankan dengan `env -u REVALIDATE_SECRET -u ADMIN_TOKEN` atau set `SAPA_SKIP_SEGARKAN=1` lalu uji 6h terpisah.
+- **korpus beracun/produksi git-ignored**: `verifikasi/korpus-*.json` TIDAK boleh di-commit (ada di .gitignore). Salin dari klon zip bila hilang.
+- **Tree hash identik = sumber kebenaran**: setelah semua verifikasi, `git rev-parse HEAD^{tree}` harus sama dengan klon zip (`git -C /tmp/sapa-devN/sapa-ai rev-parse HEAD^{tree}`). Kalau beda, ada file yang tak ter-apply.
+- **Uji bersih-data 6e**: korpus "bersih" = korpus PRODUKSI (2.065) dengan `SAPA_WAJIB_TERAMBIL=0`; perbaikan 0050 membuat laporan memakai `ringkasDariHasil()` sehingga spasi/kerapian TIDAK dihitung sebagai "sel dibersihkan" — hasil harus `0 sel dibersihkan`.
+- **Eval det rate-limit**: 120 kueri, jeda ~62 dtk/24 query → uji terima penuh butuh ~10-15 menit. Biarkan jalan, jangan interupsi.
+
 ## Pitfalls
 
 - **Cumulative zips: always MD5-check first.** Applying already-applied patches causes conflicts. `md5 <patch>` is the fastest gate.
