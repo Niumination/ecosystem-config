@@ -154,6 +154,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 || **Agent Characters** | `agents/characters/` — 4 herdr agents (arsitek, pembangun, pengawas, penjaga) |
 || **Skill Ecosystem Guide** | `docs/skill-ecosystem-guide.md` — Panduan lengkap sistem skill (Hermes, Claude Code, OpenCode, Orca, Herdr) |
 || **Cron Routing Registry** | `docs/registry/hermes-cron-routing.md` — routing output cron Hermes ke thread Telegram (thread 7402 = Cron / Otomasi) |
+| **Telegram Thread Registry** | `docs/registry/telegram-threads.md` — persona + model + skill binding per thread MC group (thread 8853 = ASN / Admin Dinas, 25 Sep) |
 
 ---
 
