@@ -87,7 +87,7 @@
 │   ├── cc-acehtengah/         ← AI Command Center — Next.js 16
 │   ├── latticesend/           ← P2P device transfer
 │   ├── niu-cast/              ← Android Device Manager via ADB
-│   ├── niu-mission-control/   ← Agent Swarm — FastAPI + WebSocket
+│   ├── niu-mission-control/   ← Agent Swarm control plane — Next.js 15 + better-sqlite3 + SSE (v4.0.0 Aether)
 │   ├── sapa-ai/               ← SAPA Smart AI — SPLP-only, RSC+ISR 10m (kpi/stats/report/sapa cache, revalidate) ✅
 │   └── uacc/                  ← Universal AI Computer Control — 68 MCP tools ✅
 │

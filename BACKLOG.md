@@ -149,7 +149,7 @@ Desktop/Niumination/
 | Proyek | Priority | Status | Aktivitas Terakhir | Notes |
 |--------|:--------:|:------:|:------------------:|-------|
 | **cc-acehtengah** | **P2** | 💤 **Hiatus** | **2026-09-21** | Proyek pindah ke `sapa-ai` sesuai permintaan client. Produksi Vercel di-pause pemilik; repo GitHub di-archive + private (tag `v-hiatus-2026-09-21`). Folder lokal `services/cc-acehtengah/` tetap utuh — tidak dihapus. Restore: `docs/reports/HIATUS-CC-ACEHTENGAH-2026-09-21.md` |
-| **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **2026-09-07** | v3.0.0 → Redesign APEX-MC (orb golden ring + particle core + reasoning graph + overview HUD + status bar; vanilla JS/CSS, reduced-motion safe). PR#10 merged, PR#11 apex5 draft. MC OFF (localhost mati per "matikan localhost & update dokumentasi"). Swarm orchestrator |
+| **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **2026-09-26** | **v4.0.0 Aether** — Next.js 15 + better-sqlite3 + SSE, bukan FastAPI. 16 endpoint, auth mandatory, state machine + dispatcher (worker 3s, MAX_CONCURRENT 5, backoff 2^n), event bus SSE + `Last-Event-ID` replay, Kanban dnd-kit, ⌘K palette, Living Orb. `execSync python3` dihapus. Migrasi DB v3→v4 (`migrations/000_baseline_v3_to_v4.sql`, 5 ALTER, data utuh). Build hijau, test-sse 10/10 di DB v3 asli. **MC masih OFF** (port 5200 mati, belum ada service permanen) — 4 agent non-chief masih adapter `hermes` (butuh Hermes CLI + kredensial). Laporan: `docs/reports/ADOPSI-MC-V4-AETHER-DAN-MIGRASI-DB-2026-09-26.md` |
 | **niu-cast** | P2 | 🟢 **Active** | 2026-07-21 | v3.6.0 — Mac Connect Bridge |
 | **Niu-Flow** | P2 | 🟢 **Remote only** | 2026-07-28 | github.com/Niumination/niu-flow |
 | **latticesend** | P3 | 🟢 Active | 2026-08-10 | P2P file transfer — ✅ sudah punya remote |
