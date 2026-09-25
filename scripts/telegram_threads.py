@@ -20,7 +20,6 @@ if not _os.path.exists(f"{HERMES_HOME}/state.db"):
             break
 state_db = f"{HERMES_HOME}/state.db"
 error_log = f"{HERMES_HOME}/logs/gateway.error.log"
-threads = ["1", "802", "803", "804", "1172"]
 
 routing = {}
 sessions = {}
@@ -44,7 +43,7 @@ if os.path.exists(state_db):
         pass
 
 if os.path.exists(error_log):
-    for tid in threads:
+    for tid in routing:
         pat = re.compile(rf"thread=.*:{tid}([^0-9]|$)")
         matches = []
         with open(error_log, "r", errors="ignore") as f:
@@ -67,11 +66,16 @@ if yaml:
                 raw_ov = _json.loads(raw_ov)
             except Exception:
                 raw_ov = {}
-        for tid in threads:
+        for tid in list(routing) + [t for t in overrides if t not in routing]:
             ov = raw_ov.get(tid, {})
             overrides[tid] = (ov.get("provider", "-"), ov.get("model", "-"))
     except Exception:
         pass
+
+# Thread list = union dari routing (terdaftar di gateway) + config overrides
+# (thread yang sudah dikonfigurasi tapi belum pernah menyala). Hardcode 5 thread
+# membuat thread baru (mis. 7402 Cron, 8853 ASN) tidak pernah terpantau.
+threads = sorted(set(routing) | set(overrides), key=lambda t: (len(t), t))
 
 print(f"  {'Thread':<8} {'Status':<12} {'Model':<18} {'Provider':<10} {'Pesan':<8} Last Error")
 print(f"  {'-------':<8} {'------':<12} {'-----':<18} {'--------':<10} {'-----':<8} ----------")
@@ -89,7 +93,7 @@ for tid in threads:
     print(f"  {tid:<8} {status:<12} {model_disp:<18} {provider:<10} {str(msgs):<8} {err}")
 
 print("")
-print("  Last Activity (5 thread)")
+print(f"  Last Activity ({len(threads)} thread)")
 for tid in threads:
     if tid in routing:
         ts = routing[tid]
