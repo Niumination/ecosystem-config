@@ -13,6 +13,8 @@ User drops `niu-oss-vN.zip` (or similar) from arena.ai. Apply it to the target r
 
 Arena may deliver as either a `.zip` or a **folder of `.patch` files**; the steps are identical apart from the extraction step. If a bare folder arrives, skip Step 1's `unzip` and inventory it directly.
 
+**Not every arena zip is a patch stack.** Check the zip kind first — cumulative bundle, kit serah terima (`sapa-branch-dev#N.zip`), atau **snapshot/artefak zip** (HEAD zip == HEAD repo lokal, hanya untracked dokumen). Snapshot zip = task track-dokumen, bukan apply-patch; langkah lengkap di `references/non-patch-zip-variant.md`.
+
 ## Structure of arena bundles
 Arena bundles are **cumulative** — each new zip includes ALL previous patches PLUS new patches in a subfolder:
 ```
