@@ -1,6 +1,6 @@
 {
   "fileCount": 812,
-  "generatedAt": "2026-09-24T16:30:15.170369+00:00",
+  "generatedAt": "2026-09-24T17:24:30.609998+00:00",
   "skillCount": 180,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -601,10 +601,10 @@
       }
     },
     "ecosystem/arena-patch-adoption": {
-      "bundleHash": "b5f4cc642f15394f8368e7ba6a6a75e627d9680fad05583f92e4e884aa88b45f",
+      "bundleHash": "e62df962f3d0e1586e178dc46bd601c2e07219d81009dd902398365ec19b6a1e",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "abce294a8cf95f131f27e59a2b80d88d2476bc458f83c368f9452362656d62e9",
+        "SKILL.md": "e994716903222df08a2e4deded607d643cbbbb971e67faa2406ca00dd3b90f3c",
         "references/lighthouse-triage.md": "679e105fccd36da2f66e3585326698c6f73a449b81607f46f69dd336216c423a"
       }
     },
@@ -713,10 +713,10 @@
       }
     },
     "ecosystem/ecosystem-dox-maintenance": {
-      "bundleHash": "25b2891272343705960165f7dc3970b7c9f41991f974ebd5c2e7839841760483",
+      "bundleHash": "c831fd545a8f1cf5ca24a9532f1c3ce07661b135c6aaadaa99f7a672a1ecb19f",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "5104a0d94ddb47364c58297dfc659404ade54e5db9871465970a7318f5b98267",
+        "SKILL.md": "0fcd3be7f5fade8eacd72a95efd7c817ffeb4edf0363e6ebf747668622deca7e",
         "references/channel-prompts-editing.md": "3fd6dafc099042b175d944d2b63cbe19ac47be4b6cfdf96dabbda2fc2b448789",
         "references/dox-claims-audit.md": "e046015fb5922f058d2547258d6beecf0fe734baee614e111a329906df0534e0",
         "references/file-duplication-patterns.md": "9fe62d704dccb5db08a51071c722681c4f1d394e497955e1555b3e11e8ea4974",
