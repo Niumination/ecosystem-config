@@ -61,6 +61,45 @@ Response:
 - A decision model cannot be set as a normal Hermes model. It only works via: (a) curl/script hitting `/systemone` directly, or (b) a 9router **combo** model (`combos` table) that embeds the decision call.
 - Default answer when user asks "is systemone active in Hermes?": **no** — endpoint exists and works, but Hermes never calls it automatically.
 
+## Combo CANNOT embed a decisions model — PROVEN 2026-09-26
+
+Do not propose a 9router combo for jev. Verified empirically: a test combo
+`['openrouter/typesafe/jev-1.13','oc/big-pickle']` called via
+`/v1/chat/completions` returns HTTP 400
+`"typesafe/jev-1.13 is a decisions model and cannot be used with the
+chat/completions endpoint."`
+
+Why, from the 9router bundle (`server/chunks/8910.js`): combo resolution is
+`p(a,b){ if(a.includes("/")) return null; combos.find(b=>b.name===a) }` then a
+loop over `handleSingleModel(body, model)`. Every combo runs on the
+chat/completions path; jev is rejected upstream by OpenRouter before the
+fallback model is tried. The `combos.kind` column is written but never read in
+the resolution path — `kind:"systemone"` is a **model** attribute in the provider
+catalog (`8325.js`: `{id:"jev-1.13", name:"Jev 1.13", kind:"systemone"}`), not a
+combo type.
+
+## Wrapper script: scripts/systemone.py
+
+`scripts/systemone.py` (repo Niumination, chmod 755) is the only supported
+caller. It POSTs to `/systemone` and prints choice/noul results. No execution
+path: no subprocess, no eval/exec, no os.system, no file writes except a
+chmod 600 audit log at `~/.hermes/logs/systemone-audit.log`.
+
+Safety gates (all fail-closed — a failed gate means DO NOT call):
+1. `--allow` is required; without it the script is a dry-run printer.
+2. `SYSTEMONE_DISABLED=1` env or `~/.hermes/systemone.disabled` file = hard stop.
+3. Per-call cost cap (`--budget`, default 0.01 USD); estimate over cap = refuse
+   before any request.
+4. Caps: max 10 questions/request, max 20 criteria, max 8000 chars of context.
+5. API key read from `~/.hermes/.env`, never printed, never in argv.
+
+Response shape differs by type — do not assume `choice`:
+- `choice` → `{"type":"choice","choice":...,"confidence":...,"probabilities":{...}}`
+- `noul` → `{"type":"noul","noul":0.82}` — a **float score** 0..1, no `choice` key.
+
+Self-check (free, no network, no cost): `python3 scripts/systemone.test.py`.
+Health (costs ~1.2e-5 USD, does call the API): `python3 scripts/systemone.py --health`.
+
 ## Verification recipe
 
 ```bash

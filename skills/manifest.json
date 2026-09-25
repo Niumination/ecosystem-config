@@ -1,7 +1,7 @@
 {
-  "fileCount": 812,
-  "generatedAt": "2026-09-24T17:24:30.609998+00:00",
-  "skillCount": 180,
+  "fileCount": 817,
+  "generatedAt": "2026-09-25T17:29:48.305979+00:00",
+  "skillCount": 184,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -593,6 +593,13 @@
         "scripts/verify_snapshot.py": "cc10fcbe0d326da0b405d2517969e8d54896e1e80aee630ad250e258096fa5a4"
       }
     },
+    "ecosystem/9router-custom-provider-integration": {
+      "bundleHash": "4a70ecab6923eb324e2bb246ed39a67681fb8063a16f568f80bfbd47b52a9018",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "0047e7f85ee39a49d848025943bd830043e890139ab38f4eb8bcda7afed2a0b6"
+      }
+    },
     "ecosystem/9router-model-mapping": {
       "bundleHash": "9e39ed1739ea42b1a76e22094ff5a2c2f8fcf4807ace43bfb3642974165df2d1",
       "domain": "ecosystem",
@@ -601,11 +608,12 @@
       }
     },
     "ecosystem/arena-patch-adoption": {
-      "bundleHash": "e62df962f3d0e1586e178dc46bd601c2e07219d81009dd902398365ec19b6a1e",
+      "bundleHash": "2413d7b97bbf0f0a597d5443282a8ce4831406e8ad50c9c793ae3528fe89c71e",
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "e994716903222df08a2e4deded607d643cbbbb971e67faa2406ca00dd3b90f3c",
-        "references/lighthouse-triage.md": "679e105fccd36da2f66e3585326698c6f73a449b81607f46f69dd336216c423a"
+        "references/lighthouse-triage.md": "679e105fccd36da2f66e3585326698c6f73a449b81607f46f69dd336216c423a",
+        "references/non-patch-zip-variant.md": "a5662734155ca82d9e6c9ab1a621e25f9d14cba621fa7f41ad1cad99da27d91c"
       }
     },
     "ecosystem/cc-acehtengah-maintenance": {
@@ -688,6 +696,13 @@
       "domain": "ecosystem/devops",
       "files": {
         "SKILL.md": "cb962305c7d3a23e1abfeac3dc658debaada7ceebdc1f6e8eecac0ed81dc52ab"
+      }
+    },
+    "ecosystem/devops/vercel-feature-activation": {
+      "bundleHash": "42bcb0e6c4f6a5ed88ca86169e68b8a5bf1867ea64acc869fdf5f588afd2c998",
+      "domain": "ecosystem/devops",
+      "files": {
+        "SKILL.md": "da482ebdec74dc338922e4a8053b4aa289d160cf5818cf199e77f2695ef05946"
       }
     },
     "ecosystem/dotfiles-maintenance": {
@@ -791,6 +806,20 @@
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "4dfe123b837a0fdf78f5264dbb495f798cf41be79cd9baf42e3ba699bea4269f"
+      }
+    },
+    "ecosystem/ecosystem/relay-provider-client-wiring": {
+      "bundleHash": "257509d677f30cff452dfdfaf2302ec46102084b9f5def68e3dac66d0abb308e",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "20f6bb9848490f9705dfd749a345fee75e3b7d95177f3a6be6db5518568e74a1"
+      }
+    },
+    "ecosystem/ecosystem/telegram-thread-provisioning": {
+      "bundleHash": "c6ed0d83945de727f4e78fc22cda979fafe6bf4dbc856c0cc2dbf142bb7f40af",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "780b7794cccf3b9114673dabf104e528902ef55399f4369db6f351340282d0b2"
       }
     },
     "ecosystem/ekosistem-content-verification": {
@@ -1101,10 +1130,10 @@
       }
     },
     "ecosystem/system-one-decisions": {
-      "bundleHash": "13650da96ccdd859288e73a839a9d06d3ad1d2bb0258e680c26a5868a925d6f7",
+      "bundleHash": "f03ce74ae733c11ec2f836f0f91dd9d1eb2393c8b6cc039cd92e387e22c50d01",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "09486847f781e73a001bfd46c2360617a1a9ab54477593a9356fb72f6a63406d"
+        "SKILL.md": "fdc187c375a8db17cd73a5d36f0bb7c4c71de25b3a5a568c369d397e9b2e7b96"
       }
     },
     "ecosystem/up-eco": {
