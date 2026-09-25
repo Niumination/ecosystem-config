@@ -11,7 +11,9 @@ version: 1.0.0
 ## Trigger
 User drops `niu-oss-vN.zip` (or similar) from arena.ai. Apply it to the target repo, verify, push, update DOX.
 
-## Structure of arena zips
+Arena may deliver as either a `.zip` or a **folder of `.patch` files**; the steps are identical apart from the extraction step. If a bare folder arrives, skip Step 1's `unzip` and inventory it directly.
+
+## Structure of arena bundles
 Arena bundles are **cumulative** — each new zip includes ALL previous patches PLUS new patches in a subfolder:
 ```
 niu-oss-v12.zip/
@@ -70,9 +72,17 @@ arena base commit is NOT an ancestor of local HEAD — normal; `git am` applies 
 ```bash
 npm run typecheck 2>&1 | tail -3; echo "TC_EXIT=$?"
 npm test 2>&1 | grep -E "Test Files|Tests |passed|failed" | tail -4; echo "TEST_EXIT=$?"
+npm run build 2>&1 | tail -5; echo "BUILD_EXIT=$?"
 python3 ~/Desktop/Niumination/scripts/secret-scan-staged.py 2>&1 | tail -3; echo "SCAN_EXIT=$?"
 ```
 All exits must be 0 before pushing. If `npm test` fails with `AssertionError: expected 'X' to contain 'Y'` in `changelog.test.ts`, see sentinel pitfall below.
+
+After a successful build, count static pages from the **built HTML**, and reconcile against the number arena claims:
+```bash
+find .next/server/pages -name '*.html' | wc -l
+find .next/server/pages -maxdepth 1 -name '*.html' -exec basename {} .html \; | sort
+```
+If the count differs from arena's claim, recheck before writing DOX — see the `prerender-manifest` pitfall below.
 
 ## Step 6 — Push
 ```bash
@@ -95,3 +105,7 @@ Update `~/Desktop/Niumination/docs/registry/deployment-status.md` row for `niu-o
 - **`niumination/` folder in zip is a snapshot, not a git worktree**: use `.patch` files only.
 - **Base commit mismatch is normal**: skip `merge-base --is-ancestor` check — it always fails for arena patches.
 - **Docs page count from patch subject**: arena reports static page count in patch subject line (e.g. `212 statis`). Use that for DOX updates, not filesystem heuristics.
+  - Reconcile, don't trust: count built HTML (`find .next/server/pages -name '*.html' | wc -l`) and compare. If the counts disagree, find out why before writing either number into DOX.
+- **`prerender-manifest.json` undercounts Next.js pages**: do not use it to total static pages. It omits routes that do build to static HTML (observed: `/glosarium`, `/requirement`, `/404` present as `.html` in `.next/server/pages` but absent from the manifest). Count built HTML instead. The manifest is fine for listing which dynamic routes were prerendered — wrong as a total.
+- **Never invent names when writing DOX.** Every component, file, and path written into documentation must first be observed with `ls`/`find`/`grep` in the actual tree. A plausible-sounding name that does not exist (e.g. deriving `AsesorDial` from a `Dial` component used on the asesor page) is a false claim that survives until an external reviewer checks. One `ls components/` before writing the component list catches it.
+- **The DOX pass is part of the patch adoption, not an afterthought to it.** After `git am` and verification, update the repo's own `AGENTS.md` / `README.md` / `CHANGELOG.md` + the ecosystem `docs/registry/*` rows in the same pass, then commit and push both the repo and the root. A DOX pass left for "later" is how numbers go stale between the build and the write-up.

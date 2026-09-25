@@ -101,6 +101,8 @@ When updating Mobile-Harness DOX:
 - Private repos will 404 from public GitHub API; verify private-repo claims with `git ls-remote`, not raw.githubusercontent.com
 - Gateway restart cannot be performed from inside the gateway process; use a separate shell
 - **Mobile-Harness specific**: Always update ALL four documentation files when making architectural changes — missing any one creates a DOX gap
+- **Every name and number written into DOX must be verified against the tree first.** Run `ls`/`find`/`grep` over the real source before committing any claim about components, files, page counts, or test counts. A doc that states a component name which does not exist, or a count taken from a manifest that undercounts, is a false claim — it survives until an external reviewer checks it and damages the credibility of every other number in the same doc. When counts from two sources disagree, resolve the discrepancy before writing either.
+- **Distinguish stale claims from historical records.** A count or path written as the *current* state must be fixed when it drifts. The same number inside a dated changelog entry or migration note describes that point in time and stays — it is the record, not a live claim. Grep the doc, fix only the live rows.
 
 ## Verification
 ```bash
