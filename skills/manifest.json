@@ -1,6 +1,6 @@
 {
   "fileCount": 827,
-  "generatedAt": "2026-09-26T17:02:45.107475+00:00",
+  "generatedAt": "2026-09-26T17:36:36.301941+00:00",
   "skillCount": 189,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -781,11 +781,11 @@
       }
     },
     "ecosystem/ecosystem-recovery": {
-      "bundleHash": "bf0bf7775117791999bc840a4f336c4dc61e9af990438c783656342aa72e806d",
+      "bundleHash": "8c0e9d933a7d8b8503818ee5e6fe901f69f5b5b6c6a1147d2a89f00fd8431ba5",
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "c1ca6a181f224934b457f673dbf56d2f3ebe75f36dacf67e922aec151820a485",
-        "references/9router-3agent-hybrid-2026-08-28.md": "81b77203eb80eddd7511c7f537ebb8d3eb891a73e53e23196a4d5f24602660d2",
+        "references/9router-3agent-hybrid-2026-08-28.md": "c3375ad7edeb2f7b32750b34afeab295d3e341332b2beef8d14b25973b5aa566",
         "references/dotfiles-rust-9router-ghauth-2026-08-28.md": "007e3d970569a576726a1d1908ef0f1f760079ec420bcb1f62066fb1cefdcf4c",
         "references/full-recover-2026-08-28.md": "ecb8f7b071f8d7820a3eed0b196cb1d3c349d2fca6807e5a557f309b955c91dd",
         "references/splp-bapokting-chip-2026-08-28.md": "770510e9cfc21f71f87fdb36a2d8f2cfbb7e572f1ca7de4e6feb5e12e63c6e62"
@@ -1458,10 +1458,10 @@
       }
     },
     "security/git-security-sanitization": {
-      "bundleHash": "c21ebfc76b5c943d233048c1f479df2515fba08d12164bec6053bd6bc5a20fb1",
+      "bundleHash": "ced4ace751ee2186f884134a9909ef9661b471edbfe81fca3d7640377af143c9",
       "domain": "security",
       "files": {
-        "SKILL.md": "0181b1bfafef10b18b452e4a736fa365202430342022e5cea58c2b8aa5a986e2",
+        "SKILL.md": "0b40d8e8e14cd53de3fd6b1204ab8404121511a00045c6eabf1e3694496b49b1",
         "references/account-and-host-posture-sweep.md": "fdbb098c74cb4c247621d42dda5be2c3fe46dc20c96b8d9383aa5af2f45e512c",
         "references/credential-rotation.md": "f96e0c47b0476ad76fd28a0950c9da5dc0700695f16442b30acb943b2306cea1",
         "references/github-secret-alert-triage.md": "d39706398ab6f3ecaaa55aa45b6dc5521b4a7cca725f239c8ed7ff4e459e020a",
@@ -1693,10 +1693,10 @@
       }
     },
     "software-development/niumination-repo-commit-discipline": {
-      "bundleHash": "9dd988fd2edb86dffa3f49de7fe62a02765dca322f4633344595920c46e2006f",
+      "bundleHash": "2a973f14e9979fe6822a447d28ae22f0cb4574fe9bd59655e3269829f8961f12",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "567680bc18a2c756fe25da04747a1091eec22f54e68aa42f49e840ba38c84be2",
+        "SKILL.md": "646689b573409c5a9a17efbfc32261a76854dfb53cbc475fbd02a8c157d6d3db",
         "references/approval-gate-for-history-rewrites.md": "2a271454490706615e752c41821e582395a60f16bd9b86533c8171c2533b8b71"
       }
     },

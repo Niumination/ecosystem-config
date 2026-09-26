@@ -33,6 +33,8 @@ Class-level workflow for removing leaked credentials and PII from repositories, 
 13. **Never bypass the gate with `--no-verify` to get a fixture committed.** The gate firing on a deliberately-planted bait token is the gate working. Remove the trigger instead of the guard: **assemble the token at run time** from concatenated fragments (`BAIT="sk-""EXAMPLE""$(printf '%08d' 0)"`) so no key-shaped literal ever exists in the tree, then substitute it into the generated fixture. Reject `--no-verify` even when the file is provably fake — a bypass becomes the precedent for the next commit.
 14. **A gate self-test fixture must be able to fire.** Align the bait with the scanner's actual rule regex: a rule like `\bsk-[A-Za-z0-9]{20,}\b` requires 20+ characters, so a "realistic-looking" short bait (`sk-abc...6789`, 3 chars) can never match — the fixture's expectation is unsatisfiable and the self-test reports detection loss that is really a fixture bug. Read the rule, size the bait to it, and after any scanner rule change re-run the self-test.
 15. **Exempt provably-placeholder tokens from your own scanner, and only those.** Fixtures, docs and installer templates legitimately contain token-shaped strings; a scanner that flags them trains people to bypass it. Exempt a match only when the token itself carries a placeholder marker (`...`, `<`, `>`, `{{`, `${`, `xxxx`, `REDACTED`, `PLACEHOLDER`, `YOUR_`, `EXAMPLE`) — never exempt by path alone, which is how a real key in an excluded directory survives.
+16. **A scanner that lists paths from git output must pass `-c core.quotepath=false`.** By default git octal-escapes non-ASCII filenames in `ls-files` and `diff --cached --name-only`, and the escaped string is not a real path on disk. A scanner that silently skips unreadable paths still prints its clean verdict, so the bypass announces itself as success. Indonesian filenames legitimately contain `é` and `ü`, and em dashes, so this is reachable, not theoretical. Prove it the way every gate deserves: a two-pair comparison where content is identical and only the filename differs — an ASCII filename must be caught, a non-ASCII one must be caught after the fix, and an innocuous ASCII control file must also be caught. Without the control, a pass could mean "the secret slipped" rather than "the path was read".
+17. **Verify from the remote, not from the push exit code.** GitHub reports `The remote end hung up unexpectedly` / `failed to read response body from server` when the connection drops after the ref update was already accepted. Re-pushing to "fix" it risks a non-fast-forward rejection or a duplicate commit. Run `git fetch` and read `git log --oneline origin/main` for your commit; if it is there, the transfer completed and the local tree is simply behind — reconcile locally and stop.
 
 ## Workflow
 
@@ -77,7 +79,10 @@ bash scripts/pii-gate.sh .
 
 ### 5. Verify
 
+List staged paths through git with `-c core.quotepath=false`, or non-ASCII filenames are octal-escaped and the scanner reads paths that do not exist:
+
 ```bash
+git -c core.quotepath=false diff --cached --name-only --diff-filter=ACM
 bash scripts/pii-gate.sh .                 # expect 0 leaks
 npx tsc --noEmit 2>&1 | grep -c "error TS1" # expect 0
 npx vitest run                             # expect 0 failed
