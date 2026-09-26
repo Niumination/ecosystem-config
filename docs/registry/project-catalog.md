@@ -15,6 +15,7 @@
 | **Database-DiskominfoAT** | — (remote only) | — | `github.com/Niumination/Database-DiskominfoAT` | ⚪ Not deployed | 13 Okt 2025 | ⚪ Stale |
 | **Automata** | — (remote only) | — | `github.com/Niumination/Automata` | ⚪ Not deployed | 8 Okt 2025 | ⚪ Stale |
 | **Prakom-Surgawi** | — (remote only) | — | `github.com/Niumination/Prakom-Surgawi` | ⚪ Not deployed | 26 Sep 2025 | ⚪ Stale |
+| **asn-admin** | `dinas/asn-admin/` | Markdown, Python, Shell, DOCX | `github.com/Niumination/asn-admin` 🔒 **PRIVATE** | ⚪ Local (agent thread 8853) | 27 Sep 2026 | 🟢 **Active** — Admin ASN Diskominfo AT: format naskah dinas (Permendagri 1/2023), katalog 37 jenis naskah, PermenpanRB 6/2022 & 32/2020. Repo privat; output ASN dilarang masuk repo induk publik (`dinas/` di-gitignore root) |
 
 ### 🤖 AI & Coding Agent Ecosystem
 
