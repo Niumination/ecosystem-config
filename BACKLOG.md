@@ -131,8 +131,8 @@ Desktop/Niumination/
 | **abstract-studio** | 🆕 **Rumah Produksi Kreator** | Lokal (manual) | **2026-09-21** | `apps/abstract-studio/` 🔒 ZARYU ABSTRACT STUDIO — niche audit keamanan sistem AI; pilar terkancing 4→2→3; **repo PERTAMA ekosistem yang memakai Git LFS** (13 ekstensi biner); satu proyek = satu folder `project/<slug>/`; `output/` = source of truth, `~/Movies/` hanya tujuan unggah. Skill Hermes studio sengaja TIDAK masuk (milik `skills/content/`) — lihat `apps/abstract-studio/AGENTS.md` |
 | **PemdiAcehTengah** | 🟢 **Active** | Vercel | **PR#4 merged 2026-08-21** | Rumus resmi PermenPANRB 8/2026 + matriks kebutuhan bukti L1-L2 (NotebookLM). Masa penilaian mandiri selesai (bukti diupload eval.spbe.go.id) |
 | **Niu-LKH** | ✅ Done | GH Pages | 2026-08-18 | v3.1.1 — clean |
-| **niu-vermilion** | 🟢 Active | Vercel | 2026-08-07 | Stable — V1-V5 fixed |
-| **kune-ya.com** | 🟢 Active | Vercel | 2026-07-13 | Stable — K1-K5 fixed |
+| **niu-vermilion** | 💤 Paused | Vercel | 2026-08-07 | Stable — V1-V5 fixed. ⏸️ **Deployment PAUSED** (verified 26 Sep 2026) |
+| **kune-ya.com** | 💤 Paused | Vercel | 2026-07-13 | Stable — K1-K5 fixed. ⏸️ **Deployment PAUSED** (verified 26 Sep 2026) |
 | **niu-dash** | 🟢 Active | GH Pages | 2026-08-21 | v2.16.8 — clean |
 | **kopi-aceh-app-android** | ⚪ Sandbox | GitHub | — | Rancangan & source app Android Gerobak Kopi Keliling Aceh Tengah |
 | **JHermUSB-portable** | ✅ Done | GitHub | 2026-08-21 | committed 2 file skill sync |
@@ -184,7 +184,7 @@ Desktop/Niumination/
 
 || Proyek | Status | Deploy | Aktivitas Terakhir | Notes |
 ||--------|:------:|:------:|:------------------:|-------|
-|| **niu-gayo-agroclimate** | 🟢 Active | Vercel | 2026-09-07 | React 19/Vite 6 |
+|| **niu-gayo-agroclimate** | ⚪ Not deployed | — | 2026-09-07 | React 19/Vite 6. Tidak ada di akun Vercel (`archk4lis-projects`) per 26 Sep 2026 |
 || **pi-app-studio-mata** | 🟢 Active | Pi App Studio (Testnet) | 2026-09-16 | MATA Watchdog di Pi Network — `web/` repo mandiri `Niumination/mata-watchdog-pi`, `server/` Express Pi Payments |
 
 ### 🖥️ desktop/ — 4 Native
@@ -335,7 +335,7 @@ Sebelumnya (BACKLOG Jul 28) mencatat niu-dash/Niu-LKH dirty — sudah tidak vali
 |--------|:------:|--------|
 | GH Pages (lokal) | 5/5 ✅ | Niu-LKH, niu-dash, maze-3d, AuditTI-AT, DiskominfoAT |
 | GH Pages (remote) | 5/5 ✅ | Niu-Startpage, niu-private, NiuHomePage, zaryu.startpage, SPBE-DevOps-Academy |
-| Vercel | 4/5 ✅ | PemdiAcehTengah, kune-ya.com, niu-vermilion, VirtualAssistance |
+| Vercel | **3/13 🟢 live** | Verified 26 Sep 2026 via `vercel project ls` (13 proyek) + probe HTTP. **Live:** niu-oss (`niumination.web.id`), pemdi-aceh-tengah (308→200), sapa-ai. **⏸️ PAUSED (7):** tedeo-web, kune-ya-com, cc-acehtengah, niu-vermilion, niu-dash-fullstack, virtual-assistance, niu-private, landing. **⚪ Never deployed (2):** rekapitulasi-pemdi, niutui. Detail + bukti di `docs/registry/deployment-status.md` |
 
 ---
 
