@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 189 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 190 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 189 ✅ Aktif
+> **Status:** 190 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -173,6 +173,7 @@
 | **vercel-feature-activation** | ✅ Aktif | Bank Pusat | 7.5 KB | Use when activating a dormant feature on a Vercel app. |
 | **agent-shell-command-guards** | ✅ Aktif | Bank Pusat | 4.2 KB | Use when a shell command is blocked, stalls, or fills disk. |
 | **agent-thread-latency-diagnosis** | ✅ Aktif | Bank Pusat | 4.3 KB | Use when a chat thread is slow or unresponsive. |
+| **hermes-runtime-credential-resolution** | ✅ Aktif | Bank Pusat | 7.4 KB | Use when a provider looks broken; prove its real credential. |
 
 ## Domain: Security
 
@@ -335,8 +336,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **189** |
-| **Total** | **189** |
+| ✅ Aktif | **190** |
+| **Total** | **190** |
 
 ## Catatan Penting — Potensi Konflik
 

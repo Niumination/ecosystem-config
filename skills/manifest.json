@@ -1,7 +1,7 @@
 {
-  "fileCount": 827,
-  "generatedAt": "2026-09-26T17:36:36.301941+00:00",
-  "skillCount": 189,
+  "fileCount": 828,
+  "generatedAt": "2026-09-26T18:40:42.455187+00:00",
+  "skillCount": 190,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -814,6 +814,13 @@
       "domain": "ecosystem/ecosystem",
       "files": {
         "SKILL.md": "6f45bf548662fd06f85283c1c94e4fe41cd784d33d64c6430332c10652d269df"
+      }
+    },
+    "ecosystem/ecosystem/hermes-runtime-credential-resolution": {
+      "bundleHash": "8b317857017f99e2e83330da91095bd450789a5f3531cd34d053f2048e9be3b7",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "8efb8f27cc1d734d3834d879994bcaf8b9445c3c0b2f98785864986307e2f0c2"
       }
     },
     "ecosystem/ecosystem/relay-provider-client-wiring": {
