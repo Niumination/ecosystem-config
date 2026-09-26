@@ -9,7 +9,7 @@
 ---
 
 ## Skill Registry
-> Daftar lengkap skill + trigger + level ada di `docs/registry/skill-registry.md` (auto-generated). Jumlah saat ini: 121 skill.
+> Daftar lengkap skill + trigger + level ada di `docs/registry/skill-registry.md` (auto-generated). Jumlah saat ini: **187 skill** (bank `~/Desktop/Niumination/skills/`; `skill-manifest.py --check` = 0 mismatch).
 > Generator: `skills/sync-to-agents.sh` (tabel registry, jalan tiap sync) + `scripts/skill-manifest.py` (manifest SHA-256 + verifikasi). Jangan menyalin tabelnya kembali ke sini.
 
 ## Global Agent Rules (relocated from SOUL.md v1 — 2026-08-30)
@@ -138,7 +138,7 @@
 │   └── ponytail/              ← SKILL.md + MCP server code
 ├── archive/                   📦 Arsip proyek lama (4 inactive + ~25MB)
 ├── apps/niu-gayo-agroclimate/ ← Agro-Climate Kopi Gayo & Mitigasi Bencana — React 19/Vite 6 ✅
-├── skills/                    🧠 **ACTIVE** Bank skill terpusat — 121 skill terisi ✅
+├── skills/                    🧠 **ACTIVE** Bank skill terpusat — 187 skill terisi ✅
 │
 ├── .folder-icons/             🖼️ Custom Finder folder icons (PNG + @2x) — lokal, tidak di-track git
 ├── .gitignore                 — Semua folder proyek child di-ignore
@@ -233,7 +233,7 @@ _(Kosong — semua skill yang relevan sudah di Level 2 atau sudah di bank pusat.
 
 ### 🔗 Integrasi dengan Hermes Catalog
 
-Selain DOX injection di atas, Hermes juga punya **catalog skill di system prompt** (`<available_skills>`) yang berisi 184 skills dari `~/.hermes/skills/`. Dua mekanisme ini komplementer:
+Selain DOX injection di atas, Hermes juga punya **catalog skill di system prompt** (`<available_skills>`). Saat ini berisi **187 skill bank + 54 bawaan Hermes = 241** di `~/.hermes/skills/`. Dua mekanisme ini komplementer:
 - **DOX injection** → trigger keyword spesifik untuk ekosistem Niumination
 - **Hermes catalog** → daftar lengkap semua skill yang tersedia (agent bisa load kapan pun)
 
