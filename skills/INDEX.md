@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 180 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 187 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 180 ✅ Aktif
+> **Status:** 187 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -164,6 +164,13 @@
 | **provider-vetting** | ✅ Aktif | Bank Pusat | 6.5 KB | Use when vetting a third-party AI model before adopting it. |
 | **ecosystem-live-status-reporting** | ✅ Aktif | Bank Pusat | 4.6 KB | Use when producing live verified ecosystem status reports. |
 | **niumination-ecosystem-change-discipline** | ✅ Aktif | Bank Pusat | 5.8 KB | Editing Niumination files or committing to repos. |
+| **9router-custom-provider-integration** | ✅ Aktif | Bank Pusat | 4.7 KB | Use when adding a custom provider to 9router. |
+| **relay-provider-client-wiring** | ✅ Aktif | Bank Pusat | 3.3 KB | Use when wiring a client to a relay with WAF UA whitelist. |
+| **official-regulation-extraction** | ✅ Aktif | Bank Pusat | 6.8 KB | Use when research needs official Indonesian regulation text. |
+| **sensitive-private-repo** | ✅ Aktif | Bank Pusat | 6.9 KB | Use when starting a private repo for sensitive/PII data. |
+| **sqlite-schema-migration** | ✅ Aktif | Bank Pusat | 4.7 KB | Migrate a local SQLite schema without losing rows. |
+| **telegram-thread-provisioning** | ✅ Aktif | Bank Pusat | 7.6 KB | Use when adding a Telegram persona thread to a forum group. |
+| **vercel-feature-activation** | ✅ Aktif | Bank Pusat | 7.5 KB | Use when activating a dormant feature on a Vercel app. |
 
 ## Domain: Security
 
@@ -326,8 +333,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **180** |
-| **Total** | **180** |
+| ✅ Aktif | **187** |
+| **Total** | **187** |
 
 ## Catatan Penting — Potensi Konflik
 

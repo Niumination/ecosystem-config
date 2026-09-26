@@ -105,3 +105,8 @@ archive/projects/
 archive/projects-scan.json
 archive/Belum disentuh/
 archive/sapa-ai.bak/
+
+# Repo dinas ASN (PRIVAT + sensitif) — diabaikan dari repo induk PUBLIK.
+# Pola sama dengan labs/eKinerja-AfrizalMunthe (terverifikasi PRIVATE).
+# Jangan pernah di-commit ke repo publik ini.
+dinas/
