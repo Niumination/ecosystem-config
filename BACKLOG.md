@@ -129,7 +129,7 @@ Desktop/Niumination/
 | Proyek | Status | Deploy | Aktivitas Terakhir | Notes |
 |--------|:------:|:------:|:------------------:|-------|
 | **abstract-studio** | 🆕 **Rumah Produksi Kreator** | Lokal (manual) | **2026-09-21** | `apps/abstract-studio/` 🔒 ZARYU ABSTRACT STUDIO — niche audit keamanan sistem AI; pilar terkancing 4→2→3; **repo PERTAMA ekosistem yang memakai Git LFS** (13 ekstensi biner); satu proyek = satu folder `project/<slug>/`; `output/` = source of truth, `~/Movies/` hanya tujuan unggah. Skill Hermes studio sengaja TIDAK masuk (milik `skills/content/`) — lihat `apps/abstract-studio/AGENTS.md` |
-| **PemdiAcehTengah** | 🟢 **Active** | Vercel | **PR#4 merged 2026-08-21** | Rumus resmi PermenPANRB 8/2026 + matriks kebutuhan bukti L1-L2 (NotebookLM). Masa penilaian mandiri selesai (bukti diupload eval.spbe.go.id) |
+| **PemdiAcehTengah** | ✅ **Selesai** | Vercel | **2026-09-27** | Rumus resmi PermenPANRB 8/2026 + matriks kebutuhan bukti L1-L2 (NotebookLM). Patch 8–22 + CMS admin aktif (Neon `pemdi-cms`, 2 peran: koordinator + PJ OPD). 232 bukti (18 diterima/19 revisi/12 draf/183 belum). DOX audit lengkap — 10 drift diperbaiki (`ec57d1a`). **Pengembangan lanjutan hanya atas instruksi pemilik.** Catatan: sandi CMS produksi masih `admin123` (sementara) — ganti ke `openssl rand` saat instruksi pengembangan lanjutan |
 | **Niu-LKH** | ✅ Done | GH Pages | 2026-08-18 | v3.1.1 — clean |
 | **niu-vermilion** | 💤 Paused | Vercel | 2026-08-07 | Stable — V1-V5 fixed. ⏸️ **Deployment PAUSED** (verified 26 Sep 2026) |
 | **kune-ya.com** | 💤 Paused | Vercel | 2026-07-13 | Stable — K1-K5 fixed. ⏸️ **Deployment PAUSED** (verified 26 Sep 2026) |
