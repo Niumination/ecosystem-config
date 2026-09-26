@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 187 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 189 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 187 ✅ Aktif
+> **Status:** 189 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -171,6 +171,8 @@
 | **sqlite-schema-migration** | ✅ Aktif | Bank Pusat | 4.7 KB | Migrate a local SQLite schema without losing rows. |
 | **telegram-thread-provisioning** | ✅ Aktif | Bank Pusat | 7.6 KB | Use when adding a Telegram persona thread to a forum group. |
 | **vercel-feature-activation** | ✅ Aktif | Bank Pusat | 7.5 KB | Use when activating a dormant feature on a Vercel app. |
+| **agent-shell-command-guards** | ✅ Aktif | Bank Pusat | 4.2 KB | Use when a shell command is blocked, stalls, or fills disk. |
+| **agent-thread-latency-diagnosis** | ✅ Aktif | Bank Pusat | 4.3 KB | Use when a chat thread is slow or unresponsive. |
 
 ## Domain: Security
 
@@ -333,8 +335,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **187** |
-| **Total** | **187** |
+| ✅ Aktif | **189** |
+| **Total** | **189** |
 
 ## Catatan Penting — Potensi Konflik
 
