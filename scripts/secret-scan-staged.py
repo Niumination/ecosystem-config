@@ -31,7 +31,15 @@ ALLOWED_SUFFIX = re.compile(r"\.(example|sample|template)$")
 
 
 def staged_files():
-    out = subprocess.run(["git", "diff", "--cached", "--name-only", "--diff-filter=ACM"],
+    # -c core.quotepath=false WAJIB: dengan nilai default (true), git meng-escape
+    # nama berkas berhuruf non-ASCII (mis. é, ü, em dash — lazim di berkas dinas
+    # Indonesia) menjadi bentuk berpetik oktal seperti "nota_\303\251.txt". Jalur
+    # ter-escape itu tidak ada di disk, sehingga isinya tak terbaca dan lolos senyap
+    # tanpa temuan — padahal berkas lain dengan isi IDENTIK ikut ter-commit.
+    # Ditemukan saat audit PR asn-admin#1 (26 Sep 2026); perbaikan serupa ada di
+    # dinas/asn-admin/scripts/pre-commit-scan.py.
+    out = subprocess.run(["git", "-c", "core.quotepath=false", "diff", "--cached",
+                          "--name-only", "--diff-filter=ACM"],
                          capture_output=True, text=True).stdout
     return [f for f in out.splitlines() if f.strip()]
 
