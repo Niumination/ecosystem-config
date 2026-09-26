@@ -17,7 +17,7 @@ Setiap thread = persona terisolasi. Sumber kebenaran: `~/.hermes/config.yaml` �
 | 804 | QA / Pengawas | `deepseek/deepseek-v4-flash-0731:free` | openrouter | ~10 | ✅ Audit-focused | codebase-audit, verification, plan-compliance, redteam |
 | 1172 | Konten Kreator | `poolside/laguna-s-2.1:free` | nous | ~146 | ✅ Content creation | ghost, humanizer, baoyu, claude-design, manim, hyperframes |
 | 7402 | Serbaguna / Cadangan (27 Sep 2026) | `meituan/longcat-2.0:free` | nous | ~3 | ✅ Flex-thread prompt (27 Sep 2026) | ❌ None |
-| 8853 | Admin Dinas ASN | `opencode-combo` | 9router | ~285 | ✅ ASN/SPBE-focused | skp-e-kinerja, document-to-action-items, meeting-action-items |
+| 8853 | Admin Dinas ASN | `sensenova-6.8-flash-lite` | huancheng | ~357 | ✅ ASN/SPBE-focused | skp-e-kinerja + 3 builtin productivity (tanpa entri bank) |
 
 ## Flex-Thread Convention (NOT in channel_prompts)
 
@@ -49,15 +49,15 @@ Dispatch cross-thread via Mission Control: `POST http://localhost:3000/api/mc/di
 | `804` | QA / Pengawas | `deepseek/deepseek-v4-flash-0731:free` | openrouter | `codebase-audit` | audit, kepatuhan |
 | `1172` | Kreator / Konten | `poolside/laguna-s-2.1:free` | nous | `ghost`, `humanizer` | konten publik |
 | `7402` | Serbaguna / Cadangan (27 Sep 2026) | `meituan/longcat-2.0:free` | nous | — | prompt flex-thread dipasang 27 Sep 2026; sebelumnya dicatat "Cron/Otomasi" tapi tidak ada aktivitas cron di state.db (hanya sesi tes "halo"); ⚠️ `:free` sudah 404 di nous (25 Sep 2026) — belum diganti |
-| **`8853`** | **ASN — Admin Dinas** (25 Sep 2026) | `opencode-combo` | **9router** | `skp-e-kinerja`, `document-to-action-items`, `meeting-action-items`, `weekly-review-planning` | administrasi dinas, SKP/eKinerja, agenda rapat/tenggat |
+| **`8853`** | **ASN — Admin Dinas** (25 Sep 2026) | `sensenova-6.8-flash-lite` | **huancheng** | `skp-e-kinerja`, `document-to-action-items`, `meeting-action-items`, `weekly-review-planning` | administrasi dinas, SKP/eKinerja, agenda rapat/tenggat. **27 Sep: model diubah ke huancheng tanpa fallback (permintaan pemilik); 3 skill non-`skp-e-kinerja` = builtin Hermes, jadi sengaja tanpa entri bank (aturan skill-bank-management: builtin JANGAN dipromosikan)** |
 
 ## Thread 8853 — ASN / Admin Dinas
 
 Dibuat 25 Sep 2026 atas permintaan pemilik untuk pekerjaan ASN (Pranata Komputer Diskominfo Aceh Tengah).
 
 - **Fokus:** administrasi dinas harian (surat, dokumen, notulensi rapat), kinerja ASN (SKP/eKinerja: target, capaian, bukti), agenda dinas (rapat, tenggat, tugas), dukungan Pemdi/SPBE bila diminta
-- **Model:** `9router/opencode-combo` — teruji 8/8 stress test (payload Bahasa Indonesia tema ASN, 25 Sep 2026) + probe gateway 200. Bukan combo model yang dilarang; ini nama model eksplisit di katalog 9router.
-- **Prompt:** persona 3 blok mengikuti pola thread lain (persona + ATURAN DOKUMEN + KREDENSIAL), 1.822 char
+- **Model:** `huancheng/sensenova-6.8-flash-lite` — ditetapkan 27 Sep 2026 atas permintaan pemilik, **tanpa fallback** (fallback model di Hermes bersifat global, bukan per-thread, sehingga membangun fallback khusus untuk thread ini = modifikasi core framework). Sebelumnya `9router/opencode-combo` (teruji 8/8 stress test payload Bahasa Indonesia tema ASN, 25 Sep 2026) — note: runtime ternyata sudah lama berjalan di huancheng, jadi ini menambal drift config-vs-reality.
+- **Prompt:** persona 3 blok mengikuti pola thread lain (persona + ATURAN DOKUMEN + KREDENSIAL), 2.019 char. **27 Sep 2026:** instruksi dispatch endpoint MC (`localhost:5200`) dihapus — MC bukan daemon persisten sehingga endpoint itu mati tiap sesi agent berakhir, menyebabkan delegasi lintas-thread mati diam-diam. Diganti cronjob dengan delivery `platform:chat_id` + verifikasi file output di `~/.hermes/cron/output/`, atau `delegate_task` untuk pengerjaan internal.
 - **Pemasangan:** script `/tmp/pasang-thread-tls.py` (backup config otomatis + validasi parse + rollback). Konfig selesai 15:01 WIB, pesan konfirmasi terkirim ke thread (exit 0).
 
 ## Catatan
