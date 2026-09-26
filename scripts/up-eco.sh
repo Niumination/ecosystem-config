@@ -141,7 +141,7 @@ check_unknown_folders() {
   done
 
   # Cek di setiap kategori untuk proyek tak terdaftar
-  local categories=(apps services sites desktop agents labs sandbox)
+  local categories=(apps services sites desktop agents labs sandbox dinas)
   for cat in "${categories[@]}"; do
     [ ! -d "$NIUMINATION/$cat" ] && continue
     for item in "$NIUMINATION/$cat"/*/; do

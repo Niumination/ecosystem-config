@@ -117,6 +117,9 @@
 │   ├── niumination-workspace/
 │   └── eKinerja-AfrizalMunthe/  ← Bukti dukung eKinerja Sem 1 2026 🔒 private
 │
+├── dinas/                     🏛️ 1 proyek — administrasi ASN (diskrit dari pipeline publik)
+│   └── asn-admin/             ← Sistem admin ASN Diskominfo AT 🔒 **PRIVATE** — repo `Niumination/asn-admin`; baca `dinas/asn-admin/AGENTS.md`. Output ASN dilarang masuk repo induk publik (`dinas/` di-gitignore root).
+│
 ├── sandbox/                   💤 5 proyek — playground (720 MB)
 ├── inactive-2026-09/          💤 4 proyek — archived (dormant)
 │   ├── aistudio-google/
