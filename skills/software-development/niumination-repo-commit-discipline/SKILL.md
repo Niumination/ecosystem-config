@@ -62,6 +62,20 @@ remote_sha=$(git ls-remote origin refs/heads/main | tr -d '\t' | cut -d' ' -f1)
 
 The `tr -d '\t'` is not optional cosmetics. Without it, identical trees report as diverged because `git ls-remote` emits a trailing tab. Then confirm `git status --porcelain` is empty — and check each repo separately, since the root `git status` cannot see ignored nested repos.
 
+### Ambiguous push states
+
+On this machine pushes commonly fail with `The remote end hung up unexpectedly` or `failed to read response body from server`. Those messages describe the connection dropping, not the push being rejected — the ref update may already be on the server.
+
+Do not re-push to "fix" it. Diagnose once:
+
+```bash
+git fetch origin
+git log --oneline -3 origin/main      # is my commit already there?
+git status --porcelain
+```
+
+If your commit appears in `origin/main`, the transfer succeeded and the local side is simply stale: reconcile with `git reset --hard origin/main` (or a fetch-driven rebase) and stop. If it is genuinely missing, then — and only then — retry the push. Note that concurrent commits from other threads move the remote twice during one push; the end state can still be correct even though the command reported failure. Re-pushing a commit that already landed produces a non-fast-forward rejection, and a retry that lands twice produces two commits where one was intended.
+
 ## Pitfalls
 
 - **Never `git add` in one repo expecting nested files to follow.** They will not.

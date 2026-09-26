@@ -5,7 +5,7 @@ Integrate 9Router (`http://localhost:20128/v1`, 78 models, 7 connections) to Her
 
 ## DB Schema (verified)
 - `providerConnections`: 7 rows — `gemini(gemini-aistudion) on`, `kimi(Account1) on`, `github(Niumination) on`, `ollama(ollama-cloud) on`, `nvidia(nim) on`, `antigravity(archk4li@gmail.com) on`, `codebuddy-intl(Account1) off`
-- `apiKeys`: 1 row — `sk-8948a1f10508b1c5-tr1j0r-73039dc6` (Default Key)
+- `apiKeys`: 1 row — `sk-REDACTED-...9dc6` (Default Key)
 - `providerNodes`: 0 rows (empty — connections used)
 - `kv`: `disabledModels|gemini|[gemini-3.5-flash-lite, ...]`
 - File: `~/.9router/db/data.sqlite` + WAL at `data.sqlite-wal`
