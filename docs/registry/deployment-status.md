@@ -31,16 +31,39 @@
 
 ## Deployment Status
 
-### 🟢 Vercel (5 Live, 1 Down)
+### 🟢 Vercel — 3 Live, 7 Paused, 3 Never Deployed
 
-|| URL | Status | Catatan |
-|-----|--------|---------|
-| `niu-oss` (`niumination.web.id` + `www`) | ✅ **200 LIVE** | Niu-OSS-Dashboard — 216 halaman SSG, domain Verified + www configured-correctly (22 Sep 2026), GITHUB_TOKEN ✅ live (source: github-api), HEAD `6891b7e` (2026.17 audit + minor bumps next/framer-motion/marked + fix SEO not-found) |
-| `pemdi-aceh-tengah.vercel.app` | ✅ 200 | PemdiAcehTengah — 52 OPD SSG, 67 pages (Patch 8–21, 25 Sep) · 59 tes · uji:tugas 8/8 · audit-ui 0 overflow/tindih · HEAD `d51f8ce` |
-| `kms-spbe.vercel.app` | ✅ 200 | KMS SPBE |
-| `kune-ya-com.vercel.app` | ✅ 200 | Kune-Ya AI Chat RAG — K1-K5 ✅ |
-| `virtual-assistance.vercel.app` | ✅ 200 | VirtualAssistance |
-| `niu-cyber-search-engine.vercel.app` | ❌ 404 | Niu-Cyber-Search-Engine — **belum dideploy** |
+> **Verifikasi 26 Sep 2026** via `vercel project ls` (CLI 59.3.0, scope `archk4lis-projects`, 13 proyek) + probe HTTP ke tiap hostname. Status **PAUSED** dikonfirmasi dari body respons `DEPLOYMENT_PAUSED`, bukan dari kode 503 saja.
+> ⚠️ Seksi ini tadinya mengklaim "5 Live" dengan `kms-spbe` + `virtual-assistance` HTTP 200 — **keduanya salah**: `kms-spbe` tidak ada di akun Vercel (DNS mati, HTTP 000), dan `virtual-assistance` hostname sebenarnya `virtual-assistance-pi` yang ternyata **PAUSED**.
+
+| Proyek | Hostname | Status | Catatan |
+|--------|----------|--------|---------|
+| `niu-oss` | `niumination.web.id` + `www` | ✅ **200 LIVE** | Niu-OSS-Dashboard — 216 halaman SSG, domain Verified + www configured-correctly, HEAD `6891b7e`. Deploy terbaru 21m sebelum verifikasi |
+| `pemdi-aceh-tengah` | `pemdi-aceh-tengah.vercel.app` | ✅ **308 → 200** | PemdiAcehTengah — 52 OPD SSG, 67 pages (Patch 8–21, 25 Sep) · 59 tes · HEAD `d51f8ce`. 308 = redirect normal ke `/` |
+| `sapa-ai` | `sapa-smart-ai.vercel.app` | ✅ **200 LIVE** | SAPA Smart AI — redirect ke `/dashboard`. Proyek development, hiatus menunggu client |
+| `tedeo-web` | `tedeo-web.vercel.app` | ⏸️ **PAUSED** (503) | **Body: `DEPLOYMENT_PAUSED`**. Kredensial seed lama (`admin123`) ada di repo publik `ecosystem-config` — **aman selama paused** (tidak ada login yang bisa dieksploitasi dari luar). Tidak dihapus dari git history, lihat catatan di bawah |
+| `kune-ya-com` | `kune-ya-com.vercel.app` | ⏸️ **PAUSED** (503) | Kune-Ya AI Chat RAG — `DEPLOYMENT_PAUSED` |
+| `cc-acehtengah` | `cc-acehtengah.vercel.app` | ⏸️ **PAUSED** (503) | Sesuai hiatus 21 Sep 2026 — produksi di-pause pemilik |
+| `niu-vermilion` | `niu-vermilion-archk4lis-projects.vercel.app` | ⏸️ **PAUSED** (503) | Second Brain — `DEPLOYMENT_PAUSED` |
+| `niu-dash-fullstack` | `niu-dash-fullstack-archk4lis-projects.vercel.app` | ⏸️ **PAUSED** (503) | `DEPLOYMENT_PAUSED` |
+| `virtual-assistance` | `virtual-assistance-pi.vercel.app` | ⏸️ **PAUSED** (503) | ⚠️ Registry lama salah tulis 200 — hostname tanpa `-pi` (`virtual-assistance.vercel.app`) tidak pernah ada |
+| `niu-private` | `niu-private.vercel.app` | ⏸️ **PAUSED** (503) | `DEPLOYMENT_PAUSED` |
+| `landing` | `landing-beige-theta.vercel.app` | ⏸️ **PAUSED** (503) | Landing page — ⚠️ **domain kustom tetap 200** karena `niumination.web.id` diarahkan ke `niu-oss`, bukan ke `landing` |
+| `rekapitulasi-pemdi` | — | ⚪ **Never deployed** | Tidak ada production URL. Node 22.x (proj lama) |
+| `niutui` | — | ⚪ **Never deployed** | Tidak ada production URL |
+| `kms-spbe` | — | ❌ **Tidak ada di akun** | Proyek tidak terdaftar di `archk4lis-projects`. DNS `kms-spbe.vercel.app` mati (HTTP 000). **Dihapus dari daftar ini** — tidak bisa dipertahankan sebagai "Live" |
+| `niu-cyber-search-engine` | — | ❌ **Tidak ada di akun** | Sama — tidak ada di akun, DNS mati. Tetap ❌ 404 (belum dideploy) |
+
+#### 📌 Catatan keputusan — `docs/references/akun-login.md` (26 Sep 2026)
+
+`docs/references/akun-login.md` ada di repo **PUBLIK** `Niumination/ecosystem-config` sejak commit `bbd01ae` (init, ±2 bulan). Isinya **tidak memuat nilai API key** — hanya catatan status rotasi. Yang ada:
+
+- Kredensial seed TEDEO (nomor HP + `admin123`) — baris 14
+- Catatan `OPENAI_API_KEY` belum dirotasi
+
+**Keputusan pemilik 26 Sep 2026: tidak perlu rotasi sekarang, cukup pause Vercel.** `tedeo-web` sudah PAUSED sehingga tidak ada endpoint login yang bisa diserang. Nilai kredensial **tidak** dihapus dari riwayat git (perbaikan butuh `git filter-repo` + force-push + klon ulang semua pihak).
+
+**Sisa risiko (diterima pemilik):** kredensial tetap terbaca di arsip git publik. Selama deployment paused, risiko praktisnya rendah. Kalau proyek di-unpause, **harus** rotasi dulu.
 
 ### 🟢 GitHub Pages (10 Live)
 
