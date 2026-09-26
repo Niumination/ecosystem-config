@@ -65,11 +65,12 @@
 | `ecosystem/ecosystem-dox-maintenance` | ecosystem | 7 | Bank Pusat | Audit and repair DOX/SOUL hygiene across the ecosystem. |
 | `ecosystem/ecosystem-gitops` | ecosystem | 3 | Bank Pusat | Use when migrating GitHub remotes HTTPS/SSH or bulk remotes. |
 | `ecosystem/ecosystem-hibernation` | ecosystem | 2 | Bank Pusat | Use when a project must be retired temporarily: archive GitHub, pause Vercel, back up to vault, delete the local folder, and update active references — fully reversible. Reused for cc-acehtengah 21 Sep 2026. |
-| `ecosystem/ecosystem-live-status-reporting` | ecosystem | 1 | Bank Pusat | Use when producing live verified ecosystem status reports. |
+| `ecosystem/ecosystem-live-status-reporting` | ecosystem | 2 | Bank Pusat | Use when producing live verified ecosystem status reports. |
 | `ecosystem/ecosystem-provider-management` | ecosystem | 9 | Bank Pusat | Provider AI lintas 3 agent + pilih model produksi. |
 | `ecosystem/ecosystem-recovery` | ecosystem | 5 | Bank Pusat | Full ecosystem recovery after delete or up-eco failures. |
 | `ecosystem/ecosystem-snapshot` | ecosystem | 5 | Bank Pusat | Generate a comprehensive ecosystem configuration snapshot for Niumination. Produces a Markdown document capturing macOS specs, git status, project registry, filesystem layout, Mission Control state, Telegram threads, Skill Bank summary, Hermes config, deployments, security notes, and open issues. Use when the user asks for "konfigurasi lengkap ekosistem", "ekspor snapshot ekosistem", "docs konfigurasi aktif", or requests a full current-state Markdown report. |
 | `ecosystem/ecosystem-tool-adoption` | ecosystem | 1 | Bank Pusat | Workflow studi & adopsi tool/proyek pihak ketiga ke ekosistem Niumination — deep study (clone + baca source), gap analysis terukur, rencana bertahap di docs/architecture/, persetujuan user via clarify, eksekusi non-destruktif. Trigger saat user kirim URL repo/tool + "pelajari ini". |
+| `ecosystem/ecosystem/agent-thread-latency-diagnosis` | ecosystem | 1 | Bank Pusat | Use when a chat thread is slow or unresponsive. |
 | `ecosystem/ecosystem/relay-provider-client-wiring` | ecosystem | 1 | Bank Pusat | Use when wiring a client to a relay with WAF UA whitelist. |
 | `ecosystem/ecosystem/telegram-thread-provisioning` | ecosystem | 1 | Bank Pusat | Use when adding a Telegram persona thread to a forum group. |
 | `ecosystem/ekosistem-content-verification` | ecosystem | 2 | Bank Pusat | Verify web/JSON content accuracy against source documents (DOCX/XLSX) for Niumination ecosystem projects — extract, compare, report, fix. Covers Pemdi data verification and general content audit patterns. |
@@ -95,14 +96,15 @@
 | `ecosystem/pi-network-ecosystem` | ecosystem | 2 | Bank Pusat | Pi Network — App Studio, Payments, Browser integration. |
 | `ecosystem/pi-solohost-development` | ecosystem | 7 | Bank Pusat | Build and submit apps to Pi Network SoloHost. |
 | `ecosystem/provider-fallback` | ecosystem | 8 | Bank Pusat | Handle AI provider failures and fallback to working providers |
-| `ecosystem/provider-model-verification` | ecosystem | 1 | Bank Pusat | Verify an AI provider/model before relying on it. |
+| `ecosystem/provider-model-verification` | ecosystem | 2 | Bank Pusat | Verify an AI provider/model before relying on it. |
 | `ecosystem/provider-vetting` | ecosystem | 1 | Bank Pusat | Use when vetting a third-party AI model before adopting it. |
 | `ecosystem/research/official-regulation-extraction` | ecosystem | 1 | Bank Pusat | Use when research needs official Indonesian regulation text. |
 | `ecosystem/sapa-ai` | ecosystem | 3 | Bank Pusat | Use when working on sapa-ai. |
 | `ecosystem/sapa-ai-ops` | ecosystem | 20 | Bank Pusat | Operate sapa-ai SPLP service. |
 | `ecosystem/security/sensitive-private-repo` | ecosystem | 1 | Bank Pusat | Use when starting a private repo for sensitive/PII data. |
 | `ecosystem/skill-bank-management` | ecosystem | 6 | Bank Pusat | Kelola Skill Bank Niumination (single source of truth ~/Desktop/Niumination/skills/) — manifest SHA-256, sync seluruh folder ke target Hermes/USB + verifikasi hash + lockfile, tangani drift, adopsi skill pihak ketiga, audit konten skill, hapus/promosi skill, prune bloat. Gunakan saat ada skill baru masuk bank, sync-to-agents.sh dijalankan/gagal, up-eco melaporkan manifest mismatch, drift bank vs target, atau user minta adopsi skill X. Sejak 18 Sep 2026 skill ini menyerap skill-bank-integrity, -maintenance, -operations, -ops, dan -sync (kelimanya dihapus — semua prosedurnya ada di sini). |
-| `ecosystem/sqlite-schema-migration` | ecosystem | 1 | Bank Pusat | Migrate a local SQLite schema without losing rows. |
+| `ecosystem/software-development/agent-shell-command-guards` | ecosystem | 1 | Bank Pusat | Use when a shell command is blocked, stalls, or fills disk. |
+| `ecosystem/sqlite-schema-migration` | ecosystem | 2 | Bank Pusat | Migrate a local SQLite schema without losing rows. |
 | `ecosystem/system-one-decisions` | ecosystem | 1 | Bank Pusat | Use when calling decision models (jev/systemone) via 9router. |
 | `ecosystem/up-eco` | ecosystem | 1 | Bank Pusat | Ecosystem status check & sync workflow. Triggered via Telegram /up-eco command. Checks git status, detects unknown/foreign folders, syncs BACKLOG/docs with filesystem, and recommends actions to align local ecosystem with GitHub. |
 | `ecosystem/weathernext-gayo` | ecosystem | 2 | Bank Pusat | Analisis cuaca mikro dan peringatan dini bencana untuk dataran tinggi Gayo (Aceh Tengah) berbasis pipeline WeatherNext / meteorologi resolusi tinggi. Digunakan saat membutuhkan data cuaca presisi, analisis iklim perkebunan kopi Arabika (risiko karat daun, rekomendasi penjemuran), serta mitigasi bencana hidrometeorologi (longsor lereng terjal, luapan Danau Lut Tawar). |
@@ -150,12 +152,12 @@
 | `software-development/finishing-a-development-branch` | software-development | 1 | Bank Pusat | Use when implementation is complete, all tests pass, and you need to decide how to integrate the work — merge, PR, keep, or discard. |
 | `software-development/flask-api-development` | software-development | 7 | Bank Pusat | Develop lightweight Flask APIs with routing, blueprints, database integration, authentication, and request/response handling. Use when building RESTful APIs, microservices, or lightweight web services with Flask. |
 | `software-development/hermes-desktop-launcher` | software-development | 4 | Bank Pusat | Install Hermes Desktop to /Applications for Launchpad. |
-| `software-development/hermes-terminal-workflows` | software-development | 1 | Bank Pusat | Hermes terminal shell pitfalls. |
+| `software-development/hermes-terminal-workflows` | software-development | 2 | Bank Pusat | Hermes terminal shell pitfalls. |
 | `software-development/hermes-zero-defect-architect` | software-development | 1 | Bank Pusat | Sistem resolusi bug absolut dengan toleransi kegagalan 0% (Zero-Defect Protocol). Mengeksekusi perbaikan full-stack (Rust, Python, React) dan arsitektur agen (MCP, n8n) melalui pipeline terisolasi: Diagnosa -> Eksekusi Idempotent -> Verifikasi -> Rollback otomatis jika gagal. Parallel task lewat subagent Hermes (delegate_task) dengan jaring pengaman. |
 | `software-development/live-ui-audit` | software-development | 2 | Bank Pusat | Use when auditing a live web UI on mobile and desktop. |
 | `software-development/llm-call-reliability` | software-development | 2 | Bank Pusat | Use when LLM calls stall, time out, or return bad JSON. |
 | `software-development/niu-mission-control-ops` | software-development | 5 | Bank Pusat | Operate the Niu-MissionControl dashboard server (port 5200): Next.js 15 runtime, SQLite backend, health checks, and deployment workflows. |
-| `software-development/niumination-repo-commit-discipline` | software-development | 1 | Bank Pusat | Committing changes to Niumination git repos. |
+| `software-development/niumination-repo-commit-discipline` | software-development | 2 | Bank Pusat | Committing changes to Niumination git repos. |
 | `software-development/optimization` | software-development | 1 | Bank Pusat | Improve performance, latency, and throughput of code and systems. Systematic profiling → bottleneck detection → targeted optimization. |
 | `software-development/pemdi-evidence-management` | software-development | 6 | Bank Pusat | >- |
 | `software-development/pemdi-uiux-refinement` | software-development | 1 | Bank Pusat | Refine UI/UX portal Pemdi Aceh Tengah dengan impeccable + hermes-uiux-technical — sistem animasi global, fix anti-pattern, audit pasca-deploy. Trigger: perubahan desain/animasi/UX PemdiAcehTengah. |
@@ -191,6 +193,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-09-26 22:52:07_
+_Last sync: 2026-09-27 00:03:36_
 
 <!-- SKILL_REGISTRY_END -->

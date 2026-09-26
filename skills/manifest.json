@@ -1,7 +1,7 @@
 {
-  "fileCount": 820,
-  "generatedAt": "2026-09-26T15:51:40.998522+00:00",
-  "skillCount": 187,
+  "fileCount": 827,
+  "generatedAt": "2026-09-26T17:02:45.107475+00:00",
+  "skillCount": 189,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -758,10 +758,11 @@
       }
     },
     "ecosystem/ecosystem-live-status-reporting": {
-      "bundleHash": "cc47a8f425a981c6e248ff494b7640420c4e496d74bb573223e16de824f51e11",
+      "bundleHash": "a07929cfe72460a20dd1a99717af5709843736fb77bd039e5a960b5f297f2be0",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "5b38d5f76468bbf93f14a120969862a2f69730506a792f79c657600253b9ecf2"
+        "SKILL.md": "5b38d5f76468bbf93f14a120969862a2f69730506a792f79c657600253b9ecf2",
+        "references/deployment-status-verification.md": "fb94ee3bf481ef7992fc362ba882af7980cc8e387294c77ea25239fccf301186"
       }
     },
     "ecosystem/ecosystem-provider-management": {
@@ -806,6 +807,13 @@
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "4dfe123b837a0fdf78f5264dbb495f798cf41be79cd9baf42e3ba699bea4269f"
+      }
+    },
+    "ecosystem/ecosystem/agent-thread-latency-diagnosis": {
+      "bundleHash": "7eeeb55372cf4ee70dadf1904d4d2d0b39dce821b741d7ed4aab1d55806e1875",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "6f45bf548662fd06f85283c1c94e4fe41cd784d33d64c6430332c10652d269df"
       }
     },
     "ecosystem/ecosystem/relay-provider-client-wiring": {
@@ -1069,10 +1077,11 @@
       }
     },
     "ecosystem/provider-model-verification": {
-      "bundleHash": "8bd5d1c02149eb302bd3034e9e65004e4d290b12a4627d06e8c79777279947c7",
+      "bundleHash": "608a17092087f9dd79ae3c67dc7481a753dbbb2237cb3f962ed2c0143509ae0f",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "c0009c2d6c6ae3f925a42a63fc0537e1322edcdad15b1bbd9a2be3a32281a549"
+        "SKILL.md": "c0009c2d6c6ae3f925a42a63fc0537e1322edcdad15b1bbd9a2be3a32281a549",
+        "references/provider-endpoint-capability-probe.md": "15bcf9a77f31f67a8ecd4a8b28bd732e107a7097da5ed8e9c0fff6a96ddf5d12"
       }
     },
     "ecosystem/provider-vetting": {
@@ -1143,11 +1152,19 @@
         "references/skill-bank-manifest-sync.md": "ed73748fe07bd9718d8c2493742dfc1e0cad006dd474be4d6e469d16c1e7714a"
       }
     },
+    "ecosystem/software-development/agent-shell-command-guards": {
+      "bundleHash": "796f7360d0c2db488e173c3cc733e8a647e24c6a0d089c45f33f8129602867bb",
+      "domain": "ecosystem/software-development",
+      "files": {
+        "SKILL.md": "d536f583d19749db8e7bfd762764acb0de8284861c9f79c29be6dd9453beb682"
+      }
+    },
     "ecosystem/sqlite-schema-migration": {
-      "bundleHash": "2ea0207fbec09ba3aa0c09932fd1983b2dbfa8997044463b1652d0d5708e101e",
+      "bundleHash": "fb966366159166ea09c29dcec0121b27b0680750bbb45ec16dd06e08d46c7984",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "fdf23a513c8e6130b54e5452f26e2a3fee1362c10448d6ff86abd83daa93c511"
+        "SKILL.md": "fdf23a513c8e6130b54e5452f26e2a3fee1362c10448d6ff86abd83daa93c511",
+        "references/conditional-migration.md": "1adf96e338afab6b3bdbc9f2881f3fb3a4d5ecc6f680deb1d45c4a52136609cc"
       }
     },
     "ecosystem/system-one-decisions": {
@@ -1634,10 +1651,11 @@
       }
     },
     "software-development/hermes-terminal-workflows": {
-      "bundleHash": "27258c3177b450e151cf222b992148619151158e8e8e685dc8b6c6bb986718bc",
+      "bundleHash": "a4013d1d7708d75dc202b490477b6d544cf2e08ef7973e83abbfe6b9bcf7b256",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "24a002bb0e5ea1c05fb21224634d3a05a13ae6a2ed5cd9b913c419d2c473c600"
+        "SKILL.md": "24a002bb0e5ea1c05fb21224634d3a05a13ae6a2ed5cd9b913c419d2c473c600",
+        "references/native-shell-alias-conflicts.md": "d49080482bcaef7fec7e7064788cbf4ddaddad11ffd3ef28fd7301c775a7409b"
       }
     },
     "software-development/hermes-zero-defect-architect": {
@@ -1675,10 +1693,11 @@
       }
     },
     "software-development/niumination-repo-commit-discipline": {
-      "bundleHash": "7eef6cb85ad534180ae23bc6811f81e9890cb93f4985a174671d638fbcb510cc",
+      "bundleHash": "9dd988fd2edb86dffa3f49de7fe62a02765dca322f4633344595920c46e2006f",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "567680bc18a2c756fe25da04747a1091eec22f54e68aa42f49e840ba38c84be2"
+        "SKILL.md": "567680bc18a2c756fe25da04747a1091eec22f54e68aa42f49e840ba38c84be2",
+        "references/approval-gate-for-history-rewrites.md": "2a271454490706615e752c41821e582395a60f16bd9b86533c8171c2533b8b71"
       }
     },
     "software-development/optimization": {
