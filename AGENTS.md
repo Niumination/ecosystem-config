@@ -69,7 +69,7 @@
 │
 ├── apps/                      🏭 16 proyek — deployed, battle-tested
 │   ├── niu-lkh/               ← LKH v3.1.1 — 100% Done — Vercel live ✅
-│   ├── PemdiAcehTengah/       ← Portal Pemda — 52 OPD, 70 pages — 🟢 Vercel
+│   ├── PemdiAcehTengah/       ← Portal Pemda — 52 OPD, 67 pages, CMS admin — 🟢 Vercel · ✅ Selesai (27 Sep 2026)
 │   ├── ai-file-manager-android/
 │   ├── ~~Mobile-Harness (standalone)~~     ← ❌ Dihapus permanen 24 Sep 2026 (integrasi Hermes tidak tercapai)
 │   ├── ai-first-os/
