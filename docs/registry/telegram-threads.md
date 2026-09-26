@@ -16,7 +16,7 @@ Setiap thread = persona terisolasi. Sumber kebenaran: `~/.hermes/config.yaml` �
 | 803 | Builder / Programmer | `meituan/longcat-2.0:free` | nous | ~15 | ✅ Coding-focused | ponytail, requesting-code-review, github-pr-workflow, dll. |
 | 804 | QA / Pengawas | `deepseek/deepseek-v4-flash-0731:free` | openrouter | ~10 | ✅ Audit-focused | codebase-audit, verification, plan-compliance, redteam |
 | 1172 | Konten Kreator | `poolside/laguna-s-2.1:free` | nous | ~146 | ✅ Content creation | ghost, humanizer, baoyu, claude-design, manim, hyperframes |
-| 7402 | **⚠️ Undefined** | `meituan/longcat-2.0:free` | nous | ~3 | ❌ No prompt | ❌ None |
+| 7402 | Serbaguna / Cadangan (27 Sep 2026) | `meituan/longcat-2.0:free` | nous | ~3 | ✅ Flex-thread prompt (27 Sep 2026) | ❌ None |
 | 8853 | Admin Dinas ASN | `opencode-combo` | 9router | ~285 | ✅ ASN/SPBE-focused | skp-e-kinerja, document-to-action-items, meeting-action-items |
 
 ## Flex-Thread Convention (NOT in channel_prompts)
@@ -48,7 +48,7 @@ Dispatch cross-thread via Mission Control: `POST http://localhost:3000/api/mc/di
 | `803` | Builder / Programmer | `meituan/longcat-2.0:free` | nous | `ponytail`, `requesting-code-review` | ⚠️ `:free` sudah 404 di nous (25 Sep 2026) — belum diganti |
 | `804` | QA / Pengawas | `deepseek/deepseek-v4-flash-0731:free` | openrouter | `codebase-audit` | audit, kepatuhan |
 | `1172` | Kreator / Konten | `poolside/laguna-s-2.1:free` | nous | `ghost`, `humanizer` | konten publik |
-| `7402` | Cron / Otomasi | `meituan/longcat-2.0:free` | nous | — | routing output cron; ⚠️ `:free` sudah 404 di nous (25 Sep 2026) — belum diganti |
+| `7402` | Serbaguna / Cadangan (27 Sep 2026) | `meituan/longcat-2.0:free` | nous | — | prompt flex-thread dipasang 27 Sep 2026; sebelumnya dicatat "Cron/Otomasi" tapi tidak ada aktivitas cron di state.db (hanya sesi tes "halo"); ⚠️ `:free` sudah 404 di nous (25 Sep 2026) — belum diganti |
 | **`8853`** | **ASN — Admin Dinas** (25 Sep 2026) | `opencode-combo` | **9router** | `skp-e-kinerja`, `document-to-action-items`, `meeting-action-items`, `weekly-review-planning` | administrasi dinas, SKP/eKinerja, agenda rapat/tenggat |
 
 ## Thread 8853 — ASN / Admin Dinas
