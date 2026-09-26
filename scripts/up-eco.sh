@@ -105,6 +105,7 @@ check_unknown_folders() {
     apps services sites desktop agents labs sandbox
     docs scripts skills tools vault brain dotfiles archive core logs
     inactive-2026-09
+    dinas
   )
 
   # Baca dari BACKLOG.md untuk daftar proyek yang dikenal

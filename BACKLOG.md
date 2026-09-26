@@ -157,6 +157,16 @@ Desktop/Niumination/
 | **sapa-ai** | P2 🆕 | ⏸️ **Selesai — menunggu client** | 2026-09-20 | SAPA Smart AI — SPLP-only public app. Pengembangan tahap lanjut menunggu client & instruksi pemilik |
 | **camofox-browser** | P3 🆕 | ⚪ Third-party | 2026-08-18 | Anti-detection browser |
 
+### 🏛️ dinas/ — 1 Sistem Profesional (kategori sendiri, di luar pipeline)
+
+> Kategori terpisah karena sifat berbeda: alat kerja wajib Government, bukan produk.
+> **Tidak masuk repo induk publik** — `dinas/` di-ignore `.gitignore` root.
+> Output ASN DILARANG masuk `Niumination/ecosystem-config` (repo publik).
+
+| Proyek | Priority | Status | Aktivitas Terakhir | Notes |
+|--------|:--------:|:------:|:------------------:|-------|
+| **asn-admin** | P2 | 🟢 **Active** | **2026-09-26** | Sistem administrasi ASN — format naskah dinas (Permendagri 1/2023), katalog naskah, pranata komputer. Repo **PRIVAT** `Niumination/asn-admin`. Sumber kebenaran regulasi = `dinas/asn-admin/references/` (4 katalog, VERIFIED dari PDF JDIH). Gate keamanan = `pre-commit-scan.py` (layer, bukan `.gitignore`). 1 open PR dari arena: `asn-admin#1` |
+
 ### 🌐 sites/ — 7 Frontend
 
 || Proyek | Priority | Status | Aktivitas Terakhir | Notes |
