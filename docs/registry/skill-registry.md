@@ -45,8 +45,9 @@
 | `devops/macos-launchd-services` | devops | 8 | Bank Pusat | Keep macOS always-on services alive; recover launchd plists. |
 | `devops/production-env-vars` | devops | 1 | Bank Pusat | Use when changing or rotating env vars on a live app (Vercel). Decode pulled values, verify functionally, keep a rollback path. |
 | `devops/snapshot-verification` | devops | 3 | Bank Pusat | Verify static snapshot deployment and content. |
+| `ecosystem/9router-custom-provider-integration` | ecosystem | 1 | Bank Pusat | Use when adding a custom provider to 9router. |
 | `ecosystem/9router-model-mapping` | ecosystem | 1 | Bank Pusat | Configure and maintain 9router model mapping for Hermes — fallback chain, channel overrides, quota-aware model selection |
-| `ecosystem/arena-patch-adoption` | ecosystem | 2 | Bank Pusat | Use when applying arena.ai zip patch stacks to a repo. |
+| `ecosystem/arena-patch-adoption` | ecosystem | 3 | Bank Pusat | Use when applying arena.ai zip patch stacks to a repo. |
 | `ecosystem/cc-acehtengah-maintenance` | ecosystem | 3 | Bank Pusat | cc-acehtengah branch reconciliation and UI or role fixes. |
 | `ecosystem/composio` | ecosystem | 4 | Bank Pusat | Route and complete Composio work across Composio For You and Composio Platform. Use when the user mentions Composio; wants an agent to use apps such as Gmail, Slack, GitHub, Notion, Calendar, or Linear; needs first-time setup, an SDK or MCP integration, CLI operation, migration guidance, current documentation, or help diagnosing a connection or tool call. |
 | `ecosystem/config-history-review` | ecosystem | 2 | Bank Pusat | Review Hermes config history using filesystem evidence (backup files, changelogs, git logs) — NOT session search or memory. Use when user asks to retrace changes, audit history, or check what happened over time. |
@@ -57,6 +58,7 @@
 | `ecosystem/device-migration-disaster-recovery` | ecosystem | 7 | Bank Pusat | Use when planning backup, restore, or device migration. |
 | `ecosystem/devops/vercel-dns-subdomain-debug` | ecosystem | 1 | Bank Pusat | >- |
 | `ecosystem/devops/vercel-domain-pointing` | ecosystem | 1 | Bank Pusat | Point custom domain to Vercel — nameserver, DNS, verify. |
+| `ecosystem/devops/vercel-feature-activation` | ecosystem | 1 | Bank Pusat | Use when activating a dormant feature on a Vercel app. |
 | `ecosystem/dotfiles-maintenance` | ecosystem | 1 | Bank Pusat | Use when developing or fixing zaryu-terminal-dotfiles. |
 | `ecosystem/ecosystem-architecture-adoption` | ecosystem | 2 | Bank Pusat | Adapt external architecture into existing project. |
 | `ecosystem/ecosystem-bulk-push` | ecosystem | 1 | Bank Pusat | Use when pushing many ecosystem repos to GitHub at once. |
@@ -68,6 +70,8 @@
 | `ecosystem/ecosystem-recovery` | ecosystem | 5 | Bank Pusat | Full ecosystem recovery after delete or up-eco failures. |
 | `ecosystem/ecosystem-snapshot` | ecosystem | 5 | Bank Pusat | Generate a comprehensive ecosystem configuration snapshot for Niumination. Produces a Markdown document capturing macOS specs, git status, project registry, filesystem layout, Mission Control state, Telegram threads, Skill Bank summary, Hermes config, deployments, security notes, and open issues. Use when the user asks for "konfigurasi lengkap ekosistem", "ekspor snapshot ekosistem", "docs konfigurasi aktif", or requests a full current-state Markdown report. |
 | `ecosystem/ecosystem-tool-adoption` | ecosystem | 1 | Bank Pusat | Workflow studi & adopsi tool/proyek pihak ketiga ke ekosistem Niumination — deep study (clone + baca source), gap analysis terukur, rencana bertahap di docs/architecture/, persetujuan user via clarify, eksekusi non-destruktif. Trigger saat user kirim URL repo/tool + "pelajari ini". |
+| `ecosystem/ecosystem/relay-provider-client-wiring` | ecosystem | 1 | Bank Pusat | Use when wiring a client to a relay with WAF UA whitelist. |
+| `ecosystem/ecosystem/telegram-thread-provisioning` | ecosystem | 1 | Bank Pusat | Use when adding a Telegram persona thread to a forum group. |
 | `ecosystem/ekosistem-content-verification` | ecosystem | 2 | Bank Pusat | Verify web/JSON content accuracy against source documents (DOCX/XLSX) for Niumination ecosystem projects — extract, compare, report, fix. Covers Pemdi data verification and general content audit patterns. |
 | `ecosystem/ekosistem-scaffold` | ecosystem | 1 | Bank Pusat | Scaffold new or missing projects in the Niumination ecosystem. Creates AGENTS.md + BACKLOG.md + brain/projects/ entry with standardized templates. Validates git, deploy, and DOX completeness. |
 | `ecosystem/external-patch-adoption` | ecosystem | 1 | Bank Pusat | Apply an external patch stack to an ecosystem repo safely. |
@@ -93,9 +97,12 @@
 | `ecosystem/provider-fallback` | ecosystem | 8 | Bank Pusat | Handle AI provider failures and fallback to working providers |
 | `ecosystem/provider-model-verification` | ecosystem | 1 | Bank Pusat | Verify an AI provider/model before relying on it. |
 | `ecosystem/provider-vetting` | ecosystem | 1 | Bank Pusat | Use when vetting a third-party AI model before adopting it. |
+| `ecosystem/research/official-regulation-extraction` | ecosystem | 1 | Bank Pusat | Use when research needs official Indonesian regulation text. |
 | `ecosystem/sapa-ai` | ecosystem | 3 | Bank Pusat | Use when working on sapa-ai. |
 | `ecosystem/sapa-ai-ops` | ecosystem | 20 | Bank Pusat | Operate sapa-ai SPLP service. |
+| `ecosystem/security/sensitive-private-repo` | ecosystem | 1 | Bank Pusat | Use when starting a private repo for sensitive/PII data. |
 | `ecosystem/skill-bank-management` | ecosystem | 6 | Bank Pusat | Kelola Skill Bank Niumination (single source of truth ~/Desktop/Niumination/skills/) — manifest SHA-256, sync seluruh folder ke target Hermes/USB + verifikasi hash + lockfile, tangani drift, adopsi skill pihak ketiga, audit konten skill, hapus/promosi skill, prune bloat. Gunakan saat ada skill baru masuk bank, sync-to-agents.sh dijalankan/gagal, up-eco melaporkan manifest mismatch, drift bank vs target, atau user minta adopsi skill X. Sejak 18 Sep 2026 skill ini menyerap skill-bank-integrity, -maintenance, -operations, -ops, dan -sync (kelimanya dihapus — semua prosedurnya ada di sini). |
+| `ecosystem/sqlite-schema-migration` | ecosystem | 1 | Bank Pusat | Migrate a local SQLite schema without losing rows. |
 | `ecosystem/system-one-decisions` | ecosystem | 1 | Bank Pusat | Use when calling decision models (jev/systemone) via 9router. |
 | `ecosystem/up-eco` | ecosystem | 1 | Bank Pusat | Ecosystem status check & sync workflow. Triggered via Telegram /up-eco command. Checks git status, detects unknown/foreign folders, syncs BACKLOG/docs with filesystem, and recommends actions to align local ecosystem with GitHub. |
 | `ecosystem/weathernext-gayo` | ecosystem | 2 | Bank Pusat | Analisis cuaca mikro dan peringatan dini bencana untuk dataran tinggi Gayo (Aceh Tengah) berbasis pipeline WeatherNext / meteorologi resolusi tinggi. Digunakan saat membutuhkan data cuaca presisi, analisis iklim perkebunan kopi Arabika (risiko karat daun, rekomendasi penjemuran), serta mitigasi bencana hidrometeorologi (longsor lereng terjal, luapan Danau Lut Tawar). |
@@ -184,6 +191,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-09-25 00:24:14_
+_Last sync: 2026-09-26 21:46:38_
 
 <!-- SKILL_REGISTRY_END -->

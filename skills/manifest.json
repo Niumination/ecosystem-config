@@ -1,7 +1,7 @@
 {
-  "fileCount": 817,
-  "generatedAt": "2026-09-25T17:42:14.411698+00:00",
-  "skillCount": 184,
+  "fileCount": 820,
+  "generatedAt": "2026-09-26T14:45:58.295788+00:00",
+  "skillCount": 187,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -1082,6 +1082,13 @@
         "SKILL.md": "8b740c2791bc47b7165f815841ccee9526ea50a82b62b8ae3319545df91c2696"
       }
     },
+    "ecosystem/research/official-regulation-extraction": {
+      "bundleHash": "0dd4964cabbd2e808ede07255fa9d54f471fc281b389406272901afafb508040",
+      "domain": "ecosystem/research",
+      "files": {
+        "SKILL.md": "df83d1e1087f7de020a900d928fce4117242110fac872597bb578a24089f72d9"
+      }
+    },
     "ecosystem/sapa-ai": {
       "bundleHash": "95e45ad4f4a048bab81b28a980e324af83cd3ddced4aff77628766c8b8018c9a",
       "domain": "ecosystem",
@@ -1117,6 +1124,13 @@
         "references/ui-hardening-2026-09-03.md": "7a079d05e989427d5cf1ecffc07df7e1d74b0fa5346f3f061b2e750a11e895e5"
       }
     },
+    "ecosystem/security/sensitive-private-repo": {
+      "bundleHash": "a792e0b3703773a14b5cd34b76b714cf5e5ee04d015937dec98badec07ebb539",
+      "domain": "ecosystem/security",
+      "files": {
+        "SKILL.md": "7956ffb2bd658e6f77a9a0d36815ff8d729d4bc222f53b1c7d0238b18263f7bd"
+      }
+    },
     "ecosystem/skill-bank-management": {
       "bundleHash": "109624209ae993973d6363193ed13eac2bb2cec6198fd42d494f07a4dafabd43",
       "domain": "ecosystem",
@@ -1127,6 +1141,13 @@
         "references/cases-2026-08.md": "a87f0a8f980145dbf119480097f3e851f49c1976c100a9497764f1e023e97b85",
         "references/home-pruning-f4-2026-08-20.md": "245cf99bb02a59a5a73ce617c11363db7754ba061d4b22a4be10eed736989bd9",
         "references/skill-bank-manifest-sync.md": "ed73748fe07bd9718d8c2493742dfc1e0cad006dd474be4d6e469d16c1e7714a"
+      }
+    },
+    "ecosystem/sqlite-schema-migration": {
+      "bundleHash": "2ea0207fbec09ba3aa0c09932fd1983b2dbfa8997044463b1652d0d5708e101e",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "fdf23a513c8e6130b54e5452f26e2a3fee1362c10448d6ff86abd83daa93c511"
       }
     },
     "ecosystem/system-one-decisions": {
