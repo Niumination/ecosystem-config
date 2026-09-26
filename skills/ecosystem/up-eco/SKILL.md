@@ -7,9 +7,10 @@ tags:
   - git
   - status
   - niumination
-last_updated: "2026-09-19"
-version: 2.1.0
+last_updated: "2026-09-26"
+version: 2.2.0
 changes:
+  - Added Phase 5a: Vercel — `vercel project ls` + probe riil per hostname vs registry
   - Added Phase 6: Skill Bank Integrity (frontmatter, INDEX sync, duplicates)
   - Added Phase 7: Skill Sync Status (sync-to-agents.sh, Hermes/USB targets)
   - Added Phase 8: Mission Control Dashboard (Skill Monitor API, stale, conflicts, stats)
@@ -35,6 +36,7 @@ Output will show:
 - **Unknown/foreign folders** (detected on filesystem but not in BACKLOG.md)
 - **BACKLOG sync** (projects referenced but missing from disk)
 - **GitHub Pages** health check
+- **▲ Vercel** — `vercel project ls` + probe riil ke hostname yang dikembalikan CLI, klasifikasi live / PAUSED (deteksi dari body `DEPLOYMENT_PAUSED`, bukan kode 503) / never-deployed, plus deteksi **ghost** = hostname yang diklaim registry tapi tidak ada di akun
 - **🧠 Skill Bank Integrity** — SKILL.md count vs INDEX.md, frontmatter validation, duplicate detection
 - **🔄 Skill Sync Status** — sync-to-agents.sh last run, Hermes divergence
 - **🎛️ Mission Control Dashboard** — Skill Monitor API reachable, stale skills, conflicts, usage stats
@@ -160,6 +162,17 @@ terbukti di sandbox (52 B vs 52 B, mtime sama, isi beda, tidak tersalin).
 - **Tidak boleh (butuh penilaian manusia):** commit/push (kecuali `--commit`), menghapus atau memindahkan berkas, mengubah isi skill, menyentuh `SOUL.md`/`AGENTS.md`/config/kredensial, memperbaiki repo kotor.
 
 **up-eco memelihara dirinya sendiri.** Fase "🪄 Lightfix & Cron" memverifikasi skrip + wrapper, memastikan job cron terdaftar, dan **membuat ulang keduanya bila hilang** — satu kali `/up-eco` cukup setelah cron terhapus.
+
+### Pelajaran dari perbaikan 2026-09-26 — Phase 5a Vercel (jangan diulang)
+- **Status deployment yang ditulis dari ingatan akan meleset diam-diam.** Registry klaim "Vercel 5 Live"; probe riil 26 Sep 2026 membuktikan **7 dari 13 status salah**, termasuk 2 yang bukan sekadar paused: `kms-spbe` diklaim 200 padahal tidak terdaftar di akun Vercel sama sekali (DNS mati, 000), dan `virtual-assistance` diklaim 200 lewat hostname `virtual-assistance.vercel.app` yang tidak pernah ada — yang sebenarnya `virtual-assistance-pi` dan PAUSED. Satu-satunya obat: probe tiap run, bandingkan dengan registry, laporkan yang beda.
+- **Vercel CLI 59.x menulis banner + tabel proyek ke STDERR, bukan stdout.** `vercel project ls > file` menghasilkan file **0 byte** walau exit 0. Harus `vercel project ls 2>&1`.
+- **HTTP 503 di Vercel bukan generic error.** Body-nya berisi `DEPLOYMENT_PAUSED` — status resmi "sengaja dimatikan", bukan crash. Probe **wajib baca body** (`curl -s -w`), bukan cuma status code. Tanpa ini 7 proyek paused akan dilaporkan sebagai "HTTP 503" dan indistinguishable dari kegagalan.
+- **Probe hostname yang dikembalikan CLI, bukan `nama-proyek.vercel.app` yang dikarang.** Vercel.projects bisa punya nama ≠ hostname (`virtual-assistance` vs `virtual-assistance-pi`, `landing` vs `landing-beige-theta`, `niu-vermilion` vs `niu-vermilion-archk4lis-projects`). Mengarang hostname = probe ke alamat yang tidak ada = report palsu.
+- **`*)` di dalam `case` match APA SAJA.** Filter baris tabel Vercel dengan `case "$name" in ...|*) continue` membuang **seluruh** baris data karena `*` adalah wildcard universal. Pakai daftar-tolak eksplisit plus guard positive `[a-z0-9]*`.
+- **`a && b || c` bukan if-else di shell.** Kalau `b` (mis. penambahan array) ternyata return non-zero, `c` ikut jalan dan baris terduplikasi. Pakai `if` eksplisit.
+- **Anchor pola `grep` ke awal baris saat membandingkan registry.** `| Vercel |` tanpa anchor juga kena baris proyek yang kebetulan punya sel "Vercel" (mis. PemdiAcehTengah). Pakai `^\| Vercel \|`.
+- **Saat registry sudah BERISI catatan koreksi, ghost-detectionreporting bohong.** Baris yang menjelaskan kesalahan masa lalu (memuat "tidak pernah ada" / "salah tulis") bukan klaim aktif — hitung begitu akan melaporkan hostname yang memang sudah dikoreksi sebagai ghost. Filter baris koreksi sebelum dibandingkan.
+- **`while read` di dalam pipe = subshell; variabel tidak kembali ke caller.** Pakai `<<< "$var"` (here-string) supaya counter bisa dihitung setelah loop. Dan `set -euo pipefail` aktif di skrip ini: **setiap** `grep`/`grep -c` dalam command substitution wajib `|| true`, karena 0-match adalah state yang legal.
 
 ### Pelajaran dari perbaikan 2026-09-19 (jangan diulang)
 - **`find -name .git -not -path '*/\.*'` mengecualikan SEMUA repo.** Setiap path `.git` selalu memuat `/.`, jadi loop dirty-repo tidak pernah berjalan dan up-eco melaporkan "Semua repos clean" padahal ada 9 repo kotor / 98 berkas. Klausa `-not -path '*/\.*'` benar untuk pemindaian folder, salah untuk `.git`.

@@ -265,6 +265,183 @@ check_gh_pages() {
 }
 
 # ═══════════════════════════════════════════════════════════════════════════
+# Phase 5a: Vercel — daftar proyek + probe riil vs registry
+# ═══════════════════════════════════════════════════════════════════════════
+# Kenapa fase ini ada (26 Sep 2026): registry klaim "Vercel 5 Live" tapi 7 dari
+# 13 status ternyata meleset. 2 di antaranya bukan sekadar paused:
+#   - `kms-spbe` klaim 200, faktanya TIDAK ADA di akun Vercel (DNS mati, 000)
+#   - `virtual-assistance` klaim 200 lewat hostname yang tidak pernah ada;
+#     hostname sebenarnya `virtual-assistance-pi` dan statusnya PAUSED
+# Penyebab: status ditulis dari ingatan, tidak pernah di-probe ulang.
+#
+# PENTING: 503 pada Vercel BUKAN generic error. Body-nya berisi
+# `DEPLOYMENT_PAUSED` — itu status resmi "sengaja dimatikan", bukan crash.
+# Jadi probe WAJIB baca body, bukan cuma status code.
+check_vercel() {
+  section "▲ Vercel"
+
+  if ! command -v vercel &>/dev/null; then
+    info "vercel CLI tidak terinstall — skip Vercel check"
+    rec "→ Install Vercel CLI untuk cek deployment: npm i -g vercel"
+    return
+  fi
+
+  # ── 5a-1: Ambil daftar proyek (scope default)
+  # PENTING (26 Sep 2026): CLI Vercel 59.x menulis banner + tabel proyek ke
+  # STDERR, bukan stdout. `vercel project ls > file` menghasilkan file kosong.
+  # Jadi keduanya harus ditangkap.
+  local raw
+  raw=$(vercel project ls 2>&1 || true)
+  if [ -z "$raw" ]; then
+    warn "gagal membaca 'vercel project ls' (belum login? token kadaluarsa?)"
+    rec "→ Cek login Vercel: vercel whoami"
+    return
+  fi
+
+  local scope
+  scope=$(printf '%s\n' "$raw" | grep -oE 'in [a-z0-9-]+$' | head -1 | tr -d ' ' || true)
+  [ -n "$scope" ] && info "scope: $scope" || true
+
+  # Parse: nama + production URL. Kolom "Latest Production URL" = "--" kalau
+  # proyek belum pernah di-deploy. Nama proyek tidak mengandung spasi.
+  # Filter pakai daftar-tolak eksplisit — JANGAN pakai `*)` sebagai fallback
+  # karena `*` di `case` match APA SAJA dan akan membuang semua baris.
+  local names=() urls=()
+  local line name url
+  while IFS= read -r line; do
+    name=$(printf '%s' "$line" | awk '{print $1}')
+    url=$(printf '%s' "$line"  | awk '{print $2}')
+    [ -z "$name" ] && continue
+    # hanya baris data: nama proyek = huruf kecil + angka + tanda hubung/koma
+    case "$name" in
+      [a-z0-9]*) ;;
+      *) continue ;;
+    esac
+    # buang yang jelas bukan nama proyek
+    case "$name" in
+      vercel.app|https*|Project|Fetching|Found|Updated) continue ;;
+    esac
+    names+=("$name")
+    # Shell gotcha: `a && b || c` TIDAK aman di sini — kalau `urls+=(...)`
+    # ternyata return non-zero, `c` ikut jalan dan baris jadi dobel. Pakai if.
+    if [ "$url" = "--" ]; then
+      urls+=("")            # never deployed → placeholder agar indeks sinkron
+    else
+      urls+=("${url#https://}")
+    fi
+  done < <(printf '%s\n' "$raw" | sed -n '/Project Name/,$p' | tail -n +2)
+
+  local total=${#names[@]}
+  if [ "$total" -eq 0 ]; then
+    warn "tidak ada proyek ter-parse dari output Vercel"
+    return
+  fi
+  info "$total proyek terdaftar di $scope"
+
+  # ── 5a-2: Probe hostname. Kolom URL dari Vercel adalah hostname yang
+  # sebenar-nya dipakai (mis. `virtual-assistance-pi.vercel.app`), JADI probe
+  # hostname itu — bukan `nama-proyek.vercel.app` yang mengarang.
+  local live=0 paused=0 nodeploy=0 other=0
+  local registry="$NIUMINATION/docs/registry/deployment-status.md"
+  local drift=0
+
+  local i
+  for i in "${!names[@]}"; do
+    name="${names[$i]}"
+    if [ -z "${urls[$i]}" ]; then
+      # Never deployed — tidak ada hostname untuk diprobe
+      info "$name — ⚪ belum pernah di-deploy (tidak ada production URL)"
+      nodeploy=$((nodeploy + 1))
+      continue
+    fi
+
+    local host="${urls[$i]}"
+    # Satu panggilan dapat dua hal: body (untuk deteksi DEPLOYMENT_PAUSED)
+    # + status code (untuk klasifikasi). `-w` menulis kode di akhir body.
+    local resp code body
+    resp=$(curl -s -w $'\n__CODE__%{http_code}' --connect-timeout 6 --max-time 12 \
+                 -A "curl/8" "https://$host" 2>/dev/null || true)
+    code="${resp##*__CODE__}"
+    body="${resp%$'\n'__CODE__*}"
+    [ -z "$code" ] && code="000"
+
+    if printf '%s' "$body" | grep -q "DEPLOYMENT_PAUSED"; then
+      pass "$name ($host) → ⏸️ PAUSED (503, DEPLOYMENT_PAUSED)"
+      paused=$((paused + 1))
+    else
+      # 307/308 = redirect sehat (trailing slash, locale, /dashboard). Tetap LIVE.
+      local note=""
+      if [ "$code" = "307" ] || [ "$code" = "308" ]; then note=" (redirect)"; fi
+      case "$code" in
+        200|307|308) pass "$name ($host) → ✅ $code LIVE$note" ; live=$((live + 1)) ;;
+        000) warn "$name ($host) → ⚠️ 000 DNS mati / tidak terjangkau" ; other=$((other + 1)) ;;
+        *)   warn "$name ($host) → HTTP $code" ; other=$((other + 1)) ;;
+      esac
+    fi
+  done
+
+  # ── 5a-3: Bandingkan dengan registry. Registry boleh salah diam-diam;
+  # yang harus dicek justru klaim yang ditulis dari ingatan.
+  if [ -f "$registry" ]; then
+    # Hostname yang diklaim registry. Abaikan baris yang SEDANG menjelaskan
+    # kesalahan (memuat kata "tidak pernah ada" / "salah tulis") — baris itu
+    # bukan klaim aktif, dan ikut menghitungnya akan menghasilkan ghost palsu
+    # yang mengabukan drift yang sebenarnya.
+    # `set -euo pipefail` aktif: SETIAP grep di rantai WAJIB punya `|| true`.
+    local claimed_all
+    claimed_all=$( { grep -E '^\| `' "$registry" \
+                  | grep -vE 'tidak pernah ada|salah tulis|Tidak ada di akun|tidak ada di akun' \
+                  | grep -oE '`[a-z0-9-]+\.vercel\.app`' || true; } | tr -d '`' | sort -u || true)
+
+    # Hostname yang registry klaim tapi tidak ada di akun Vercel.
+    # Pakai while-read via here-string, bukan pipe: pipe bikin subshell sehingga
+    # variabel counter tidak kembali ke caller.
+    local ghost="" h found g
+    if [ -n "$claimed_all" ]; then
+      while IFS= read -r h; do
+        if [ -z "$h" ]; then continue; fi
+        found=0
+        for g in "${urls[@]}"; do
+          if [ "$g" = "$h" ]; then found=1; break; fi
+        done
+        if [ "$found" -eq 0 ]; then
+          if [ -z "$ghost" ]; then ghost="$h"; else ghost="$ghost $h"; fi
+        fi
+      done <<< "$claimed_all"
+    fi
+
+    if [ -n "$ghost" ]; then
+      local count
+      count=$(printf '%s\n' "$ghost" | wc -w | tr -d ' ')
+      warn "$count hostname di registry tapi TIDAK ada di akun Vercel (ghost): $ghost"
+      drift=$((drift + 1))
+      rec "→ Registry punya $count hostname Vercel yang tidak ada di akun: $ghost"
+    fi
+  fi
+
+  # ── 5a-4: Ringkasan + deteksi drift jumlah live ──
+  info "Ringkasan: $live live · $paused paused · $nodeploy never-deployed · $other lain-lain"
+
+  # Bandingkan headline registry: baris tabel "| Vercel | N/M | ..." di BACKLOG.
+  # Pola WAJIB di-anchor keAWAL BARIS (`^\| Vercel`) — kalau cuma `| Vercel |`
+  # akan kena baris proyek yang kebetulan punya sel itu (mis. PemdiAcehTengah).
+  if [ -f "$NIUMINATION/BACKLOG.md" ]; then
+    local reg_live=""
+    reg_live=$( { grep -E '^\| Vercel \|' "$NIUMINATION/BACKLOG.md" || true; } | head -1 \
+               | grep -oE '[0-9]+/[0-9]+' | head -1 || true)
+    if [ -n "$reg_live" ]; then
+      local reg_total="${reg_live#*/}"
+      if [ "$reg_total" = "$total" ]; then
+        info "BACKLOG klaim $reg_live — cocok dengan jumlah proyek di akun ($total), probe riil $live live"
+      else
+        warn "BACKLOG klaim $reg_live tapi akun punya $total proyek — registry kemungkinan stale"
+        rec "→ Sinkronkan baris '| Vercel |' di BACKLOG.md: $reg_live → $live/$total"
+      fi
+    fi
+  fi
+}
+
+# ═══════════════════════════════════════════════════════════════════════════
 # 🆕 Phase 5b: GitHub Pull Requests
 # ═══════════════════════════════════════════════════════════════════════════
 check_gh_prs() {
@@ -1117,6 +1294,9 @@ main() {
 
   # ── Phase 5: GitHub Pages ──
   check_gh_pages
+
+  # ── Phase 5a: Vercel — probe riil vs registry 🆕 ──
+  check_vercel
 
   # ── Phase 5b: GitHub Pull Requests 🆕 ──
   check_gh_prs
