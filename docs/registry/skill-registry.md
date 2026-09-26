@@ -71,6 +71,7 @@
 | `ecosystem/ecosystem-snapshot` | ecosystem | 5 | Bank Pusat | Generate a comprehensive ecosystem configuration snapshot for Niumination. Produces a Markdown document capturing macOS specs, git status, project registry, filesystem layout, Mission Control state, Telegram threads, Skill Bank summary, Hermes config, deployments, security notes, and open issues. Use when the user asks for "konfigurasi lengkap ekosistem", "ekspor snapshot ekosistem", "docs konfigurasi aktif", or requests a full current-state Markdown report. |
 | `ecosystem/ecosystem-tool-adoption` | ecosystem | 1 | Bank Pusat | Workflow studi & adopsi tool/proyek pihak ketiga ke ekosistem Niumination — deep study (clone + baca source), gap analysis terukur, rencana bertahap di docs/architecture/, persetujuan user via clarify, eksekusi non-destruktif. Trigger saat user kirim URL repo/tool + "pelajari ini". |
 | `ecosystem/ecosystem/agent-thread-latency-diagnosis` | ecosystem | 1 | Bank Pusat | Use when a chat thread is slow or unresponsive. |
+| `ecosystem/ecosystem/hermes-runtime-credential-resolution` | ecosystem | 1 | Bank Pusat | Use when a provider looks broken; prove its real credential. |
 | `ecosystem/ecosystem/relay-provider-client-wiring` | ecosystem | 1 | Bank Pusat | Use when wiring a client to a relay with WAF UA whitelist. |
 | `ecosystem/ecosystem/telegram-thread-provisioning` | ecosystem | 1 | Bank Pusat | Use when adding a Telegram persona thread to a forum group. |
 | `ecosystem/ekosistem-content-verification` | ecosystem | 2 | Bank Pusat | Verify web/JSON content accuracy against source documents (DOCX/XLSX) for Niumination ecosystem projects — extract, compare, report, fix. Covers Pemdi data verification and general content audit patterns. |
@@ -193,6 +194,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-09-27 00:26:49_
+_Last sync: 2026-09-27 01:40:51_
 
 <!-- SKILL_REGISTRY_END -->
