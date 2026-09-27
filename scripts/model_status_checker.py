@@ -18,6 +18,7 @@ from pathlib import Path
 HERMES_HOME = Path.home() / ".hermes"
 CONFIG_FILE = HERMES_HOME / "config.yaml"
 ENV_FILE = HERMES_HOME / ".env"
+AUTH_FILE = HERMES_HOME / "auth.json"
 OUTPUT_DIR = HERMES_HOME / "cron" / "output"
 CACHE_FILE = OUTPUT_DIR / "model-status-cache.json"
 
@@ -32,20 +33,20 @@ HERMES_PROVIDERS = {
     "9router": "http://localhost:20128/v1",
     "agentrouter": "https://agentrouter.org/v1",
     "huancheng": "https://api.hcnsec.cn/v1",
-    "nous": "http://localhost:20128/v1",
+    "nous": "https://inference-api.nousresearch.com/v1",
 }
 
-# Model yang di-route via 9router internal ke Nous Portal
+# Model yang di-route via Nous Portal (OAuth device-code)
 # Tidak bisa di-probe langsung via 9router, tapi aktif di Hermes
 INTERNAL_ROUTE_MODELS = {
-    "inclusionai/ling-3.0-flash-fin:free": {"provider": "nous", "note": "Routed to Nous Portal via 9router"},
-    "meituan/longcat-2.0:free": {"provider": "nous", "note": "Routed to Nous Portal via 9router"},
+    "inclusionai/ling-3.0-flash-fin:free": {"provider": "nous", "note": "Routed to Nous Portal directly"},
+    "meituan/longcat-2.0:free": {"provider": "nous", "note": "Routed to Nous Portal directly"},
 }
 
 
 def load_env_vars():
     keys = {}
-    for key in ["NINE_ROUTER_API_KEY", "AGENTROUTER_API_KEY", "HUANCHENG_API_KEY", "OPENROUTER_API_KEY"]:
+    for key in ["NINE_ROUTER_API_KEY", "AGENTROUTER_API_KEY", "HUANCHENG_API_KEY", "OPENROUTER_API_KEY", "ATRIA_API_KEY"]:
         val = os.environ.get(key, "")
         if val:
             keys[key] = val
@@ -106,9 +107,9 @@ def load_hermes_config():
     return config
 
 
-def fetch_json(url, timeout=API_TIMEOUT):
+def fetch_json(url, timeout=API_TIMEOUT, headers=None):
     try:
-        req = urllib.request.Request(url)
+        req = urllib.request.Request(url, headers=headers or {})
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             return json.loads(resp.read().decode())
     except Exception:
@@ -134,7 +135,24 @@ def load_openrouter_models():
     return result
 
 
+def load_nous_token():
+    """Nous memakai OAuth device-code, bukan API key.
+    Token ada di ~/.hermes/auth.json (providers.nous.access_token).
+   _env TIDAK pernah punya NOUS_TOKEN — mencari key itu selalu kosong."""
+    if AUTH_FILE.exists():
+        try:
+            auth = json.loads(AUTH_FILE.read_text())
+            tok = (auth.get("providers", {}).get("nous", {}) or {}).get("access_token", "")
+            if tok:
+                return tok
+        except Exception:
+            return ""
+    return ""
+
+
 def load_9router_models():
+    # /v1/models di 9router lokal menjawab 200 JSON TANPA auth header.
+    # Header hanya diperlukan untuk /v1/chat/completions.
     data = fetch_json(ROUTER9_LOCAL_URL)
     if not data:
         return []
@@ -236,12 +254,13 @@ def main():
     print("\nTier 2: Probing critical models...")
     
     nine_router_key = keys.get("NINE_ROUTER_API_KEY", "")
+    nous_token = load_nous_token()
     probe_results = {}
     
     for model_id, provider in critical_models:
         if model_id.startswith("explabs/"):
-            probe_results[model_id] = {"status": "internal_namespace", "latency_ms": 0, "note": "Hermes internal routing"}
-            print(f"  SKIP {model_id} (Hermes internal namespace)")
+            probe_results[model_id] = {"status": "removed_namespace", "latency_ms": 0, "note": "explabs provider removed from 9router"}
+            print(f"  SKIP {model_id} (explabs provider removed)")
             continue
         
         # Check if this model is known to be routed internally
@@ -250,19 +269,32 @@ def main():
             probe_results[model_id] = {"status": "internal_route", "latency_ms": 0, "note": info["note"]}
             print(f"  ACTIVE {model_id} ({info['note']})")
             continue
-        
+
         if provider == "nous":
-            probe_provider = "9router"
+            # Nous routes directly to Nous Portal via OAuth, not 9router
+            base_url = HERMES_PROVIDERS.get("nous", "")
+            key = nous_token
+        elif provider == "openrouter":
+            base_url = "https://openrouter.ai/api/v1"
+            key = keys.get("OPENROUTER_API_KEY", "")
+        elif provider == "9router":
+            base_url = HERMES_PROVIDERS.get("9router", "")
+            key = nine_router_key
+        elif provider == "agentrouter":
+            base_url = HERMES_PROVIDERS.get("agentrouter", "")
+            key = keys.get("AGENTROUTER_API_KEY", "")
+        elif provider == "huancheng":
+            base_url = HERMES_PROVIDERS.get("huancheng", "")
+            key = keys.get("HUANCHENG_API_KEY", "")
         else:
-            probe_provider = provider
+            base_url = HERMES_PROVIDERS.get(provider, "")
+            key = ""
         
-        base_url = HERMES_PROVIDERS.get(probe_provider, "")
         if not base_url:
             probe_results[model_id] = {"status": "no_base_url", "latency_ms": 0}
+            print(f"  SKIP {model_id} (no base_url)")
             continue
-        
-        key = nine_router_key
-        
+
         if not key:
             probe_results[model_id] = {"status": "no_key", "latency_ms": 0}
             print(f"  SKIP {model_id} (no API key)")
@@ -270,8 +302,9 @@ def main():
         
         result = probe_model_quick(model_id, base_url, key)
         probe_results[model_id] = result
+        label = provider if provider in ("9router", "openrouter", "huancheng") else "nous"
         icon = "OK" if result["status"] == "ok" else "FAIL"
-        print(f"  {icon} {model_id} via {probe_provider}: {result['latency_ms']:.0f}ms ({result['status']})")
+        print(f"  {icon} {model_id} via {label}: {result['latency_ms']:.0f}ms ({result['status']})")
     
     report["probe_results"] = probe_results
     

@@ -1,120 +1,177 @@
 ---
 name: 9router-model-mapping
 description: "Configure and maintain 9router model mapping for Hermes — fallback chain, channel overrides, quota-aware model selection"
-version: "2.0.0"
+version: "3.0.1"
 author: Afrizal Munthe
 tags: [9router, model-mapping, fallback, quota, niumination, hermes-config]
+updated: 2026-09-27
 ---
 
 # 9Router Model Mapping
 
 ## Overview
-Configure Hermes to use 9router as primary provider with a diversified fallback chain. All models must be verified in the live 9router catalog (localhost:20128) before being added to config.
+9router (localhost:20128) is a **secondary/cadangan** provider. Primary provider is `nous` (OAuth, `~/.hermes/auth.json`). 9router catalog **berflapping** — terukur 67 → 51 → 67 dalam 27 Sep 2026. Namespace `explabs` **tidak ada lagi**.
 
-## Current Config (07 Sep 2026)
+## Live Catalog — 27 Sep 2026 (probe 22:2x, `curl localhost:20128/v1/models`)
+
+**Total: 67 model** | **Namespace:** `gh` 34 · `kr` 24 · `ag` 4 · `cf` 2 · `gemini` 1 · `openrouter` 1 · tanpa-prefix 1 (`opencode-combo`)
+**Tidak ada lagi:** `explabs` · `claude-combo` · `experimentallabs`
+
+> ⚠️ **Katalog ini berflapping.** Dalam satu hari terukur 67 → 51 → 67. Angka di sini adalah snapshot, bukan jaminan. Selalu probe ulang sebelum menyimpulkan; jangan menulis angka katalog ke dokumen tanpa mencatat waktu probe-nya.
+
+| Namespace | Count | Isi nyata (27 Sep 2026) |
+|-----------|-------|--------------------------|
+| `gh` | 34 | GitHub Models — `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-5-mini`, `gpt-5.4-mini-free-auto`, `gpt-5.6-luna`, `gpt-5.6-luna-free-auto`, `gpt-6-luna`, `claude-haiku-4.5`, `kimi-k3`, `kimi-k3-base`, `kimi-k3-copilot`, `mai-code-1*`, `copilot-search-a/b/c`, `exec-agent-a/b/c`, `trajectory-compaction`, `gpt-3.5-turbo*`, `gpt-4*` |
+| `kr` | 24 | Kimi/Kiro — `deepseek-3.2` (+`thinking`/`agentic`), `minimax-m2.1`/`m2.5` (+ varian), `claude-sonnet-4` (+ varian), `glm-5-thinking` (+ varian), `qwen3-coder-next` (+ varian), `auto`/`auto-thinking` |
+| `ag` | 4 | Antigravity — `claude-opus-4-6-thinking`, `claude-sonnet-4-6`, `gemini-3.8-flash`, `gpt-oss-120b-medium` |
+| `cf` | 2 | Cloudflare Workers — `@cf/moonshotai/kimi-k2.6`, `@cf/zai-org/glm-4.7-flash` |
+| `gemini` | 1 | Google AI Studio native — `gemini-3.8-flash` |
+| `openrouter` | 1 | `typesafe/jev-1.13` |
+| (tanpa prefix) | 1 | `opencode-combo` |
+
+## Current Config — 27 Sep 2026 (`~/.hermes/config.yaml`)
 
 ```yaml
 model:
-  provider: 9router
-  default: explabs/gpt-5.4-mini
-  base_url: http://localhost:20128/v1
-  api_mode: chat_completions
-  key_env: NINE_ROUTER_API_KEY
+  provider: nous
+  default: stealth/space-bunny-alpha
+  base_url: https://inference-api.nousresearch.com/v1
 
-fallback_model:
-  - provider: 9router
-    model: ag/gemini-3.8-flash-medium
-  - provider: 9router
-    model: ag/gemini-3.7-flash-medium
+providers:
+  9router:
+    base_url: http://localhost:20128/v1
+    api_mode: chat_completions
+    key_env: NINE_ROUTER_API_KEY
+  huancheng:
+    base_url: https://api.hcnsec.cn/v1
+    api_mode: chat_completions
+    key_env: HUANCHENG_API_KEY
+    default_model: auto
+  atria:
+    base_url: https://api.atria-asi.ai/v1
+    api_mode: chat_completions
+    key_env: ATRIA_API_KEY
+    default_model: Atria-Dawn-Preview
+
+cron:
+  model: meituan/longcat-2.0:free
+  model_provider: nous
+
+x_search:
+  model: upstage/solar-pro4:free
+  provider: nous
 ```
 
-## Verified Working Models (from live catalog + HTTP-200 probe)
+## Channel Overrides — 27 Sep 2026 (verified in config.yaml)
 
-| Role | Model | Provider | Notes |
-|------|-------|----------|-------|
-| Default | `explabs/gpt-5.4-mini` | 9router | primary, may 503 intermittently |
-| Fallback 1 | `ag/gemini-3.8-flash-medium` | 9router | more stable during backend degradation |
-| Fallback 2 | `ag/gemini-3.7-flash-medium` | 9router | secondary fallback |
-| Vision | `explabs/claude-fable-5` | 9router | |
-| Compression | `ag/gemini-3.7-flash-low` | 9router | active; previously retired `ag/gemini-3.5-flash-*` variants are deprecated |
-| Delegation | `explabs/gpt-5.4-mini` | 9router | |
-| X-search | `explabs/grok-4.20` | 9router | |
-| Cron | `explabs/gpt-5.4-mini` | 9router | |
-| Channel 1 | `explabs/gpt-5.4-mini` | 9router | |
-| Channel 802 | `explabs/claude-haiku-4.5` | 9router | may 503 intermittently |
-| Channel 803 | `explabs/gpt-4o-mini` | 9router | may 503 intermittently |
-| Channel 804 | `explabs/claude-sonnet-4.6` | 9router | may 503 intermittently |
-| Channel 1172 | `explabs/gemma-4-31b` | 9router | may 503 intermittently |
+| Channel | Model | Provider | Notes |
+|---------|-------|----------|-------|
+| 1 (Home) | `inclusionai/ling-3.0-flash-fin:free` | nous | Primary thread |
+| 802 (Research) | `inclusionai/ling-3.0-flash-sante:free` | nous | |
+| 803 (Builder) | `meituan/longcat-2.0:free` | nous | |
+| 804 (QA/Pengawas) | `deepseek/deepseek-v4-flash-0731:free` | openrouter | |
+| 1172 (Kreator) | `poolside/laguna-s-2.1:free` | nous | |
+| 7402 (Serbaguna) | `meituan/longcat-2.0:free` | nous | Flex-thread |
+| 8853 (ASN Admin) | `sensenova-6.8-flash-lite` | huancheng | Dinas ASN |
 
-## Backend Stability Notes
-- `explabs/` routes may return **503** from backend `openai-compatible-chat-...` while the 9router service and catalog remain healthy.
-- `ag/gemini-*` routes have been more stable during backend degradation.
-- Do not declare a fallback chain “good” from stale probe results. Re-probe immediately before finalizing config.
+## Other Active Mappings
 
-## Config Sync Requirement
-When updating Hermes model config, mirror the change to:
-- `~/.hermes/config.yaml`
-- `~/Desktop/Niumination/apps/JHermUSB-portable/config/config.yaml`
+| Function | Model | Provider |
+|----------|-------|----------|
+| Cron | `meituan/longcat-2.0:free` | nous |
+| x_search | `upstage/solar-pro4:free` | nous |
+| Delegation | `nvidia/nemotron-3-ultra-550b-a55b:free` | openrouter |
+| Image Gen | `gpt-image-2-medium` | openai-codex |
+| Auxiliary Vision | (env: `AUXILIARY_VISION_API_KEY`) | auto |
+| Atria (custom) | `Atria-Dawn-Preview` | atria — `https://api.atria-asi.ai/v1` |
+| Stt | whisper-1 | openai |
 
-Both must stay aligned because the portable repo is the DR restore source.
+## Nous `:free` Models — 19 Sep 2026 snapshot (7 terverifikasi)
 
-## Catalog State
-- Total models: 334
-- Active namespace: `explabs/`, `ag/`, `claude-combo`
-- Deprecated namespaces: `gh/`, `kr/`, `gemini/`, `experimentallabs/`
+`inclusionai/ling-3.0-flash-fin:free` · `inclusionai/ling-3.0-flash-sante:free` · `meituan/longcat-2.0:free` · `poolside/laguna-s-2.1:free` · `poolside/laguna-xs-2.1:free` · `stepfun/step-3.7-flash:free` · `upstage/solar-pro4:free`
+
+## 9router sebagai Fallback (cadangan)
+
+9router **bukan** mapping utama. Fungsinya: (1) fallback saat nous tidak terjawab, (2) sumber model alternatif.
+
+**Model yang benar-benar ada di katalog 27 Sep 2026** (semua diverifikasi lewat `/v1/models`):
+
+| Model | Namespace | Catatan |
+|---|---|---|
+| `gh/gpt-4o-mini` | gh | GitHub Models |
+| `gh/claude-haiku-4.5` | gh | GitHub Models — claude di prefix `gh`, **bukan** `kr` |
+| `ag/claude-sonnet-4-6` | ag | Antigravity |
+| `ag/claude-opus-4-6-thinking` | ag | Antigravity |
+| `kr/claude-sonnet-4` | kr | Kimi/Kiro |
+| `kr/deepseek-3.2` | kr | Kimi/Kiro |
+| `gemini/gemini-3.8-flash` | gemini | AI Studio native |
+| `cf/@cf/moonshotai/kimi-k2.6` | cf | Cloudflare Workers |
+| `openrouter/typesafe/jev-1.13` | openrouter | — |
+
+**Model yang TIDAK ada (jangan dipakai):** `kr/claude-haiku-4.5` · `kr/claude-sonnet-4.5` · `kr/claude-opus-5-thinking` · `kr/claude-sonnet-5-thinking` · `kr/gpt-5.6-sol-*` · `gemini/gemini-3.5-flash-lite` · `cf/@cf/meta/llama-3.3-70b-instruct-fp8-fast`
+
+**Pitfall namespace:** prefix tidak bisa ditebak dari nama model. `claude-haiku-4.5` ada di `gh/`, `claude-sonnet-4.6` ada di `ag/`, `claude-sonnet-4` ada di `kr/`. **Selalu cek `/v1/models` sebelum menulis nama model ke config.**
 
 ## CRITICAL Rules
 
 ### 1. Verify in Live Catalog
-ALWAYS check `curl -s http://localhost:20128/v1/models` before adding a model. Never assume availability.
+```bash
+curl -s http://localhost:20128/v1/models     # 200 + JSON tanpa auth
+```
+**Verified 27 Sep 2026:** `/v1/models` **tidak** butuh header auth. Yang butuh header `Authorization` adalah `/v1/chat/completions`. Klaim lama ("tanpa header → HTML 404") sudah dibantah oleh probe.
 
-### 2. Use Verified Working Models Only
-Only add models that returned HTTP-200 in live probe. Retired models must be removed from config immediately.
+### 2. Provider adalah `nous`, bukan 9router
+Config aktual: `model.provider: nous`. 9router hanya cadangan.
 
-### 3. Use Active Namespaces Only
-Configure models from active namespaces: `explabs/`, `ag/`, `claude-combo`. Do not use deprecated namespaces `gh/`, `kr/`, `gemini/`, `experimentallabs/`.
+### 3. No `explabs` namespace
+Provider `explabs` sudah dihapus dari 9router. Gunakan `nous` atau `openrouter`.
 
-### 4. Re-verify Before Finalizing
-Models can retire between probes. Always re-probe selected models immediately before writing config, not from earlier session results.
+### 4. Nous OAuth, bukan API key
+`nous` menggunakan OAuth device-code di `~/.hermes/auth.json`. `key_env: NINE_ROUTER_API_KEY` menyesatkan untuk provider `nous`.
 
-### 5. Python Env Expansion Pitfall
-When writing inline Python probe scripts, `$VAR` does **not** expand inside Python string literals. Use `os.environ.get("NINE_ROUTER_API_KEY", "")` instead of embedding shell variables directly.
+### 5. Mission Control — MATI (verified 27 Sep 2026, 22:0x)
+`localhost:5200` dan `localhost:3000` keduanya **HTTP 000** (connection refused). Tidak ada proses `next-server` untuk MC, dan tidak ada listener di kedua port. Dua plist MC (`com.niu.missioncontrol`, `com.niumination.missioncontrol`) **tidak ter-load** di launchd. Klaim lama "MC sehat, butuh auth" **tidak berlaku** — tidak ada endpoint yang bisa dijawab.
 
-### 6. Batch Probe Pattern
-Use a threaded probe script with queue-based workers (8 workers, 12s timeout) against `http://localhost:20128/v1/chat/completions`. Save results to `/tmp/explabs_probe_results.json` for offline analysis.
+### 6. Python Env Expansion Pitfall
+`$VAR` does **not** expand inside Python string literals. Use `os.environ.get("NINE_ROUTER_API_KEY", "")`.
 
-### 7. Config Edit Rules
-- Backup first: `cp config.yaml config.yaml.bak-YYYYMMDD`
-- Use `hermes config set` or direct YAML edit via patch tool
-- Never use heredoc-style replacement — causes escape-drift
-- Verify with `hermes config show` after edit
-- Restart gateway from separate shell after config change
+### 7. Config Sync Requirement
+When updating Hermes model config, mirror to:
+- `~/.hermes/config.yaml`
+- `~/Desktop/Niumination/apps/JHermUSB-portable/config/config.yaml`
 
-## Quota Backend Map
+## Quota Backend Map (9router namespaces)
+
 | Prefix | Backend | Notes |
 |--------|---------|-------|
-| `ag/gemini-*` | Google AI (Antigravity) | ⚠️ ALL share same quota |
-| `gemini/*` | Google AI (native) | Separate quota from Antigravity |
-| `gh/*` | GitHub Models | Independent |
-| `kr/*` | Kimi | Independent |
-| `ag/claude-*` | AG (Claude) | Different family |
-| `ag/gpt-oss-*` | Local open source | No API |
+| `gh/*` | GitHub Models | Independent per repo |
+| `kr/*` | Kimi (Kiro) | Independent |
+| `ag/*` | Antigravity (Google AI) | ⚠️ ALL share same quota |
+| `cf/*` | Cloudflare Workers | Independent |
+| `gemini/*` | Google AI Studio | Separate from Antigravity |
+| `openrouter/*` | OpenRouter | Independent |
 
 ## Verification Checklist
-- [ ] All models in `fallback_providers` exist in `curl http://localhost:20128/v1/models`
-- [ ] No two models share the same quota backend
-- [ ] Default model verified working
-- [ ] Channel override models verified
+- [ ] All models in channel_overrides exist and are verified
+- [ ] No `explabs` namespace in any mapping
+- [ ] Primary provider is `nous` (not 9router)
+- [ ] 9router catalog di-probe (tanpa auth; header hanya untuk /chat/completions)
+- [ ] Mission Control dicek terpisah (27 Sep 2026: 5200 & 3000 mati)
 - [ ] Backup created before edit
-- [ ] Documentation updated
+
+## Related Skills
+- `model-status-checker` — 3-tier health probe
+- `provider-fallback` — general fallback strategy
+- `config-history-review` — audit config changes
+- `ecosystem-dox-maintenance` — DOX hygiene
+- `model-mapping` — model-mapping.md source of truth
 
 ## Rollback
 ```bash
 cp ~/.hermes/config.yaml.bak-YYYYMMDD ~/.hermes/config.yaml
 ```
 
-## Related Skills
-- `provider-fallback` — general fallback strategy
-- `model-checker` — model availability checking
-- `config-history-review` — audit config changes
-- `ecosystem-dox-maintenance` — DOX hygiene
+## Change Log
+- 2026-09-27 v3.0.1 — Koreksi 7 klaim salah hasil audit: katalog 67 (bukan 51), `/v1/models` tanpa auth, MC MATI (bukan butuh-auth), 4 model fallback tidak ada (prefix salah), 2 model `kr` tidak ada. Semua klaim kini hasil probe langsung.
+- 2026-09-27 v3.0.0 — Rewrite: nous sebagai primary, 9router cadangan, `explabs` dihapus
+- 2026-09-07 v2.0.0 — Previous: 9router primary, `explabs/` namespace active

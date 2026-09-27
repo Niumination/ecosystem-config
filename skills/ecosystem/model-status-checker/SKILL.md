@@ -2,6 +2,7 @@
 name: model-status-checker
 description: Model status checker. 3-tier probe for daily health cron.
 tags: [model, status, cron, 9router, openrouter, hermes, probe]
+updated: 2026-09-27
 ---
 
 # Model Status Checker
@@ -17,16 +18,20 @@ Daily model availability and latency report via hybrid 3-tier approach.
 
 ### Tier 1 — Static Data (0 token, ~5s)
 - **OpenRouter API**: `GET https://openrouter.ai/api/v1/models` — returns 444+ models with pricing (free/paid), context length, capabilities
-- **9router local**: `GET http://localhost:20128/v1/models` — returns 88 models across 4 namespaces (gh, gemini, kr, cf)
+- **9router local**: `GET http://localhost:20128/v1/models` — **tanpa header auth** (verified 27 Sep 2026). **67 model** saat probe 22:2x: `gh` 34 · `kr` 24 · `ag` 4 · `cf` 2 · `gemini` 1 · `openrouter` 1 · `opencode-combo` 1. **Katalog berflapping** (67→51→67 dalam sehari) — selalu probe ulang, jangan hardcode angka.
 - **Hermes config.yaml**: default model, providers, channel_overrides, cron model
 
 ### Tier 2 — Minimal Probe (1 token per model, ~30s for 6 critical)
-- Only probe models identified as **critical** from Hermes config:
-  - Default model (currently `inclusionai/ling-3.0-flash-fin:free`)
-  - Channel overrides (802, 803, 804, 1172, 1)
-  - Cron model
-- Skip `explabs/` namespace — these are Hermes internal routing, not real provider models
-- Route `nous` provider through 9router base URL (localhost:20128), NOT direct Nous Portal
+Only probe models identified as **critical** from Hermes config:
+- Default model (currently `stealth/space-bunny-alpha` via nous)
+- Channel overrides (1, 802, 803, 804, 1172, 7402, 8853)
+- Cron model (`meituan/longcat-2.0:free` via nous)
+- x_search model (`upstage/solar-pro4:free` via nous)
+- Delegation model (`nvidia/nemotron-3-ultra-550b-a55b:free` via openrouter)
+- Skip `explabs/` namespace — **does not exist** anymore
+- Route `nous` provider through direct URL `https://inference-api.nousresearch.com/v1` (NOT 9router), with the **OAuth access_token from `~/.hermes/auth.json`** → `providers.nous.access_token`. NOT from `.env` — there is no `NOUS_TOKEN` key there.
+- Route `openrouter` models through OpenRouter endpoint directly
+- Route `huancheng` models through `https://api.hcnsec.cn/v1`
 - Probe payload: `{"model": "...", "messages": [{"role":"user","content":"OK"}], "max_tokens": 1, "stream": false}`
 - Timeout: 15 seconds per model
 
@@ -41,44 +46,65 @@ Daily model availability and latency report via hybrid 3-tier approach.
 | Field | Value |
 |-------|-------|
 | Schedule | `0 9 * * *` (09:00 WIB daily) |
-| Provider | 9router (localhost, no API key needed) |
-| Model | explabs/gpt-5.4-mini |
-| Deliver | telegram:-1004204696417:1,local |
+| Provider | nous |
+| Model | meituan/longcat-2.0:free |
+| Deliver | telegram:-1004204696417:**7402**,local |
 | Script | `python3 ~/Desktop/Niumination/scripts/model_status_checker.py` |
 
 ## Output Format
 
 ```
-📊 Model Status Report — 2026-09-17 09:00 WIB
+Model Status Report — 2026-09-27 09:00 WIB
 
-OpenRouter: 24 free / 444 total
-9router: 88 total (gh:33, gemini:8, kr:34, cf:13)
+9router: 67 models (gh:34, kr:24, ag:4, cf:2, gemini:1, openrouter:1, opencode-combo:1)
+Nous: active (oauth), default: stealth/space-bunny-alpha
 
-✅ Critical OK: 5
-❌ Critical Failed: 1
-   • inclusionai/ling-3.0-flash-fin:free: http_404 (5ms) [false negative — see pitfall]
-⏭️  Skipped: 5 (explabs/* namespace)
+✅ Critical OK: N
+❌ Critical Failed: M
+⏭️  Skipped: X
 
 💡 Default model is healthy — no change needed
-💡 24 free OpenRouter models available as fallback
+💡 7 nous :free models available
 
-📁 Saved: ~/.hermes/cron/output/model-status-20260917-090000.json
+📁 Saved: ~/.hermes/cron/output/model-status-YYYYMMDD-090000.json
 ```
 
 ## Pitfalls
 
-1. **Direct probe = false negative for routed models.** `inclusionai/ling-3.0-flash-fin:free` returns HTTP 404 when probed directly at 9router because it is internally routed to Nous Portal. But it WORKS in production (confirmed by active session using it). Never mark a model as failed based solely on direct probe if it is the active default or confirmed working in chat.
+1. **Nous is NOT through 9router.** `provider: nous` in config.yaml means direct connection to `https://inference-api.nousresearch.com/v1` via OAuth device-code (`~/.hermes/auth.json`). Do NOT route nous models through 9router base URL.
 
-2. **`explabs/` namespace is not a real provider.** It is Hermes internal routing. Skip these during probe — they cannot be tested directly. If a channel uses `explabs/gpt-5.4-mini`, it works as long as 9router is healthy.
+2. **9router: `/v1/models` tanpa auth, `/v1/chat/completions` butuh auth.** Verified 27 Sep 2026: `/v1/models` → HTTP 200 `application/json` tanpa header. Hanya `/v1/chat/completions` yang perlu `Authorization: Bearer $NINE_ROUTER_API_KEY`.
 
-3. **Nous provider goes through 9router.** `provider: nous` in config.yaml does NOT mean direct connection to `inference-api.nousresearch.com`. All Nous traffic routes through 9router at localhost:20128. Always probe Nous models via 9router base URL.
+3. **`explabs/` namespace does not exist.** Removed from 9router catalog. All mappings migrated to `nous` or `openrouter`.
 
-4. **HTTP 401 via direct Nous URL is expected.** If you bypass 9router and hit `https://inference-api.nousresearch.com/v1` with `NINE_ROUTER_API_KEY`, you get 401 because that key is for 9router, not Nous Portal directly. This is not a model failure.
+4. **9router is cadangan, bukan primary.** Primary is `nous`. 9router used as fallback only.
 
-5. **OpenRouter free models ≠ 9router free models.** OpenRouter publishes pricing metadata (free/paid). 9router does not — all 88 models appear identical in the catalog. The only way to know if a 9router model is free is to check if its underlying provider has a free tier (e.g., `gemini` via AI Studio, `github` via Copilot free).
+5. **Mission Control MATI (verified 27 Sep 2026, 22:0x).** `localhost:5200` dan `localhost:3000` keduanya HTTP 000. Tidak ada proses `next-server` MC; kedua plist MC tidak ter-load di launchd. Klaim lama "MC sehat tapi butuh auth" tidak berlaku.
 
-6. **Cron delivery failures from provider auth.** The cron job itself needs a working LLM provider to format and send the report. If the default Hermes provider (nous) is unreachable from cron sessions, set the cron job to use `9router` as provider with base_url `http://localhost:20128/v1` and model `explabs/gpt-5.4-mini`. Direct provider config (provider: 9router) sometimes fails to persist via cronjob_manage — verify with `hermes cron list` after update.
+6. **Nous `:free` model limitations.** 7 models: `inclusionai/ling-3.0-flash-fin:free` · `inclusionai/ling-3.0-flash-sante:free` · `meituan/longcat-2.0:free` · `poolside/laguna-s-2.1:free` · `poolside/laguna-xs-2.1:free` · `stepfun/step-3.7-flash:free` · `upstage/solar-pro4:free`. Account is free tier — no paid credits.
 
-7. **Probe budget.** 6 critical models × ~2 tokens × 1x/day = ~12 tokens/day. Even with 10x overhead for retries, this is negligible (<1K tokens/month). Do NOT probe all 88 9router models daily — that would cost ~180K tokens/month for no additional value.
+7. **OpenRouter free models have daily limits.** 429 errors on heavy usage without paid balance.
 
-8. **Cron model vs main model.** The cron job uses a separate model (`explabs/gpt-5.4-mini`) from the default (`inclusionai/ling-3.0-flash-fin:free`). If the default fails, cron may still work and vice versa. Report both statuses independently.
+8. **Cron model vs main model.** Cron uses `meituan/longcat-2.0:free` (nous), different from default `stealth/space-bunny-alpha` (nous). Report both independently.
+
+## Channel Mapping for Probe
+
+| Channel | Model | Provider | Probe Endpoint |
+|---------|-------|----------|----------------|
+| 1 | `inclusionai/ling-3.0-flash-fin:free` | nous | https://inference-api.nousresearch.com/v1 |
+| 802 | `inclusionai/ling-3.0-flash-sante:free` | nous | https://inference-api.nousresearch.com/v1 |
+| 803 | `meituan/longcat-2.0:free` | nous | https://inference-api.nousresearch.com/v1 |
+| 804 | `deepseek/deepseek-v4-flash-0731:free` | openrouter | https://openrouter.ai/api/v1 |
+| 1172 | `poolside/laguna-s-2.1:free` | nous | https://inference-api.nousresearch.com/v1 |
+| 7402 | `meituan/longcat-2.0:free` | nous | https://inference-api.nousresearch.com/v1 |
+| 8853 | `sensenova-6.8-flash-lite` | huancheng | https://api.hcnsec.cn/v1 |
+
+## Probe Budget
+6 critical models × ~2 tokens × 1x/day = ~12 tokens/day. Negligible.
+Do NOT probe all 67 9router models daily. Use 9router as fallback probe only.
+
+## Related Skills
+- `9router-model-mapping` — model mapping reference and rules
+- `provider-fallback` — general fallback strategy
+- `config-history-review` — audit config changes
+- `ecosystem-dox-maintenance` — DOX hygiene
