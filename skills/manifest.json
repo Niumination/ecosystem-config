@@ -1,7 +1,7 @@
 {
-  "fileCount": 828,
-  "generatedAt": "2026-09-27T15:25:07.024225+00:00",
-  "skillCount": 190,
+  "fileCount": 831,
+  "generatedAt": "2026-09-27T15:39:43.704961+00:00",
+  "skillCount": 191,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -601,10 +601,17 @@
       }
     },
     "ecosystem/9router-model-mapping": {
-      "bundleHash": "cd16db968e21648546f1b5376917808c6878c03ff6bd31464175c9830c86c119",
+      "bundleHash": "1804ade14f01d9f137f2387b247dff25ee771ebfc4bb0d1af1ca360bc34761b0",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "52f45ece9bf78f61d4af87de3bdd5ff736d51c76055deffe1d58908657220387"
+        "SKILL.md": "9ce4ce476e9b9d63967105d6c5937237a6e75f0c562abbdc0dd947d1fd3c95f3"
+      }
+    },
+    "ecosystem/agent-thread-latency-diagnosis": {
+      "bundleHash": "7eeeb55372cf4ee70dadf1904d4d2d0b39dce821b741d7ed4aab1d55806e1875",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "6f45bf548662fd06f85283c1c94e4fe41cd784d33d64c6430332c10652d269df"
       }
     },
     "ecosystem/arena-patch-adoption": {
@@ -758,11 +765,13 @@
       }
     },
     "ecosystem/ecosystem-live-status-reporting": {
-      "bundleHash": "a07929cfe72460a20dd1a99717af5709843736fb77bd039e5a960b5f297f2be0",
+      "bundleHash": "28ce5bd17eeefa5f197376f7add069612e1aa4987c6507d9557701073ce64637",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "5b38d5f76468bbf93f14a120969862a2f69730506a792f79c657600253b9ecf2",
-        "references/deployment-status-verification.md": "fb94ee3bf481ef7992fc362ba882af7980cc8e387294c77ea25239fccf301186"
+        "SKILL.md": "7df20e036f1ba2a19ddee6b4db71c1f26db8989b7e9b97c1f9309a67e7287a73",
+        "references/deployment-status-verification.md": "fb94ee3bf481ef7992fc362ba882af7980cc8e387294c77ea25239fccf301186",
+        "references/resource-attribution.md": "f25ee3daf403f5e4665dfedcb0cc7be70a9e5e0cea665e74743e1129e0d3380b",
+        "references/verifying-machine-generated-changes.md": "90707defa792fc0d6a3ff0160fb460fbfce33ef2b9ff7255cd991e153fbf486e"
       }
     },
     "ecosystem/ecosystem-provider-management": {
@@ -809,34 +818,6 @@
         "SKILL.md": "4dfe123b837a0fdf78f5264dbb495f798cf41be79cd9baf42e3ba699bea4269f"
       }
     },
-    "ecosystem/ecosystem/agent-thread-latency-diagnosis": {
-      "bundleHash": "7eeeb55372cf4ee70dadf1904d4d2d0b39dce821b741d7ed4aab1d55806e1875",
-      "domain": "ecosystem/ecosystem",
-      "files": {
-        "SKILL.md": "6f45bf548662fd06f85283c1c94e4fe41cd784d33d64c6430332c10652d269df"
-      }
-    },
-    "ecosystem/ecosystem/hermes-runtime-credential-resolution": {
-      "bundleHash": "8b317857017f99e2e83330da91095bd450789a5f3531cd34d053f2048e9be3b7",
-      "domain": "ecosystem/ecosystem",
-      "files": {
-        "SKILL.md": "8efb8f27cc1d734d3834d879994bcaf8b9445c3c0b2f98785864986307e2f0c2"
-      }
-    },
-    "ecosystem/ecosystem/relay-provider-client-wiring": {
-      "bundleHash": "257509d677f30cff452dfdfaf2302ec46102084b9f5def68e3dac66d0abb308e",
-      "domain": "ecosystem/ecosystem",
-      "files": {
-        "SKILL.md": "20f6bb9848490f9705dfd749a345fee75e3b7d95177f3a6be6db5518568e74a1"
-      }
-    },
-    "ecosystem/ecosystem/telegram-thread-provisioning": {
-      "bundleHash": "c6ed0d83945de727f4e78fc22cda979fafe6bf4dbc856c0cc2dbf142bb7f40af",
-      "domain": "ecosystem/ecosystem",
-      "files": {
-        "SKILL.md": "780b7794cccf3b9114673dabf104e528902ef55399f4369db6f351340282d0b2"
-      }
-    },
     "ecosystem/ekosistem-content-verification": {
       "bundleHash": "68c562d597349ea6da642d553312ed8ab4fc1a9f703263f6a8d61c27139c4496",
       "domain": "ecosystem",
@@ -871,6 +852,13 @@
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "7d3aa79739df5c17424869fe3c783ddeb5c340d6b4b30a993100f982b24eadd6"
+      }
+    },
+    "ecosystem/hermes-config-mutation-safety": {
+      "bundleHash": "bf00bda6226e569cffaaa4d9b40b3790e1e848ee50339ddd8dcb4a635c092592",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "350c8d1a78832cfcacb8c5d74fc9ae5939211a7e5a950ec80d5d3607445f7419"
       }
     },
     "ecosystem/hermes-configuration": {
@@ -924,6 +912,13 @@
         "scripts/rapid-probe.py": "c29d2db4aa116e55103f9a6450996939da2c3fea458f84dd3ccff4c7a5e5c844",
         "scripts/stress-test-models.py": "1c7022f0b56584d371b11a92b90ab14781281fc9d18c829593764450c451520c",
         "scripts/test-vision-endpoint.py": "23426710553f9407890df8e25b451d1b233c3430dac481af8ab0ab3efddd56c1"
+      }
+    },
+    "ecosystem/hermes-runtime-credential-resolution": {
+      "bundleHash": "8b317857017f99e2e83330da91095bd450789a5f3531cd34d053f2048e9be3b7",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "8efb8f27cc1d734d3834d879994bcaf8b9445c3c0b2f98785864986307e2f0c2"
       }
     },
     "ecosystem/hermes-uiux-technical": {
@@ -1098,6 +1093,13 @@
         "SKILL.md": "8b740c2791bc47b7165f815841ccee9526ea50a82b62b8ae3319545df91c2696"
       }
     },
+    "ecosystem/relay-provider-client-wiring": {
+      "bundleHash": "257509d677f30cff452dfdfaf2302ec46102084b9f5def68e3dac66d0abb308e",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "20f6bb9848490f9705dfd749a345fee75e3b7d95177f3a6be6db5518568e74a1"
+      }
+    },
     "ecosystem/research/official-regulation-extraction": {
       "bundleHash": "0dd4964cabbd2e808ede07255fa9d54f471fc281b389406272901afafb508040",
       "domain": "ecosystem/research",
@@ -1179,6 +1181,13 @@
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "f74cda2e9cdb0e6127ef8b01ca8d2a350167aced89ae44c021820e0671bdc415"
+      }
+    },
+    "ecosystem/telegram-thread-provisioning": {
+      "bundleHash": "c6ed0d83945de727f4e78fc22cda979fafe6bf4dbc856c0cc2dbf142bb7f40af",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "780b7794cccf3b9114673dabf104e528902ef55399f4369db6f351340282d0b2"
       }
     },
     "ecosystem/up-eco": {

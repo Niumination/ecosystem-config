@@ -114,6 +114,32 @@ x_search:
 
 ## CRITICAL Rules
 
+### 0. Jangan edit `config.yaml` pakai `hermes config set` untuk perubahan multi-key
+`hermes config set` ** menulis ulang seluruh file dan membuang blok komentar di EOF secara senyap.**
+Terbukti 27 Sep 2026: dua panggilan `hermes config set` menghapus blok komentar
+`# ── Fallback Model ──` 22 baris di akhir file (877 → 855 baris). Key-nya sendiri ditulis
+benar; yang hilang adalah dokumentasi yang dibaca sesi berikutnya.
+
+Prosedur aman:
+1. `cp ~/.hermes/config.yaml ~/.hermes/config.yaml.bak-$(date +%Y%m%d)`
+2. Edit in-place dengan `str.replace` yang meng-`assert s.count(old) == 1` — gagal keras
+   kalau match 0 atau >1, daripada diam-diam merusak routing.
+3. `diff` backup vs baru — harus hanya baris yang dimaksud.
+4. `python3 -c "import yaml;yaml.safe_load(...)"` untuk konfirmasi struktur.
+5. `grep -c ""` kedua file — jumlah baris harus sama kecuali memang menambah baris.
+
+`hermes config set` aman untuk satu key sekali pakai yang tidak cared. Apapun yang menyentuh
+`platforms.telegram.channel_overrides` bukan sekali pakai.
+Detail lengkap + perbandingan ketiga jalur tulis: skill `hermes-config-mutation-safety`.
+
+### 0b. 9router butuh `NINE_ROUTER_API_KEY` di environment proses
+`curl` dengan token hardcoded → `401 invalid_api_key`. Kunci hanya ada di `~/.hermes/.env`:
+```bash
+set -a; source ~/.hermes/.env; set +a
+```
+Kalau gateway/sesi tidak memuat `.env`, routing `provider: 9router` gagal 401 walau 9router
+sendiri sehat. Cek env dulu sebelum menyalahkan model saat menambah channel override 9router.
+
 ### 1. Verify in Live Catalog
 ```bash
 curl -s http://localhost:20128/v1/models     # 200 + JSON tanpa auth
