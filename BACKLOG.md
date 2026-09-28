@@ -148,7 +148,7 @@ Desktop/Niumination/
 
 | Proyek | Priority | Status | Aktivitas Terakhir | Notes |
 |--------|:--------:|:------:|:------------------:|-------|
-| **cc-acehtengah** | **P2** | 💤 **Hiatus** | **2026-09-21** | Proyek pindah ke `sapa-ai` sesuai permintaan client. Produksi Vercel di-pause pemilik; repo GitHub di-archive + private (tag `v-hiatus-2026-09-21`). Folder lokal `services/cc-acehtengah/` tetap utuh — tidak dihapus. Restore: `docs/reports/HIATUS-CC-ACEHTENGAH-2026-09-21.md` |
+| **cc-acehtengah** | **P2** | 📦 **Diarsipkan** | **2026-09-21** | Repo GitHub di-archive + private (tag `v-hiatus-2026-09-21`). Folder lokal `services/cc-acehtengah/` sudah dihapus. Restore: `docs/reports/HIATUS-CC-ACEHTENGAH-2026-09-21.md` |
 | **niu-mission-control** | **P2 ⬆** | 🟢 **Active** | **2026-09-26** | **v4.1.1 Aether Sync** — Next.js **16.3.5** + React 19.2.8 + TS 5.9.2, `proxy.ts` (ganti middleware), `next.config.ts`. PWA (sw.js + manifest), i18n ID/EN 100 kunci, vitest 12 test, a11y e2e, DOX subtree (`AGENTS.md` + `docs/dox/`). 4 bug arena diperbaiki: migrasi 000 gagal di DB kosong (dipindah ke `ensure-v3-columns.ts`), `npm run lint` mati di Next 16 (flat config), race condition migrasi multi-worker, duplikasi `docs/adr/` + `secret-scan-staged.py`. Build exit 0, tsc 0, vitest 12/12, lint 0 error, test-sse 10/10 (3×). **MC masih OFF** (port 5200 mati, belum ada service permanen) — 4 agent non-chief masih adapter `hermes` (butuh Hermes CLI + kredensial). Laporan: `docs/reports/ADOPSI-MC-V4-AETHER-DAN-MIGRASI-DB-2026-09-26.md` · Feedback arena: `services/niu-mission-control/docs/reports/FEEDBACK-ARENA-v4.1.1.md` |
 | **niu-cast** | P2 | 🟢 **Active** | 2026-07-21 | v3.6.0 — Mac Connect Bridge |
 | **Niu-Flow** | P2 | 🟢 **Remote only** | 2026-07-28 | github.com/Niumination/niu-flow |
@@ -445,21 +445,23 @@ Ultra, AuditTI-AT, Niu-Flow, didong-code, x-downloader, flame-ade, niu-vermilion
 
 *Status: ekosistem sehat & stabil. PR bot (Niu-LKH#1, afoa#2) masih menganggur — tahan review.*
 
-@cc-acehtengah
+---
 
-- [HOLD] **Credential Broker Phase B — tunggu verifikasi sesi paralel selesai** — broker (scripts/keys.sh) sudah jalan & ter-test; migrasi live key DITAHAN karena PID 22342 & 1028 sedang kerja. Lanjut hanya kalau session selesai atau user bilang "lanjut". Ref: docs/references/credential-broker-handoff.md @scripts
+## 🔴 cc-acehtengah — DIARSIPKAN 21 Sep 2026
 
-@cc-acehtengah
+Repo GitHub di-archive + private. Folder lokal `services/cc-acehtengah/` sudah dihapus. Tindakan lanjutan berikut **tidak berlaku lagi** (catatan historis):
 
-- [ACTIVE] **Rencana eksekusi 100% cc-acehtengah** — pakai `docs/EXECUTION-PLAN-100.md`. Urutan: PR-M00 (WP0.00 credential/PII) → PR-M0a (WP0.0 jiwa==keluarga) → PR-M0f (WP0.14 kunci 32 byte) → PR-M0g (WP0.15 Bapokting) → PR-M0h (WP0.16 normalisasi kecamatan) → PR-M0c (WP0.12 role/BNBA) → PR-M0d (WP0.13 tata kelola branch) → PR-M0e (WP0.5/0.3/0.1 gerbang mutu) → PR-M1 (WP1 semantic layer) → PR-M2 (WP2 router) → PR-M3a+PR-M3 (WP3 stat engine) → PR-M4 (WP4 rekonsiliasi) → PR-M5 (WP5 narasi) → PR-M6 (WP6 eval harness) → PR-M7 (WP7 hardening) → PR-M8 (deploy + doc). Setiap PR berdiri sendiri; jangan merge ke main sebelum PR-M00 + PR-M0a lolos.
-- [HOLD] **Jangan deploy production sebelum WP0.00 + WP0.0 selesai** — credential + PII + jiwa==keluarga adalah P0.
-- [PENDING] **Audit berkas `cc-acehtengah-v7.zip`** — 92 golden query + 73 audit test sudah diverifikasi. Sisa WP0–WP7 belum dijalankan.
+- ~~Credential Broker Phase B~~ — tidak lagi aktif
+- ~~Rencana eksekusi 100% cc-acehtengah~~ — tidak lagi aktif
+- ~~Audit berkas cc-acehtengah-v7.zip~~ — tidak lagi aktif
+
+Detail lengkap: `docs/reports/HIATUS-CC-ACEHTENGAH-2026-09-21.md`
 
 ---
 
-## 🔴 Mendesak — 11 Sep 2026 — AI HackFest Batch 3: MATA (Hari-1/5)
+## 🔴 MATA × AI HackFest — ⏳ Menunggu Penilaian
 
-- [ACTIVE] **MATA × AI HackFest 2026 — sprint 11–15 Sep** — Watchdog akuntabilitas pengadaan (Python, rule engine D1–D6, dossier PDF). Lokasi: `labs/mata-aihackfest-2026/` (DOX proyek + sub-BACKLOG harian). Sumber: `~/Downloads/aihackfest.zip`. VPS dikelola owner via Kitty; Hermes tidak menyentuh VPS. Deadline karya: 15 Sep (VM dinonaktifkan pasca-batch). Detail harian: `labs/mata-aihackfest-2026/BACKLOG.md` @mata-aihackfest
+Sprint 11–15 Sep selesai. Deadline 15 Sep sudah lewat. Saat ini menunggu penilaian dewan juri. Branch dev siap dilanjutkan kapanpun pemilik ada waktu.
 
 ---
 
