@@ -1,7 +1,7 @@
 {
-  "fileCount": 837,
-  "generatedAt": "2026-09-28T03:57:24.937622+00:00",
-  "skillCount": 194,
+  "fileCount": 839,
+  "generatedAt": "2026-09-28T04:13:41.051840+00:00",
+  "skillCount": 196,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -825,6 +825,13 @@
         "SKILL.md": "d8809cb880d00b92a6e43b3d3746f6643c56113b00ebae5e4898c019b74df734"
       }
     },
+    "ecosystem/ecosystem/skill-loader-name-collision": {
+      "bundleHash": "bd1ff8d47445d9e04c245032b242f0c5a1e2e35c11cfbca608b73684236ce193",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "16e58cad915a9dc298f671efe18b5b5cfaf574f4e9028c87cea20a05e1de867f"
+      }
+    },
     "ecosystem/ekosistem-content-verification": {
       "bundleHash": "68c562d597349ea6da642d553312ed8ab4fc1a9f703263f6a8d61c27139c4496",
       "domain": "ecosystem",
@@ -1431,6 +1438,13 @@
       "domain": "research",
       "files": {
         "SKILL.md": "b85be5a9b86b90287266dd142a0ae9740be926298fbcb772f56b8a4d6451bb12"
+      }
+    },
+    "research/markitdown": {
+      "bundleHash": "7ca8cd58f56377cee5fba1299427f3ecd52dceddc1756204e756391c361baaca",
+      "domain": "research",
+      "files": {
+        "SKILL.md": "d5b24ce323f3c090ef9a5921f1d4180d902f57599d6f7d2b573eba939b5360b3"
       }
     },
     "research/research-paper-writing": {

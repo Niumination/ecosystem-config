@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 193 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 196 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 193 ✅ Aktif
+> **Status:** 196 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -177,6 +177,8 @@
 | **external-report-verification** | ✅ Aktif | Bank Pusat | 7.4 KB | Use for external audit reports. Verify claims live. |
 | **hermes-config-mutation-safety** | ✅ Aktif | Bank Pusat | 6.0 KB | Use when editing ~/.hermes/config.yaml safely. |
 | **skill-library-maintenance** | ✅ Aktif | Bank Pusat | 6.7 KB | Use when moving, patching, or syncing skills. |
+| **hermes-tool-backend-triage** | ✅ Aktif | Bank Pusat | 6.8 KB | Use when a Hermes tool reports unavailable or timeout. |
+| **skill-loader-name-collision** | ✅ Aktif | Bank Pusat | 3.6 KB | Use when a skill name is reported ambiguous. |
 
 ## Domain: Security
 
@@ -269,6 +271,7 @@
 |-------|:------:|--------|-------:|-----------|
 | **blogwatcher** | ✅ Aktif | Hermes (dipromosikan) | 5.0 KB | Monitor blogs and RSS/Atom feeds via blogwatcher-cli tool. |
 | **research-paper-writing** | ✅ Aktif | Hermes (dipromosikan) | 70.5 KB | Write ML papers for NeurIPS/ICML/ICLR: design→submit. |
+| **markitdown** | ✅ Aktif | Bank Pusat | 3.7 KB | Convert office docs, HTML, ZIP, media metadata to Markdown via Microsoft MarkItDown CLI. |
 
 ---
 
@@ -339,8 +342,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **193** |
-| **Total** | **193** |
+| ✅ Aktif | **196** |
+| **Total** | **196** |
 
 ## Catatan Penting — Potensi Konflik
 
