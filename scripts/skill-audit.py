@@ -268,11 +268,15 @@ CATEGORIES = ["hidden", "exfil", "url", "secret", "path", "self-mod", "injection
 
 
 def iter_skills(bank: Path):
-    """Yield (domain, skill_name, skill_dir) untuk setiap folder berisi SKILL.md."""
+    """Yield (domain, skill_name, skill_dir) untuk setiap folder berisi SKILL.md.
+
+    Skill boleh bersarang lebih dari `domain/skill` (mis. `ecosystem/creative/ffmpeg-ken-burns-motion`),
+    jadi telusuri rekursif. Versi lama hanya 2 level dan diam-diam melewati 18 dari 193 skill.
+    """
     if not bank.is_dir():
         return
     for domain in sorted(p for p in bank.iterdir() if p.is_dir() and p.name not in SKIP_DIRS):
-        for skill_dir in sorted(p for p in domain.iterdir() if p.is_dir() and p.name not in SKIP_DIRS):
+        for skill_dir in sorted(p for p in domain.rglob("*") if p.is_dir() and p.name not in SKIP_DIRS):
             if (skill_dir / "SKILL.md").is_file():
                 yield domain.name, skill_dir.name, skill_dir
 
