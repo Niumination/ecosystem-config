@@ -2,7 +2,7 @@
 
 > Auto-generated from live 9router discovery + Hermes provider config.
 > Source of truth: `scripts/model-checker.py` + `~/.hermes/config.yaml`.
-> Last snapshot: 2026-09-27 (verified: 9router catalog 51 models, nous primary).
+> Last snapshot: 2026-09-28 (verified: 9router catalog 70 models, nous primary).
 
 ## Auto-Discovery Procedure
 

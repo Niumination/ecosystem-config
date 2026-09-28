@@ -18,7 +18,7 @@ Daily model availability and latency report via hybrid 3-tier approach.
 
 ### Tier 1 — Static Data (0 token, ~5s)
 - **OpenRouter API**: `GET https://openrouter.ai/api/v1/models` — returns 444+ models with pricing (free/paid), context length, capabilities
-- **9router local**: `GET http://localhost:20128/v1/models` — **tanpa header auth** (verified 27 Sep 2026). **67 model** saat probe 22:2x: `gh` 34 · `kr` 24 · `ag` 4 · `cf` 2 · `gemini` 1 · `openrouter` 1 · `opencode-combo` 1. **Katalog berflapping** (67→51→67 dalam sehari) — selalu probe ulang, jangan hardcode angka.
+- **9router local**: `GET http://localhost:20128/v1/models` — **tanpa header auth** (verified 27 Sep 2026). **70 model** saat probe 28 Sep 2026 09:47: `gh` 34 · `kr` 24 · `ag` 4 · `cf` 2 · `agnes` 2 · `gemini` 1 · `openrouter` 1 · root 2 (`opencode-combo`, `Agnes`). **Katalog berflapping** (67→51→70 dalam 2 hari) — selalu probe ulang, jangan hardcode angka. `/v1/models` juga TIDAK memuat model systemone (`jev-1.13` tidak ada di katalog tapi tetap jalan lewat `/systemone`).
 - **Hermes config.yaml**: default model, providers, channel_overrides, cron model
 
 ### Tier 2 — Minimal Probe (1 token per model, ~30s for 6 critical)
