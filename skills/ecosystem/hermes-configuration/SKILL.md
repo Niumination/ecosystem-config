@@ -421,3 +421,5 @@ cd ~/src/hermes-agent && git status --short && git log --oneline -1
 - `references/opencode-provider-config-2026-09-08.md` — OpenCode base_url fix (`/zen` not `/zen/v2`), key_env correction
 - `references/gateway-notification-system.md` — How startup notifications work, home_channel flow, and duplicate-send prevention
 - `references/config-migration-internals.md` — `_config_version` system, MIGRATIONS registry, and how config changes propagate through updates
+- `references/computer-use-readiness-timeout.md` — `daemon did not become ready`: root cause was cua-driver 0.22.0 (5-13s probe vs 0.12s on 0.30.2), not the timeouts; upgrade driver before touching constants
+- `references/local-patch-preservation-during-update.md` — check + preserve local patches across `hermes update` / `git pull upstream main`

@@ -79,10 +79,11 @@
 | `ecosystem/external-report-verification` | ecosystem | 1 | Bank Pusat | Use for external audit reports. Verify claims live. |
 | `ecosystem/hermes-agent-skill-authoring` | ecosystem | 1 | Bank Pusat | Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles. |
 | `ecosystem/hermes-config-mutation-safety` | ecosystem | 1 | Bank Pusat | Use when editing ~/.hermes/config.yaml safely. |
-| `ecosystem/hermes-configuration` | ecosystem | 11 | Bank Pusat | Configure Hermes for Niumination: model mapping, hooks, MCP. |
+| `ecosystem/hermes-configuration` | ecosystem | 12 | Bank Pusat | Configure Hermes for Niumination: model mapping, hooks, MCP. |
 | `ecosystem/hermes-gateway-dm-troubleshooting` | ecosystem | 2 | Bank Pusat | Diagnose Hermes gateway errors and Telegram DM delays |
 | `ecosystem/hermes-provider-config` | ecosystem | 22 | Bank Pusat | Understand and manage Hermes Agent model provider configuration. Covers: API-key providers (config.yaml), OAuth2 providers (hermes auth), model_catalog.json, provider status investigation, and cleanup of disabled/broken providers. Use when: configuring new providers, debugging "provider not found" or auth errors, investigating why a provider works in one context but not another, or cleaning up provider config. |
 | `ecosystem/hermes-runtime-credential-resolution` | ecosystem | 1 | Bank Pusat | Use when a provider looks broken; prove its real credential. |
+| `ecosystem/hermes-tool-backend-triage` | ecosystem | 1 | Bank Pusat | Use when a Hermes tool reports unavailable or timeout. |
 | `ecosystem/hermes-uiux-technical` | ecosystem | 1 | Bank Pusat | Capability profile UI/UX & technical skills Hermes Agent — intelligent message routing, end-to-end workflow automation, API/multi-agent interoperability, fast NLP & tool-calling, event-driven architecture, conversational UX, micro-interactions, agentic transparency, tone matching. |
 | `ecosystem/integration-verification` | ecosystem | 4 | Bank Pusat | Verify whether external services, APIs, or toolkits are actually connected and working end-to-end. Use when checking Composio, API keys, providers, webhooks, or local gateways. |
 | `ecosystem/kanban-ecosystem-management` | ecosystem | 20 | Bank Pusat | Track Niumination project portfolio via Hermes kanban. Covers: mapping AGENTS.md project catalog → kanban tasks by category/priority, syncing BACKLOG.md, fixing empty-dashboard DB_PATH issues, and the Plan→DOX→Execute workflow for ecosystem-wide kanban updates. |
@@ -197,6 +198,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-09-28 09:52:11_
+_Last sync: 2026-09-28 10:58:01_
 
 <!-- SKILL_REGISTRY_END -->

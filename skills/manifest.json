@@ -1,7 +1,7 @@
 {
-  "fileCount": 835,
-  "generatedAt": "2026-09-28T02:52:02.080591+00:00",
-  "skillCount": 193,
+  "fileCount": 837,
+  "generatedAt": "2026-09-28T03:57:24.937622+00:00",
+  "skillCount": 194,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -876,10 +876,11 @@
       }
     },
     "ecosystem/hermes-configuration": {
-      "bundleHash": "7d2886b59c01bbcb562d210096be820bd8d4b634c8e1e49c4fa4cbbc5ed5ca1e",
+      "bundleHash": "b7a88c86ef5cf39341525cfc6721368d67695ad1aec07048992ecdf44d53a555",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "1827f2ceecd3a6be2b29ceb8e0024294eb8e9b1a16ea3e1edd2d0e1e25dec244",
+        "SKILL.md": "b7fd2444ba7779288ea638af91e3b965351eafdf2e09580c1adaf5eeda96e4fd",
+        "references/computer-use-readiness-timeout.md": "26664129e73364676161e94cea8aae52cba729d9f1a8b6033b7311a6a1b6ae31",
         "references/config-drift-restoration-2026-09-08.md": "2f4c084caa3e2831e58247213fba54e1da7d722cce974759418e0048ce64a606",
         "references/config-migration-internals.md": "2530117ce125c93b4838cdd204ba6e8effffac5284f0869980f2b575dab75677",
         "references/gateway-notification-system.md": "ed55a43e60824441efeebf781bd6dc624844745ad01f464ab9c4dae937377aa2",
@@ -933,6 +934,13 @@
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "8efb8f27cc1d734d3834d879994bcaf8b9445c3c0b2f98785864986307e2f0c2"
+      }
+    },
+    "ecosystem/hermes-tool-backend-triage": {
+      "bundleHash": "d0eba5070d47c9c5581d315fa547c1dd5a02b53c9fed491b172a7c6b9bc0be65",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "e3f30db3f2eac622ef9170ceba0cf8b5ede2d85d70ce1b30d74b88df1333574f"
       }
     },
     "ecosystem/hermes-uiux-technical": {
