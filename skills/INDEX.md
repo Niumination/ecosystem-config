@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 190 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 193 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 190 ✅ Aktif
+> **Status:** 193 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -174,6 +174,9 @@
 | **agent-shell-command-guards** | ✅ Aktif | Bank Pusat | 4.2 KB | Use when a shell command is blocked, stalls, or fills disk. |
 | **agent-thread-latency-diagnosis** | ✅ Aktif | Bank Pusat | 4.3 KB | Use when a chat thread is slow or unresponsive. |
 | **hermes-runtime-credential-resolution** | ✅ Aktif | Bank Pusat | 7.4 KB | Use when a provider looks broken; prove its real credential. |
+| **external-report-verification** | ✅ Aktif | Bank Pusat | 7.4 KB | Use for external audit reports. Verify claims live. |
+| **hermes-config-mutation-safety** | ✅ Aktif | Bank Pusat | 6.0 KB | Use when editing ~/.hermes/config.yaml safely. |
+| **skill-library-maintenance** | ✅ Aktif | Bank Pusat | 6.7 KB | Use when moving, patching, or syncing skills. |
 
 ## Domain: Security
 
@@ -336,8 +339,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **190** |
-| **Total** | **190** |
+| ✅ Aktif | **193** |
+| **Total** | **193** |
 
 ## Catatan Penting — Potensi Konflik
 

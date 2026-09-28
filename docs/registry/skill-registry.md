@@ -71,10 +71,12 @@
 | `ecosystem/ecosystem-recovery` | ecosystem | 5 | Bank Pusat | Full ecosystem recovery after delete or up-eco failures. |
 | `ecosystem/ecosystem-snapshot` | ecosystem | 5 | Bank Pusat | Generate a comprehensive ecosystem configuration snapshot for Niumination. Produces a Markdown document capturing macOS specs, git status, project registry, filesystem layout, Mission Control state, Telegram threads, Skill Bank summary, Hermes config, deployments, security notes, and open issues. Use when the user asks for "konfigurasi lengkap ekosistem", "ekspor snapshot ekosistem", "docs konfigurasi aktif", or requests a full current-state Markdown report. |
 | `ecosystem/ecosystem-tool-adoption` | ecosystem | 1 | Bank Pusat | Workflow studi & adopsi tool/proyek pihak ketiga ke ekosistem Niumination — deep study (clone + baca source), gap analysis terukur, rencana bertahap di docs/architecture/, persetujuan user via clarify, eksekusi non-destruktif. Trigger saat user kirim URL repo/tool + "pelajari ini". |
+| `ecosystem/ecosystem/skill-library-maintenance` | ecosystem | 1 | Bank Pusat | Use when moving, patching, or syncing skills. |
 | `ecosystem/ekosistem-content-verification` | ecosystem | 2 | Bank Pusat | Verify web/JSON content accuracy against source documents (DOCX/XLSX) for Niumination ecosystem projects — extract, compare, report, fix. Covers Pemdi data verification and general content audit patterns. |
 | `ecosystem/ekosistem-scaffold` | ecosystem | 1 | Bank Pusat | Scaffold new or missing projects in the Niumination ecosystem. Creates AGENTS.md + BACKLOG.md + brain/projects/ entry with standardized templates. Validates git, deploy, and DOX completeness. |
 | `ecosystem/external-patch-adoption` | ecosystem | 1 | Bank Pusat | Apply an external patch stack to an ecosystem repo safely. |
 | `ecosystem/external-pr-audit` | ecosystem | 1 | Bank Pusat | Use when an external-agent PR/branch/artifact arrives for an ecosystem repo (Arena/designarena/agen luar lain). Audit before merge — CI truth, rahasia, dampak runtime, import mati, sisa sisi provider — lapor temuan, JANGAN merge tanpa perintah eksplisit pemilik. |
+| `ecosystem/external-report-verification` | ecosystem | 1 | Bank Pusat | Use for external audit reports. Verify claims live. |
 | `ecosystem/hermes-agent-skill-authoring` | ecosystem | 1 | Bank Pusat | Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles. |
 | `ecosystem/hermes-config-mutation-safety` | ecosystem | 1 | Bank Pusat | Use when editing ~/.hermes/config.yaml safely. |
 | `ecosystem/hermes-configuration` | ecosystem | 11 | Bank Pusat | Configure Hermes for Niumination: model mapping, hooks, MCP. |
@@ -147,7 +149,7 @@
 | `software-development/cc-acehtengah-ops` | software-development | 18 | Bank Pusat | Operate cc-acehtengah: AI model, DTSEN sources, deploy. |
 | `software-development/compliance-checklist-dashboard` | software-development | 3 | Bank Pusat | Build compliance/evaluation checklist dashboards from structured documents (Markdown, Excel, PermenPANRB instruments). End-to-end: parse checklist → JSON with status tracking → Next.js dashboard with filters, progress bars, grouped expandable items, and embedded document previews (iframe for HTML, PDF viewer). Covers document-to-indicator mapping, batch status updates from verified sources, and the 'lampiran' pattern for linking evidence files. Use when building dashboards for government compliance (Pemdi, SPBE, IKD, RB), audit tracking, or any scenario where a checklist of items needs status visualization with embedded source documents. |
 | `software-development/delegated-output-verification` | software-development | 2 | Bank Pusat | Verify files produced by delegated/parallel subagents BEFORE integration. Catches corrupted output (JSON-escaped quotes written literally), stub files that pass syntax checks, and self-reports that claim success. Use after every delegate_task/swarm batch that writes files, before claiming the build works. |
-| `software-development/derived-artifact-consistency` | software-development | 2 | Bank Pusat | Use when two tools report different totals for one set. |
+| `software-development/derived-artifact-consistency` | software-development | 4 | Bank Pusat | Use when two tools report different totals for one set. |
 | `software-development/document-content-pipeline` | software-development | 9 | Bank Pusat | High-accuracy PDF extraction (opendataloader-pdf / ODL-PDF), batch markdown cleanup, and content pipeline for website injection. Covers PPT→PDF→Markdown→JSON→Next.js page workflows. |
 | `software-development/fastapi-python` | software-development | 1 | Bank Pusat | Expert in FastAPI Python development with best practices for APIs and async operations |
 | `software-development/fastapi-templates` | software-development | 1 | Bank Pusat | Create production-ready FastAPI projects with async patterns, dependency injection, and comprehensive error handling. Use when building new FastAPI applications or setting up backend API projects. |
@@ -195,6 +197,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-09-27 22:40:22_
+_Last sync: 2026-09-27 23:44:44_
 
 <!-- SKILL_REGISTRY_END -->
