@@ -1,6 +1,6 @@
 {
   "fileCount": 846,
-  "generatedAt": "2026-09-30T16:43:45.308890+00:00",
+  "generatedAt": "2026-10-01T10:31:56.063458+00:00",
   "skillCount": 201,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -615,10 +615,10 @@
       }
     },
     "ecosystem/arena-patch-adoption": {
-      "bundleHash": "db976517ea230b5d3ec1368200bdffaf1de4d9fe4f921a714c5e9fed8ac73bec",
+      "bundleHash": "0dd74c4fd5742215c1b280337ce1570a705094756cd38be53b3b738aeab88672",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "fb3606d69f097f50eb813f163b10035193c130b020c579487aee4623b8d41384",
+        "SKILL.md": "71ad2b8b6816444b9c7d77df0fa4ea600de55c8a0a51637a4a278940d8c87227",
         "references/lighthouse-triage.md": "679e105fccd36da2f66e3585326698c6f73a449b81607f46f69dd336216c423a",
         "references/non-patch-zip-variant.md": "a5662734155ca82d9e6c9ab1a621e25f9d14cba621fa7f41ad1cad99da27d91c"
       }

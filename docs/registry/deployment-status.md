@@ -40,7 +40,7 @@
 |--------|----------|--------|---------|
 | `niu-oss` | `niumination.web.id` + `www` | ✅ **200 LIVE** | Niu-OSS-Dashboard — 216 halaman SSG, domain Verified + www configured-correctly, HEAD `6891b7e`. Deploy terbaru 21m sebelum verifikasi |
 | `pemdi-aceh-tengah` | `pemdi-aceh-tengah.vercel.app` | ✅ **308 → 200** | PemdiAcehTengah — 52 OPD SSG, 67 pages, CMS admin aktif (Neon pemdi-cms, 3 env Sensitive) · Patch 8–22 · 59 tes · HEAD `ec57d1a` (27 Sep). **✅ Selesai — pengembangan lanjutan hanya atas instruksi pemilik**. 308 = redirect normal ke `/` |
-| `sapa-ai` | `sapa-smart-ai.vercel.app` | ✅ **200 LIVE** | SAPA Smart AI — redirect ke `/dashboard`. Proyek development, hiatus menunggu client |
+| `sapa-ai` | `sapa-smart-ai.vercel.app` | ✅ **200 LIVE** | SAPA Smart AI — redirect ke `/dashboard`. **Produksi tetap 0.1.0 (`main` `ff00eb8`)** — terverifikasi 29 Sep 2026, `sapa: active` 2081 record, AI `deepseek-v4.1-flash`, toggle `ai+det` aktif. Cabang `dev` sudah **0.2.0-dev** (`052f2f0`, 14 patch arena `0054`–`0067`, tag `v0.2.0-dev` ter-push 29 Sep) — **belum dipromosikan ke produksi, `main` sengaja tidak disentuh** (keputusan pemilik) |
 | `tedeo-web` | `tedeo-web.vercel.app` | ⏸️ **PAUSED** (503) | **Body: `DEPLOYMENT_PAUSED`**. Kredensial seed lama (`admin123`) ada di repo publik `ecosystem-config` — **aman selama paused** (tidak ada login yang bisa dieksploitasi dari luar). Tidak dihapus dari git history, lihat catatan di bawah |
 | `kune-ya-com` | `kune-ya-com.vercel.app` | ⏸️ **PAUSED** (503) | Kune-Ya AI Chat RAG — `DEPLOYMENT_PAUSED` |
 | `cc-acehtengah` | `cc-acehtengah.vercel.app` | ⏸️ **PAUSED** (503) | Sesuai hiatus 21 Sep 2026 — produksi di-pause pemilik |
