@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 196 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 201 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 196 ✅ Aktif
+> **Status:** 201 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -179,6 +179,11 @@
 | **skill-library-maintenance** | ✅ Aktif | Bank Pusat | 6.7 KB | Use when moving, patching, or syncing skills. |
 | **hermes-tool-backend-triage** | ✅ Aktif | Bank Pusat | 6.8 KB | Use when a Hermes tool reports unavailable or timeout. |
 | **skill-loader-name-collision** | ✅ Aktif | Bank Pusat | 3.6 KB | Use when a skill name is reported ambiguous. |
+| **desktop-gui-automation** | ✅ Aktif | Bank Pusat | 4.6 KB | Use when driving a desktop GUI with computer_use. |
+| **github-upstream-pr-from-fork** | ✅ Aktif | Bank Pusat | 4.3 KB | Use when a fix must reach upstream from a diverged clone. |
+| **hermes-tool-runtime-failure-triage** | ✅ Aktif | Bank Pusat | 4.3 KB | Use when a Hermes tool errors or times out mid-session. |
+| **earning-opportunity-feasibility** | ✅ Aktif | Bank Pusat | 6.6 KB | Use when the user asks what can make money from their setup. |
+| **third-party-gate-triage** | ✅ Aktif | Bank Pusat | 5.5 KB | Use when a vendor's acceptance gate fails after a patch. |
 
 ## Domain: Security
 
@@ -342,8 +347,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **196** |
-| **Total** | **196** |
+| ✅ Aktif | **201** |
+| **Total** | **201** |
 
 ## Catatan Penting — Potensi Konflik
 

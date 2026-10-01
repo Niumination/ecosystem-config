@@ -1,7 +1,7 @@
 {
-  "fileCount": 839,
-  "generatedAt": "2026-09-28T04:13:41.051840+00:00",
-  "skillCount": 196,
+  "fileCount": 846,
+  "generatedAt": "2026-09-30T16:43:45.308890+00:00",
+  "skillCount": 201,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -678,6 +678,15 @@
         "SKILL.md": "d94fa41c370e504227e65c4399b36a8235d6479f447021402deca29e5863ad3e"
       }
     },
+    "ecosystem/desktop-gui-automation": {
+      "bundleHash": "2d8f865d7654ccfbc6a4f4d11739241ab3232e81f6eea79893ac7641d1048994",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "be8e6a2d2218c3d37b8130b4c800498cdd7d3f4f54a87c15bfbfce6fd87c093b",
+        "references/capture-cost-and-input-ladder.md": "f5d725e2d532e9af1432ec4e7b9f0f9f60e7a405784e148be5d0cb766f8a9932",
+        "references/verifying-target-existence.md": "812076a1a6f257ab613338c62f127cfeff2f60f2dd4de23da357fe118fa1ea02"
+      }
+    },
     "ecosystem/device-migration-disaster-recovery": {
       "bundleHash": "83b61b21df18aee0b6f1a8abdb9b4c56b380cfd899ea0178ef4d0713391a46f0",
       "domain": "ecosystem",
@@ -818,6 +827,20 @@
         "SKILL.md": "4dfe123b837a0fdf78f5264dbb495f798cf41be79cd9baf42e3ba699bea4269f"
       }
     },
+    "ecosystem/ecosystem/earning-opportunity-feasibility": {
+      "bundleHash": "1a12dd2fe513253cd51c1641378f05472031a95e9bf953d3b7e9b0de01432cbe",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "a2d3c3e9eac081b433217672b3ae4e009d255173c20cbf2e44d4234770d5f785"
+      }
+    },
+    "ecosystem/ecosystem/hermes-tool-runtime-failure-triage": {
+      "bundleHash": "7987b5a59b9abe69d2fefeb4b172161b4b2a58aaedc2bc656bb3966c258c0075",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "e2a95a0eadd7f036af714337686e64ece9c72573057cf26b1585bc2a3ffb126b"
+      }
+    },
     "ecosystem/ecosystem/skill-library-maintenance": {
       "bundleHash": "3c64537a1c77d2a7f19d4d4cba423c64b80d860c92c4c187f36c48c26c6a1109",
       "domain": "ecosystem/ecosystem",
@@ -830,6 +853,13 @@
       "domain": "ecosystem/ecosystem",
       "files": {
         "SKILL.md": "16e58cad915a9dc298f671efe18b5b5cfaf574f4e9028c87cea20a05e1de867f"
+      }
+    },
+    "ecosystem/ecosystem/third-party-gate-triage": {
+      "bundleHash": "4a8e76ec052a365ba9764c1ed20712f8b5d8aeb41fef78f4115a67cf93a10a5b",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "e6c41a727122b2b914015f612cc5cb5a019e1556f54c043ac8b3afa05be1e272"
       }
     },
     "ecosystem/ekosistem-content-verification": {
@@ -866,6 +896,13 @@
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "08c142a98d08c9df17ad92de8853f26ef015b8868f6a2561e6c3bdfb9cb4864d"
+      }
+    },
+    "ecosystem/github/github-upstream-pr-from-fork": {
+      "bundleHash": "5f20cd206230cef0e652470cc157615e729d37f86f9fb8ffaff0b4aadcf074ef",
+      "domain": "ecosystem/github",
+      "files": {
+        "SKILL.md": "9fe24e6a5b48fb55dbddf2acbecc4c8e0839ac0c16128bf53d6f5efde09a5f29"
       }
     },
     "ecosystem/hermes-agent-skill-authoring": {
