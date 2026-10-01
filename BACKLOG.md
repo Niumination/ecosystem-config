@@ -154,7 +154,7 @@ Desktop/Niumination/
 | **Niu-Flow** | P2 | 🟢 **Remote only** | 2026-07-28 | github.com/Niumination/niu-flow |
 | **latticesend** | P3 | 🟢 Active | 2026-08-10 | P2P file transfer — ✅ sudah punya remote |
 | **uacc** | P2 🆕 | 🟢 Active | 2026-08-18 | Universal AI Computer Control — MCP server |
-| **sapa-ai** | P2 🆕 | ⏸️ **Selesai — menunggu client** | 2026-09-20 | SAPA Smart AI — SPLP-only public app. Pengembangan tahap lanjut menunggu client & instruksi pemilik |
+| **sapa-ai** | P1 🔄 | 🔀 **Dev 0.2.0-dev siap, 7 butir lanjutan** | 2026-10-01 | SAPA Smart AI — SPLP-only. Produksi `main` `ff00eb8` 0.1.0 🟢 hidup (AI `deepseek-v4.1-flash` ON, 2.081 record). Cabang `dev` `052f2f0` = 0.2.0-dev, tag `v0.2.0-dev`, 67 komit, gerbang hijau (794 uji · uji terima exit 0 · eval 120/120 · a11y 11 rute · OWASP 10 vektor) — **belum dipromosikan, `main` utuh**. Backlog aktif: 7 butir (P8 fokus peramban · P12 eval model nyata · P13 panel penilai manusia · P14 latihan mundur · P15 top-up semantik · P16 data desa · FR-13/14 embeddings) — **keputusan pemilik 1 Okt 2026: dikerjakan semua di repo ini**. Rincian `services/sapa-ai/docs/usulan-ai-tingkat-lanjut/37-BACKLOG-TAHAP-BERIKUTNYA.md` |
 | **camofox-browser** | P3 🆕 | ⚪ Third-party | 2026-08-18 | Anti-detection browser |
 
 ### 🏛️ dinas/ — 1 Sistem Profesional (kategori sendiri, di luar pipeline)
