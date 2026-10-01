@@ -36,6 +36,8 @@ How to change files in the Niumination ecosystem without breaking repo boundarie
 - **Do not `git add` in one repo expecting nested files to follow.** They will not.
 - **`skill_manage` writes to the sync target, not the bank.** Use it only to create a new skill or add a new support file, then promote the result to `~/Desktop/Niumination/skills/` and re-sync. Patching the bank directly with the file tools is the correct path for edits to an existing skill.
 - **`skill-manifest.py --verify-target` defaults to `structure=flat`** while the Hermes target uses the `domain` layout. Without `--structure domain` it reports over a hundred skills as missing when every file is present.
+- **A heredoc commit message can silently truncate into foreign prose.** A multi-line `git commit -F - <<'EOF'` came back as one enormous message containing CJK text and a leftover tool-call fragment, then `git commit --amend -F /tmp/msg.txt` failed with "cannot read file" because the `write_file` that produced it had been corrupted the same way. The commit landed but with a wrecked message. Recovery: check `git log -1 --format='%B'`, confirm the *files* are clean separately (`git show --stat`), then amend from a message file whose content you have re-read. When a commit message matters more than a one-liner, write it to a file, re-read that file, and only then commit — never trust that a long inline heredoc survived.
+- **Verify repo visibility from the tool, not the README.** `README.md` claimed `(privat)` while `gh repo view --json visibility` returned `PUBLIC`. Everything written into a public repo is world-readable, so a wrong "privat" label removes the warning that keeps PII out. Check `visibility` before writing any note that assumes secrecy.
 
 ## References
 

@@ -1,7 +1,7 @@
 {
-  "fileCount": 846,
-  "generatedAt": "2026-10-01T10:31:56.063458+00:00",
-  "skillCount": 201,
+  "fileCount": 848,
+  "generatedAt": "2026-10-01T12:24:11.867847+00:00",
+  "skillCount": 203,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -841,6 +841,20 @@
         "SKILL.md": "e2a95a0eadd7f036af714337686e64ece9c72573057cf26b1585bc2a3ffb126b"
       }
     },
+    "ecosystem/ecosystem/macos-system-health": {
+      "bundleHash": "9c178ff5b9e48f03c3f8ff7902dd5425d1963e82e1fddfa5ac27d725a02f50b9",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "9a5bb49c572f98fa69e33886d9832627ae0bb468f1856f9c00cf313927e115d5"
+      }
+    },
+    "ecosystem/ecosystem/sealed-evidence-bundle-production": {
+      "bundleHash": "97214a5b57ef9f18a772a2a9892ad18e094b0f881f66217bc57d471175a2f99a",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "438c10ac4486ea4df33953d720023b2fbf6938699f2183f58ac132c43ec17e83"
+      }
+    },
     "ecosystem/ecosystem/skill-library-maintenance": {
       "bundleHash": "3c64537a1c77d2a7f19d4d4cba423c64b80d860c92c4c187f36c48c26c6a1109",
       "domain": "ecosystem/ecosystem",
@@ -1087,10 +1101,10 @@
       }
     },
     "ecosystem/niumination-ecosystem-change-discipline": {
-      "bundleHash": "58fa97dfc46054874128252688b07ab78b798c760c1111c4d03dff9d11e99e22",
+      "bundleHash": "021f93ac0e08c7e5eb3ba384fd7f5f61c6556476afa1a292fbaac7fcb6562f70",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "34a5fcf52e41ca41c50c5d0c705277dc43df07b8e87e67adaf4f6c25e27291c9"
+        "SKILL.md": "17c94f1c10df8e5b73dd63e92836a3698e237ba31c7bd505a463f972f30ef9b1"
       }
     },
     "ecosystem/niumination-reference-adoption": {

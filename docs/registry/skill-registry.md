@@ -74,6 +74,8 @@
 | `ecosystem/ecosystem-tool-adoption` | ecosystem | 1 | Bank Pusat | Workflow studi & adopsi tool/proyek pihak ketiga ke ekosistem Niumination — deep study (clone + baca source), gap analysis terukur, rencana bertahap di docs/architecture/, persetujuan user via clarify, eksekusi non-destruktif. Trigger saat user kirim URL repo/tool + "pelajari ini". |
 | `ecosystem/ecosystem/earning-opportunity-feasibility` | ecosystem | 1 | Bank Pusat | Use when the user asks what can make money from their setup. |
 | `ecosystem/ecosystem/hermes-tool-runtime-failure-triage` | ecosystem | 1 | Bank Pusat | Use when a Hermes tool errors or times out mid-session. |
+| `ecosystem/ecosystem/macos-system-health` | ecosystem | 1 | Bank Pusat | Use when auditing macOS disk, RAM, or service health. |
+| `ecosystem/ecosystem/sealed-evidence-bundle-production` | ecosystem | 1 | Bank Pusat | Use when sealing a verified evidence bundle for review. |
 | `ecosystem/ecosystem/skill-library-maintenance` | ecosystem | 1 | Bank Pusat | Use when moving, patching, or syncing skills. |
 | `ecosystem/ecosystem/skill-loader-name-collision` | ecosystem | 1 | Bank Pusat | Use when a skill name is reported ambiguous. |
 | `ecosystem/ecosystem/third-party-gate-triage` | ecosystem | 1 | Bank Pusat | Use when a vendor's acceptance gate fails after a patch. |
@@ -205,6 +207,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-09-30 23:43:56_
+_Last sync: 2026-10-01 19:25:01_
 
 <!-- SKILL_REGISTRY_END -->
