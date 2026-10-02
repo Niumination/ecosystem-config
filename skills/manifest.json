@@ -1,6 +1,6 @@
 {
-  "fileCount": 861,
-  "generatedAt": "2026-10-02T07:24:21.098748+00:00",
+  "fileCount": 863,
+  "generatedAt": "2026-10-02T08:05:26.256510+00:00",
   "skillCount": 210,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -1616,13 +1616,15 @@
       }
     },
     "security/git-security-sanitization": {
-      "bundleHash": "a9f9788419a8c64337bba7ba77b9b21741907ae4568cc231fcae3ddc698008f4",
+      "bundleHash": "bbe40425f9f8116f6da6398613c2a41e1e38bbfd591769827714fba06fb3846c",
       "domain": "security",
       "files": {
         "SKILL.md": "8855e28d698a704b5b4e7dbe4e87c032c60b6c95dc8ff43fd28599abda0e08ff",
         "references/account-and-host-posture-sweep.md": "fdbb098c74cb4c247621d42dda5be2c3fe46dc20c96b8d9383aa5af2f45e512c",
+        "references/credential-gate-rule-design.md": "29119c999d1556ababa4bc8031bb8b86ab1203324f89f0f0b3921b3977a95300",
         "references/credential-rotation.md": "f96e0c47b0476ad76fd28a0950c9da5dc0700695f16442b30acb943b2306cea1",
         "references/github-secret-alert-triage.md": "d39706398ab6f3ecaaa55aa45b6dc5521b4a7cca725f239c8ed7ff4e459e020a",
+        "references/history-rewrite-and-host-exposure.md": "0044d5ff27ec47702f6276c17c47855b01002dd90221de2a6fef98d301741248",
         "references/history-rewrite-dry-run.md": "1c0d3feed116d2d39aa9bde111c1e77395d50971c6be0f2e47935e911b37ece0",
         "references/incoming-contribution-review.md": "5e421467523b7c78d164b5d3f64dd230fc6298263562a22d84bc1a301965a9c1",
         "references/leaked-credential-blast-radius.md": "f492c5c782ef29ff90c2c4d2d5aa19e4f85253b257e5834d703f2b794f86365a",

@@ -14,6 +14,7 @@
 | `content/content-research` | content | 1 | Bank Pusat | Riset tren, keyword, audiens, dan bedah kompetitor |
 | `content/content-script` | content | 1 | Bank Pusat | Hook, naskah, storyboard, caption, dan copywriting |
 | `content/content-studio` | content | 1 | Bank Pusat | Produser studio konten: pipeline ide sampai cuan |
+| `content/remotion-video` | content | 3 | Bank Pusat | Buat video vertikal 9:16 pakai Remotion — prompt ke MP4, Mode A CPU-only, gratis (Free tier ≤3 org). SCOPE: thread Konten Kreator (1172) saja. |
 | `creative/ascii-art` | creative | 1 | Bank Pusat | ASCII art: pyfiglet, cowsay, boxes, image-to-ascii. |
 | `creative/comfyui` | creative | 33 | Bank Pusat | Generate images, video, and audio via diffusion workflows. |
 | `creative/content-pipeline-readiness` | creative | 3 | Bank Pusat | Use when checking content production & publish readiness. |
@@ -77,6 +78,7 @@
 | `ecosystem/ecosystem/documentation-reconciliation` | ecosystem | 1 | Bank Pusat | Use when docs, BACKLOG, or registry drift from measured truth. |
 | `ecosystem/ecosystem/earning-opportunity-feasibility` | ecosystem | 1 | Bank Pusat | Use when the user asks what can make money from their setup. |
 | `ecosystem/ecosystem/hermes-tool-runtime-failure-triage` | ecosystem | 1 | Bank Pusat | Use when a Hermes tool errors or times out mid-session. |
+| `ecosystem/ecosystem/long-form-markdown-deliverables` | ecosystem | 1 | Bank Pusat | Use when writing reports, plans, or backlog docs. |
 | `ecosystem/ecosystem/macos-system-health` | ecosystem | 1 | Bank Pusat | Use when auditing macOS disk, RAM, or service health. |
 | `ecosystem/ecosystem/sealed-evidence-bundle-production` | ecosystem | 1 | Bank Pusat | Use when sealing a verified evidence bundle for review. |
 | `ecosystem/ecosystem/skill-library-maintenance` | ecosystem | 2 | Bank Pusat | Use when moving, patching, or syncing skills. |
@@ -152,7 +154,7 @@
 | `research/blogwatcher` | research | 1 | Bank Pusat | Monitor blogs and RSS/Atom feeds via blogwatcher-cli tool. |
 | `research/markitdown` | research | 1 | Bank Pusat | Convert office docs, HTML, ZIP, media metadata to Markdown via Microsoft MarkItDown CLI. |
 | `research/research-paper-writing` | research | 56 | Bank Pusat | Write ML papers for NeurIPS/ICML/ICLR: design→submit. |
-| `security/git-security-sanitization` | security | 16 | Bank Pusat | Clean credential/PII leaks and add secret-scanning gates. |
+| `security/git-security-sanitization` | security | 18 | Bank Pusat | Clean credential/PII leaks and add secret-scanning gates. |
 | `security/production-secret-rotation` | security | 2 | Bank Pusat | Rotate a live production credential; prove the old is dead. |
 | `security/redteam` | security | 1 | Bank Pusat | Stress-test a plan, project, or system by assuming an adversarial perspective and identifying specific attack surfaces, failure modes, and blind spots before they're exploited in production. |
 | `smart-home/openhue` | smart-home | 1 | Bank Pusat | Control Philips Hue lights, scenes, rooms via OpenHue CLI. |
@@ -212,6 +214,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-10-02 12:03:58_
+_Last sync: 2026-10-02 15:05:52_
 
 <!-- SKILL_REGISTRY_END -->
