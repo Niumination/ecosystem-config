@@ -3,13 +3,13 @@
 **Lokasi:** `~/Desktop/Niumination/`
 **Pengguna:** Afrizal Munthe (Niumination) — Pranata Komputer, Diskominfo Aceh Tengah
 **DOX Version:** 4.0
-|| **Total Projek Lokal:** ~43 git repos
+|| **Total Projek Lokal:** 50 git repos (diukur 2 Okt 2026; angka bergerak — `find . -maxdepth 3 -name .git -type d | wc -l`)
 |||||| | **Kanban Board:** "Niumination Ecosystem" — terupdate 16 Jul 2026 ✅
 
 ---
 
 ## Skill Registry
-> Daftar lengkap skill + trigger + level ada di `docs/registry/skill-registry.md` (auto-generated). Jumlah saat ini: **187 skill** (bank `~/Desktop/Niumination/skills/`; `skill-manifest.py --check` = 0 mismatch).
+> Daftar lengkap skill + trigger + level ada di `docs/registry/skill-registry.md` (auto-generated). Jumlah saat ini: **210 skill** (bank `~/Desktop/Niumination/skills/`; `skill-manifest.py --check` = 0 mismatch). Angka ini bergerak — baca `docs/registry/skill-registry.md` untuk jumlah terkini, jangan mengandalkan angka yang tertulis di sini.
 > Generator: `skills/sync-to-agents.sh` (tabel registry, jalan tiap sync) + `scripts/skill-manifest.py` (manifest SHA-256 + verifikasi). Jangan menyalin tabelnya kembali ke sini.
 
 ## Global Agent Rules (relocated from SOUL.md v1 — 2026-08-30)
@@ -83,13 +83,13 @@
 │   └── pi-app-studio-mata/    ← MATA Watchdog di Pi Network — Pi App Studio AI Beta (web/ repo mandiri) 🆕
 │   └── niumination-restore/   ← 🛟 DR: restore penuh (Hermes + kredensial + data ekosistem) ke device baru dari GitHub — privat, macOS drill 20/20 ✅
 │
-├── services/                  🔧 9 proyek — backend & engines
-│   ├── cc-acehtengah/         ← AI Command Center — Next.js 16
+├── services/                  🔧 5 proyek — backend & engines
 │   ├── latticesend/           ← P2P device transfer
 │   ├── niu-cast/              ← Android Device Manager via ADB
 │   ├── niu-mission-control/   ← Agent Swarm control plane — Next.js 16 + better-sqlite3 + SSE (v4.1.1 Aether Sync)
-│   ├── sapa-ai/               ← SAPA Smart AI — SPLP-only, RSC+ISR 10m (kpi/stats/report/sapa cache, revalidate) ✅
+│   ├── sapa-ai/               ← SAPA Smart AI — 🔀 dev 0.2.0-dev (`a3f2e9b`, 165 komit, tag `v0.2.0-dev`, belum dipromosikan) · produksi `main` `ff00eb8` 0.1.0 🟢 AI `deepseek-v4.1-flash` ON · backlog 7 butir (P8 P12 P13 P14 P15 P16 FR-13/14) → `services/sapa-ai/docs/usulan-ai-tingkat-lanjut/37-BACKLOG-TAHAP-BERIKUTNYA.md` · **repo PUBLIK**
 │   └── uacc/                  ← Universal AI Computer Control — 68 MCP tools ✅
+│   └── ~~cc-acehtengah/~~     ← 💤 HIATUS 21 Sep 2026 — folder lokal dihapus, backup 75 MB di `vault/_arsip-sensitif/cc-acehtengah-2026-09-21/`, repo arsip privat `Niumination/arsip-sensitif`. Pindah ke `sapa-ai`
 │
 ├── sites/                     🌐 7 proyek — frontend apps
 │   ├── audit-ti-at/            ← Vercel Live ✅
@@ -97,7 +97,7 @@
 │   ├── niu-dash-fullstack/    ← Next.js 16 Fullstack
 │   ├── niu-kanban-dash/       ← React/Vite (port 5199)
 │   ├── landing-web-id/        ← Landing page statis (HTML) niumination.web.id — Vercel deploy ready
-│   ├── niu-oss-dashboard/     ← 🆕 Next.js 15 — landing + dashboard OSS 91 repo, API publik v1, PWA, i18n id/en — repo Niu-OSS-Dashboard (fase 4 go-live pending)
+│   ├── niu-oss-dashboard/     ← Next.js 16 — landing + dashboard OSS publik, API v1, PWA, i18n id/en — repo Niu-OSS-Dashboard — 🟢 **LIVE** di `niumination.web.id` (HTTP 200 terverifikasi 2 Okt 2026, domain Verified; `origin/main` `4e8a7cf`. Jumlah halaman SSG belum diverifikasi ulang — registry menulis 216, AGENTS.md proyek menulis 214)
 │   └── spatial-vision/        ← Rust/WASM — gesture+canvas
 │
 ├── desktop/                   🖥️ 4 proyek — native apps
@@ -107,29 +107,28 @@
 │   └── x-downloader/          ← Tauri 2 — yt-dlp GUI
 │
 ├── agents/                    🤖 3 proyek — AI + automation
-│   ├── Ultra/                 ← Puppeteer automation
 │   ├── characters/            ← 4 herdr personas
 │   ├── orchestrator/          ← Python multi-agent
 │   └── profile/               ← GitHub Profile README
+│   └── ~~Ultra/~~             ← 💤 PUPUS ke `inactive-2026-09/Ultra` (Puppeteer automation)
 │
-├── labs/                      🔬 2 proyek — experimental
+├── labs/                      🔬 3 proyek — experimental
 │   ├── maze-3d/
-│   ├── niumination-workspace/
+│   ├── mata-aihackfest-2026/  ← 🏆 AI HackFest Batch 3 (11–15 Sep 2026) — MATA Watchdog Pi Network · repo `Niumination/mata-aihackfest-2026`
 │   └── eKinerja-AfrizalMunthe/  ← Bukti dukung eKinerja Sem 1 2026 🔒 private
 │
 ├── dinas/                     🏛️ 1 proyek — administrasi ASN (diskrit dari pipeline publik)
 │   └── asn-admin/             ← Sistem admin ASN Diskominfo AT 🔒 **PRIVATE** — repo `Niumination/asn-admin`; baca `dinas/asn-admin/AGENTS.md`. Output ASN dilarang masuk repo induk publik (`dinas/` di-gitignore root).
 │
-├── sandbox/                   💤 5 proyek — playground (720 MB)
-├── inactive-2026-09/          💤 4 proyek — archived (dormant)
-│   ├── aistudio-google/
-│   ├── arena.ai/
+├── sandbox/                   💤 6 entri — playground & percobaan. Punya `.git`: niude, niutui, x-downloader-backup (3). Tanpa `.git`: aistudio-google, arena.ai, remotion-studio
+│   └── remotion-studio/       ← ⚠️ **bukan proyek Niumination** — 526 MB tanpa `.git`, 0 file tracked, README berisi logo/badge upstream `remotion-dev`. Menunggu keputusan pemilik: bersihkan atau jadikan proyek
+│
+├── inactive-2026-09/          💤 5 proyek — archived (dormant)
+│   ├── JHermUSB-portable/     ← 💤 dipensiunkan 18 Sep 2026 — digantikan niumination-restore (repo GitHub diarsipkan, read-only)
+│   ├── Ultra/                 ← Puppeteer automation (pindah dari `agents/`)
 │   ├── niu-studio/
-│   ├── niude/
-│   ├── niutui/
-│   ├── x-downloader-backup/
-│   ├── zen/
-│   └── JHermUSB-portable/     ← 💤 dipensiunkan 18 Sep 2026 — digantikan niumination-restore (repo GitHub diarsipkan, read-only)
+│   ├── niumination-workspace/
+│   └── zen/
 │
 ├── vault/                     🔐 RAHASIA — API keys, credentials (chmod 600)
 ├── brain/                     📚 Obsidian vault — knowledge base
@@ -141,7 +140,7 @@
 │   └── ponytail/              ← SKILL.md + MCP server code
 ├── archive/                   📦 Arsip proyek lama (4 inactive + ~25MB)
 ├── apps/niu-gayo-agroclimate/ ← Agro-Climate Kopi Gayo & Mitigasi Bencana — React 19/Vite 6 ✅
-├── skills/                    🧠 **ACTIVE** Bank skill terpusat — 187 skill terisi ✅
+├── skills/                    🧠 **ACTIVE** Bank skill terpusat — 210 skill terisi ✅ (jumlah bergerak, baca `docs/registry/skill-registry.md`)
 │
 ├── .folder-icons/             🖼️ Custom Finder folder icons (PNG + @2x) — lokal, tidak di-track git
 ├── .gitignore                 — Semua folder proyek child di-ignore
@@ -236,7 +235,7 @@ _(Kosong — semua skill yang relevan sudah di Level 2 atau sudah di bank pusat.
 
 ### 🔗 Integrasi dengan Hermes Catalog
 
-Selain DOX injection di atas, Hermes juga punya **catalog skill di system prompt** (`<available_skills>`). Saat ini berisi **187 skill bank + 54 bawaan Hermes = 241** di `~/.hermes/skills/`. Dua mekanisme ini komplementer:
+Selain DOX injection di atas, Hermes juga punya **catalog skill di system prompt** (`<available_skills>`). Saat ini berisi **210 skill bank + 54 bawaan Hermes = 264** di `~/.hermes/skills/`. Kedua angka bergerak setiap kali skill baru ditambahkan atau dihapus — verifikasi dengan `python3 scripts/skill-manifest.py` dan `skills_list()`, jangan mengandalkan angka yang tertulis di sini. Dua mekanisme ini komplementer:
 - **DOX injection** → trigger keyword spesifik untuk ekosistem Niumination
 - **Hermes catalog** → daftar lengkap semua skill yang tersedia (agent bisa load kapan pun)
 
