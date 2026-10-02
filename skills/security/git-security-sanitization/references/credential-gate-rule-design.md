@@ -1,122 +1,75 @@
-# Credential Gate Rule Design
+# Credential Gate: Prove the Rule Can Actually Fire
 
-Gate pre-commit hanya berguna kalau polanya benar. Dua bug di bawah sama-sama
-membuat gate terlihat hijau sementara kredensial asli melintas ke repo publik.
+A gate that never matches is indistinguishable from a clean tree. Two failure modes hide a
+credential past a scanner for as long as the credential lives, and both are silent.
 
-## 1. Word-boundary anchor yang salah pada nama env
+## 1. Word-boundary anchors miss every SCREAMING_SNAKE name
 
-Pola generik lama:
+`\b` cannot match immediately before `API_KEY` inside `CAMOFOX_API_KEY`, because `_` is a word
+character — so there is no boundary there. A rule anchored that way silently excludes every
+environment-variable name, which is the single most common place a leaked key sits:
+
+```
+BAD   \b(api[_-]?key|secret|token)\b\s*[=:]\s*["'][A-Za-z0-9_-]{24,}["']
+GOOD  (?:\b|[A-Z0-9]+_)(?:api[_-]?key|admin[_-]?key|secret|token|access[_-]?key)\s*[=:]\s*["']?[A-Za-z0-9_-]{16,}["']?
+```
+
+Three fixes usually travel together — change one and re-test, because the others hide behind it:
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| `CAMOFOX_API_KEY=...` not caught | `\b` before `API_KEY` | explicit `(?:[A-Z0-9]+_)*` prefix run |
+| a real 19-char key not caught | length floor set to 24 | lower the floor to 16, size it to the shortest real key |
+| `..._ADMIN_KEY=...` not caught | `admin_key` absent from the alternation | enumerate every suffix actually in use |
+
+The length floor is the subtle one: a floor tuned to "looks long enough" rejects short-but-real keys.
+Derive the floor from the shortest credential the system actually issues, not from a round number.
+
+## 2. A character class needs its headroom
+
+`\d{16}` matches a 16-digit NIK, so a pattern written for exactly 16 digits also flags every longer
+digit run — an order id, a timestamp, a 20-digit id — and those appear constantly in legitimate
+files. Give the class room and anchor it:
+
+```
+\b\d{17,25}\b
+```
+
+Test both directions explicitly: a bare 16 digits must **not** match, and a 20-digit id must **not**
+match. A rule that flags everything gets disabled, and a disabled rule catches nothing.
+
+## 3. Lock the rules with a self-test the gate itself cannot trip
+
+The gate's own source and its test file are staged content, so they must not contain a literal that
+matches. Build fixtures at run time from concatenated fragments:
 
 ```python
-re.compile(r"(?i)\b(api[_-]?key|secret|token|password|passwd|access[_-]?key)\b\s*[=:]\s*[\"'][A-Za-z0-9_\-]{24,}[\"']")
+V_API  = "API" + "_KEY"          # no literal `API_KEY=<value>` line anywhere
+PREFIX = "CAMOFOX_" + V_API
+S1     = "cfapi" + "-" + "synthetic0"
+fixture = f'{PREFIX}="{S1}"'
 ```
 
-`\b` menyatakan batas kata. `_` adalah word character, jadi di dalam
-`CAMOFOX_API_KEY` posisi sebelum `API_KEY` **bukan** batas kata — keduanya
-menyambung lewat `_`.
+Keep the assertions in two lists so a failure names the direction: `MUST_CATCH` (synthetic leaks) and
+`MUST_PASS` (env-var references, shell/JS interpolation, `<REDACTED>`, `__PLACEHOLDER__` strings,
+prose that merely names the variable). Both must be non-empty; a `MUST_PASS` list is what proves the
+rule was not loosened into uselessness.
 
-```python
-re.compile(r"\b(api_key)") .search("CAMOFOX_API_KEY=...")   # tidak cocok
-```
+Comments explaining the rule are scanned too. Describe the pattern in prose — "the anchor missed
+names where the underscore joins the prefix" — rather than pasting `CAMOFOX_API_KEY=value` into a
+comment, which is exactly the shape the gate rejects.
 
-Akibatnya setiap nama env bergaya `SCREAMING_SNAKE` otomatis kebritish:
-`GITHUB_TOKEN`, `NINE_ROUTER_API_KEY`, `CAMOFOX_ADMIN_KEY`, `PI_API_KEY`.
-Persis kelas yang paling rawan, karena itu yang dipakai untuk CI dan layanan.
+Run the self-test after **every** rule change, and again immediately before committing a rule change:
+the commit itself is the first test of whether the new rule blocks its own author.
 
-Perbaikan: ganti jangkar `\b` dengan run prefiks eksplisit.
+## 4. Sanity-check the extractor when a test disagrees with itself
 
-```python
-# \b  atau prefiks env uppercase
-r"(?i)(?:\b|[A-Z0-9]+_)(?:api[_-]?key|admin[_-]?key|secret|token|password|passwd|access[_-]?key)"
-```
+If a gate test fails while a direct regex probe of the same string passes, the extractor is lying, not
+the pattern. Two known liars:
 
-Alt `[A-Z0-9]+_` tetap case-insensitive lewat `(?i)`, sehingga
-`my_api_key` tetap tertangkap juga.
+- the chat/shell output layer substituting a token-shaped string before you read it, so a match looks
+  like a miss (`***`, `REDACTED`) and hand-written replacements come back as `replaced 0`
+- a shell heredoc interpolating `$VAR`, turning the intended literal into an empty string
 
-## 2. Ambang panjang di atas panjang key sebenarnya
-
-`{24,}` adalah tebakan. Kalau key shortest milikmu 19 karakter, gate tidak akan
-pernah menyentuhnya.
-
-Cara menentukan ambang yang benar: ukur key terpendek yang benar-benar kamu pakai,
-lalu turunkan sedikit di bawahnya.
-
-```bash
-# panjang tiap nilai env, tanpa mencetak nilai
-awk -F= '/^[A-Z_]+=/{print length($2), $1}' ~/.hermes/.env | sort -n | head
-```
-
-Dengan ambang 16, key 19 dan 25 karakter keduanya tertangkap; placeholder
-pendek seperti `your-key-here` tetap lolos.
-
-## 3. Varian nama yang absen dari daftar
-
-`access_key` ada di pola, `admin_key` tidak. Kalau key admin ikut bocor, gate
-tidak akan melihatnya. Saat menambah pola, zip daftar nama dengan env yang
-benar-benar ada di mesin:
-
-```bash
-grep -oE "^[A-Z0-9_]*(KEY|TOKEN|SECRET|PASSWORD)" ~/.hermes/.env | tr -d '='
-```
-
-## 4. Gate yang meng-regenerasi kebocoran sendiri
-
-Pola paling berbahaya adalah pipeline yang menulis secret ke repo setiap kali
-dijalankan — gate akan menolak commit hari itu, lalu commit berikutnya tetap
-melewat begitu jemand bypass sekali saja.
-
-Di DR repo, `build-services.sh` menyalin plist launchd live dengan satu
-perintah substitusi path:
-
-```bash
-sed -e "s|$HOME|{{HOME}}|g" "$src" > "$OUT/$a.plist.template"
-```
-
-Plist `ai.hermes.camofox.plist` memuat `CAMOFOX_API_KEY`, `CAMOFOX_ACCESS_KEY`,
-dan `CAMOFOX_ADMIN_KEY` di `EnvironmentVariables`. Ketiganya ikut ter-copy apa
-adanya. Setiap `sync-all.sh` menulis ulang secret ke riwayat git.
-
-Perbaikannya bukan "tambah pola gate", tapi hentikan sumbernya: redaksi sebelum
-freeze, lalu verifikasi hasilnya sebagai langkah terpisah.
-
-```bash
-# verifikasi wajib: kalau redaction gagal diam-diam, secret bocor tanpa alarm
-if grep -qE '^[^<]*(KEY|TOKEN|SECRET|PASSWORD)=[^<]{16,}' "$OUT" ; then
-  echo "REDACTION FAILED" >&2; exit 1
-fi
-```
-
-Redaksi berbasis nama key lebih rapi ditulis dengan awk (mendeteksi `<key>` lalu
-mengganti `<string>` berikutnya) daripada sed, karena BRE tidak punya operator
-non-capturing sehingga pola key/nilai jadi kabur.
-
-## 5. Kunci dengan self-test dari fragmen
-
-Fixture yang meniru kebocoran asli juga akan memicu gate pada file test itu
-sendiri. Susun dari potongan runtime supaya tidak ada baris `NAMA_KEY=nilai`
-utuh di repo:
-
-```python
-V_API = "API" + "_KEY"
-S1 = "cfapi" + "-" + "synthetic0"
-MUST_CATCH = [("camofox_api", f'{P_CAMO}="{S1}"')]
-```
-
-Uji dua arah. Gate yang terlalu ketat menghasilkan commit sah yang ditolak,
-dan orang cenderung membypass — hasil akhirnya lebih buruk dari gate yang longgar:
-
-```python
-raise SystemExit(1) if fails else 0
-```
-
-Lokasi: `scripts/secret-scan-staged.py` dan `scripts/test-secret-scan.py`
-(repo `Niumination/ecosystem-config`).
-
-## Daftar periksa sebelum percaya gate
-
-- [ ] Namanya berisi prefiks env uppercase (`CAMOFOX_`, `GITHUB_`), bukan hanya kata tunggal
-- [ ] Ambang panjang di bawah atau sama dengan key terpendek yang kamu pakai
-- [ ] Semua varian nama yang ada di mesin ikut masuk daftar
-- [ ] Tidak ada skrip di repo yang menyalin secret dari luar ke dalam
-- [ ] Self-test ada, dua arah (harus tertangkap / harus lolos), exit non-zero saat gagal
-- [ ] Gate benar-benar terpasang: `git config core.hooksPath .githooks`
+When output and reality disagree, re-probe with a script that prints only counts and labels, and
+prefer editing over shell-embedded string surgery.

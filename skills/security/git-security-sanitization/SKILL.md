@@ -125,8 +125,8 @@ rm -f <ignored-dir>/gate-test.txt gate-test.env
 - `references/pii-gate-config.md` — tested scanner config, the two staged-file branches (ignored path vs credential content), and per-clone hook activation
 - `references/public-repo-leak-audit.md` — auditing a public repo, and what to leave alone
 - `references/history-rewrite-dry-run.md` — backup → dry run → verify → apply → force-push sequence
-- `references/credential-gate-rule-design.md` — why a `\b`-anchored key rule silently skips every `CAMOFOX_*` name, sizing the length floor to the shortest real key, and locking rules with a self-test built from concatenated fragments
-- `references/history-rewrite-and-host-exposure.md` — filter-repo needs piped stdin even with `--force`, resets the working tree (re-apply uncommitted fixes), truncated keys still leak a prefix, and the build/sync path that regenerates the leak every run
+- `references/credential-gate-rule-design.md` — why a `\b`-anchored rule silently skips every SCREAMING_SNAKE name, sizing the length floor to the shortest real key, and locking rules with a self-test
+- `references/history-rewrite-and-host-exposure.md` — filter-repo's non-obvious behaviors (stdin even with `--force`, working-tree reset, origin removal), force-push leaving old objects fetchable, and launchd caching env in memory
 - `references/secret-alert-triage.md`, `references/github-secret-alert-triage.md` — host alert triage (overlapping; consolidate)
 - `scripts/masked_pii_triage.py` — masked triage scan, never prints the value
 - `scripts/history_secret_scan.py` — scan every blob in every ref for known secret values (plain + separator-formatted), no size cap; answers "is it really gone from history?"

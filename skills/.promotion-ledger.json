@@ -112,224 +112,328 @@
       "bundleHash": "2f62cdcf4f123a1906dc9ee00232a2dabaf8d09317c1590472f0564092611a2f",
       "source": "/Users/zaryu/.hermes/skills/software-development/project-handover-package",
       "promotedAt": "2026-09-19T13:28:21.088120+00:00"
+    },
+    "ecosystem/content-remotion-video": {
+      "name": "content-remotion-video",
+      "domain": "ecosystem",
+      "files": 2,
+      "bundleHash": "1a65ec9252b9afd5b43233f21ea9a6a796e9c263fd1ed4493a0c7c70fd5ff75d",
+      "source": "/Users/zaryu/.hermes/skills/content-remotion-video",
+      "promotedAt": "2026-10-02T08:32:58.906294+00:00"
+    },
+    "remotion-project/remotion-best-practices": {
+      "name": "remotion-best-practices",
+      "domain": "remotion-project",
+      "files": 141,
+      "bundleHash": "a3625f65d587527a401e740dd4738139c1e0779bfd1d1e50dd818e4467ac6341",
+      "source": "/Users/zaryu/.hermes/skills/remotion-project/remotion-best-practices",
+      "promotedAt": "2026-10-02T08:32:58.906294+00:00"
+    },
+    "remotion-project/remotion-captions": {
+      "name": "remotion-captions",
+      "domain": "remotion-project",
+      "files": 6,
+      "bundleHash": "e25e1abb94512806470ca760e61375a1369e62793da2e1c6d7c7c9294e4aec58",
+      "source": "/Users/zaryu/.hermes/skills/remotion-project/remotion-captions",
+      "promotedAt": "2026-10-02T08:32:58.906294+00:00"
+    },
+    "remotion-project/remotion-create": {
+      "name": "remotion-create",
+      "domain": "remotion-project",
+      "files": 5,
+      "bundleHash": "f6beaec927d777fc50bfaa11d2d676b11407c5a6f4ed91c82349da298df16c8e",
+      "source": "/Users/zaryu/.hermes/skills/remotion-project/remotion-create",
+      "promotedAt": "2026-10-02T08:32:58.906294+00:00"
+    },
+    "remotion-project/remotion-docs": {
+      "name": "remotion-docs",
+      "domain": "remotion-project",
+      "files": 3,
+      "bundleHash": "e208288a76faf4084c24943bb90ef1d993a68182de52be86fa225878341a7293",
+      "source": "/Users/zaryu/.hermes/skills/remotion-project/remotion-docs",
+      "promotedAt": "2026-10-02T08:32:58.906294+00:00"
+    },
+    "remotion-project/remotion-interactivity": {
+      "name": "remotion-interactivity",
+      "domain": "remotion-project",
+      "files": 4,
+      "bundleHash": "92836f5db0c80d8e86c07cf7c5fc5a9a76f70317e896f1b570dff580ad04f187",
+      "source": "/Users/zaryu/.hermes/skills/remotion-project/remotion-interactivity",
+      "promotedAt": "2026-10-02T08:32:58.906294+00:00"
+    },
+    "remotion-project/remotion-maps": {
+      "name": "remotion-maps",
+      "domain": "remotion-project",
+      "files": 32,
+      "bundleHash": "ec1761779757e390a49f335d3019600c13549865f1f8a70795f1af0dd0b4a306",
+      "source": "/Users/zaryu/.hermes/skills/remotion-project/remotion-maps",
+      "promotedAt": "2026-10-02T08:32:58.906294+00:00"
+    },
+    "remotion-project/remotion-markup": {
+      "name": "remotion-markup",
+      "domain": "remotion-project",
+      "files": 66,
+      "bundleHash": "377295e3312d82249973aa699c6ca01f3252c426152a08767e5e575061669c08",
+      "source": "/Users/zaryu/.hermes/skills/remotion-project/remotion-markup",
+      "promotedAt": "2026-10-02T08:32:58.906294+00:00"
+    },
+    "remotion-project/remotion-multimedia": {
+      "name": "remotion-multimedia",
+      "domain": "remotion-project",
+      "files": 6,
+      "bundleHash": "6f299335379c7a35ef8babe95dfefb9291a36d2644cd755655b613111c16fe6c",
+      "source": "/Users/zaryu/.hermes/skills/remotion-project/remotion-multimedia",
+      "promotedAt": "2026-10-02T08:32:58.906294+00:00"
+    },
+    "remotion-project/remotion-render": {
+      "name": "remotion-render",
+      "domain": "remotion-project",
+      "files": 4,
+      "bundleHash": "8a5532240784fcebf3eb8ea984d6e084fbb27914e2d80c4dea3320a56b7d4223",
+      "source": "/Users/zaryu/.hermes/skills/remotion-project/remotion-render",
+      "promotedAt": "2026-10-02T08:32:58.906294+00:00"
+    },
+    "remotion-project/remotion-saas": {
+      "name": "remotion-saas",
+      "domain": "remotion-project",
+      "files": 6,
+      "bundleHash": "da5d2ee7752e186ecb5b2dff8fa105c658dad13fe20457f7c428f5dd20d16f4e",
+      "source": "/Users/zaryu/.hermes/skills/remotion-project/remotion-saas",
+      "promotedAt": "2026-10-02T08:32:58.906294+00:00"
+    },
+    "remotion-project/remotion-studio": {
+      "name": "remotion-studio",
+      "domain": "remotion-project",
+      "files": 3,
+      "bundleHash": "0abf1eae9bb8effc6046dc9b6184e523ef1aeb3e847be7a46920dfd3262dcf8b",
+      "source": "/Users/zaryu/.hermes/skills/remotion-project/remotion-studio",
+      "promotedAt": "2026-10-02T08:32:58.906294+00:00"
+    },
+    "remotion-project/remotion-upgrade": {
+      "name": "remotion-upgrade",
+      "domain": "remotion-project",
+      "files": 3,
+      "bundleHash": "7547593a7cdfd7b5c4a66c14b826ac880d5d33d90ca8952c9e56bdce0f633eb3",
+      "source": "/Users/zaryu/.hermes/skills/remotion-project/remotion-upgrade",
+      "promotedAt": "2026-10-02T08:32:58.906294+00:00"
     }
   },
   "ignored": {
     "apple-notes": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "apple-reminders": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "findmy": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "imessage": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "claude-code": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "codex": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "computer-use": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "hermes-agent": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "opencode": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "architecture-diagram": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "ascii-video": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "baoyu-infographic": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "claude-design": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "design-md": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "humanizer": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "manim-video": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "p5js": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "popular-web-designs": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "songwriting-and-ai-music": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "sdlc-review": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "email-inbox-triage": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "himalaya": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "gif-search": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "songsee": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "youtube-content": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "obsidian": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "airtable": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "box": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "document-to-action-items": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "docx": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "google-workspace": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "maps": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "meeting-action-items": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "notion": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "pdf": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "powerpoint": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "product-price-monitor": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "teams-meeting-pipeline": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "weekly-review-planning": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "xlsx": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "arxiv": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "competitor-news-monitor": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "grounded-citations": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "llm-wiki": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "xurl": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "codebase-inspection": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "dogfood": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "github": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "inspecting-hermes-desktop-dom": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "node-inspect-debugger": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "python-debugpy": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "spike": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "test-driven-development": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "blocked-page-recovery": {
       "reason": "bundled",
-      "checkedAt": "2026-09-30T16:43:41.888749+00:00"
+      "checkedAt": "2026-10-02T08:32:58.906294+00:00"
     },
     "ecosystem-recovery/references/9router-3agent-hybrid-2026-08-28.md": {
       "reason": "rejected: pola kredensial: openai-style key",
@@ -337,5 +441,5 @@
     }
   },
   "tombstones": [],
-  "updatedAt": "2026-09-30T16:43:41.888749+00:00"
+  "updatedAt": "2026-10-02T08:32:58.906294+00:00"
 }

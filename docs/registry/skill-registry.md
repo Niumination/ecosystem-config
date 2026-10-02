@@ -54,6 +54,7 @@
 | `ecosystem/cc-acehtengah-maintenance` | ecosystem | 3 | Bank Pusat | cc-acehtengah branch reconciliation and UI or role fixes. |
 | `ecosystem/composio` | ecosystem | 4 | Bank Pusat | Route and complete Composio work across Composio For You and Composio Platform. Use when the user mentions Composio; wants an agent to use apps such as Gmail, Slack, GitHub, Notion, Calendar, or Linear; needs first-time setup, an SDK or MCP integration, CLI operation, migration guidance, current documentation, or help diagnosing a connection or tool call. |
 | `ecosystem/config-history-review` | ecosystem | 2 | Bank Pusat | Review Hermes config history using filesystem evidence (backup files, changelogs, git logs) — NOT session search or memory. Use when user asks to retrace changes, audit history, or check what happened over time. |
+| `ecosystem/content-remotion-video` | ecosystem | 2 | Bank Pusat | Buat video vertikal 9:16 pakai Remotion — prompt ke MP4, Mode A CPU-only, gratis (Free tier ≤3 org) |
 | `ecosystem/content/hyperframes-vertical-video` | ecosystem | 1 | Bank Pusat | probe3 |
 | `ecosystem/content/reels-motion-render` | ecosystem | 1 | Bank Pusat | Use when rendering a Reels/TikTok video with HyperFrames. |
 | `ecosystem/creative/ffmpeg-ken-burns-motion` | ecosystem | 1 | Bank Pusat | Use when making still cards move: FFmpeg zoompan + mux VO. |
@@ -150,6 +151,18 @@
 | `productivity/ocr-and-documents` | productivity | 4 | Bank Pusat | Extract text from PDFs/scans (pymupdf, marker-pdf). |
 | `productivity/session-librarian` | productivity | 1 | Bank Pusat | Organize sessions by prompt: find, rename, archive, prune. |
 | `productivity/skp-e-kinerja` | productivity | 4 | Bank Pusat | Generate SKP concept from session data for reporting. |
+| `remotion-project/remotion-best-practices` | remotion-project | 141 | Bank Pusat | Router for all Remotion skills |
+| `remotion-project/remotion-captions` | remotion-project | 6 | Bank Pusat | Transcribing, displaying and animating captions |
+| `remotion-project/remotion-create` | remotion-project | 5 | Bank Pusat | Create a new Remotion video |
+| `remotion-project/remotion-docs` | remotion-project | 3 | Bank Pusat | Search Remotion documentation |
+| `remotion-project/remotion-interactivity` | remotion-project | 4 | Bank Pusat | Structure Remotion markup for interactivity |
+| `remotion-project/remotion-maps` | remotion-project | 32 | Bank Pusat | Remotion Map animation knowledge |
+| `remotion-project/remotion-markup` | remotion-project | 66 | Bank Pusat | Content, animation and effects best practices |
+| `remotion-project/remotion-multimedia` | remotion-project | 6 | Bank Pusat | Interacting with Mediabunny |
+| `remotion-project/remotion-render` | remotion-project | 4 | Bank Pusat | Export a Remotion video |
+| `remotion-project/remotion-saas` | remotion-project | 6 | Bank Pusat | Build an app with Remotion |
+| `remotion-project/remotion-studio` | remotion-project | 3 | Bank Pusat | Preview a Remotion video |
+| `remotion-project/remotion-upgrade` | remotion-project | 3 | Bank Pusat | Upgrade Remotion, and related packages |
 | `repo-zip-overlay` | repo-zip-overlay | 1 | Bank Pusat | Overlay a zip onto a git repo, preserving local config. |
 | `research/blogwatcher` | research | 1 | Bank Pusat | Monitor blogs and RSS/Atom feeds via blogwatcher-cli tool. |
 | `research/markitdown` | research | 1 | Bank Pusat | Convert office docs, HTML, ZIP, media metadata to Markdown via Microsoft MarkItDown CLI. |
@@ -214,6 +227,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-10-02 15:05:52_
+_Last sync: 2026-10-02 15:39:14_
 
 <!-- SKILL_REGISTRY_END -->

@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 201 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 223 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 201 ✅ Aktif
+> **Status:** 223 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -184,6 +184,15 @@
 | **hermes-tool-runtime-failure-triage** | ✅ Aktif | Bank Pusat | 4.3 KB | Use when a Hermes tool errors or times out mid-session. |
 | **earning-opportunity-feasibility** | ✅ Aktif | Bank Pusat | 6.6 KB | Use when the user asks what can make money from their setup. |
 | **third-party-gate-triage** | ✅ Aktif | Bank Pusat | 5.5 KB | Use when a vendor's acceptance gate fails after a patch. |
+| **bank-coverage-set-diff** | ✅ Aktif | Bank Pusat | 2.2 KB | Use when a scanner total may not cover every skill. |
+| **commit-gate-triage** | ✅ Aktif | Bank Pusat | 4.2 KB | Use when a pre-commit gate blocks a legitimate change. |
+| **content-remotion-video** | ✅ Aktif | Bank Pusat | 3.1 KB | Buat video vertikal 9:16 pakai Remotion — prompt ke MP4, Mode A CPU-only, gratis (Free tier ≤3 org) |
+| **documentation-reconciliation** | ✅ Aktif | Bank Pusat | 4.4 KB | Use when docs, BACKLOG, or registry drift from measured truth. |
+| **long-form-markdown-deliverables** | ✅ Aktif | Bank Pusat | 3.7 KB | Use when writing reports, plans, or backlog docs. |
+| **macos-system-health** | ✅ Aktif | Bank Pusat | 4.2 KB | Use when auditing macOS disk, RAM, or service health. |
+| **non-provider-secret-detection** | ✅ Aktif | Bank Pusat | 3.1 KB | Use when a vendor-neutral key may reach a public repo. |
+| **sealed-evidence-bundle-production** | ✅ Aktif | Bank Pusat | 6.2 KB | Use when sealing a verified evidence bundle for review. |
+| **skill-bank-mirror-integrity** | ✅ Aktif | Bank Pusat | 4.3 KB | Use when a skill bank or its scanner disagrees on count. |
 
 ## Domain: Security
 
@@ -342,13 +351,31 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 | **content-research** | ✅ Aktif | Bank Pusat | 5.4 KB | Riset tren, keyword, audiens, dan bedah kompetitor |
 | **content-script** | ✅ Aktif | Bank Pusat | 5.6 KB | Hook, naskah, storyboard, caption, dan copywriting |
 | **content-studio** | ✅ Aktif | Bank Pusat | 7.6 KB | Produser studio konten: pipeline ide sampai cuan |
+| **remotion-video** | ✅ Aktif | Bank Pusat | 3.3 KB | Buat video vertikal 9:16 pakai Remotion — prompt ke MP4, Mode A CPU-only, gratis (Free tier ≤3 org). SCOPE: th… |
+
+## Domain: Remotion Project
+
+| Skill | Status | Source | Ukuran | Deskripsi |
+|-------|:------:|--------|-------:|-----------|
+| **remotion-best-practices** | ✅ Aktif | Bank Pusat | 4.1 KB | Router for all Remotion skills |
+| **remotion-captions** | ✅ Aktif | Bank Pusat | 1.1 KB | Transcribing, displaying and animating captions |
+| **remotion-create** | ✅ Aktif | Bank Pusat | 2.6 KB | Create a new Remotion video |
+| **remotion-docs** | ✅ Aktif | Bank Pusat | 1.3 KB | Search Remotion documentation |
+| **remotion-interactivity** | ✅ Aktif | Bank Pusat | 18.0 KB | Structure Remotion markup for interactivity |
+| **remotion-maps** | ✅ Aktif | Bank Pusat | 1.0 KB | Remotion Map animation knowledge |
+| **remotion-markup** | ✅ Aktif | Bank Pusat | 14.0 KB | Content, animation and effects best practices |
+| **remotion-multimedia** | ✅ Aktif | Bank Pusat | 0.7 KB | Interacting with Mediabunny |
+| **remotion-render** | ✅ Aktif | Bank Pusat | 0.7 KB | Export a Remotion video |
+| **remotion-saas** | ✅ Aktif | Bank Pusat | 1.0 KB | Build an app with Remotion |
+| **remotion-studio** | ✅ Aktif | Bank Pusat | 1.6 KB | Preview a Remotion video |
+| **remotion-upgrade** | ✅ Aktif | Bank Pusat | 1.9 KB | Upgrade Remotion, and related packages |
 
 ## Ringkasan
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **201** |
-| **Total** | **201** |
+| ✅ Aktif | **223** |
+| **Total** | **223** |
 
 ## Catatan Penting — Potensi Konflik
 
