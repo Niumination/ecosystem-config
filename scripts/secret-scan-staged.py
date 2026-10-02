@@ -20,9 +20,20 @@ PATTERNS = [
     ("aws_key", re.compile(r"\bAKIA[0-9A-Z]{16}\b")),
     ("private_key", re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----")),
     ("jwt", re.compile(r"\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.")),
-    ("pi_api_key", re.compile(r"PI_API_KEY\s*[=:]\s*[\"']?[A-Za-z0-9_-]{20,}")),
+    ("pi_api_key", re.compile(r"PI_API_KEY\s*[=:]+\s*[\"']?[A-Za-z0-9_-]{16,}")),
+    # Dua bug ditemukan 2026-10-02, setelah sebuah key CamoFox duduk 15 hari di
+    # repo PUBLIK tanpa memicu gate ini (nilainya sengaja tidak ditulis di mana pun):
+    #   1. Jangkar word-boundary tak pernah cocok tepat sebelum `API_KEY` di dalam
+    #      `CAMOFOX_API_KEY`, karena `_` adalah word character -- jadi anchor awal
+    #      diam-diam mengecualikan SETIAP nama env bergaya SCREAMING_SNAKE.
+    #   2. ambang 24 karakter berada DI ATAS panjang key sebenarnya (19).
+    # `admin_key` ditambahkan karena key admin CamoFox juga bocor dan tak tertangkap.
+    # Awalan kini berupa run eksplisit `(?:[A-Z0-9]+_)*`; ambang diturunkan ke 16.
+    # Catatan: baris di dalam file ini tidak boleh memuat fixture berbentuk
+    # `NAMA_KEY=nilai`, karena file ini sendiri dipindai gate ini.
     ("generic_secret_assignment", re.compile(
-        r"(?i)\b(api[_-]?key|secret|token|password|passwd|access[_-]?key)\b\s*[=:]\s*[\"'][A-Za-z0-9_\-]{24,}[\"']")),
+        r"(?i)(?:\b|[A-Z0-9]+_)(?:api[_-]?key|admin[_-]?key|secret|token|password|passwd|access[_-]?key)"
+        r"\s*[=:]\s*[\"']?[A-Za-z0-9_\-]{16,}[\"']?")),
 ]
 
 # Nama file yang tidak boleh masuk repo sama sekali (contoh/template dikecualikan).

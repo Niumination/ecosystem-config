@@ -4,7 +4,7 @@ Perkakas untuk mengukur halaman produksi dan membuktikan hasil perbaikan.
 
 ## 1. Menjalankan browser untuk audit
 
-Audit dijalankan lewat REST camofox (`127.0.0.1:9377`, header `Authorization: Bearer __REDACTED_CAMOFOX_KEY__`). Jalur ini
+Audit dijalankan lewat REST camofox (`127.0.0.1:9377`, header `Authorization: Bearer $CAMOFOX_ACCESS_KEY`). Jalur ini
 memberi tab/viewport paralel dan tidak bergantung pada kondisi UI satu tool browser.
 
 ```

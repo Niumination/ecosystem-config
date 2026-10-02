@@ -48,7 +48,8 @@
 | `ecosystem/9router-custom-provider-integration` | ecosystem | 1 | Bank Pusat | Use when adding a custom provider to 9router. |
 | `ecosystem/9router-model-mapping` | ecosystem | 1 | Bank Pusat | Configure and maintain 9router model mapping for Hermes — fallback chain, channel overrides, quota-aware model selection |
 | `ecosystem/agent-thread-latency-diagnosis` | ecosystem | 1 | Bank Pusat | Use when a chat thread is slow or unresponsive. |
-| `ecosystem/arena-patch-adoption` | ecosystem | 3 | Bank Pusat | Use when applying arena.ai zip patch stacks to a repo. |
+| `ecosystem/arena-patch-adoption` | ecosystem | 5 | Bank Pusat | Use when applying arena.ai zip patch stacks to a repo. |
+| `ecosystem/bank-coverage-set-diff` | ecosystem | 1 | Bank Pusat | Use when a scanner total may not cover every skill. |
 | `ecosystem/cc-acehtengah-maintenance` | ecosystem | 3 | Bank Pusat | cc-acehtengah branch reconciliation and UI or role fixes. |
 | `ecosystem/composio` | ecosystem | 4 | Bank Pusat | Route and complete Composio work across Composio For You and Composio Platform. Use when the user mentions Composio; wants an agent to use apps such as Gmail, Slack, GitHub, Notion, Calendar, or Linear; needs first-time setup, an SDK or MCP integration, CLI operation, migration guidance, current documentation, or help diagnosing a connection or tool call. |
 | `ecosystem/config-history-review` | ecosystem | 2 | Bank Pusat | Review Hermes config history using filesystem evidence (backup files, changelogs, git logs) — NOT session search or memory. Use when user asks to retrace changes, audit history, or check what happened over time. |
@@ -72,12 +73,14 @@
 | `ecosystem/ecosystem-recovery` | ecosystem | 5 | Bank Pusat | Full ecosystem recovery after delete or up-eco failures. |
 | `ecosystem/ecosystem-snapshot` | ecosystem | 5 | Bank Pusat | Generate a comprehensive ecosystem configuration snapshot for Niumination. Produces a Markdown document capturing macOS specs, git status, project registry, filesystem layout, Mission Control state, Telegram threads, Skill Bank summary, Hermes config, deployments, security notes, and open issues. Use when the user asks for "konfigurasi lengkap ekosistem", "ekspor snapshot ekosistem", "docs konfigurasi aktif", or requests a full current-state Markdown report. |
 | `ecosystem/ecosystem-tool-adoption` | ecosystem | 1 | Bank Pusat | Workflow studi & adopsi tool/proyek pihak ketiga ke ekosistem Niumination — deep study (clone + baca source), gap analysis terukur, rencana bertahap di docs/architecture/, persetujuan user via clarify, eksekusi non-destruktif. Trigger saat user kirim URL repo/tool + "pelajari ini". |
+| `ecosystem/ecosystem/commit-gate-triage` | ecosystem | 1 | Bank Pusat | Use when a pre-commit gate blocks a legitimate change. |
+| `ecosystem/ecosystem/documentation-reconciliation` | ecosystem | 1 | Bank Pusat | Use when docs, BACKLOG, or registry drift from measured truth. |
 | `ecosystem/ecosystem/earning-opportunity-feasibility` | ecosystem | 1 | Bank Pusat | Use when the user asks what can make money from their setup. |
 | `ecosystem/ecosystem/hermes-tool-runtime-failure-triage` | ecosystem | 1 | Bank Pusat | Use when a Hermes tool errors or times out mid-session. |
 | `ecosystem/ecosystem/macos-system-health` | ecosystem | 1 | Bank Pusat | Use when auditing macOS disk, RAM, or service health. |
 | `ecosystem/ecosystem/sealed-evidence-bundle-production` | ecosystem | 1 | Bank Pusat | Use when sealing a verified evidence bundle for review. |
-| `ecosystem/ecosystem/skill-library-maintenance` | ecosystem | 1 | Bank Pusat | Use when moving, patching, or syncing skills. |
-| `ecosystem/ecosystem/skill-loader-name-collision` | ecosystem | 1 | Bank Pusat | Use when a skill name is reported ambiguous. |
+| `ecosystem/ecosystem/skill-library-maintenance` | ecosystem | 2 | Bank Pusat | Use when moving, patching, or syncing skills. |
+| `ecosystem/ecosystem/skill-loader-name-collision` | ecosystem | 2 | Bank Pusat | Use when a skill name is reported ambiguous. |
 | `ecosystem/ecosystem/third-party-gate-triage` | ecosystem | 1 | Bank Pusat | Use when a vendor's acceptance gate fails after a patch. |
 | `ecosystem/ekosistem-content-verification` | ecosystem | 2 | Bank Pusat | Verify web/JSON content accuracy against source documents (DOCX/XLSX) for Niumination ecosystem projects — extract, compare, report, fix. Covers Pemdi data verification and general content audit patterns. |
 | `ecosystem/ekosistem-scaffold` | ecosystem | 1 | Bank Pusat | Scaffold new or missing projects in the Niumination ecosystem. Creates AGENTS.md + BACKLOG.md + brain/projects/ entry with standardized templates. Validates git, deploy, and DOX completeness. |
@@ -103,6 +106,7 @@
 | `ecosystem/niu-mission-control-ui` | ecosystem | 5 | Bank Pusat | Frontend Niumination Mission Control — unified dashboard (ORB iframe + 12 floating windows), WCAG 2.1 AA accessibility, SEO pipeline, redesign v3.0. Use when working on dashboard styling, accessibility, SEO, floating windows, build_unified.py, or redesign tasks. |
 | `ecosystem/niumination-ecosystem-change-discipline` | ecosystem | 1 | Bank Pusat | Editing Niumination files or committing to repos. |
 | `ecosystem/niumination-reference-adoption` | ecosystem | 3 | Bank Pusat | Adopt ecosystem references and zips into skill bank. |
+| `ecosystem/non-provider-secret-detection` | ecosystem | 1 | Bank Pusat | Use when a vendor-neutral key may reach a public repo. |
 | `ecosystem/pi-app-studio-development` | ecosystem | 1 | Bank Pusat | Build Pi Network apps via Pi App Studio or Pi SDK payments. |
 | `ecosystem/pi-network-ecosystem` | ecosystem | 2 | Bank Pusat | Pi Network — App Studio, Payments, Browser integration. |
 | `ecosystem/pi-solohost-development` | ecosystem | 7 | Bank Pusat | Build and submit apps to Pi Network SoloHost. |
@@ -115,6 +119,7 @@
 | `ecosystem/sapa-ai-ops` | ecosystem | 20 | Bank Pusat | Operate sapa-ai SPLP service. |
 | `ecosystem/security/sensitive-private-repo` | ecosystem | 1 | Bank Pusat | Use when starting a private repo for sensitive/PII data. |
 | `ecosystem/skill-bank-management` | ecosystem | 6 | Bank Pusat | Kelola Skill Bank Niumination (single source of truth ~/Desktop/Niumination/skills/) — manifest SHA-256, sync seluruh folder ke target Hermes/USB + verifikasi hash + lockfile, tangani drift, adopsi skill pihak ketiga, audit konten skill, hapus/promosi skill, prune bloat. Gunakan saat ada skill baru masuk bank, sync-to-agents.sh dijalankan/gagal, up-eco melaporkan manifest mismatch, drift bank vs target, atau user minta adopsi skill X. Sejak 18 Sep 2026 skill ini menyerap skill-bank-integrity, -maintenance, -operations, -ops, dan -sync (kelimanya dihapus — semua prosedurnya ada di sini). |
+| `ecosystem/skill-bank-mirror-integrity` | ecosystem | 1 | Bank Pusat | Use when a skill bank or its scanner disagrees on count. |
 | `ecosystem/software-development/agent-shell-command-guards` | ecosystem | 1 | Bank Pusat | Use when a shell command is blocked, stalls, or fills disk. |
 | `ecosystem/sqlite-schema-migration` | ecosystem | 2 | Bank Pusat | Migrate a local SQLite schema without losing rows. |
 | `ecosystem/system-one-decisions` | ecosystem | 1 | Bank Pusat | Use when calling decision models (jev/systemone) via 9router. |
@@ -207,6 +212,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-10-01 19:25:01_
+_Last sync: 2026-10-02 12:03:58_
 
 <!-- SKILL_REGISTRY_END -->

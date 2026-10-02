@@ -20,7 +20,9 @@ metadata:
 ### Start Server
 ```bash
 cd ~/Desktop/Niumination/tools/camofox-browser
-CAMOFOX_API_KEY="__REDACTED_CAMOFOX_KEY__" CAMOFOX_ACCESS_KEY="__REDACTED_CAMOFOX_KEY__" CAMOFOX_ADMIN_KEY="__REDACTED_CAMOFOX_ADMIN_KEY__" CAMOFOX_PORT=9377 node --max-old-space-size=512 server.js &
+# Keys live in ~/.hermes/.env — never hardcode, never commit.
+set -a; . ~/.hermes/.env; set +a
+CAMOFOX_PORT=9377 node --max-old-space-size=512 server.js &
 ```
 
 ### Health Check
@@ -37,8 +39,8 @@ curl -s http://localhost:9377/health
 5. **Cleanup**: `DELETE /tabs/:id`
 
 ### Auth
-- Header: `Authorization: Bearer __REDACTED_CAMOFOX_KEY__`
-- API key from env `CAMOFOX_API_KEY`
+- Header: `Authorization: Bearer $CAMOFOX_ACCESS_KEY`
+- Key source: `~/.hermes/.env` or the launchd plist env. NEVER hardcode, never commit, never paste into a doc or a chat message.
 
 ### Auto-start
 Server auto-start via launchd: `~/Library/LaunchAgents/ai.hermes.camofox.plist` (`RunAtLoad` + `KeepAlive`). `launchctl load/unload` DIBLOKIR dari dalam Hermes — jalankan dari Terminal terpisah:
@@ -48,7 +50,8 @@ launchctl load ~/Library/LaunchAgents/ai.hermes.camofox.plist
 Fallback manual (env lengkap):
 ```bash
 cd ~/Desktop/Niumination/tools/camofox-browser
-CAMOFOX_PORT=9377 CAMOFOX_API_KEY=__REDACTED_CAMOFOX_KEY__ CAMOFOX_ACCESS_KEY=__REDACTED_CAMOFOX_KEY__ CAMOFOX_ADMIN_KEY=__REDACTED_CAMOFOX_ADMIN_KEY__ CAMOFOX_HERMES_ACTIVE=1 node server.js &
+set -a; . ~/.hermes/.env; set +a
+CAMOFOX_PORT=9377 CAMOFOX_HERMES_ACTIVE=1 node server.js &
 ```
 Plist env change (mis. tambah variabel) hanya berlaku setelah `unload` + `load` ulang dari Terminal terpisah — `kill` PID saja me-restart dengan env LAMA (kode baru tetap termuat karena dibaca dari disk).
 
@@ -63,11 +66,11 @@ Jangan install package di proyek lain — cukup HTTP call ke `localhost:9377`:
 ```js
 const tab = await fetch('http://localhost:9377/tabs', {
   method: 'POST',
-  headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer __REDACTED_CAMOFOX_KEY__' },
+  headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + process.env.CAMOFOX_ACCESS_KEY },
   body: JSON.stringify({ userId: 'agent1', sessionKey: 'task1', url: 'https://example.com' })
 }).then(r => r.json());
 const snap = await fetch(`http://localhost:9377/tabs/${tab.tabId}/snapshot?userId=agent1`, {
-  headers: { 'Authorization': 'Bearer __REDACTED_CAMOFOX_KEY__' }
+  headers: { Authorization: 'Bearer ' + process.env.CAMOFOX_ACCESS_KEY }
 }).then(r => r.json());
 ```
 
@@ -77,7 +80,7 @@ const snap = await fetch(`http://localhost:9377/tabs/${tab.tabId}/snapshot?userI
 | `node_modules` missing | `cd ~/Desktop/Niumination/tools/camofox-browser && npm install` |
 | Port 9377 not listening | After `kill`, confirm KeepAlive actually resurrected via `pgrep` + `/health` (restart is not instant) — if still down, start manually with full env, then keep the launchd job as owner |
 | Browser not launching | Check `~/.cache/camoufox/` dan `~/Library/Caches/camoufox/` |
-| 401 Unauthorized | Global access-gate membandingkan Bearer dengan `CAMOFOX_ACCESS_KEY` (bukan API key) — header: `Authorization: Bearer __REDACTED_CAMOFOX_KEY__` |
+| 401 Unauthorized | Global access-gate membandingkan Bearer dengan `CAMOFOX_ACCESS_KEY` (bukan API key) — header: `Authorization: Bearer $CAMOFOX_ACCESS_KEY` |
 | `userId and sessionKey required` | `POST /tabs` wajib `userId` DAN `sessionKey` — contoh: `{"userId":"agent1","sessionKey":"task1","url":"https://example.com"}` |
 | `lib/launcher.js` error | Pastikan `camoufox-js` binary terinstall: `npx camoufox-js --version` |
 | npm install timeout | `timeout 300 npm install` atau `npm install --prefer-offline` |

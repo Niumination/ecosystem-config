@@ -47,7 +47,8 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_BANK = REPO_ROOT / "skills"
 
 SKIP_FILES = {".DS_Store"}
-SKIP_DIRS = {".git"}
+# `.archive` holds retired skills; it is not a live domain and must not be scanned.
+SKIP_DIRS = {".git", ".archive"}
 
 # ── Allowlist URL (host resmi/dokumentasi + deploy sendiri). Non-allowlist di-flag. ──
 ALLOWED_DOMAINS = {
@@ -276,9 +277,16 @@ def iter_skills(bank: Path):
     if not bank.is_dir():
         return
     for domain in sorted(p for p in bank.iterdir() if p.is_dir() and p.name not in SKIP_DIRS):
+        # A domain folder may itself BE a skill (e.g. skills/camofox-browser/SKILL.md
+        # sits directly under the bank with no domain layer).
+        if (domain / "SKILL.md").is_file():
+            yield domain.name, domain.name, domain
         for skill_dir in sorted(p for p in domain.rglob("*") if p.is_dir() and p.name not in SKIP_DIRS):
             if (skill_dir / "SKILL.md").is_file():
-                yield domain.name, skill_dir.name, skill_dir
+                # Use the path relative to the bank, not `domain.name`: the manifest
+                # keys skills by `domain/skill`, so yielding the bare top-level name
+                # made every nested skill look absent from the manifest.
+                yield skill_dir.relative_to(bank).as_posix(), skill_dir.name, skill_dir
 
 
 def scan_skill(skill_dir: Path, domain: str, skill: str):

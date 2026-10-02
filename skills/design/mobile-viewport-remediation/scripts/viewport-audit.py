@@ -7,10 +7,11 @@ Butuh camofox di 127.0.0.1:9377. Kalau belum jalan, start sesuai skill `camofox-
 Per rute x lebar dicetak: tinggi halaman (px + setara layar), tinggi per blok utama, lebar anak
 kartu pertama, jumlah kontrol <44px, keadaan deret chip, dan elemen sticky/fixed.
 """
-import json, sys, time, urllib.request
+import json, os, sys, time, urllib.request
 
-BASE = "http://127.0.0.1:9377"
-KEY = "__REDACTED_CAMOFOX_KEY__"
+BASE = os.environ.get("CAMOFOX_BASE_URL", "http://127.0.0.1:9377")
+# Read from the environment. A literal here would be a credential in a public repo.
+KEY = os.environ.get("CAMOFOX_ACCESS_KEY") or os.environ.get("CAMOFOX_API_KEY")
 USER = "viewport-audit"
 WIDTHS = [390, 360, 320]
 
@@ -45,7 +46,8 @@ PROBE = r"""
 
 def call(method, path, body=None, timeout=120):
     req = urllib.request.Request(BASE + path, data=json.dumps(body).encode() if body is not None else None, method=method)
-    req.add_header("Authorization", "Bearer " + KEY)
+    if KEY:
+        req.add_header("Authorization", "Bearer " + KEY)
     req.add_header("Content-Type", "application/json")
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:

@@ -1,7 +1,7 @@
 {
-  "fileCount": 848,
-  "generatedAt": "2026-10-01T12:24:11.867847+00:00",
-  "skillCount": 203,
+  "fileCount": 857,
+  "generatedAt": "2026-10-02T05:02:51.883865+00:00",
+  "skillCount": 208,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -19,10 +19,10 @@
       }
     },
     "camofox-browser": {
-      "bundleHash": "3ecb159a3985cd18682107b552e24b923be7b8c15b70a8c1a885d91c0bd4dda7",
+      "bundleHash": "215118ce62bb83e72839769978100b5d1334545b6eb96b201b2183b2e6db3e8b",
       "domain": ".",
       "files": {
-        "SKILL.md": "0c6a9aaca63825b4b5d8e6f19b9c9fe7b5317dfad0d267b972614343fec4e6ad"
+        "SKILL.md": "8226d522653958a1cee24ee39c6cca9bb0675c4636d4f55c3d9569e66121fd8b"
       }
     },
     "content/code-audit": {
@@ -435,12 +435,12 @@
       }
     },
     "design/mobile-viewport-remediation": {
-      "bundleHash": "186b776c86e93efd7a3dbe3c4a876ea198bb091c129440cf1cff15cddfe4c51f",
+      "bundleHash": "b53e944a31fac2ca16a70b657d7bbaf0e763da4c078d2769ba179e65c1c492d4",
       "domain": "design",
       "files": {
         "SKILL.md": "703a227c392f437cfef7638499d73939d9ec4f78409d8f38c5d72257e683b344",
         "references/reflow-remediation.md": "82c3669de42ca443e5d84e91c0bb12246d1c4623c7a4b437782e0dcb208182f9",
-        "scripts/viewport-audit.py": "e69feb3324840eba85cf77fc76617619af859208705284b01394a6283925a3c8"
+        "scripts/viewport-audit.py": "ba0c6958cd441450290033f303f28d12d0ebdd597ba1c909837ad8879d3e4a2d"
       }
     },
     "design/responsive-ui-audit": {
@@ -615,12 +615,21 @@
       }
     },
     "ecosystem/arena-patch-adoption": {
-      "bundleHash": "0dd74c4fd5742215c1b280337ce1570a705094756cd38be53b3b738aeab88672",
+      "bundleHash": "40373eb84c2a13d8afb67e48b02f1dfed6d496e2fed774adf0f39c416fc027f8",
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "71ad2b8b6816444b9c7d77df0fa4ea600de55c8a0a51637a4a278940d8c87227",
+        "references/dox-pass-and-registry-rows.md": "b5fb3cd4b9de051d8fa71fab5d1c7e26df3da84d73295e894cd410cdda08f6e9",
+        "references/harness-fixture-and-flaky-gates.md": "1b3f7caadf1dfb55aae1f819e26fef536f45d901f905650057a53194e83814df",
         "references/lighthouse-triage.md": "679e105fccd36da2f66e3585326698c6f73a449b81607f46f69dd336216c423a",
         "references/non-patch-zip-variant.md": "a5662734155ca82d9e6c9ab1a621e25f9d14cba621fa7f41ad1cad99da27d91c"
+      }
+    },
+    "ecosystem/bank-coverage-set-diff": {
+      "bundleHash": "1435c699c91aa6aeb90db024114a9ab45f03005e5030dcb111e85587057968a9",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "23721f62bb5ee3e739cdd1bf3420c9b1ebddf93ba3e3a84b5dd1f16f8fddf980"
       }
     },
     "ecosystem/cc-acehtengah-maintenance": {
@@ -827,6 +836,20 @@
         "SKILL.md": "4dfe123b837a0fdf78f5264dbb495f798cf41be79cd9baf42e3ba699bea4269f"
       }
     },
+    "ecosystem/ecosystem/commit-gate-triage": {
+      "bundleHash": "1b59e9c53b57c45d0d6bd55a6927e1f806bbc699145a86a3cc0736af6eb919bd",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "e4559414eceecfb552a6c030c7e0ba997adcbe9fa08cfa69dedacbee49567614"
+      }
+    },
+    "ecosystem/ecosystem/documentation-reconciliation": {
+      "bundleHash": "e91d51ed6004d99da3b8e738d63c96f487dcdde685563fe03f42744acd5d446a",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "c71e62988f0eb8ade3785b021a9ce48b645ce89ecce969a6cf60d53d5b27f2f6"
+      }
+    },
     "ecosystem/ecosystem/earning-opportunity-feasibility": {
       "bundleHash": "1a12dd2fe513253cd51c1641378f05472031a95e9bf953d3b7e9b0de01432cbe",
       "domain": "ecosystem/ecosystem",
@@ -856,17 +879,19 @@
       }
     },
     "ecosystem/ecosystem/skill-library-maintenance": {
-      "bundleHash": "3c64537a1c77d2a7f19d4d4cba423c64b80d860c92c4c187f36c48c26c6a1109",
+      "bundleHash": "a421da7463d75ecfd10562852a2ac96409cea570855b677323fbd3d6b6d70686",
       "domain": "ecosystem/ecosystem",
       "files": {
-        "SKILL.md": "d8809cb880d00b92a6e43b3d3746f6643c56113b00ebae5e4898c019b74df734"
+        "SKILL.md": "d8809cb880d00b92a6e43b3d3746f6643c56113b00ebae5e4898c019b74df734",
+        "references/manifest-and-sync-direction.md": "40e40e968640195cf96fd08f1fc07b56984e57754918d92ed7fab793cd65df3a"
       }
     },
     "ecosystem/ecosystem/skill-loader-name-collision": {
-      "bundleHash": "bd1ff8d47445d9e04c245032b242f0c5a1e2e35c11cfbca608b73684236ce193",
+      "bundleHash": "ef6ca6fdb36d0576db9f0e320f211af71cbaa1811e52c231baab3e5e30945f5f",
       "domain": "ecosystem/ecosystem",
       "files": {
-        "SKILL.md": "16e58cad915a9dc298f671efe18b5b5cfaf574f4e9028c87cea20a05e1de867f"
+        "SKILL.md": "16e58cad915a9dc298f671efe18b5b5cfaf574f4e9028c87cea20a05e1de867f",
+        "references/reading-ambiguous-skills.md": "ae618651e23e32def8d8863ae29de61301efb4a87ebd3d3db13ed8995549370c"
       }
     },
     "ecosystem/ecosystem/third-party-gate-triage": {
@@ -1116,6 +1141,13 @@
         "references/free-stack-merge.md": "75ed9ac442a790e7a645a0e395096712698b507e1cd86700efe3a105492a600f"
       }
     },
+    "ecosystem/non-provider-secret-detection": {
+      "bundleHash": "586971471342c7bd8cc8eac2cfb6ecb8a80850fe0c7b75dc4f43b965f3b59e4d",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "f822c726dab9ea7f4a3650a38a89b48822e7b03ebbddbdb6809fc707002fb422"
+      }
+    },
     "ecosystem/pi-app-studio-development": {
       "bundleHash": "9c3f6acbd3e22a9cc52b070af80cf0e23a618d8e6a91d86a47f0052d90258ce6",
       "domain": "ecosystem",
@@ -1239,6 +1271,13 @@
         "references/cases-2026-08.md": "a87f0a8f980145dbf119480097f3e851f49c1976c100a9497764f1e023e97b85",
         "references/home-pruning-f4-2026-08-20.md": "245cf99bb02a59a5a73ce617c11363db7754ba061d4b22a4be10eed736989bd9",
         "references/skill-bank-manifest-sync.md": "ed73748fe07bd9718d8c2493742dfc1e0cad006dd474be4d6e469d16c1e7714a"
+      }
+    },
+    "ecosystem/skill-bank-mirror-integrity": {
+      "bundleHash": "83518e5529ca03749c794bdac9b3fa0b3ba788d9387c266c28b496c0ec8e856b",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "c9f42b2eeb4eedeb09318514f9ca60e4e39b931607a9e75712adc43b41b73a87"
       }
     },
     "ecosystem/software-development/agent-shell-command-guards": {
@@ -1771,11 +1810,11 @@
       }
     },
     "software-development/live-ui-audit": {
-      "bundleHash": "49b10e7631c282526013ac4634411f2aaa395ec15f4e918a553be83772d76518",
+      "bundleHash": "db4ee2956b712ae250ded1b3f4ecc18a0df99627bd50de15639ae432a3b8513b",
       "domain": "software-development",
       "files": {
         "SKILL.md": "9e52b20d9f9c9659ad2adf65b861db1931052092bc6a7eb220ac402108dae890",
-        "references/measurement-recipes.md": "8704db46635becb195102bc012429633a81789928cb6d001ac56ff1ddbae760d"
+        "references/measurement-recipes.md": "17e15f3c1b8942d1a2baed68247af1bd985acb1901703c89d5b4e2b7cb009f5d"
       }
     },
     "software-development/llm-call-reliability": {
