@@ -1,59 +1,91 @@
-# History Rewrite dan Host Exposure
+# History Rewrite: Interactive Stalls, Working-Tree Loss, and Host Exposure
 
-Empat hal yang tidak terlihat di dokumentasi `git filter-repo`, semua ditemukan
-saat membersihkan kredensial yang sudah 15 hari duduk di repo publik.
+Complements `history-rewrite-dry-run.md` (the sequence) with three failure modes that cost a full
+retry cycle when met for the first time.
 
-## 1. `--force` saja tidak cukup; sanity check tetap interaktif
+## 1. `--force` does NOT make `filter-repo` non-interactive
 
-```bash
-git filter-repo --force --replace-text rules.txt
-# EOFError: EOF when reading a line
+`--force` suppresses the fresh-clone refusal only. The "Treat this run as a continuation of the
+previous run?" sanity check still reads stdin and dies with:
+
+```
+EOFError: EOF when reading a line
 ```
 
-`--force` hanya melewati konfirmasi "treat as continuation". Sanity check
-"Already Ran" tetap memanggil `input()`. Di shell non-interaktif (CI, agent,
-Telegram) itu langsung jadi `EOFError` dan rewrite berhenti.
-
-Solusi: pipe jawaban eksplisit.
+Answer it explicitly. Two prompts appear (continuation, then origin-removal notice), so pipe two lines:
 
 ```bash
-printf 'y\ny\n' | git filter-repo --force --replace-text rules.txt
+printf 'y\ny\n' | git filter-repo --force --replace-text /tmp/redact-patterns.txt
 ```
 
-Dua baris `y` menutupi kedua prompt: continuation dan "remove origin".
+## 2. `filter-repo` resets the working tree — re-apply uncommitted fixes
 
-## 2. `filter-repo` me-return working tree ke HEAD
+`filter-repo` checks out the rewritten HEAD, so **every uncommitted modification made before the
+rewrite is reverted**, silently. Edits to the scanner, the gate regex, and redacted files all revert
+to their pre-fix state, and the re-run self-test then fails as if the fix were never applied.
 
-Setelah rewrite, `git status` bersih dan seluruh edit yang belum ter-commit
-**hilang dari disk**. Index ikut di-reset, jadi `git add` yang sudah kamu
-siapkan ikut hilang.
+Re-apply them after the rewrite and re-run every self-test before committing. When the rewrite and a
+source fix land in the same logical change, order it: rewrite history → re-apply source fixes →
+re-run self-tests → commit → push.
 
-Kalau punya pekerjaan yang belum di-commit saat menjalankan rewrite:
+Symptom to recognize: a self-test that passed minutes earlier now fails with the old pattern, and
+`git status` shows fewer modified files than before the rewrite.
+
+## 3. Prove host exposure by fetching the OLD ref back, not by reading local state
+
+A force-push does not delete the old objects from the host, and "the old SHA still resolves" is the
+check that proves it:
 
 ```bash
-git stash push -u -m "pra-rewrite"     # atau commit dulu
-# ... rewrite ...
-git stash pop                            # terapkan ulang, periksa ulang
+gh api repos/<o>/<r>/commits/<old-sha> --jq '.sha'          # resolves => object still present
+gh api "repos/<o>/<r>/contents/<path>?ref=<old-sha>" --jq '.content' | base64 -d | grep -c '<literal>'
 ```
 
-Yang paling sering terlewat: pola gate yang sedang kamu perbaiki. Kalau pola itu
-belum ter-commit, rewrite akan membuangnya dan kamu akan mengira perbaikannya
-hilang. Setelah rewrite, selalu cek ulang bahwa file yang kamu ubah masih
-memuat perubahan itu.
+The second command is the decisive evidence: it counts how many times the literal is still being
+served by the internet for the pre-rewrite ref. Report that count, not "0 hits in the working tree",
+which says nothing about what the host is serving.
 
-## 3. `origin` dihapus
+Only after the credential itself is confirmed dead does the residual object exposure drop from urgent
+to hygiene — an unreachable old blob keeps being a purge request, not a live leak.
+
+## 4. Redacting a truncated key still leaks its prefix
+
+Docs often redact by truncation (`hermes...026`) rather than by removal. That is still a partial
+disclosure and it still belongs in the rewrite patterns file:
+
+```
+literal:<full-value>==>__REDACTED_KEY__
+literal:<truncated-form>==>__REDACTED_KEY__
+```
+
+Sweep for both before verifying: match the truncated shape (`prefix...suffix`) anywhere in tracked
+files and history, not just the full value.
+
+## 5. Find the structural source, not just the files that hold the leak
+
+Files that *store* a secret are one class. The script that *copies live config into a repo* is the
+class that regenerates the leak on every automated run, and it survives a history rewrite untouched.
+
+For a repo whose purpose is backup/restore, grep the freeze/sync/build path for the step that copies
+live config (e.g. a plist or dotenv) and asks what it substitutes. A substitution that only rewrites
+`$HOME` and nothing else copies every secret it touches, every run.
+
+Fix at the source with a redaction step plus a fail-closed assertion, so a regression aborts instead
+of silently committing:
 
 ```bash
-git remote -v      # kosong setelah rewrite
-git remote add origin git@github.com:OWNER/REPO.git
+redact_plist "$src" | sed -e "s|$HOME|{{HOME}}|g" > "$out"
+grep -qE '^[^<]*(KEY|TOKEN|SECRET|PASSWORD)=[^<]{16,}' "$out" && {
+  echo "REDACTION FAILED for $name" >&2; exit 1; }
 ```
 
-Lakukan sekali per repo, dan verifikasi ulang sebelum force-push — salah remote
-di sini berarti rewritehistory terkirim ke tempat yang salah.
+Use `awk` rather than `sed` for key/value pairing: BRE has no non-capturing group, so the
+"this key is sensitive, redact the next string" pattern becomes unreadable as a regex. Assert on the
+*output* — a grep for the sensitive-name shapes in every produced template — and report that count.
 
-## 4. Force-push tidak menghapus object
+## 6. Force-push tidak menghapus object lama
 
-Ini yang paling sering disalahartikan sebagai "sudah bersih".
+Yang paling sering disalahartikan sebagai "sudah bersih".
 
 ```bash
 git push --force-with-lease origin main   # sukses
@@ -61,8 +93,8 @@ gh api "repos/OWNER/REPO/contents/path?ref=OLD_SHA" --jq .content | base64 -d | 
 # 6   <-- isi lama masih terbaca
 ```
 
-Object lama tidak terhapus karena ada di cache GitHub dan tidak lagi terreferensi
-oleh branch manapun, tapi **tetap bisa diambil kalau SHA-nya diketahui**.
+Object lama tidak terhapus karena masih ada di cache GitHub dan tidak lagi
+direferensi branch manapun, tapi **tetap bisa diambil kalau SHA-nya diketahui**.
 
 Konsekuensi praktisnya:
 
@@ -75,12 +107,10 @@ terbalik berarti key baru langsung ikut bocor di rewrite berikutnya. Panduan
 resmi GitHub juga menyatakan rotasi biasanya sudah cukup, karena setelahnya nilai
 itu tidak lagi berguna bagi siapa pun.
 
-Purge total butuh GitHub Support (form "Remove sensitive data from a repository");
-tidak ada endpoint API untuk itu. Nilai yang bocor di sini berawalan
-`hermes-camofox`, sangat mudah ditebak, jadi setelah rotasi risiko praktisnya
-sudah tertutup tanpa purge.
+Purge total butuh GitHub Support (form "Remove sensitive data from a
+repository"); tidak ada endpoint API untuk itu.
 
-## 5. launchd menyimpan env di memori — `kill` tidak membaca ulang plist
+## 7. launchd menyimpan env di memori — restart tidak membaca ulang plist
 
 Layanan yang env-nya dirotasi di disk tetap memakai nilai lama sampai job
 definition-nya di-reload.
@@ -93,7 +123,7 @@ launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/ai.hermes.camofox.plist
 ```
 
 Bukti yang tidak bisa dibantah: bandingkan sidik jari nilai di environment
-proses dengan yang ada di `.env`. Nilai proses yang masih cocok dengan yang
+proses dengan yang ada di file env. Nilai proses yang masih cocok dengan yang
 lama = rotasi belum aktif, sekecil apa pun restart-nya.
 
 ```bash
@@ -103,22 +133,6 @@ ps -E -p "$PID" | tr ' ' '\n' | grep '^CAMOFOX_.*KEY=' | shasum -a 256
 
 Catatan: dari dalam gateway Hermes, `launchctl bootstrap` dan `submit` diblokir
 guard, tetapi `unload` + `load` tidak. Kalau `bootstrap` tidak tersedia,
-pasangan `unload`/`load` mencapai hal yang sama — jalankan dari shell terpisah
-bila tetap ditolak.
+pasangan `unload`/`load` mencapai hal yang sama.
 
-## 6. Urutan yang benar
-
-```bash
-# 1. backup
-cp -p ~/.hermes/.env ~/backup/hermes.env.bak
-cp -p ~/Library/LaunchAgents/ai.hermes.camofox.plist ~/backup/
-
-# 2. rotasi — tulis ke semua pembaca, lalu reload job
-# 3. buktikan: nilai LAMA ditolak, nilai BARU diterima
-# 4. baru rewrite history
-# 5. baru force-push dengan lease yang sudah di-refresh
-```
-
-Langkah 3 tidak boleh dilewati. Menuliskan nilai baru ke `.env` terasa seperti
-selesai, tapi layanan masih memegang nilai lama — dan itulah jendela ketika orang
-mengira rotasi sudah beres padahal belum.
+## 8. Urutan yang benar
