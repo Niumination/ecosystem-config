@@ -1,7 +1,7 @@
 {
-  "fileCount": 857,
-  "generatedAt": "2026-10-02T05:02:51.883865+00:00",
-  "skillCount": 208,
+  "fileCount": 861,
+  "generatedAt": "2026-10-02T07:19:36.247395+00:00",
+  "skillCount": 210,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -47,10 +47,10 @@
       }
     },
     "content/content-produce": {
-      "bundleHash": "a18a0c3edbeb3f5465f751db9f12a5b738ca91ff1afba14a14aac297c3fb0648",
+      "bundleHash": "efcfd23e942dad5cadf084e404d88d616cb0948ee5b51a4d35ff4968c62c49a6",
       "domain": "content",
       "files": {
-        "SKILL.md": "4b0d64f7dbe507232b5ac946260c6cc65667337bd832b87e15ff0274d4d0563b"
+        "SKILL.md": "cc66acdfc8232e5693eba0db5e0ee34e8058d9f128c0a764c337caa49c857544"
       }
     },
     "content/content-publish": {
@@ -79,6 +79,15 @@
       "domain": "content",
       "files": {
         "SKILL.md": "d1e17a7a016cae69474c83a0555cb9c14a965b234f3189f2f3df22bb7ae852ca"
+      }
+    },
+    "content/remotion-video": {
+      "bundleHash": "8a14f92fea460a3d50e2b53ef9f6494dd340078b441fc7e0eb0b86731987a7f6",
+      "domain": "content",
+      "files": {
+        "SKILL.md": "e2015452cef7ef56cf1eaef2c0755e120fe4605824a25577f0937f26b20c0302",
+        "references/agent-skills-catalog.md": "7295a1ac93122ef33722eeb73d504c61b5c0650a6941b6a4095a22f036b49c8e",
+        "templates/formats/remotion-shorts.json": "88c2b1d9f342fe458334c813b9272f44430a54d4d1d5916f35183f19edd21020"
       }
     },
     "creative/ascii-art": {
@@ -178,10 +187,10 @@
       }
     },
     "creative/hyperframes": {
-      "bundleHash": "4ebc0414cb26affd3ac30ab2af9c6dee5d0c452f8d017ff937027ab6e46f1a5f",
+      "bundleHash": "7df18766030922e83295ba0c2efdc7680457281403acb877da3bc89a98bc0fe8",
       "domain": "creative",
       "files": {
-        "SKILL.md": "370201cabe7859c5039a2872628eb8e19b08fa549b25c63beaf5665318853494"
+        "SKILL.md": "607137543729426bac0e4a02db91563e3b8abcd6f8eefb40efac95da76d8ede3"
       }
     },
     "creative/pretext": {
@@ -864,6 +873,13 @@
         "SKILL.md": "e2a95a0eadd7f036af714337686e64ece9c72573057cf26b1585bc2a3ffb126b"
       }
     },
+    "ecosystem/ecosystem/long-form-markdown-deliverables": {
+      "bundleHash": "80f508aa5a92ec44b7826ee9a8320012ccd4da5a52d111c0e53a4d654739a78c",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "25fad9c07bc08be93bfe0a10c81671ee2ba792d04d31878f052734068092b6bf"
+      }
+    },
     "ecosystem/ecosystem/macos-system-health": {
       "bundleHash": "9c178ff5b9e48f03c3f8ff7902dd5425d1963e82e1fddfa5ac27d725a02f50b9",
       "domain": "ecosystem/ecosystem",
@@ -952,10 +968,10 @@
       }
     },
     "ecosystem/hermes-config-mutation-safety": {
-      "bundleHash": "bf00bda6226e569cffaaa4d9b40b3790e1e848ee50339ddd8dcb4a635c092592",
+      "bundleHash": "0abe23b77ccb16cdffc774a0aef5253499e528ac428055331ee8bf6915d2ee2a",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "350c8d1a78832cfcacb8c5d74fc9ae5939211a7e5a950ec80d5d3607445f7419"
+        "SKILL.md": "b1d78c91ddfc92f4e8ba35b5552a787dffd5374c30bb36475d0808c7c7eada4b"
       }
     },
     "ecosystem/hermes-configuration": {
@@ -1600,10 +1616,10 @@
       }
     },
     "security/git-security-sanitization": {
-      "bundleHash": "ced4ace751ee2186f884134a9909ef9661b471edbfe81fca3d7640377af143c9",
+      "bundleHash": "a9f9788419a8c64337bba7ba77b9b21741907ae4568cc231fcae3ddc698008f4",
       "domain": "security",
       "files": {
-        "SKILL.md": "0b40d8e8e14cd53de3fd6b1204ab8404121511a00045c6eabf1e3694496b49b1",
+        "SKILL.md": "8855e28d698a704b5b4e7dbe4e87c032c60b6c95dc8ff43fd28599abda0e08ff",
         "references/account-and-host-posture-sweep.md": "fdbb098c74cb4c247621d42dda5be2c3fe46dc20c96b8d9383aa5af2f45e512c",
         "references/credential-rotation.md": "f96e0c47b0476ad76fd28a0950c9da5dc0700695f16442b30acb943b2306cea1",
         "references/github-secret-alert-triage.md": "d39706398ab6f3ecaaa55aa45b6dc5521b4a7cca725f239c8ed7ff4e459e020a",
