@@ -10,6 +10,31 @@
 # =============================================================================
 set -Eeuo pipefail
 
+# Nama env bertipe rahasia. Dipakai redact_plist di bawah.
+SENSITIVE_NAME='^(CAMOFOX_[A-Z_]*KEY|[A-Z0-9_]*_API_KEY|[A-Z0-9_]*_ACCESS_KEY|[A-Z0-9_]*_ADMIN_KEY|[A-Z0-9_]*_TOKEN|[A-Z0-9_]*_SECRET|[A-Z0-9_]*_PASSWORD|[A-Z0-9_]*_PASSPHRASE)$'
+
+# Tandai <key> yang sensitif, lalu ganti baris <string> berikutnya dengan
+# __REDACTED__. Pakai awk, bukan sed: BRE tidak punya operator non-capturing,
+# dan pola "key lalu值为 Sensitive" jadi kabur tanpa itu.
+redact_plist() {
+  awk -v pat="$SENSITIVE_NAME" '
+    /<key>[^<]+<\/key>/ {
+      name = $0
+      sub(/^.*<key>/, "", name)
+      sub(/<\/key>.*$/, "", name)
+      sensitive = (name ~ pat)
+      print
+      next
+    }
+    sensitive && /<string>/ {
+      print "        <string>__REDACTED__</string>"
+      sensitive = 0
+      next
+    }
+    { print }
+  ' "$1"
+}
+
 REPO="$HOME/Desktop/Niumination/apps/niumination-restore"
 OUT="$REPO/scripts/services/launchd"
 mkdir -p "$OUT"
@@ -35,7 +60,21 @@ for a in "${AGENTS[@]}"; do
   if [[ ! -f "$src" ]]; then
     echo "  ✗ tidak ada: $a.plist" >&2; MISS=$((MISS+1)); continue
   fi
-  sed -e "s|$HOME|{{HOME}}|g" "$src" > "$OUT/$a.plist.template"
+  # SISI KREDENSIAL (2026-10-02): versi lama hanya `sed -e "s|$HOME|{{HOME}}|g"`,
+  # yang menyalin plist apa adanya. ai.hermes.camofox.plist memuat
+  # CAMOFOX_API_KEY / ACCESS_KEY / ADMIN_KEY, jadi tiap `sync-all.sh` menulis ulang
+  # secret plaintext ke riwayat git repo niumination-restore. Aturan 1 repo DR
+  # melarang plaintext; visibilitas private bukan alasan.
+  # Nilai environment yang sensitif diganti `__REDACTED__`. Nama variabel, urutan,
+  # dan nilai non-rahasia (port, PATH, flag) tetap utuh agar template berguna
+  # sebagai dokumentasi. restore.sh belum memasang LaunchAgent sama sekali, jadi
+  # placeholder ini belum diisi apa pun.
+  redact_plist "$src" \
+    | sed -e "s|$HOME|{{HOME}}|g" > "$OUT/$a.plist.template"
+  if grep -qE '^[^<]*(KEY|TOKEN|SECRET|PASSWORD|PASSPHRASE)=[^<]{16,}' "$OUT/$a.plist.template" 2>/dev/null; then
+    echo "  ✗ REDAKSI GAGAL untuk $a.plist — secret akan bocor ke repo" >&2
+    exit 1
+  fi
   net=""; grep -q 'NetworkState' "$src" && net=" [WaitNetwork]"
   printf "  ✓ %-36s %5s B%s\n" "$a.plist" "$(wc -c < "$OUT/$a.plist.template" | tr -d ' ')" "$net"
   printf "%s|%s|%s\n" "$a" "$(wc -c < "$OUT/$a.plist.template" | tr -d ' ')" "${net:-network-optional}" >> "$OUT/../MANIFEST-services.txt"
