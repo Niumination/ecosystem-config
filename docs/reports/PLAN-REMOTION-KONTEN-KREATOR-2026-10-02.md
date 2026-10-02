@@ -2,7 +2,8 @@
 
 **Sumber:** riset 2 Okt 2026 → `docs/reports/RISET-REMOTION-ADAPTASI-ECOSYSTEM-2026-10-02.md`
 **Spesifikasi target:** i5-10310U · 16 GB · UHD 620 · macOS 26.5 · tanpa Docker
-**Lisensi:** Free tier (≤3 org) → $0
+**Scope:** thread Konten Kreator (1172) saja. Tidak untuk thread lain (802/803/804/7402/8853/DM).
+**Lisensi:** Afrizal saja (1 seat) → Free License $0 (sumber: remotion.dev/docs/license/faq)
 
 ---
 
@@ -23,40 +24,54 @@ Yang TIDAK tersentuh:
 
 ---
 
-## Fase 1 — Install & verify (≤30 menit, 0 risiko ekosistem)
+## Fase 1 — Install & verify (SELESAI ✅)
 
-1. `cd ~/Desktop/Niumination/sandbox && npx create-video@latest --yes --blank --no-tailwind remotion-studio`
-2. `cd remotion-studio && npm i && npx remotion skills add`
-3. `npm run devCopy` → buka Studio, verify template Hello World jalan
-4. `npx remotion render` → render 1 clip pendek (5 detik), ukur waktu render di CPU ini
+1. ✅ `npx create-video@latest --yes --blank --no-tailwind remotion-studio` — exit 0
+2. ✅ `npm i` — 356 packages, 2 menit
+3. ✅ `npx remotion skills add` — 12 skills terinstall (Hermes Agent juga terdeteksi, symlink ke `.agents/skills/`)
+4. ✅ Render test `MyComp` → `out/hello.mp4` — 5.4 KB, 2 detik, h264 480p, exit 0
+5. ⚠️ Chrome Headless Shell 98 MB diunduh first-run (one-time)
 
-**Bukti:** folder `sandbox/remotion-studio/` ada + `renders/` berisi MP4 + waktu render tercatat
+**Bukti:** `ls -lh out/hello.mp4` → 5.2K, `ffprobe` → 2.000 detik, 21428 bps
+**Waktu render total:** ~3 menit (termasuk download Chrome). Render berikutnya lebih cepat.
+**Lisensi:** Free tier ≤3 org = $0 ✅
 
 ---
 
-## Fase 2 — Workflow adapter (sesuai spek Mac)
+## Fase 2 — Workflow adapter (SELESAI ✅)
 
-- Template `templates/formats/remotion-shorts.json` (9:16, 30 detik, GPU-free composition)
+- Template `templates/formats/remotion-shorts.json` (9:16, 30 detik, GPU-free composition) ✅ dibuat
 - Prompt adapter: user kirim deskripsi → agent tulis `index.tsx` Remotion → render
-- Batasan Mode A: composition ≤ 30 detik, 1920×1080 (atau 1080×1920 vertikal), tanpa efek GPU-heavy
-- Fallback: bila render >5 menit → potong durasi / turun ke HyperFrames
+- Batasan Mode A2: composition ≤ 30 detik, 1080×1920 vertikal, tanpa efek GPU-heavy
+- Fallback: bila render >5 menit → potong durasi / turun ke HyperFrames ✅ dicatat di pitfalls
 
 ---
 
-## Fase 3 — Skill bank + thread binding
+## Fase 3 — Skill bank + thread binding (SELESAI ✅)
 
-- Salin skill `remotion-video` ke `skills/content/` → `sync-to-agents.sh`
-- Update `content-produce` SKILL.md: tambah baris Remotion di Mode A
-- Tambah ke `channel_skill_bindings` thread 1172 (backup config dulu)
+- ✅ Skill `remotion-video` baru di `skills/content/remotion-video/SKILL.md`
+- ✅ `content-produce` SKILL.md diperbarui: Mode A2 + pitfalls lisensi + batasan CPU
+- ✅ Hermes Agent Skills terinstall di `~/.hermes/skills/remotion-project/` (12 skill: best-practices, captions, create, docs, interactivity, maps, markup, multimedia, render, saas, studio, upgrade)
+- ✅ `~/.hermes/skills/content-remotion-video/` → skill bank Hermes lokal
+- ✅ `config.yaml` channel_skill_bindings thread 1172 → `["ghost", "humanizer", "remotion-video"]`
+- ⏳ Backup config: `config.yaml.bak-remotion-20261002` ada di `~/.hermes/`
+
+**Verifikasi binding:**
+```bash
+python3 -c "import yaml,json; cfg=yaml.safe_load(open('/Users/zaryu/.hermes/config.yaml')); b=json.loads(cfg['platforms']['telegram']['extra']['channel_skill_bindings']); print(b['1172'])"
+→ ['ghost', 'humanizer', 'remotion-video']
+```
 
 ---
 
-## Keputusan yang perlu confirmasi
+## Sisa keputusan (minimal)
 
-- [ ] Fase 1 boleh jalan? (install di sandbox, 0 risiko)
-- [ ] Fase 2: durasi max clip? (syarat: render <5 menit di CPU ini)
-- [ ] Fase 3: thread binding ke 1172? (konfig Hermes, backup dulu)
-- [ ] Lisensi: confirm ≤3 org sekarang (Afrizal + siapa lagi)?
+- ⚠️ Klarifikasi "org": FAQ resmi Remotion — yang di-hitung = **penulis kode Remotion** (langsung atau via AI tools), BUKAN thread/DM/penonton/agent.
+  - Afrizal = 1 seat → Free License $0
+  - 7 thread + DM = konsumen output → tidak hitung
+  - Baru bayar $25/bulan/orang bila tim >3 penulis
+- ✅ **Lisensi confirmed:** Afrizal saja (1 seat) → Free License $0
+- ✅ **Scope diperjelas:** Remotion hanya untuk thread Konten Kreator (1172). Tidak untuk thread lain (802/803/804/7402/8853/DM).
 
 ---
 

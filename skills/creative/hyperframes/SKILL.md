@@ -58,6 +58,18 @@ HTML/CSS/JS (index.html) → Puppeteer (capture frame) → FFmpeg (encode) → M
 - **Animasi:** Seekable via adapters (GSAP, CSS Keyframes, Anime.js, WAAPI, Three.js)
 - **Durasi:** Dikontrol via `data-start` / `data-duration` di HTML
 
+## Kapan pilih Remotion vs HyperFrames
+
+| Kriteria | HyperFrames | Remotion |
+|----------|-------------|----------|
+| Authoring | HTML/CSS/JS (tanpa build) | React + TypeScript (JIT bundler) |
+| Lisensi | Apache 2.0, gratis tanpa batas tim | Free tier ≤3 org; $25/bulan di atasnya |
+| Agent Skills | adapters (GSAP, CSS, WAAPI) | resmi (`npx remotion skills add`) |
+| Render CPU | Ringan | Berat (5–15 menit/video di CPU lemah) |
+| Pilih | Konten pendek, template cepat, tim >3 orang | Agent-prompt-driven, React developer, ≤3 org |
+
+**Aturan:** untuk thread Konten Kreator (i5-10310U, tanpa GPU), Remotion **hanya bila lisensi Free tier mencukupi** (≤3 org) dan durasi ≤30 detik. Bila render >5 menit → fallback HyperFrames. Lihat skill `remotion-video` untuk prosedur lengkap.
+
 ## Agent Workflows
 
 ### Router (baca pertama)

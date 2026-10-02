@@ -1,8 +1,19 @@
 #!/usr/bin/env bash
-# Gate kredensial pre-commit (repo ekosistem Niumination).
+# Gate pre-commit repo ekosistem Niumination.
+#   1. kredensial  — scripts/secret-scan-staged.py
+#   2. glif asing   — scripts/scan-stray-glyphs.py
 # Aktifkan sekali per clone:  git config core.hooksPath .githooks
 # Melewati gate (JANGAN kecuali darurat): git commit --no-verify
 set -euo pipefail
 
 ROOT="$(git rev-parse --show-toplevel)"
-exec python3 "$ROOT/scripts/secret-scan-staged.py"
+rc=0
+
+python3 "$ROOT/scripts/secret-scan-staged.py" || rc=1
+
+# Glif dari skrip asing (CJK/Cyrillic/Hangul) pernah ikut ter-commit pada
+# 787548f (2 Okt 2026) karena gate kredensial tidak melihatnya. Gate ini menutup
+# kelas itu. Emoji, box-drawing, dan simbol matematika tetap diizinkan.
+python3 "$ROOT/scripts/scan-stray-glyphs.py" || rc=1
+
+exit "$rc"

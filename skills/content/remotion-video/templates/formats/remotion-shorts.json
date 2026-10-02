@@ -1,0 +1,24 @@
+{
+  "format": "remotion-shorts",
+  "ratio": "9:16",
+  "resolution": "1080x1920",
+  "fps": 30,
+  "max_duration_seconds": 30,
+  "max_frames": 900,
+  "codec": "h264",
+  "quality": "480p (CPU-friendly)",
+  "composition_id": "MyComp",
+  "entry_point": "src/index.ts",
+  "structure": {
+    "Root.tsx": "registerRoot + Composition (1080x1920, 30fps, ≤900 frames)",
+    "Video.tsx": " Komponen utama - teks + CSS animation, GSAP optional",
+    "index.ts": "registerRoot(RemotionRoot)"
+  },
+  "template_vars": {
+    "HOOK": "kalimat pertama ≤12 kata, menyebut audiens",
+    "KONTEN": "3 beat: klaim → bukti → ringkas",
+    "CTA": "satu tujuan (follow/lead magnet/beli)"
+  },
+  "render_cmd": "npx remotion render src/index.ts MyComp out/<slug>.mp4 -q 480",
+  "fallback": "HyperFrames (bila render >5 menit atau efek GPU dibutuhkan)"
+}

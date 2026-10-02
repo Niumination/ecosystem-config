@@ -110,6 +110,11 @@ Simpan `.srt` juga sebagai file terpisah (untuk LinkedIn/YouTube yang butuh ungg
    `npx revideo render src/short.ts --props project/<slug>/data.json --out output/short.mp4`
 3. Atau rakit langsung dengan FFmpeg concat + zoom (Ken Burns) + overlay teks.
 
+**Mode A2 — Remotion (CPU, gratis, ≤30 detik):**
+1. Tulis komponen di `project/<slug>/remotion/` (lihat skill `remotion-video`)
+2. Render: `npx remotion render src/index.ts MyComp out/<slug>.mp4 -q 480`
+3. Bila render >5 menit → fallback ke HyperFrames
+
 **Mode B — dengan footage generatif:**
 1. ComfyUI: Qwen-Image untuk thumbnail/poster; Wan 2.2/FramePack untuk B-roll; LatentSync untuk lip-sync.
 2. Gabungkan B-roll + VO + caption di OpenCut/Kdenlive atau langsung FFmpeg.
@@ -145,6 +150,8 @@ Tulis `project/<slug>/output/MANIFEST.md`: daftar file, platform tujuan, rasio, 
 ## Pitfalls
 
 - **Jangan pakai model non-komersial** (FLUX.1/2 [dev], XTTS v2, F5-TTS weights, SVD, Wav2Lip) untuk konten yang menghasilkan uang.
+- **Remotion >30 detik di CPU = terlalu lambat.** Potong durasi atau fallback HyperFrames.
+- **Lisensi Remotion:** Free tier ≤3 org — jangan deploy >3 orang tanpa beli license.
 - **Jangan unggah aset tanpa mencatat lisensi** → tiap unduhan masuk `workspace/data/ASSETS_LICENSE.csv`.
 - **Loudness salah = terasa murahan.** Selalu jalankan `loudnorm`; verifikasi dengan `ffmpeg -i out.mp4 -af loudnorm=print_format=json -f null -`.
 - **Caption menutupi UI platform.** Jaga margin bawah ± 320 px (9:16) dan atas ± 220 px.

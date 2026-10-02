@@ -93,6 +93,9 @@ Config that parses is not a route that works. Probe the endpoint the override po
    corruption into a loud failure.
 6. **Probe through the provider the override actually names.** A config that points at one provider and a
    probe aimed at another proves nothing about the route.
+7. **`channel_skill_bindings` is JSON-in-YAML** — the value is a single quoted JSON string, not nested YAML.
+   Editing it with `patch` on a JSON key inside the string silently corrupts the YAML. Use the python3
+   json-round-trip path: load YAML → parse the bindings JSON string → modify → re-serialize → write back.
 
 ## Related skills
 - `hermes-configuration` — Hermes model mapping, hooks, MCP (if reachable in your skill set)
