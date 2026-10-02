@@ -82,6 +82,15 @@ Enam skill `skill-bank-*` mendokumentasikan prosedur yang sama (manifest SHA-256
 
 ## 🗂️ Struktur Root Ekosistem — Niumination v4.0 — Aug 26, 2026
 
+> ⚠️ **SNAPSHOT HISTORIS — 26 Agustus 2026. Jangan dipakai sebagai kondisi terkini.**
+> Angka pada blok di bawah sudah berubah. Untuk keadaan hari ini pakai `AGENTS.md` § Directory
+> Structure atau `docs/registry/project-catalog.md`. Perbandingan cepat (terukur 2 Okt 2026):
+> `apps/` 16 folder · `services/` 5 · `sites/` 7 · `desktop/` 4 · `agents/` 3 · `labs/` 3 ·
+> `sandbox/` 6 · `inactive-2026-09/` 5 · skill bank **210** (bukan 121/144).
+> Catatan: `agents/Ultra` kini ada di `inactive-2026-09/`, dan empat folder yang tidak
+> tercatat di sini sudah ada di disk: `apps/abstract-studio`, `apps/kopi-aceh-app-android`,
+> `labs/mata-aihackfest-2026`, `sandbox/remotion-studio`.
+
 ```
 Desktop/Niumination/
 ├── apps/               🏭 15 proyek — deployed & battle-tested

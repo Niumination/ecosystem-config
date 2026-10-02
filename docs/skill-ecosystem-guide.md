@@ -3,6 +3,7 @@
 > **Audiens:** Afrizal Munthe (Niumination)
 > **Tujuan:** Memahami bagaimana skill AI bekerja di ekosistem — mana yang auto-load, mana yang manual, mana yang terintegrasi
 > **Catatan Revisi v3:** Koreksi setelah tanggapan Hermes. Perubahan: (1) 148 skills → dibedakan "total installed" vs "~10-15 actively used", (2) Catalog injection dijelaskan lebih teknis — loading isi skill tetap manual via `skill_view()`, (3) Ditambahkan skill `document-content-pipeline` + UACC MCP server, (4) AI-Memory-Collection ditandai ⚪ belum diverifikasi, (5) Section 14 diisi jawaban Hermes untuk 6 pertanyaan, (6) Ditambahkan rekomendasi Hermes: update AGENTS.md dulu sebelum Layer 1.
+> 🔴 **Status 2 Oktober 2026 —ANGKA DALAM DOKUMEN INI BASI.** Dokumen ini **komparatif/historis**; jumlah skill di bawah tidak lagi mencerminkan keadaan. Angka benar saat ini: **210 skill di bank pusat** (`python3 scripts/skill-manifest.py`), sumber kebenaran = `docs/registry/skill-registry.md` (auto-generated). opencode CLI **masih terpasang** (v1.18.29, `~/.config/opencode`) — klausa "belum diverifikasi" di §6 sudah usang.
 > ⚠️ **Status Sep 2026:** dokumen ini **komparatif/historis**. JCode sudah **dihapus dari pipeline** — sistem skill aktif adalah **Hermes Agent + Bank Skill Pusat** dengan arsitektur **Dual-Zone Coexistence & Two-Way Convergence** (159 skills, 789 files, auto-promosi & reverse-sync). JCode sudah **dihapus dari pipeline** — bagian "Jcode Skills" di bawah adalah catatan perbandingan, BUKAN sistem aktif. Sistem skill aktif: **Hermes (bank pusat)**.
 >
 > **Update 29 Jul 2026 — AGENTS.md sync v4.0 ✅ + Layer 1 bank skill terisi 8 skill ✅.** Semua prasyarat Layer 1 terpenuhi. Siap lanjut ke Layer 2 (sync script).
@@ -160,7 +161,8 @@ Ada juga katalog Anthropic (`/frontend-design`) dan NVIDIA CUDA-X (18 items).
 
 ## 4. Hermes Agent Skills
 
-### Status: **148 skills (total) — ~10-15 actively used**
+### Status: **148 skills (total) — ~10-15 actively used**  
+> 🔴 **Angka basi.** Sekarang **210 skill** di bank pusat. Angka di bawah = kondisi saat dokumen ditulis.
 
 > ✅ **Confirmed by Hermes:** 148 skills dari `skills_list()`, catalog di-inject ke system prompt tiap sesi, agent bisa auto-load skill yang relevan.
 > ⚠️ **Penting:** 148 adalah **total installed**. Sebagian besar creative, MLops, gaming — **tidak relevan** untuk ekosistem Niumination. Yang rutin dipakai hanya **~10-15 skill**.
@@ -505,6 +507,8 @@ Contoh 5 skill yang relevan:
 ---
 
 ## 6. OpenCode Skills (146 skills)
+
+> ✅ **Terverifikasi 2 Okt 2026:** opencode CLI **terpasang**, v1.18.29, config di `~/.config/opencode`. Klaim lama "belum diverifikasi langsung" sudah usang.
 
 ### Status: **Terinstal sebagai CLI** — 146 skills (data dari DOX, belum diverifikasi langsung)
 
@@ -868,7 +872,7 @@ fragmented   Layer 1      Layer 2      Layer 3        Layer 4
 
 | Agent | Saat Ini | Target |
 |-------|:--------:|:------:|
-| **Hermes** (148 skills) | ✅ Mandiri | ✅ Baca dari bank pusat |
+| **Hermes** (148 skills → **210**, 2 Okt 2026) | ✅ Mandiri | ✅ Baca dari bank pusat |
 | **Jcode** (0 skills) | ❌ Kosong | ✅ Baca dari bank pusat |
 | **Claude Code** | ❌ Terpisah | ✅ Baca dari bank pusat |
 | **OpenCode** | ❌ Terpisah | ✅ Baca dari bank pusat |
@@ -888,7 +892,7 @@ fragmented   Layer 1      Layer 2      Layer 3        Layer 4
 ~/Desktop/Niumination/skills/
 ├── software-development/
 │   ├── ponytail/        ← copy dari tools/ponytail/skills/ponytail/
-│   ├── debugging/       ← dari Hermes 148 skills
+│   ├── debugging/       ← dari Hermes 210 skill
 │   └── optimization/    ← dari Jcode bundled
 ├── security/
 │   └── redteam/         ← dari Agentpedia (future)
