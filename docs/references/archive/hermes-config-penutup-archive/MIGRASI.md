@@ -72,7 +72,7 @@ SEMUA TERBUKTI:
 - Root AGENTS.md 14.835 B persis klaim; blok lama "STATUS TERKINI 08-27/repair/DITAHAN" = 0 hit; pointer status tunggal di L34; Global Agent Rules utuh L15.
 - cc main kini 16.420 B, Last update:0, STATUS-CC:1, Pecah Jawaban utuh — tiga branch konsisten.
 - File status publik bersih dari narasi insiden (1 grep hit = false positive baris "Jcode" di info crontab).
-- Koreksi saya: tuduhan "push dotfiles kemungkinan bohong" keliru objek — repo yang benar = zaryu-terminal-dotfiles (private: API 404 + global search total_count 0), bukan Niumination/dotfiles ("My Arch Dotfiles"). Metode bukti Hermes (git ls-remote origin) = metode yang tepat; tidak bisa复核 dari luar oleh design. JHermUSB-portable juga konsisten (tidak ada di daftar public).
+- Koreksi saya: tuduhan "push dotfiles kemungkinan bohong" keliru objek — repo yang benar = zaryu-terminal-dotfiles (private: API 404 + global search total_count 0), bukan Niumination/dotfiles ("My Arch Dotfiles"). Metode bukti Hermes (git ls-remote origin) = metode yang tepat; tidak bisa diverifikasi dari luar oleh design. JHermUSB-portable juga konsisten (tidak ada di daftar public).
 
 STATUS: DONE, tersisa 1 wajib + 2 opsional:
 - WAJIB: smoke test 5 poin di sesi Hermes berikutnya (soul via symlink baru terbukti end-to-end saat sesi hidup, bukan saat commit).

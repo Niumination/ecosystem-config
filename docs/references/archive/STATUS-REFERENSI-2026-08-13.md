@@ -63,7 +63,7 @@
 - **Capabilities:** 290+ providers, 90+ free, auto-fallback routing
 - **Relevansi:** Bisa menggantikan/memperbaiki 9Router + huancheng setup
 - **Blocker:** Storage 9.2GB terpakai — Docker tidak bisa jalan
-- **Action:** Prioritas setelah storage问题解决
+- **Action:** Prioritas setelah masalah storage selesai
 
 ### 5. Websites Android PWA 📋 TRACKED
 - **13 websites sudah live** (PWA-ready)

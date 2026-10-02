@@ -219,7 +219,7 @@
 6. **Check Firefox extensions** — beberapa extension bisa menyebabkan high CPU
 
 ### Long-term
-7. **Consider RAM upgrade** jika经常 memory pressure
+7. **Consider RAM upgrade** jika sering memory pressure
 8. **Monitor thermal** saat usage tinggi — battery health check
 
 ---

@@ -119,7 +119,7 @@ Detail Panel (on click)
 **Recommendation:**
 - Card skeleton (placeholder shimmer) selama GitHub API fetch
 - Mengurangi persepsi waktu loading
-- CSS-only — gar高的? rendah effort
+- CSS-only — garbage tinggi, effort rendah
 
 ---
 
