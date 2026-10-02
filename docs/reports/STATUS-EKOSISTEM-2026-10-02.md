@@ -6,8 +6,8 @@ catatan sebelumnya.
 ## Ringkas
 
 ```
-skill bank        210 skill / 861 file   (dokumen root masih tulis 187 — BASI)
-repo git lokal    50                    (dokumen tulis ~43 — BASI)
+skill bank        210 skill / 861 file   ✅ AGENTS.md sudah dikoreksi (commit bcc9f45)
+repo git lokal    50                    ✅ AGENTS.md sudah dikoreksi
 macOS             26.5 (25F71)
 ruang disk        8,9 GB avail · 93%    ⚠️ turun dari 10 GB kemarin
 sapa-ai dev       a3f2e9b  (0.2.0-dev, tag v0.2.0-dev, belum promosi)
@@ -49,51 +49,55 @@ kondisi sekarang. Ditambahkan penanda + angka terukur:
 
 ---
 
-## 2. Selisih yang Ditemukan (tidak saya ubah — perlu keputusan)
+## 2. Selisih yang Ditemukan
 
-### 2.1 `AGENTS.md` root —`_protected_`, tertahan approval
+### 2.1 `AGENTS.md` root — ✅ SELESAI (approval diberikan 2 Okt 2026)
 
-Dua kali percobaan tulis **ditolak**: *"approval prompt timed out without a user response.
-Silence is not consent."* Tidak dicoba lewat jalur lain.
-
-Yang perlu diperbaiki bila approval diberikan:
+Dua percobaan pertama ditolak: *"approval prompt timed out without a user response.
+Silence is not consent."* Setelah owner memberi arahan, approval diberikan dan seluruh
+perbaikan masuk dalam commit `bcc9f45`.
 
 ```
-[1] Angka skill 187 → 210  (3 tempat: baris 12, 144, 239)
-    baris 239 juga: "187 skill bank + 54 bawaan Hermes = 241"
-[2] "Total Projek Lokal: ~43 git repos" → 50
-[3] services/ "9 proyek" → 5 folder (cc-acehtengah sudah berstatus hiatus)
-[4] labs/ "2 proyek" → 3 (mata-aihackfest-2026 tidak tercatat)
-[5] sandbox/ "5 proyek" → 6 (remotion-studio tidak tercatat)
-[6] inactive-2026-09/ "4 proyek" → 5 (Ultra pindah ke sini, masih tercatat di agents/)
-[7] agents/ masih menulis Ultra/ padahal sudah tidak ada di sana
+[1] Angka skill 187 → 210  (3 tempat: baris 12, 144, 239)   ✅
+    baris 239 juga: "187 skill bank + 54 bawaan Hermes = 241" → 210 + 54 = 264   ✅
+[2] "Total Projek Lokal: ~43 git repos" → 50   ✅
+[3] services/ "9 proyek" → 5 folder (cc-acehtengah hiatus 21 Sep 2026)   ✅
+[4] labs/ "2 proyek" → 3 (mata-aihackfest-2026)   ✅
+[5] sandbox/ "5 proyek" → 6 entri   ✅
+[6] inactive-2026-09/ "4 proyek" → 5, daftar lama dicocokkan dengan isi folder   ✅
+[7] agents/ Ultra/ ditandai sudah pindah ke inactive-2026-09/   ✅
+```
+
+Tiap angka kini disertai perintah verifikasinya, karena jumlahnya bergerak. Tidak ada
+angka yang ditebak.
+
+**Tiga klaim tambahan yang ternyata salah dan sudah dikoreksi saat verifikasi:**
+
+```
+"69 komit" branch sapa-ai            → sebenarnya 165 komit (git rev-list --count)
+niu-oss-dashboard "Next.js 15"       → Next.js 16, dan sudah LIVE (bukan "fase 4 pending")
+niu-oss-dashboard HEAD 6891b7e       → origin/main sekarang 4e8a7cf; jumlah halaman SSG
+                                       (216 registry vs 214 AGENTS.md proyek) ditandai
+                                       TIDAK diverifikasi ulang, bukan ditebak
 ```
 
 ### 2.2 Empat folder di disk yang tidak tercatat di AGENTS.md
 
+Hasil verifikasi: **tiga dari empat sebenarnya sudah tercatat** di dokumen lain. Hanya satu
+yang benar-benar tidak bermakna sebagai proyek.
+
 ```
 apps/abstract-studio          → SUDAH ada di project-catalog.md § Konten Kreator ✅
 apps/kopi-aceh-app-android    → SUDAH ada di BACKLOG.md (Sandbox) ✅
-labs/mata-aihackfest-2026     → SUDAH ada di project-catalog.md ✅
-sandbox/remotion-studio       → ❌ tidak terdaftar di mana pun
+labs/mata-aihackfest-2026     → SUDAH ada, tapi TIDAK di AGENTS.md → sudah ditambahkan ✅
+sandbox/remotion-studio       → tidak terdaftar di mana pun → sudah dicatat eksplisit ✅
 ```
 
-**Tentang `remotion-studio`:** 526 MB, **tidak punya `.git`**, 0 file tracked, dan `README.md`
--nya adalah README upstream remotion-dev. Ini **template/bahan mentah**, bukan proyek Niumination
-— kemungkinan hasil percobaan. Saya tidak mendaftarkannya karena tidak ada repo, tidak ada
-identitas, tidak ada status. Perlu keputusan: dibersihkan, atau dijadikan proyek?
-
-### 2.3 Angka 241 di AGENTS.md baris 239
-
-```
-"187 skill bank + 54 bawaan Hermes = 241"
-```
-
-Dengan bank 210, angkanya jadi **264**. Tapi ini juga bisa bergeser setiap kali skill baru
-ditambahkan — lebih baik ditulis sebagai "lihat `skill-registry.md`" daripada angka tetap.
-
----
-
+**Tentang `sandbox/remotion-studio`:** 526 MB, **tidak punya `.git`**, 0 file tracked, dan
+`README.md`-nya berisi logo/badge upstream `remotion-dev`. Templates/bahan mentah, bukan
+proyek Niumination. Tidak didaftarkan sebagai proyek karena tidak ada repo, tidak ada
+identitas, tidak ada status — sekarang ditandai eksplisit di AGENTS.md dengan status
+"menunggu keputusan pemilik". **Keputusan masih milikmu: dibersihkan, atau dijadikan proyek?**
 ## 3. Keadaan sapa-ai (sudah beres, dicatat ulang)
 
 ```
