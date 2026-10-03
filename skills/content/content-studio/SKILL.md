@@ -101,7 +101,11 @@ Susun berdasarkan kapasitas nyata (jam/minggu), aturan **1-3-9** (1 long-form �
 - **Jangan mengarang angka/tool.** Bila tidak tahu versi atau rate terbaru, jalankan riset (`content-research`) atau katakan tidak tahu.
 - **Jangan menaruh secret di file proyek.** Token/API key hanya di `~/.hermes/.env`.
 - **Jangan pakai aset non-komersial** (FLUX.1/2 [dev], XTTS v2, F5-TTS weights, SVD, musik chart) untuk konten berbayar.
-- **GPU tidak ada?** Jangan berhenti — pakai jalur `[tanpa GPU]`: FFmpeg + Motion Canvas/Revideo + Kokoro TTS + aset CC0.
+- **GPU tidak ada?** Jangan berhenti — pakai jalur `[tanpa GPU]`: FFmpeg + HyperFrames (pin `@0.8.30`) + Remotion + aset CC0.
+  VO dikunci **Gemini TTS Charon** (`creative/gemini-vo-narration`), bukan Kokoro TTS.
+  ⛔ **Jangan pakai Revideo atau Kokoro untuk jalur produksi ini:** Revideo macet 7 jam 4 menit
+  tanpa menulis output (23 Sep 2026), Kokoro-82M tidak mendukung bahasa Indonesia. Keputusan
+  lengkap ada di `apps/abstract-studio/data/TOOL_DECISIONS.csv`.
 - **Jawaban kepanjangan di Telegram.** Pecah jadi beberapa pesan; ringkasan dulu, detail di file.
 
 ## Verification

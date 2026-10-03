@@ -1,6 +1,6 @@
 ---
-name: remotion-video
-description: "Buat video vertikal 9:16 pakai Remotion — prompt ke MP4, Mode A CPU-only, gratis (Free tier ≤3 org)"
+name: content-remotion-video
+description: "SALINAN (jangan pakai — salinan induk: skills/content/remotion-video/). Buat video vertikal 9:16 pakai Remotion — prompt ke MP4, Mode A CPU-only, gratis (Free tier ≤3 org)."
 version: 1.0.0
 author: Niumination / Adaptasi remotion-dev/skills
 license: MIT

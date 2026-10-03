@@ -151,8 +151,13 @@ engine selection and hosted LLM TTS, section 0c how to prove a rule is needed. T
    even for an Indonesian script, sit exactly where the change should land, and must never be adjacent to
    each other. The ecosystem engine implementing all of this is the skill `creative/gemini-vo-narration`
    (`scripts/gemini_vo.py`, presets `narator`/`pengumuman`/`edukasi`/`story`, voices
-   `algenib`/`charon`/`sadaltager`); its ladder is hosted LLM TTS → edge-tts (per-scene rate/pitch table in
-   reference section 3) → the owner's own recording.
+   `algenib`/`charon`/`sadaltager`); its ladder is hosted LLM TTS → the owner's own
+   recording. Reference section 3 documents the old edge-tts ladder for context only —
+   that rung was cut from the engine on 23 Sep 2026 (`gemini_vo.py` v1.1.0): when Gemini
+   runs out of quota the engine now `return 1` instead of falling through, because the old
+   path wrote edge-tts audio into a file named `vo_charon.mp3` with no marker inside it
+   that the voice was not Charon, and the project then passed QA on the wrong audio.
+   Re-record instead of falling back.
 4. **One request per video, not per scene.** The hosted free tier counts requests per model per day, so a
    per-scene loop burns the budget for nothing; send the whole script and recover the scene split from the
    audio. Recover it from the **energy profile, not `silencedetect`**: cut the audio into 50 ms frames, take
