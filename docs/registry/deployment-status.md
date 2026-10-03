@@ -238,6 +238,39 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 
 ---
 
+## 🔧 Host & Toolchain — Mac Pemilik (Intel x86_64, macOS 26.5)
+
+> **Diverifikasi 3 Okt 2026** saat pemasangan LibreOffice via `brew install --cask libreoffice`.
+
+| Tool | Versi | Status |
+|---|---|---|
+| Homebrew | 7.0.7 | ✅ berfungsi |
+| pandoc | 3.11 | ✅ |
+| qpdf | 12.4.1 | ✅ |
+| python-docx | — | ✅ |
+| LibreOffice (`soffice`) | 26.8.0.3 | ✅ terpasang 3 Okt 2026; wrapper `soffice` di-link ke `/usr/local/bin` |
+| tesseract | 5.5.3 | ✅ (bahasa: `eng`, `osd`, `snum` — **tidak ada `ind`**) |
+| pymupdf / pypdf / pdfplumber | — | ❌ belum terpasang (dibutuhkan Jalur B) |
+
+**⚠️ Homebrew Tier 3 ( Intel x86_64 ) — catatan ketahanan:**
+
+```
+We do not provide support for this platform (as-of September 2026, announced August 2025).
+Apple have dropped Intel x86_64 support in macOS Golden Gate (27).
+GitHub Actions are dropping macOS Intel x86_64 runners in 2027.
+Homebrew no longer builds bottles for this configuration.
+Existing bottles may still work, but updated formulae may build from source.
+```
+
+Konsekuensi untuk ekosistem:
+
+1. `brew upgrade` pada formula/cask populer **mungkin build dari source** — lebih lama, dan bisa gagal bila dependensi toolchain (Xcode CLT versi tertentu) tidak terpenuhi.
+2. **Bottle lama tetap valid**; mesin ini tidak akan tiba-tiba kehilangan paket yang sudah terpasang.
+3. Paket yang sekarang install dari bottle **tidak ada jaminan dapat bottle pada update berikutnya**. Saat upgrade penting (mis. node, python, postgres), sediakan waktu ekstra dan uji setelahnya.
+4. Jalur alternatif jangka panjang: Mac Apps / installer resmi upstream, atau `uv`/`pipx` untuk tool Python ( independen dari Homebrew ).
+
+---
+
 ## Maintenance Rules
 
 1. **Proyek baru ditambahkan** → 1 baris di Project Catalog + path di Directory Structure

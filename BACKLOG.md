@@ -174,7 +174,7 @@ Desktop/Niumination/
 
 | Proyek | Priority | Status | Aktivitas Terakhir | Notes |
 |--------|:--------:|:------:|:------------------:|-------|
-| **asn-admin** | P2 | 🟢 **Active** | **2026-09-26** | Sistem administrasi ASN — format naskah dinas (Permendagri 1/2023), katalog naskah, pranata komputer. Repo **PRIVAT** `Niumination/asn-admin`. Sumber kebenaran regulasi = `dinas/asn-admin/references/` (4 katalog, VERIFIED dari PDF JDIH). Gate keamanan = `pre-commit-scan.py` (layer, bukan `.gitignore`). 1 open PR dari arena: `asn-admin#1` |
+| **asn-admin** | P2 | 🟢 **Active** | **2026-10-03** | Sistem administrasi ASN — format naskah dinas (Permendagri 1/2023), katalog naskah, pranata komputer. Repo **PRIVAT** `Niumination/asn-admin`. Sumber kebenaran regulasi = `dinas/asn-admin/references/` (4 katalog, VERIFIED dari PDF JDIH). Gate keamanan = `pre-commit-scan.py` (16 skenario uji, 0 gagal). PR arena `asn-admin#1` sudah **MERGED** 26 Sep 2026. **Jalur A produksi DOCX+PDF berfungsi 3 Okt 2026** (LibreOffice 26.8.0 terpasang). Sisa: 5 skill `asn-*` [TO BUILD], cron reminder, register harian masih kosong |
 
 ### 🌐 sites/ — 7 Frontend
 
