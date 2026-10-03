@@ -3,7 +3,7 @@ name: reels-motion-render
 description: Use when rendering a Reels/TikTok video with HyperFrames.
 ---
 
-# Reels motion render (HyperFrames + GSAP + Piper)
+# Reels motion render (HyperFrames + GSAP + Gemini TTS)
 
 Produksi short vertikal motion graphic untuk ZARYU ABSTRACT STUDIO. Pipeline
 ini satu-satunya yang terverifikasi menghasilkan kualitas setara konten yang
@@ -53,9 +53,13 @@ for i in 1 2 3 4 5 6; do ffprobe -v error -show_entries format=duration \
   -of csv=p=0 src/vo/seg-0$i.mp3; done
 ```
 
-Prioritas suara: suara sendiri → Piper → Kokoro. `edge-tts` dilarang untuk
-konten yang dijual (konten berbayar). Suara legal adalah aturan studio, bukan
-preferensi estetika.
+Suara: **Gemini TTS, suara `Charon`, preset `narator`** — dikunci 19 Sep 2026
+di skill `gemini-vo-narration` (mesin `gemini_vo.py`). Itu satu-satunya jalur
+VO untuk studio ini.
+
+Yang **ditolak** dan jangan dipakai: Piper (ukur LRA 2,30 flat vs target 4,50),
+Kokoro-82M (tanpa bahasa Indonesia), edge-tts (lisensi — dilarang untuk konten
+berbayar). Suara legal adalah aturan studio, bukan preferensi estetika.
 
 ## Langkah 3 — Komposisi
 
@@ -97,14 +101,18 @@ raster sudah cukup cepat untuk komposisi CSS murni.
 ## Langkah 5 — Mux audio
 
 ```bash
-ffmpeg -y -v error -i output/<slug>-silent.mp4 -i src/vo_piper_clean.wav \
+ffmpeg -y -v error -i output/<slug>-silent.mp4 -i src/vo-gemini/vo_charon.mp3 \
   -c:v copy -c:a aac -b:a 128k -ac 2 -ar 48000 -movflags +faststart \
   -af loudnorm=I=-14:TP=-1.5:LRA=11 -shortest output/<slug>.mp4
 ```
 
-`-ar 48000` wajib: Piper output 192 kHz, dan platform sosial menolak atau
-menurunkan sample rate non-standar saat upload. `-c:v copy` menghindari
-re-encode video.
+`loudnorm=I=-14` terukur, bukan tebak: VO Gemini reels-003 masuk di **-19,85 LUFS**
+(`input_i`) dan keluar di **-15,41 LUFS** (`output_i`) dengan filter ini —
+persis angka final video yang lolos QA. `normalization_type` keluar sebagai
+`dynamic`, jadi `LRA=11` tidak benar-benar dipaksa.
+
+`-ar 48000` wajib: VO Gemini keluar **44,1 kHz**, sedangkan format audio final
+standar studio 48 kHz. `-c:v copy` menghindari re-encode video.
 
 ## Langkah 6 — QA sebelum klaim selesai
 

@@ -1,11 +1,36 @@
 ---
 name: revideo-motion-graphic
 category: creative
-description: "Use for motion-graphic videos: Revideo, Piper VO, FFmpeg."
+description: "ARSIF — jalur motion-graphic Revideo ini DITOLAK (macet 7,4 jam, 0 output, 23 Sep 2026). BACA DULU banner penolakan di atas. Pakai HyperFrames atau Remotion."
 version: 1.0.0
 ---
 
 # Revideo Motion Graphic (Short Vertikal, tanpa GPU)
+
+> ## ⛔ JALUR INI DITOLAK — jangan pakai (putusan 23 Sep 2026)
+>
+> Revideo **tidak dipakai** di studio ini setelah gagal nyata:
+> `npx revideo render` macet **7 jam 4 menit** dan **tidak menulis file apa pun**.
+> Catatan skill yang dulu menyertai kegagalan itu — "render langsung jalan, ~1
+> menit, tanpa install berat" — tidak benar; kegagalan justru berasal dari
+> install-nya. Tercatat di `apps/abstract-studio/data/TOOL_DECISIONS.csv`
+> (entri `REVIDEO-2D`, status `TIDAK DIPAKAI`).
+>
+> **Pakai HyperFrames** untuk komposisi HTML (skill `hyperframes`, pin
+> `0.8.30`) atau **Remotion** untuk React (skill `remotion-video`).
+> Jalur paling sederhana bila hanya gerakan zoom/pan: skill
+> `ffmpeg-ken-burns-motion`.
+>
+> **Koreksi:** kalimat asli dokumen ini menulis "VO bahasa Indonesia **Piper**
+> — pola yang terbukti di reels-003". Keduanya salah. Reels-003 membuktikan
+> **HyperFrames + Gemini TTS Charon**, bukan Revideo + Piper. Piper sudah
+> ditolak sebelum reels-003 v1 dibuat (ukur LRA 2,30 flat vs target 4,50).
+> Dokumen ini ditulis **sebelum** kedua penolakan itu terjadi dan tidak pernah
+> dikembalikan ke belakang.
+>
+> Isi di bawah ini dipertahankan sebagai arsip dokumentasi, karena
+> `revideo render` memang tidak ada di CLI 0.11 — itu fakta yang masih relevan
+> bila ada yang tetap mencoba. BUKAN rekomendasi.
 
 Jalur produksi short vertikal berkualitas MENENGAH-ATAS tanpa GPU: komposisi motion graphic **Revideo 2D** (bukan card statis), VO bahasa Indonesia **Piper** (legal komersial), mux via **FFmpeg** — pola yang terbukti di reels-003.
 

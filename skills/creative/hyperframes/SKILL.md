@@ -101,10 +101,28 @@ HTML/CSS/JS (index.html) → Puppeteer (capture frame) → FFmpeg (encode) → M
 
 | Method | Command |
 |--------|---------|
-| Local (Puppeteer + FFmpeg) | `npx hyperframes render` |
+| Local (Puppeteer + FFmpeg) | `npx --yes hyperframes@0.8.30 render . --format mp4 -f 30 --workers 1 --low-memory-mode --no-browser-gpu` |
 | Cloud (HeyGen hosted) | `npx hyperframes cloud render` |
 | AWS Lambda (distributed) | `npx hyperframes lambda deploy` + `lambda render` |
 | Embed web component | `<hf-player src="...">` |
+
+## ⚠️ Pin versi + flag wajib di mesin tanpa GPU
+
+Tanpa pin, `npx hyperframes` mengambil versi terbaru apa pun — dan itu sudah
+membuktikan dirinya berbahaya di mesin ini (i5-10310U, 16 GB RAM, VRAM 2 GB):
+
+| Flag | Mengapa wajib | Bukti ukur |
+|------|---------------|------------|
+| `hyperframes@0.8.30` | **WAJIB.** Lint dengan CLI 0.8.62 tanpa pin = **6 warning** (`text_not_painted`, contrast 1.08:1 pada `.wnum`). Dengan pin 0.8.30 = **0 errors, 0 warnings.** | `project/reels-003-*/web/` |
+| `--low-memory-mode` | **WAJIB untuk komposisi >50 detik.** Render pertama reels-003 (1628 frame) **ditolak otomatis** tanpa flag ini — butuh 13,5 GB sementara margin disk terlalu tipis untuk dipakai. Dengan flag: sukses, 262 detik. | `project/reels-003-*/render-v4.sh` |
+| `--workers 1` | Dipakai di `render-v4.sh` sebagai konfigurasi aman untuk 16 GB RAM + VRAM 2 GB. **MOTIFNYA BELUM DIUKUR** — saya tidak pernah membandingkan `--workers 1` vs `--workers 2` di mesin ini, jadi bukan saya yang tahu apakah ia memang penyebabnya. Jaga di 1 sampai ada ukurannya. | nilai dari `render-v4.sh`; alasan teknis **UNCHECKED** |
+
+Perintah lengkap terbukti (render reels-003 v4.1 final):
+```bash
+npx --yes hyperframes@0.8.30 render . -o output/x.mp4 --format mp4 -f 30 \
+  --workers 1 --low-memory-mode --no-browser-gpu
+```
+Lalu mux VO dengan FFmpeg (render HyperFrames menghasilkan video bisu).
 
 ## Struktur Project
 

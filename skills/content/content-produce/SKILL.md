@@ -29,7 +29,7 @@ Mengubah naskah menjadi berkas jadi yang memenuhi spesifikasi platform — memak
 | Voice clone (butuh GPU) | Chatterbox (MIT), Orpheus 3B (Apache-2.0) | server lokal → POST audio referensi + teks |
 | Buang hening | Auto-Editor (LGPL) | `auto-editor in.mp4 --edit audio --threshold -35dB --margin 0.1s` |
 | Vertikal + loudnorm + caption | FFmpeg (LGPL) | `bash scripts/vertical_clip.sh in.mp4 out.mp4` |
-| Motion graphics / batch render | Motion Canvas (MIT), Revideo (MIT) | `npx revideo render project.ts --props data.json` |
+| Motion graphics / batch render | Motion Canvas (MIT), HyperFrames (Apache-2.0, pin `@0.8.30`), Remotion | `npx --yes hyperframes@0.8.30 render . --low-memory-mode --workers 1` · ⛔ Revideo ditolak di studio ini (macet 7,4 jam, 0 output — lihat `TOOL_DECISIONS.csv`) |
 | Gambar/poster dengan teks | Qwen-Image (Apache-2.0) via ComfyUI | API `:8188` prompt → PNG |
 | B-roll generatif | Wan 2.2 (Apache-2.0), FramePack (Apache-2.0, 6GB) | ComfyUI workflow I2V/T2V |
 | Avatar/lip-sync | LatentSync (Apache-2.0), MuseTalk (MIT), InfiniteTalk (Apache-2.0) | foto + audio → video berbicara |
@@ -50,7 +50,27 @@ Mengubah naskah menjadi berkas jadi yang memenuhi spesifikasi platform — memak
 
 ### B. Voice over — **jalur bahasa Indonesia (Mode A)**
 
-Kokoro-82M **tidak mendukung bahasa Indonesia** (hanya en/ja/zh/fr/it/pt/es/hi). Untuk konten Indonesia, urutan keputusan:
+Kokoro-82M **tidak mendukung bahasa Indonesia** (hanya en/ja/zh/fr/it/pt/es/hi).
+
+> ## ⛔ Urutan di bawah ini DITOLAK untuk studio ini (19 Sep 2026)
+>
+> Standar studio yang berlaku: **Gemini TTS 3.1 Flash, suara `Charon`, preset
+> `narator`** — dikunci oleh pemilik. Mesin: `gemini_vo.py` di skill
+> `gemini-vo-narration`. Satu-satunya jalur non-Gemini yang diizinkan bila
+> Gemini gagal: **rekam suara sendiri**.
+>
+> Tabel prioritas lama di bawah menulis Piper sebagai "satu-satunya TTS bahasa
+> Indonesia open source yang jalan di CPU" — klaim itu **masih benar secara
+> teknis**, tetapi ia bukan jalur studio lagi. Piper ditolak setelah diukur:
+> LRA 2,30 (datar) vs target 4,50, ditambah trik ejaan fonetis buatan yang
+> justru **memotong ucapan** — bertentangan langsung dengan prinsip #1 mesin
+> Gemini ("naskah dikirim APA ADANYA").
+>
+> **Jangan ikuti blok bash Piper/Kokoro di bawah ini.** Ditahan sebagai arsip
+> agar alasan penolakannya tetap terbaca. Keputusan tercatat di
+> `apps/abstract-studio/data/TOOL_DECISIONS.csv`.
+
+Untuk konten Indonesia, urutan keputusan lama (sudah ditolak — lihat arsip di bawah):
 
 | Prioritas | Mesin | Lisensi | Kebutuhan | Kapan dipakai |
 |---|---|---|---|---|
@@ -106,13 +126,13 @@ Simpan `.srt` juga sebagai file terpisah (untuk LinkedIn/YouTube yang butuh ungg
 ### D. Rakit video
 **Mode A — motion graphic / slideshow (paling cepat & konsisten):**
 1. Siapkan aset: screenshot (OBS), gambar CC0 (Pexels/Pixabay), diagram SVG (Inkscape), logo.
-2. Buat proyek Revideo/Motion Canvas dari `templates/formats/shorts.json` → render headless:
-   `npx revideo render src/short.ts --props project/<slug>/data.json --out output/short.mp4`
+2. Komposisi HTML → `hyperframes@0.8.30` (pin WAJIB, lihat skill `hyperframes`), atau React → Remotion dari `templates/formats/shorts.json`.
+   ⛔ **Jangan pakai Revideo** di studio ini: `npx revideo render` macet 7 jam 4 menit tanpa menulis output (23 Sep 2026). Catatan `npx revideo render` di tabel alat di atas tetap ada untuk ekosistem lain, tapi di studio ini jalur itu sudah ditolak dan tercatat di `apps/abstract-studio/data/TOOL_DECISIONS.csv`.
 3. Atau rakit langsung dengan FFmpeg concat + zoom (Ken Burns) + overlay teks.
 
 **Mode A2 — Remotion (CPU, gratis, ≤30 detik):**
 1. Tulis komponen di `project/<slug>/remotion/` (lihat skill `remotion-video`)
-2. Render: `npx remotion render src/index.ts MyComp out/<slug>.mp4 -q 480`
+2. Render: `npx remotion render src/index.ts MyComp out/<slug>.mp4 --jpeg-quality 80`
 3. Bila render >5 menit → fallback ke HyperFrames
 
 **Mode B — dengan footage generatif:**

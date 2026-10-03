@@ -52,7 +52,7 @@ Buat video vertikal pendek (9:16, ≤30 detik) dari prompt teks, render via Remo
 
 ```bash
 cd ~/Desktop/Niumination/sandbox/remotion-studio
-npx remotion render src/index.ts MyComp out/<slug>.mp4 -q 480
+npx remotion render src/index.ts MyComp out/<slug>.mp4 --jpeg-quality 80
 ```
 
 Bila durasi >30 detik atau kompleksitas tinggi → **hentikan**, tawarkan HyperFrames sebagai fallback.

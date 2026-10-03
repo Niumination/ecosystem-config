@@ -19,6 +19,6 @@
     "KONTEN": "3 beat: klaim → bukti → ringkas",
     "CTA": "satu tujuan (follow/lead magnet/beli)"
   },
-  "render_cmd": "npx remotion render src/index.ts MyComp out/<slug>.mp4 -q 480",
+  "render_cmd": "npx remotion render src/index.ts MyComp out/<slug>.mp4 --jpeg-quality 80",
   "fallback": "HyperFrames (bila render >5 menit atau efek GPU dibutuhkan)"
 }
