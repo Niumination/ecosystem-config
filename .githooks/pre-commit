@@ -2,6 +2,7 @@
 # Gate pre-commit repo ekosistem Niumination.
 #   1. kredensial  — scripts/secret-scan-staged.py
 #   2. glif asing   — scripts/scan-stray-glyphs.py
+#   3. penulis .env — scripts/scan-env-writers.py
 # Aktifkan sekali per clone:  git config core.hooksPath .githooks
 # Melewati gate (JANGAN kecuali darurat): git commit --no-verify
 set -euo pipefail
@@ -15,5 +16,18 @@ python3 "$ROOT/scripts/secret-scan-staged.py" || rc=1
 # 787548f (2 Okt 2026) karena gate kredensial tidak melihatnya. Gate ini menutup
 # kelas itu. Emoji, box-drawing, dan simbol matematika tetap diizinkan.
 python3 "$ROOT/scripts/scan-stray-glyphs.py" || rc=1
+
+# Menimpa ~/.hermes/.env tanpa salinan menghapus kredensial lain secara senyap:
+# 23 kunci hilang pada 3 Okt 2026 karena rotate.py menyimpan ulang hanya kunci
+# yang disebut dalam tuple KEYS, lalu gateway crash-loop 61x. Gate menolak skrip
+# yang menulis credential store tanpa backup. Hanya berkas STAGED yang dinilai.
+python3 "$ROOT/scripts/scan-env-writers.py" --staged || rc=1
+
+# Manifest skill bank WAJIB sinkron sebelum commit — mencegah up-eco Phase 6d
+# gagal karena skill baru belum ter-registrasi (insiden 3 Okt 2026: 5 skill
+# berubah tanpa regenerate manifest, commit berikutnya kena gate ini).
+if [ -f "$ROOT/scripts/skill-manifest.py" ]; then
+  python3 "$ROOT/scripts/skill-manifest.py" --check || rc=1
+fi
 
 exit "$rc"
