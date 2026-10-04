@@ -86,6 +86,7 @@
 | `ecosystem/ecosystem/long-form-markdown-deliverables` | ecosystem | 1 | Bank Pusat | Use when writing reports, plans, or backlog docs. |
 | `ecosystem/ecosystem/macos-hackintosh-opencore` | ecosystem | 3 | Bank Pusat | Use when upgrading Intel Hackintosh/OpenCore. |
 | `ecosystem/ecosystem/macos-system-health` | ecosystem | 1 | Bank Pusat | Use when auditing macOS disk, RAM, or service health. |
+| `ecosystem/ecosystem/scheduled-job-delivery-routing` | ecosystem | 1 | Bank Pusat | Use when cron output posts to the wrong chat or thread. |
 | `ecosystem/ecosystem/sealed-evidence-bundle-production` | ecosystem | 1 | Bank Pusat | Use when sealing a verified evidence bundle for review. |
 | `ecosystem/ecosystem/skill-library-maintenance` | ecosystem | 2 | Bank Pusat | Use when moving, patching, or syncing skills. |
 | `ecosystem/ecosystem/skill-loader-name-collision` | ecosystem | 2 | Bank Pusat | Use when a skill name is reported ambiguous. |
@@ -233,6 +234,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-10-04 20:41:42_
+_Last sync: 2026-10-04 22:19:34_
 
 <!-- SKILL_REGISTRY_END -->

@@ -1,7 +1,7 @@
 {
-  "fileCount": 1155,
-  "generatedAt": "2026-10-04T14:20:14.405097+00:00",
-  "skillCount": 229,
+  "fileCount": 1156,
+  "generatedAt": "2026-10-04T15:19:22.526222+00:00",
+  "skillCount": 230,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -573,10 +573,10 @@
       }
     },
     "devops/macos-launchd-services": {
-      "bundleHash": "54b46d98f252e8066298029ab60e040c089077be56fea0e611338abd9d09a21e",
+      "bundleHash": "078dea8d1df505009c58c1eaa032cd765f0b95435ac0d595418dd58cb9f4a9d8",
       "domain": "devops",
       "files": {
-        "SKILL.md": "c9a7ae938f89011ea8534696f024a8c78e9870480899d921bde88db4c5994b43",
+        "SKILL.md": "591c9d8d1439c80816f3209f93897e90b0521c329fbfacb3f9d8abcae08ae2a6",
         "references/browser-capture-waf-bypass.md": "b649043f2cad785f6980f720bf58081ad40ad3d688c2af0af8abf671b9be6822",
         "references/gateway-network-wait-fix-2026-08-30.md": "11f0f6199c8515fb107f50afed0dc6c9b525a912bbb91f918945f56c3d6da794",
         "references/launchd-env-not-shell-env.md": "113b4d6fc17792d078cd632794db61b3e63d14b9e123c1af8dcadd2d8868e954",
@@ -932,6 +932,13 @@
       "domain": "ecosystem/ecosystem",
       "files": {
         "SKILL.md": "9a5bb49c572f98fa69e33886d9832627ae0bb468f1856f9c00cf313927e115d5"
+      }
+    },
+    "ecosystem/ecosystem/scheduled-job-delivery-routing": {
+      "bundleHash": "39a1c70176f4eca45a6c60cb608ee0798abfec5cf2a8fae536a0201c477a519a",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "5caebc2edb52be9440f5c86b068fcd5567fe1b065f0cbf9445780742ea303f6d"
       }
     },
     "ecosystem/ecosystem/sealed-evidence-bundle-production": {
