@@ -1,8 +1,9 @@
 # A2A Hermes — Mac ↔ VPS Connection Guide
 
-> **Status:** REFERENCE (belum diimplementasikan)
-> **Dibuat:** 2026-09-14
+> **Status:** IMPLEMENTED (2026-10-03) — LightVela cloud ↔ Mac via Tailscale
+> **Dibuat:** 2026-09-14 · **Diupdate:** 2026-10-03
 > **Protokol:** A2A v1.0 (Agent2Agent, Linux Foundation)
+> **Token:** rotated 2026-10-03, stored in `vault/a2a-token.txt`
 
 ---
 

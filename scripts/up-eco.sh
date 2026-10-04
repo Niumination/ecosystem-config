@@ -478,7 +478,10 @@ check_gh_prs() {
   # ── 5b-4: Satu query — semua open PR di org Niumination
   # Hermes snap kadang sudah punya GITHUB_TOKEN stale → override paksa dari .hermes/.env (fresh) & keyring
   if [ -f "/Users/${USER:-zaryu}/.hermes/.env" ]; then
-    _tok=$(grep -E "^GITHUB_TOKEN=" "/Users/${USER:-zaryu}/.hermes/.env" 2>/dev/null | cut -d= -f2- | tr -d '"\r' | head -n1)
+    # || true WAJIB: GITHUB_TOKEN sengaja tidak disimpan di .env (rotasi 3 Okt 2026
+    # membuangnya — 401 senyap), sehingga grep tidak menemukan match dan exit 1.
+    # Dengan set -o pipefail, assignment ini membunuh script via set -e.
+    _tok=$(grep -E "^GITHUB_TOKEN=" "/Users/${USER:-zaryu}/.hermes/.env" 2>/dev/null | cut -d= -f2- | tr -d '"\r' | head -n1 || true)
     if [ -n "$_tok" ] && [ "${#_tok}" -ge 35 ]; then export GH_TOKEN="$_tok"; export GITHUB_TOKEN="$_tok"; fi
     unset _tok
   fi

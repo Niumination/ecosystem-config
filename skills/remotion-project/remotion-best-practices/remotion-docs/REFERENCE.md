@@ -12,7 +12,7 @@ If this is not relevant, load [Remotion Best Practices](../SKILL.md) instead.
 Use the Algolia search API to find relevant documentation pages:
 
 ```
-POST https://plsduol1ca-dsn.algolia.net/1/indexes/*/queries?x-algolia-api-key=<ALGOLIA_SEARCH_KEY>&x-algolia-application-id=<ALGOLIA_APP_ID>UOL1CA
+POST https://plsduol1ca-dsn.algolia.net/1/indexes/*/queries?x-algolia-api-key=<ALGOLIA_API_KEY>&x-algolia-application-id=PLSDUOL1CA
 Content-Type: application/x-www-form-urlencoded
 
 {

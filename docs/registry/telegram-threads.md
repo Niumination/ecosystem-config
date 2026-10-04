@@ -4,19 +4,19 @@ Group: `Niu-MissionControl` (`-1004204696417`) · platform: telegram · chat_typ
 
 Setiap thread = persona terisolasi. Sumber kebenaran: `~/.hermes/config.yaml` → `platforms.telegram` (`channel_overrides` + `extra.channel_prompts` + `extra.channel_skill_bindings`). Routing session live ada di `~/.hermes/state.db` → tabel `gateway_routing`.
 
-## Thread Topology (2026-09-26)
+## Thread Topology (2026-10-03)
 
 7 thread aktif via satu gateway Hermes. Setiap thread punya `channel_overrides` (model+provider) dan `channel_prompts` (system prompt) di `~/.hermes/config.yaml`.
 
 | Thread | Role | Model | Provider | MSgs | Prompt | Skills Binding |
 |--------|------|-------|----------|------|--------|----------------|
-| DM | Personal | `inclusionai/ling-3.0-flash-fin:free` | nous | ~100 | (default, none) | — |
-| 1 | General / Command Center | `inclusionai/ling-3.0-flash-fin:free` | nous | ~100 | ✅ Dispatch to 802/803/804/1172 | clarify, session_search, brainstorming, project-orientation |
+| DM | Personal | `opencode-combo` | 9router | ~100 | (default, none) | — |
+| 1 | General / Command Center | `opencode-combo` | 9router | ~100 | ✅ Dispatch to 802/803/804/1172 | clarify, session_search, brainstorming, project-orientation |
 | 802 | Research / Riset | `inclusionai/ling-3.0-flash-sante:free` | nous | ~240 | ✅ Research-focused | arxiv, blogwatcher, notebooklm, llm-wiki, youtube-content |
-| 803 | Builder / Programmer | `meituan/longcat-2.0:free` | nous | ~15 | ✅ Coding-focused | ponytail, requesting-code-review, github-pr-workflow, dll. |
-| 804 | QA / Pengawas | `deepseek/deepseek-v4-flash-0731:free` | openrouter | ~10 | ✅ Audit-focused | codebase-audit, verification, plan-compliance, redteam |
-| 1172 | Konten Kreator | `poolside/laguna-s-2.1:free` | nous | ~146 | ✅ Content creation | ghost, humanizer, baoyu, claude-design, manim, hyperframes |
-| 7402 | Serbaguna / Cadangan (27 Sep 2026) | `meituan/longcat-2.0:free` | nous | ~3 | ✅ Flex-thread prompt (27 Sep 2026) | ❌ None |
+| 803 | Builder / Programmer | `kr/deepseek-3.2` | 9router | ~15 | ✅ Coding-focused | ponytail, requesting-code-review, github-pr-workflow, dll. |
+| 804 | QA / Pengawas | `nvidia/nemotron-3-super-120b-a12b:free` | openrouter | ~10 | ✅ Audit-focused | codebase-audit, verification, plan-compliance, redteam |
+| 1172 | Konten Kreator | `inclusionai/ling-3.0-flash-fin:free` | nous | ~146 | ✅ Content creation | ghost, humanizer, baoyu, claude-design, manim, hyperframes |
+| 7402 | Serbaguna / Cadangan (27 Sep 2026) | `inclusionai/ling-3.0-flash-fin:free` | nous | ~3 | ✅ Flex-thread prompt (27 Sep 2026) | ❌ None |
 | 8853 | Admin Dinas ASN | `sensenova-6.8-flash-lite` | huancheng | ~357 | ✅ ASN/SPBE-focused | skp-e-kinerja + 3 builtin productivity (tanpa entri bank) |
 
 ## Flex-Thread Convention (NOT in channel_prompts)
@@ -43,12 +43,12 @@ Dispatch cross-thread via Mission Control: `POST http://localhost:3000/api/mc/di
 
 | Thread | Persona | Model | Provider | Skill binding | Catatan |
 |--------|---------|-------|----------|---------------|---------|
-| `1` | General / Command Center | `inclusionai/ling-3.0-flash-fin:free` | nous | — | pusat koordinasi; dispatch ke thread lain via `POST localhost:5200/api/mc/dispatch` |
+| `1` | General / Command Center | `opencode-combo` | 9router | — | pusat koordinasi; dispatch ke thread lain via `POST localhost:5200/api/mc/dispatch` |
 | `802` | Research / Riset | `inclusionai/ling-3.0-flash-sante:free` | nous | — | riset, sintesis, laporan |
-| `803` | Builder / Programmer | `meituan/longcat-2.0:free` | nous | `ponytail`, `requesting-code-review` | ⚠️ `:free` sudah 404 di nous (25 Sep 2026) — belum diganti |
-| `804` | QA / Pengawas | `deepseek/deepseek-v4-flash-0731:free` | openrouter | `codebase-audit` | audit, kepatuhan |
-| `1172` | Kreator / Konten | `poolside/laguna-s-2.1:free` | nous | `ghost`, `humanizer` | konten publik |
-| `7402` | Serbaguna / Cadangan (27 Sep 2026) | `meituan/longcat-2.0:free` | nous | — | prompt flex-thread dipasang 27 Sep 2026; sebelumnya dicatat "Cron/Otomasi" tapi tidak ada aktivitas cron di state.db (hanya sesi tes "halo"); ⚠️ `:free` sudah 404 di nous (25 Sep 2026) — belum diganti |
+| `803` | Builder / Programmer | `kr/deepseek-3.2` | 9router | `ponytail`, `requesting-code-review` | 3 Okt 2026: model diubah dari `meituan/longcat-2.0:free` (404) ke `kr/deepseek-3.2` via 9router |
+| `804` | QA / Pengawas | `nvidia/nemotron-3-super-120b-a12b:free` | openrouter | `codebase-audit` | 3 Okt 2026: model diubah dari `deepseek/deepseek-v4-flash-0731:free` ke `nvidia/nemotron-3-super-120b-a12b:free` |
+| `1172` | Kreator / Konten | `inclusionai/ling-3.0-flash-fin:free` | nous | `ghost`, `humanizer` | 3 Okt 2026: model diubah dari `poolside/laguna-s-2.1:free` ke `inclusionai/ling-3.0-flash-fin:free` |
+| `7402` | Serbaguna / Cadangan (27 Sep 2026) | `inclusionai/ling-3.0-flash-fin:free` | nous | — | 3 Okt 2026: model diubah dari `meituan/longcat-2.0:free` (404) ke `inclusionai/ling-3.0-flash-fin:free`; prompt flex-thread dipasang 27 Sep 2026 |
 | **`8853`** | **ASN — Admin Dinas** (25 Sep 2026) | `sensenova-6.8-flash-lite` | **huancheng** | `skp-e-kinerja`, `document-to-action-items`, `meeting-action-items`, `weekly-review-planning` | administrasi dinas, SKP/eKinerja, agenda rapat/tenggat. **27 Sep: model diubah ke huancheng tanpa fallback (permintaan pemilik); 3 skill non-`skp-e-kinerja` = builtin Hermes, jadi sengaja tanpa entri bank (aturan skill-bank-management: builtin JANGAN dipromosikan)** |
 
 ## Thread 8853 — ASN / Admin Dinas
@@ -62,6 +62,6 @@ Dibuat 25 Sep 2026 atas permintaan pemilik untuk pekerjaan ASN (Pranata Komputer
 
 ## Catatan
 
-- **Model `:free` nous kadang dicabut tanpa peringatan.** Diverifikasi 25 Sep 2026: `meituan/longcat-2.0:free` → HTTP 404 ("no longer free"). Thread 803 & 7402 masih memakainya di config — ganti saat thread itu dipakai lagi.
+- **Model `:free` nous kadang dicabut tanpa peringatan.** Diverifikasi 25 Sep 2026: `meituan/longcat-2.0:free` → HTTP 404 ("no longer free"). **3 Okt 2026: thread 803 & 7402 sudah dimigrasi** — 803 → `kr/deepseek-3.2` (9router), 7402 → `inclusionai/ling-3.0-flash-fin:free` (nous). Tidak ada thread lagi yang memakai model 404.
 - **Pembuatan topik forum** hanya bisa dari Telegram (`/newtopic`) — bot API butuh akses token yang tidak diberikan ke agent. Setelah topik ada, kirim 1 pesan agar gateway mendaftarkan routing-nya, baru config bisa dipasang.
 - **`skp-e-kinerja` ada di skill bank Niumination + built-in Hermes** (MD5 identik, sinkron).

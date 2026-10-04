@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 223 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 229 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 223 ✅ Aktif
+> **Status:** 229 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -193,6 +193,12 @@
 | **non-provider-secret-detection** | ✅ Aktif | Bank Pusat | 3.1 KB | Use when a vendor-neutral key may reach a public repo. |
 | **sealed-evidence-bundle-production** | ✅ Aktif | Bank Pusat | 6.2 KB | Use when sealing a verified evidence bundle for review. |
 | **skill-bank-mirror-integrity** | ✅ Aktif | Bank Pusat | 4.3 KB | Use when a skill bank or its scanner disagrees on count. |
+| **a2a-configuration** | ✅ Aktif | Bank Pusat | 5.6 KB | Set up and debug A2A Hermes peer connections. |
+| **hackintosh-efi-verification** | ✅ Aktif | Bank Pusat | 5.2 KB | Verify OpenCore EFI version, config, drivers, sha. |
+| **hermes-a2a-setup** | ✅ Aktif | Bank Pusat | 4.0 KB | Set up or troubleshoot A2A between Hermes instances. |
+| **hermes-thread-scoping** | ✅ Aktif | Bank Pusat | 4.8 KB | Use when auditing multi-thread Telegram agent setup. |
+| **macos-hackintosh-opencore** | ✅ Aktif | Bank Pusat | 8.4 KB | Use when upgrading Intel Hackintosh/OpenCore. |
+| **measure-before-write** | ✅ Aktif | Bank Pusat | 3.6 KB | Write figures only from command output, else UNCHECKED. |
 
 ## Domain: Security
 
@@ -374,8 +380,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **223** |
-| **Total** | **223** |
+| ✅ Aktif | **229** |
+| **Total** | **229** |
 
 ## Catatan Penting — Potensi Konflik
 

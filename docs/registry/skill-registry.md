@@ -43,24 +43,26 @@
 | `devops/env-doctor` | devops | 8 | Bank Pusat | Recover dotfiles and shell after Stow or bulk delete. |
 | `devops/gh-pages-build-fix` | devops | 1 | Bank Pusat | Fix GitHub Pages Jekyll checkout failures. |
 | `devops/github-pages-deploy` | devops | 2 | Bank Pusat | Deploy static HTML to GitHub Pages via clean branch. |
-| `devops/macos-launchd-services` | devops | 8 | Bank Pusat | Keep macOS always-on services alive; recover launchd plists. |
+| `devops/macos-launchd-services` | devops | 9 | Bank Pusat | Keep macOS always-on services alive; recover launchd plists. |
 | `devops/production-env-vars` | devops | 1 | Bank Pusat | Use when changing or rotating env vars on a live app (Vercel). Decode pulled values, verify functionally, keep a rollback path. |
 | `devops/snapshot-verification` | devops | 3 | Bank Pusat | Verify static snapshot deployment and content. |
 | `ecosystem/9router-custom-provider-integration` | ecosystem | 1 | Bank Pusat | Use when adding a custom provider to 9router. |
 | `ecosystem/9router-model-mapping` | ecosystem | 1 | Bank Pusat | Configure and maintain 9router model mapping for Hermes — fallback chain, channel overrides, quota-aware model selection |
 | `ecosystem/agent-thread-latency-diagnosis` | ecosystem | 1 | Bank Pusat | Use when a chat thread is slow or unresponsive. |
 | `ecosystem/arena-patch-adoption` | ecosystem | 5 | Bank Pusat | Use when applying arena.ai zip patch stacks to a repo. |
+| `ecosystem/autonomous-ai-agents/hermes-thread-scoping` | ecosystem | 1 | Bank Pusat | Use when auditing multi-thread Telegram agent setup. |
 | `ecosystem/bank-coverage-set-diff` | ecosystem | 1 | Bank Pusat | Use when a scanner total may not cover every skill. |
 | `ecosystem/cc-acehtengah-maintenance` | ecosystem | 3 | Bank Pusat | cc-acehtengah branch reconciliation and UI or role fixes. |
 | `ecosystem/composio` | ecosystem | 4 | Bank Pusat | Route and complete Composio work across Composio For You and Composio Platform. Use when the user mentions Composio; wants an agent to use apps such as Gmail, Slack, GitHub, Notion, Calendar, or Linear; needs first-time setup, an SDK or MCP integration, CLI operation, migration guidance, current documentation, or help diagnosing a connection or tool call. |
 | `ecosystem/config-history-review` | ecosystem | 2 | Bank Pusat | Review Hermes config history using filesystem evidence (backup files, changelogs, git logs) — NOT session search or memory. Use when user asks to retrace changes, audit history, or check what happened over time. |
-| `ecosystem/content-remotion-video` | ecosystem | 2 | Bank Pusat | Buat video vertikal 9:16 pakai Remotion — prompt ke MP4, Mode A CPU-only, gratis (Free tier ≤3 org) |
+| `ecosystem/content-remotion-video` | ecosystem | 3 | Bank Pusat | SALINAN (jangan pakai — salinan induk: skills/content/remotion-video/). Buat video vertikal 9:16 pakai Remotion — prompt ke MP4, Mode A CPU-only, gratis (Free tier ≤3 org). |
 | `ecosystem/content/hyperframes-vertical-video` | ecosystem | 1 | Bank Pusat | probe3 |
 | `ecosystem/content/reels-motion-render` | ecosystem | 1 | Bank Pusat | Use when rendering a Reels/TikTok video with HyperFrames. |
 | `ecosystem/creative/ffmpeg-ken-burns-motion` | ecosystem | 1 | Bank Pusat | Use when making still cards move: FFmpeg zoompan + mux VO. |
-| `ecosystem/creative/revideo-motion-graphic` | ecosystem | 1 | Bank Pusat | Use for motion-graphic videos: Revideo, Piper VO, FFmpeg. |
+| `ecosystem/creative/revideo-motion-graphic` | ecosystem | 1 | Bank Pusat | ARSIF — jalur motion-graphic Revideo ini DITOLAK (macet 7,4 jam, 0 output, 23 Sep 2026). BACA DULU banner penolakan di atas. Pakai HyperFrames atau Remotion. |
 | `ecosystem/desktop-gui-automation` | ecosystem | 3 | Bank Pusat | Use when driving a desktop GUI with computer_use. |
 | `ecosystem/device-migration-disaster-recovery` | ecosystem | 7 | Bank Pusat | Use when planning backup, restore, or device migration. |
+| `ecosystem/devops/hackintosh-efi-verification` | ecosystem | 1 | Bank Pusat | Verify OpenCore EFI version, config, drivers, sha. |
 | `ecosystem/devops/vercel-dns-subdomain-debug` | ecosystem | 1 | Bank Pusat | >- |
 | `ecosystem/devops/vercel-domain-pointing` | ecosystem | 1 | Bank Pusat | Point custom domain to Vercel — nameserver, DNS, verify. |
 | `ecosystem/devops/vercel-feature-activation` | ecosystem | 1 | Bank Pusat | Use when activating a dormant feature on a Vercel app. |
@@ -75,11 +77,14 @@
 | `ecosystem/ecosystem-recovery` | ecosystem | 5 | Bank Pusat | Full ecosystem recovery after delete or up-eco failures. |
 | `ecosystem/ecosystem-snapshot` | ecosystem | 5 | Bank Pusat | Generate a comprehensive ecosystem configuration snapshot for Niumination. Produces a Markdown document capturing macOS specs, git status, project registry, filesystem layout, Mission Control state, Telegram threads, Skill Bank summary, Hermes config, deployments, security notes, and open issues. Use when the user asks for "konfigurasi lengkap ekosistem", "ekspor snapshot ekosistem", "docs konfigurasi aktif", or requests a full current-state Markdown report. |
 | `ecosystem/ecosystem-tool-adoption` | ecosystem | 1 | Bank Pusat | Workflow studi & adopsi tool/proyek pihak ketiga ke ekosistem Niumination — deep study (clone + baca source), gap analysis terukur, rencana bertahap di docs/architecture/, persetujuan user via clarify, eksekusi non-destruktif. Trigger saat user kirim URL repo/tool + "pelajari ini". |
+| `ecosystem/ecosystem/a2a-configuration` | ecosystem | 1 | Bank Pusat | Set up and debug A2A Hermes peer connections. |
 | `ecosystem/ecosystem/commit-gate-triage` | ecosystem | 1 | Bank Pusat | Use when a pre-commit gate blocks a legitimate change. |
 | `ecosystem/ecosystem/documentation-reconciliation` | ecosystem | 1 | Bank Pusat | Use when docs, BACKLOG, or registry drift from measured truth. |
 | `ecosystem/ecosystem/earning-opportunity-feasibility` | ecosystem | 1 | Bank Pusat | Use when the user asks what can make money from their setup. |
+| `ecosystem/ecosystem/hermes-a2a-setup` | ecosystem | 1 | Bank Pusat | Set up or troubleshoot A2A between Hermes instances. |
 | `ecosystem/ecosystem/hermes-tool-runtime-failure-triage` | ecosystem | 1 | Bank Pusat | Use when a Hermes tool errors or times out mid-session. |
 | `ecosystem/ecosystem/long-form-markdown-deliverables` | ecosystem | 1 | Bank Pusat | Use when writing reports, plans, or backlog docs. |
+| `ecosystem/ecosystem/macos-hackintosh-opencore` | ecosystem | 3 | Bank Pusat | Use when upgrading Intel Hackintosh/OpenCore. |
 | `ecosystem/ecosystem/macos-system-health` | ecosystem | 1 | Bank Pusat | Use when auditing macOS disk, RAM, or service health. |
 | `ecosystem/ecosystem/sealed-evidence-bundle-production` | ecosystem | 1 | Bank Pusat | Use when sealing a verified evidence bundle for review. |
 | `ecosystem/ecosystem/skill-library-maintenance` | ecosystem | 2 | Bank Pusat | Use when moving, patching, or syncing skills. |
@@ -107,7 +112,7 @@
 | `ecosystem/model-status-checker` | ecosystem | 4 | Bank Pusat | Model status checker. 3-tier probe for daily health cron. |
 | `ecosystem/niu-9router-maintain` | ecosystem | 4 | Bank Pusat | Maintenance router model lokal 9router (localhost:20128) untuk ekosistem Niumination — health check, tes akses semua model, disable provider/model yang gagal, restart daemon otomatis. Gunakan saat user tambah provider/model manual ke 9router atau minta "cek/rawat 9router". |
 | `ecosystem/niu-mission-control-ui` | ecosystem | 5 | Bank Pusat | Frontend Niumination Mission Control — unified dashboard (ORB iframe + 12 floating windows), WCAG 2.1 AA accessibility, SEO pipeline, redesign v3.0. Use when working on dashboard styling, accessibility, SEO, floating windows, build_unified.py, or redesign tasks. |
-| `ecosystem/niumination-ecosystem-change-discipline` | ecosystem | 1 | Bank Pusat | Editing Niumination files or committing to repos. |
+| `ecosystem/niumination-ecosystem-change-discipline` | ecosystem | 2 | Bank Pusat | Editing Niumination files or committing to repos. |
 | `ecosystem/niumination-reference-adoption` | ecosystem | 3 | Bank Pusat | Adopt ecosystem references and zips into skill bank. |
 | `ecosystem/non-provider-secret-detection` | ecosystem | 1 | Bank Pusat | Use when a vendor-neutral key may reach a public repo. |
 | `ecosystem/pi-app-studio-development` | ecosystem | 1 | Bank Pusat | Build Pi Network apps via Pi App Studio or Pi SDK payments. |
@@ -124,6 +129,7 @@
 | `ecosystem/skill-bank-management` | ecosystem | 6 | Bank Pusat | Kelola Skill Bank Niumination (single source of truth ~/Desktop/Niumination/skills/) — manifest SHA-256, sync seluruh folder ke target Hermes/USB + verifikasi hash + lockfile, tangani drift, adopsi skill pihak ketiga, audit konten skill, hapus/promosi skill, prune bloat. Gunakan saat ada skill baru masuk bank, sync-to-agents.sh dijalankan/gagal, up-eco melaporkan manifest mismatch, drift bank vs target, atau user minta adopsi skill X. Sejak 18 Sep 2026 skill ini menyerap skill-bank-integrity, -maintenance, -operations, -ops, dan -sync (kelimanya dihapus — semua prosedurnya ada di sini). |
 | `ecosystem/skill-bank-mirror-integrity` | ecosystem | 1 | Bank Pusat | Use when a skill bank or its scanner disagrees on count. |
 | `ecosystem/software-development/agent-shell-command-guards` | ecosystem | 1 | Bank Pusat | Use when a shell command is blocked, stalls, or fills disk. |
+| `ecosystem/software-development/measure-before-write` | ecosystem | 1 | Bank Pusat | Write figures only from command output, else UNCHECKED. |
 | `ecosystem/sqlite-schema-migration` | ecosystem | 2 | Bank Pusat | Migrate a local SQLite schema without losing rows. |
 | `ecosystem/system-one-decisions` | ecosystem | 1 | Bank Pusat | Use when calling decision models (jev/systemone) via 9router. |
 | `ecosystem/telegram-thread-provisioning` | ecosystem | 1 | Bank Pusat | Use when adding a Telegram persona thread to a forum group. |
@@ -227,6 +233,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-10-02 15:39:14_
+_Last sync: 2026-10-04 20:41:42_
 
 <!-- SKILL_REGISTRY_END -->

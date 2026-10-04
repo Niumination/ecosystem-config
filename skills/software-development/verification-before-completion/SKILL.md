@@ -152,9 +152,3 @@ Skip any step = lying, not verifying
 4. JANGAN kirim screenshot ke user tanpa memeriksanya — kalau vision down,
    verifikasi via computed styles + piksel dulu, baru kirim dengan klaim sesuai bukti
 ```
-
-## Pitfalls Verifikasi
-
-- **A count of a symbol includes its definition, not just its calls.** `grep -c 'fn(arg'` matches `def fn(arg)` too, so "1 occurrence" does not mean "called once" — it can mean "defined, never called." When you are verifying whether a code path is reachable, count the *call* shape specifically (arguments present, no `def`/`:` on the line) or read the containing function. Confirming a fix by counting a bare symbol name has twice produced a false "still broken" and a false "fixed."
-- **A zero from a mis-aimed probe is not a zero of fact.** Probing `def main` in a file whose entry function is named `utama` returns nothing, and that emptiness reads as "absent" when the real reason is a wrong name. Before reporting something as missing, confirm the probe itself resolved — print the lines you *did* find (or the symbol list) so a bad pattern is visible instead of masquerading as a negative result.
-- **Re-check the probe before re-checking the fact.** Two consecutive zero/negative results usually mean the probe is wrong, not that the fact is absent. In one session: a definition-only match was read as "fallback still present," then a wrong entry-function name was read as "provenance absent." Both were wrong; the fix had worked. The rule is to vary the probe (different shape, print its own hits) rather than to retry the identical pattern.
