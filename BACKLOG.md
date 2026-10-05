@@ -348,6 +348,30 @@ Sebelumnya (BACKLOG Jul 28) mencatat niu-dash/Niu-LKH dirty — sudah tidak vali
 
 ---
 
+## 📌 Backlog Tertunda — 4 Okt 2026
+
+### Per-thread Hermes profiles (DEFERRED — butuh approval eksplisit)
+
+**Latar:** Analisis 7 Telegram thread (memori, otoritas, scope, capability) selesai 4 Okt 2026. Item 7 = per-thread Hermes profiles. **Tidak dikerjakan** karena aturan keras: *"Do not modify another profile's skills/plugins/cron/memories unless the user explicitly directs you."* (SOUL.md + MEMORY.md).
+
+**Masalah yang ingin dipecahkan:** Semua thread Telegram berbagi satu profile `default`. Akibatnya:
+- Memory thread tercampur (thread ASN vs thread Pemdi vs thread pribadi)
+- Skills yang relevan untuk satu thread ikut termuat di thread lain
+- Cron job tidak bisa di-scope per-thread
+- Model mapping per-thread sudah ada di `docs/registry/model-mapping.md` tapi tidak terisolasi penuh
+
+**Rencana kalau disetujui:**
+1. Buat profile per-thread utama (misal `asn`, `pemdi`, `personal`) di `~/.hermes/profiles/<name>/`
+2. Pindahkan skills/cron/memori yang thread-specific ke profile masing-masing
+3. Thread Telegram di-map ke profile via `~/.hermes/config.yaml` atau env per-thread
+4. Profile `default` tetap sebagai fallback
+
+**Blocker:** Butuh approval eksplisit pemilik untuk menyentuh `~/.hermes/profiles/` (di luar scope sesi ini).
+
+**Status:** MENUNGGU KEPUTUSAN PEMILIK.
+
+---
+
 ## 🧠 AI ECOSYSTEM
 
 | Komponen | Provider | Model | Status |
