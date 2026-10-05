@@ -29,7 +29,6 @@ services/
 sites/
 desktop/
 agents/profile/
-agents/orchestrator/
 agents/ultra/
 labs/
 sandbox/

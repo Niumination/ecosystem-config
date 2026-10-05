@@ -250,7 +250,7 @@ Desktop/Niumination/
 Repo (rel path)                          Days  Status  Remote  Dirty
 -----------------------------------------------------------------
 .                                          0  🟢     yes     no
-agents/orchestrator                        2  🟢     yes     no
+agents/orchestrator                        2  🟢     yes     no  — inactive-2026-10/
 agents/profile                            23  🟡     yes     no
 agents/Ultra                              56  ⏸️     yes     no
 apps/JHermUSB-portable                     0  🟢     yes     no
@@ -407,7 +407,7 @@ Ultra, AuditTI-AT, Niu-Flow, didong-code, x-downloader, flame-ade, niu-vermilion
   - `Production/` → `apps/` (12 proyek deployed)
   - `projects/` → split ke `services/` (5), `sites/` (5), `desktop/` (4), `agents/` (2), `labs/` (2)
   - `incubator/` → `sandbox/` (7 dormant)
-  - `characters/` → `agents/characters/`
+  - `characters/` → `agents/characters/` — ❌ archived 5 Okt 2026
   - `Production/Niumination` → `agents/profile/`
   - `PI/` → `vault/`
 - 📚 **Dokumentasi terpadu** — `docs/` + `dox/` + `reports/` → `docs/` (reference/, reports/, notebooklm/, dox/)

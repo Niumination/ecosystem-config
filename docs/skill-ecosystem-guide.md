@@ -518,7 +518,7 @@ Contoh 5 skill yang relevan:
 | **Akses** | `opencode run skill <nama>` |
 | **Integrasi** | via `opencode_bridge.py` di Orchestrator |
 | **Auto-load?** | **TIDAK** — harus dipanggil eksplisit |
-| **Bridge** | `agents/orchestrator/utils/opencode_bridge.py` |
+| **Bridge** | `inactive-2026-10/orchestrator/utils/opencode_bridge.py` |
 
 ### Cara Integrasi dengan Orkestrator
 
@@ -590,7 +590,7 @@ Data tersedia untuk analytics/monitoring
 
 ## 8. Herdr Characters — Persona Agent
 
-### Status: **4 karakter** di `agents/characters/`
+### Status: **4 karakter** di `agents/characters/` — ❌ archived 5 Okt 2026
 
 Ini adalah **persona/presets** untuk AI agent, bukan skill teknis.
 
@@ -987,8 +987,8 @@ Bank pusat akan berisi file dari berbagai sumber — Hermes, Jcode, Agentpedia. 
 | Ponytail SKILL.md | `~/Desktop/Niumination/tools/ponytail/skills/ponytail/SKILL.md` |
 | Ponytail MCP | `~/Desktop/Niumination/tools/ponytail/ponytail-mcp/` |
 | Orca Hooks | `~/Desktop/Niumination/scripts/hooks/` |
-| Herdr Characters | `~/Desktop/Niumination/agents/characters/*/AGENTS.md` |
-| Orchestrator Bridge | `~/Desktop/Niumination/agents/orchestrator/utils/opencode_bridge.py` |
+| Herdr Characters | `~/Desktop/Niumination/agents/characters/*/AGENTS.md` — ❌ archived 5 Okt 2026 |
+| Orchestrator Bridge | `~/Desktop/Niumination/inactive-2026-10/orchestrator/utils/opencode_bridge.py` |
 | Agentpedia | `https://agentpedia.codes` |
 | Jcode Skills (global) | `~/.jcode/skills/` |
 | Jcode Skills (local) | `./.jcode/skills/` |

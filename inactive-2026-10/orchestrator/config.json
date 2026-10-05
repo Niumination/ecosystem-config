@@ -1,0 +1,7 @@
+{
+  "vault_root": "/Users/zaryu/Desktop/Niumination/brain/",
+  "opencode_path": "/usr/local/bin/opencode",
+  "log_dir": "logs",
+  "daily_routine_tasks": ["daily_brief", "daily_news", "vault_organize", "summarize"],
+  "summarize_sources": ["30-Resources/Clips", "30-Resources/ReadItLater"]
+}

@@ -118,7 +118,7 @@ grep -oE '@[a-z0-9_-]+' "$BACKLOG" | sort -u | sed 's/@//' | while read -r tag; 
     niu-studio) dir_name="sandbox/niu-studio" ;;
     niude) dir_name="sandbox/niude" ;;
     niutui) dir_name="sandbox/niutui" ;;
-    orchestrator) dir_name="agents/orchestrator" ;;
+    orchestrator) dir_name="inactive-2026-10/orchestrator" ;;
     maze-3d) dir_name="labs/maze-3d" ;;
     zen) dir_name="sandbox/zen" ;;
     pemdi-aceh-tengah) dir_name="apps/PemdiAcehTengah" ;;

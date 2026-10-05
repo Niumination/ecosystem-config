@@ -11,8 +11,8 @@
 
 | Lokasi | Isi | Catatan |
 |---|---|---|
-| **`archive/`** | 8 entri — snapshot rekonstruksi, config lama, tracker superseded | Bukti eksplisit: nama folder mengandung `archive`/`stale`, atau dinyatakan arsip/superseded |
-| **`drafts/`** | 1 entri — `niumination-model-selection/` (OPSI-2) | Dinyatakan **DRAFT dan tidak dipakai** — D-0004 yang sealed |
+| **`archive/`** | 12 entri — snapshot rekonstruksi, config lama, tracker superseded, draft unsealed, studi lama | Bukti eksplisit: nama folder mengandung `archive`/`stale`, atau dinyatakan arsip/superseded/draft |
+| **`drafts/`** | ❌ dihapus 5 Okt 2026 — isi dipindah ke `archive/` |
 | **(root)** | Studi/keputusan yang masih relevan + dokumen operasional | Termasuk file yang **ambigu** (sengaja tidak diarsipkan) |
 
 ### Isi `archive/`
@@ -27,6 +27,10 @@
 | `STATUS-REFERENSI-2026-08-13.md` | Tracker lama, sudah di-supersede |
 | `ekosistem-status.md` | Audit 5 Agu 2026 — digantikan `docs/reports/ECOSYSTEM-STATUS-*.md` |
 | `ai-memory-collection.md` | Koleksi 16 Jul 2026, path di luar ekosistem |
+| `niumination-model-selection/` (7 file) | Draft OPSI-1 & OPSI-2 — unsealed, tidak dipakai (D-0004 yang sealed) |
+| `observer-ecosystem-integration/` (6 file) | Blueprint Observer AI — tidak pernah dieksekusi |
+| `munder-difflin-reference.md` | Studi Munder Difflin — tidak di-adopsi |
+| `analisis-optimalisasi-hermes-2026-08-18.md` | Analisis Hermes 18 Agu — sebagian sudah diterapkan |
 
 ## ⚠️ Perlu tindakan pemilik
 
@@ -39,7 +43,7 @@ Menunggu keputusan pemilik — tidak ada bukti eksplisit untuk mengarsipkan:
 - `second-brain-plan.md` vs `second-brain-plan-v2.1.md` — dua versi, tanggal sama (9 Jun 2026)
 - `PLAN_RESTRUKTURISASI_PEMDIACEHTENGAH.md` — proyek sudah jalan; relevansi rencana belum dipastikan
 - `SHORTCUTS.md`, `VAULT-SETUP.md`, `JCODE-SAFETY-PROTOCOL.md`, `INSTRUKSI_UNTUK_HERMES.md` — dokumen operasional
-- `niu-dash-redesign/`, `observer-ecosystem-integration/`, `terax-ai-analysis/`, `xero-dotfiles-docs/` — studi per-repo
+- `niu-dash-redesign/`, `terax-ai-analysis/`, `xero-dotfiles-docs/` — studi per-repo
 
 ## Cara menambah
 

@@ -145,11 +145,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
   ├── desktop/joy-connect-for-mac/AGENTS.md                              ✅ (3 Aug 2026)
   ├── agents/Ultra/AGENTS.md                                             ✅
   ├── agents/profile/AGENTS.md                                           ✅
-  ├── agents/orchestrator/AGENTS.md                                      ❌ (belum ada)
-  ├── agents/characters/arsitek/AGENTS.md                                ✅
-  ├── agents/characters/pembangun/AGENTS.md                              ✅
-  ├── agents/characters/pengawas/AGENTS.md                               ✅
-  ├── agents/characters/penjaga/AGENTS.md                                ✅
+  ├── agents/characters/                                             ❌ (archived 5 Okt 2026)
   └── docs/skill-ecosystem-guide.md                                      ✅ (panduan skill ecosystem)
 ```
 
@@ -174,7 +170,7 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 || **AI Agent Hooks** | `scripts/hooks/` — 13 hook scripts (claude, codex, copilot, dll) |
 || **Skill Sync Script (Layer 2)** | `skills/sync-to-agents.sh` — auto-sync bank pusat ke Hermes, cron every 6h |
 || **Profile README** | `agents/profile/` → `gh:Niumination/Niumination` |
-|| **Agent Characters** | `agents/characters/` — 4 herdr agents (arsitek, pembangun, pengawas, penjaga) |
+|| **Agent Characters** | `agents/characters/` — 4 herdr agents (arsitek, pembangun, pengawas, penjaga) — ❌ archived 5 Okt 2026 |
 || **Skill Ecosystem Guide** | `docs/skill-ecosystem-guide.md` — Panduan lengkap sistem skill (Hermes, Claude Code, OpenCode, Orca, Herdr) |
 || **Cron Routing Registry** | `docs/registry/hermes-cron-routing.md` — routing output cron Hermes ke thread Telegram (thread 7402 = Cron / Otomasi) |
 | **Telegram Thread Registry** | `docs/registry/telegram-threads.md` — persona + model + skill binding per thread MC group (thread 8853 = ASN / Admin Dinas, 25 Sep) |

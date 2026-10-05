@@ -34,7 +34,7 @@
 ## 🟡 Arsip / Draft (bukan runtime)
 - `docs/audit/` — hasil audit 18 Aug, sudah digantikan D-0004/STATE
 - `docs/references/archive/` — **8 entri** (dibersihkan 16 Sep 2026): `niumination-rebuild-2026-08-18/` (13 file — snapshot rekonstruksi, BUKAN live), `hermes-config-penutup-archive/`, `hermes-config-arena-archive/`, `stale-hermes-config-2026-08-20/`, `migration-portable-to-native/`, `STATUS-REFERENSI-2026-08-13.md`, `ekosistem-status.md`, `ai-memory-collection.md`. Peta lengkap: `docs/references/README.md`
-- `docs/references/drafts/` — `niumination-model-selection/` (**DRAFT** OPSI-2, TIDAK dipakai — D-0004 yang sealed)
+- `docs/references/archive/` — `niumination-model-selection/` (**DRAFT** OPSI-2, TIDAK dipakai — D-0004 yang sealed), `observer-ecosystem-integration/`, `munder-difflin-reference.md`, `analisis-optimalisasi-hermes-2026-08-18.md`
 
 ## ⚪ Perlu dibersihkan
 - `docs/superpowers/` — kosong (hapus atau isi)

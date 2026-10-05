@@ -1,0 +1,5 @@
+{
+  "daily_routine": { "hour": 7, "minute": 0, "enabled": true },
+  "daily_news": { "hour": 8, "minute": 30, "enabled": true },
+  "vault_organize": { "hour": 18, "minute": 0, "enabled": false }
+}

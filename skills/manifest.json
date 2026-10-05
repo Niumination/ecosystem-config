@@ -1,6 +1,6 @@
 {
   "fileCount": 1158,
-  "generatedAt": "2026-10-04T16:39:17.463353+00:00",
+  "generatedAt": "2026-10-05T07:18:44.667533+00:00",
   "skillCount": 230,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -11,10 +11,10 @@
       }
     },
     "autonomous-ai-agents/telegram-router-orchestration": {
-      "bundleHash": "135386ca64d227b3c6402d906aaffc0c6fa4700c8a4386b882922f39d1f58ba6",
+      "bundleHash": "bc90d8a77982f43219abede6ff4330cbbfdd19e7ad0d9264656b7866b4970743",
       "domain": "autonomous-ai-agents",
       "files": {
-        "SKILL.md": "6211669d4cfacd6e07bfe8ec9ee3d75b647f3806ada4b05d5d85eadcf4063734",
+        "SKILL.md": "25f1aecad50641e0902c348cd65a3bee2e9c02e9ba7c90361d72fc7c12eaafaf",
         "references/model-mapping-2026-08-29.md": "54cc7d2e7e01cc82ffacc6bab07300ef203305290b4238f6ef31977697ccbe9b"
       }
     },
@@ -1116,10 +1116,10 @@
       }
     },
     "ecosystem/kanban-ecosystem-management": {
-      "bundleHash": "4d40c49ba11ec415d9fa8f9ca734c83b93712a8af9f7f315e39b57749424909f",
+      "bundleHash": "46a8c1cab16f8957e8be251438ec2c0f884445fee7e184f81da321acadd54e0e",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "63743b31bf014151016dfc95ee8ea2031fabc7d1c5d0c6702d952df71088a522",
+        "SKILL.md": "f84c823acd881fbd57f864196b5409bb9c9f4d305d486eef30b06dafb2d4bfbc",
         "references/alternative-pm-tools.md": "8b9f9dff94a0e1730be586242b72c70a021364c9a7c8284b8987c7dae933f879",
         "references/brain-capture-location.md": "ec9efc6f3cf7a56ee84f2356a67d5d5f0ac36798fb10a72eda83237d484b8006",
         "references/dashboard-dbpath-debug.md": "16b7cddb02a0c01e523879d7177e633d499684059a3a47fe9b2d581b35229f93",

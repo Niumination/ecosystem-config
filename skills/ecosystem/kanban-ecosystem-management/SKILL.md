@@ -1677,7 +1677,7 @@ As part of the ecosystem documentation set, a full integration blueprint for **O
 
 | Doc | Path |
 |-----|------|
-| Blueprint Set | `docs/observer-ecosystem-integration/` (6 files) |
+| Blueprint Set | `docs/references/archive/observer-ecosystem-integration/` (6 files) |
 | Status | Blueprint — BELUM dieksekusi |
 | Priority | 🔴 Phase 1: Foundation → Phase 2: Agent Deployment → Phase 3: Data Integration |
 | Assessment | `references/third-party-integration-assessment.md` (Observer AI example + workflow) |
