@@ -25,6 +25,7 @@
 | DR Snapshot Refresh | `0 21 * * 0` (Minggu 21:00 WIB) | `local` (file saja) | Tidak ada output Telegram |
 | Pemdi Health Watch | `every 15m` | DM pemilik | **paused** — nonaktif |
 | up-eco-lightfix | `30 23 * * *` | `local` (file saja) | Tidak ada output Telegram |
+| Ecosystem Health Check | `0 */2 * * *` (tiap 2 jam) | thread 12595 | Script `ecosystem-health.py` — cek gateway, relay, cron, disk, system, Tailscale. Dibuat 5 Okt 2026 |
 
 ## Aturan routing
 

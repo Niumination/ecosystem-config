@@ -172,8 +172,11 @@ AGENTS.md (root — ~/Desktop/Niumination/)
 || **Profile README** | `agents/profile/` → `gh:Niumination/Niumination` |
 || **Agent Characters** | `agents/characters/` — 4 herdr agents (arsitek, pembangun, pengawas, penjaga) — ❌ archived 5 Okt 2026 |
 || **Skill Ecosystem Guide** | `docs/skill-ecosystem-guide.md` — Panduan lengkap sistem skill (Hermes, Claude Code, OpenCode, Orca, Herdr) |
-|| **Cron Routing Registry** | `docs/registry/hermes-cron-routing.md` — routing output cron Hermes ke thread Telegram (thread 7402 = Cron / Otomasi) |
-| **Telegram Thread Registry** | `docs/registry/telegram-threads.md` — persona + model + skill binding per thread MC group (thread 8853 = ASN / Admin Dinas, 25 Sep) |
+|| **Cron Routing Registry** | `docs/registry/hermes-cron-routing.md` — routing output cron Hermes ke thread Telegram (thread **12595** = Cron & Otomasi; thread 7402 = Serbaguna/flex) |
+|| **Telegram Thread Registry** | `docs/registry/telegram-threads.md` — persona + model + skill binding per thread group (8 thread aktif, di-rename + icon 5 Okt 2026) |
+|| **Cross-Thread Dispatch** | `scripts/dispatch-to-thread.py <thread_id> "<msg>"` — kirim pesan antar-thread via Bot API (MC OFF) |
+|| **Ecosystem Health Check** | `scripts/ecosystem-health.py` — gateway/relay/cron/disk/system/Tailscale; cron `0 */2 * * *` → thread 12595 |
+|| **Orkestrasi Fase** | `docs/registry/ai-ecosystem.md` → "Hermes Orkestrasi (5 Fase)" — Fase 1-4 done, Fase 5 deferred |
 
 ---
 

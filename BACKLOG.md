@@ -370,6 +370,61 @@ Sebelumnya (BACKLOG Jul 28) mencatat niu-dash/Niu-LKH dirty — sudah tidak vali
 
 **Status:** MENUNGGU KEPUTUSAN PEMILIK.
 
+**Catatan hasil riset (5 Okt 2026):** Item ini **tidak layak dilanjutkan** apa adanya. Verifikasi terhadap source Hermes (`hermes_cli/`) menunjukkan:
+- **Hermes profile = isolasi sesi CLI/TUI**, bukan isolasi Telegram channel.
+- Telegram channel isolation yang benar-benar tersedia: `channel_overrides` (model+provider ✅), `channel_prompts` (system prompt ✅), `channel_skill_bindings` (skills ✅).
+- **Memory dan cron bersifat global** — tidak ada mekanisme per-channel. Jadi "cron job di-scope per-thread" di atas **tidak bisa** dikerjakan dengan profile.
+- Implikasinya: memory tercampur **tidak bisa** dipecahkan via profile. Butuh mekanisme lain (mis. session-scoped memory) yang belum tersedia di Hermes.
+
+**Rekomendasi:** Tutup item ini. Kalau nanti butuh memory terisolasi per-thread, ajukan sebagai feature request ke upstream Hermes, bukan sebagai task operasional ekosistem.
+
+---
+
+## 📋 Orkestrasi Hermes — 5 Okt 2026
+
+Rencana 5 fase orkestrasi, Fase 1-4 selesai, Fase 5 deferred.
+
+| Fase | Nama | Status | Commit / Bukti |
+|------|------|--------|----------------|
+| 1 | Stabilize — bersihkan dead components | ✅ Done | `41f5026` — 56 files, +1263/-185 |
+| 2 | Optimize cron routing — thread 12595 | ✅ Done | `3a59b9e` — 3 cron jobs re-route |
+| 3 | Cross-thread dispatch manual | ✅ Done | `e810fc1` — `scripts/dispatch-to-thread.py` |
+| 4 | Monitoring — health check cron | ✅ Done | `7bdf4e0` — `scripts/ecosystem-health.py`, job `d0ab0fde1b2e` |
+| 5 | Future — multi-agent orchestration | 📌 Deferred | Keputusan pemilik 5 Okt 2026: belum dibutuhkan |
+
+### Fase 1 — Stabilize (DONE)
+
+- `agents/orchestrator/` → `inactive-2026-10/orchestrator/` (nested `.git` dihapus)
+- `agents/characters/` → `git rm -r` + `rm -rf` (4 persona: arsitek, pembangun, pengawas, penjaga)
+- 5 referensi stale → `docs/references/archive/`: observer-ecosystem-integration, niumination-model-selection, munder-difflin-reference, analisis-optimalisasi-hermes-2026-08-18, +1 lainnya
+- 9 file referensi di-update agar tidak menunjuk path mati
+- Manifest di-regenerate (230 skills, 1158 files), pre-commit gate pass
+
+### Fase 2 — Optimize Cron Routing (DONE)
+
+- Thread `12595` **"Cron & Otomasi"** dibuat 5 Okt 2026 (chat `-1004204696417`), dipisah dari flex-thread 7402
+- 3 cron job di-route ke 12595: Daily Tab Stash (`6789760172b1`), Daily Brain (`69fe96da4c90`), DR Snapshot (`15d9127ab8b0`)
+- 7/8 thread di-rename + custom emoji icon 5 Okt 2026 (thread 1 = DM tidak bisa, bukan forum topic)
+
+### Fase 3 — Cross-Thread Dispatch (DONE)
+
+- `scripts/dispatch-to-thread.py` (50 baris) — kirim pesan ke thread mana pun via Bot API
+- **Rencana result-collection DIBATALKAN.** `scripts/collect-result.py` dibuat lalu dihapus: Bot API tidak bisa membaca message bot sendiri di forum topic. Bukti: `getUpdates` → `total: 0`, `getWebhookInfo` → `url: ""`. Tidak ada endpoint pengganti. User baca hasil langsung dari thread.
+
+### Fase 4 — Monitoring (DONE)
+
+- `scripts/ecosystem-health.py` — cek gateway (PID, runs, A2A E2E), mac-relay (PID, presence), cron (jobs aktif, last run), disk, thermal, Tailscale
+- Cron job `d0ab0fde1b2e`, jadwal `0 */2 * * *`, deliver `telegram:-1004204696417:12595`
+- Script di-copy ke `~/.hermes/scripts/`; delivery di-output via stdout saja (Hermes cron yang kirim ke Telegram — menghindari double delivery)
+
+### Fase 5 — Multi-Agent Orchestration (DEFERRED)
+
+**Keputusan pemilik 5 Okt 2026:** belum dibutuhkan.
+
+**Yang akan dibutuhkan kalau diaktifkan:** orchestrator (split task, assign, collect), beberapa worker agent dengan profile berbeda, kanal komunikasi (A2A atau shared state), state management + retry. Beban: resource naik, debugging lebih sulit.
+
+**Kapan direvisi lagi:** kalau ada use case concrete yang butuh paralel — pipeline konten multi-tahap, atau review paralel multi-role.
+
 ---
 
 ## 🧠 AI ECOSYSTEM

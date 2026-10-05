@@ -31,20 +31,28 @@ This means:
 
 See skill `telegram-router-orchestration` → "Thread Topology" section for current issues and `up-eco` → "Phase 10: Thread Topology Audit" for automated detection.
 
-## MC Integration
+## Cross-Thread Dispatch
 
-Dispatch cross-thread via Mission Control: `POST http://localhost:3000/api/mc/dispatch` (apex-ui). MC must be running for dispatch to work. MC is currently OFF — thread prompts that reference `localhost:5000` (legacy) or `localhost:3000` point to a non-running service.
+MC OFF. Dispatch via `scripts/dispatch-to-thread.py`:
+
+```bash
+python3 scripts/dispatch-to-thread.py <thread_id> "<message>"
+```
+
+Token dari `~/.hermes/.env`. User baca hasil langsung dari thread atau forward ke DM. Bot API tidak bisa baca message bot sendiri di forum topic (terverifikasi: `getUpdates` 0, webhook kosong).
 
 ## Scripts
 
-- `scripts/telegram_threads.py` — menampilkan status 7 thread dengan model, provider, message count, last activity
+- `scripts/telegram_threads.py` — menampilkan status 8 thread dengan model, provider, message count, last activity
 - `scripts/check-telegram-threads.sh` — ringkasan status untuk integrasi dengan `/up-eco`
+- `scripts/dispatch-to-thread.py` — kirim pesan ke thread mana pun via Bot API (cross-thread dispatch)
+- `scripts/rename-telegram-threads.py` — rename forum topics + set custom emoji icons via Bot API
 
 ## Thread aktif
 
 | Thread | Persona | Model | Provider | Skill binding | Catatan |
 |--------|---------|-------|----------|---------------|---------|
-| `1` | General / Command Center | `opencode-combo` | 9router | — | pusat koordinasi; dispatch ke thread lain via `POST localhost:5200/api/mc/dispatch` |
+| `1` | General / Command Center | `opencode-combo` | 9router | — | pusat koordinasi; dispatch ke thread lain via `python3 scripts/dispatch-to-thread.py <thread_id> "<msg>"` |
 | `802` | Research | `inclusionai/ling-3.0-flash-sante:free` | nous | — | riset, sintesis, laporan. 5 Okt 2026: renamed + icon |
 | `803` | Builder | `kr/deepseek-3.2` | 9router | `ponytail`, `requesting-code-review` | 3 Okt 2026: model diubah dari `meituan/longcat-2.0:free` (404) ke `kr/deepseek-3.2` via 9router. 5 Okt 2026: renamed + icon |
 | `804` | QA | `nvidia/nemotron-3-super-120b-a12b:free` | openrouter | `codebase-audit` | 3 Okt 2026: model diubah dari `deepseek/deepseek-v4-flash-0731:free` ke `nvidia/nemotron-3-super-120b-a12b:free`. 5 Okt 2026: renamed + icon |
