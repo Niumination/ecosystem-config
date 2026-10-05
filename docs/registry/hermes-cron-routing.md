@@ -12,22 +12,23 @@
 | `803` | Builder | Kode |
 | `804` | QA / Pengawas | Audit |
 | `1172` | Konten Kreator | Konten |
-| **`7402`** | **Cron / Otomasi** | **Notifikasi terjadwal (output cronjob Hermes)** |
+| `7402` | Serbaguna / Cadangan | Flex-thread (tugas umum saat thread lain sibuk) |
+| `12595` | **Cron & Otomasi** | **Output cronjob Hermes (terjadwal)** |
 
 ## Routing cron saat ini
 
 | Cron | Jadwal | Tujuan | Catatan |
 |------|--------|--------|---------|
-| Daily Tab Stash Update & Categorize | `0 22 * * *` (22:00 WIB) | thread 7402 | Dipindah dari thread 1 (24 Sep 2026) |
-| Daily Brain — Top 10 URL Update | `0 8 * * *` (08:00 WIB) | thread 7402 | Dipindah dari thread 1 (24 Sep 2026) |
-| Model Status Probe — Daily | `0 9 * * *` (09:00 WIB) | thread 7402 + local | Dipindah dari thread 1 (24 Sep 2026) |
-| DR Snapshot Refresh | `0 21 * * 0` (Minggu 21:00 WIB) | DM pemilik | deliver `origin`; status `error` — lihat catatan |
+| Daily Tab Stash Update & Categorize | `0 22 * * *` (22:00 WIB) | thread 12595 | Dipindah dari 7402 → 12595 (5 Okt 2026) |
+| Daily Brain — Top 10 URL Update | `0 8 * * *` (08:00 WIB) | thread 12595 | Dipindah dari 7402 → 12595 (5 Okt 2026) |
+| Model Status Probe — Daily | `0 9 * * *` (09:00 WIB) | thread 12595 + local | Dipindah from 7402 → 12595 (5 Okt 2026) |
+| DR Snapshot Refresh | `0 21 * * 0` (Minggu 21:00 WIB) | `local` (file saja) | Tidak ada output Telegram |
 | Pemdi Health Watch | `every 15m` | DM pemilik | **paused** — nonaktif |
 | up-eco-lightfix | `30 23 * * *` | `local` (file saja) | Tidak ada output Telegram |
 
 ## Aturan routing
 
-- **Output cron Hermes → thread `7402`** (Cron / Otomasi). Thread 1 (General) hanya untuk interaksi pemilik.
+- **Output cron Hermes → thread `12595`** (Cron & Otomasi). Thread 7402 (Serbaguna) hanya untuk flex-thread. Thread 1 (General) hanya untuk interaksi pemilik.
 - **Cron dari DM** (dibuat di chat pribadi) → kembali ke DM pemilik (`deliver: origin`).
 - **Cron `local`** → hanya tulis ke `~/.hermes/cron/output/`, tidak ada notifikasi Telegram.
 
