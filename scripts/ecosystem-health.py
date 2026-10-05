@@ -195,23 +195,6 @@ def main():
     report += check_tailscale()
     text = "\n".join(report)
     print(text)
-    # Deliver to thread 12595
-    token = env.get("TELEGRAM_BOT_TOKEN", "")
-    if token:
-        try:
-            url = f"https://api.telegram.org/bot{token}/sendMessage"
-            payload = json.dumps({
-                "chat_id": CHAT_ID,
-                "message_thread_id": THREAD_ID,
-                "text": text,
-            }).encode()
-            req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
-            with urllib.request.urlopen(req, timeout=10) as r:
-                print(f"\n[delivered to thread {THREAD_ID}]")
-        except Exception as e:
-            print(f"\n[deliver FAIL: {e}]")
-    else:
-        print("\n[no TELEGRAM_BOT_TOKEN]")
 
 
 if __name__ == "__main__":
