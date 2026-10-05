@@ -105,6 +105,7 @@ check_unknown_folders() {
     apps services sites desktop agents labs sandbox
     docs scripts skills tools vault brain dotfiles archive core logs
     inactive-2026-09
+    inactive-2026-10
     dinas
   )
 
@@ -650,7 +651,7 @@ check_lightfix() {
     rec "→ pastikan 'hermes' ada di PATH, lalu jalankan up-eco lagi"
     return
   fi
-  if "$TIMEOUT_BIN" 25 hermes cron list 2>/dev/null | grep -q "$jobname"; then
+  if "$TIMEOUT_BIN" 25 hermes cron list 2>&1 | grep -q "$jobname"; then
     pass "cron '$jobname' terdaftar (30 23 * * * · script-only, tanpa panggilan LLM)"
   else
     if "$TIMEOUT_BIN" 25 hermes cron create '30 23 * * *' --name "$jobname" --script up-eco-lightfix.sh \
