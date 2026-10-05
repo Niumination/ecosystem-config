@@ -1,7 +1,7 @@
 {
-  "fileCount": 1158,
-  "generatedAt": "2026-10-05T07:18:44.667533+00:00",
-  "skillCount": 230,
+  "fileCount": 1159,
+  "generatedAt": "2026-10-05T10:33:51.816832+00:00",
+  "skillCount": 231,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -964,6 +964,13 @@
       "files": {
         "SKILL.md": "16e58cad915a9dc298f671efe18b5b5cfaf574f4e9028c87cea20a05e1de867f",
         "references/reading-ambiguous-skills.md": "ae618651e23e32def8d8863ae29de61301efb4a87ebd3d3db13ed8995549370c"
+      }
+    },
+    "ecosystem/ecosystem/telegram-forum-operations": {
+      "bundleHash": "ca9f46a768ca8a2d3e3d51024751972ad75484d81a5f2a3ebea40bdeb7bc0484",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "7f1cd71adbc01b37325b3fe149b49cdd22f999ee97c7825953924f986ea34947"
       }
     },
     "ecosystem/ecosystem/third-party-gate-triage": {
