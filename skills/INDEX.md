@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 229 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 230 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 229 ✅ Aktif
+> **Status:** 230 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -199,6 +199,7 @@
 | **hermes-thread-scoping** | ✅ Aktif | Bank Pusat | 4.8 KB | Use when auditing multi-thread Telegram agent setup. |
 | **macos-hackintosh-opencore** | ✅ Aktif | Bank Pusat | 8.4 KB | Use when upgrading Intel Hackintosh/OpenCore. |
 | **measure-before-write** | ✅ Aktif | Bank Pusat | 3.6 KB | Write figures only from command output, else UNCHECKED. |
+| **scheduled-job-delivery-routing** | ✅ Aktif | Bank Pusat | 4.5 KB | Use when cron output posts to the wrong chat or thread. |
 
 ## Domain: Security
 
@@ -380,8 +381,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **229** |
-| **Total** | **229** |
+| ✅ Aktif | **230** |
+| **Total** | **230** |
 
 ## Catatan Penting — Potensi Konflik
 

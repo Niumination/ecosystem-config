@@ -1,6 +1,6 @@
 {
-  "fileCount": 1156,
-  "generatedAt": "2026-10-04T15:19:22.526222+00:00",
+  "fileCount": 1158,
+  "generatedAt": "2026-10-04T16:39:17.463353+00:00",
   "skillCount": 230,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -870,10 +870,11 @@
       }
     },
     "ecosystem/ecosystem/a2a-configuration": {
-      "bundleHash": "d77a763fd5f2bb710e7e25e4163b48d3b37418ebf7dafa26df41bd8b4eb1f4c5",
+      "bundleHash": "7073f751fefb5eb6b8861b244a7f8be7b75bc85d8afae71a5e66f841c385b2a5",
       "domain": "ecosystem/ecosystem",
       "files": {
-        "SKILL.md": "6ca53c7ed7c481b6983f2975430981ccd252405f1b50f671c098a492d021f697"
+        "SKILL.md": "6ca53c7ed7c481b6983f2975430981ccd252405f1b50f671c098a492d021f697",
+        "references/credential-source-and-auth-verification.md": "f20f3e92c02310a44153840ccf8fc2744a0ad35f9c521ec1e2ddba89dee24aa7"
       }
     },
     "ecosystem/ecosystem/commit-gate-triage": {
@@ -949,11 +950,12 @@
       }
     },
     "ecosystem/ecosystem/skill-library-maintenance": {
-      "bundleHash": "a421da7463d75ecfd10562852a2ac96409cea570855b677323fbd3d6b6d70686",
+      "bundleHash": "faa3e3998fcae7b01df104b9ce85375d93bcb190549b158aae8dcb9a7dcd0472",
       "domain": "ecosystem/ecosystem",
       "files": {
         "SKILL.md": "d8809cb880d00b92a6e43b3d3746f6643c56113b00ebae5e4898c019b74df734",
-        "references/manifest-and-sync-direction.md": "40e40e968640195cf96fd08f1fc07b56984e57754918d92ed7fab793cd65df3a"
+        "references/manifest-and-sync-direction.md": "40e40e968640195cf96fd08f1fc07b56984e57754918d92ed7fab793cd65df3a",
+        "references/two-copy-bank-target-discipline.md": "672c441a52b874f1b4c386c52927293fc44ca8008a162d73dbffe0971f0b6963"
       }
     },
     "ecosystem/ecosystem/skill-loader-name-collision": {

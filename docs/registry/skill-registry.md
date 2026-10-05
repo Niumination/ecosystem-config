@@ -77,7 +77,7 @@
 | `ecosystem/ecosystem-recovery` | ecosystem | 5 | Bank Pusat | Full ecosystem recovery after delete or up-eco failures. |
 | `ecosystem/ecosystem-snapshot` | ecosystem | 5 | Bank Pusat | Generate a comprehensive ecosystem configuration snapshot for Niumination. Produces a Markdown document capturing macOS specs, git status, project registry, filesystem layout, Mission Control state, Telegram threads, Skill Bank summary, Hermes config, deployments, security notes, and open issues. Use when the user asks for "konfigurasi lengkap ekosistem", "ekspor snapshot ekosistem", "docs konfigurasi aktif", or requests a full current-state Markdown report. |
 | `ecosystem/ecosystem-tool-adoption` | ecosystem | 1 | Bank Pusat | Workflow studi & adopsi tool/proyek pihak ketiga ke ekosistem Niumination — deep study (clone + baca source), gap analysis terukur, rencana bertahap di docs/architecture/, persetujuan user via clarify, eksekusi non-destruktif. Trigger saat user kirim URL repo/tool + "pelajari ini". |
-| `ecosystem/ecosystem/a2a-configuration` | ecosystem | 1 | Bank Pusat | Set up and debug A2A Hermes peer connections. |
+| `ecosystem/ecosystem/a2a-configuration` | ecosystem | 2 | Bank Pusat | Set up and debug A2A Hermes peer connections. |
 | `ecosystem/ecosystem/commit-gate-triage` | ecosystem | 1 | Bank Pusat | Use when a pre-commit gate blocks a legitimate change. |
 | `ecosystem/ecosystem/documentation-reconciliation` | ecosystem | 1 | Bank Pusat | Use when docs, BACKLOG, or registry drift from measured truth. |
 | `ecosystem/ecosystem/earning-opportunity-feasibility` | ecosystem | 1 | Bank Pusat | Use when the user asks what can make money from their setup. |
@@ -88,7 +88,7 @@
 | `ecosystem/ecosystem/macos-system-health` | ecosystem | 1 | Bank Pusat | Use when auditing macOS disk, RAM, or service health. |
 | `ecosystem/ecosystem/scheduled-job-delivery-routing` | ecosystem | 1 | Bank Pusat | Use when cron output posts to the wrong chat or thread. |
 | `ecosystem/ecosystem/sealed-evidence-bundle-production` | ecosystem | 1 | Bank Pusat | Use when sealing a verified evidence bundle for review. |
-| `ecosystem/ecosystem/skill-library-maintenance` | ecosystem | 2 | Bank Pusat | Use when moving, patching, or syncing skills. |
+| `ecosystem/ecosystem/skill-library-maintenance` | ecosystem | 3 | Bank Pusat | Use when moving, patching, or syncing skills. |
 | `ecosystem/ecosystem/skill-loader-name-collision` | ecosystem | 2 | Bank Pusat | Use when a skill name is reported ambiguous. |
 | `ecosystem/ecosystem/third-party-gate-triage` | ecosystem | 1 | Bank Pusat | Use when a vendor's acceptance gate fails after a patch. |
 | `ecosystem/ekosistem-content-verification` | ecosystem | 2 | Bank Pusat | Verify web/JSON content accuracy against source documents (DOCX/XLSX) for Niumination ecosystem projects — extract, compare, report, fix. Covers Pemdi data verification and general content audit patterns. |
@@ -234,6 +234,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-10-04 22:19:34_
+_Last sync: 2026-10-04 23:39:46_
 
 <!-- SKILL_REGISTRY_END -->
