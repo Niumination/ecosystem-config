@@ -90,6 +90,7 @@
 | `ecosystem/ecosystem/sealed-evidence-bundle-production` | ecosystem | 1 | Bank Pusat | Use when sealing a verified evidence bundle for review. |
 | `ecosystem/ecosystem/skill-library-maintenance` | ecosystem | 3 | Bank Pusat | Use when moving, patching, or syncing skills. |
 | `ecosystem/ecosystem/skill-loader-name-collision` | ecosystem | 2 | Bank Pusat | Use when a skill name is reported ambiguous. |
+| `ecosystem/ecosystem/telegram-forum-operations` | ecosystem | 1 | Bank Pusat | Create, rename, manage Telegram forum threads via Bot API. |
 | `ecosystem/ecosystem/third-party-gate-triage` | ecosystem | 1 | Bank Pusat | Use when a vendor's acceptance gate fails after a patch. |
 | `ecosystem/ekosistem-content-verification` | ecosystem | 2 | Bank Pusat | Verify web/JSON content accuracy against source documents (DOCX/XLSX) for Niumination ecosystem projects — extract, compare, report, fix. Covers Pemdi data verification and general content audit patterns. |
 | `ecosystem/ekosistem-scaffold` | ecosystem | 1 | Bank Pusat | Scaffold new or missing projects in the Niumination ecosystem. Creates AGENTS.md + BACKLOG.md + brain/projects/ entry with standardized templates. Validates git, deploy, and DOX completeness. |
@@ -234,6 +235,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-10-05 11:24:12_
+_Last sync: 2026-10-05 18:17:44_
 
 <!-- SKILL_REGISTRY_END -->

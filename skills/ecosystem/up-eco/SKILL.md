@@ -163,6 +163,14 @@ terbukti di sandbox (52 B vs 52 B, mtime sama, isi beda, tidak tersalin).
 
 **up-eco memelihara dirinya sendiri.** Fase "🪄 Lightfix & Cron" memverifikasi skrip + wrapper, memastikan job cron terdaftar, dan **membuat ulang keduanya bila hilang** — satu kali `/up-eco` cukup setelah cron terhapus.
 
+### Pelajaran dari perbaikan 2026-10-05 — `TIMEOUT_BIN` salah (jangan diulang)
+- **`timeout` tidak ada di macOS, dan fallback lama justru MENYEBABKAN bug.** `TIMEOUT_BIN="$(command -v timeout || command -v gtimeout || echo timeout)"` menghasilkan string literal `timeout` yang tidak executable. Setiap call site `"$TIMEOUT_BIN" 25 cmd` jadi `timeout 25 cmd` → `command not found`, `set -e` atau `|| echo "?"` conviertennya jadi **false negative**, bukan error yang terlihat.
+- **Gejala yang muncul (semua false negative, bukan crash):** cron `up-eco-lightfix` dilaporkan "tidak ada" padahal ada (up-eco mencoba membuat job duplikat); `skill-audit.py` dilaporkan "gagal dijalankan" padahal exit 0; `gh auth status` selalu gagal. Tidak ada yang crash, jadi bug ini bertahan lama tanpa terdeteksi.
+- **Fix:** `TIMEOUT_BIN` fallback jadi string kosong (`|| echo ''`), dan setiap call site guard `[ -n "$TIMEOUT_BIN" ]` dengan fallback ke command polos. Jangan pakai nama binary yang tidak ada sebagai fallback.
+- **Konsekuensi lebih luas:** `hermes cron list` menulis tabel ke **STDERR** (bukan stdout seperti `vercel project ls`). `2>/dev/null` membuang seluruh output. Semua probe yang mengandalkan stdout HARUS pakai `2>&1`.
+- **up-eco hanya scan 7 thread Telegram, tidak 8.** Thread `12595` (Cron & Otomasi) dibuat 5 Okt 2026 tapi tabel di `up-eco.sh` masih hardcode 7. Kurangi kolom "Last Activity" satu baris.
+- **Skill bank 231 vs `~/.hermes/` 285** itu normal: target = bank + skill bawaan Hermes. Angka otoritatif selalu isi `manifest.json`, bukan jumlah direktori di target.
+
 ### Pelajaran dari perbaikan 2026-09-26 — Phase 5a Vercel (jangan diulang)
 - **Status deployment yang ditulis dari ingatan akan meleset diam-diam.** Registry klaim "Vercel 5 Live"; probe riil 26 Sep 2026 membuktikan **7 dari 13 status salah**, termasuk 2 yang bukan sekadar paused: `kms-spbe` diklaim 200 padahal tidak terdaftar di akun Vercel sama sekali (DNS mati, 000), dan `virtual-assistance` diklaim 200 lewat hostname `virtual-assistance.vercel.app` yang tidak pernah ada — yang sebenarnya `virtual-assistance-pi` dan PAUSED. Satu-satunya obat: probe tiap run, bandingkan dengan registry, laporkan yang beda.
 - **Vercel CLI 59.x menulis banner + tabel proyek ke STDERR, bukan stdout.** `vercel project ls > file` menghasilkan file **0 byte** walau exit 0. Harus `vercel project ls 2>&1`.
