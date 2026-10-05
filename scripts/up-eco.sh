@@ -18,7 +18,7 @@ set -euo pipefail
 
 # Ensure timeout/gh/composio resolve in Hermes background (PATH=/usr/bin:/bin)
 export PATH="/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-TIMEOUT_BIN="$(command -v timeout 2>/dev/null || command -v gtimeout 2>/dev/null || echo timeout)"
+TIMEOUT_BIN="$(command -v timeout 2>/dev/null || command -v gtimeout 2>/dev/null || echo '')"
 
 NIUMINATION="/Users/zaryu/Desktop/Niumination"
 PROFILE="$NIUMINATION/agents/profile"
@@ -651,11 +651,22 @@ check_lightfix() {
     rec "→ pastikan 'hermes' ada di PATH, lalu jalankan up-eco lagi"
     return
   fi
-  if "$TIMEOUT_BIN" 25 hermes cron list 2>&1 | grep -q "$jobname"; then
+  if [ -n "$TIMEOUT_BIN" ]; then
+    cron_list="$("$TIMEOUT_BIN" 25 hermes cron list 2>&1)"
+  else
+    cron_list="$(hermes cron list 2>&1)"
+  fi
+  if echo "$cron_list" | grep -q "$jobname"; then
     pass "cron '$jobname' terdaftar (30 23 * * * · script-only, tanpa panggilan LLM)"
   else
-    if "$TIMEOUT_BIN" 25 hermes cron create '30 23 * * *' --name "$jobname" --script up-eco-lightfix.sh \
-         --no-agent --deliver local --workdir "$NIUMINATION" >/dev/null 2>&1; then
+    if [ -n "$TIMEOUT_BIN" ]; then
+      "$TIMEOUT_BIN" 25 hermes cron create '30 23 * * *' --name "$jobname" --script up-eco-lightfix.sh \
+           --no-agent --deliver local --workdir "$NIUMINATION" >/dev/null 2>&1
+    else
+      hermes cron create '30 23 * * *' --name "$jobname" --script up-eco-lightfix.sh \
+           --no-agent --deliver local --workdir "$NIUMINATION" >/dev/null 2>&1
+    fi
+    if [ $? -eq 0 ]; then
       pass "cron '$jobname' tidak ada → dibuat otomatis (30 23 * * *)"
     else
       fail "cron '$jobname' tidak ada dan gagal dibuat otomatis"
@@ -880,7 +891,11 @@ check_skill_bank() {
   # ── 6e: Audit konten skill anti prompt-injection (pola autoskills Phase 3)
   if [ -f "$NIUMINATION/scripts/skill-audit.py" ]; then
     local audit_count
-    audit_count=$($TIMEOUT_BIN 30 python3 "$NIUMINATION/scripts/skill-audit.py" --count 2>/dev/null || echo "?")
+    if [ -n "$TIMEOUT_BIN" ]; then
+      audit_count=$("$TIMEOUT_BIN" 30 python3 "$NIUMINATION/scripts/skill-audit.py" --count 2>/dev/null || echo "?")
+    else
+      audit_count=$(python3 "$NIUMINATION/scripts/skill-audit.py" --count 2>/dev/null || echo "?")
+    fi
     if [ "$audit_count" = "0" ]; then
       pass "Audit konten skill bersih (0 finding)"
     elif [ "$audit_count" = "?" ]; then
