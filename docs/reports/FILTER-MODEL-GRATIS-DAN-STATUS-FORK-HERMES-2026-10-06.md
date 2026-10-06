@@ -108,13 +108,44 @@ secara desain (SIGTERM membunuh perintah sebelum selesai).
 | Perbandingan | Hasil |
 |---|---|
 | `main` lokal vs `origin/main` (fork) | **+7945** lokal unik, **2** fork unik |
-| `main` lokal vs `upstream/main` | **+4** lokal unik, **16185** upstream unik |
+| `main` lokal vs `upstream/main` | **+5** lokal unik, **16185** upstream unik |
 | HEAD fork (`origin/main`) | `0224447274` — 25 Agu 2026 |
-| HEAD lokal (`main`) | `6872e8e876` — 28 Sep 2026 |
+| HEAD lokal (`main`) | `2160f78d84` — 6 Okt 2026 (setelah commit patch free-only) |
 | HEAD upstream (live) | `a02278293e` — 6 Okt 2026 |
 | Merge-base lokal ↔ upstream | `bf53ff00a7` — 9 Sep 2026 |
 
 ### Temuan penting
+
+**0. `hermes update` TIDAK auto-update — dan sinkronisasi upstream diblokir permanen.**
+
+Auto-update tidak ada: `updates.check: true` hanya *memeriksa*, tidak menerapkan. Bukti:
+`~/.hermes/.update_check` berisi `{"ts": …, "behind": 2, "rev": null, "ver": "0.21.1"}` —
+angka `behind: 2` itu jarak ke **fork**, bukan upstream.
+
+Lebih serius: ada mekanisme yang seharusnya menyinkronkan fork dengan upstream
+(`_sync_with_upstream_if_needed()`, `hermes_cli/update_cmd_git.py:267`), tetapi **selalu
+berhenti lebih awal** pada kondisi fork sekarang:
+
+```python
+origin_ahead = _count_commits_between(git_cmd, cwd, "upstream/main", "origin/main")
+if origin_ahead > 0:
+    print(f"ℹ Your fork has {origin_ahead} commit(s) not on upstream.\n"
+          "  Skipping upstream sync to preserve your changes.")
+    return True
+```
+
+Terukur: `origin_ahead = 2` (fork punya 2 commit yang tidak ada di upstream —
+`05ef3d7518` patch lokal + `0224447274` merge). Karena `origin_ahead > 0`, cabang
+"sinkronkan" **tidak pernah dieksekusi**; updater selalu keluar lewat jalur skip.
+
+Bahkan bila jalur itu tercapai, langkahnya `git pull --ff-only upstream main`
+(`update_cmd_git.py:304`) — dan itu akan **gagal**, karena `main` lokal 7.945 commit
+di depan `origin/main`, jadi tidak mungkin fast-forward.
+
+**Kesimpulan:** selama fork menyimpan commit lokal yang tidak ada di upstream,
+`hermes update` tidak akan pernah menarik kode upstream — secara desain, bukan bug.
+Satu-satunya jalan adalah rekonsiliasi manual (`git pull upstream main` + resolusi konflik),
+yang berarti menyentuh langsung 4 patch gateway/notif yang sekarang bekerja.
 
 **1. Kanal update menunjuk ke fork, bukan upstream.**
 
@@ -135,17 +166,19 @@ Upstream NousResearch sudah maju **16.185 commit** sejak titik pisah 9 Sep 2026.
 `hermes update` hari ini **tidak** membawa perbaikan upstream — hanya 2 commit fork (satu
 di antaranya patch lokal lama).
 
-**3. Empat commit lokal wajib dipertahankan.**
+**4. Lima commit lokal belum ada di upstream.**
 
 | SHA | Tanggal | Isi |
 |---|---|---|
+| `2160f78d84` | 6 Okt | `patch(local)`: filter free-only picker `/model` (nous) |
 | `6872e8e876` | 28 Sep | `fix(computer-use)`: batasi readiness probe di atas handshake |
 | `0da89439d3` | 10 Sep | `patch(local)`: notif gateway Bahasa Indonesia + status block + bounded-wait |
 | `e1b7e2e6d1` | 9 Sep | `fix(gateway)`: suppress final normal saat stale finalize |
 | `c6b22d0edc` | 9 Sep | `fix(gateway)`: cegah kirim final ganda saat stream consumer sudah push konten |
 
 Berkas yang tersentuh: `gateway/run_notifications.py`, `gateway/run_turn.py`,
-`gateway/stream_consumer.py`, `tools/computer_use/cua_backend_daemon.py` (116 baris).
+`gateway/stream_consumer.py`, `tools/computer_use/cua_backend_daemon.py` (116 baris),
+`hermes_cli/model_catalog.py` + `hermes_cli/config_defaults.py` (72 baris).
 
 **4. Dua commit fork belum ada di lokal — satu di antaranya duplikat fungsional.**
 

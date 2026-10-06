@@ -1,7 +1,7 @@
 {
-  "fileCount": 1162,
-  "generatedAt": "2026-10-06T08:02:52.172076+00:00",
-  "skillCount": 233,
+  "fileCount": 1163,
+  "generatedAt": "2026-10-06T08:17:42.762506+00:00",
+  "skillCount": 234,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -910,6 +910,13 @@
       "domain": "ecosystem/ecosystem",
       "files": {
         "SKILL.md": "32f7e64a1cd451f1552eeadb56b48828242293ed98da2ea9467046a796b60875"
+      }
+    },
+    "ecosystem/ecosystem/hermes-fork-maintenance": {
+      "bundleHash": "6410a5d9273bcd4215acef1f42d672b07c4ab59b282a42f0781cdb4f92a54876",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "199d97a1c534588a5aa2fdf7cb57518037297f80982690fc7221e450e4f1bd57"
       }
     },
     "ecosystem/ecosystem/hermes-model-catalog-management": {
