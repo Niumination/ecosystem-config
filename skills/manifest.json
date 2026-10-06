@@ -1,7 +1,7 @@
 {
-  "fileCount": 1160,
-  "generatedAt": "2026-10-06T06:45:05.648992+00:00",
-  "skillCount": 232,
+  "fileCount": 1162,
+  "generatedAt": "2026-10-06T08:02:52.172076+00:00",
+  "skillCount": 233,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -910,6 +910,14 @@
       "domain": "ecosystem/ecosystem",
       "files": {
         "SKILL.md": "32f7e64a1cd451f1552eeadb56b48828242293ed98da2ea9467046a796b60875"
+      }
+    },
+    "ecosystem/ecosystem/hermes-model-catalog-management": {
+      "bundleHash": "306540d7715dc41aa31f6f1a9f3e7e48633eb0d06b68d74b396f77aab2591cf0",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "ab603decab646590d53b7aab09304e8c44b4670597b9759fb737c030a2778cfb",
+        "references/nous-portal-free-models.md": "5bc052ada3fd373b4825c748f297ae7328e40c7c28c347cad94a78f74a7ddb03"
       }
     },
     "ecosystem/ecosystem/hermes-tool-runtime-failure-triage": {

@@ -14,6 +14,7 @@
 | `content/content-research` | content | 1 | Bank Pusat | Riset tren, keyword, audiens, dan bedah kompetitor |
 | `content/content-script` | content | 1 | Bank Pusat | Hook, naskah, storyboard, caption, dan copywriting |
 | `content/content-studio` | content | 1 | Bank Pusat | Produser studio konten: pipeline ide sampai cuan |
+| `content/papermorph-edu` | content | 1 | Bank Pusat | Make or edit animated, narrated, interactive web books from reference PDFs (Niumination Edu Content adaptation). Use for book planning, storyboards, chapter animation and exercises, narration, and cover and contents pages, including "make the next chapter" or "fix this animation". Deliver runnable static book files. |
 | `content/remotion-video` | content | 3 | Bank Pusat | Buat video vertikal 9:16 pakai Remotion — prompt ke MP4, Mode A CPU-only, gratis (Free tier ≤3 org). SCOPE: thread Konten Kreator (1172) saja. |
 | `creative/ascii-art` | creative | 1 | Bank Pusat | ASCII art: pyfiglet, cowsay, boxes, image-to-ascii. |
 | `creative/comfyui` | creative | 33 | Bank Pusat | Generate images, video, and audio via diffusion workflows. |
@@ -82,6 +83,7 @@
 | `ecosystem/ecosystem/documentation-reconciliation` | ecosystem | 1 | Bank Pusat | Use when docs, BACKLOG, or registry drift from measured truth. |
 | `ecosystem/ecosystem/earning-opportunity-feasibility` | ecosystem | 1 | Bank Pusat | Use when the user asks what can make money from their setup. |
 | `ecosystem/ecosystem/hermes-a2a-setup` | ecosystem | 1 | Bank Pusat | Set up or troubleshoot A2A between Hermes instances. |
+| `ecosystem/ecosystem/hermes-model-catalog-management` | ecosystem | 2 | Bank Pusat | Manage Hermes model catalog and free-only provider filtering. |
 | `ecosystem/ecosystem/hermes-tool-runtime-failure-triage` | ecosystem | 1 | Bank Pusat | Use when a Hermes tool errors or times out mid-session. |
 | `ecosystem/ecosystem/long-form-markdown-deliverables` | ecosystem | 1 | Bank Pusat | Use when writing reports, plans, or backlog docs. |
 | `ecosystem/ecosystem/macos-hackintosh-opencore` | ecosystem | 3 | Bank Pusat | Use when upgrading Intel Hackintosh/OpenCore. |
@@ -235,6 +237,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-10-06 08:56:40_
+_Last sync: 2026-10-06 15:01:17_
 
 <!-- SKILL_REGISTRY_END -->

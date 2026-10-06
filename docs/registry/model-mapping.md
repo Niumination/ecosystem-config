@@ -90,6 +90,18 @@ credits`. Isi kredit di portal Nous bila ingin memakai nama model persis seperti
 `poolside/laguna-s-2.1:free` · `poolside/laguna-xs-2.1:free` · `stepfun/step-3.7-flash:free`
 · `upstage/solar-pro4:free`.
 
+> ⚠️ **Koreksi 6 Okt 2026 — daftar di atas kedaluwarsa.** Pengukuran langsung
+> `GET /models` (payload 425 model) menemukan **9** model nol-harga, komposisi berbeda:
+> `inclusionai/ling-3.1-flash` (gratis **tanpa** sufiks `:free`) ·
+> `inclusionai/ling-3.0-flash-fin:free` · `inclusionai/ling-3.0-flash-sante:free` ·
+> `meituan/longcat-2.0:free` · `meituan/longcat-2.5-preview:free` ·
+> `poolside/laguna-s-2.1:free` · `poolside/laguna-xs-2.1:free` ·
+> `stepfun/step-3.7-flash:free` · `upstage/solar-mini4:free`.
+> `upstage/solar-pro4:free` tidak lagi muncul sebagai nol-harga. **Sufiks `:free` bukan penanda
+> andal — harga adalah satu-satunya sinyal.** Rincian & prosedur:
+> `docs/reports/FILTER-MODEL-GRATIS-DAN-STATUS-FORK-HERMES-2026-10-06.md` +
+> skill `ecosystem/hermes-model-catalog-management`.
+
 **Yang mati — jangan dipakai lagi:**
 
 - `explabs/*` — provider tidak ada lagi di katalog 9router (7 mapping pernah menunjuk ke sini:
