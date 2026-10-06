@@ -1,6 +1,6 @@
 # 📋 BACKLOG — Niumination Ecosystem — MASTER DOCUMENTATION
 
-> **UPDATE: September 7, 2026** — Sync real filesystem + GitHub state. Major: pabrik-aplikasi-gas pilot LIVE (GAS v3), niu-mission-control redesign v3.0 (APEX-MC orb, PR#10 merged, localhost mati, docs update), Trio Governance v2 approved, Skill Bank 70. Mac REDUCE-MOTION ON.
+> **UPDATE: October 6, 2026** — Sync real filesystem + GitHub state. Major: orkestrasi Hermes 5 fase (Fase 1-4 done, Fase 5 deferred), 8 thread Telegram aktif + thread 12595 Cron & Otomasi, A2A Mac↔Cloud verified, mac-relay online, Skill Bank 231, 7 commit pushed (415026→2b11821). Mac macOS 26.7.1.
 
 ---
 
