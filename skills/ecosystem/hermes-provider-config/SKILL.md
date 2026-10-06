@@ -22,7 +22,7 @@ Hermes Agent supports multiple provider configuration mechanisms. Understanding 
 
 Providers that authenticate via API key stored in environment variables. These live in `config.yaml` under `providers:` section.
 
-**Location:** `/Volumes/HermesAgent/HermesAgentUSB/data/config.yaml` → `providers:`
+**Location:** `~/.hermes/config.yaml` → `providers:` section
 
 **Structure:**
 ```yaml
@@ -84,12 +84,11 @@ A cached manifest of available models per provider, fetched from Hermes cloud.
 
 ---
 
-## opencode-free Provider (27 Ags 2026 — post-constitution rollback)
+## opencode-free Provider (27 Ags 2026 — STALE, DO NOT USE)
 
-### Overview
-`opencode-free` is the **anonymous free tier** of the OpenCode Zen API — no API key required. Migrated from `opencode-zen` (required `OPENCODE_ZEN_API_KEY`) as part of the Constitution era rollback (24 Agu 2026).
+> ⚠️ **This section is stale as of 4 Okt 2026.** The models listed (`hy3-free`, `nemotron-3-ultra-free`, `laguna-s-2.1-free`, `muse-spark-1.2-contributor-free`) are NOT in the current 9router catalog. The `opencode-free` provider may have been retired or renamed. See `model-checker` skill for current model discovery — never trust a stale model table.
 
-### Configuration
+### Configuration (preserved for reference only)
 ```yaml
 providers:
   opencode-free:
@@ -98,25 +97,29 @@ providers:
     # NO key_env needed — anonymous bearer accepted
 ```
 
-### Available Free Models (Verified HTTP 200)
-| Model | Use Case | Verified |
-|:---|:---|:---|
-| `hy3-free` | General purpose, fast | ✅ HTTP 200 |
-| `nemotron-3-ultra-free` | Reasoning heavy, cron | ✅ HTTP 200 |
-| `laguna-s-2.1-free` | Coding specialist | ✅ HTTP 200 |
-| `muse-spark-1.2-contributor-free` | Creative/writing | ✅ HTTP 200 |
-| `x-preview-f-free` (Ox Alpha) | **EXCLUDED** | ❌ HTTP 401 |
+### Known Issue
+- Models listed below were verified HTTP 200 on 27 Agu 2026 but are absent from the October 2026 9router catalog (`gh/gpt-5.6-luna`, `gh/gpt-4o`, `gemini/gemini-3.8-flash`, etc.).
+- If a thread still references these models, probe via `hermes chat` before assuming they work.
 
-### Current Usage in Config (Active)
-| Function | Model | Provider |
+### Available Free Models (STALE — verify before using)
+|| Model | Use Case | Verified |
 |:---|:---|:---|
-| **DM Default** | `hy3-free` | `opencode-free` |
-| **Thread 1** | `hy3-free` | `opencode-free` |
-| **Thread 1172** | `nemotron-3-ultra-free` | `opencode-free` |
-| **Cron** | `nemotron-3-ultra-free` | `opencode-free` |
-| **Delegation** | `hy3-free` | `opencode-free` |
-| **Compression** | `hy3-free` | `opencode-free` |
-| **X-Search** | `hy3-free` | `opencode-free` |
+|| `hy3-free` | General purpose, fast | ⚠️ STALE — verify |
+|| `nemotron-3-ultra-free` | Reasoning heavy, cron | ⚠️ STALE — verify |
+|| `laguna-s-2.1-free` | Coding specialist | ⚠️ STALE — verify |
+|| `muse-spark-1.2-contributor-free` | Creative/writing | ⚠️ STALE — verify |
+|| `x-preview-f-free` (Ox Alpha) | **EXCLUDED** | ❌ HTTP 401 |
+
+### Current Usage in Config (verify against live config)
+|| Function | Model | Provider |
+|:---|:---|:---|
+|| **DM Default** | `hy3-free` | `opencode-free` | ⚠️ verify |
+|| **Thread 1** | `hy3-free` | `opencode-free` | ⚠️ verify |
+|| **Thread 1172** | `nemotron-3-ultra-free` | `opencode-free` | ⚠️ verify |
+|| **Cron** | `nemotron-3-ultra-free` | `opencode-free` | ⚠️ verify |
+|| **Delegation** | `hy3-free` | `opencode-free` | ⚠️ verify |
+|| **Compression** | `hy3-free` | `opencode-free` | ⚠️ verify |
+|| **X-Search** | `hy3-free` | `opencode-free` | ⚠️ verify |
 
 ### Fallback Chain (3-Level, Single Provider Family)
 ```yaml
@@ -408,9 +411,10 @@ Script reusable: `scripts/stress-test-models.py` (probe + burst, ranking otomati
    machine_id = open('/Users/zaryu/.9router/machine-id').read().strip()
    cli_secret = open('/Users/zaryu/.9router/auth/cli-secret').read().strip()
    token = hashlib.sha256((machine_id + "9r-cli-auth" + cli_secret).encode()).hexdigest()[:16]
-   # → '95222746561be6dc'
+   # → 16-char hex prefix (derived, not a stored secret)
+
+   **Header:** `x-9r-cli-token: <derived-16-char-hex>`
    ```
-   **Header:** `x-9r-cli-token: 95222746561be6dc`
 
 2. **Two-step process:**
    - `POST /api/provider-nodes` → create an `openai-compatible` node → returns ID `openai-compatible-chat-<uuid>`
@@ -419,7 +423,7 @@ Script reusable: `scripts/stress-test-models.py` (probe + burst, ranking otomati
 
 3. **Multi-key = second connection** with `priority` → automatic failover on 401/429/error; `usageHistory.connectionId` proves the switch.
 
-4. **Balance exhaustion signal:** `lastError: "预扣费额度失败, 用户剩余额度: $0.237140, 需要预扣费额度: $3.010126"` → time to add a new key.
+4. **Balance exhaustion signal:** `lastError: "balance deduction failed, remaining: $0.237140, required: $3.010126"` → time to add a new key.
 
 Full details (DB schema, token derivation, request JSON, pitfalls): `references/9router-gateway-admin.md`.
 

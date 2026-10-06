@@ -17,7 +17,7 @@ Setiap thread = persona terisolasi. Sumber kebenaran: `~/.hermes/config.yaml` �
 | 804 | QA | `nvidia/nemotron-3-super-120b-a12b:free` | openrouter | ~10 | ✅ Audit-focused | codebase-audit, verification, plan-compliance, redteam |
 | 1172 | Kreator | `inclusionai/ling-3.0-flash-fin:free` | nous | ~146 | ✅ Content creation | ghost, humanizer, baoyu, claude-design, manim, hyperframes |
 | 7402 | Serbaguna | `inclusionai/ling-3.0-flash-fin:free` | nous | ~3 | ✅ Flex-thread prompt (27 Sep 2026) | ❌ None |
-| 12595 | Cron & Otomasi | `inclusionai/ling-3.0-flash-fin:free` | nous | 0 | ✅ Cron output only | ❌ None |
+| 12707 | Edu Content | `inclusionai/ling-3.0-flash-fin:free` | nous | 0 | ✅ Edu-content pipeline | document-content-pipeline, markitdown, remotion-video, ghost, humanizer |
 | 8853 | ASN | `sensenova-6.8-flash-lite` | huancheng | ~357 | ✅ ASN/SPBE-focused | skp-e-kinerja + 3 builtin productivity (tanpa entri bank) |
 
 ## Flex-Thread Convention (NOT in channel_prompts)
@@ -59,7 +59,8 @@ Token dari `~/.hermes/.env`. User baca hasil langsung dari thread atau forward k
 | `1172` | Kreator | `inclusionai/ling-3.0-flash-fin:free` | nous | `ghost`, `humanizer` | 3 Okt 2026: model diubah dari `poolside/laguna-s-2.1:free` ke `inclusionai/ling-3.0-flash-fin:free`. 5 Okt 2026: renamed + icon |
 | `7402` | Serbaguna | `inclusionai/ling-3.0-flash-fin:free` | nous | — | 3 Okt 2026: model diubah dari `meituan/longcat-2.0:free` (404) ke `inclusionai/ling-3.0-flash-fin:free`; prompt flex-thread dipasang 27 Sep 2026. 5 Okt 2026: renamed + icon |
 | **`12595`** | **Cron & Otomasi** | `inclusionai/ling-3.0-flash-fin:free` | **nous** | — | Thread khusus output cronjob. Dibuat 5 Okt 2026 untuk memisahkan cron output dari flex-thread 7402. Renamed + icon. |
-| **`8853`** | **ASN** | `sensenova-6.8-flash-lite` | **huancheng** | `skp-e-kinerja`, `document-to-action-items`, `meeting-action-items`, `weekly-review-planning` | administrasi dinas, SKP/eKinerja, agenda rapat/tenggat. **Tidak di-rename** (sudah sesuai). |
+| `8853` | **ASN** | `sensenova-6.8-flash-lite` | **huancheng** | `skp-e-kinerja`, `document-to-action-items`, `meeting-action-items`, `weekly-review-planning` | administrasi dinas, SKP/eKinerja, agenda rapat/tenggat. **Tidak di-rename** (sudah sesuai). |
+| `12707` | **Edu Content** | `inclusionai/ling-3.0-flash-fin:free` | **nous** | `document-content-pipeline`, `markitdown`, `remotion-video`, `ghost`, `humanizer` | Konten edukasi: PDF buku → web book interaktif bernarasi (adaptasi pipeline Papermorph). Dibuat 6 Okt 2026, terpisah dari thread 1172 (Kreator). |
 
 ## Thread 8853 — ASN / Admin Dinas
 

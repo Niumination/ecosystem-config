@@ -1,6 +1,6 @@
 {
   "fileCount": 1159,
-  "generatedAt": "2026-10-06T01:56:24.469275+00:00",
+  "generatedAt": "2026-10-06T03:37:40.627736+00:00",
   "skillCount": 231,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -1064,10 +1064,10 @@
       }
     },
     "ecosystem/hermes-provider-config": {
-      "bundleHash": "e2d5964dc410acefd13cddaba74ec418f9095a655272c75b5337a37c5028b7fc",
+      "bundleHash": "93bb4353d337b771d21a0103b8540b3bae15ce049c3a4d0a72301aa68f7bf3f0",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "2760c946f01a2046632c711db1f01b1ef1951ba117f6f0cee9276e085acebcfd",
+        "SKILL.md": "29db1095ad9cd3ec5ff9513a96c3642c7f6374ba2b0559596c615e87f18539a8",
         "references/9router-gateway-admin.md": "d4b718f0ad1b63419c2248d0d4d3105a441065dbcd57915cc1ee3a69c8d1bac5",
         "references/9router-model-management.md": "ca706419601bc190ce3d1be74c758bcb922e83e52490875d42cefef767d0e385",
         "references/juan-router-integration.md": "737c490e199201370c75d62c2f51693f5242b41ea79228fe49636e2a7df64b42",
