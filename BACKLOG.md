@@ -215,13 +215,14 @@ Desktop/Niumination/
 | **characters/** | ⚪ | 🟢 Active | 4 herdr agents (arsitek, pembangun, pengawas, penjaga) |
 | **_shared/** | ⚪ | 🟢 Active | Incident & path registry (INCIDENT.md, PATHS.md) |
 
-### 🔬 labs/ — 2 Experiments
+### 🔬 labs/ — 3 Experiments
 
 | Proyek | Priority | Status | Notes |
 |--------|:--------:|:------:|-------|
 | **maze-3d** | P3 | ✅ Live | GH Pages |
 | ~~**niumination-workspace**~~ | **Archived** | → inactive-2026-09 | Next.js 16 |
 | **eKinerja-AfrizalMunthe** | ⚪ Minor | 🟢 Active | Bukti dukung eKinerja Sem 1 2026 — 🔒 private repo |
+| **edu-content** | P2 | 🟢 Active | Pipeline PDF→web book (Papermorph Edu) — 21 dtk/chapter, Piper TTS lokal |
 
 ### 🧪 sandbox/ — 5 Dormant (ex-incubator)
 
