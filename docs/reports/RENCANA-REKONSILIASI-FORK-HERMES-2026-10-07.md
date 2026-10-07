@@ -258,17 +258,29 @@ lebih ketat di `_run_agent_stream_confirmed_final_delivery` (baris 3408):
 `has_durably_delivered_text` — versi "durable" dari fungsi yang sama (hanya delivery yang
 bertahan melampaui turn).
 
-### Rekomendasi yang direvisi untuk D2
+### Rekomendasi yang direvisi untuk D2 — SEMUA 5 PATCH DIPERTAHANKAN
 
-**Buang P4 dan P5.** Bukan karena "sudah terliput", tapi karena **upstream sengaja memilih
-kebijakan berbeda** dan menguncinya dengan test. Mempertahankan patch lokal berarti:
-1. Melawan desain upstream yang terdokumentasi (#71643).
-2. Membuat test upstream merah.
-3. Mengembalikan bug yang upstream sudah perbaiki (ekor hilang tanpa retry).
+**Keputusan pemilik (7 Okt 2026):** semua perubahan di fork harus tetap terjaga dengan
+upstream. Ini mengubah rekomendasi awal "buang P4/P5" menjadi "port P4/P5 ke mekanisme
+upstream".
 
-Risiko yang harus diterima: **duplikat kirim mungkin muncul kembali** di kasus yang patch
-lokal tangani. Perlu diuji di Task 8 Step 4. Jika muncul, perbaikan yang benar adalah
-lapor ke upstream — bukan menambal lokal melawan test mereka.
+**Implikasi:** P4/P5 tidak bisa di-apply mentah — akan berkonflik dengan desain upstream
+dan membuat test mereka merah. Solusinya adalah **porting**: adaptasi patch lokal ke
+struktur upstream yang baru, dengan kondisi guard yang lebih ketat agar tidak menimpa
+perbaikan upstream.
+
+**Strategi porting P4/P5:**
+
+| Patch | Mekanisme lokal | Mekanisme upstream | Strategi port |
+|---|---|---|---|
+| P4 | `elif _sc._final_response_sent` → suppress | `delivered_final_matches()` → always resend | Tambahkan cabang **sebelum** jalur upstream, dengan kondisi lebih spesifik: hanya suppress jika `_final_response_sent` true **dan** `delivered_final_matches` mengembalikan `None` (bukan `False`) |
+| P5 | `has_delivered_text` fallback | `has_durably_delivered_text` (baris 3408) | Ganti `has_delivered_text` → `has_durably_delivered_text` di patch lokal |
+
+**Risiko yang harus diterima:**
+- Test upstream `test_stale_finalize_suppression.py` mungkin tetap merah untuk kasus
+  spesifik yang P4 tambahkan. Perlu verifikasi di Task 4.
+- Jika test merah, opsi: (a) tambahkan kondisi guard lebih ketat, (b) xfail test
+  dengan komentar menjelaskan konflik desain, (c) terima sebagai known failure.
 
 **P1, P2, P3 tetap dipertahankan** (unik, tidak ada padanannya di upstream).
 
@@ -292,14 +304,42 @@ git rebase --onto upstream/main bf53ff00a7 reconcile-upstream-20261007
 Harapan: 3–5 patch di-apply ulang. **Konflik hampir pasti terjadi** di
 `run_turn.py` / `run_notifications.py` (risiko tinggi).
 
-- [ ] **Step 3: Untuk setiap konflik, pilih versi upstream bila patch sudah terliput**
+- [ ] **Step 3: Untuk setiap konflik, terapkan strategi porting**
+
+**P1 (model_catalog.py):** apply bersih — fungsi upstream identik versi pra-patch.
 ```bash
-git status                    # lihat file konflik
-git checkout --theirs <file>  # ambil upstream bila patch terliput
+git checkout --ours hermes_cli/model_catalog.py
+git add hermes_cli/model_catalog.py
+```
+
+**P2 (cua_backend_daemon.py):** apply bersih — konstanta upstream masih `15.0` / `2.0`.
+```bash
+git checkout --ours tools/computer_use/cua_backend_daemon.py
+git add tools/computer_use/cua_backend_daemon.py
+```
+
+**P3 (run_notifications.py):** konflik — file tumbuh 1730→2128 baris. Port manual:
+- Cari anchor `_schedule_update_notification_watch` di upstream
+- Tambahkan `_wait_for_send_paths_healthy` + `_lifecycle_status_block` sebagai method baru
+- Sisipkan pemanggilan di titik yang sesuai (setelah notif restart terkirim)
+- Jangan hapus kode upstream yang sudah ada
+
+**P4 (run_turn.py):** konflik — upstream punya `delivered_final_matches`. Port:
+- Tambahkan cabang `elif` **sebelum** jalur `_stale_finalized` upstream
+- Kondisi: `_final_response_sent` true **dan** `delivered_final_matches` mengembalikan `None`
+  (bukan `False` — `False` berarti upstream sudah tahu payload mismatch dan akan kirim ulang)
+- Ini mencegah P4 menimpa perbaikan upstream untuk kasus payload mismatch
+
+**P5 (run_turn.py + stream_consumer.py):** port:
+- Ganti `has_delivered_text` → `has_durably_delivered_text` di patch lokal
+- `has_durably_delivered_text` hanya mengembalikan True untuk delivery yang bertahan melampaui turn
+- Ini lebih aman dari `has_delivered_text` asli
+
+```bash
+# Setelah resolve konflik manual:
 git add <file>
 git rebase --continue
 ```
-Aturan: **jangan gabung dua implementasi** — pilih satu.
 
 - [ ] **Step 4: Verifikasi hasil rebase**
 ```bash
@@ -348,11 +388,26 @@ scripts/run_tests.sh tests/gateway/
 ```
 Harapan: lulus. Ini yang paling penting — patch P3/P4/P5 hidup di sini.
 
-- [ ] **Step 6: Verifikasi P3 masih ada (bila dipertahankan)**
+- [ ] **Step 6: Verifikasi P3 masih ada**
 ```bash
 grep -n "_wait_for_send_paths_healthy" gateway/run_notifications.py
 ```
 Harapan: ada (3 kemunculan seperti sebelum rebase).
+
+- [ ] **Step 7: Verifikasi P4 di-port dengan kondisi guard yang benar**
+```bash
+grep -n "_final_response_sent" gateway/run_turn.py
+grep -n "delivered_final_matches" gateway/run_turn.py
+```
+Harapan: cabang P4 ada **sebelum** jalur `_stale_finalized` upstream, dengan kondisi
+`_final_response_sent` true **dan** `delivered_final_matches` mengembalikan `None`.
+
+- [ ] **Step 8: Verifikasi P5 di-port ke `has_durably_delivered_text`**
+```bash
+grep -n "has_durably_delivered_text" gateway/run_turn.py
+grep -n "has_delivered_text" gateway/run_turn.py
+```
+Harapan: `has_durably_delivered_text` ada (dari P5), `has_delivered_text` (versi lama) tidak ada.
 
 ---
 

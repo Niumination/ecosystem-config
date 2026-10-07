@@ -30,7 +30,7 @@ There are three possibilities, and only the first two are safe to resolve mechan
 |---|---|---|
 | **Unique** | upstream has no equivalent symbol/logic | Keep the patch |
 | **Superseded** | upstream implements the same thing, compatible semantics | Drop the patch |
-| **Contradicted** | upstream implements the OPPOSITE policy, usually test-pinned | **Drop — and expect behaviour change** |
+| **Contradicted** | upstream implements the OPPOSITE policy, usually test-pinned | **PORT — adapt to upstream's mechanism** |
 
 **Contradicted is the dangerous one**, because it looks like "superseded" from a symbol grep. Detect it
 by reading upstream's *comment rationale* and its *tests*, not just its function names:
@@ -51,9 +51,21 @@ Symptoms that you are looking at a contradicted patch:
   upstream replaced the mechanism, not just the call site.
 - Upstream's comment cites an issue number with a rationale that argues against your patch's premise.
 
-When contradicted: drop the patch, state the behaviour change explicitly in the plan, and add a
-runtime check for the regression you might be re-opening. The correct fix for a real recurrence is an
-upstream report, not a local patch that fights their test.
+When contradicted and the owner requires the patch to survive: **port it**, don't drop it and
+don't apply it raw. Porting means adapting the patch to upstream's new mechanism:
+
+1. **Add a guard branch before upstream's path** — not after, not instead of. Your branch
+   handles the narrow case upstream doesn't cover; upstream's branch handles the rest.
+2. **Tighten the condition** — only fire when upstream's mechanism returns "no opinion"
+   (e.g. `None`), never when it returns a definitive answer (`False` = mismatch, upstream
+   will resend).
+3. **Upgrade the API call** — if upstream renamed the method (`has_delivered_text` →
+   `has_durably_delivered_text`), use the new one. The new one is usually stricter and safer.
+4. **Verify with upstream's test** — if their test still goes red, the guard is too loose.
+   Tighten it or accept as a known failure with a comment explaining the design conflict.
+
+The goal is coexistence: your patch handles a case upstream doesn't, upstream's patch handles
+a case yours doesn't, and neither silently reverts the other.
 
 ## Step 2 — Hunt for sole copies with `ls-tree`, not `git log`
 

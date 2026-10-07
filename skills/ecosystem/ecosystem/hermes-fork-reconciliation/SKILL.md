@@ -21,7 +21,7 @@ Three states. Decide each with evidence, never from the commit subject.
 | UNIQUE | symbol absent upstream | must survive the rebase |
 | PARTIAL | upstream has the feature, not the specific symbol | carry only the missing part |
 | SUPERSEDED | upstream implements the same guard by another mechanism | DROP it |
-| **CONTRADICTED** | upstream implements the **opposite** policy, test-pinned | **DROP — expect a behaviour change** |
+| **CONTRADICTED** | upstream implements the **opposite** policy, test-pinned | **PORT — adapt to upstream's mechanism** |
 
 CONTRADICTED is the trap: from a symbol grep it looks identical to SUPERSEDED. Both touch the
 same feature area; only the *policy* differs. Detect it by reading upstream's comment rationale
@@ -44,11 +44,22 @@ delivered content ("avoid a duplicate"). Upstream chose the opposite — always 
 answer, because a successful finalize edit can carry only the last preview snapshot and the
 missing tail would otherwise be lost with no retry. Upstream pins that with
 `tests/gateway/test_stale_finalize_suppression.py` ("the result must NOT silently suppress").
-Keeping the local patch would fail upstream's test and re-open their bug.
 
-When CONTRADICTED: drop the patch, state the behaviour change explicitly in the plan, and add a
-runtime check for the regression you might be re-opening. A genuine recurrence belongs in an
-upstream report — not in a local patch that fights their test.
+When CONTRADICTED and the owner requires the patch to survive: **port it**, don't drop it and
+don't apply it raw. Porting means adapting the patch to upstream's new mechanism:
+
+1. **Add a guard branch before upstream's path** — not after, not instead of. Your branch
+   handles the narrow case upstream doesn't cover; upstream's branch handles the rest.
+2. **Tighten the condition** — only fire when upstream's mechanism returns "no opinion"
+   (e.g. `None`), never when it returns a definitive answer (`False` = mismatch, upstream
+   will resend).
+3. **Upgrade the API call** — if upstream renamed the method (`has_delivered_text` →
+   `has_durably_delivered_text`), use the new one. The new one is usually stricter and safer.
+4. **Verify with upstream's test** — if their test still goes red, the guard is too loose.
+   Tighten it or accept as a known failure with a comment explaining the design conflict.
+
+The goal is coexistence: your patch handles a case upstream doesn't, upstream's patch handles
+a case yours doesn't, and neither silently reverts the other.
 
 ```bash
 git log --oneline upstream/main..main                        # the carried set
