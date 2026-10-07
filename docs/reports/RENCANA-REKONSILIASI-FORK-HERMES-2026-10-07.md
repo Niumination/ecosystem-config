@@ -332,6 +332,55 @@ Pelajarannya: menjalankan suite besar dengan 8 worker membuat test berbasis timi
 lewat triangulasi ref, bukan asumsi. Tanpa baseline upstream, 2 kegagalan ini akan salah
 dibaca sebagai regresi port kita.
 
+### Suite penuh gateway — 11 gagal + 4 collection error, TERBUKTI PRE-EXISTING
+
+Setelah subset di atas, suite penuh dijalankan di cabang rekonsiliasi. Hasilnya lebih besar:
+11 test gagal di 10 file + 4 file collection error.
+
+**Kesimpulan: tidak ada satu pun yang berasal dari port kita.** Triangulasi:
+
+| Run | Ref | Gagal |
+|---|---|---|
+| Suite penuh, cabang rekonsiliasi | `01637af3db` | 10 file (11 test) + 4 collection error |
+| 14 file yang sama, **upstream murni** | `a02278293e` | **8 file yang sama persis** + 1 collection error |
+| 4 file yang **berbeda** antar run, cabang rekonsiliasi | `01637af3db` | **175/175 lulus** |
+
+**8 file gagal di kedua ref** — artinya pre-existing di upstream, bukan akibat rebase:
+`test_buzz_websocket`, `test_clarify_delivery_fallback`, `test_compression_failure_session_sync`,
+`test_readiness`, `test_reset_button_deadlock`, `test_session_hygiene_turnhold_adoption`,
+`test_telegram_voice_v0_regressions`, `test_update_streaming`.
+
+**4 file yang hanya gagal di run kita** (race/environmental, bukan kode) —
+ketika dijalankan ulang terisolasi: **175/175 lulus**:
+`test_session_race_guard`, `test_env_override_explicit_disable`,
+`test_native_warning_coverage`, `test_run_progress_topics`.
+
+### Akar penyebab: bentrok instalasi test-environment
+
+Error yang muncul menjelaskan mekanismenya:
+
+```
+AssertionError: TEST BUG: file I/O against the REAL hermes home:
+  /Users/zaryu/.hermes/installs/3915db06b854dbd3/test-environment/gen-.../hermes_cli/main.py
+```
+
+`tests/home_io_guard.py` menolak I/O ke path di bawah `~/.hermes/`. Setiap run
+`scripts/run_tests.sh` membuat generasi test-environment baru di
+`~/.hermes/installs/<hash>/test-environment/gen-<hash>/`. Ketika **beberapa run suite
+berjalan bersamaan atau berurutan cepat**, generasi yang aktif bergeser dan guard melihat
+path instalasi test itu sendiri sebagai "real hermes home".
+
+Bukti: 4 generasi berbeda tercipta dalam 2 jam (`12:56`, `13:33`, `13:38`, `14:45`) — satu
+per invokasi `run_tests.sh`. Path di error baseline (`3915db06...`) berbeda dari path di
+error run kita (`c700e15a...`), membuktikan generasi bergeser antar run.
+
+**Konsekuensi untuk CI:** ini masalah lingkungan lokal (banyak run berurutan di mesin yang
+sama), bukan masalah kode. CI menjalankan satu generasi per job, jadi tidak terpengaruh.
+
+**Aturan operasional yang diambil:** jalankan `scripts/run_tests.sh` **satu per satu**,
+tunggu sampai selesai sebelum memulai yang berikutnya. Jangan menjalankan dua suite
+Hermes secara paralel di mesin ini.
+
 ---
 
 ### Task 3: Buat cabang rekonsiliasi (tanpa menyentuh `main`)

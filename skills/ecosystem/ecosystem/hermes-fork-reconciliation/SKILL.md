@@ -71,6 +71,44 @@ Why dropping beats merging: a rebase applies carried patches in order and resolv
 same-function overlaps arbitrarily — one implementation wins, and it may be the stale one.
 Two patches touching one function is a defect to remove, not a conflict to resolve.
 
+## Attribute every test failure before you believe it
+
+A rebase that leaves tests red tells you nothing until you know *whose* red it is. Never assume a
+failure is yours, and never assume it is pre-existing. Triangulate:
+
+```bash
+# 1. the failure set on your rebased branch
+# 2. the SAME files on pristine upstream (worktree, never a checkout that a live process uses)
+git worktree add /tmp/upstream-check upstream/main
+cd /tmp/upstream-check && scripts/run_tests.sh <the-failing-files>
+# 3. any file that failed ONLY on your branch, re-run isolated on your branch
+```
+
+Three outcomes: fails on both refs (pre-existing), fails only on yours but passes isolated
+(flaky/environmental), fails only on yours and fails isolated (real regression — the only case
+that blocks the rebase).
+
+**A 5-commit patch touches 6 files; a suite of 1010 has ~39k tests. Assume nothing about the
+rest.** Without the pristine-upstream baseline you will read a pre-existing failure as your own
+regression and roll back a correct rebase.
+
+### Run test suites one at a time on a shared machine
+
+`scripts/run_tests.sh` provisions a *generation* of the test environment per invocation under
+`~/.hermes/installs/<hash>/test-environment/gen-<hash>/`. Overlapping or back-to-back runs shift
+which generation is active, and `tests/home_io_guard.py` then sees the test install's own path as
+the "REAL hermes home" — producing collection errors and assertion failures with nothing to do
+with your change. Symptoms: `TEST BUG: file I/O against the REAL hermes home: .../test-environment/gen-.../`.
+Wait for one suite to exit before starting the next; never run two Hermes suites in parallel.
+
+### Never rebase in a checkout a live process is running from
+
+`hermes update`, the gateway, and the CLI execute from the checkout itself. Rebasing or
+`git checkout`-ing a branch there swaps `.py` files under a running process — a crash or a
+half-loaded module, not a merge conflict. Do the rebase on the branch but run tests in a
+`git worktree` of it, and return the main checkout to its original branch before doing anything
+else. Verify with `git status --porcelain` that nothing is uncommitted before switching.
+
 ## Measure the operation before committing to it
 
 ```bash
