@@ -56,8 +56,15 @@ else
 fi
 
 echo "== 1. hermes backup"
-command -v hermes >/dev/null || { echo "GAGAL: hermes tidak ada di PATH" >&2; exit 1; }
-hermes backup -o "$TMP/hermes-backup.zip" >/dev/null 2>&1 || { echo "GAGAL: hermes backup gagal" >&2; exit 1; }
+# NOTE: jangan andalkan `command -v hermes`. Dua instalasi hermes ada di PATH di
+# mesin ini — ~/.local/bin/hermes (shim → runtime python-3.14 yang tidak punya
+# yaml/openai) lebih dulu di PATH saat jalan via shell non-interaktif, jadi
+# `hermes backup` gagal "No module named 'yaml''. Pakai venv sumber secara
+# eksplisit (python3.11, yaml + openai terpasang).
+HERMES_BIN="$HOME/src/hermes-agent/.venv/bin/hermes"
+[[ -x "$HERMES_BIN" ]] || { echo "GAGAL: venv hermes tidak ada: $HERMES_BIN" >&2; exit 1; }
+"$HERMES_BIN" backup -o "$TMP/hermes-backup.zip" >"$TMP/backup.log" 2>&1 \
+  || { echo "GAGAL: hermes backup gagal" >&2; tail -15 "$TMP/backup.log" >&2; exit 1; }
 echo "   mentah: $(du -h "$TMP/hermes-backup.zip" | cut -f1)"
 
 echo "== 2. buang berkas yang BISA dibangun ulang (bukan data hilang)"
