@@ -304,6 +304,34 @@ bukan kegagalan, lane CI terpisah.
 
 Worktree sudah dibersihkan setelah pengukuran (`git worktree remove`), `main` tidak tersentuh.
 
+### Hasil test cabang rekonsiliasi (7 Okt 2026)
+
+**Run pertama — 2 file gagal, terbukti FLAKY:**
+
+```
+FAILED tests/gateway/test_busy_session_ack.py (1 test failed)
+FAILED tests/gateway/test_hosted_room_gateway_lifecycle.py (1 test failed)
+```
+
+**Triangulasi tiga arah** untuk mengatribusikan kegagalan:
+
+| Run | Ref | Hasil |
+|---|---|---|
+| Baseline upstream (murni `a02278293e`) | upstream | **17/17 lulus** |
+| Cabang rekonsiliasi (run pertama, suite besar) | `01637af3db` | 2 gagal |
+| Cabang rekonsiliasi (terisolasi, 2 file) | `01637af3db` | **17/17 lulus** |
+
+Kesimpulan: **flaky, bukan regresi.** Bukti pendukung:
+- Patch kita tidak menyentuh `_busy_ack` (0 kemunculan) maupun `_spawn_supervised`/`hosted_room`
+  (0 kemunculan) — area yang diuji kedua file itu.
+- Diff 6 commit kita hanya menyentuh 6 file, tidak satu pun yang diimpor test tersebut.
+- Kedua file lulus di upstream murni **dan** di cabang rekonsiliasi saat dijalankan terisolasi.
+
+Pelajarannya: menjalankan suite besar dengan 8 worker membuat test berbasis timing
+(`asyncio.sleep(0.01)` loop, supervision counter) rentan gagal. Atribusi kegagalan **wajib**
+lewat triangulasi ref, bukan asumsi. Tanpa baseline upstream, 2 kegagalan ini akan salah
+dibaca sebagai regresi port kita.
+
 ---
 
 ### Task 3: Buat cabang rekonsiliasi (tanpa menyentuh `main`)
