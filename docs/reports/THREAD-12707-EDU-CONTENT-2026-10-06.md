@@ -61,3 +61,6 @@ Rencana lengkap: `docs/reports/PLAN-PAPERMORPH-ADAPTASI-EDU-2026-10-05.md`
 - ✅ Adaptasi skill Papermorph → `skills/content/papermorph-edu/SKILL.md`
 - ✅ Voice model disimpan di `labs/edu-content/.piper-voices/`
 - ✅ Test pipeline: 1 PDF → web book — `labs/edu-content/pemdi-dasar/` (cover + ch01 + narasi MP3, HTTP 200)
+- ✅ Bab 2-4 selesai (7 Okt 2026) — ch02 (52.3 dtk), ch03 (22.2 dtk), ch04 (31.8 dtk), total site 1.5 MB
+- ⏳ Deploy Cloudflare Pages — pending
+- ⏳ SurveyJS quiz — pending (manual HTML beat layout sebagai ganti sementara)

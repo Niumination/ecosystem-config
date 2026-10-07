@@ -87,8 +87,8 @@ GET http://localhost:8765/pemdi-dasar/ch01/audio/id/ch01.mp3 → 200 (290 KB)
 
 **ADOPT (parsial)** — pipeline layak dipakai untuk thread 12707.
 
-**Yang sudah siap:** PDF → storyboard → narration → web book statis.
-**Yang menyusul:** SurveyJS quiz, bab 2-3, deploy Cloudflare Pages.
+**Yang sudah siap:** PDF → storyboard → narration → web book statis (4/4 bab selesai, 1.5 MB site).
+**Yang menyusul:** SurveyJS quiz, deploy Cloudflare Pages.
 
 ## Reproduksi
 

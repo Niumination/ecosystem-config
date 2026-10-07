@@ -222,7 +222,7 @@ Desktop/Niumination/
 | **maze-3d** | P3 | ✅ Live | GH Pages |
 | ~~**niumination-workspace**~~ | **Archived** | → inactive-2026-09 | Next.js 16 |
 | **eKinerja-AfrizalMunthe** | ⚪ Minor | 🟢 Active | Bukti dukung eKinerja Sem 1 2026 — 🔒 private repo |
-| **edu-content** | P2 | 🟢 Active | Pipeline PDF→web book (Papermorph Edu) — 21 dtk/chapter, Piper TTS lokal |
+| **edu-content** | P2 | 🟢 Active | Pipeline PDF→web book (Papermorph Edu) — 4/4 bab selesai (ch01-04), 1.5 MB site, deploy pending |
 
 ### 🧪 sandbox/ — 5 Dormant (ex-incubator)
 
