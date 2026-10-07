@@ -1,7 +1,7 @@
 {
-  "fileCount": 1165,
-  "generatedAt": "2026-10-07T07:57:32.116040+00:00",
-  "skillCount": 235,
+  "fileCount": 1166,
+  "generatedAt": "2026-10-07T09:42:18.193135+00:00",
+  "skillCount": 236,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -747,6 +747,13 @@
       "domain": "ecosystem/devops",
       "files": {
         "SKILL.md": "e586553b7754df5d2ec85ae20a9b0eb2c3056ba72da9e450b60610860dbe1b1d"
+      }
+    },
+    "ecosystem/devops/vercel-deployment-management": {
+      "bundleHash": "b31fcad8a1a9d2d25587f791121f4fa26a8c56a74acdf3cbf9398787bcf6a412",
+      "domain": "ecosystem/devops",
+      "files": {
+        "SKILL.md": "87789c1d1f6e284eb0e025dec74eeadd05e429e9601b80c8a94349350dd39b83"
       }
     },
     "ecosystem/devops/vercel-dns-subdomain-debug": {

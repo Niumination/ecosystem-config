@@ -345,7 +345,7 @@ Sebelumnya (BACKLOG Jul 28) mencatat niu-dash/Niu-LKH dirty — sudah tidak vali
 |--------|:------:|--------|
 | GH Pages (lokal) | 5/5 ✅ | Niu-LKH, niu-dash, maze-3d, AuditTI-AT, DiskominfoAT |
 | GH Pages (remote) | 5/5 ✅ | Niu-Startpage, niu-private, NiuHomePage, zaryu.startpage, SPBE-DevOps-Academy |
-| Vercel | **3/13 🟢 live** | Verified 26 Sep 2026 via `vercel project ls` (13 proyek) + probe HTTP. **Live:** niu-oss (`niumination.web.id`), pemdi-aceh-tengah (308→200), sapa-ai. **⏸️ PAUSED (7):** tedeo-web, kune-ya-com, cc-acehtengah, niu-vermilion, niu-dash-fullstack, virtual-assistance, niu-private, landing. **⚪ Never deployed (2):** rekapitulasi-pemdi, niutui. Detail + bukti di `docs/registry/deployment-status.md` |
+| Vercel | **3/13 🟢 live** | Verified 7 Okt 2026 via `vercel project ls` (13 proyek) + probe HTTP. **Live:** niu-oss (`niumination.web.id`), pemdi-aceh-tengah (308→/dashboard), sapa-ai. **⏸️ PAUSED (7):** tedeo-web, kune-ya-com, cc-acehtengah, niu-vermilion, niu-dash-fullstack, virtual-assistance, niu-private, landing. **⚪ Never deployed (2):** rekapitulasi-pemdi, niutui. Detail + bukti di `docs/registry/deployment-status.md` |
 
 ---
 
