@@ -91,13 +91,13 @@ Adaptasi pipeline Papermorph (`PDF → Book plan → Storyboards → Narration �
 ## 9. Langkah Selanjutnya (sesuai approval)
 
 1. ✅ Rencana ditulis (dokumen ini)
-2. ⏳ Buat thread Edu Content di Telegram
-3. ⏳ Probe model: verifikasi `claude-opus-4-6-thinking`, `claude-sonnet-4-6`, `kimi-k2.6` HTTP-200
-4. ⏳ Test Piper TTS lokal — kualitas voice, format output
-5. ⏳ Adaptasi skill Papermorph ke Hermes format
-6. ⏳ Test pipeline: 1 PDF → web book (scope kecil)
-7. ⏳ Ukur quota & performa
-8. ⏳ Evaluasi: adopt / parsial / drop
+2. ✅ Thread Edu Content dibuat di Telegram → **thread 12707**
+3. ✅ Probe model: `claude-opus-4-6-thinking` ✅, `claude-sonnet-4-6` ✅, `agnes-3.0-flash` ✅, `gemini-3.8-flash` ✅. `kimi-k2.6` ❌ 503 → fallback `gemini-3.8-flash` / `glm-4.7-flash` / `gpt-4o-mini` / `glm-5-thinking` (semua 200)
+4. ✅ Test Piper TTS lokal — voice `id_ID-news_tts-medium` (62 MB), kualitas bersih (clipping 0.004%)
+5. ✅ Adaptasi skill Papermorph ke Hermes format → `skills/content/papermorph-edu/SKILL.md`
+6. ✅ Test pipeline: 1 PDF → web book — **`labs/edu-content/pemdi-dasar/`** (cover + ch01 + narasi MP3, HTTP 200)
+7. ✅ Ukur quota & performa — 21 dtk/chapter, ~4,5k token/chapter, 290 KB audio MP3 (lihat `EVALUASI-PIPELINE-PAPERMORPH-EDU-2026-10-06.md`)
+8. ✅ Evaluasi: **ADOPT (parsial)** — pipeline siap pakai untuk thread 12707
 
 ## 10. Catatan
 

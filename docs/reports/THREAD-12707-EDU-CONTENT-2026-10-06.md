@@ -56,7 +56,8 @@ Rencana lengkap: `docs/reports/PLAN-PAPERMORPH-ADAPTASI-EDU-2026-10-05.md`
 - ✅ Config terpasang (model + prompt + skill bindings)
 - ✅ Registry diupdate (`docs/registry/telegram-threads.md`)
 - ✅ Backup config dibuat
-- ⏳ Probe model pipeline (claude-opus-4-6-thinking, claude-sonnet-4-6, kimi-k2.6)
-- ⏳ Test Piper TTS lokal
-- ⏳ Adaptasi skill Papermorph ke format Hermes
-- ⏳ Test pipeline: 1 PDF → web book
+- ✅ Probe model pipeline — claude-opus-4-6-thinking ✅, claude-sonnet-4-6 ✅, agnes-3.0-flash ✅, gemini-3.8-flash ✅. kimi-k2.6 ❌ 503 (fallback tersedia)
+- ✅ Test Piper TTS lokal — voice id_ID-news_tts-medium, bersih (clipping 0.004%)
+- ✅ Adaptasi skill Papermorph → `skills/content/papermorph-edu/SKILL.md`
+- ✅ Voice model disimpan di `labs/edu-content/.piper-voices/`
+- ✅ Test pipeline: 1 PDF → web book — `labs/edu-content/pemdi-dasar/` (cover + ch01 + narasi MP3, HTTP 200)

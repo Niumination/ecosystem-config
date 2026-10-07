@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 231 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 234 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 231 ✅ Aktif
+> **Status:** 234 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -201,6 +201,8 @@
 | **measure-before-write** | ✅ Aktif | Bank Pusat | 3.6 KB | Write figures only from command output, else UNCHECKED. |
 | **scheduled-job-delivery-routing** | ✅ Aktif | Bank Pusat | 4.5 KB | Use when cron output posts to the wrong chat or thread. |
 | **telegram-forum-operations** | ✅ Aktif | Bank Pusat | 2.5 KB | Create, rename, manage Telegram forum threads via Bot API. |
+| **hermes-fork-maintenance** | ✅ Aktif | Bank Pusat | 7.6 KB | Use when auditing a forked Hermes install's updates. |
+| **hermes-model-catalog-management** | ✅ Aktif | Bank Pusat | 6.5 KB | Manage Hermes model catalog and free-only provider filtering. |
 
 ## Domain: Security
 
@@ -360,6 +362,7 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 | **content-script** | ✅ Aktif | Bank Pusat | 5.6 KB | Hook, naskah, storyboard, caption, dan copywriting |
 | **content-studio** | ✅ Aktif | Bank Pusat | 7.6 KB | Produser studio konten: pipeline ide sampai cuan |
 | **remotion-video** | ✅ Aktif | Bank Pusat | 3.3 KB | Buat video vertikal 9:16 pakai Remotion — prompt ke MP4, Mode A CPU-only, gratis (Free tier ≤3 org). SCOPE: th… |
+| **papermorph-edu** | ✅ Aktif | Bank Pusat | 4.5 KB | Make or edit animated, narrated, interactive web books from reference PDFs (Niumination Edu Content adaptation… |
 
 ## Domain: Remotion Project
 
@@ -382,8 +385,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **231** |
-| **Total** | **231** |
+| ✅ Aktif | **234** |
+| **Total** | **234** |
 
 ## Catatan Penting — Potensi Konflik
 
