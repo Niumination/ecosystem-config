@@ -284,6 +284,26 @@ perbaikan upstream.
 
 **P1, P2, P3 tetap dipertahankan** (unik, tidak ada padanannya di upstream).
 
+### Baseline test upstream — HIJAU (7 Okt 2026)
+
+Suite gateway di worktree upstream (`a02278293e`) dijalankan sebelum rebase:
+
+```
+=== Summary: 1010 files, 297 tests passed, 0 failed, 2 skipped ===
+   3561.6s (8 workers)
+```
+
+Termasuk `tests/gateway/test_stale_finalize_suppression.py` — **109,50s, LULUS**.
+
+Ini penting: **upstream hijau sebagai baseline.** Setelah porting P4/P5, setiap test merah
+berarti disebabkan oleh port kita, bukan oleh upstream. Tanpa baseline ini, merah tidak
+bisa diatribusikan.
+
+Catatan: 24 file di-skip karena marker platform (15 file `linux_only`, 9 file `windows_only`) —
+bukan kegagalan, lane CI terpisah.
+
+Worktree sudah dibersihkan setelah pengukuran (`git worktree remove`), `main` tidak tersentuh.
+
 ---
 
 ### Task 3: Buat cabang rekonsiliasi (tanpa menyentuh `main`)
