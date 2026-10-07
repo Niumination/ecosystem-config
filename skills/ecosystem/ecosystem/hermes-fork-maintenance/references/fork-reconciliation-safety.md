@@ -21,6 +21,40 @@ For each one, ask two separate questions:
    can be *partly* superseded: its code change ported, while auxiliary files (scripts, docs, setup
    bundles) were dropped in the port and exist nowhere else.
 
+### Classify LOCAL patches against upstream too — "superseded" has three outcomes, not two
+
+Before rebasing carried patches onto upstream, check each one against upstream's *current* code.
+There are three possibilities, and only the first two are safe to resolve mechanically:
+
+| Outcome | Test | Action |
+|---|---|---|
+| **Unique** | upstream has no equivalent symbol/logic | Keep the patch |
+| **Superseded** | upstream implements the same thing, compatible semantics | Drop the patch |
+| **Contradicted** | upstream implements the OPPOSITE policy, usually test-pinned | **Drop — and expect behaviour change** |
+
+**Contradicted is the dangerous one**, because it looks like "superseded" from a symbol grep. Detect it
+by reading upstream's *comment rationale* and its *tests*, not just its function names:
+
+```bash
+grep -rn "<issue-number>" tests/ gateway/    # upstream cites the issue it fixed
+head -30 tests/<the-relevant-test>.py        # the docstring states the CONTRACT
+```
+
+A patch and upstream can both touch "stale finalize suppression" while choosing opposite answers
+(suppress-the-duplicate vs always-resend-the-complete-answer). Keeping the local patch then fails
+upstream's own regression test and re-introduces the bug upstream fixed.
+
+Symptoms that you are looking at a contradicted patch:
+
+- Upstream's test docstring says "must NOT" where your patch says "suppress".
+- Your patch reads a *private* attribute (`_foo`) while upstream exposes a *public* method (`foo()`) —
+  upstream replaced the mechanism, not just the call site.
+- Upstream's comment cites an issue number with a rationale that argues against your patch's premise.
+
+When contradicted: drop the patch, state the behaviour change explicitly in the plan, and add a
+runtime check for the regression you might be re-opening. The correct fix for a real recurrence is an
+upstream report, not a local patch that fights their test.
+
 ## Step 2 — Hunt for sole copies with `ls-tree`, not `git log`
 
 Commit subjects lie about scope. Check the actual trees:

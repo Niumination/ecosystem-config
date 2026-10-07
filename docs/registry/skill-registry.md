@@ -84,6 +84,7 @@
 | `ecosystem/ecosystem/earning-opportunity-feasibility` | ecosystem | 1 | Bank Pusat | Use when the user asks what can make money from their setup. |
 | `ecosystem/ecosystem/hermes-a2a-setup` | ecosystem | 1 | Bank Pusat | Set up or troubleshoot A2A between Hermes instances. |
 | `ecosystem/ecosystem/hermes-fork-maintenance` | ecosystem | 2 | Bank Pusat | Use when auditing a forked Hermes install's updates. |
+| `ecosystem/ecosystem/hermes-fork-reconciliation` | ecosystem | 1 | Bank Pusat | Use when rebasing a diverged fork onto upstream. |
 | `ecosystem/ecosystem/hermes-model-catalog-management` | ecosystem | 2 | Bank Pusat | Manage Hermes model catalog and free-only provider filtering. |
 | `ecosystem/ecosystem/hermes-tool-runtime-failure-triage` | ecosystem | 1 | Bank Pusat | Use when a Hermes tool errors or times out mid-session. |
 | `ecosystem/ecosystem/long-form-markdown-deliverables` | ecosystem | 1 | Bank Pusat | Use when writing reports, plans, or backlog docs. |
@@ -238,6 +239,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-10-07 10:26:50_
+_Last sync: 2026-10-07 11:35:47_
 
 <!-- SKILL_REGISTRY_END -->

@@ -207,6 +207,73 @@ git worktree remove /tmp/hermes-upstream-test
 
 ---
 
+## TEMUAN TASK 2 (7 Okt 2026) — P4/P5 BERTENTANGAN dengan desain upstream
+
+> ⚠️ **Bagian ini ditulis setelah Task 2 dijalankan. Ini mengubah keputusan D2 secara material.**
+
+### Bukti
+
+Upstream **bukan sekadar "sudah punya guard serupa"** — upstream memakai kebijakan yang
+**berlawanan** untuk kasus yang sama:
+
+| | Patch lokal (P4/P5) | Upstream |
+|---|---|---|
+| Kasus | stale finalize + `_final_response_sent` true | stale finalize (payload mismatch) |
+| Atribut | `_final_response_sent` (private) | `delivered_final_matches()` (publik, baris 330) |
+| Perilaku | **SUPPRESS** kirim final normal | **SELALU KIRIM ULANG** final lengkap |
+| Alasan | "konten sudah sampai ke user" | "ekor hilang tanpa retry" |
+
+Kutipan upstream (`gateway/run_turn.py` baris ~4064–4074):
+
+> `#71643: a *successful* finalize edit can still carry only the last preview snapshot — deltas`
+> `generated between that edit and stream completion never reach any API call... Reconcile the`
+> `consumer's recorded turn-final payload against the completed response: on a demonstrable`
+> `mismatch (False) neither final_response_sent nor final_content_delivered may suppress the`
+> `normal final send.`
+
+Patch lokal P4 justru menambahkan cabang yang melakukan sebaliknya:
+
+```python
+elif getattr(_sc, "_final_response_sent", False):
+    # ... Content reached the user — suppress the
+    # normal final send to avoid a duplicate.
+    response["already_sent"] = True
+```
+
+### Test upstream men-pin perilaku kebalikannya
+
+`tests/gateway/test_stale_finalize_suppression.py` (docstring):
+
+> `4. the result must NOT silently suppress — the complete final response must reach the platform`
+> `   (reconciliation edit or normal final send);`
+
+Test ini akan **MERAH** jika patch lokal P4 dipertahankan di atas upstream.
+
+Test lain yang relevan: `tests/gateway/test_suppression_contract_matrix.py`.
+
+### P5 juga terliput
+
+P5 menambahkan `has_delivered_text` sebagai guard fallback. Upstream sudah punya jalur yang
+lebih ketat di `_run_agent_stream_confirmed_final_delivery` (baris 3408):
+`has_durably_delivered_text` — versi "durable" dari fungsi yang sama (hanya delivery yang
+bertahan melampaui turn).
+
+### Rekomendasi yang direvisi untuk D2
+
+**Buang P4 dan P5.** Bukan karena "sudah terliput", tapi karena **upstream sengaja memilih
+kebijakan berbeda** dan menguncinya dengan test. Mempertahankan patch lokal berarti:
+1. Melawan desain upstream yang terdokumentasi (#71643).
+2. Membuat test upstream merah.
+3. Mengembalikan bug yang upstream sudah perbaiki (ekor hilang tanpa retry).
+
+Risiko yang harus diterima: **duplikat kirim mungkin muncul kembali** di kasus yang patch
+lokal tangani. Perlu diuji di Task 8 Step 4. Jika muncul, perbaikan yang benar adalah
+lapor ke upstream — bukan menambal lokal melawan test mereka.
+
+**P1, P2, P3 tetap dipertahankan** (unik, tidak ada padanannya di upstream).
+
+---
+
 ### Task 3: Buat cabang rekonsiliasi (tanpa menyentuh `main`)
 
 **Files:** tidak ada

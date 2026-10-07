@@ -1,7 +1,7 @@
 {
-  "fileCount": 1164,
-  "generatedAt": "2026-10-06T16:30:58.693994+00:00",
-  "skillCount": 234,
+  "fileCount": 1165,
+  "generatedAt": "2026-10-07T04:34:55.668411+00:00",
+  "skillCount": 235,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -913,11 +913,18 @@
       }
     },
     "ecosystem/ecosystem/hermes-fork-maintenance": {
-      "bundleHash": "e0f9b9304d3e3d4bed9fdc8120e60bd6181d3c341878009945068b75a6d5e1d0",
+      "bundleHash": "1a41ffb3b24088c3e49bc407b504680333b23629447628f3021e3d14be2ada9b",
       "domain": "ecosystem/ecosystem",
       "files": {
         "SKILL.md": "199d97a1c534588a5aa2fdf7cb57518037297f80982690fc7221e450e4f1bd57",
-        "references/fork-reconciliation-safety.md": "816729af558e81ec6c6cc95acfe71098f49ce547fc0407254062665d970a1bd9"
+        "references/fork-reconciliation-safety.md": "80a0f38e6153c1f7599c6597817ed20c63aed35806601ee79b9662b26ea34ffb"
+      }
+    },
+    "ecosystem/ecosystem/hermes-fork-reconciliation": {
+      "bundleHash": "4035b5106f5b945ee7c06e166efa165e72651f6e1e12b777d6a0bfc9888d9864",
+      "domain": "ecosystem/ecosystem",
+      "files": {
+        "SKILL.md": "ab88bfc17e82f3a0949ec7c99a4805fdced57a4edf4afb1838cdaedfff9f9899"
       }
     },
     "ecosystem/ecosystem/hermes-model-catalog-management": {
