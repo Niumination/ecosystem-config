@@ -120,6 +120,42 @@ state, not a repo deliverable. Backups land in `~/.hermes/config-backups/`.
 
 An unverified thread is indistinguishable from a misconfigured one until it takes a message.
 
+**`hermes send` does NOT trigger a turn in the target thread.** It writes an outbound message
+only; the gateway never processes it as inbound (bot API cannot read its own bot messages in a
+forum topic). Step 4 proves the transport, nothing more.
+
+The trap: message count in the thread's session DOES rise after a send — because the message
+you sent is stored with `role='assistant'`. Counting rows is not evidence of a turn. The proof
+is an inbound entry in `gateway.log` carrying your message text, followed by an `assistant`
+message that answers it.
+
+Consequences for orchestration: sending a task to another thread does not make that thread
+work. To make work actually happen use `delegate_task` (subagent, in-session), `cronjob`
+(scheduled), or have the owner interact in the target thread directly.
+
+### Step 5b — Use `hermes config set` for scalar thread fields
+
+`hermes config set platforms.telegram.channel_overrides.<id>.model <value>` writes surgically
+(one key, no reformat) and quotes a numeric id as a string, which is exactly the shape that
+defeats the numeric-key bug (`hermes config set` with an unquoted numeric key can land as a
+literal `'''12345'''`). Use it for `model` and `provider`; keep the scripted round-trip for
+`channel_prompts` and `channel_skill_bindings` (the latter is a JSON string, not a mapping).
+
+### Step 6b — Verify the installer actually exists
+
+This skill has referenced `scripts/install-thread.py` and `references/config-shape.md` that were
+never present in the bank. Check the support files exist before planning around them; if absent,
+use `hermes config set` (scalars) + a Python yaml round-trip (prompt + JSON-string bindings),
+with a backup and a re-parse verification.
+
+Round-trip safety check that proves the write was non-destructive — flatten both YAML trees and
+diff the key sets:
+
+```
+keys before → after   : must differ only by the keys you added
+keys lost             : must be 0
+```
+
 ### Step 7 — Record it
 Write the thread to the ecosystem registry row (persona, model, provider, skill bindings, why that
 model) and commit. An unrecorded thread is invisible to the next session and gets re-diagnosed
@@ -141,6 +177,19 @@ from scratch.
 - **Read the group's own thread status tooling before hardcoding thread lists.** Status scripts
   that enumerate a fixed set of ids go stale the moment a thread is added, and the new thread
   looks inactive forever. Derive the list from data, never from a literal.
+- **A rising message count is not proof of a turn.** Your own outbound message is stored as
+  `role='assistant'` in the target session, so the count rises without any agent work. Confirm
+  with a `gateway.log` inbound entry carrying your text — see Step 6.
+- **A skill binding that names an ambiguous or nonexistent skill fails silently.** When the bank
+  is both registered as an `external_dirs` entry and mirrored into the agent skills dir, every
+  bare name resolves to two candidates and the loader refuses — the persona just quietly loses
+  that skill. Check each bound name resolves before blaming the model. Procedure:
+  skill `skill-bank-mirror-integrity`.
+- **Probe models with an absolute path to the venv entry point.** A wrapper earlier in PATH (or
+  in a background process's PATH) can be broken — e.g. pointing at a Python without `yaml` — and
+  every probe returns a traceback that a naive "did it print OK?" check reads as success.
+  Validate the body: reject `Traceback` / `ModuleNotFound`, require a minimum length, and require
+  the responses to actually differ from each other.
 
 ## Support files
 - `scripts/install-thread.py` — backup + mutate + validate + rollback installer for one thread.

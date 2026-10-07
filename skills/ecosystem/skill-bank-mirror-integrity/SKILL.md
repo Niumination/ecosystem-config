@@ -85,6 +85,40 @@ they touch config:
 3. Collapse the mirror: stop syncing into the agent skills dir and load from the
    bank directly.
 
+## Rule 5 — count the blast radius before proposing a fix
+
+A name collision is not one broken skill; it is every binding that names one. Before
+recommending a remedy, diff the consumer side and report the number:
+
+- Walk every consumer that references skills by bare name (thread/channel skill bindings,
+  agent configs, persona prompts) and classify each entry as **ambiguous**, **missing**
+  (name never existed), or **ok**.
+- Two failure modes hide behind one symptom: a name present in both trees (ambiguous) and a
+  name present in neither (renamed or never created). Report them separately — the fix
+differs.
+- A binding to a nonexistent name fails silently and looks identical to a binding the model
+  simply chose not to load. Verify each name resolves before assuming a persona problem.
+
+State the count as `N broken of M total`, per consumer. "236 duplicates" is not a finding a
+owner can act on; "12 of 17 bindings across 6 threads" is.
+
+## Rule 6 — sync-to-agents.sh mirrors INTO the loader's own search path
+
+The collision in Rule 4 is not an accident of one machine: the standard sync step copies the
+bank into the agent skills dir, while the bank is *also* registered via `skills.external_dirs`.
+Both trees then carry the same relative paths, so the collision reproduces on every machine
+that runs both steps.
+
+When auditing a mirrored bank, check the config as well as the filesystem:
+
+- `skills.external_dirs` — is the bank registered?
+- the agent skills dir — is the bank also mirrored there?
+- If both, the loader is guaranteed to see duplicates.
+
+Confirm the copies are truly identical (hash both sides) before proposing to drop one —
+identical hashes justify collapsing the mirror; divergent copies mean one side holds edits
+that a collapse would destroy.
+
 ## Reporting shape for a bank-integrity finding
 
 Give exact counts on both sides (discovered, manifest, missing keys, extra

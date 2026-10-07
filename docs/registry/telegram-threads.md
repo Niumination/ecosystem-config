@@ -61,6 +61,54 @@ Token dari `~/.hermes/.env`. User baca hasil langsung dari thread atau forward k
 | **`12595`** | **Cron & Otomasi** | `inclusionai/ling-3.0-flash-fin:free` | **nous** | — | Thread khusus output cronjob. Dibuat 5 Okt 2026 untuk memisahkan cron output dari flex-thread 7402. Renamed + icon. |
 | `8853` | **ASN** | `sensenova-6.8-flash-lite` | **huancheng** | `skp-e-kinerja`, `document-to-action-items`, `meeting-action-items`, `weekly-review-planning` | administrasi dinas, SKP/eKinerja, agenda rapat/tenggat. **Tidak di-rename** (sudah sesuai). |
 | `12707` | **Edu Content** | `inclusionai/ling-3.0-flash-fin:free` | **nous** | `document-content-pipeline`, `markitdown`, `remotion-video`, `ghost`, `humanizer` | Konten edukasi: PDF buku → web book interaktif bernarasi (adaptasi pipeline Papermorph). Dibuat 6 Okt 2026. Progress: 4/4 bab selesai (ch01-04, 1.5 MB site), deploy CF Pages pending. |
+| `13902` | **Orkestrator** | `inclusionai/ling-3.0-flash-sante:free` | **nous** | `subagent-driven-development`, `delegated-output-verification`, `kanban-ecosystem-management`, `telegram-router-orchestration` | Koordinator ekosistem: pecah permintaan → pilih pelaksana → verifikasi hasil → lapor. Dibuat 7 Okt 2026. Prompt 2.403 char. **Catatan:** 4 skill binding-nya ambigu (lihat bagian Ambiguity di bawah). |
+
+## Thread 13902 — Orkestrator
+
+Dibuat 7 Okt 2026 atas permintaan pemilik untuk mengoordinasikan agent ekosistem.
+
+- **Fokus:** memecah permintaan jadi penugasan, memilih pelaksana (subagent/thread), memverifikasi hasil (klaim pelaksana = self-report, bukan fakta), melaporkan dengan bukti. **Tidak** mengerjakan pekerjaan teknis sendiri.
+- **Model:** `inclusionai/ling-3.0-flash-sante:free` (nous) — dipilih karena sudah terbukti produksi di thread 802. Probe 4/4 sukses dengan konten Bahasa Indonesia, isi respons berbeda-beda (449/1528/532/1902 byte), rata-rata 41-67 dtk/request.
+- **Prompt:** 2.403 char, mengikuti pola rumah (persona + pelaksana tersedia + ATURAN VERIFIKASI + delegasi gagal diam-diam + disiplin model + ATURAN DOKUMEN + KREDENSIAL).
+- **Verifikasi:** config parse ✅ · routing row ada ✅ · model jawab lewat gateway ✅ · persona aktif di thread ✅ (thread menjawab dengan mode operasi: turn-based, approval gate, bukti, delegasi).
+- **Pemasangan:** `hermes config set` untuk model+provider (surgical, 2 baris), Python yaml round-trip untuk prompt+bindings (karena `channel_skill_bindings` = JSON string). Backup: `~/.hermes/config-backups/config.yaml.bak-orchestrator-20261008-013609`.
+
+## ⚠️ Ambiguity: 236 skill duplikat
+
+**Ditemukan 7 Okt 2026.** `skills.external_dirs` menunjuk `~/Desktop/Niumination/skills` (bank), tapi isi bank **juga** disalin ke `~/.hermes/skills`. Kedua salinan berada di **path relatif yang sama** → loader melihat 2 kandidat untuk setiap nama → menolak menebak.
+
+```
+bank skill    : 238
+~/.hermes     : 290 (238 bank + 54 built-in, minus 2)
+nama sama     : 236 (md5 IDENTIK semua)
+AMBIGU total  : 236 dari 292
+```
+
+**Dampak ke skill binding thread — 12 dari 17 rusak:**
+
+| Thread | Skill rusak |
+|---|---|
+| 1172 | `ghost`, `remotion-video` |
+| 12707 | `document-content-pipeline`, `markitdown`, `remotion-video`, `ghost` |
+| 13902 | `subagent-driven-development`, `delegated-output-verification`, `kanban-ecosystem-management`, `telegram-router-orchestration` |
+| 803 | `requesting-code-review` (+ `ponytail` tidak ada — nama aslinya `ponytail-core`) |
+| 804 | `codebase-audit` tidak ada |
+| 8853 | `skp-e-kinerja` |
+
+**Hint di error tidak bisa dipakai.** Pesan menyarankan "pass the full relative path" — tapi kedua salinan **sudah** berbagi path relatif yang sama, dan absolute path ditolak. Ini terdokumentasi di skill `skill-bank-mirror-integrity` (Rule 4) dengan 3 remedi, semua butuh approval pemilik karena menyentuh config.
+
+**Konsekuensi tambahan:** `skill_manage` menolak patch skill yang ada dengan `read_before_write_required`, karena guard menuntut `skill_view` yang tidak bisa berhasil. Membuat skill baru tetap bisa.
+
+## ⚠️ Dispatch lintas-thread TIDAK memicu turn
+
+**Diverifikasi 7 Okt 2026.** `hermes send --to "telegram:<chat>:<thread>"` hanya menulis pesan **outbound** — gateway tidak memprosesnya sebagai inbound, jadi tidak ada turn yang berjalan di thread target.
+
+Bukti: pesan bertambah 12→13, tapi yang tercatat adalah pesan kita sendiri dengan role `assistant`; `gateway.log` tidak mencatat inbound; tidak ada respons agent.
+
+Ini konsisten dengan catatan registry: *"Bot API tidak bisa baca message bot sendiri di forum topic (terverifikasi: getUpdates 0, webhook kosong)."*
+
+**Artinya untuk orkestrasi:** mengirim tugas ke thread lain **tidak** membuat thread itu bekerja. Yang benar-benar mengeksekusi: `delegate_task` (subagent, sinkron dalam sesi), `cronjob` (terjadwal), atau interaksi manual pemilik di thread target. Rancangan Orkestrator harus memakai `delegate_task` untuk pekerjaan yang harus benar-benar jalan.
+
 
 ## Thread 8853 — ASN / Admin Dinas
 
