@@ -233,8 +233,9 @@ Desktop/Niumination/
 | niutui | Stale 36d | Low priority |
 | ~~zen~~ | **Archived** | → inactive-2026-09 |
 | aistudio-google | Stale | Game files only |
-| arena.ai | Stale | Eksperimen |
+| arena.ai | Active | Eksperimen — AI HackFest Batch 3 (11-15 Sep 2026), MATA Watchdog Pi Network. Repo `Niumination/mata-aihackfest-2026`. PR #5 PemdiAcehTengah merged 18 Sep 2026. |
 | x-downloader-backup | Stale 46d | Backup of x-downloader |
+| remotion-studio | Stale | Video rendering with Remotion |
 
 ### 📦 archive/projects/ — 2 Archived
 

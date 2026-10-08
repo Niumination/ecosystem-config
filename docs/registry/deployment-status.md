@@ -1,9 +1,11 @@
 ## Custom Domains (idwebhost.com)
 
-| Domain | Status | Catatan |
-|--------|--------|---------|
-| `niumination.web.id` | ✅ **LIVE** (Verified Vercel, 21 Sep 2026) — DNS Vercel (`ns1/ns2.vercel-dns.com`) — zona dikelola Vercel | Niu-OSS-Dashboard, Vercel ready |
-| `mata.niumination.web.id` | ✅ Existing (Cloudflare) |
+| Domain | Status | Last Verified | Catatan |
+|--------|--------|---------------|---------|
+| `niumination.web.id` | ✅ **LIVE** — ⚠️ **SSL exp 19 Des 2026 (~72 hari)** · ⚠️ **NS mismatch**: resolver publik → Vercel, dashboard idwebhost → NS idwebhost | 8 Okt 2026 | Niu-OSS-Dashboard, Vercel ready. DNS Vercel (`ns1/ns2.vercel-dns.com`) — zona dikelola Vercel. Perlu sinkronisasi NS di dashboard idwebhost |
+| `mata.niumination.web.id` | ✅ Existing (Cloudflare) | 21 Sep 2026 | |
+| `abstract.biz.id` | 🔴 **DNS REFUSED** — semua nameserver mati | 8 Okt 2026 | Tidak bisa diresolve. Perlu perbaikan NS/registrar sebelum bisa dipakai |
+| `kune-ya.com` | 🔴 **DNS NXDOMAIN** | 8 Okt 2026 | Domain tidak terdaftar/expired. Cek registrar |
 
 ---
 
@@ -31,28 +33,27 @@
 
 ## Deployment Status
 
-### 🟢 Vercel — 3 Live, 7 Paused, 3 Never Deployed
+### 🟢 Vercel — 3 Live, 8 Paused, 2 Never Deployed
 
-> **Verifikasi 26 Sep 2026** via `vercel project ls` (CLI 59.3.0, scope `archk4lis-projects`, 13 proyek) + probe HTTP ke tiap hostname. Status **PAUSED** dikonfirmasi dari body respons `DEPLOYMENT_PAUSED`, bukan dari kode 503 saja.
+> **Verifikasi 8 Okt 2026** via `vercel project ls` (CLI 59.3.0, scope `archk4lis-projects`, 13 proyek) + probe HTTP ke tiap hostname. Status **PAUSED** dikonfirmasi dari body respons `DEPLOYMENT_PAUSED`, bukan dari kode 503 saja.
 > ⚠️ Seksi ini tadinya mengklaim "5 Live" dengan `kms-spbe` + `virtual-assistance` HTTP 200 — **keduanya salah**: `kms-spbe` tidak ada di akun Vercel (DNS mati, HTTP 000), dan `virtual-assistance` hostname sebenarnya `virtual-assistance-pi` yang ternyata **PAUSED**.
+> ⚠️ **8 Okt 2026:** `kms-spbe` dan `niu-cyber-search-engine` **tidak lagi muncul** di `vercel project ls` (13 proyek, sebelumnya 15 dengan keduanya). Keduanya tidak bisa diverifikasi — dihapus dari tabel di bawah, bukan dianggap live.
 
-| Proyek | Hostname | Status | Catatan |
-|--------|----------|--------|---------|
-| `niu-oss` | `niumination.web.id` + `www` | ✅ **200 LIVE** | Niu-OSS-Dashboard — HTTP 200 terverifikasi ulang 2 Okt 2026 · domain Verified + www configured-correctly · `origin/main` `4e8a7cf` (2 Okt 2026). ~~216 halaman SSG / HEAD `6891b7e`~~ — angka itu dari verifikasi 21 Sep 2026, **tidak diverifikasi ulang** (registry 216, AGENTS.md proyek 214) |
-| `pemdi-aceh-tengah` | `pemdi-aceh-tengah.vercel.app` | ✅ **308 → 200** | PemdiAcehTengah — 52 OPD SSG, 67 pages, CMS admin aktif (Neon pemdi-cms, 3 env Sensitive) · Patch 8–22 · 59 tes · HEAD `ec57d1a` (27 Sep). **✅ Selesai — pengembangan lanjutan hanya atas instruksi pemilik**. 308 = redirect normal ke `/` |
-| `sapa-ai` | `sapa-smart-ai.vercel.app` | ✅ **200 LIVE** | SAPA Smart AI — redirect ke `/dashboard`. **Produksi tetap 0.1.0 (`main` `ff00eb8`)** — terverifikasi **1 Okt 2026**, `sapa: active` 2.081 record, AI `deepseek-v4.1-flash` (OpenCode Go) **ON** + deterministik ON, 2 kueri nyata HTTP 200 (11,8–12,1 dtk). Cabang `dev` **0.2.0-dev** (`a3f2e9b`, 165 komit, tag `v0.2.0-dev` → `052f2f0` ujung patch arena `0054`–`0067`) — **belum dipromosikan ke produksi, `main` sengaja tidak disentuh** (keputusan pemilik). Backlog aktif 7 butir → `services/sapa-ai/docs/usulan-ai-tingkat-lanjut/37-BACKLOG-TAHAP-BERIKUTNYA.md`. Repo **PUBLIK** (`visibility: PUBLIC`) — jangan masukkan data tak boleh dipublikasikan |
-| `tedeo-web` | `tedeo-web.vercel.app` | ⏸️ **PAUSED** (503) | **Body: `DEPLOYMENT_PAUSED`**. Kredensial seed lama (`admin123`) ada di repo publik `ecosystem-config` — **aman selama paused** (tidak ada login yang bisa dieksploitasi dari luar). Tidak dihapus dari git history, lihat catatan di bawah |
-| `kune-ya-com` | `kune-ya-com.vercel.app` | ⏸️ **PAUSED** (503) | Kune-Ya AI Chat RAG — `DEPLOYMENT_PAUSED` |
-| `cc-acehtengah` | `cc-acehtengah.vercel.app` | ⏸️ **PAUSED** (503) | Sesuai hiatus 21 Sep 2026 — produksi di-pause pemilik |
-| `niu-vermilion` | `niu-vermilion-archk4lis-projects.vercel.app` | ⏸️ **PAUSED** (503) | Second Brain — `DEPLOYMENT_PAUSED` |
-| `niu-dash-fullstack` | `niu-dash-fullstack-archk4lis-projects.vercel.app` | ⏸️ **PAUSED** (503) | `DEPLOYMENT_PAUSED` |
-| `virtual-assistance` | `virtual-assistance-pi.vercel.app` | ⏸️ **PAUSED** (503) | ⚠️ Registry lama salah tulis 200 — hostname tanpa `-pi` (`virtual-assistance.vercel.app`) tidak pernah ada |
-| `niu-private` | `niu-private.vercel.app` | ⏸️ **PAUSED** (503) | `DEPLOYMENT_PAUSED` |
-| `landing` | `landing-beige-theta.vercel.app` | ⏸️ **PAUSED** (503) | Landing page — ⚠️ **domain kustom tetap 200** karena `niumination.web.id` diarahkan ke `niu-oss`, bukan ke `landing` |
-| `rekapitulasi-pemdi` | — | ⚪ **Never deployed** | Tidak ada production URL. Node 22.x (proj lama) |
-| `niutui` | — | ⚪ **Never deployed** | Tidak ada production URL |
-| `kms-spbe` | — | ❌ **Tidak ada di akun** | Proyek tidak terdaftar di `archk4lis-projects`. DNS `kms-spbe.vercel.app` mati (HTTP 000). **Dihapus dari daftar ini** — tidak bisa dipertahankan sebagai "Live" |
-| `niu-cyber-search-engine` | — | ❌ **Tidak ada di akun** | Sama — tidak ada di akun, DNS mati. Tetap ❌ 404 (belum dideploy) |
+| Proyek | Hostname | Status | Last Verified | Catatan |
+|--------|----------|--------|---------------|---------|
+| `niu-oss` | `niumination.web.id` + `www` | ✅ **200 LIVE** | 8 Okt 2026 | Niu-OSS-Dashboard — HTTP 200 terverifikasi ulang 2 Okt 2026 · domain Verified + www configured-correctly · `origin/main` `4e8a7cf` (2 Okt 2026). ⚠️ **SSL exp 19 Des 2026 (~72 hari)** · ⚠️ **NS mismatch** (resolver publik → Vercel, dashboard idwebhost → NS idwebhost). ~~216 halaman SSG / HEAD `6891b7e`~~ — angka itu dari verifikasi 21 Sep 2026, **tidak diverifikasi ulang** (registry 216, AGENTS.md proyek 214) |
+| `pemdi-aceh-tengah` | `pemdi-aceh-tengah.vercel.app` | ✅ **308 → 200** | 8 Okt 2026 | PemdiAcehTengah — 52 OPD SSG, 67 pages, CMS admin aktif (Neon pemdi-cms, 3 env Sensitive) · Patch 8–22 · 59 tes · HEAD `ec57d1a` (27 Sep). **✅ Selesai — pengembangan lanjutan hanya atas instruksi pemilik**. 308 = redirect normal ke `/` |
+| `sapa-ai` | `sapa-smart-ai.vercel.app` | ✅ **200 LIVE** | 8 Okt 2026 | SAPA Smart AI — redirect ke `/dashboard`. **Produksi tetap 0.1.0 (`main` `ff00eb8`)** — terverifikasi **1 Okt 2026**, `sapa: active` 2.081 record, AI `deepseek-v4.1-flash` (OpenCode Go) **ON** + deterministik ON, 2 kueri nyata HTTP 200 (11,8–12,1 dtk). Cabang `dev` **0.2.0-dev** (`a3f2e9b`, 165 komit, tag `v0.2.0-dev` → `052f2f0` ujung patch arena `0054`–`0067`) — **belum dipromosikan ke produksi, `main` sengaja tidak disentuh** (keputusan pemilik). Backlog aktif 7 butir → `services/sapa-ai/docs/usulan-ai-tingkat-lanjut/37-BACKLOG-TAHAP-BERIKUTNYA.md`. Repo **PUBLIK** (`visibility: PUBLIC`) — jangan masukkan data tak boleh dipublikasikan |
+| `tedeo-web` | `tedeo-web.vercel.app` | ⏸️ **PAUSED** (503) | 8 Okt 2026 | **Body: `DEPLOYMENT_PAUSED`**. Kredensial seed lama (`admin123`) ada di repo publik `ecosystem-config` — **aman selama paused** (tidak ada login yang bisa dieksploitasi dari luar). Tidak dihapus dari git history, lihat catatan di bawah |
+| `kune-ya-com` | `kune-ya-com.vercel.app` | ⏸️ **PAUSED** (503) | 8 Okt 2026 | Kune-Ya AI Chat RAG — `DEPLOYMENT_PAUSED`. ⚠️ Domain kustom `kune-ya.com` **DNS NXDOMAIN** (8 Okt 2026) |
+| `cc-acehtengah` | `cc-acehtengah.vercel.app` | ⏸️ **PAUSED** (503) | 8 Okt 2026 | Sesuai hiatus 21 Sep 2026 — produksi di-pause pemilik |
+| `niu-vermilion` | `niu-vermilion-archk4lis-projects.vercel.app` | ⏸️ **PAUSED** (503) | 8 Okt 2026 | Second Brain — `DEPLOYMENT_PAUSED` |
+| `niu-dash-fullstack` | `niu-dash-fullstack-archk4lis-projects.vercel.app` | ⏸️ **PAUSED** (503) | 8 Okt 2026 | `DEPLOYMENT_PAUSED` |
+| `virtual-assistance` | `virtual-assistance-pi.vercel.app` | ⏸️ **PAUSED** (503) | 8 Okt 2026 | ⚠️ Registry lama salah tulis 200 — hostname tanpa `-pi` (`virtual-assistance.vercel.app`) tidak pernah ada |
+| `niu-private` | `niu-private.vercel.app` | ⏸️ **PAUSED** (503) | 8 Okt 2026 | `DEPLOYMENT_PAUSED` |
+| `landing` | `landing-beige-theta.vercel.app` | ⏸️ **PAUSED** (503) | 8 Okt 2026 | Landing page — ⚠️ **domain kustom tetap 200** karena `niumination.web.id` diarahkan ke `niu-oss`, bukan ke `landing` |
+| `rekapitulasi-pemdi` | — | ⚪ **Never deployed** | 8 Okt 2026 | Tidak ada production URL. Node 22.x (proj lama) |
+| `niutui` | — | ⚪ **Never deployed** | 8 Okt 2026 | Tidak ada production URL |
 
 #### 📌 Catatan keputusan — `docs/references/akun-login.md` (26 Sep 2026)
 
@@ -65,21 +66,35 @@
 
 **Sisa risiko (diterima pemilik):** kredensial tetap terbaca di arsip git publik. Selama deployment paused, risiko praktisnya rendah. Kalau proyek di-unpause, **harus** rotasi dulu.
 
-### 🟢 GitHub Pages (10 Live)
+### 🟢 GitHub Pages (10 Live, 1 Broken)
 
-| URL | Status |
-|-----|--------|
-| `niumination.github.io/Niu-LKH` | ✅ v3.2.0 (Merged PR #1 + Fix toLocalISODate) |
-| `niumination.github.io/niu-dash` | ✅ v2.16.8 |
-| `niumination.github.io/niu-private` | ✅ |
-| `niumination.github.io/Niu-Startpage` | ✅ |
-| `niumination.github.io/DiskominfoAT` | ✅ |
-| `niumination.github.io/Diskominfo-Web` | ✅ |
-| `niumination.github.io/SPBE-DevOps-Academy` | ✅ |
-| `niumination.github.io/Maze-3D-Game---Web-Based` | ✅ |
-| `niumination.github.io/AuditTI-AT` | ✅ |
-| `niumination.github.io/zaryu.startpage` | ✅ (fork) |
-| `niumination.github.io/NiuHomePage` | ✅ (fork) |
+> **Verifikasi 8 Okt 2026.**
+
+| URL | Status | Last Verified | Catatan |
+|-----|--------|---------------|---------|
+| `niumination.github.io/Niu-LKH` | ✅ v3.2.0 (Merged PR #1 + Fix toLocalISODate) | 26 Sep 2026 | |
+| `niumination.github.io/niu-dash` | 🔴 **404 — Pages tidak published** | 8 Okt 2026 | Repo ada tapi GitHub Pages belum diaktifkan/di-publish. Perlu cek Settings → Pages di repo |
+| `niumination.github.io/niu-private` | ✅ | 26 Sep 2026 | |
+| `niumination.github.io/Niu-Startpage` | ✅ | 26 Sep 2026 | |
+| `niumination.github.io/DiskominfoAT` | ✅ | 26 Sep 2026 | |
+| `niumination.github.io/Diskominfo-Web` | ✅ | 26 Sep 2026 | |
+| `niumination.github.io/SPBE-DevOps-Academy` | ✅ | 26 Sep 2026 | |
+| `niumination.github.io/Maze-3D-Game---Web-Based` | ✅ | 26 Sep 2026 | |
+| `niumination.github.io/AuditTI-AT` | ✅ | 26 Sep 2026 | |
+| `niumination.github.io/zaryu.startpage` | ✅ (fork) | 26 Sep 2026 | |
+| `niumination.github.io/NiuHomePage` | ✅ (fork) | 26 Sep 2026 | |
+
+---
+
+## 🖥️ Local Services
+
+> **Verifikasi 8 Okt 2026.**
+
+| Service | Port | Status | Last Verified | Catatan |
+|---------|------|--------|---------------|---------|
+| Mission Control apex-ui | :3000 | 🔴 **Tidak aktif** | 8 Okt 2026 | Tidak berjalan. Perlu di-start manual |
+| 9router | :20128 | ✅ Running | 8 Okt 2026 | Model router lokal |
+| Camofox | :9377 | ✅ Running | 8 Okt 2026 | Stealth browser |
 
 ---
 
@@ -374,5 +389,5 @@ Konsekuensi untuk ekosistem:
 ---
 
 > **Dibuat:** 11 Juni 2026
-> **Diperbarui:** 30 Jul 2026 — v4.8 — **Comment Conventions** standard (ponytail:, NOTICE:, REVIEW). Ponytail-debt now scans both `ponytail:` and `NOTICE:` markers. Ponytail-review gains `fallback:` tag for undocumented precedence chains. UACC AGENTS.md gets improvement roadmap from AIRI computer-use-mcp insights.
+> **Diperbarui:** 8 Okt 2026 — v4.9 — Update deployment status: DNS issues (abstract.biz.id REFUSED, kune-ya.com NXDOMAIN), SSL expiry warning (niumination.web.id ~72 hari), Vercel 3 live/8 paused/2 never-deployed, niu-dash GH Pages 404, Mission Control :3000 down. Kolom "Last Verified" ditambahkan ke semua tabel.
 > **Oleh:** Niumination (Afrizal Munthe) — Aceh Tengah
