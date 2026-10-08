@@ -60,7 +60,60 @@
   - Detecting new model availability
 - Update this reference by re-running the checker; it overwrites the report files.
 
-## Mapping Aktif — 19 Sep 2026 (semua ke provider `nous` bawaan Hermes)
+## Mapping Aktif — 8 Okt 2026 (combo 9router dari opencode-free)
+
+Seluruh mapping dipindahkan ke **combo 9router** yang anggotanya model `oc/*`
+(opencode-free, diakses lewat 9router). Combo dibuat di dashboard 9router
+(tersimpan di tabel `combos` sqlite `~/.9router/db/data.sqlite`).
+
+**Combo yang dibuat 8 Okt 2026 (semua lolos probe HTTP 200):**
+
+| Combo | Anggota | Tujuan |
+|---|---|---|
+| `combo-gateway` | `oc/big-pickle` · `oc/mimo-v2.6-flash-free` · `oc/ling-3.1-flash-free` | slot gateway utama (thread Orkestrator 13902) |
+| `combo-delegasi` | `oc/mimo-v2.6-flash-free` · `oc/longcat-2.5-preview-free` · `oc/ling-3.1-flash-free` | delegasi subagent, x_search, thread pelaksana |
+| `combo-a2a` | `oc/ling-3.1-flash-free` · `oc/space-bunny-free` | cron A2A Cloud Health Check |
+
+**Catatan limit harian:** model `oc/*` (opencode-free) punya limit harian per
+akun. Combo multi-model diatur agar saat satu anggota kena limit, combo
+beralih ke anggota berikutnya. Pantau `usageDaily` di sqlite 9router.
+
+**Mapping aktif** — semua diuji HTTP 200 pada 8 Okt 2026:
+
+| Lokasi config | Model | Provider |
+|---|---|---|
+| `auxiliary.delegation` | `combo-delegasi` | 9router |
+| `x_search` | `combo-delegasi` | 9router |
+| `channel_overrides.1` | `gemini/gemini-3.5-flash-lite` | 9router |
+| `channel_overrides.802` | `combo-delegasi` | 9router |
+| `channel_overrides.803` | `kr/deepseek-3.2` | 9router |
+| `channel_overrides.804` | `combo-delegasi` | 9router |
+| `channel_overrides.1172` | `combo-delegasi` | 9router |
+| `channel_overrides.7402` | `combo-delegasi` | 9router |
+| `channel_overrides.8853` | `sensenova-6.8-flash-lite` | huancheng |
+| `channel_overrides.12595` | `combo-delegasi` | 9router |
+| `channel_overrides.12707` | `combo-delegasi` | 9router |
+| `channel_overrides.13902` | `combo-gateway` | 9router |
+| cron Daily Tab Stash | `combo-delegasi` | 9router |
+| cron Daily Brain | `combo-delegasi` | 9router |
+| cron A2A Cloud Health | `combo-a2a` | 9router |
+
+**Yang diganti 8 Okt 2026 (model mati/limit):**
+
+- `nvidia/nemotron-3-ultra-550b-a55b:free` (openrouter) di `auxiliary.delegation` → `combo-delegasi`
+- `upstage/solar-pro4:free` (nous) di `x_search` → `combo-delegasi`
+- `inclusionai/ling-3.0-flash-sante:free` (nous) di thread 802 → `combo-delegasi`
+- `nvidia/nemotron-3-super-120b-a12b:free` (openrouter) di thread 804 → `combo-delegasi`
+- `inclusionai/ling-3.0-flash-fin:free` (nous) di thread 1172/7402/12595/12707 → `combo-delegasi`
+- `inclusionai/ling-3.0-flash-sante:free` (nous) di thread 13902 → `combo-gateway`
+- `opencode-combo` di 2 cron job (Tab Stash, Daily Brain) → `combo-delegasi`
+
+**Yang masih pakai model lama (tidak diganti — masih jalan):**
+
+- `channel_overrides.8853` = `sensenova-6.8-flash-lite` (huancheng) — sengaja dipertahankan
+- `channel_overrides.803` = `kr/deepseek-3.2` (9router) — masih aktif
+
+## Riwayat Mapping — 19 Sep 2026 (semua ke provider `nous` bawaan Hermes)
 
 Seluruh mapping dipindahkan dari `9router`/`explabs` ke **provider `nous`** (bawaan Hermes
 Agent; autentikasi OAuth device-code di `~/.hermes/auth.json`, bukan API key).
