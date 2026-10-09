@@ -61,8 +61,38 @@ echo "== 1. hermes backup"
 # yaml/openai) lebih dulu di PATH saat jalan via shell non-interaktif, jadi
 # `hermes backup` gagal "No module named 'yaml''. Pakai venv sumber secara
 # eksplisit (python3.11, yaml + openai terpasang).
-HERMES_BIN="$HOME/src/hermes-agent/.venv/bin/hermes"
-[[ -x "$HERMES_BIN" ]] || { echo "GAGAL: venv hermes tidak ada: $HERMES_BIN" >&2; exit 1; }
+#
+# DIPERBAIKI 9 Okt 2026: premis di atas sudah tidak benar. Launcher kanonik
+# `.hermes/bin/hermes` (jalur publikasi PM) memakai store Python + closure
+# dependency yang di-lease saat runtime — yaml/openai/litellm semua ada di
+# sana. Path `.venv/bin/hermes` (venv pra-PM) sudah tidak ada lagi di mesin
+# ini, dan memakainya membuat build gagal total. Sekarang resolusinya
+# berjenjang + di-smoke-test, supaya "file ada tapi dependency hilang" tidak
+# bisa lolos diam-diam lagi.
+resolve_hermes_bin() {
+  local c
+  for c in \
+    "$HOME/src/hermes-agent/.hermes/bin/hermes" \
+    "$HOME/src/hermes-agent/.venv/bin/hermes" \
+    "$HOME/src/hermes-agent/venv/bin/hermes"
+  do
+    [[ -x "$c" ]] && { printf '%s\n' "$c"; return 0; }
+  done
+  if c=$(command -v hermes 2>/dev/null); then printf '%s\n' "$c"; return 0; fi
+  return 1
+}
+
+HERMES_BIN=$(resolve_hermes_bin) || {
+  echo "GAGAL: launcher hermes tidak ditemukan (cari: .hermes/bin, .venv/bin, venv/bin, PATH)" >&2
+  exit 1
+}
+# Smoke test: file ada != bisa jalan. `hermes --version` mengimpor hermes_cli,
+# jadi kegagalan "No module named 'yaml'" kelas lama tertangkap di sini.
+if ! "$HERMES_BIN" --version >/dev/null 2>&1; then
+  echo "GAGAL: $HERMES_BIN ada tapi tidak bisa dijalankan (dependency hilang?)" >&2
+  exit 1
+fi
+echo "   launcher: $HERMES_BIN"
 "$HERMES_BIN" backup -o "$TMP/hermes-backup.zip" >"$TMP/backup.log" 2>&1 \
   || { echo "GAGAL: hermes backup gagal" >&2; tail -15 "$TMP/backup.log" >&2; exit 1; }
 echo "   mentah: $(du -h "$TMP/hermes-backup.zip" | cut -f1)"
