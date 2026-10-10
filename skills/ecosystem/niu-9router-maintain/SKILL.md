@@ -206,6 +206,21 @@ Lihat `references/launchd-script-hardening.md` untuk pola lengkap + cara membaca
 - `big-pickle`/`hy3-free` **tidak ada di 9router** — lewat opencode-zen langsung (cron model).
 - 9router pakai `NINE_ROUTER_API_KEY` (env passthrough di config Hermes).
 - DB sqlite: `~/.9router/db/data.sqlite` (providerConnections, usageHistory).
+- **Katalog 9router FLAPPING.** Diukur 11 Okt 2026: total bergerak `168 ↔ 126` dalam hitungan detik —
+  satu provider (pixz, 83 model) keluar-masuk agregat saat upstream-nya error lalu pulih, padahal
+  endpoint provider itu sendiri stabil (diuji langsung: 83 konsisten). **Jangan ambil keputusan dari satu
+  sampel katalog.** Untuk skrip otomatis, baca 2-3x dengan jeda dan hanya bertindak kalau dua bacaan
+  berturut-turut sama; kalau masih bergerak, lewati run itu. Tanpa ini, job periodik akan menulis ulang
+  config dan mengirim notifikasi tiap kali katalog bergoyang.
+- **Jangan verifikasi dengan fetch ulang katalog setelah menulis.** Pada endpoint yang flapping, bacaan
+  kedua bisa berbeda dari yang dipakai menulis dan menggagalkan job yang sebenarnya sehat
+  (`config holds 126, expected 168`). Verifikasi byte di disk terhadap snapshot yang **sama**.
+- **`--no-agent` memakai interpreter Hermes, tanpa PyYAML.** Skrip cron di `~/.hermes/scripts/` yang
+  `import yaml` gagal dengan `ModuleNotFoundError` — bukan terlihat saat diuji manual dengan python3
+  sistem. Pakai stdlib saja (`re`, `json`, `urllib`).
+- **`models:` di config punya kerabat yang mirip:** ada dua `9router:` di `~/.hermes/config.yaml`
+  (`providers.9router` dan `model_catalog.9router`). Parser yang mencari kemunculan pertama bisa menulis
+  ke ruang yang salah — verifikasi parent key sebelum replace.
 - Probe SSE: model yang balas `data: {...}` bukan "parse error". Parser yang tidak menangani SSE akan
   melaporkan model hidup sebagai gagal — baca respons mentah sebelum memvonis model mati.
 - **`max_tokens` < 16 → 400 palsu.** Sebagian model menolak dengan
@@ -223,3 +238,4 @@ Lihat `references/launchd-script-hardening.md` untuk pola lengkap + cara membaca
   tetap memakai hasil cache (141 model, termasuk 50 `pixz/*` yang sudah dimatikan) meski `models:` hanya
   berisi 85. `models:` dipakai saat cache dingin/kosong. Karena itu, setelah mengubah katalog, **invalidate
   cache** — jangan hanya mengedit `models:`.
+- **Sinkronisasi models: → config bisa diotomatisasi** dengan `scripts/sync-models-to-config.py` (cron `--no-agent`). Script ini rewrite `models:` dengan parser string murni (tanpa PyYAML), invalidate cache katalog, dan verifikasi ulang dari disk. Uji dulu pada salinan /tmp sebelum deploy — config asli jangan pernah menjadi target uji.
