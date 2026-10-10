@@ -688,6 +688,55 @@ akan aktif kembali. Jalankan ulang prosedur ini dari langkah 1 — jangan asumsi
 
 ---
 
+## Fase 4 — Cron Otomatis (disetujui pemilik)
+
+Pemilik menyetujui otomatisasi sinkronisasi. Dibuat:
+
+- **Script:** `scripts/sync-models-to-config.py` (di-copy ke `~/.hermes/scripts/`)
+- **Cron job:** `034116abd040` — "Sync 9router models to config", every 30m, `--no-agent`
+
+### Desain script
+
+Tiga keputusan penting:
+
+1. **Tanpa dependensi eksternal.** `--no-agent` memakai interpreter Hermes sendiri, yang
+   **tidak** punya PyYAML (`ModuleNotFoundError: No module named 'yaml'`). Implementasi
+   parser/regEX+string murni di stdlib (`re`, `json`, `urllib`), dengan validasi struktural:
+   parse `models:` list, replace berdasarkan indentasi aktual (bukan asumsi), verifikasi ulang
+   dengan re-read dari disk. Asumsi awal `key_indent + 4` untuk list items **salah** — YAML
+   mengizinkan sequence di kolom yang sama dengan key, dan itulah yang dipakai config ini.
+
+2. **Target parsing terbatas pada `providers.<section>`**. Di config ini ada dua `9router:` —
+   satu di `providers:` (target) dan satu di `model_catalog:` (yang **tidak** boleh disentuh).
+   Parser memverifikasi parent section sebelum replace, bukan sekadar cari kemunculan pertama.
+
+3. **Validasi pasca-tulis.** Setelah menulis, script membaca ulang file dan membandingkan
+   jumlah model di disk dengan katalog live. Kalau beda → `exit 1` (gagal keras, bukan diam).
+
+### Verifikasi sebelum deploy
+
+| Uji | Perintah | Hasil |
+|---|---|---|
+| Idempoten | config == katalog | `9router: unchanged (N models)` |
+| Replace benar | suntik 1 model palsu ke salinan /tmp | `N+1 -> M models` (dikoreksi), config asli **tidak** disentuh |
+| Isolasi ruang | `model_catalog.9router` | `models = None` (tidak tersentuh) |
+| Sibling utuh | `providers.huancheng.models` | tetap 14 |
+| Cron dry-run | `hermes cron run` | `Ran now: succeeded.` |
+
+### Output contract cron
+
+- Exit 0 + summary satu baris → dikirim ke `--deliver` (default `local`)
+- Exit 1 (error) → dikirim ke `--failure-deliver` (di-set `origin`)
+- `--no-agent`: LLM diskip, stdout script = payload
+
+### Catatan operasional
+
+Cron berjalan tiap 30 menit. Kalau katalog 9router sedang flapping (168→126→168 terukur),
+script akan menangkap akhirnya saat stabil. `models:` di config hanya diubah kalau berbeda dari
+katalog — kalau sama, tidak ada write (menghindari rewrite yang perlu).
+
+---
+
 ## Bukti
 
 Semua perintah di bawah dijalankan langsung pada 10–11 Okt 2026.
