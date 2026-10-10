@@ -1,14 +1,13 @@
 # Kelas Niumination — Fase 2 Ditunda (T-01/T-02)
 
-Tanggal: 10 Okt 2026
+Tanggal: 10 Okt 2026 · Status: **SELESAI (11 Okt 2026)** — lihat `kelas-fase2-supabase-live.md`
+
 Proyek: `sites/kelas/` · repo `github.com/Niumination/kelas` (private)
 
-## Keputusan
+## Status
 
-T-01 (Supabase project) dan T-02 (migrasi) **DITUNDA**. Jalur otomatis via Composio
-tidak bisa dipakai: connector `supabase` status `enabled=true, connected=false`
-(capture `manage_connections status`, 10 Okt 2026) — panggilan akan balik
-`CONNECTION_REQUIRED`. Otorisasi Composio rusak/lompat tidak selesai.
+T-01 dan T-02 **SELESAI** via Composio. Laporan lengkap ada di
+`kelas-fase2-supabase-live.md`. Dokumen ini hanya catatan historis penundaan.
 
 ## Implikasi
 
