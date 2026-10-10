@@ -2,7 +2,7 @@
 
 | # | Agent | Role | Provider/Model | Status |
 |:-:|-------|------|----------------|:------:|
-| 1 | **Hermes Agent** | Main orchestrator — single gateway, 9 Telegram threads, cron, A2A, cross-thread dispatch, health monitoring | Multi-model per-thread (9router, nous, openrouter, huancheng) | ✅ **Live** — macOS 26.7.1, launchd `ai.hermes.gateway`, python-3.11 venv (115 pkgs), gateway PID 1343 port 9900 (Tailscale 100.120.57.37), 9router 77 models, MCP 3 (filesystem, github, context7), plugins 52 enabled/6 disabled, cron 7 jobs ok |
+| 1 | **Hermes Agent** | Main orchestrator — single gateway, 10 Telegram threads, cron, A2A, cross-thread dispatch, health monitoring | Multi-model per-thread (9router, nous, openrouter, huancheng) | ✅ **Live** — macOS 26.7.1, launchd `ai.hermes.gateway` PID 91477, gateway port 9900 (Tailscale 100.120.57.37), 9router katalog berflapping 168↔126 (declared 168), huancheng declared 14 (**key 401 — lihat `model-mapping.md`**), MCP 3 (filesystem, github, context7), skill bank 238 skill/1176 file, **14 cron job aktif** |
 | 2 | **Claude Code CLI** | Side coding agent | Anthropic — `claude-sonnet-4` | ✅ **Live** — `claude -p "..."` |
 | 4 | **Codex CLI** | OpenAI coding agent | OpenAI — Codex CLI | ✅ **Live** — goals DB, logs |
 | 5 | **OpenCode CLI** | Standalone coding agent | OpenCode config — 146 skills | ✅ **Live** — ACP headless |
@@ -20,7 +20,7 @@
 | 4 | Monitoring — `ecosystem-health.py` cron tiap 2 jam | ✅ Done — commit `2bbb330` + `7bdf4e0` |
 | 5 | Future — multi-agent orchestration (optional, belum dibutuhkan) | 📌 Deferred |
 
-**Live components:** Hermes gateway, 9 Telegram threads, A2A Mac↔Cloud, mac-relay, 9router 77 model, skill bank 230 skills, 7 cron jobs.
+**Live components:** Hermes gateway (PID 91477), 10 Telegram threads (1 · 802 · 803 · 804 · 1172 · 7402 · 8853 · 12595 · 12707 · 13902), A2A Mac↔Cloud, mac-relay, 9router katalog berflapping 168↔126, skill bank 238 skill, 14 cron job aktif.
 
 **Archived:** Mission Control (off), `agents/orchestrator/`, `agents/characters/`, Observer AI (not installed), Munder Difflin, model selection drafts.
 

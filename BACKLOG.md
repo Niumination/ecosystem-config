@@ -1,6 +1,8 @@
 # 📋 BACKLOG — Niumination Ecosystem — MASTER DOCUMENTATION
 
-> **UPDATE: October 6, 2026** — Sync real filesystem + GitHub state. Major: orkestrasi Hermes 5 fase (Fase 1-4 done, Fase 5 deferred), 8 thread Telegram aktif + thread 12595 Cron & Otomasi, A2A Mac↔Cloud verified, mac-relay online, Skill Bank 231, 7 commit pushed (415026→2b11821). Mac macOS 26.7.1.
+> **UPDATE: October 11, 2026** — Sync real filesystem + GitHub state. Major: provider & katalog model (2 akar masalah `/model` + otomasi sync mati 6 hari + cron baru `034116abd040`), orkestrasi Hermes 5 fase (Fase 1-4 done, Fase 5 deferred), 10 thread Telegram aktif (1 · 802 · 803 · 804 · 1172 · 7402 · 8853 · 12595 · 12707 · 13902), A2A Mac↔Cloud verified, mac-relay online, Skill Bank 238 skill/1176 file, 14 cron job aktif. macOS 26.7.1.
+>
+> ⚠️ **Butuh tindakan pemilik:** key `huancheng` mati (401 `Invalid token`) → thread 8853 (ASN) tanpa model. Lihat seksi Provider & Katalog Model.
 
 ---
 
@@ -427,6 +429,90 @@ Rencana 5 fase orkestrasi, Fase 1-4 selesai, Fase 5 deferred.
 **Yang akan dibutuhkan kalau diaktifkan:** orchestrator (split task, assign, collect), beberapa worker agent dengan profile berbeda, kanal komunikasi (A2A atau shared state), state management + retry. Beban: resource naik, debugging lebih sulit.
 
 **Kapan direvisi lagi:** kalau ada use case concrete yang butuh paralel — pipeline konten multi-tahap, atau review paralel multi-role.
+
+---
+
+## 🔌 Provider & Katalog Model — 11 Okt 2026
+
+Diagnosis keluhan pemilik: "banyak model provider huancheng dan 9router tidak bisa dipakai saat
+switch dari Telegram dengan `/model`". Dua akar masalah berbeda, **keduanya bukan kerusakan model**.
+
+### Akar 1 — `/model` menampilkan daftar kosong (bug jalur gateway)
+
+Jalur chat gateway membaca katalog provider **cache-only**
+(`non_blocking_catalogs=True, probe_custom_providers=False`). Provider custom yang bukan endpoint
+aktif tidak di-probe live, jadi saat cache dingin hanya menyisakan `default_model`.
+
+| Kondisi | 9router | huancheng |
+|---|---|---|
+| Cache hangat (WARM) | 141 model | 14 model |
+| Cache dingin (COLD) | **0 model** | **1 model** |
+
+Dipicu commit upstream `4243abd633` (20 Sep 2026) yang masuk tree lokal pada merge 20–21 Sep.
+
+**Perbaikan:** deklarasikan `models:` (allowlist bentuk `list`) untuk `providers.9router` dan
+`providers.huancheng`. Dipilih di level config, bukan patch kode Hermes, supaya **aman terhadap
+upgrade**. Verifikasi WARM dan COLD kini sama-sama lengkap.
+
+**Temuan kunci:** `models:` adalah **fallback, bukan pin** — cache hangat menang. Jadi mengedit
+`models:` saja tidak membersihkan picker; cache `~/.hermes/provider_models_cache.json` (TTL 1 jam)
+harus di-invalidate juga. Ini kesalahan yang sempat terjadi dan sudah dikoreksi.
+
+### Akar 2 — Otomasi sync mati diam-diam 6 hari
+
+Job launchd `com.niumination.9router-sync` memakai `sha256sum`, yang di macOS ada di `/sbin` —
+**di luar PATH launchd**. Fallback `|| shasum` tidak pernah jalan karena exit code pipeline diambil
+dari `cut` (0), bukan `sha256sum` (127). Akibatnya `HASH` keluar kosong, sama dengan `PREV_HASH`
+kosong → skrip selalu memilih cabang "tidak ada perubahan" dan keluar tanpa pernah menulis hash.
+
+**Senyap sejak 5 Okt 2026** (perubahan terakhir tercatat `77 models hash` kosong).
+Perbaikan: `_hash_ids()` dengan `command -v` + guard hash kosong (`exit 1`) — gagal keras, bukan
+commit hash kosong.
+
+### Pembersihan katalog
+
+- **`pixz`** — key lama mati (401 di `/v1/models` dan `/chat/completions`, diuji langsung ke
+  `api-inference.pixz.dev`); provider dinonaktifkan, 50 model terbuang dari katalog 135 → 85.
+  **Kemudian pemilik mengganti key** (`pxr_live_rYH…gvNA` → `pxr_live…7TlP`), `/v1/models` kembali
+  200, audit ulang **70/83 model OK**. Katalog naik kembali ke 168.
+- **`muse`** — TIDAK diubah. Laporan awal saya keliru ("provider mati tapi 5 model masih muncul");
+  setelah dicek, `muse/*` sudah bersih dari katalog.
+- **`oc-combo-2`** — TIDAK diubah. Laporan awal saya keliru ("rusak"); error 400 itu artefak probe
+  `max_tokens=5`, model mensyaratkan ≥16. Dengan `max_tokens=64` modelnya **sehat**.
+
+### Temuan baru: `huancheng` key MATI (401) — butuh tindakan pemilik
+
+```
+$ curl -w "HTTP %{http_code}" https://api.hcnsec.cn/v1/models -H "Authorization: Bearer $HUANCHENG_API_KEY"
+{"error":{"message":"Invalid token",...}}  HTTP 401
+```
+
+Key `sk-qCB…SDID` (len 51) di `~/.hermes/.env` dan `vault/secrets.zsh` **identik** — tidak ada
+pengganti. **Dampak: thread 8853 (ASN) kehilangan model yang bisa menjawab.**
+Tindakan: ganti key, verifikasi `GET /v1/models` → 200. Detail di `docs/registry/model-mapping.md`.
+
+### Otomasi baru: cron sinkronisasi `034116abd040`
+
+- Script `scripts/sync-models-to-config.py` — sinkron `models:` 9router + invalidate cache picker
+- Jadwal `every 30m`, `--no-agent`, deliver `telegram:-1004204696417:12595,local`
+- **Guard anti-flapping:** katalog 9router terukur bergerak `168 ↔ 126` dalam hitungan detik
+  (pixz keluar-masuk agregat; pixz langsung stabil di 83 → flapping ada di agregasi 9router).
+  Script hanya bertindak kalau **dua bacaan berturut-turut sama**; katalog bergerak → diam.
+- Tanpa guard ini, job 30 menit akan mengirim notifikasi ke thread 12595 tiap kali katalog bergoyang.
+
+### Pelajaran yang sudah masuk skill
+
+`niu-9router-maintain` diperbarui dengan empat jebakan: flapping katalog (jangan putuskan dari satu
+sampel), jangan verifikasi dengan fetch ulang katalog (berlomba dengan endpoint yang flapping),
+`--no-agent` memakai interpreter Hermes **tanpa PyYAML**, dan `~/.hermes/config.yaml` punya **dua**
+`9router:` (`providers` dan `model_catalog`) sehingga parser wajib cek parent key.
+
+**Laporan lengkap:** `docs/reports/DIAGNOSIS-PROVIDER-HUANCHENG-9ROUTER-2026-10-10.md`
+**Registry:** `docs/registry/hermes-cron-routing.md` (job + aturan routing) ·
+`docs/registry/model-mapping.md` (status provider)
+
+**Sisa untuk pemilik:** (1) ganti key huancheng; (2) pertimbangkan mengarahkan thread 8853 ke
+provider lain selama key mati.
 
 ---
 

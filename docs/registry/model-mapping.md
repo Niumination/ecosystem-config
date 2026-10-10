@@ -2,7 +2,13 @@
 
 > Auto-generated from live 9router discovery + Hermes provider config.
 > Source of truth: `scripts/model-checker.py` + `~/.hermes/config.yaml`.
-> Last snapshot: 2026-09-28 (verified: 9router catalog 70 models, nous primary).
+> Last snapshot: **2026-10-11** (verified: katalog 9router **berflapping** 168 ↔ 126,
+> `providers.9router.models` 168 · `providers.huancheng.models` 14, primary 9router + nous).
+> Snapshot sebelumnya 28 Sep 2026 (70 model) sudah kedaluwarsa — dipertahankan sebagai riwayat saja.
+>
+> ⚠️ **Angka katalog adalah snapshot, bukan nilai tetap.** Katalog 9router terukur bergerak
+> `168 ↔ 126` dalam hitungan detik. Untuk angka terkini, baca langsung:
+> `curl -s http://localhost:20128/v1/models | jq '.data | length'`
 
 ## Auto-Discovery Procedure
 
@@ -110,8 +116,57 @@ beralih ke anggota berikutnya. Pantau `usageDaily` di sqlite 9router.
 
 **Yang masih pakai model lama (tidak diganti — masih jalan):**
 
-- `channel_overrides.8853` = `sensenova-6.8-flash-lite` (huancheng) — sengaja dipertahankan
 - `channel_overrides.803` = `kr/deepseek-3.2` (9router) — masih aktif
+
+## ⚠️ Status Provider — 11 Okt 2026
+
+### `huancheng` — KREDENSIAL MATI (401)
+
+Diuji langsung ke endpoint, bukan lewat perantara:
+
+```
+$ curl -s -w "\nHTTP %{http_code}\n" https://api.hcnsec.cn/v1/models -H "Authorization: Bearer $HUANCHENG_API_KEY"
+{"error":{"code":"","message":"Invalid token (request id: ...)","type":"new_api_error"}}
+HTTP 401
+
+$ # chat completion juga 401
+{"error":{"code":"","message":"Invalid token (request id: ...)","type":"new_api_error"}}
+```
+
+Key: `sk-qCB…SDID`, panjang 51. **Tidak ada key pengganti** — nilai di `~/.hermes/.env` dan
+`vault/secrets.zsh` identik (len 51, prefix/akhir sama), jadi keduanya menunjuk key yang sama.
+
+**Dampak:** `channel_overrides.8853` (thread **ASN**) memakai `huancheng` +
+`sensenova-6.8-flash-lite`. Selama key belum diganti, thread 8853 tidak punya model yang bisa
+menjawab. Model `huancheng` juga sudah dideklarasikan di `providers.huancheng.models` (14 entri)
+sehingga **tetap tampil** di picker `/model` — sesuai permintaan pemilik: semua model huancheng
+ditampilkan meskipun tidak bisa dipakai.
+
+**Tindakan yang dibutuhkan (pemilik):** ganti key di `~/.hermes/.env` + `vault/secrets.zsh`,
+lalu verifikasi `GET /v1/models` → 200. Tidak ada yang bisa dipulihkan dari sisi Hermes.
+
+### `pixz` (9router) — key DIGANTI, hidup kembali
+
+Key pixz pernah mati (401) dan provider dinonaktifkan 11 Okt dini hari, lalu **pemilik mengganti
+key** sehingga hidup kembali:
+
+| | Sebelum | Sesudah |
+|---|---|---|
+| Key | `pxr_live_rYH…gvNA` | `pxr_live…7TlP` |
+| `/v1/models` | 401 | **200** |
+| `testStatus` | `unavailable` | `active` |
+
+Audit ulang: **70 dari 83** model pixz menjawab OK. Katalog 9router naik kembali ke 168 model.
+
+### Katalog 9router berflapping
+
+Total katalog terukur bergerak `168 ↔ 126` dalam hitungan detik — provider pixz (83 model)
+keluar-masuk agregat saat upstream-nya error lalu pulih. Diuji langsung ke `api-inference.pixz.dev`:
+pixz sendiri **stabil di 83**, jadi flapping ada di lapisan agregasi 9router, bukan di provider.
+
+**Konsekuensi:** angka "katalog N model" di dokumen mana pun adalah snapshot, bukan nilai tetap.
+Jangan ambil keputusan dari satu bacaan. Ditangani otomatis oleh cron `034116abd040`
+(lihat `docs/registry/hermes-cron-routing.md`) yang hanya bertindak kalau dua bacaan berturut-turut sama.
 
 ## Riwayat Mapping — 19 Sep 2026 (semua ke provider `nous` bawaan Hermes)
 
