@@ -94,7 +94,7 @@
 | Service | Port | Status | Last Verified | Catatan |
 |---------|------|--------|---------------|---------|
 | Mission Control apex-ui | :3000 | 🔴 **Tidak aktif** | 8 Okt 2026 | Tidak berjalan. Perlu di-start manual |
-| **MIRAI Mission Control** | :8800 | ✅ **Running** | 10 Okt 2026 | LaunchAgent `com.mirai.mission-control`, bind `127.0.0.1` only. Repo `github.com/Niumination/mirai` (public). Pengganti niu-mission-control (:5200, diarsipkan). Di `mirai/` (root ekosistem) |
+| **MIRAI Mission Control** | :8800 | 🟡 **Pending reload** | 10 Okt 2026 | Pindah ke `mirai/` (root ekosistem), repo publik `github.com/Niumination/mirai`. Plist sudah diupdate + lulus `plutil -lint`, tapi `launchctl bootstrap` diblokir guard gateway — **menunggu reload manual dari Terminal luar gateway**. Lihat perintah di bawah |
 | 9router | :20128 | ✅ Running | 8 Okt 2026 | Model router lokal |
 | Camofox | :9377 | ✅ Running | 8 Okt 2026 | Stealth browser |
 

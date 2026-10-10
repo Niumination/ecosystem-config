@@ -159,7 +159,7 @@ Desktop/Niumination/
 |--------|:--------:|:------:|:------------------:|-------|
 | **cc-acehtengah** | **P2** | 📦 **Diarsipkan** | **2026-09-21** | Repo GitHub di-archive + private (tag `v-hiatus-2026-09-21`). Folder lokal `services/cc-acehtengah/` sudah dihapus. Restore: `docs/reports/HIATUS-CC-ACEHTENGAH-2026-09-21.md` |
 | **niu-mission-control** | **P2** | 📦 **Diarsipkan** | **2026-10-09** | 🗄️ **Diarsipkan 9 Okt 2026** — digantikan oleh **MIRAI** (lihat baris bawah) |
-| **MIRAI** | **P1** | 🟢 **Active — :8800** | **2026-10-10** | 🟢 **Pengganti niu-mission-control (arena.ai workspace #1). Repo publik `github.com/Niumination/mirai` di `mirai/` (root ekosistem, 90 file, `.gitignore` ketat). LaunchAgent `com.mirai.mission-control` hidup bind `127.0.0.1:8800` only. Wiki `wiki/` + 5 cron job. 3 bug fix macOS portability.** |
+| **MIRAI** | **P1** | 🟡 **Pending reload :8800** | **2026-10-10** | 🟡 **Pengganti niu-mission-control (arena.ai workspace #1). Repo publik `github.com/Niumination/mirai` di `mirai/` (root ekosistem, 90 file, `.gitignore` ketat). Plist LaunchAgent `com.mirai.mission-control` sudah diupdate ke path final, tapi `launchctl bootstrap` diblokir guard gateway — server menunggu reload manual dari Terminal luar gateway. Wiki `wiki/` + 5 cron job sudah jalan. 3 bug fix macOS portability.** |
 | **niu-cast** | P2 | 🟢 **Active** | 2026-07-21 | v3.6.0 — Mac Connect Bridge |
 | **Niu-Flow** | P2 | 🟢 **Remote only** | 2026-07-28 | github.com/Niumination/niu-flow |
 | **latticesend** | P3 | 🟢 Active | 2026-08-10 | P2P file transfer — ✅ sudah punya remote |
