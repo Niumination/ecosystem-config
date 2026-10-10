@@ -23,7 +23,26 @@ fi
 
 IDS=$(echo "$MODELS_JSON" | python3 -c "import sys,json; d=json.load(sys.stdin); print('\n'.join(sorted(m['id'] for m in d.get('data',[]))))")
 COUNT=$(echo "$IDS" | grep -c . || true)
-HASH=$(echo "$IDS" | sha256sum 2>/dev/null | cut -d' ' -f1 || shasum -a 256 <<< "$IDS" | cut -d' ' -f1)
+# Hashing: macOS `sha256sum` lives in /sbin, which is NOT on the launchd PATH this
+# script runs under — so the `|| shasum` fallback never fired (the pipeline's exit
+# status is `cut`'s 0, not sha256sum's 127) and HASH came back empty. An empty HASH
+# equals an empty PREV_HASH on the first run, so the script took the "unchanged"
+# branch and exited silently forever. Probe for the binary instead of relying on a
+# pipeline fallback, and fail loudly rather than committing an empty hash.
+_hash_ids() {
+  if command -v sha256sum >/dev/null 2>&1; then
+    printf '%s' "$IDS" | sha256sum | cut -d' ' -f1
+  elif command -v shasum >/dev/null 2>&1; then
+    printf '%s' "$IDS" | shasum -a 256 | cut -d' ' -f1
+  else
+    printf '%s' "$IDS" | openssl dgst -sha256 | awk '{print $NF}'
+  fi
+}
+HASH=$(_hash_ids)
+if [ -z "$HASH" ]; then
+  echo "$(date -Iseconds) FATAL: no sha256 tool produced a hash" >> "$LOG_FILE"
+  exit 1
+fi
 
 PREV_HASH=""
 [ -f "$HASH_FILE" ] && PREV_HASH=$(cat "$HASH_FILE" 2>/dev/null | tr -d ' \n')

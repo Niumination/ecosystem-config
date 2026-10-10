@@ -34,6 +34,21 @@ diff every time — no write path is self-verifying.
 | `patch` tool on `config.yaml` | **REFUSED** | Guard treats it as security-sensitive config; agent writes are blocked. Do not retry with workarounds — switch to an allowed path. |
 | `hermes config set <dotted.key> <value>` | **LOSSY** | Rewrites the file by round-tripping a parsed structure. Trailing comment blocks are not represented in the data model, so they get dropped. |
 | `python3 -c` exact-string replace on the file | **SAFE** | Byte-level replace touches nothing outside the matched string. Guard with `assert s.count(old) == 1` so a non-unique match fails loudly instead of corrupting. |
+| `sed -i '' "${N}r file"` to splice a block | **WRONG PLACE** | `r` appends the file's contents *after* line N, ignoring indentation and parent keys. A block meant as a sibling of line N lands nested under whatever key line N belongs to. |
+
+### Splicing a new block into a nested map
+
+Insert with Python line indices, anchored by asserts on the *neighbourhood*, not on the line number alone — line numbers drift, and an off-by-one here puts a whole server under an unrelated key while the YAML still parses:
+
+```python
+lines = s.splitlines(keepends=True)
+i = next(k for k,l in enumerate(lines) if l.strip() == 'platform_toolsets:')
+assert lines[i-1].strip() == 'enabled: true'   # expected last line of the block above
+assert lines[i-2].strip().startswith('url: ')  # proves we found the RIGHT anchor, not a same-named key
+lines[i:i] = ['  composio:\n', '    url: https://...\n', '    enabled: true\n']
+```
+
+Then prove placement structurally: `yaml.safe_load` the file and assert the new key is under the intended parent **and absent from every sibling map** (a misplaced block parses fine — structure, not syntax, is what breaks).
 
 ### The `hermes config set` truncation trap
 
@@ -79,7 +94,44 @@ Config that parses is not a route that works. Probe the endpoint the override po
 - **Reasoning models may return `finish_reason: length` on a tiny `max_tokens` probe.** That is normal
   token accounting, not a failure.
 
+## Provider kustom (`providers.<nama>`) dan picker `/model`
+
+Jalur chat gateway membaca katalog provider dengan `non_blocking_catalogs=True, probe_custom_providers=False,
+probe_current_custom_provider=True`. Artinya: **provider custom yang bukan endpoint aktif tidak di-probe live** —
+kalau cache dingin dan `models:` tidak dideklarasikan, barisnya kosong atau hanya menyisakan `default_model`.
+
+Gejala di Telegram: `/model` menampilkan provider dengan 0 model atau 1 model, padahal endpoint sehat.
+
+**Dua hal yang WAJIB dipahami sebelum "memperbaiki":**
+
+1. **`models:` adalah fallback, bukan pin.** Diverifikasi: dengan cache hangat, picker tetap memakai hasil
+   cache meski `models:` berisi daftar berbeda. `models:` hanya dipakai saat cache dingin/kosong. Jadi mengedit
+   `models:` saja **tidak** menyembunyikan model yang sudah dihapus dari katalog — harus invalidate cache
+   (`~/.hermes/provider_models_cache.json`, TTL 1 jam) juga.
+2. **Bentuk `list` = allowlist; bentuk `dict` = metadata** (`_models_config_is_allowlist`). Untuk membuat
+   daftar yang dipakai sebagai fallback, pakai `list`.
+
+Cara mengisi `models:` dari katalog live, dengan anchor assert (jangan pakai `hermes config set` — lossy):
+```python
+import yaml
+s = open(p).read()
+old = "    key_env: HUANCHENG_API_KEY\n    default_model: auto\n"
+assert s.count(old) == 1, "anchor %d" % s.count(old)
+s = s.replace(old, old + "    models:\n" + "".join(f"    - {m}\n" for m in live_ids))
+open(p, "w").write(s)
+```
+Verifikasi dengan `diff` terhadap backup: hitung baris `^<` (penghapusan) — **harus 0** kalau hanya menambah.
+
+Config baru langsung terbaca gateway **tanpa restart**: `load_user_config_effective` di-cache berdasarkan
+signature file (mtime/size), bukan dimuat sekali saat start.
+
 ## Pitfalls
+
+9. **Jangan simpulkan "cache dingin" dari satu pengamatan.** Selalu uji **dua** kondisi — cache hangat dan
+   cache dingin (pindahkan `provider_models_cache.json`, panggil `clear_provider_models_cache()`) — karena
+   keduanya bisa memberi angka berbeda dan hanya salah satunya mereproduksi keluhan pengguna.
+10. **`/v1/models` sebuah provider bisa memuat model yang sudah dihapus/dimatikan.** Katalog ≠ status aktif.
+    Verifikasi lewat `isActive` di DB provider, bukan dari ada/tidaknya model di daftar.
 
 1. **Never edit `config.yaml` with the `patch` tool.** It is refused by design; the refusal is not a bug to
    route around with a different tool call.
@@ -96,6 +148,9 @@ Config that parses is not a route that works. Probe the endpoint the override po
 7. **`channel_skill_bindings` is JSON-in-YAML** — the value is a single quoted JSON string, not nested YAML.
    Editing it with `patch` on a JSON key inside the string silently corrupts the YAML. Use the python3
    json-round-trip path: load YAML → parse the bindings JSON string → modify → re-serialize → write back.
+8. **A write that parses is not a write that landed where you meant.** Nested YAML moves a misplaced block
+   from "syntax error" to "silently active under the wrong parent" — the two failure modes have opposite
+   signals, so validate placement with a parser assert, not with `yaml.safe_load` succeeding.
 
 ## Related skills
 - `hermes-configuration` — Hermes model mapping, hooks, MCP (if reachable in your skill set)

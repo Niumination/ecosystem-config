@@ -15,7 +15,9 @@ metadata:
 
 Router model lokal **9router** jalan di `localhost:20128` (Next.js app di `/usr/local/lib/node_modules/9router/app`). Semua channel Telegram Hermes (1/802/803/804/1172) mengarah ke sini via `channel_overrides` di `~/.hermes/config.yaml`. Kalau 9router mati → Telegram lumpuh.
 
-Daemon dikelola launchctl: `com.9router.autostart` (server) + `com.niumination.9router-watch` (cache watcher, non-kritis). Sudah di-set **auto-restart** — kalau server mati akan hidup sendiri.
+Daemon dikelola launchctl: `com.9router.autostart` (server) + `com.niumination.9router-sync` (watcher
+katalog, non-kritis — plist `com.niumination.9router-watch` sudah **dihapus**, dua poller balapan di file
+hash yang sama). Sudah di-set **auto-restart** — kalau server mati akan hidup sendiri.
 
 ## When to Use
 - User: "cek 9router", "rawat 9router", "tambah model ke 9router", "model di Telegram error"
@@ -29,20 +31,38 @@ curl -s -o /dev/null -w "%{http_code}" -m 8 http://localhost:20128/v1/models
 launchctl kickstart -k gui/$(id -u)/com.9router.autostart
 ```
 
-## Full Model Accessibility Audit (pakai script)
-Script `scripts/audit_models.py` akan:
-1. Fetch `/v1/models` dari 9router
-2. Tes chat completion tiap model (parallel, timeout 20s)
-3. Pisahkan FAIL permanen (400/402/404/410/500/503) vs sementara (429/timeout)
-4. Disable provider yang **0 model OK** via sqlite `providerConnections.isActive=0`
-5. Restart server agar reload
-
+## Full Model Accessibility Audit (pakai script — DRY-RUN default)
 ```bash
-python3 ~/.hermes/skills/niu-9router-maintain/scripts/audit_models.py
+python3 ~/.hermes/skills/niu-9router-maintain/scripts/audit_models.py            # probe + laporan, DB TIDAK disentuh
+python3 ~/.hermes/skills/niu-9router-maintain/scripts/audit_models.py --apply    # baru boleh ubah DB
 ```
+Script ini: fetch `/v1/models` → probe chat tiap model (3 percobaan, 4 worker) → klasifikasi
+**ok / transient / permanent** → tulis JSON → (hanya dengan `--apply`) disable provider yang
+`ok=0` **dan** `transient=0`.
+
+**Aturan yang tidak boleh dilanggar: satu probe jaringan TIDAK PERNAH cukup untuk mematikan provider.**
+Provider yang sedang 429/timeout akan terbaca "0 model OK" dan tampak mati, padahal ia baru saja
+melayani trafik produksi. Sebelum men-disable, buktikan dengan `usageHistory`:
+```sql
+SELECT timestamp, provider, model, status FROM usageHistory
+WHERE provider='<nama>' ORDER BY id DESC LIMIT 5;
+```
+Baris `status='ok'` yang lebih baru dari probe = provider HIDUP; kegagalan probe itu transient.
+Nonaktifkan provider hanya kalau `usageHistory` juga menunjukkan kegagalan.
+
+**Kode di balik wrapper 503.** 9router menyarungkan kode upstream asli ke dalam body, jadi 503 luar
+sering membawa `[401]` / `[404]` / `[403]` dari provider sebenarnya. Klasifikasikan dari kode
+**dalam** — kalau tidak, model yang benar-benar mati dilaporkan sebagai "sedang sibuk" (dan
+sebaliknya). Contoh nyata: 50 model `pixz/*` tampak "transient" padahal semuanya `[401]` = kredensial mati.
 
 ## Provider Gratis vs Berbayar
-9router **tidak punya flag paid/free**. Kriteria: tes akses langsung. Yang 0/OK = disable.
+9router **tidak punya flag paid/free**. Kriteria: tes akses langsung. Tapi **"0 model OK" ≠ "disable"** —
+lihat aturan `usageHistory` di bagian audit di atas.
+
+**Jangan simpan daftar provider hidup/mati di skill ini.** Daftar seperti itu basi dalam hitungan hari
+(katalog bergerak 48→77→135 model dalam beberapa pekan) dan langsung menyesatkan sesi berikutnya.
+Yang durable adalah **kriterianya**: probe chat 3×, cek `usageHistory`, baru putuskan. Kalau butuh
+angka terkini, jalankan audit dan baca JSON-nya — jangan percaya tabel di dokumen mana pun, termasuk ini.
 **Penting:** 9router listing 511 model dari 13 provider, tapi 94% tidak accessible (400/403/410/429/503). Provider yang 0 model OK → disable via sqlite.
 Provider yang diketahui punya akses (per 14-Sep-2026): `gemini` (AI Studio key), `github` (Copilot free tier, banyak model 400), `kr` (Kiro free tier), `cf` (Cloudflare Workers). Provider yang DISABLE (0 model OK): `explabs` (342 model, payment required), `antigravity` (timeout), `kimi` (quota exhausted), `nvidia` (410 retired), `ollama` (410 retired), `bazaarlink` (402 credits), `byteplus` (400 subscription), `poolside` (404), `bpm` (503), `ps` (503), `api-airforce` (503).
 → Disable provider yang 0 model OK via sqlite `providerConnections.isActive=0`, lalu restart server.
@@ -126,13 +146,80 @@ launchctl load ~/Library/LaunchAgents/com.niumination.9router-sync.plist
 bash ~/Desktop/Niumination/scripts/9router-sync.sh
 ```
 
-**Pitfall:** notifikasi hanya muncul kalau ada DELTA model. Hash sama = silent. Jangan kira script mati kalau tidak ada notif — cek `tail /tmp/9router-sync.log` & `.9router-state.json`.
+**Pitfall:** notifikasi hanya muncul kalau ada DELTA model. Hash sama = silent. Jangan kira script mati kalau tidak ada notif — cek `tail ~/.cache/niumination/9router-sync.log` & `.9router-state.json`.
+
+### Otomasi bisa mati DIAM-DIAM — cara mendeteksinya
+Script watcher ini pernah berhenti bekerja 5 hari tanpa satu pun error terlihat. Gejalanya: log cuma
+`fetch failed` / `change pending` selamanya, `~/.cache/niumination/9router-models.hash` kosong atau
+berisi hash kosong, dan `.9router-state.json` membeku di tanggal lama.
+
+**Deteksi cepat — umur state file vs sekarang:**
+```bash
+stat -f "%Sm %N" ~/Desktop/Niumination/.9router-state.json   # >1 jam saat katalog berubah = curiga
+wc -c ~/.cache/niumination/9router-models.hash               # 0 atau 1 byte = hash tak pernah terisi
+grep "change:" ~/.cache/niumination/9router-sync.log | tail  # "hash " kosong = commit cacat
+```
+
+**Klasik penyebabnya: `sha256sum` tidak ada di PATH launchd.** Di macOS `sha256sum` hidup di `/sbin`,
+sedangkan PATH plist tidak memuat `/sbin`. Dan fallback `cmd_a || cmd_b` **tidak menyelamatkan** kalau
+keduanya dirantai dalam pipeline: exit code pipeline diambil dari perintah TERAKHIR (`cut` = 0), jadi
+`||` tak pernah jalan. Hasilnya `HASH` kosong → sama dengan `PREV_HASH` kosong → script selalu memilih
+cabang "tidak ada perubahan" dan keluar diam, tanpa pernah menulis hash (self-perpetuating).
+
+**Pola benar — cek keberadaan binary, jangan andalkan `||` di dalam pipeline:**
+```bash
+_hash_ids() {
+  if command -v sha256sum >/dev/null 2>&1; then printf '%s' "$IDS" | sha256sum | cut -d' ' -f1
+  elif command -v shasum >/dev/null 2>&1; then printf '%s' "$IDS" | shasum -a 256 | cut -d' ' -f1
+  else printf '%s' "$IDS" | openssl dgst -sha256 | awk '{print $NF}'; fi
+}
+HASH=$(_hash_ids)
+[ -z "$HASH" ] && { echo "$(date -Iseconds) FATAL: no sha256 tool" >> "$LOG_FILE"; exit 1; }
+```
+Guard `exit 1` itu penting: gagal **keras** jauh lebih baik daripada sukses palsu yang menyembunyikan
+kerusakan berhari-hari.
+
+**Uji di bawah PATH launchd yang sebenarnya, bukan PATH shell Anda.** Script yang lolos dari shell
+interaktif bisa tetap rusak di bawah launchd — dan sebaliknya (script ini dulu "kelihatan jalan"
+justru karena `up-eco.sh` memanggilnya dari shell yang PATH-nya memuat `/sbin`):
+```bash
+env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=$HOME /bin/bash ~/Desktop/Niumination/scripts/9router-sync.sh; echo "exit=$?"
+```
+Lihat `references/launchd-script-hardening.md` untuk pola lengkap + cara membaca `launchctl print`.
 
 **Verify notifikasi jalan:** `osascript -e 'display notification "test" with title "9router sync"'` → harus muncul di Notification Center.
 
 ## Pitfalls
+- **Jangan matikan provider dari satu probe.** Probe paralel/ber-timeout menghasilkan false-negative;
+  provider produksi yang baru saja melayani trafik bisa terbaca "0 OK". Wajib cross-check `usageHistory`
+  sebelum `isActive=0`, dan pulihkan (`isActive=1` + restart) begitu ketahuan salah disable.
+- **Jangan naikkan worker paralel untuk "mempercepat" audit.** Beban paralel justru menciptakan timeout
+  yang terbaca sebagai kematian provider. 4 worker cukup.
+- **Channel produksi bergantung pada provider tertentu — cek `channel_overrides` sebelum men-disable apa pun.**
+  `hermes config get platforms.telegram.channel_overrides` menunjukkan model+provider tiap thread; mematikan
+  provider yang dipakai channel = thread mati. Mematikan `gemini` pernah melumpuhkan channel 1.
+- **`/v1/models` yang lebih panjang dari `/v1/models` yang baru dihapus.** Provider `isActive=0` bisa masih
+  mengembalikan modelnya di katalog (mis. `muse`), jadi picker tetap menampilkan model yang tidak bisa dipakai.
+  Katalog ≠ status provider.
 - Jangan matikan `com.9router.autostart` — itu server utama. `com.niumination.9router-watch` boleh mati (cuma cache).
 - Model 400 di GitHub Copilot = model tidak ada di free tier, biarkan (provider masih berguna, ada yang OK).
 - `big-pickle`/`hy3-free` **tidak ada di 9router** — lewat opencode-zen langsung (cron model).
 - 9router pakai `NINE_ROUTER_API_KEY` (env passthrough di config Hermes).
 - DB sqlite: `~/.9router/db/data.sqlite` (providerConnections, usageHistory).
+- Probe SSE: model yang balas `data: {...}` bukan "parse error". Parser yang tidak menangani SSE akan
+  melaporkan model hidup sebagai gagal — baca respons mentah sebelum memvonis model mati.
+- **`max_tokens` < 16 → 400 palsu.** Sebagian model menolak dengan
+  `` `max_output_tokens` The number must be `>= 16` ``. Itu payload probe yang salah, bukan model mati —
+  `oc-combo-2` pernah divonis "rusak" karena ini, ternyata sehat. Pakai `max_tokens >= 64`.
+- **Plist `com.niumination.9router-sync` PATH-nya TIDAK memuat `/sbin`.** Di macOS `sha256sum` ada di
+  `/sbin/sha256sum`, di luar PATH launchd. Dan jangan andalkan `|| shasum` di dalam pipeline: exit code
+  pipeline diambil dari perintah **terakhir** (`cut` = 0), jadi fallback tidak pernah jalan dan `HASH`
+  keluar kosong — yang lalu dibandingkan dengan `PREV_HASH` kosong → skrip selalu memilih cabang "tidak
+  ada perubahan" dan diam selamanya. Pakai `command -v` + guard hash kosong (`exit 1`).
+- **Cache katalog Hermes menunda efek disable provider.** `~/.hermes/provider_models_cache.json` (TTL 1 jam)
+  didahulukan daripada `models:` di config, jadi picker masih menyajikan model provider yang baru dimatikan.
+  Hapus entry `custom:http://localhost:20128/v1*` agar picker langsung bersih.
+- **`models:` di `providers.<nama>` adalah FALLBACK, bukan pin.** Diverifikasi: saat cache hangat, picker
+  tetap memakai hasil cache (141 model, termasuk 50 `pixz/*` yang sudah dimatikan) meski `models:` hanya
+  berisi 85. `models:` dipakai saat cache dingin/kosong. Karena itu, setelah mengubah katalog, **invalidate
+  cache** — jangan hanya mengedit `models:`.
