@@ -21,6 +21,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.error
 import urllib.request
 
@@ -135,6 +136,30 @@ def live_models(base_url: str, key: str) -> list[str]:
         return sorted(m["id"] for m in json.load(resp)["data"])
 
 
+def stable_live_models(base_url: str, key: str, attempts: int = 3, delay: float = 3.0) -> list[str] | None:
+    """Return the catalog only when two consecutive reads agree.
+
+    Measured 2026-10-11: 9router's aggregate catalog flapped 168 <-> 126 within
+    seconds (a whole provider drops out when its upstream errors, then returns).
+    Writing on a single sample made this job rewrite config on every wobble and
+    post a Telegram message each time. Two agreeing reads filter that out; a
+    still-moving catalog returns None so the caller can stay silent and let the
+    next scheduled run catch the settled value.
+    """
+    previous = None
+    for i in range(attempts):
+        try:
+            current = live_models(base_url, key)
+        except (urllib.error.URLError, OSError, ValueError):
+            return None
+        if previous is not None and current == previous:
+            return current
+        previous = current
+        if i < attempts - 1:
+            time.sleep(delay)
+    return None
+
+
 def _parent_key(lines: list[str], index: int) -> str | None:
     """Name of the mapping that directly contains `lines[index]`, or None at top level."""
     indent = len(lines[index]) - len(lines[index].lstrip())
@@ -175,38 +200,44 @@ def main() -> int:
     text = open(CONFIG).read()
     notes = []
     changed = 0
+    written = {}
 
     for section, base_url in PROVIDERS.items():
         key = api_key(section)
         if not key:
-            notes.append(f"{section}: api key not found, skipped")
-            continue
-        try:
-            live = live_models(base_url, key)
-        except (urllib.error.URLError, OSError, ValueError) as exc:
-            print(f"ERROR: {section}: cannot reach {base_url}/models: {exc}", file=sys.stderr)
+            print(f"ERROR: {section}: api key not found", file=sys.stderr)
             return 1
+        live = stable_live_models(base_url, key)
+        if live is None:
+            # Catalog still moving (or unreachable): stay silent, do not write.
+            # The next scheduled run catches the settled value.
+            continue
 
-        declared = _read_models(CONFIG, section) if os.path.exists(CONFIG) else []
-        dropped = drop_cache_entries(base_url)
-
+        declared = _read_models(CONFIG, section)
         if live == declared:
-            notes.append(f"{section}: unchanged ({len(live)} models)")
             continue
 
         text = _replace_models(text, section, live)
         changed += 1
-        notes.append(f"{section}: {len(declared)} -> {len(live)} models, cache entries dropped: {dropped}")
+        written[section] = len(live)
+        dropped = drop_cache_entries(base_url)
+        notes.append(f"{section}: {len(declared)} -> {len(live)} models, "
+                     f"cache entries dropped: {dropped}")
 
-    if changed:
-        open(CONFIG, "w").write(text)
+    if not changed:
+        # Nothing to say: stay silent so a 30-minute job does not post
+        # "unchanged" to Telegram 48 times a day.
+        return 0
 
-    # Independent re-read: prove the file on disk holds the catalog's model count.
+    open(CONFIG, "w").write(text)
+
+    # Verify the bytes on disk against the SAME snapshot that drove the write.
+    # Re-fetching the catalog here made the check race a flapping endpoint
+    # (9router measured 168 <-> 126 within seconds) and failed a healthy job.
     try:
-        for section, base_url in PROVIDERS.items():
-            want = len(live_models(base_url, api_key(section)))
-            got = _check_models_list(CONFIG, section, want)
-            notes[-1] = notes[-1] + f", verified {len(got)} on disk"
+        for section, expected in written.items():
+            got = _check_models_list(CONFIG, section, expected)
+            notes.append(f"{section}: verified {len(got)} models on disk")
     except AssertionError as exc:
         print(f"ERROR: verification failed, config may be inconsistent: {exc}", file=sys.stderr)
         return 1

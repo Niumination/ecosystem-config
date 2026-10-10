@@ -725,15 +725,54 @@ Tiga keputusan penting:
 
 ### Output contract cron
 
-- Exit 0 + summary satu baris → dikirim ke `--deliver` (default `local`)
-- Exit 1 (error) → dikirim ke `--failure-deliver` (di-set `origin`)
-- `--no-agent`: LLM diskip, stdout script = payload
+- Exit 0 + summary satu baris → dikirim ke `--deliver`
+- Exit 0 tanpa output → **senyap** (tidak ada pesan)
+- Exit 1 (error) → dikirim ke `--failure-deliver`
+
+### Routing
+
+Job diarahkan ke **thread 12595 (Cron & Otomasi)** — bukan `origin`. Alasannya:
+`origin` berarti **konteks pembuatan**, bukan maksud. Job ini dibuat dari thread 802 (Research),
+jadi `origin` akan mengirim output 9router ke thread riset selamanya.
+
+Konvensi ekosistem: 8 dari 8 job otomasi lain mengarah ke 12595. Job ini menyusul.
+
+```
+Deliver:          telegram:-1004204696417:12595,local
+Failure-deliver:  telegram:-1004204696417:12595
+```
+
+`,local` dipertahankan supaya artefak tetap tersimpan di `~/.hermes/cron/output/034116abd040/`.
+
+### Guard anti-flapping (temuan saat verifikasi routing)
+
+Verifikasi routing menemukan masalah nyata: katalog 9router **flapping** `168 ↔ 126` dalam
+hitungan detik (seluruh provider pixz 83→41→83 keluar-masuk agregat; diuji langsung ke
+`api-inference.pixz.dev` pixz sendiri stabil di 83, jadi flapping ada di lapisan agregasi 9router).
+
+Tanpa guard, job 30 menit akan menulis config dan **mengirim pesan ke thread 12595 setiap kali
+katalog bergoyang** — puluhan pesan sehari untuk perubahan yang tidak bertahan.
+
+Guard: `stable_live_models()` membaca katalog 3x dengan jeda 3 detik dan hanya mengembalikan nilai
+kalau **dua bacaan berturut-turut sama**. Katalog yang masih bergerak → `None` → job **diam** dan
+tidak menulis; run terjadwal berikutnya menangkap nilai yang sudah stabil.
+
+Verifikasi guard (semua pada salinan `/tmp`, config asli tidak disentuh):
+
+| Kondisi | Hasil |
+|---|---|
+| Katalog stabil, config == katalog | **senyap**, stdout 0 byte, rc=0 |
+| Config punya model palsu (drift nyata) | `169 -> 168 models`, lapor + verified |
+
+Juga diperbaiki: verifikasi pasca-tulis sebelumnya **fetch ulang katalog**, sehingga berlomba
+dengan endpoint yang flapping dan menggagalkan job yang sehat
+(`config holds 126, expected 168` pada run 01:25). Sekarang verifikasi membandingkan byte di disk
+dengan **snapshot yang sama** yang dipakai menulis.
 
 ### Catatan operasional
 
-Cron berjalan tiap 30 menit. Kalau katalog 9router sedang flapping (168→126→168 terukur),
-script akan menangkap akhirnya saat stabil. `models:` di config hanya diubah kalau berbeda dari
-katalog — kalau sama, tidak ada write (menghindari rewrite yang perlu).
+Job hanya mengirim pesan kalau `models:` benar-benar berubah dari katalog yang stabil. Kalau sama,
+tidak ada write dan tidak ada pesan.
 
 ---
 
