@@ -27,7 +27,7 @@
 || **VirtualAssistance** | — (remote only) | TS | `github.com/Niumination/VirtualAssistance` | 🟢 Vercel | 3 Jun 2026 | ✅ Live |
 || **Joy-Connect-for-Mac** | `desktop/joy-connect-for-mac/` | Swift 5.9, macOS 13+, ADB, scrcpy | `github.com/Niumination/joy-connect-for-mac` | ⚪ macOS Desktop | 3 Aug 2026 | 🟢 **Infinix device bridge — DOX pass done** |
 || **LatticeSend** | `services/latticesend/` | Rust, Flutter, QUIC, E2EE | lokal | ⚪ Spec phase | 22 Jul 2026 | 🆕 **P2P transfer — blueprint only** |
-|| **Niu-MissionControl** | `services/niu-mission-control/` | Next.js 16, React 19, TypeScript 5.9, better-sqlite3, Tailwind 4, SSE, dnd-kit, vitest | lokal | ⚪ Local | 26 Sep 2026 | **Agent Swarm control plane v4.1.1 Aether Sync** — auth mandatory, state machine + dispatcher, event bus SSE, Kanban, ⌘K palette, Living Orb, PWA, i18n ID/EN. Migrasi DB v3→v4 idempoten (`lib/server/ensure-v3-columns.ts`). Build exit 0, tsc 0, vitest 12/12, lint 0 error, test-sse 10/10. ⚪ MC masih OFF (belum ada service permanen) |
+|| **Niu-MissionControl** | `inactive-2026-10/niu-mission-control/` | Next.js 16, React 19, TypeScript 5.9, better-sqlite3, Tailwind 4, SSE, dnd-kit, vitest | `github.com:Niumination/niu-mission-control.git` | ⚪ Archived | 9 Okt 2026 | 🗄️ **DIARSIPKAN 9 Okt 2026** — digantikan oleh MIRAI Mission Control (arena.ai). Service mati (port 5200 kosong), LaunchAgent dihapus. Repo utuh di `inactive-2026-10/` + GitHub; v4.1.1 Aether Sync adalah commit terakhir (`85f9923`). Sejarah v3.0→v4.1 lengkap: audit internal 24 Sep (orkestrasi 2.5/10, "cockpit mockup") → v4.0 Aether → v4.1 Aether Sync. |
 || **Camofox-Browser** | `tools/camofox-browser/` | Node.js >= 22, Express, camoufox-js (Firefox fork C++ anti-detection) | upstream: `github.com/jo-inc/camofox-browser` | ⚪ Local — REST :9377 | 3 Agu 2026 | 🆕 **Stealth headless browser server — bypass Cloudflare/bot detection** |
 || **Spatial Vision** | `sites/spatial-vision/` | Rust, WASM, Axum, pinch gesture | `github.com/Niumination/spatial-vision` | ⚪ Prototype — localhost:3000 | 3 Aug 2026 | 🟢 **Active — spatial launcher + app modal + dwell-to-select** |
 ||| **orchestrator** | `inactive-2026-10/orchestrator/` | Python | `github.com/Niumination/orchestrator` | ⚪ Archived | 24 Jun 2026 | ✅ **Pushed** |
@@ -72,6 +72,7 @@
 | **NiuHomePage** (fork) | — (remote only) | CSS | `github.com/Niumination/NiuHomePage` | 🟢 GH Pages | 13 Okt 2025 | ✅ Live |
 | **zaryu.startpage** (fork) | — (remote only) | JS | `github.com/Niumination/zaryu.startpage` | 🟢 GH Pages | 13 Okt 2025 | ✅ Live |
 | **Niu-Cyber-Search-Engine** | — (remote only) | TS | `github.com/Niumination/Niu-Cyber-Search-Engine` | 🔴 Vercel 404 | 22 Okt 2025 | ❌ Down |
+| **Kelas Niumination** | `sites/kelas/` | Next.js 16, TypeScript, Tailwind v4, Supabase, Midtrans, MDX | `github.com/Niumination/kelas` 🔒 **PRIVATE** | ⚪ Pra-rilis — belum deploy | 10 Okt 2026 | 🆕 **Platform kelas gratis+berbayar — "AI Agent Self-Host" — 6 modul/12 pelajaran/19.578 kata MDX. Early bird Rp 99.000. Repo private (materi berbayar di content/) dibuat 10 Okt 2026, CI hijau (run 38037209046, 44s). Fase 0 verifikasi hijau (npm ci/verifikasi/build exit 0, 39 uji). 17 item tertunda (T-01 s.d T-17)** |
 
 ### 🖥️ Linux Desktop / Dotfiles (Arch Hyprland)
 

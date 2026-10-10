@@ -10,3 +10,6 @@
 [submodule "inactive-niumination-workspace"]
 	path = inactive-2026-09/niumination-workspace
 	url = file:///Users/zaryu/Desktop/Niumination/inactive-2026-09/niumination-workspace
+[submodule "inactive-niu-mission-control"]
+	path = inactive-2026-10/niu-mission-control
+	url = file:///Users/zaryu/Desktop/Niumination/inactive-2026-10/niu-mission-control
