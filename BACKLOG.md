@@ -158,7 +158,8 @@ Desktop/Niumination/
 | Proyek | Priority | Status | Aktivitas Terakhir | Notes |
 |--------|:--------:|:------:|:------------------:|-------|
 | **cc-acehtengah** | **P2** | 📦 **Diarsipkan** | **2026-09-21** | Repo GitHub di-archive + private (tag `v-hiatus-2026-09-21`). Folder lokal `services/cc-acehtengah/` sudah dihapus. Restore: `docs/reports/HIATUS-CC-ACEHTENGAH-2026-09-21.md` |
-| **niu-mission-control** | **P2** | 📦 **Diarsipkan** | **2026-10-09** | 🗄️ **Diarsipkan 9 Okt 2026** — digantikan oleh MIRAI Mission Control (arena.ai, `~/Downloads/mirai-mission-control.zip`). Folder dipindah ke `inactive-2026-10/niu-mission-control/` (repo utuh, `.git` + remote `github.com:Niumination/niu-mission-control.git`, commit terakhir `85f9923` v4.1.1 Aether Sync). LaunchAgent `com.niumination.missioncontrol` dihapus (sudah tidak ter-load), port 5200 bebas. Sejaras: audit internal 24 Sep (orkestrasi 2.5/10, "cockpit mockup dengan lampu indah") → v4.0 Aether → v4.1.1 Aether Sync → tidak pernah live permanen. Laporan: `docs/reports/ADOPSI-MC-V4-AETHER-DAN-MIGRASI-DB-2026-09-26.md` · Feedback arena: `inactive-2026-10/niu-mission-control/docs/reports/FEEDBACK-ARENA-v4.1.1.md` |
+| **niu-mission-control** | **P2** | 📦 **Diarsipkan** | **2026-10-09** | 🗄️ **Diarsipkan 9 Okt 2026** — digantikan oleh **MIRAI** (lihat baris bawah) |
+| **MIRAI** | **P1** | 🟢 **Active — :8800** | **2026-10-10** | 🟢 **Pengganti niu-mission-control (arena.ai workspace #1). Repo publik `github.com/Niumination/mirai` di `mirai/` (root ekosistem, 90 file, `.gitignore` ketat). LaunchAgent `com.mirai.mission-control` hidup bind `127.0.0.1:8800` only. Wiki `wiki/` + 5 cron job. 3 bug fix macOS portability.** |
 | **niu-cast** | P2 | 🟢 **Active** | 2026-07-21 | v3.6.0 — Mac Connect Bridge |
 | **Niu-Flow** | P2 | 🟢 **Remote only** | 2026-07-28 | github.com/Niumination/niu-flow |
 | **latticesend** | P3 | 🟢 Active | 2026-08-10 | P2P file transfer — ✅ sudah punya remote |
