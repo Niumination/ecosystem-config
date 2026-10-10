@@ -13,3 +13,9 @@
 [submodule "inactive-niu-mission-control"]
 	path = inactive-2026-10/niu-mission-control
 	url = file:///Users/zaryu/Desktop/Niumination/inactive-2026-10/niu-mission-control
+[submodule "inactive-JHermUSB-portable"]
+	path = inactive-2026-09/JHermUSB-portable
+	url = https://github.com/Niumination/JHermUSB-portable.git
+[submodule "mirai"]
+	path = mirai
+	url = https://github.com/Niumination/mirai.git
