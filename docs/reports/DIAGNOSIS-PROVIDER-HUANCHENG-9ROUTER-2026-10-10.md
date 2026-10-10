@@ -549,7 +549,7 @@ Dengan `max_tokens=64` (bukan 5), untuk memisahkan "permanent asli" dari "artefa
 
 15 dari 17 bertahan sebagai kegagalan nyata; 1 direklasifikasi menjadi sehat.
 
-### Hasil akhir
+### Hasil akhir Fase 2 (snapshot saat commit)
 
 ```
 katalog 9router: 135 → 85 model (−50, semua pixz)
@@ -569,6 +569,46 @@ channel produksi: semua OK
   combo-a2a                            → 200
   sensenova-6.8-flash-lite (ch 8853, huancheng)  → 200
 ```
+
+### ⚠️ Perkembangan pasca-commit: key pixz DIGANTI pemilik (bukan regresi)
+
+Sesaat setelah commit, katalog 9router naik 85 → **168** dan pixz muncul kembali. **Ini bukan regresi dan
+bukan kesalahan** — pemilik mengganti API key pixz:
+
+| | Sebelum | Sesudah |
+|---|---|---|
+| Key | `pxr_live_rYH…gvNA` | `pxr_live…7TlP` |
+| `/v1/models` pixz | **401** | **200** |
+| `testStatus` | `unavailable`, `errorCode: 401` | `active`, `errorCode: None` |
+| `isActive` | 0 (dinonaktifkan) | 1 |
+
+Diuji langsung ke `https://api-inference.pixz.dev/v1/models` → **HTTP 200**, mengembalikan daftar model
+(`claude-opus-5.5`, dll). Key baru **valid**.
+
+**Audit ulang 168 model** (script versi baru, dry-run):
+
+```
+OK 119 | transient 33 | permanent 16
+  pixz            70/ 13/  0     ← 70 OK dengan key baru
+  kr              20/  4/  0
+  gh              12/  5/ 15
+  ag               5/  8/  0
+  agnes            2/  2/  0
+  gemini           1/  0/  0
+  cf               1/  1/  1
+  combo-*          5/  0/  0
+```
+
+Transient dibedah: `404` 8 · `403` 3 · `timeout` 11 · `529` 8 · `429` 2 · `502` 1.
+Permanent 16 = 15 `gh/*` (batas tier Copilot) + 1 `cf/@cf/cloudflare/clef-flash`.
+
+**Sinkronisasi ulang:** `models:` 9router di config diset 85 → **168** (diff: 0 penghapusan, 83 penambahan).
+Verifikasi picker WARM dan COLD: **sama-sama 168**, huancheng 14, atria 1.
+
+**Pelajaran yang muncul dari kejadian ini:** status provider adalah keadaan yang bergerak. Menonaktifkan
+provider karena kredensial mati itu benar pada saat itu, tapi **bukan keputusan permanen** — begitu key
+diganti, katalog dan `models:` harus disinkronkan ulang. Prosedur pemeliharaan ada di bagian berikutnya.
+
 
 ### Temuan penting: `models:` adalah FALLBACK, bukan pin
 
@@ -611,6 +651,40 @@ provider hidup/mati (basi dalam hitungan hari).
 **Sinkronisasi:** lewat tool resmi, bukan copy manual —
 `promote-skills.py` (dry-run dulu: 3 update diserap, 1 ditolak tidak terkait) →
 `skill-manifest.py` (238 skill, 1176 file) → `sync-to-agents.sh` (**0 masalah**, verifikasi hash LULUS).
+
+---
+
+## Prosedur Pemeliharaan (jalankan setiap katalog 9router berubah)
+
+Otomasi `com.niumination.9router-sync` memberi notifikasi macOS saat katalog berubah, tapi **tidak**
+memperbarui `models:` di config. Urutan yang benar:
+
+```bash
+# 1. Lihat katalog live
+curl -s http://localhost:20128/v1/models | python3 -c "import sys,json;print(len(json.load(sys.stdin)['data']))"
+
+# 2. Audit (DRY-RUN — jangan langsung --apply)
+python3 ~/.hermes/skills/ecosystem/niu-9router-maintain/scripts/audit_models.py --json /tmp/audit.json
+
+# 3. Sinkronkan models: di config (anchor assert, bukan `hermes config set`)
+#    lihat skill hermes-config-mutation-safety
+
+# 4. Invalidate cache katalog Hermes agar picker tidak menyajikan daftar basi
+python3 -c "
+import json, os
+p = os.path.expanduser('~/.hermes/provider_models_cache.json')
+d = json.load(open(p)); [d.pop(k) for k in [k for k in d if '20128' in k]]
+json.dump(d, open(p,'w'), indent=2)"
+
+# 5. Verifikasi WARM dan COLD memberi angka SAMA
+#    (lihat skill hermes-config-mutation-safety, bagian provider kustom)
+```
+
+**Jangan lewati langkah 4.** Cache (TTL 1 jam) didahulukan daripada `models:`, jadi tanpa invalidate,
+picker tetap menyajikan model provider yang sudah dimatikan.
+
+**Kalau pemilik mengganti API key provider:** provider yang tadinya dinonaktifkan karena kredensial mati
+akan aktif kembali. Jalankan ulang prosedur ini dari langkah 1 — jangan asumsikan angka lama masih berlaku.
 
 ---
 
