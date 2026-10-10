@@ -5,6 +5,7 @@
 | `niumination.web.id` | ✅ **LIVE** — ⚠️ **SSL exp 19 Des 2026 (~72 hari)** · ⚠️ **NS mismatch**: resolver publik → Vercel, dashboard idwebhost → NS idwebhost | 8 Okt 2026 | Niu-OSS-Dashboard, Vercel ready. DNS Vercel (`ns1/ns2.vercel-dns.com`) — zona dikelola Vercel. Perlu sinkronisasi NS di dashboard idwebhost |
 | `mata.niumination.web.id` | ✅ Existing (Cloudflare) | 21 Sep 2026 | |
 | `abstract.biz.id` | 🔴 **DNS REFUSED** — semua nameserver mati | 8 Okt 2026 | Tidak bisa diresolve. Perlu perbaikan NS/registrar sebelum bisa dipakai |
+| `kelas.niumination.web.id` | ⚪ **Planned** — subdomain platform kelas. Deploy live di `kelas-hazel.vercel.app` ✅ (preview mode demo, tanpa Supabase/Midtrans) | 10 Okt 2026 | CNAME ke Vercel menyusul (T-07) setelah NS mismatch `niumination.web.id` beres. Route utama semua 200 (/, /harga, /kelas/ai-agent-self-host, /verify) |
 | `kune-ya.com` | 🔴 **DNS NXDOMAIN** | 8 Okt 2026 | Domain tidak terdaftar/expired. Cek registrar |
 
 ---
