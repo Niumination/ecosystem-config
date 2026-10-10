@@ -94,7 +94,7 @@
 | Service | Port | Status | Last Verified | Catatan |
 |---------|------|--------|---------------|---------|
 | Mission Control apex-ui | :3000 | 🔴 **Tidak aktif** | 8 Okt 2026 | Tidak berjalan. Perlu di-start manual |
-| **MIRAI Mission Control** | :8800 | ✅ **Running — 0 FAIL** | 10 Okt 2026 | PID 29236, bind `127.0.0.1:8800` only, `/api/health` 17/20, **mac-verify 22 PASS / 0 FAIL** (arena #2: cek 5 job wiki, bukan 7). Repo publik `github.com/Niumination/mirai`. Pengganti niu-mission-control (:5200, diarsipkan). Di `mirai/` (root ekosistem) |
+| **MIRAI Mission Control** | :8800 | ✅ **Running — health 20/20** | 11 Okt 2026 | PID 75494, bind `127.0.0.1:8800` only. `/api/health` **20/20** (arena #3: fallback kern.boottime Darwin 26, cron ticker cek wiki heartbeat, MIRAI_DIR auto-detect). Roster **11 agent** = 1 profile + 10 persona topic (`kind: topic` dari yaml, TR/RS/BD/QA/KR/SB/AS/CR/ED/OR). Console i18n default `id` + toggle EN. **mac-verify 22 PASS / 0 FAIL**. Repo publik `github.com/Niumination/mirai`. Di `mirai/` (root ekosistem) |
 | 9router | :20128 | ✅ Running | 8 Okt 2026 | Model router lokal |
 | Camofox | :9377 | ✅ Running | 8 Okt 2026 | Stealth browser |
 
