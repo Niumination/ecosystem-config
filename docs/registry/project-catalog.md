@@ -73,7 +73,7 @@
 | **NiuHomePage** (fork) | — (remote only) | CSS | `github.com/Niumination/NiuHomePage` | 🟢 GH Pages | 13 Okt 2025 | ✅ Live |
 | **zaryu.startpage** (fork) | — (remote only) | JS | `github.com/Niumination/zaryu.startpage` | 🟢 GH Pages | 13 Okt 2025 | ✅ Live |
 | **Niu-Cyber-Search-Engine** | — (remote only) | TS | `github.com/Niumination/Niu-Cyber-Search-Engine` | 🔴 Vercel 404 | 22 Okt 2025 | ❌ Down |
-| **Kelas Niumination** | `sites/kelas/` | Next.js 16, TypeScript, Tailwind v4, Supabase, Midtrans, MDX | `github.com/Niumination/kelas` 🔒 **PRIVATE** | 🟢 Live — `kelas-hazel.vercel.app` + `kelas.niumination.web.id` | 10 Okt 2026 | 🆕 **Platform kelas gratis+berbayar — "AI Agent Self-Host" — 6 modul/12 pelajaran/19.578 kata MDX. Early bird Rp 99.000. Repo private (materi berbayar di content/) dibuat 10 Okt 2026, CI hijau (run 38037209046, 44s). Fase 0 verifikasi hijau (npm ci/verifikasi/build exit 0, 39 uji). 17 item tertunda (T-01 s.d T-17)** |
+| **Kelas Niumination** | `sites/kelas/` | Next.js 16, TypeScript, Tailwind v4, Supabase, Midtrans, MDX | `github.com/Niumination/kelas` 🔒 **PRIVATE** | 🟢 Live — `kelas-hazel.vercel.app` + `kelas.niumination.web.id` | 11 Okt 2026 | 🆕 **Platform kelas gratis+berbayar — "AI Agent Self-Host" — 6 modul/22 pelajaran/19.578 kata MDX. Early bird Rp 99.000. Repo private (materi berbayar di content/) dibuat 10 Okt 2026, CI hijau (run 38037209046, 44s). Fase 0 verifikasi hijau (npm ci/verifikasi/build exit 0, 39 uji). Supabase project `kelas-niumination` + 6 migrasi live (T-01/T-02 selesai 11 Okt). T-03 (OAuth), T-04 (Midtrans), T-17 (SMTP) pending** |
 
 ### 🖥️ Linux Desktop / Dotfiles (Arch Hyprland)
 
