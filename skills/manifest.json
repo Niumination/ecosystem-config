@@ -1,6 +1,6 @@
 {
   "fileCount": 1177,
-  "generatedAt": "2026-10-11T16:30:15.762534+00:00",
+  "generatedAt": "2026-10-11T17:31:03.784872+00:00",
   "skillCount": 238,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -632,10 +632,10 @@
       }
     },
     "ecosystem/arena-patch-adoption": {
-      "bundleHash": "50c24035ea8c0c4fc100d88759aa83b09a66e0250771a6267a95daf02accb028",
+      "bundleHash": "90d6d8b8c419ec783cdb6b4d226ca79df6d163ff29e723135aa49cee1b902b56",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "808e99ccdea62dfcf907c0cf8bff1d1903f03f5c2250cae8d6c6d8aeb5599f5f",
+        "SKILL.md": "7db3c4f77993cca1edc7cc336994ad694d1cc53619dbdff513b29a0da7cfdc2e",
         "references/dox-pass-and-registry-rows.md": "b5fb3cd4b9de051d8fa71fab5d1c7e26df3da84d73295e894cd410cdda08f6e9",
         "references/harness-fixture-and-flaky-gates.md": "1b3f7caadf1dfb55aae1f819e26fef536f45d901f905650057a53194e83814df",
         "references/lighthouse-triage.md": "679e105fccd36da2f66e3585326698c6f73a449b81607f46f69dd336216c423a",
