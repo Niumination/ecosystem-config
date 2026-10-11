@@ -5,7 +5,7 @@
 | `niumination.web.id` | ✅ **LIVE** — ⚠️ **SSL exp 19 Des 2026 (~72 hari)** · ⚠️ **NS mismatch**: resolver publik → Vercel, dashboard idwebhost → NS idwebhost | 8 Okt 2026 | Niu-OSS-Dashboard, Vercel ready. DNS Vercel (`ns1/ns2.vercel-dns.com`) — zona dikelola Vercel. Perlu sinkronisasi NS di dashboard idwebhost |
 | `mata.niumination.web.id` | ✅ Existing (Cloudflare) | 21 Sep 2026 | |
 | `abstract.biz.id` | 🔴 **DNS REFUSED** — semua nameserver mati | 8 Okt 2026 | Tidak bisa diresolve. Perlu perbaikan NS/registrar sebelum bisa dipakai |
-| `kelas.niumination.web.id` | 🟢 **LIVE** — HTTPS 200, Supabase + **7** migrasi, OAuth aktif, sertifikat terverifikasi, patch arena #1+#2 ter-deploy | 12 Okt 2026 | T-01/T-02/T-03/T-13 selesai. Sisa: T-04 (Midtrans), T-17 (Resend SMTP), T-08 (Ollama), T-18 (uji visual), **T-20 (repo masih PUBLIC)**, T-21 (lisensi skill) |
+| `kelas.niumination.web.id` | 🟢 **LIVE** — HTTPS 200, Supabase + **7** migrasi, OAuth aktif, sertifikat terverifikasi, patch arena #1+#2 ter-deploy | 12 Okt 2026 | T-01/T-02/T-03/T-13 selesai. Repo tetap PUBLIK (keputusan pemilik 12 Okt — belum disebar). Sisa: T-04 (Midtrans), T-08 (Ollama), T-17 (Resend SMTP), T-18 (uji visual), T-19 (uji Google di browser) |
 | `kune-ya.com` | 🔴 **DNS NXDOMAIN** | 8 Okt 2026 | Domain tidak terdaftar/expired. Cek registrar |
 
 ---
