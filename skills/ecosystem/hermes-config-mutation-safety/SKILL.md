@@ -127,12 +127,6 @@ signature file (mtime/size), bukan dimuat sekali saat start.
 
 ## Pitfalls
 
-9. **Jangan simpulkan "cache dingin" dari satu pengamatan.** Selalu uji **dua** kondisi — cache hangat dan
-   cache dingin (pindahkan `provider_models_cache.json`, panggil `clear_provider_models_cache()`) — karena
-   keduanya bisa memberi angka berbeda dan hanya salah satunya mereproduksi keluhan pengguna.
-10. **`/v1/models` sebuah provider bisa memuat model yang sudah dihapus/dimatikan.** Katalog ≠ status aktif.
-    Verifikasi lewat `isActive` di DB provider, bukan dari ada/tidaknya model di daftar.
-
 1. **Never edit `config.yaml` with the `patch` tool.** It is refused by design; the refusal is not a bug to
    route around with a different tool call.
 2. **Never trust `hermes config set` output as proof the file is intact.** Its success message covers only
@@ -151,6 +145,15 @@ signature file (mtime/size), bukan dimuat sekali saat start.
 8. **A write that parses is not a write that landed where you meant.** Nested YAML moves a misplaced block
    from "syntax error" to "silently active under the wrong parent" — the two failure modes have opposite
    signals, so validate placement with a parser assert, not with `yaml.safe_load` succeeding.
+9. **Jangan simpulkan "cache dingin" dari satu pengamatan.** Selalu uji **dua** kondisi — cache hangat dan
+   cache dingin (pindahkan `provider_models_cache.json`, panggil `clear_provider_models_cache()`) — karena
+   keduanya bisa memberi angka berbeda dan hanya salah satunya mereproduksi keluhan pengguna.
+10. **`/v1/models` sebuah provider bisa memuat model yang sudah dihapus/dimatikan.** Katalog ≠ status aktif.
+    Verifikasi lewat `isActive` di DB provider, bukan dari ada/tidaknya model di daftar.
+11. **`hermes cron --no-agent` memakai interpreter Hermes sendiri — tidak ada PyYAML.** Script yang berjalan fine dari shell (yang punya PyYAML) bisa gagal total di cron job `--no-agent` dengan `ModuleNotFoundError: No module named 'yaml'`. Kalau script diedarkan sebagai cron `--no-agent`, tulis parser string murni (`re`, `json`, `urllib`) dan validasi struktur dengan assert — jangan pernah impor paket eksternal. Uji dengan `hermes cron run <job-id>` sekalipun pengujian manual tadi lolos dari shell.
+12. **Jangan asumsi indentasi list item YAML adalah `key_indent + 4`.** YAML mengizinkan sequence di kolom yang sama dengan key-nya (`models:` diikuti langsung `    - item` dengan indentasi sama). Parser yang mengasumsikan +4 akan gagal diam-diam. Baca indentasi aktual dari item pertama. Juga: cek parent section sebelum replace — config ini punya dua `  9router:` (providers dan model_catalog) dan hanya satu yang boleh disentuh.
+13. **Uji script yang menulis config pada SALINAN, bukan config asli.** Arahkan `CONFIG`/`CACHE` ke file `/tmp` lewat variabel yang bisa di-override, lalu buktikan config asli tidak tersentuh (`grep -c` untuk nilai uji = 0) sesudahnya. Menjalankan script penulis config pertama kali langsung ke file produksi adalah cara kehilangan config.
+
 
 ## Related skills
 - `hermes-configuration` — Hermes model mapping, hooks, MCP (if reachable in your skill set)

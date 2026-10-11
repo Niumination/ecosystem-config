@@ -73,6 +73,34 @@ vercel domains verify www.example.com 2>&1 | grep -E '"domainStatus"|"ok"'
 ```
 Expected: `"domainStatus": "configured-correctly"`, `"ok": true`
 
+## Flapping verify: CLI balas bergantian ok / invalid-configuration
+
+`vercel domains verify <domain>` bisa `configured-correctly` lalu
+`invalid-configuration` beberapa detik kemudian, selama delegasi NS
+registrar → Vercel belum settle. Diagnosis:
+
+```bash
+# 1) apa yang dilihat resolver publik (kadang masih NS lama)
+dig +short NS example.com
+# 2) apa yang dilihat authoritative Vercel — timeout = delegasi belum settle
+dig +short NS example.com @ns1.vercel-dns.com
+# 3) fungsional: probe HTTPS 4 route penting
+curl -s -o /dev/null -w '%{http_code}\n' https://example.com/
+```
+
+- **Split-horizon NS = normal selama propagasi**: registrar sudah balas
+  `ns1/ns2.vercel-dns.com` tapi authoritative lama masih balas NS idwebhost
+  (atau sebaliknya), atau `@ns1.vercel-dns.com` timeout. Ini state transisi,
+  bukan konfigurasi salah.
+- **HTTP 200 di semua route = fungsional LIVE, bukti terpisah dari verify.**
+  Edge Vercel melayani lewat record eksplisit/wildcard sementara verifikasi
+  menunggu NS. Laporkan keduanya terpisah: "fungsional live (N route 200)" vs
+  "verifikasi resmi". Jangan tulis "verified" ke registry/rapor bila verify
+  masih flapping — tulis provisional + `vercel domains verify` untuk retry
+  nanti (tanpa intervensi manual; flap berhenti sendiri 15–60 menit, max 24 jam).
+- **Verify flapping bukan alasan menambah ulang domain atau menambah record.**
+  `vercel domains add` sudah sukses sekali = cukup; yang menunggu hanya DNS.
+
 ## Pitfalls
 
 - **`vercel domains rm www.example.com` fails "Domain not found"** when www is project-level, not account-level. Use `vercel domains add www.example.com <project>` to re-attach.

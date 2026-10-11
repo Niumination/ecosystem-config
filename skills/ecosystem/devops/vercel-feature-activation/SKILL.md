@@ -54,12 +54,17 @@ Never invent var names from the feature's UI. A wrong name is invisible: the app
 ## Pitfalls
 
 - **A "feature active" boolean is not proof the schema exists.** Such flags are usually derived from the presence of a connection string, which says nothing about whether the tables were created. The first real write is the only probe that counts.
+- **A 200 from a per-deployment URL may be the platform's own login page, not your app.** With Deployment Protection on, every route of the hash URL returns 200 with a sign-in page. Verify by body (`<title>`, an app-only string) and probe the stable alias or custom domain — a status code captured from the protected URL is a false green that has to be retracted later.
+- **OAuth sign-in has four independent layers** (app redirect base, provider auth config, IdP callback registration, app callback route); three are invisible from the app's code. Diagnose them in that order instead of editing credentials. See `references/oauth-provider-activation.md`.
 - **A 403 on a write endpoint can be an identifier-shape mismatch, not a permissions denial.** Handlers frequently resolve the caller's target with a multi-shape lookup (`String(x.id) === input || x.singkat === input || x.nama === input`) before the ownership check; when the handler's real matching key is a numeric id and you sent a slug or a lowercase abbreviation, the ownership check fails and returns the same 403 an under-privileged caller would get. Read the handler's lookup expression and send the exact shape the UI sends — the UI's own source is the authoritative answer.
 - **Guess field names from the validator's error, not from intuition.** A 400 naming the constraint is the cheapest possible probe; each guess costs a round-trip and risks writing to the wrong key.
 - **Env edits without a redeploy silently do nothing**, and a redeploy that does not take the domain looks exactly like a successful activation. Check aliases, not just exit codes.
 - **Never retry a blocked protected-file edit through another tool or path.** If an approval gate for a DOX or agent-instruction file times out, state the intended edits, ask once, and batch all of them into the single approved pass.
 - **Confirm each file edit landed before the next step depends on it** — check `git status --porcelain` or `ls -la` after any write performed through a wrapper, then build on that confirmation.
 - **Leave unrelated stale env vars alone** unless the owner asks; note them as an observation so removing them stays a deliberate decision.
+- **Run the app's own end-to-end script against the real backend — it is the only probe that exercises the whole chain as a real user.** Hand-clicking skips the layers that matter: RLS policies, `auth.uid()`, entitlement gates. When the app ships one it typically provisions a fixture user with the service role and then acts *as* that user, which is what makes the authorization path real rather than simulated. Feed it from the credential store, not the terminal: materialize the local env file from the same values you set on the deploy target, `chmod 600`, and confirm it is gitignored before running.
+- **When the end-to-end script fails exactly one assertion with a count mismatch, suspect the assertion before the system.** A literal count baked into a test goes stale the moment the seed grows, and the failure text reads like data corruption. Compare the number against the source of truth first; if the seed legitimately has more rows, the assertion is the bug. Fix it to derive from the source (`> 0`, or read the expected count) instead of raising the literal — otherwise the next seed change breaks it again, and the next reader believes the system.
+- **Keep the fixtures that public verification depends on, and record the cleanup command.** A verification page that resolves by identifier stops resolving when its fixture is deleted, so teardown is a deliberate step after the manual checks, not part of the test run. Print the exact cleanup invocation in the report so the owner can run it once they are done looking.
 - **Report what you could not do.** Browser-only steps (clicking through the UI, real-device checks) and anything needing other people remain open items with the exact command or click-path the owner must run.
 
 ## Verification
@@ -73,5 +78,6 @@ Never invent var names from the feature's UI. A wrong name is invisible: the app
 
 ## References
 
+- `references/oauth-provider-activation.md` — turning on hosted OAuth sign-in (Supabase Auth and similar): the four layers that must all be right, browser-free authorize probes, decoding IdP error payloads, and proving the redirect was baked into the client bundle.
 - `references/api-authz-verification.md` — exercising and proving a live write API, the authorization matrix, and the identifier-shape trap.
 - `references/env-and-db-provisioning.md` — env var commands, secret generation, database reuse vs creation, redeploy/promote, rotation recipe.

@@ -31,10 +31,39 @@ Re-measure, then decide whether the document is a ledger (supersede) or a contra
 4. **Give every backlog item an acceptance criterion that is a command.** "Improve eval" is
    not checkable; "artefact names the model and is diffed against baseline, count of changed
    answers recorded" is. State what must be true, not what must be built.
-5. **Verify encoding artifacts after each write, not at the end.** See pitfalls.
+5. **For a registry that enumerates runtime objects, diff the identifier sets — do not eyeball.**
+   When the document is an index of live objects (cron jobs, threads, services, repos), pull the
+   document's identifiers and the runtime's identifiers and compare them **as sets**:
+
+   ```python
+   import re, subprocess
+   doc = set(re.findall(r'\| `([0-9a-f]{12})`', open('docs/registry/<file>.md').read()))
+   rt  = subprocess.run(['hermes','cron','list'], capture_output=True, text=True).stdout
+   run = set(re.findall(r'^  ([0-9a-f]{12}) \[', rt, re.M))
+   print('missing from doc:', sorted(run - doc), '| stale in doc:', sorted(doc - run))
+   ```
+
+   Then assert the counts match (`len(doc) == len(run)`) so the next session can re-run the check
+   instead of re-reading the table. This is the step that finds drift a manual read cannot.
+
+6. **Report the reconciled count as a number, not an adjective.** "14/14 IDs match, zero drift in
+   both directions" is checkable; "registry updated" is not.
 
 ## Pitfalls
 
+- **An index drifts in four directions, and only a set diff finds all four.** A row can hold a wrong
+  value, a live object can be **missing entirely**, the document can list an object that **no longer
+  exists**, or a whole class of objects can have never been recorded. Reading the table top-to-bottom
+  catches the first only — the other three are absences, and absences are invisible to a reader. Diff
+  the identifier sets.
+- **A class of objects that was never added is the most dangerous drift.** A registry that documents
+  six of eleven sibling jobs looks complete and authoritative; the five missing ones are the ones no
+  one will think to check. Group the runtime objects by class and confirm each class appears.
+- **Re-measure the aggregate counters, not just the rows.** Thread count, skill count, job count, and
+  process IDs live in headers and prose; they go stale independently of the tables they summarise.
+  Count from the source (`launchctl list`, `manifest.json`, `hermes cron list`) and compare to the
+  number written in the document — a header claiming "9 threads" beside a table listing 10 is the
+  signature of a summary that was never regenerated.
 - **A repo labelled private in its own README may be public.** A wrong privacy label removes
   the standing warning that keeps PII out of a world-readable repo, and it invalidates every
   "safe to store here" judgement built on it. Read `visibility` from the forge before writing
@@ -54,6 +83,10 @@ Re-measure, then decide whether the document is a ledger (supersede) or a contra
   reconciliation produces.
 - **A new backlog document must state what it supersedes.** Say plainly which older sections are
   now historical, or the next session will read both and pick the wrong one.
+- **A status field can be a *snapshot*, and snapshots of a moving target mislead.** When a document
+  records a measurement of something that fluctuates (a catalogue size, a live count), label it as a
+  snapshot with the command to re-read it, and say plainly that the number is not a constant. A bare
+  number reads as a fact and will be trusted long after it stopped being true.
 - **Never reconcile a protected instruction file silently.** If a status header lives in
   `AGENTS.md`, prepare the change but surface it for explicit approval; a timed-out approval
   prompt is not consent, and routing around the refusal defeats the point of the gate.

@@ -60,13 +60,25 @@ sebaliknya). Contoh nyata: 50 model `pixz/*` tampak "transient" padahal semuanya
 lihat aturan `usageHistory` di bagian audit di atas.
 
 **Jangan simpan daftar provider hidup/mati di skill ini.** Daftar seperti itu basi dalam hitungan hari
-(katalog bergerak 48→77→135 model dalam beberapa pekan) dan langsung menyesatkan sesi berikutnya.
-Yang durable adalah **kriterianya**: probe chat 3×, cek `usageHistory`, baru putuskan. Kalau butuh
-angka terkini, jalankan audit dan baca JSON-nya — jangan percaya tabel di dokumen mana pun, termasuk ini.
-**Penting:** 9router listing 511 model dari 13 provider, tapi 94% tidak accessible (400/403/410/429/503). Provider yang 0 model OK → disable via sqlite.
-Provider yang diketahui punya akses (per 14-Sep-2026): `gemini` (AI Studio key), `github` (Copilot free tier, banyak model 400), `kr` (Kiro free tier), `cf` (Cloudflare Workers). Provider yang DISABLE (0 model OK): `explabs` (342 model, payment required), `antigravity` (timeout), `kimi` (quota exhausted), `nvidia` (410 retired), `ollama` (410 retired), `bazaarlink` (402 credits), `byteplus` (400 subscription), `poolside` (404), `bpm` (503), `ps` (503), `api-airforce` (503).
-→ Disable provider yang 0 model OK via sqlite `providerConnections.isActive=0`, lalu restart server.
+(katalog bergerak 48→77→135→168 model dalam beberapa pekan) dan langsung menyesatkan sesi berikutnya.
+Yang durable adalah **kriterianya**: probe chat 3× dengan `max_tokens >= 64`, cek `usageHistory`,
+baru putuskan. Kalau butuh angka terkini, jalankan audit dan baca JSON-nya — jangan percaya tabel di
+dokumen mana pun, termasuk ini.
+
+→ Disable provider HANYA lewat `audit_models.py --apply` (yang sudah punya guard `ok=0` **dan**
+  `transient=0`), lalu restart server. Jangan tulis `UPDATE ... isActive=0` manual tanpa bukti
+  `usageHistory`.
 → Nonaktifkan provider TIDAK menghapus data — model tetap ada di catalog tapi tidak di-return ke Telegram.
+→ **Provider mati tapi modelnya masih muncul = bug katalog.** Setelah `isActive=0`, restart server dan
+  verifikasi `/v1/models` sudah tidak memuat prefix provider itu lagi.
+
+**Kredensial mati vs model mati.** Kalau SEMUA model satu provider gagal dengan kode yang sama
+(401/403), itu kredensial, bukan modelnya. Uji langsung ke endpoint provider (bukan lewat 9router)
+untuk memisahkan keduanya — kalau endpoint provider sendiri membalas 200, flapping/error ada di
+lapisan agregasi 9router, bukan di provider. Kredensial mati tidak bisa dipulihkan dari sisi Hermes:
+laporkan prefix+4 akhir+panjang key (jangan nilai utuh), sebutkan di mana key disimpan, dan nyatakan
+bahwa penggantinya butuh tindakan pemilik. **Sebutkan juga thread/channel mana yang bergantung pada
+provider itu** — provider yang dipakai `channel_overrides` berarti ada thread yang kehilangan model.
 
 ## Manual Provider Disable (sqlite)
 ```python
@@ -226,11 +238,8 @@ Lihat `references/launchd-script-hardening.md` untuk pola lengkap + cara membaca
 - **`max_tokens` < 16 → 400 palsu.** Sebagian model menolak dengan
   `` `max_output_tokens` The number must be `>= 16` ``. Itu payload probe yang salah, bukan model mati —
   `oc-combo-2` pernah divonis "rusak" karena ini, ternyata sehat. Pakai `max_tokens >= 64`.
-- **Plist `com.niumination.9router-sync` PATH-nya TIDAK memuat `/sbin`.** Di macOS `sha256sum` ada di
-  `/sbin/sha256sum`, di luar PATH launchd. Dan jangan andalkan `|| shasum` di dalam pipeline: exit code
-  pipeline diambil dari perintah **terakhir** (`cut` = 0), jadi fallback tidak pernah jalan dan `HASH`
-  keluar kosong — yang lalu dibandingkan dengan `PREV_HASH` kosong → skrip selalu memilih cabang "tidak
-  ada perubahan" dan diam selamanya. Pakai `command -v` + guard hash kosong (`exit 1`).
+- **Plist `com.niumination.9router-sync` PATH-nya TIDAK memuat `/sbin`** — lihat bagian "Otomasi bisa
+  mati DIAM-DIAM" di atas untuk mekanisme lengkap dan pola `_hash_ids()` yang benar.
 - **Cache katalog Hermes menunda efek disable provider.** `~/.hermes/provider_models_cache.json` (TTL 1 jam)
   didahulukan daripada `models:` di config, jadi picker masih menyajikan model provider yang baru dimatikan.
   Hapus entry `custom:http://localhost:20128/v1*` agar picker langsung bersih.

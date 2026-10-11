@@ -53,6 +53,17 @@ Skip any step = lying, not verifying
 | Build succeeds | Build command: exit 0 | Linter passing |
 | Bug fixed | Test original symptom: passes | Code changed, assumed fixed |
 | Regression test works | Red-green cycle verified | Test passes once |
+| Page/route live | Response **body** matches the app (title, known string) | HTTP 200 alone |
+| Endpoint works | Typed field asserted (`json.n === 5`) | Substring found in page text |
+| Copy is complete | `diff -rq src dst` → zero output | "I copied it", file count |
+| Data matches source | Identity column diffed, not just row count | Equal totals |
+
+**A status code identifies the response, not the surface.** A 200 can be a platform's own login
+wall, a generic "not found" page, or a cached stale build — each renders as a clean pass. Assert
+something only the real target produces: the page title, a marker string from your own app, or a
+typed field. The same rule for totals: equal counts prove nothing if the members differ — diff the
+identity column (slug, key, filename), because N rows that are not the N you meant looks identical
+to success.
 
 ## Red Flags — STOP
 

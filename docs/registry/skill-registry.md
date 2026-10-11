@@ -54,7 +54,7 @@
 | `ecosystem/autonomous-ai-agents/hermes-thread-scoping` | ecosystem | 1 | Bank Pusat | Use when auditing multi-thread Telegram agent setup. |
 | `ecosystem/bank-coverage-set-diff` | ecosystem | 1 | Bank Pusat | Use when a scanner total may not cover every skill. |
 | `ecosystem/cc-acehtengah-maintenance` | ecosystem | 3 | Bank Pusat | cc-acehtengah branch reconciliation and UI or role fixes. |
-| `ecosystem/composio` | ecosystem | 4 | Bank Pusat | Route and complete Composio work across Composio For You and Composio Platform. Use when the user mentions Composio; wants an agent to use apps such as Gmail, Slack, GitHub, Notion, Calendar, or Linear; needs first-time setup, an SDK or MCP integration, CLI operation, migration guidance, current documentation, or help diagnosing a connection or tool call. |
+| `ecosystem/composio` | ecosystem | 5 | Bank Pusat | Route and complete Composio work across Composio For You and Composio Platform. Use when the user mentions Composio; wants an agent to use apps such as Gmail, Slack, GitHub, Notion, Calendar, or Linear; needs first-time setup, an SDK or MCP integration, CLI operation, migration guidance, current documentation, or help diagnosing a connection or tool call. |
 | `ecosystem/config-history-review` | ecosystem | 2 | Bank Pusat | Review Hermes config history using filesystem evidence (backup files, changelogs, git logs) — NOT session search or memory. Use when user asks to retrace changes, audit history, or check what happened over time. |
 | `ecosystem/content-remotion-video` | ecosystem | 3 | Bank Pusat | SALINAN (jangan pakai — salinan induk: skills/content/remotion-video/). Buat video vertikal 9:16 pakai Remotion — prompt ke MP4, Mode A CPU-only, gratis (Free tier ≤3 org). |
 | `ecosystem/content/hyperframes-vertical-video` | ecosystem | 1 | Bank Pusat | probe3 |
@@ -67,7 +67,7 @@
 | `ecosystem/devops/vercel-deployment-management` | ecosystem | 1 | Bank Pusat | Manage Vercel deployments — status, deploys, pause/unpause. |
 | `ecosystem/devops/vercel-dns-subdomain-debug` | ecosystem | 1 | Bank Pusat | >- |
 | `ecosystem/devops/vercel-domain-pointing` | ecosystem | 1 | Bank Pusat | Point custom domain to Vercel — nameserver, DNS, verify. |
-| `ecosystem/devops/vercel-feature-activation` | ecosystem | 1 | Bank Pusat | Use when activating a dormant feature on a Vercel app. |
+| `ecosystem/devops/vercel-feature-activation` | ecosystem | 2 | Bank Pusat | Use when activating a dormant feature on a Vercel app. |
 | `ecosystem/dotfiles-maintenance` | ecosystem | 1 | Bank Pusat | Use when developing or fixing zaryu-terminal-dotfiles. |
 | `ecosystem/ecosystem-architecture-adoption` | ecosystem | 2 | Bank Pusat | Adapt external architecture into existing project. |
 | `ecosystem/ecosystem-bulk-push` | ecosystem | 1 | Bank Pusat | Use when pushing many ecosystem repos to GitHub at once. |
@@ -92,7 +92,7 @@
 | `ecosystem/ecosystem/long-form-markdown-deliverables` | ecosystem | 1 | Bank Pusat | Use when writing reports, plans, or backlog docs. |
 | `ecosystem/ecosystem/macos-hackintosh-opencore` | ecosystem | 3 | Bank Pusat | Use when upgrading Intel Hackintosh/OpenCore. |
 | `ecosystem/ecosystem/macos-system-health` | ecosystem | 1 | Bank Pusat | Use when auditing macOS disk, RAM, or service health. |
-| `ecosystem/ecosystem/scheduled-job-delivery-routing` | ecosystem | 1 | Bank Pusat | Use when cron output posts to the wrong chat or thread. |
+| `ecosystem/ecosystem/scheduled-job-delivery-routing` | ecosystem | 1 | Bank Pusat | Use when cron output is misrouted or must be routed. Fixes deliver targets. |
 | `ecosystem/ecosystem/sealed-evidence-bundle-production` | ecosystem | 1 | Bank Pusat | Use when sealing a verified evidence bundle for review. |
 | `ecosystem/ecosystem/skill-library-maintenance` | ecosystem | 3 | Bank Pusat | Use when moving, patching, or syncing skills. |
 | `ecosystem/ecosystem/skill-loader-name-collision` | ecosystem | 2 | Bank Pusat | Use when a skill name is reported ambiguous. |
@@ -115,6 +115,7 @@
 | `ecosystem/integration-verification` | ecosystem | 4 | Bank Pusat | Verify whether external services, APIs, or toolkits are actually connected and working end-to-end. Use when checking Composio, API keys, providers, webhooks, or local gateways. |
 | `ecosystem/kanban-ecosystem-management` | ecosystem | 20 | Bank Pusat | Track Niumination project portfolio via Hermes kanban. Covers: mapping AGENTS.md project catalog → kanban tasks by category/priority, syncing BACKLOG.md, fixing empty-dashboard DB_PATH issues, and the Plan→DOX→Execute workflow for ecosystem-wide kanban updates. |
 | `ecosystem/mata-ops` | ecosystem | 1 | Bank Pusat | Pull repo MATA dari GitHub & jalankan dashboard lokal :8080. |
+| `ecosystem/mirai-mission-control-adoption` | ecosystem | 1 | Bank Pusat | Adopt the MIRAI mission-control pack. |
 | `ecosystem/model-checker` | ecosystem | 2 | Bank Pusat | Cek semua model 9router yang tersedia, test aksesibilitas, kategorikan gratis vs berbayar. Trigger via chat "/model-check" atau "cek model". Hasil: laporan markdown di scripts/model-checker-report.md + data JSON. |
 | `ecosystem/model-mapping-repair` | ecosystem | 4 | Bank Pusat | Use when a model mapping points at a dead provider. |
 | `ecosystem/model-status-checker` | ecosystem | 4 | Bank Pusat | Model status checker. 3-tier probe for daily health cron. |
@@ -241,6 +242,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-10-08 23:43:57_
+_Last sync: 2026-10-11 23:51:32_
 
 <!-- SKILL_REGISTRY_END -->

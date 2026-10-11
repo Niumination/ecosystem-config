@@ -41,6 +41,8 @@ Do not turn an explanation, documentation lookup, or narrow bug fix into onboard
 - For You: read [Composio For You](references/for-you.md).
 - Platform: read [Composio Platform](references/platform.md).
 - Provider, connection, or execution failure: also read [Errors and provider gotchas](references/errors.md).
+- Provisioning cloud resources (e.g. a Supabase project) through Composio: read [Supabase provisioning](references/supabase-via-composio.md).
+- Turning on OAuth sign-in for an app whose auth is brokered by a connected provider: read the `vercel-feature-activation` skill's `references/oauth-provider-activation.md`.
 
 ## Complete the selected job
 
@@ -49,9 +51,33 @@ Do not turn an explanation, documentation lookup, or narrow bug fix into onboard
 - For an operational request, connect only the apps the task needs and execute the requested workflow.
 - For debugging, get the Composio log or request ID, identify the failing boundary, fix that boundary, and retry when the user authorized execution.
 
+## Headless MCP access (no browser)
+
+The shared For You endpoint `https://connect.composio.dev/mcp` accepts only an AuthKit JWT from a browser login — it returns `401` for no auth, for `x-api-key`, and for `Authorization: Bearer <COMPOSIO_API_KEY>` alike. Do not iterate on header variants there. For an agent that cannot open a browser, mint a Platform session with the installed SDK instead:
+
+```python
+from composio import Composio
+s = Composio().create(user_id="<stable_user_id>")   # s.mcp.url, s.mcp.headers
+```
+
+`s.mcp.url` is an HTTP MCP endpoint on `backend.composio.dev`; `s.mcp.headers` carries the session key. Verify host and credential with the documented REST shape first — base `https://backend.composio.dev/api/v3.1`, header `x-api-key`. A JSON error body that contains a `request_id` means the host is up and the path or header is wrong, not an outage; `api.composio.dev` is not an API host.
+
+Report only `session_id` and the MCP URL — never `session.mcp.headers`, which embeds a live key. If a key has already been printed anywhere, rotate it after integration and recreate the session.
+
 ## Runtime re-auth pattern
 
 If a toolkit tool returns `No active connection found for toolkit(s) '<slug>'`, do not change credentials. Start `COMPOSIO_MANAGE_CONNECTIONS` for that toolkit in the same session, return the Connect Link to the user, wait for authorization, and retry the original tool call. This pattern is especially common for email/inbox checks because a Gmail connection may be listed in the dashboard but still require session authorization in Tool Router sessions.
+
+## Tool Router meta-tools (agent MCP)
+
+When Composio reaches an agent as MCP (URL shaped `https://backend.composio.dev/tool_router/<router>/mcp` with `x-api-key`), the surface is a fixed set of meta-tools — discover (`COMPOSIO_SEARCH_TOOLS`), schemas (`COMPOSIO_GET_TOOL_SCHEMAS`), execute (`COMPOSIO_MULTI_EXECUTE_TOOL`), and `COMPOSIO_MANAGE_CONNECTIONS` — not the per-app tools themselves. Work the pipeline instead of guessing:
+
+1. Discover slugs, then fetch each schema, then execute. Never invent a tool slug.
+2. Discovery takes `queries:[{use_case, known_fields}]`; a session object alone is rejected as "missing required argument", and the query object accepts no extra keys — passing e.g. `toolkits` inside it fails `additionalProperties` validation. Scope the toolkit by naming it in the `use_case` text instead.
+3. Carry ONE `session_id` through the whole workflow (`session:{"id":...}` on discovery, `session_id` on execute). Execute takes `tools:[{tool_slug, arguments}]` plus `sync_response_to_workbench:false`; the returned session block tells you to keep reusing the id.
+4. `COMPOSIO_MANAGE_CONNECTIONS` reporting `enabled` or `successful` proves only that the toolkit is enabled in the workspace. Authorization is the separate `has_active_connection` / `connected_account_id` fields — quote those, never the former, when reporting readiness.
+5. An authorization Connect Link expires within minutes. When the user says it is done, mint state fresh via a status call; do not reuse a stale link or re-derive success from an earlier reading.
+6. Re-read connection state immediately before an irreversible call (resource create, publish, delete). "Enabled" and "connected a minute ago" are not evidence at execution time; a claim of active that no output actually showed must be re-verified, not restated.
 
 ## Stable rules
 

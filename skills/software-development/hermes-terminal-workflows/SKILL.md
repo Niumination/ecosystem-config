@@ -49,6 +49,7 @@ When using heredoc (`<<'EOF'`) in `terminal()`:
 5. If the terminal tool refuses a file-editing command at the approval gate, do not reword and resend shell — switch to the patch/write_file tools for the edit; repeated terminal attempts after a refusal burn turns against the same gate.
 6. For batch multi-replacement scripts, assert each old string matches EXACTLY once (`count == 1`) and abort before any write on mismatch — a partial write is harder to unwind than a failed run. Re-include the matched text in the replacement unless you actually mean to delete it: swapping a heading for a new block and forgetting to re-emit the heading silently orphans the section under it. After a batch of replacements, re-read the file and confirm the sections you did NOT touch are still intact.
 7. Tool output RENDERS text: non-ASCII separators (e.g. U+2028) display as familiar glyphs and line continuations may appear or vanish. When an exact match fails unexpectedly, `hexdump -C` the region and match the bytes, not the rendering.
+8. Escape sequences inside heredoc content (e.g. a Python `'\n'` literal) survive the shell layer intact but break under the tool's own string handling, surfacing as a bogus `unterminated string literal` on the line after the join. Build joins with `chr(10)` (or write the script via `write_file` and run it by path) whenever a heredoc must contain backslash escapes.
 
 ## Shell Correctness in Checker/Automation Scripts
 

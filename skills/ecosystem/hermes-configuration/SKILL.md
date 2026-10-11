@@ -94,6 +94,23 @@ Hooks referencing USB-mounted paths (`/Volumes/HermesAgent/HermesAgentUSB/data/a
 
 ## MCP Server Management
 
+### Adding a URL-type MCP server (`mcp_servers.<name>`)
+
+1. **Backup** `~/.hermes/config.yaml` first (see Configuration Update Workflow).
+2. **Prove the transport before wiring it:** POST a JSON-RPC `initialize` (`protocolVersion 2025-03-26`, `Accept: application/json, text/event-stream`) straight at the URL with the auth header. `HTTP 200` + a `serverInfo` body is the bar. Do this outside Hermes so a config failure and an endpoint failure stay separable.
+3. **Secret goes in `~/.hermes/.env`, referenced as `${VAR}` in `headers:`.** Hermes expands `${...}` from the env file (`_interpolate_env_vars`); never hardcode a key in config.yaml.
+4. **Insert the block with `lines.insert()` + asserts on the anchor lines** (indent and parent key), not `sed` — see `hermes-config-mutation-safety` for why `sed r` puts the block under the wrong parent.
+5. **Prove placement structurally:** load with PyYAML, assert the new key exists under `mcp_servers` AND is absent from sibling maps (e.g. `'composio' in platform_toolsets` must be `False`). A block that parses can still be in the wrong parent.
+6. **Install the `mcp` package into the GATEWAY python**, the interpreter the gateway actually spawns (`~/.hermes/tools/python-*/bin/python3.14 -m pip install mcp`), not the system Python. When `import mcp` fails there, every `mcp_servers` entry — filesystem, github, context7 included — dies silently; nothing in the UI says so.
+7. **Restart from a shell outside the gateway.** A restart issued inside the gateway process propagates SIGTERM to its own children.
+8. **Verify in three layers:** `hermes mcp test <name>` → `✓ Connected` + `Tools discovered: N`; `grep "MCP server '<name>'" ~/.hermes/logs/agent.log` → `registered N tool(s)`; then one real read-only tool call returning `isError: False`.
+
+Pitfalls:
+- **`hermes mcp list` showing `✓ enabled` only mirrors config parsing.** It is not evidence of a live connection — it looks identical before and after a broken server is added.
+- **Never have the user copy a path from chat output.** Output paths are redacted (`python-3.14.7+202****0901`); a literal copy yields `no such file or directory`. Hand over a glob instead: `P=$(ls -d ~/.hermes/tools/python-*/bin/python3.14 | head -1)`.
+- **A user-shell `ls` alias contaminates `$(ls -d ...)`** with `name -> target` text when it renders links, so the variable stops being a path. Prefer a glob; prefix `command ls` if substitution is unavoidable.
+- **Credential rotation invalidates the embedded session.** Rotating an API key kills the session id that is already in config: update `.env` → mint a new session → patch the `url` → restart → re-test, in that order, or the server comes back connected-but-401.
+
 ### Disconnected MCP Servers
 
 When MCP servers fail with `Connection closed` after 3 attempts, they enter parking mode. **Pattern:**

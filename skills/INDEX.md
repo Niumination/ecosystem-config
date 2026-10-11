@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 237 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 238 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 237 ✅ Aktif
+> **Status:** 238 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -206,6 +206,7 @@
 | **hermes-fork-reconciliation** | ✅ Aktif | Bank Pusat | 11.5 KB | Use when rebasing a diverged fork onto upstream. |
 | **vercel-deployment-management** | ✅ Aktif | Bank Pusat | 2.7 KB | Manage Vercel deployments — status, deploys, pause/unpause. |
 | **backup-coverage-audit** | ✅ Aktif | Bank Pusat | 3.5 KB | Audit backup gaps before device migration. |
+| **mirai-mission-control-adoption** | ✅ Aktif | Bank Pusat | 5.4 KB | Adopt the MIRAI mission-control pack. |
 
 ## Domain: Security
 
@@ -388,8 +389,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **237** |
-| **Total** | **237** |
+| ✅ Aktif | **238** |
+| **Total** | **238** |
 
 ## Catatan Penting — Potensi Konflik
 

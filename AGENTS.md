@@ -9,7 +9,7 @@
 ---
 
 ## Skill Registry
-> Daftar lengkap skill + trigger + level ada di `docs/registry/skill-registry.md` (auto-generated). Jumlah saat ini: **210 skill** (bank `~/Desktop/Niumination/skills/`; `skill-manifest.py --check` = 0 mismatch). Angka ini bergerak — baca `docs/registry/skill-registry.md` untuk jumlah terkini, jangan mengandalkan angka yang tertulis di sini.
+> Daftar lengkap skill + trigger + level ada di `docs/registry/skill-registry.md` (auto-generated). Jumlah saat ini: **238 skill** (bank `~/Desktop/Niumination/skills/`; `skill-manifest.py --check` = 0 mismatch). Angka ini bergerak — baca `docs/registry/skill-registry.md` untuk jumlah terkini, jangan mengandalkan angka yang tertulis di sini.
 > Generator: `skills/sync-to-agents.sh` (tabel registry, jalan tiap sync) + `scripts/skill-manifest.py` (manifest SHA-256 + verifikasi). Jangan menyalin tabelnya kembali ke sini.
 
 ## Global Agent Rules (relocated from SOUL.md v1 — 2026-08-30)
@@ -140,7 +140,7 @@
 │   └── ponytail/              ← SKILL.md + MCP server code
 ├── archive/                   📦 Arsip proyek lama (4 inactive + ~25MB)
 ├── apps/niu-gayo-agroclimate/ ← Agro-Climate Kopi Gayo & Mitigasi Bencana — React 19/Vite 6 ✅
-├── skills/                    🧠 **ACTIVE** Bank skill terpusat — 210 skill terisi ✅ (jumlah bergerak, baca `docs/registry/skill-registry.md`)
+├── skills/                    🧠 **ACTIVE** Bank skill terpusat — 238 skill terisi ✅ (jumlah bergerak, baca `docs/registry/skill-registry.md`)
 │
 ├── .folder-icons/             🖼️ Custom Finder folder icons (PNG + @2x) — lokal, tidak di-track git
 ├── .gitignore                 — Semua folder proyek child di-ignore
