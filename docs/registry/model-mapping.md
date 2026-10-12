@@ -2,8 +2,10 @@
 
 > Auto-generated from live 9router discovery + Hermes provider config.
 > Source of truth: `scripts/model-checker.py` + `~/.hermes/config.yaml`.
-> Last snapshot: **2026-10-11** (verified: katalog 9router **berflapping** 168 ↔ 126,
-> `providers.9router.models` 168 · `providers.huancheng.models` 14, primary 9router + nous).
+> Last snapshot: **2026-10-12** — `huancheng` key HIDUP (HTTP 200), 2 model ditarik
+> (`sensenova-6.8-flash-lite`, `sensenova-u1.5-lite`), thread 8853 → `DeepSeek-V4.1-Flash`.
+> (verified: katalog 9router **berflapping** 168 ↔ 126, `providers.9router.models` 168 ·
+> `providers.huancheng.models` 12, primary 9router + nous).
 > Snapshot sebelumnya 28 Sep 2026 (70 model) sudah kedaluwarsa — dipertahankan sebagai riwayat saja.
 >
 > ⚠️ **Angka katalog adalah snapshot, bukan nilai tetap.** Katalog 9router terukur bergerak
@@ -96,7 +98,7 @@ beralih ke anggota berikutnya. Pantau `usageDaily` di sqlite 9router.
 | `channel_overrides.804` | `combo-delegasi` | 9router |
 | `channel_overrides.1172` | `combo-delegasi` | 9router |
 | `channel_overrides.7402` | `combo-delegasi` | 9router |
-| `channel_overrides.8853` | `sensenova-6.8-flash-lite` | huancheng |
+| `channel_overrides.8853` | `DeepSeek-V4.1-Flash` | huancheng |
 | `channel_overrides.12595` | `combo-delegasi` | 9router |
 | `channel_overrides.12707` | `combo-delegasi` | 9router |
 | `channel_overrides.13902` | `combo-gateway` | 9router |
@@ -120,30 +122,44 @@ beralih ke anggota berikutnya. Pantau `usageDaily` di sqlite 9router.
 
 ## ⚠️ Status Provider — 11 Okt 2026
 
-### `huancheng` — KREDENSIAL MATI (401)
+### `huancheng` — KEY HIDUP, 2 model ditarik provider
 
-Diuji langsung ke endpoint, bukan lewat perantara:
+Diuji langsung ke endpoint 12 Okt 2026 (bukan lewat perantara):
 
 ```
 $ curl -s -w "\nHTTP %{http_code}\n" https://api.hcnsec.cn/v1/models -H "Authorization: Bearer $HUANCHENG_API_KEY"
-{"error":{"code":"","message":"Invalid token (request id: ...)","type":"new_api_error"}}
-HTTP 401
-
-$ # chat completion juga 401
-{"error":{"code":"","message":"Invalid token (request id: ...)","type":"new_api_error"}}
+{"data":[...],"object":"list","success":true}
+HTTP 200
 ```
 
-Key: `sk-qCB…SDID`, panjang 51. **Tidak ada key pengganti** — nilai di `~/.hermes/.env` dan
-`vault/secrets.zsh` identik (len 51, prefix/akhir sama), jadi keduanya menunjuk key yang sama.
+Key: `sk-qCB…SDID`, panjang 51 — **HIDUP**. Nilai di `~/.hermes/.env` dan
+`vault/secrets.zsh` identik. Catatan lama "KREDENSIAL MATI (401)" di sini sudah usang;
+provider pulih.
 
-**Dampak:** `channel_overrides.8853` (thread **ASN**) memakai `huancheng` +
-`sensenova-6.8-flash-lite`. Selama key belum diganti, thread 8853 tidak punya model yang bisa
-menjawab. Model `huancheng` juga sudah dideklarasikan di `providers.huancheng.models` (14 entri)
-sehingga **tetap tampil** di picker `/model` — sesuai permintaan pemilik: semua model huancheng
-ditampilkan meskipun tidak bisa dipakai.
+**Yang benar-benar mati: 2 model ditarik provider.**
 
-**Tindakan yang dibutuhkan (pemilik):** ganti key di `~/.hermes/.env` + `vault/secrets.zsh`,
-lalu verifikasi `GET /v1/models` → 200. Tidak ada yang bisa dipulihkan dari sisi Hermes.
+```
+$ curl -s -w "HTTP %{http_code}\n" https://api.hcnsec.cn/v1/chat/completions \
+    -H "Authorization: Bearer $HUANCHENG_API_KEY" -d '{"model":"sensenova-6.8-flash-lite", ...}'
+{"error":{"code":"model_not_found","message":"No available channel for model sensenova-6.8-flash-lite ..."}}
+HTTP 503
+```
+
+| Status | Model |
+|---|---|
+| 12 hidup | DeepSeek-V4-Flash, DeepSeek-V4-Pro, DeepSeek-V4.1-Flash, MiMo-V2.6-Flash, Qwen3-Embedding-8B, Qwen3.8-27B, Qwen3.8-Flash-Next, glm-5.3, glm-5.3-flash, kimi-k3, longcat-2.5, auto |
+| **ditarik** | `sensenova-6.8-flash-lite`, `sensenova-u1.5-lite` |
+| 6 baru, belum di config | step-5-preview, step-image-edit-2, stepaudio-2.5-{asr,chat,realtime,tts} |
+
+**Dampak & perbaikan (12 Okt 2026):** `channel_overrides.8853` (thread **ASN**) sebelumnya
+memakai `sensenova-6.8-flash-lite` → 503 setiap panggilan. Dipindahkan ke
+`DeepSeek-V4.1-Flash` @ huancheng (uji chat completion: jawab "OK", HTTP 200).
+Kedua model mati dihapus dari `providers.huancheng.models` agar tidak muncul di picker `/model`.
+Katalog huancheng: config 14 → 12 model, API 18.
+
+**Alternatif kalau DeepSeek-V4.1-Flash ditarik nanti:** 9router `gemini/gemini-3.8-flash`
+(uji HTTP 200). Sensenova **tidak ada** di katalog 9router (126 model) — tidak bisa dipinjamkan.
+
 
 ### `pixz` (9router) — key DIGANTI, hidup kembali
 

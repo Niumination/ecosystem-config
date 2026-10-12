@@ -2,7 +2,7 @@
 
 > **UPDATE: October 11, 2026** — Sync real filesystem + GitHub state. Major: provider & katalog model (2 akar masalah `/model` + otomasi sync mati 6 hari + cron baru `034116abd040`), orkestrasi Hermes 5 fase (Fase 1-4 done, Fase 5 deferred), 10 thread Telegram aktif (1 · 802 · 803 · 804 · 1172 · 7402 · 8853 · 12595 · 12707 · 13902), A2A Mac↔Cloud verified, mac-relay online, Skill Bank 238 skill/1176 file, 14 cron job aktif. macOS 26.7.1.
 >
-> ⚠️ **Butuh tindakan pemilik:** key `huancheng` mati (401 `Invalid token`) → thread 8853 (ASN) tanpa model. Lihat seksi Provider & Katalog Model.
+> ⚠️ **Key `huancheng` hidup (probe 12 Okt 2026: HTTP 200)** — tapi model `sensenova-6.8-flash-lite` ditarik provider (503). Thread 8853 (ASN) sudah dipindahkan ke `DeepSeek-V4.1-Flash` @ huancheng. Lihat seksi Provider & Katalog Model.
 
 ---
 
