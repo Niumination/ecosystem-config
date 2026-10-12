@@ -20,6 +20,7 @@ User kirim URL repo/tool + **"pelajari ini"** / **"pelajari dulu untuk diterapka
 - **"periksa/cek/pastikan X" = probe langsung + laporan ringkas.** Bukan rekap sejarah, bukan wall-of-text, bukan dokumen baru. Tawarkan fix satu baris ("mau saya fix?"), jangan eksekusi.
 - **Data valid dari filesystem** (config.yaml.bak.*, changelog, git log, output tool), bukan rekonstruksi memory/session. User: "aku selalu menginginkan data valid bukan rekayasa/kebodohan kamu".
 - **Paket versi berlapis: SELALU cek ERRATA/dokumen supersede dulu.** Paket v2 bisa **menarik rekomendasi v1 secara eksplisit** (contoh nyata `niumination-rebuild-v2.zip` → `ERRATA-AUDIT-V1.md` menarik fallback 9router/juan/huancheng + multi-agen dari rekomendasi v1). Saat user kirim v2 setelah v1: baca README + errata PERTAMA, laporkan "yang ditarik vs yang tetap", dan JANGAN pernah menerapkan rekomendasi yang sudah ditarik (mis. jangan re-add 9router ke fallback_providers padahal kebijakan v2 bilang otak hanya keluarga opencode-zen).
+- **Keputusan owner dijawab per-huruf — catat verbatim lalu masukkan ke dokumen sebelum eksekusi.** User menjawab pertanyaan diskusi sebagai daftar pendek (`A. opsi 3`, `B. masuk gate QA`, `C. ikuti setup X`, `D. perlu update`). Setiap huruf mengubah isi rencana, jadi tulis ulang bagian yang bersangkutan dan cantumkan keputusannya di dokumen — jangan hanya mengiyakan lalu mengeksekusi dari ingatan. Bila satu jawaban membatalkan arah rencana (mis. "integrasinya bukan skill standalone"), revisi rencananya (tandai `Revisi: v2`) sebelum minta approval fase berikutnya.
 - **"simpan dulu jadi referensi" = copy ke `docs/references/<nama-bermakna>-<YYYY-MM-DD>/`** (untuk paket multi-file: extract folder penuh; untuk dokumen tunggal: file .md), lalu commit+push bersama snapshot hari itu. Jangan ubah isi.
 
 ## Workflow
@@ -32,12 +33,13 @@ User kirim URL repo/tool + **"pelajari ini"** / **"pelajari dulu untuk diterapka
 
 ### Step 2: Gap analysis terukur
 - Bandingkan dengan kondisi ekosistem SEKARANG — ukur: jumlah file, baris script, struktur (contoh: `find skills -name SKILL.md | wc -l`, `du -sh`)
+- **Cari PEMILIK domainnya, bukan hanya nama yang bentrok.** Sebelum menyimpulkan "ekosistem belum punya ini", periksa pipeline yang menaungi fungsi tersebut: umbrella orchestrator (`content-studio`), skill pelaksana (`content-produce`), file keputusan tool (`apps/abstract-studio/data/TOOL_DECISIONS.csv`), dan thread/persona yang membawahinya (`docs/registry/telegram-threads.md`). Tool baru yang fungsinya sudah dicakup pipeline existing **diintegrasikan ke pipeline itu** (tambah baris di tabel tool + gate QA), bukan dijadikan skill standalone di sebelahnya. Nama file yang tidak bentrok bukan bukti belum ada yang menaungi — pertanyaan yang benar: "siapa yang seharusnya memanggil ini?". **Pitfall: menulis rencana adopsi yang mengusulkan skill standalone tanpa memeriksa pipeline/orchestrator existing terlebih dahulu.** User menegur: "apakah kamu tidak melihat di ekosistem sudah ada [pipeline]?" — integrasi ke pipeline existing adalah default, skill standalone hanya jika pipeline memang tidak ada.
 - Tiap gap: bukti konkret (path file, nomor baris, angka) — bukan asumsi
 - Tandai gap "paling berharga" = yang menyelesaikan masalah nyata yang ADA (bukan potensial)
 
 ### Step 3: Rencana detail → dokumen dulu (preferensi user!)
 User memilih **"Buat rencana detail dulu sebagai dokumen"** (16-Ags-2026) untuk kerja multi-fase — JANGAN langsung eksekusi.
-- Lokasi: `~/Desktop/Niumination/docs/architecture/<tool>-adoption.md` (repo ecosystem-config)
+- Lokasi: `~/Desktop/Niumination/docs/reports/<tool>-adoption-plan-<YYYY-MM-DD>.md` — root AGENTS.md menetapkan rencana/laporan/strategi ke `docs/reports/`, dan **melarang membuat folder baru di bawah `docs/`** (`docs/architecture/` bukan target yang sah). Baca root AGENTS.md sebelum menulis dokumen.
 - Struktur dokumen: ringkasan eksekutif → latar belakang → gap analysis (tabel) → fase (spesifikasi teknis + kriteria sukses per fase) → prioritas/timeline → risiko & mitigasi → Definition of Done → lampiran
 - **Commit dokumen dulu** (`git add` + commit) sebelum menawarkan eksekusi
 

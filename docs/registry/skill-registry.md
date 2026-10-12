@@ -9,7 +9,7 @@
 | `content/code-audit` | content | 1 | Bank Pusat | Audit kode hasil AI: celah, slop, biaya, dan laporan klien |
 | `content/content-legal` | content | 1 | Bank Pusat | Audit lisensi, AI disclosure, izin, dan kontrak konten |
 | `content/content-monetize` | content | 1 | Bank Pusat | Rate card, media kit, proposal, invoice, outreach klien |
-| `content/content-produce` | content | 1 | Bank Pusat | Produksi video, audio, gambar dengan stack open source |
+| `content/content-produce` | content | 2 | Bank Pusat | Produksi video, audio, gambar dengan stack open source |
 | `content/content-publish` | content | 1 | Bank Pusat | Adaptasi multi-platform, penjadwalan, dan analitik |
 | `content/content-research` | content | 1 | Bank Pusat | Riset tren, keyword, audiens, dan bedah kompetitor |
 | `content/content-script` | content | 1 | Bank Pusat | Hook, naskah, storyboard, caption, dan copywriting |
@@ -242,6 +242,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-10-12 00:31:00_
+_Last sync: 2026-10-12 19:55:05_
 
 <!-- SKILL_REGISTRY_END -->

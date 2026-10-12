@@ -101,6 +101,20 @@ Wait for the new deployment to report Ready before probing. Space the calls out:
 
 **More than one variable to change → one per deployment, probe after each.** Batching them turns a breakage into a bisection run against live production; sequential changes keep the cause attached to the deploy that introduced it.
 
+### 5b. When the consumer is a long-running process, not a deployment
+
+A serverless deploy re-reads its env snapshot; a **daemon does not**. A gateway, worker, or service that loaded the credential at process start keeps the old value in memory no matter what the env file says, so the order of operations decides whether there is a dead window:
+
+1. Write the new value to the env file / vault.
+2. Update every config that names the old credential (including any derived identifier — a session URL, a connection id).
+3. **Restart the consumer from outside itself.** A process cannot restart itself through a shell it spawned: the signal reaches the child before the command completes, and a guard will refuse it outright. Hand the restart to the user's own terminal.
+4. **Prove the consumer reconnected** — its own log must show a fresh registration/handshake line naming the *new* identifier, not merely a successful probe you ran from a shell. A shell probe reads the new value and passes while the daemon is still on the old one; that asymmetry is the tell.
+5. Only now revoke the old credential upstream.
+
+Revoking at step 1 (the intuitive order) takes the integration down until the restart lands — and the failure is silent in the way that matters: the daemon keeps serving, its keepalive starts failing, and any probe run from a shell still reports success.
+
+**Do not read "the old credential still works" as a failed rotation.** Two mechanisms produce that: a credential version that is not bound to the derived identifier (a session/token URL may keep answering after the key behind it is rotated), and caching in a process you have not restarted yet. Identify which before acting — and if the consumer is a process, the answer is the restart, not a second rotation.
+
 **Rollback while production is broken:** keep the last known-good deployment URL and `vercel promote <url>`. The promoted deployment carries its own env snapshot, so service returns in seconds. Promote never *applies* an env change — for that you need a fresh deployment (a commit you owe anyway is the cheapest trigger; an empty commit is the auditable fallback).
 
 ### 6. Docs pass — the rotation is unfinished without it
@@ -124,6 +138,7 @@ Recipe with the exact probes: `references/dead-credential-forensics.md`. Order o
 ## Pitfalls
 
 - **An unprobed rotation is an unverified claim.** The 401 on the old credential is the evidence; the platform's "success" message proves only that you wrote a value.
+- **"Old credential still returns 200" has three possible causes, and only one is a real problem.** Not yet revoked, not yet loaded by a process that caches at start, or a derived identifier not bound to the credential version. Localize before concluding the rotation failed.
 - **App alive + dependency failing right after a "type-only" env change is the escape trap, not a platform incident.** Symptom set: the health endpoint reports `app: ok` with the dependency in error, and endpoints that query the store return 5xx. Restore with `vercel promote` to the last good deployment first (service back in seconds), then decode the value and re-send it, then redeploy.
 - **`--value` writes the secret into shell history and tool logs.** stdin only.
 - **A "weak but not default" credential is still the finding.** Testing an endpoint with the obvious default token is worth doing — a 401 there is good news you can report, and it tells you whether full rotation or urgent revocation is required.

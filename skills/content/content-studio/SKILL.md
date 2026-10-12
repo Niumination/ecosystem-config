@@ -42,7 +42,7 @@ Untuk pekerjaan khusus, delegasikan: riset → `content-research`, naskah → `c
 | `setup` | Wawancara 10 pertanyaan → tulis `workspace/BRAND.md` + kalender 30 hari + audit tool |
 | `status` | Baca semua `STATUS.md` → tabel proyek (tahap, skor QA, tanggal publish, pendapatan) |
 | `new <topik>` | Buat folder proyek + `BRIEF.md`, `STATUS.md`, `LEDGER.csv`, jalankan gerbang ide |
-| `qa [slug]` | Jalankan 7 gerbang kualitas → skor 0–100 + daftar perbaikan |
+| `qa [slug]` | Jalankan 8 gerbang kualitas → skor 0–100 + daftar perbaikan |
 | `kalender [n] hari` | Susun kalender produksi berbasis niche + radar tren |
 | `arsip <slug>` | Pindah ke `workspace/archive/`, update `CONTENT_INDEX.csv`, usulkan 5 turunan |
 | `laporan` | Rekap `LEDGER.csv` + `CONTENT_INDEX.csv` → metrik & 3 tindakan |
@@ -68,20 +68,21 @@ Untuk pekerjaan khusus, delegasikan: riset → `content-research`, naskah → `c
 1. Slug: `kebab-case`, maksimal 5 kata → `workspace/project/<slug>/`.
 2. Buat `BRIEF.md` dari `templates/konten-brief.md`: tujuan, audiens, platform+rasio, format, panjang, pesan inti, bukti/sumber yang akan dipakai, **monetization** (wajib salah satu: affiliate / brand deal / lead magnet / produk / jasa / membership), CTA, deadline.
 3. Gerbang ide (tolak bila gagal): *apakah ada nilai yang tidak bisa di-Google dalam 30 detik?* dan *siapa yang akan membayar/membagikan ini?* Skor 1–10; < 6 → minta pertajam niche atau tambah data proprietary.
-4. Tulis `STATUS.md` = `1.BRIEF` + checklist 7 gerbang (semua `[ ]`).
+4. Tulis `STATUS.md` = `1.BRIEF` + checklist 8 gerbang (semua `[ ]`).
 5. Balas di Telegram: ringkasan brief ≤ 150 kata + 3 langkah berikutnya + perintah yang bisa langsung dikirim (`/naskah <slug>`).
 
-### C. `qa [slug]` — 7 gerbang kualitas
+### C. `qa [slug]` — 8 gerbang kualitas
 Jalankan berurutan, catat PASS/FAIL + bukti di `STATUS.md`:
 1. **Hook 3 detik** — baris pertama menyatakan taruhan/kontradiksi; ada teks on-screen di frame 1; ≤ 12 kata.
 2. **Nilai spesifik** — ada satu kalimat takeaway yang bisa ditulis di metadata; penonton bisa bertindak.
 3. **Retensi** — struktur beat ada; tidak ada jeda kosong (cek `auto-editor`/durasi vs jumlah beat); panjang sesuai spec platform.
-4. **Teknis** — `ffprobe` durasi/rasio/fps; loudness −14 LUFS (podcast −16); caption sinkron; ukuran file wajar; thumbnail 1280×720 < 2 MB.
-5. **Keaslian & bukti** — setiap klaim punya entri `SOURCES.md` dengan tanggal akses; ada sudut pandang pribadi; bukan salinan.
-6. **Legal** — `ASSETS_LICENSE.csv` lengkap; tidak ada aset non-komersial; AI disclosure bila perlu; tidak ada wajah/merek tanpa izin.
-7. **Dapat dijual** — `monetization` + CTA terisi; jalur konversinya nyata (link/produk/jasa tersedia).
+4. **Visual — loop lihat-gambar (WAJIB untuk render motion graphics).** Render tiga frame khusus (awal, tengah, akhir) dan **lihat gambarnya**, bukan kodenya: `python reelctl.py shot <t> /tmp/frame-<t>.png` untuk Motion Reel Kit, atau screenshot preview untuk HyperFrames/Remotion. Periksa: subjek terbaca dalam durasi scene, ada satu titik fokus, teks legible, tidak ada elemen bertabrakan, palet on-brand, dan dua timestamp 0,3 s berbeda (scene yang diam = scene gagal). Gerbang ini FAIL bila frame tidak pernah dilihat mata manusia — "render sukses" bukan bukti desain.
+5. **Teknis** — `ffprobe` durasi/rasio/fps; loudness −14 LUFS (podcast −16); caption sinkron; ukuran file wajar; thumbnail 1280×720 < 2 MB. Untuk render dari kit yang punya verifier sendiri: `python reelctl.py verify` harus PASS (decode tiap frame — encode yang mati OOM meninggalkan file berukuran wajar yang tidak bisa diputar).
+6. **Keaslian & bukti** — setiap klaim punya entri `SOURCES.md` dengan tanggal akses; ada sudut pandang pribadi; bukan salinan.
+7. **Legal** — `ASSETS_LICENSE.csv` lengkap; tidak ada aset non-komersial; AI disclosure bila perlu; tidak ada wajah/merek tanpa izin.
+8. **Dapat dijual** — `monetization` + CTA terisi; jalur konversinya nyata (link/produk/jasa tersedia).
 
-Skor: PASS = bobot penuh (1:15, 2:20, 3:15, 4:10, 5:15, 6:15, 7:10). Keputusan:
+Skor: PASS = bobot penuh (1:15, 2:15, 3:10, 4:15, 5:10, 6:10, 7:15, 8:10 = 100). Keputusan:
 - **< 70** → jangan publish; tulis 3 perbaikan paling berdampak.
 - **70–84** → publish organik; catat ke `CONTENT_INDEX.csv`.
 - **≥ 85** → kandidat premium: jadikan bahan portofolio klien / produk berbayar / seri.
@@ -101,7 +102,7 @@ Susun berdasarkan kapasitas nyata (jam/minggu), aturan **1-3-9** (1 long-form �
 - **Jangan mengarang angka/tool.** Bila tidak tahu versi atau rate terbaru, jalankan riset (`content-research`) atau katakan tidak tahu.
 - **Jangan menaruh secret di file proyek.** Token/API key hanya di `~/.hermes/.env`.
 - **Jangan pakai aset non-komersial** (FLUX.1/2 [dev], XTTS v2, F5-TTS weights, SVD, musik chart) untuk konten berbayar.
-- **GPU tidak ada?** Jangan berhenti — pakai jalur `[tanpa GPU]`: FFmpeg + HyperFrames (pin `@0.8.30`) + Remotion + aset CC0.
+- **GPU tidak ada?** Jangan berhenti — pakai jalur `[tanpa GPU]`: FFmpeg + HyperFrames (pin `@0.8.30`) + Remotion + Motion Reel Kit (`~/motion-reel-kit`, 1080p60 broadcast-grade) + aset CC0.
   VO dikunci **Gemini TTS Charon** (`creative/gemini-vo-narration`), bukan Kokoro TTS.
   ⛔ **Jangan pakai Revideo atau Kokoro untuk jalur produksi ini:** Revideo macet 7 jam 4 menit
   tanpa menulis output (23 Sep 2026), Kokoro-82M tidak mendukung bahasa Indonesia. Keputusan

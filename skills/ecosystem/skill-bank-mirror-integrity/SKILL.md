@@ -119,6 +119,27 @@ Confirm the copies are truly identical (hash both sides) before proposing to dro
 identical hashes justify collapsing the mirror; divergent copies mean one side holds edits
 that a collapse would destroy.
 
+## Rule 7 — resolving sync quarantine when the target was modified after last sync
+
+When `sync-to-agents.sh` refuses to sync a skill with "never clobber", the guard is
+comparing three hashes: target, bank, and last-recorded state. A skill is quarantined
+when target ≠ state, meaning the target was modified after the last sync (often by
+a background review session or another agent writing directly to `~/.hermes/skills/`).
+
+Resolution path (bank is source of truth):
+
+1. Diagnose: `sync-guard.py --conflicts` lists quarantined skills with mtime evidence.
+2. Determine direction: diff target vs bank. If target has nothing bank lacks
+   (all `<` lines are superseded), the bank is a superset — safe to propagate bank→target.
+3. Propagate: `rsync -a --checksum <bank-skill>/ <target-skill>/` for each quarantined skill.
+4. Record state: `sync-guard.py --write-state` so the guard sees the new baseline.
+5. Re-run `sync-to-agents.sh` — the previously quarantined skills should now sync clean.
+
+Do NOT use `rsync --delete` or copy target→bank without checking: if target has
+unique edits (e.g., from a background review session), those must be merged into
+the bank first, or they will be lost. When both sides have unique edits, merge
+manually (bank = superset) before propagating.
+
 ## Reporting shape for a bank-integrity finding
 
 Give exact counts on both sides (discovered, manifest, missing keys, extra

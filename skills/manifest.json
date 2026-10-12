@@ -1,6 +1,6 @@
 {
-  "fileCount": 1177,
-  "generatedAt": "2026-10-11T17:31:03.784872+00:00",
+  "fileCount": 1178,
+  "generatedAt": "2026-10-12T12:54:49.126572+00:00",
   "skillCount": 238,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -47,10 +47,11 @@
       }
     },
     "content/content-produce": {
-      "bundleHash": "de45a913c89c2d9c78aeb6beaf0507f5f65a557808b87078a432e344a703409c",
+      "bundleHash": "9a72011414f95284a91295cbacf367677b4553eae8321a979bab3d96a27b6f7f",
       "domain": "content",
       "files": {
-        "SKILL.md": "19eb70568faff2d3032fa4493ef9aed211713d7ee0d1567f5fec65dbc14de1e0"
+        "SKILL.md": "d971044dfdbe03c6739c47170d1b863adf3c5bc76bca5f8e614fbbcbfeaf095d",
+        "references/motion-graphics-engine-selection.md": "c56930e6d9f5613dacd33f7ada398a06333370e0db48b1696bbadd7658f836ce"
       }
     },
     "content/content-publish": {
@@ -75,10 +76,10 @@
       }
     },
     "content/content-studio": {
-      "bundleHash": "0bee5f60d304f70ea7ecf5893a3f62059b4893e4c7f1ae06639f2bc51dd5acd5",
+      "bundleHash": "be6cf0e9f16cd01f5a87fc91f876564dcf59e6c46853812a11c3ec90c96d5660",
       "domain": "content",
       "files": {
-        "SKILL.md": "5472c3911d7892cb1b8b4c5a4784cb68ad7b497f7a12f2acd649fbb92c76504a"
+        "SKILL.md": "7bad86624519e9d3f3267f2c020f2708ac18e737c50639b12a7eba870e9b0148"
       }
     },
     "content/papermorph-edu": {
@@ -632,10 +633,10 @@
       }
     },
     "ecosystem/arena-patch-adoption": {
-      "bundleHash": "90d6d8b8c419ec783cdb6b4d226ca79df6d163ff29e723135aa49cee1b902b56",
+      "bundleHash": "d1045e8b04faea76a40a4d4d9521e927f4a0af00940efb62b5fae83d4582b729",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "7db3c4f77993cca1edc7cc336994ad694d1cc53619dbdff513b29a0da7cfdc2e",
+        "SKILL.md": "0bc8408d5c5a4862fd1f4fa80191658590a146a9c25508c076224a8a66d929e0",
         "references/dox-pass-and-registry-rows.md": "b5fb3cd4b9de051d8fa71fab5d1c7e26df3da84d73295e894cd410cdda08f6e9",
         "references/harness-fixture-and-flaky-gates.md": "1b3f7caadf1dfb55aae1f819e26fef536f45d901f905650057a53194e83814df",
         "references/lighthouse-triage.md": "679e105fccd36da2f66e3585326698c6f73a449b81607f46f69dd336216c423a",
@@ -666,10 +667,10 @@
       }
     },
     "ecosystem/composio": {
-      "bundleHash": "36846db4ff284f6df1d9e43d56519cc03a4eee0de4638a02203df1fd81002292",
+      "bundleHash": "a4197d86cecee6528d57f281ab0639c3677e76d8d3231976af54db06003f6ff6",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "c750101c6048062687c3ce2899e448981357ce4730994a1f1e2968c8da1c3d6d",
+        "SKILL.md": "cb51a25bc529862766e6d667f522f592d927183618e477292ef667e224e34167",
         "references/errors.md": "6e760fe92170adee0968d24ead200c62d3450fb56607fb05081ccbc12f9f3669",
         "references/for-you.md": "91b471540f927b372a1371bf9fed24f564d1a408c209a50ff1f96f08b7a3fc07",
         "references/platform.md": "3be5704543d19609ebca81148a5c1407dd9ae31b1e2f47c61029cc4a0bde0e73",
@@ -758,10 +759,10 @@
       }
     },
     "ecosystem/devops/vercel-dns-subdomain-debug": {
-      "bundleHash": "771a0ecf48a37b6a7ca79854faaeb60c83e914947447616129b1f3afae8c2525",
+      "bundleHash": "39e1f0c285d9f4155c0e6634e4290395df514561bc7025564245dc0da3a1da62",
       "domain": "ecosystem/devops",
       "files": {
-        "SKILL.md": "28f0032de5dfa578de9454adf5c9450bb2e4403171428d18915b447f7d67ba0f"
+        "SKILL.md": "ed70ffce76e92afe8afe4a837df4b865dc5259cc1112fc96850359add1476359"
       }
     },
     "ecosystem/devops/vercel-domain-pointing": {
@@ -879,10 +880,10 @@
       }
     },
     "ecosystem/ecosystem-tool-adoption": {
-      "bundleHash": "047afcb5be7df8aabfe683a6f08e4a3d40a8246aba3a90e105b192d45ffc9aba",
+      "bundleHash": "3c2e87d78dc1c37c3515b5c29ba5bb3a9d742ebc783a65153dd5e64752b894f8",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "4dfe123b837a0fdf78f5264dbb495f798cf41be79cd9baf42e3ba699bea4269f"
+        "SKILL.md": "61cbfc659a0b5fd5b62129b10ffeb353cab69ce182f55f0aaea41fb1b5152034"
       }
     },
     "ecosystem/ecosystem/a2a-configuration": {
@@ -1264,18 +1265,18 @@
       }
     },
     "ecosystem/niumination-ecosystem-change-discipline": {
-      "bundleHash": "d3a7809eadc41378549aa382117b1bf23922cc3571c1882b56a9c0cca54ba1c9",
+      "bundleHash": "b984308fa90da415e8d4df9bffe18b96e950d17fd12133a2b5cf859d4ddb6598",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "72cfd5bfd96a781c2dabea8380c94ce74f1d859fd718c292d6513f378a4d5221",
+        "SKILL.md": "5735aff290f4148bfaa3ac825e329b3457e8c54ae98c4322ccfe96b8808ec8ad",
         "references/shared-repo-commits.md": "7eab705051201cfba498e6eea4b1d2cf056650804c0c99166d39ad9e8229b08e"
       }
     },
     "ecosystem/niumination-reference-adoption": {
-      "bundleHash": "177dcd596ed4dc229e7243b0bda72bca09c941a3ed2e3651cfa5dd3dd9940612",
+      "bundleHash": "a261e9b99b92879f9e7066a50e8ae9f9450d1e6e390b827a1639885485f2f40f",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "8c35ca0a433cd2097039194791b9924dceaea0c24c235fafe0a6efe5fee23880",
+        "SKILL.md": "a668b2d4174bc958285f27bfc5c4ba23222344d0ad581fbc24866a04cf1e219b",
         "references/agent-local-skill-promotion.md": "05cd2c04b37333a1e6c5c9b9b5fe2ec69ccbcfaa4fc0b674f8f5ee6e90ec88d6",
         "references/free-stack-merge.md": "75ed9ac442a790e7a645a0e395096712698b507e1cd86700efe3a105492a600f"
       }
@@ -1413,10 +1414,10 @@
       }
     },
     "ecosystem/skill-bank-mirror-integrity": {
-      "bundleHash": "e705e6b19753b421af7a0eb026594c31b8fac4caba48765ddefba561d657fdc0",
+      "bundleHash": "702a658f73a39d586482f6e7150a1c9f22430b8f8573cd4ba9f0583c77e73e6e",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "4185128a9ce7267ef6a3f88743991c3f78128149a3dbee844c2dcba7165c9054",
+        "SKILL.md": "4fab1f3b04a3fc612d77455538eea24a25214f906033a8312b526be762dafc16",
         "references/mirror-write-propagation.md": "62b6e658b0fb8dd7a442e0732d34f3129590acf8f6f17560523c1a27b9472689"
       }
     },
@@ -2122,10 +2123,10 @@
       }
     },
     "security/production-secret-rotation": {
-      "bundleHash": "d9d1c9e1a590b6fdb9bc3e5fe734a54fe404caa98246f7f831b108e46dff402a",
+      "bundleHash": "46fd00af6ee9f2893f6ff8521e42064827bd2068706061c0ead7bfee85ea0ae8",
       "domain": "security",
       "files": {
-        "SKILL.md": "f1004df95cebee7e2b8b1d8ad30796bd822131d6e15345c72838ce416578939b",
+        "SKILL.md": "9e3ef105532d4b387b412c74047097cd3043ffe317bba52ec0727d5bba2485a6",
         "references/dead-credential-forensics.md": "b5789d782bc11d2f1227e29ee21354d6155360dbc31a872414cf4737ec8bcb80"
       }
     },
@@ -2295,11 +2296,11 @@
       }
     },
     "software-development/hermes-terminal-workflows": {
-      "bundleHash": "eca347715b32f515bc3fab7774674ee140ab9c798801623f0f3855974a817a55",
+      "bundleHash": "b47f7a39b2f4c774f13ce49f6f5367fc366e6d7197c0d7fe5d15ee1ea96013b5",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "7c865aa87cba5065c5b8a002c5d75310f524acb68353e70d619806ec6bacc732",
-        "references/native-shell-alias-conflicts.md": "d49080482bcaef7fec7e7064788cbf4ddaddad11ffd3ef28fd7301c775a7409b"
+        "SKILL.md": "f78266f9c637f159e2264ae4be54bacafcad65315e2288165100b66fd7c09e64",
+        "references/native-shell-alias-conflicts.md": "b9e2b0efa0b5c71c8422437615982898c53005cdc55eb09765db6b7b4e9b26f3"
       }
     },
     "software-development/hermes-zero-defect-architect": {

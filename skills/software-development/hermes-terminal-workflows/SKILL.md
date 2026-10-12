@@ -21,6 +21,15 @@ Background terminal processes do not inherit variables exported in earlier foreg
 
 Extract secret-shaped values with python, never `grep -oE`: the shell layer may route grep through rg, which misparses patterns like `ghp_...` as an encoding flag and fails the whole command. Prefer `python3 -c "import re;print(re.findall(r'PATTERN', open('FILE').read())[0])"`. The `(eval):1: can't change option: zle` preamble on background shells is harmless noise — judge the command by its real output, not the header.
 
+## Commands You Hand the User Must Be Self-Resolving
+
+This user pastes a command block verbatim into their own terminal. Two things break that flow, and both produce `no such file or directory` on a path that is actually fine:
+
+- **Tool output redacts long digit runs.** A path printed as `python-3.14.7+202****0901-darwin-x64` has literal asterisks in it; pasting it back resolves nothing. Never put a path into a hand-off block by copying it out of tool output. Resolve it in the shell instead — `P=$(ls -d /path/python-*/bin/python3.14 | head -1)` — so the user copies a glob, not a value.
+- **Check every variable expansion for redaction too.** Assignments like `GP=$(ls -d .../bin/python3)` hand back whatever the command printed, including long-format decoration (see `references/native-shell-alias-conflicts.md`). Prefer a glob that names the real binary (`python3.14`, not the `python3` symlink) and a command whose stdout is only the path.
+
+Rule: any command block given to the user must work after a copy-paste with zero edits. If a literal path must appear, prove it by running the exact pasted form yourself first; otherwise use a glob. When the user reports the failure, read their pasted block for redaction artifacts before re-diagnosing the machine.
+
 ## Core Rule: Foreground-Only
 
 The Hermes `terminal()` tool runs in **foreground only**. It does **not** accept shell backgrounding syntax. Appending `&`, `>/dev/null &`, `nohup ... &`, or `setsid ... &` causes immediate rejection.

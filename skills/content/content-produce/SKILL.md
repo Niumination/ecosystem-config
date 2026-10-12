@@ -29,7 +29,7 @@ Mengubah naskah menjadi berkas jadi yang memenuhi spesifikasi platform — memak
 | Voice clone (butuh GPU) | Chatterbox (MIT), Orpheus 3B (Apache-2.0) | server lokal → POST audio referensi + teks |
 | Buang hening | Auto-Editor (LGPL) | `auto-editor in.mp4 --edit audio --threshold -35dB --margin 0.1s` |
 | Vertikal + loudnorm + caption | FFmpeg (LGPL) | `bash scripts/vertical_clip.sh in.mp4 out.mp4` |
-| Motion graphics / batch render | Motion Canvas (MIT), HyperFrames (Apache-2.0, pin `@0.8.30`), Remotion | `npx --yes hyperframes@0.8.30 render . --low-memory-mode --workers 1` · ⛔ Revideo ditolak di studio ini (macet 7,4 jam, 0 output — lihat `TOOL_DECISIONS.csv`) |
+| Motion graphics / batch render | Motion Canvas (MIT), HyperFrames (Apache-2.0, pin `@0.8.30`), Remotion, **Motion Reel Kit (MIT)** | `npx --yes hyperframes@0.8.30 render . --low-memory-mode --workers 1` · `python reelctl.py render` (dari `~/motion-reel-kit`) · ⛔ Revideo ditolak di studio ini (macet 7,4 jam, 0 output — lihat `TOOL_DECISIONS.csv`). Pemilihan engine: `references/motion-graphics-engine-selection.md` |
 | Gambar/poster dengan teks | Qwen-Image (Apache-2.0) via ComfyUI | API `:8188` prompt → PNG |
 | B-roll generatif | Wan 2.2 (Apache-2.0), FramePack (Apache-2.0, 6GB) | ComfyUI workflow I2V/T2V |
 | Avatar/lip-sync | LatentSync (Apache-2.0), MuseTalk (MIT), InfiniteTalk (Apache-2.0) | foto + audio → video berbicara |
@@ -135,6 +135,26 @@ Simpan `.srt` juga sebagai file terpisah (untuk LinkedIn/YouTube yang butuh ungg
 2. Render: `npx remotion render src/index.ts MyComp out/<slug>.mp4 --jpeg-quality 80`
 3. Bila render >5 menit → fallback ke HyperFrames
 
+**Mode A3 — Motion Reel Kit (CPU, gratis, broadcast-grade 1080p60):**
+Dipakai bila brief menuntut **audio-visual lock** (musik menentukan clock visual) atau post chain sinematik (motion blur, bloom, chromatic aberration, film grain). Kit di `~/motion-reel-kit`, venv sendiri — bukan proyek di dalam workspace.
+```bash
+cd ~/motion-reel-kit && source .venv/bin/activate
+python reelctl.py doctor                        # wajib READY sebelum mulai
+python reelctl.py timeline                      # tabel 15 scene — cut wajib on-beat
+python reelctl.py shot 18.9 /tmp/frame-18.9.png # LOOP: render 1 frame, LIHAT gambarnya
+python reelctl.py sheet                         # 25-tile contact sheet untuk pacing
+python reelctl.py render                        # 3–20 menit
+python reelctl.py verify                        # GATE: decode semua frame, wajib PASS
+```
+Setelah `verify` PASS, **copy master ke workspace studio** (kit tidak menulis ke `workspace/`):
+```bash
+cp ~/motion-reel-kit/out/MOTION_REEL.mp4 \
+   ~/Desktop/Niumination/apps/abstract-studio/workspace/output/<slug>/master_1080p60.mp4
+```
+Tiga aturan kit yang menentukan kualitas: (1) **musik dulu** — edit `src/audio.py` lalu `reelctl.py score`, visual membaca `spectrum.npz`; (2) **cut wajib di beat** — batas `TL` == `CUT_BEATS` × `BEAT`; (3) **lihat frame sebelum menilai** — `shot` 1–3 detik, `render` menit; jangan render penuh untuk menjawab pertanyaan desain.
+
+> **Baca dulu sebelum kerja motion-graphics dengan kit ini:** `~/motion-reel-kit/agent/HERMES_SKILL.md` (command surface lengkap, 6 aturan, workflow standar) dan `~/motion-reel-kit/docs/08_TROUBLESHOOTING.md` (semua kegagalan yang sudah pernah terjadi + perbaikannya). Jangan improvisasi sebelum membaca 08.
+
 **Mode B — dengan footage generatif:**
 1. ComfyUI: Qwen-Image untuk thumbnail/poster; Wan 2.2/FramePack untuk B-roll; LatentSync untuk lip-sync.
 2. Gabungkan B-roll + VO + caption di OpenCut/Kdenlive atau langsung FFmpeg.
@@ -179,6 +199,8 @@ Tulis `project/<slug>/output/MANIFEST.md`: daftar file, platform tujuan, rasio, 
 - **Render headless di container:** pastikan FFmpeg + font terpasang di *backend* yang dipakai Hermes (Docker/VPS), bukan hanya di laptop Anda.
 - **Font tidak ditemukan** → pasang font OFL (Inter, Archivo, Bebas Neue) ke `~/.fonts` lalu `fc-cache -f`.
 - **Jangan kompres dua kali.** Simpan master tanpa kompresi; export turunan dari master.
+- **Engine motion graphics dipilih dari brief, bukan dari kebiasaan.** Tiga engine setara (HyperFrames / Remotion / Motion Reel Kit); memilih yang salah membuang sesi penuh. Tabel keputusan: `references/motion-graphics-engine-selection.md`.
+- **Tool baru masuk sebagai baris tabel di sini, bukan skill standalone.** Kalau sebuah tool fungsinya dicakup pipeline studio, integrasinya = tambah baris di tabel di atas + gate QA `content-studio` + baris `apps/abstract-studio/data/TOOL_DECISIONS.csv`. Kit yang dirender dari luar ekosistem tetap tinggal di luar (`~/<kit>/`); skill bank hanya menunjuk path-nya.
 
 ## Verification
 

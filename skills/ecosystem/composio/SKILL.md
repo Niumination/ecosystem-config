@@ -64,6 +64,18 @@ s = Composio().create(user_id="<stable_user_id>")   # s.mcp.url, s.mcp.headers
 
 Report only `session_id` and the MCP URL — never `session.mcp.headers`, which embeds a live key. If a key has already been printed anywhere, rotate it after integration and recreate the session.
 
+### Rotation order against a running consumer
+
+A live gateway caches the session key **in memory at process start**; rewriting the env file does not reach it. The visible symptom is a keepalive failure (`MCP server '<name>' keepalive failed, triggering reconnect (state: connected → degraded)`) while `hermes mcp test <name>` run from a shell still passes — the shell reads the new key, the daemon holds the old one. Sequence that avoids the dead window:
+
+1. Write the new key to the env file; mint the replacement session.
+2. Patch the session URL in the config to the new session id.
+3. Restart the consuming process from outside itself (a gateway cannot restart from within — the signal reaches the child).
+4. Confirm the connection: `hermes mcp test <name>` **and** a fresh heartbeat/registration line in the agent log naming the new URL.
+5. Only then revoke the old key upstream.
+
+Revoking before step 4 takes the integration down until the restart lands. Two provider behaviours worth knowing while doing this: **an existing session URL keeps answering after the key is rotated** (a session id is not bound to a key version, so both old and new URLs may return `200` — pick the new one for hygiene, not because the old one broke), and **a revoked key is distinguishable from a wrong one only by the response body** — read the JSON error (`Invalid API key: <masked>`, slug `APIKey_InvalidAPIKey`), not just the `401` status.
+
 ## Runtime re-auth pattern
 
 If a toolkit tool returns `No active connection found for toolkit(s) '<slug>'`, do not change credentials. Start `COMPOSIO_MANAGE_CONNECTIONS` for that toolkit in the same session, return the Connect Link to the user, wait for authorization, and retry the original tool call. This pattern is especially common for email/inbox checks because a Gmail connection may be listed in the dashboard but still require session authorization in Tool Router sessions.

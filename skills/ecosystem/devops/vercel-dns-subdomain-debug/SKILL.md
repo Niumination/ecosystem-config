@@ -122,6 +122,18 @@ curl -s -o /dev/null -w "HTTP: %{http_code}\n" \
 ```
 HTTP 200 + valid cert here = site works globally. "Invalid configuration" is purely Vercel CLI/dashboard resolver cache, not a real outage.
 
+### Smoke-testing every route while local DNS is broken
+When the host's own resolver fails (`nodename nor servname provided` from any client) but public DoH returns A records, the domain is fine and the probe host is the problem. Do not conclude an outage, and do not stop at one route: loop the whole route list through `--resolve`, which pins name→IP per request and needs no resolver at all.
+```bash
+IP=$(curl -s "https://dns.google/resolve?name=example.com&type=A" \
+  | python3 -c "import sys,json;print([a['data'] for a in json.load(sys.stdin)['Answer'] if a['type']==1][0])")
+for r in / /kelas /masuk /dashboard /verify; do
+  printf '%-12s %s\n' "$r" "$(curl -sS -o /dev/null -w '%{http_code}' --max-time 25 --resolve example.com:443:$IP https://example.com$r)"
+done
+```
+Assert on body content too, not just the code — fetch the page and `grep` for a marker that proves the right variant rendered (e.g. the anonymous header shows a sign-in link and NOT a sign-out control).
+- **Use `curl --resolve`; do not hand-roll the bypass in Python.** Subclassing the HTTPS handler to force a hostname/IP mismatch trips over the TLS layer (`'SSLSocket' object has no attribute 'set…'`) and costs a debugging detour. The CLI flag does the same job in one line and is the same command you can paste into a report.
+
 ## Vercel IP addresses (as of Sep 2026)
 - `216.198.79.1` / `64.29.17.1` (apex A records)
 - `216.198.79.65` / `64.29.17.65` (www, may differ)

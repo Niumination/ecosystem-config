@@ -53,6 +53,10 @@ Misidentifying the file is the most common error here. The user may reference a 
 - `execute_code` (Python subprocess) fails on empty `cwd=""` and on shell `&` backgrounding — pass absolute paths, avoid inline `&` loops (use Python loops instead).
 - "model-mapping-post-rollback.md" was stale (claimed `opencode-free`); live verified `opencode-zen` with `OPENCODE_ZEN_API_KEY`. Always verify against live state, not the doc.
 - Config.yaml edits are refused by the runtime for security — use `hermes config set <key> <value>` instead of writing YAML.
+- **Config.yaml is agent-blocked from within the gateway process.** Both `patch` tool and `execute_code` refuse to write to `~/.hermes/config.yaml` ("Agent cannot modify security-sensitive configuration"). Must edit from external shell (Terminal) — never attempt from within a gateway session.
+- **For zips with `agent/` directories containing HERMES_SKILL.md:** adapt the skill doc to Indonesian + add frontmatter (name, description, version, source), then register to skill bank via `scripts/skill-manifest.py` + `sync-to-agents.sh`. Do NOT copy the kit itself into the ecosystem repo — one-home rule. Kit lives outside (e.g. `~/motion-reel-kit`), skill bank stores only SKILL.md pointing to it.
+- **Shell integration preferred over MCP** for tool zips. MCP adds config complexity (mcp_servers entry, venv python path, restart). Shell path (SKILL.md + terminal commands) is simpler and more reliable. MCP only if the tool has no CLI or the user explicitly requests it.
+- **Gateway python binary:** use `python3.14` directly — symlink `python3` is broken (`no such file or directory`). Path: `~/.hermes/tools/python-*/bin/python3.14`. Never use `ls -d .../bin/python3` in command substitution — `ls` alias captures the `-> python3.14` arrow text as part of the path.
 
 ## References
 - `references/free-stack-merge.md` — condensed notes on the hermes-free-stack.zip merge instructions (reference-only).

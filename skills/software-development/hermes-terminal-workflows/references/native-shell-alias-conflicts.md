@@ -51,3 +51,26 @@ Redirecting a command to a file and reading it in the same session can return a
 stale or empty file depending on how the shell handles the write. If a captured
 file comes back with zero bytes while the command exits 0, capture the output
 through the tool interface instead of a shell redirect.
+
+## Aliased `ls` corrupts command substitution
+
+`ls` is also aliased here, to a long/colour format. Inside `$(...)` the alias
+runs, so the captured value is the *rendered* line, not the name:
+
+```bash
+GP=$(ls -d /path/python-*/bin/python3 | head -1)
+"$GP" -V      # zsh: no such file or directory: /path/bin/python3 -> python3.14
+```
+
+The value became `"<path> -> python3.14"` — a string no filesystem can resolve,
+which reads like a broken symlink but is a broken *capture*. Diagnose it by
+echoing the variable (`echo "[$GP]"`) before blaming the file.
+
+Fixes, in order of preference:
+
+- Name the concrete binary in the glob (`.../bin/python3.14`) so the symlink is
+  not involved at all, and keep stdout to the path alone.
+- Use `find ... -type f -name 'python3*'` or a `python3 -c` one-liner instead of
+  `ls` when the result feeds a variable.
+- Only then reach for `unalias ls`; it is a per-shell fix that does not survive
+  into the next block you hand the user.
