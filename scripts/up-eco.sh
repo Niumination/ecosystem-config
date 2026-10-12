@@ -107,6 +107,8 @@ check_unknown_folders() {
     inactive-2026-09
     inactive-2026-10
     dinas
+    mirai
+    wiki
   )
 
   # Baca dari BACKLOG.md untuk daftar proyek yang dikenal
@@ -465,9 +467,9 @@ check_gh_prs() {
 
   # ── 5b-3: Cek auth gh (keyring Hermes kadang tak kebuka di background → fallback ke gh api user + hosts.yml)
   local gh_ok=false
-  if HOME="$gh_home" $TIMEOUT_BIN 8 gh auth status --hostname github.com &>/dev/null; then gh_ok=true
-  elif HOME="$gh_home" $TIMEOUT_BIN 8 gh api user --jq .login &>/dev/null; then gh_ok=true
-  elif $TIMEOUT_BIN 8 gh auth status --hostname github.com &>/dev/null; then gh_ok=true
+  if HOME="$gh_home" ${TIMEOUT_BIN:+$TIMEOUT_BIN 8} gh auth status --hostname github.com &>/dev/null; then gh_ok=true
+  elif HOME="$gh_home" ${TIMEOUT_BIN:+$TIMEOUT_BIN 8} gh api user --jq .login &>/dev/null; then gh_ok=true
+  elif ${TIMEOUT_BIN:+$TIMEOUT_BIN 8} gh auth status --hostname github.com &>/dev/null; then gh_ok=true
   elif [ -f "/Users/${USER:-zaryu}/.config/gh/hosts.yml" ] && grep -q "github.com" "/Users/${USER:-zaryu}/.config/gh/hosts.yml" 2>/dev/null; then gh_ok=true
   fi
   if [ "$gh_ok" = false ]; then
@@ -498,7 +500,7 @@ check_gh_prs() {
     unset _tok
   fi
   local prs_json
-  prs_json=$(HOME="$gh_home" $TIMEOUT_BIN 20 gh search prs --owner Niumination --state open --limit 50 \
+  prs_json=$(HOME="$gh_home" ${TIMEOUT_BIN:+$TIMEOUT_BIN 20} gh search prs --owner Niumination --state open --limit 50 \
     --json number,title,repository,isDraft,author,createdAt,updatedAt 2>/dev/null || echo "[]")
 
   local total
@@ -1151,9 +1153,14 @@ check_composio_status() {
   if command -v composio >/dev/null 2>&1; then has_cli=true; info "composio CLI: $(composio --version 2>&1 | head -n1)"; else info "composio CLI: tidak terinstal (pakai python package)"; fi
   # probe import sekali dengan timeout (import composio pernah hang >15s dan menggantung up-eco)
   local comp_ver=""
-  if $TIMEOUT_BIN 25 python3 -c "import composio" 2>/dev/null; then
+  if [ -n "$TIMEOUT_BIN" ]; then
+    compio_ok=$("$TIMEOUT_BIN" 25 python3 -c "import composio" 2>/dev/null && echo yes || echo no)
+  else
+    compio_ok=$(python3 -c "import composio" 2>/dev/null && echo yes || echo no)
+  fi
+  if [ "$compio_ok" = yes ]; then
     has_py=true
-    comp_ver=$($TIMEOUT_BIN 25 python3 -c 'import composio; print(composio.__version__)' 2>/dev/null || echo "?")
+    comp_ver=$(if [ -n "$TIMEOUT_BIN" ]; then "$TIMEOUT_BIN" 25 python3 -c 'import composio; print(composio.__version__)' 2>/dev/null; else python3 -c 'import composio; print(composio.__version__)' 2>/dev/null; fi || echo "?")
     info "composio python package: tersedia ($comp_ver)"
   else
     info "composio python package: tidak terdeteksi/timeout (import >25s)"

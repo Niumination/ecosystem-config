@@ -161,7 +161,7 @@ Desktop/Niumination/
 |--------|:--------:|:------:|:------------------:|-------|
 | **cc-acehtengah** | **P2** | 📦 **Diarsipkan** | **2026-09-21** | Repo GitHub di-archive + private (tag `v-hiatus-2026-09-21`). Folder lokal `services/cc-acehtengah/` sudah dihapus. Restore: `docs/reports/HIATUS-CC-ACEHTENGAH-2026-09-21.md` |
 | **niu-mission-control** | **P2** | 📦 **Diarsipkan** | **2026-10-09** | 🗄️ **Diarsipkan 9 Okt 2026** — digantikan oleh **MIRAI** (lihat baris bawah) |
-| **MIRAI** | **P1** | 🟢 **Active — :8800** | **2026-10-10** | 🟢 **Pengganti niu-mission-control (arena.ai workspace #1). Repo publik `github.com/Niumination/mirai` di `mirai/` (root ekosistem, 90 file, `.gitignore` ketat). LaunchAgent `com.mirai.mission-control` hidup (PID 29236) bind `127.0.0.1:8800` only, mac-verify 20 PASS. Wiki `wiki/` + 5 cron job jalan. 3 bug fix macOS portability.** |
+| **MIRAI** | **P1** | 🟢 **Active — :8800** | **2026-10-10** | 🟢 **Pengganti niu-mission-control (arena.ai workspace #1). Repo publik `github.com/Niumination/mirai` di `mirai/` (root ekosistem, 90 file, `.gitignore` ketat). LaunchAgent `com.mirai.mission-control` hidup (PID 29236) bind `127.0.0.1:8800` only, mac-verify 20 PASS. Wiki `wiki/` + 5 cron job jalan. 3 bug fix macOS portability.** · `wiki/` = repo git lokal mandiri (no remote GitHub) di root ekosistem, dialihkan dari `dotfiles/` 10 Okt 2026 (`CREW_WIKI_DIR`). Folder root, didaftarkan whitelist `up-eco.sh` |
 | **niu-cast** | P2 | 🟢 **Active** | 2026-07-21 | v3.6.0 — Mac Connect Bridge |
 | **Niu-Flow** | P2 | 🟢 **Remote only** | 2026-07-28 | github.com/Niumination/niu-flow |
 | **latticesend** | P3 | 🟢 Active | 2026-08-10 | P2P file transfer — ✅ sudah punya remote |
@@ -349,7 +349,7 @@ Sebelumnya (BACKLOG Jul 28) mencatat niu-dash/Niu-LKH dirty — sudah tidak vali
 |--------|:------:|--------|
 | GH Pages (lokal) | 5/5 ✅ | Niu-LKH, niu-dash, maze-3d, AuditTI-AT, DiskominfoAT |
 | GH Pages (remote) | 5/5 ✅ | Niu-Startpage, niu-private, NiuHomePage, zaryu.startpage, SPBE-DevOps-Academy |
-| Vercel | **3/13 🟢 live** | Verified 7 Okt 2026 via `vercel project ls` (13 proyek) + probe HTTP. **Live:** niu-oss (`niumination.web.id`), pemdi-aceh-tengah (308→/dashboard), sapa-ai. **⏸️ PAUSED (7):** tedeo-web, kune-ya-com, cc-acehtengah, niu-vermilion, niu-dash-fullstack, virtual-assistance, niu-private, landing. **⚪ Never deployed (2):** rekapitulasi-pemdi, niutui. Detail + bukti di `docs/registry/deployment-status.md` |
+| Vercel | **4/14 🟢 live** | Verified 12 Okt 2026 via `vercel project ls` (14 proyek) + probe HTTP per hostname. **Live (4):** niu-oss (200), kelas (`kelas-hazel.vercel.app`, 200), pemdi-aceh-tengah (308→/dashboard), sapa-ai (307). **⏸️ PAUSED (8):** niu-vermilion, cc-acehtengah, kune-ya-com, landing, niu-dash-fullstack, virtual-assistance, tedeo-web, niu-private (semua 503 `DEPLOYMENT_PAUSED`). **⚪ Never deployed (2):** rekapitulasi-pemdi, niutui. Detail + bukti di `docs/registry/deployment-status.md` |
 
 ---
 
