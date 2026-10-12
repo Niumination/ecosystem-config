@@ -82,6 +82,18 @@ If your commit appears in `origin/main`, the transfer succeeded and the local si
 - **Never trust root `git status` for nested repos.** They are invisible there because they are ignored.
 - **Treat a divergence report as suspect before the push is.** Diagnose the comparison once, cleanly, and move on — do not re-push to "fix" a divergence that was never there.
 - **Never commit another thread's edits.** Leaving their uncommitted changes alone is the correct outcome, not an incomplete one. Removing them is the owner's decision.
+- **Generated aggregate files absorb every other thread's work, and the pre-commit gate demands they be current.**
+  `skills/manifest.json`, `INDEX.md`, `.promotion-ledger.json`, and `docs/registry/skill-registry.md` are
+  regenerated from the whole tree, so after any skill change they carry hashes and rows belonging to threads
+  you did not touch — sometimes including an untracked skill from another agent. Meanwhile the gate
+  (`skill-manifest.py --check`) fails the commit when they are stale. The resolution is **regenerate, do not
+  stage**: run the generator so the gate passes against the filesystem, then stage only your own paths and say
+  in the commit message which aggregates were deliberately left out and why. Staging them publishes another
+  thread's unfinished work under your commit; leaving them stale blocks the commit. Regenerating satisfies the
+  gate without either.
+- **Stage by explicit path, never `git add -A` or `git add .`, whenever aggregates are dirty.**
+  `git add <your paths>` then read `git diff --cached --name-only` back is the only way to keep a
+  whole-tree regeneration from riding along.
 - **Never copy a sibling file's value just because it looks like precedent.** Existing files sometimes record values that no longer match the artifact they describe. Confirm the sibling's value against what it describes; if it is wrong, record the correct value and report the discrepancy.
 - **Prefer `patch` over `write_file` for edits.** `write_file` overwrites the whole file. On a file you have only partially read, re-read it before any full rewrite.
 

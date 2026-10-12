@@ -15,6 +15,15 @@ changes:
 ## Trigger
 User kirim URL repo/tool + **"pelajari ini"** / **"pelajari dulu untuk diterapkan di ekosistem"** (contoh nyata: autoskills, 9drive, OpenRouter, Motion.so, UACC, Munder Difflin). **Varian dokumen (18-Ags-2026):** user kirim file .md hasil kajian eksternal (analisis + research report) + "pelajari ini" — perlakukan sama: pelajari, verifikasi klaim terhadap kondisi aktual, lalu LAPORKAN + tunggu instruksi. **Varian paket zip (18-Ags-2026):** user kirim `Downloads/<name>.zip` berisi paket rebuild/optimisasi + "pelajari ini" — extract ke `/tmp/<name>-study/`, baca urutan: README → dokumen audit utama → semua script/config/prompt (jangan lewat file pendukung), lalu verifikasi klaim terhadap sistem aktual (config.yaml, proses, port, path) dan laporkan isi + delta antar versi.
 
+**Varian pasca-install (12-Okt-2026):** user sudah **memasang sendiri** tool yang sebelumnya distudi, lalu menyatakan statusnya (mis. "sudah install, masih terpisah dari ekosistem, belum aku kenalkan apa pun"). Ini mode **audit read-only + rencana**, bukan "pelajari" lagi: tool-nya sudah hidup, jadi riset dokumen tidak lagi cukup.
+- **Trigger-nya adalah pernyataan status, bukan permintaan.** User tidak meminta apa pun — dia memberi konteks. Yang benar: audit kondisi nyata, laporkan, siapkan rencana bertahap, dan **jangan ubah apa pun**. Perhatikan kata "belum aku kenalkan ekosistem apapun" — itu instruksi implisit untuk **memverifikasi bahwa klaim itu benar**, bukan izin untuk mulai menyambungkan.
+- **Audit read-only, baca struktur tanpa nilai rahasia.** Redaksi key/token: tampilkan hanya struktur config, nama key, dan panjang/prefix/akhir bila perlu perbandingan. Jangan pernah echo nilai.
+- **Cek 5 hal, bukan hanya "apakah jalan":** versi terpasang, bind address (loopback vs LAN), lokasi penyimpanan kredensial, objek yang sudah dibuat (bot/akun/job), dan apakah ada `instances`/`mcpServers`/konektor yang menunjuk ekosistem kita.
+- **Verifikasi klaim isolasi user secara positif.** "Belum terhubung" harus dibuktikan dengan membaca config-nya (mis. tidak ada `instances`, `mcpServers`, atau provider kita) — bukan diterima karena user mengatakannya. Kalau benar, katakan benar dan sebutkan buktinya.
+- **Temuan yang lebih baik dari kekhawatiran dokumen tetap dilaporkan.** Kekhawatiran di laporan riset bisa tidak berlaku pada mode instalasi yang dipakai user (mis. peringatan "key plaintext" di dokumentasi hanya berlaku untuk mode server, sementara instalasi desktop memakai encrypted store OS). Koreksi diri sendiri secara eksplisit — jangan diamkan agar laporan lama terlihat benar.
+- **Pemetaan blast radius sebelum merekomendasikan integrasi adalah inti audit ini.** Lihat skill `integration-verification` bagian "Auditing blast radius before wiring two agents together".
+- **Laporan terpisah dari riset awal.** Riset = `docs/reports/RISET-<NAMA>-<YYYY-MM-DD>.md`; audit instalasi = `docs/reports/<NAMA>-STATUS-INTEGRASI-<YYYY-MM-DD>.md`, dan sebutkan bahwa ia melanjutkan laporan riset itu.
+
 ## Aturan keras (user preference, berlaku semua task)
 - **"pelajari ini" = study + lapor + tunggu instruksi. JANGAN eksekusi apa pun** (fix, config, install, restart) sampai user bilang "gas/kerjakan/fix". User marah keras saat agent langsung mengerjakan yang tidak diminta: "kamu gak perlu kerjain apapun kalau aku gak minta".
 - **"periksa/cek/pastikan X" = probe langsung + laporan ringkas.** Bukan rekap sejarah, bukan wall-of-text, bukan dokumen baru. Tawarkan fix satu baris ("mau saya fix?"), jangan eksekusi.
@@ -22,6 +31,39 @@ User kirim URL repo/tool + **"pelajari ini"** / **"pelajari dulu untuk diterapka
 - **Paket versi berlapis: SELALU cek ERRATA/dokumen supersede dulu.** Paket v2 bisa **menarik rekomendasi v1 secara eksplisit** (contoh nyata `niumination-rebuild-v2.zip` → `ERRATA-AUDIT-V1.md` menarik fallback 9router/juan/huancheng + multi-agen dari rekomendasi v1). Saat user kirim v2 setelah v1: baca README + errata PERTAMA, laporkan "yang ditarik vs yang tetap", dan JANGAN pernah menerapkan rekomendasi yang sudah ditarik (mis. jangan re-add 9router ke fallback_providers padahal kebijakan v2 bilang otak hanya keluarga opencode-zen).
 - **Keputusan owner dijawab per-huruf — catat verbatim lalu masukkan ke dokumen sebelum eksekusi.** User menjawab pertanyaan diskusi sebagai daftar pendek (`A. opsi 3`, `B. masuk gate QA`, `C. ikuti setup X`, `D. perlu update`). Setiap huruf mengubah isi rencana, jadi tulis ulang bagian yang bersangkutan dan cantumkan keputusannya di dokumen — jangan hanya mengiyakan lalu mengeksekusi dari ingatan. Bila satu jawaban membatalkan arah rencana (mis. "integrasinya bukan skill standalone"), revisi rencananya (tandai `Revisi: v2`) sebelum minta approval fase berikutnya.
 - **"simpan dulu jadi referensi" = copy ke `docs/references/<nama-bermakna>-<YYYY-MM-DD>/`** (untuk paket multi-file: extract folder penuh; untuk dokumen tunggal: file .md), lalu commit+push bersama snapshot hari itu. Jangan ubah isi.
+
+## Cara melaporkan hasil studi URL ("pelajari ini")
+
+Studi berakhir dengan **laporan**, bukan instalasi. Laporan → `docs/reports/RISET-<NAMA>-<YYYY-MM-DD>.md`
+(huruf kapital, nama tool apa adanya — jangan disingkat atau salah eja; cek `ls docs/reports/` setelah
+menulis). Struktur: ringkasan → arsitektur → fitur → **relevansi ke ekosistem** → keamanan → lisensi →
+persyaratan di mesin ini → penilaian → rekomendasi → sumber.
+
+Aturan isi yang membuat laporan ini berguna:
+
+- **Bagian "relevansi ke ekosistem" wajib membandingkan dengan yang SUDAH kita punya, bukan hanya
+  mendaftar fitur tool.** Nama fitur yang terdengar baru sering sudah tercakup: sebutkan padanannya
+  (cron/thread/registry/skill) supaya rekomendasi tidak mengusulkan sesuatu yang duplikatif.
+- **Verifikasi klaim integrasi ke sisi mesin kita, bukan ke halaman vendor.** Kalau tool mengaku
+  mendukung Hermes/9router, buktikan seam-nya ada di sini (subcommand + dependency + transport),
+  lalu tulis perintah verifikasinya di laporan. Lihat skill `integration-verification`.
+- **Sebutkan dua jalur bila ada, beserta batasannya.** Jalur kaya fitur dan jalur murah sering ada
+  bersamaan (mis. protokol agent dengan tool-calls vs endpoint OpenAI-compatible tanpa tool-calls).
+  Tulis batasan jalur murah secara eksplisit — "chat saja, tidak bisa mengoperasikan apa pun" —
+  supaya sesi berikutnya tidak memilihnya lalu kecewa.
+- **Baca posture keamanan dari `SECURITY.md`/`LICENSING.md` dan kutip kelemahan yang DIAKUI belum
+  ditutup.** Bagian scope-notes peneliti adalah tempat maintainer menulis apa yang masih bocor.
+  Kalau kelemahannya menyentuh aturan keras kita (approval gate, kredensial), itu masuk rekomendasi,
+  bukan catatan kaki.
+- **"Jangan pasang dulu" adalah hasil yang sah dan sering yang benar.** Alasan yang harus diucapkan:
+  nilai uniknya bukan kebutuhan yang belum terpenuhi, ada kelemahan yang menyentuh aturan keras, atau
+  proyeknya terlalu muda untuk dinilai. Sertakan jalur uji aman bila nanti ingin dicoba
+  (`npx <tool> --local`, tanpa install global, tanpa akses remote).
+- **Sebutkan apa yang bisa ditiru tanpa memasang apa pun.** Pola desain yang bagus (lapisan consent
+  terpisah, secret write-only, dokumentasi keamanan yang jujur) layak dicatat sebagai pelajaran
+  meski tool-nya tidak diadopsi.
+- **Jangan pernah memasang apa pun saat mode "pelajari".** Termasuk `npx`, `npm i -g`, atau mengunduh
+  installer. "Pelajari" = baca + verifikasi + lapor + tunggu.
 
 ## Workflow
 
@@ -39,7 +81,8 @@ User kirim URL repo/tool + **"pelajari ini"** / **"pelajari dulu untuk diterapka
 
 ### Step 3: Rencana detail → dokumen dulu (preferensi user!)
 User memilih **"Buat rencana detail dulu sebagai dokumen"** (16-Ags-2026) untuk kerja multi-fase — JANGAN langsung eksekusi.
-- Lokasi: `~/Desktop/Niumination/docs/reports/<tool>-adoption-plan-<YYYY-MM-DD>.md` — root AGENTS.md menetapkan rencana/laporan/strategi ke `docs/reports/`, dan **melarang membuat folder baru di bawah `docs/`** (`docs/architecture/` bukan target yang sah). Baca root AGENTS.md sebelum menulis dokumen.
+- Lokasi: `~/Desktop/Niumination/docs/reports/<tool>-adoption-plan-<YYYY-MM-DD>.md` — root AGENTS.md menetapkan rencana/laporan/strategi ke `docs/reports/`, dan **melarang membuat folder baru di bawah `docs/`**. `docs/architecture/` **tidak sah sebagai target baru** (folder itu sudah tidak ada); jangan menyalin path lamanya dari riwayat skill ini. Baca root AGENTS.md sebelum menulis dokumen.
+- **`docs/references/` dan `docs/registry/` punya aturan sendiri** dan sering tertukar: arsip studi/paket → `docs/references/`, registry hidup (status, katalog, mapping) → `docs/registry/`. Menulis laporan ke `docs/registry/` mencampur catatan hidup dengan arsip.
 - Struktur dokumen: ringkasan eksekutif → latar belakang → gap analysis (tabel) → fase (spesifikasi teknis + kriteria sukses per fase) → prioritas/timeline → risiko & mitigasi → Definition of Done → lampiran
 - **Commit dokumen dulu** (`git add` + commit) sebelum menawarkan eksekusi
 

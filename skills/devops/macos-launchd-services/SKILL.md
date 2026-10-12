@@ -94,6 +94,8 @@ Verify fix: run the script twice within 30s — the second run should print "cha
 - `com.niumination.9router-watch` → removed
 
 ## Pitfalls
+- **PATH is an inherited value too, and a missing binary fails SILENTLY inside a pipeline.** launchd's PATH is minimal — `sha256sum` (in `/sbin`) is typically absent. The `cmd_a || cmd_b` idiom does **not** rescue it, because a pipeline's exit status comes from its LAST command, so the `||` never fires and the variable ends up empty; a script comparing that empty value to a stored empty value takes the "nothing changed" branch forever. Probe with `command -v`, guard the empty result with `exit 1`, and test under `env -i PATH=<plist PATH>`. Full mechanism + correct `_hash_ids()` pattern in `references/launchd-env-not-shell-env.md`.
+- **A job that runs but does nothing is harder to notice than one that fails.** A self-perpetuating silent no-op (exit 0, no output, no error) leaves no trace in logs or notifications. When a scheduled job appears healthy but its effect never appears, check whether the state/hash file it should be writing is zero bytes or frozen — that is the signature of a pipeline that never produced output, not of a job with nothing to do.
 - **`launchctl load` fails with I/O error** if the agent is already loaded/collides → use `launchctl kickstart -k gui/$(id -u)/<label>` instead.
 - **Do NOT edit `~/.hermes/config.yaml` via patch/write_file** — agent is blocked (security). Use `hermes config set <key> <value>`.
 - **Mission Control `/api/*` → 404 is normal** if only the Next.js UI (`apex-ui`) runs and the FastAPI backend process is not up — that's a separate process, not a routing failure.
@@ -131,6 +133,7 @@ When `sync-to-agents.sh` reports a target skill newer than bank, do **not** assu
 
 ## References
 - `references/services-inventory.md` — full service table + exact health commands
+- `references/launchd-env-not-shell-env.md` — what launchd does NOT inherit (env vars, PATH), the silent-pipeline-failure trap, and how to test under the real launchd environment
 - `templates/nosleep.plist` — ready-to-deploy caffeinate LaunchAgent
 - `templates/9router-sync.plist` — hybrid WatchPaths+StartInterval notifier (realtime model-change alerts)
 - `references/gateway-network-wait-fix-2026-08-30.md` — Hermes Gateway DNS-at-boot incident and wrapper fix

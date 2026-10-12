@@ -1147,20 +1147,21 @@ check_plugin_status() {
 }
 
 # ── Phase 12: Composio Status 🆕 ──────────────────────────────────────────
+# Jalankan python3 dengan timeout bila binary timeout tersedia;
+# tanpa timeout (macOS tanpa coreutils) jalankan polos.
+run_python() {
+  if [ -n "$TIMEOUT_BIN" ]; then "$TIMEOUT_BIN" "$1" python3 "${@:2}"; else python3 "${@:2}"; fi
+}
+
 check_composio_status() {
   section "🔗 Composio — Tool Router"
   local has_cli=false has_py=false
   if command -v composio >/dev/null 2>&1; then has_cli=true; info "composio CLI: $(composio --version 2>&1 | head -n1)"; else info "composio CLI: tidak terinstal (pakai python package)"; fi
   # probe import sekali dengan timeout (import composio pernah hang >15s dan menggantung up-eco)
   local comp_ver=""
-  if [ -n "$TIMEOUT_BIN" ]; then
-    compio_ok=$("$TIMEOUT_BIN" 25 python3 -c "import composio" 2>/dev/null && echo yes || echo no)
-  else
-    compio_ok=$(python3 -c "import composio" 2>/dev/null && echo yes || echo no)
-  fi
-  if [ "$compio_ok" = yes ]; then
+  if run_python 25 -c "import composio" 2>/dev/null; then
     has_py=true
-    comp_ver=$(if [ -n "$TIMEOUT_BIN" ]; then "$TIMEOUT_BIN" 25 python3 -c 'import composio; print(composio.__version__)' 2>/dev/null; else python3 -c 'import composio; print(composio.__version__)' 2>/dev/null; fi || echo "?")
+    comp_ver=$(run_python 25 -c 'import composio; print(composio.__version__)' 2>/dev/null || echo "?")
     info "composio python package: tersedia ($comp_ver)"
   else
     info "composio python package: tidak terdeteksi/timeout (import >25s)"
@@ -1173,7 +1174,7 @@ check_composio_status() {
   # tampilkan toolkit/skills terhubung (connected_accounts) — timeout 40s agar tak gantung up-eco
   if [ -n "${COMPOSIO_API_KEY:-}" ] && [ "$has_py" = true ]; then
     local comp_out
-    comp_out=$($TIMEOUT_BIN 40 python3 - << 'PY' 2>&1
+    comp_out=$(run_python 40 - << 'PY' 2>&1
 import os
 from collections import Counter
 try:

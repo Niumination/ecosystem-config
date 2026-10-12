@@ -33,8 +33,8 @@ launchctl kickstart -k gui/$(id -u)/com.9router.autostart
 
 ## Full Model Accessibility Audit (pakai script — DRY-RUN default)
 ```bash
-python3 ~/.hermes/skills/niu-9router-maintain/scripts/audit_models.py            # probe + laporan, DB TIDAK disentuh
-python3 ~/.hermes/skills/niu-9router-maintain/scripts/audit_models.py --apply    # baru boleh ubah DB
+python3 ~/.hermes/skills/ecosystem/niu-9router-maintain/scripts/audit_models.py            # probe + laporan, DB TIDAK disentuh
+python3 ~/.hermes/skills/ecosystem/niu-9router-maintain/scripts/audit_models.py --apply    # baru boleh ubah DB
 ```
 Script ini: fetch `/v1/models` → probe chat tiap model (3 percobaan, 4 worker) → klasifikasi
 **ok / transient / permanent** → tulis JSON → (hanya dengan `--apply`) disable provider yang
@@ -197,7 +197,8 @@ justru karena `up-eco.sh` memanggilnya dari shell yang PATH-nya memuat `/sbin`):
 ```bash
 env -i PATH=/usr/local/bin:/usr/bin:/bin HOME=$HOME /bin/bash ~/Desktop/Niumination/scripts/9router-sync.sh; echo "exit=$?"
 ```
-Lihat `references/launchd-script-hardening.md` untuk pola lengkap + cara membaca `launchctl print`.
+Lihat skill `macos-launchd-services` → `references/launchd-env-not-shell-env.md` untuk pola lengkap
+(PATH launchd, jebakan `||` di dalam pipeline, dan cara membaca `launchctl print`).
 
 **Verify notifikasi jalan:** `osascript -e 'display notification "test" with title "9router sync"'` → harus muncul di Notification Center.
 
@@ -248,3 +249,8 @@ Lihat `references/launchd-script-hardening.md` untuk pola lengkap + cara membaca
   berisi 85. `models:` dipakai saat cache dingin/kosong. Karena itu, setelah mengubah katalog, **invalidate
   cache** — jangan hanya mengedit `models:`.
 - **Sinkronisasi models: → config bisa diotomatisasi** dengan `scripts/sync-models-to-config.py` (cron `--no-agent`). Script ini rewrite `models:` dengan parser string murni (tanpa PyYAML), invalidate cache katalog, dan verifikasi ulang dari disk. Uji dulu pada salinan /tmp sebelum deploy — config asli jangan pernah menjadi target uji.
+- **Sumber script = repo, deployment = `~/.hermes/scripts/`.** Edit di `~/Desktop/Niumination/scripts/`
+  (version-controlled), lalu `cp` ke `~/.hermes/scripts/` dan `diff -q` keduanya — cron mengeksekusi
+  salinan di `~/.hermes/scripts/`, jadi mengedit yang di repo saja tidak mengubah perilaku job.
+  Setelah patch, jalankan job sekali (`hermes cron run <id>`) dan baca artefaknya di
+  `~/.hermes/cron/output/<id>/`.

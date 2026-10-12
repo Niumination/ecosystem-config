@@ -87,9 +87,19 @@ Re-measure, then decide whether the document is a ledger (supersede) or a contra
   records a measurement of something that fluctuates (a catalogue size, a live count), label it as a
   snapshot with the command to re-read it, and say plainly that the number is not a constant. A bare
   number reads as a fact and will be trusted long after it stopped being true.
-- **Never reconcile a protected instruction file silently.** If a status header lives in
-  `AGENTS.md`, prepare the change but surface it for explicit approval; a timed-out approval
-  prompt is not consent, and routing around the refusal defeats the point of the gate.
+- **Re-measuring to update a document is how you find a live outage. Report it as a finding, do
+  not bury it in the edit.** Fetching a provider's status endpoint to refresh a registry row is a
+  live probe; when it returns an auth failure, the document is the least important output of that
+  step. Finish the reconciliation, then lead the report with the defect and name who is affected.
+- **Trace a dependency's blast radius through config references, not through the object itself.**
+  A dead credential looks like one broken integration; the question that matters is which live
+  consumers point at it. Grep the config for the identifier (`channel_overrides`, route tables,
+  provider pins) and name each dependent surface — a thread whose pinned model is now unanswerable
+  is the actual impact, and it is invisible from the provider's own record.
+- **Check for a replacement before declaring something dead.** A stale value may exist in a second
+  store (a vault, a backup, a shell secrets file). Compare the two by length and prefix/suffix rather
+  than printing either; identical values mean no replacement exists and the fix needs a human. Saying
+  "no replacement found" without that check invites the user to go looking for one that was never there.
 
 ## Bukti (verified 2026-10-01)
 

@@ -54,6 +54,67 @@ is wrong". It isn't. The value never reached the process.
    service can accept the var and still bind its default (e.g. a listener that
    honours `HOST` but falls back to loopback when unset, silently).
 
+## PATH is a value too — and launchd's PATH is not yours
+
+`PATH` is the most damaging instance of this rule, because a missing binary fails
+*silently* inside a pipeline rather than erroring.
+
+On macOS, launchd jobs get a minimal PATH (typically
+`/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin` or a plist-supplied subset). Tools that
+live outside it — notably **`sha256sum`, which is in `/sbin`** — are simply absent.
+A job that works when you run it by hand can be broken under launchd, and the
+reverse is also true: a script can look healthy for weeks only because some other
+interactive caller had the missing directory in PATH.
+
+**The trap that hides it: `||` inside a pipeline never fires.** The exit status of a
+pipeline is the exit status of its **last** command. So this does *not* fall back:
+
+```bash
+HASH=$(echo "$IDS" | sha256sum 2>/dev/null | cut -d' ' -f1 || shasum -a 256)  # WRONG
+#                         ^ 127 (not found)      ^ 0 (cut succeeded) → || never runs
+```
+
+`HASH` comes out empty. If the script then compares it to a previously-empty value,
+the comparison matches, the script takes the "nothing changed" branch, and exits 0
+forever — a **self-perpetuating silent no-op** with no error in any log.
+
+**Correct pattern — probe for the binary, don't rely on `||`:**
+
+```bash
+_hash_ids() {
+  if command -v sha256sum >/dev/null 2>&1; then printf '%s' "$IDS" | sha256sum | cut -d' ' -f1
+  elif command -v shasum >/dev/null 2>&1; then printf '%s' "$IDS" | shasum -a 256 | cut -d' ' -f1
+  else printf '%s' "$IDS" | openssl dgst -sha256 | awk '{print $NF}'; fi
+}
+HASH=$(_hash_ids)
+[ -z "$HASH" ] && { echo "$(date -Iseconds) FATAL: no sha256 tool" >> "$LOG_FILE"; exit 1; }
+```
+
+The empty-value guard matters more than the fallback chain: **fail loudly, never
+succeed falsely.** A job that exits 1 shows up in the run history; a job that exits 0
+having done nothing is invisible for as long as nobody checks.
+
+## Test under the real launchd PATH, not your shell's
+
+This is the step that catches it, and the only one that does:
+
+```bash
+env -i PATH=/usr/local/bin:/usr/bin:/bin HOME="$HOME" /bin/bash /path/to/script.sh; echo "exit=$?"
+```
+
+Read the PATH out of the plist rather than guessing it, and include it verbatim. A
+script that passes here is safe under launchd; a script that only passes in your
+interactive shell is not.
+
+**Diagnosing a job that has already gone quiet:** check whether the state/hash file it
+writes is empty or frozen at an old date. A zero-byte hash file is the signature of a
+pipeline that never produced output — not of a job that found nothing to do.
+
+```bash
+stat -f "%Sm %N" /path/to/state.json     # frozen = suspect
+wc -c /path/to/hash.file                 # 0 or 1 byte = never written
+```
+
 ## Persistence: `launchctl setenv` is runtime-only
 
 `launchctl setenv` writes to the **login session namespace** and is wiped on

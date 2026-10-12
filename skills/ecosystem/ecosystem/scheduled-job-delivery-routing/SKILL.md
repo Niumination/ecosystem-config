@@ -43,6 +43,32 @@ chat noise. The trailing `,local` is what gives you both without losing the file
 Get real IDs from the thread registry (`docs/registry/telegram-threads.md`); chat IDs are
 negative supergroup IDs, thread IDs are the trailing component.
 
+## Routing to a chat thread raises the job's output contract
+
+`local` is cheap: a job that speaks on every wobble only writes extra files nobody reads. The
+moment the same job points at a shared thread, every false "changed" becomes a notification a
+person has to dismiss. **A route is therefore not finished when the target is set — it is finished
+when the job can only speak when something genuinely changed.** Check three things before
+declaring the route done:
+
+1. **Silent when unchanged.** Exit 0 with empty stdout produces no message. A job that prints
+   "nothing to do" on every run posts that line every run — at a 30-minute cadence that is 48
+   messages a day into a thread other work also uses.
+2. **Stable sampling when the source fluctuates.** If the value the job compares is a live
+   measurement of a flapping source (an aggregate endpoint, a catalogue, a service that drops in
+   and out), the job sees a change on every wobble and reports each one. Read the source two or
+   three times and act only when consecutive reads agree; when they do not agree, stay silent and
+   let the next scheduled run catch the settled value. Distinguish the flapping layer from the
+   underlying source by probing the source directly — if the source is steady and only the
+   aggregate moves, the instability is in the aggregator, not the data.
+3. **Verify a write against the same snapshot you wrote from.** Re-fetching the source to confirm
+   the write races a fluctuating endpoint and fails a job that is actually correct. Compare the
+   bytes on disk to the value already in hand.
+
+A job pointed at a shared thread without these will be routed correctly and still be wrong. Say in
+the report which of the three the job has — "silent when unchanged, stable-sampled, verified
+against the write snapshot" is checkable; "routed correctly" is not.
+
 ## Finding the intended destination ("route it where it belongs")
 
 When the user does not name a target, **do not ask and do not guess** — the convention is already
@@ -132,3 +158,8 @@ siblings do not — the answer is creation context, and that is reassuring rathe
 nothing is special-cased or broken. Then show the target table, the before/after values **for both
 `--deliver` and `--failure-deliver`**, the evidence from the forced run's output file, and what the
 next scheduled fire will additionally prove.
+
+When the route ends at a shared chat thread rather than `local`, also state the job's output
+contract (silent when unchanged, stable-sampled if its source fluctuates, verified against the
+write snapshot). Moving a job from `local` to a thread is the moment its noise becomes someone
+else's problem, so that check belongs in the same report as the target change.

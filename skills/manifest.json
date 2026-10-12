@@ -1,6 +1,6 @@
 {
   "fileCount": 1178,
-  "generatedAt": "2026-10-12T12:54:49.126572+00:00",
+  "generatedAt": "2026-10-12T16:30:13.894590+00:00",
   "skillCount": 238,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -581,13 +581,13 @@
       }
     },
     "devops/macos-launchd-services": {
-      "bundleHash": "078dea8d1df505009c58c1eaa032cd765f0b95435ac0d595418dd58cb9f4a9d8",
+      "bundleHash": "021a32cc3f4f6dee8daa99ac3a68c7ca754b12473517904a7a8c6f0198a1787a",
       "domain": "devops",
       "files": {
-        "SKILL.md": "591c9d8d1439c80816f3209f93897e90b0521c329fbfacb3f9d8abcae08ae2a6",
+        "SKILL.md": "ae9beb80d2d68c5a83366f60c628185c9363fe55b5af7dae073ef814fd7a6eb2",
         "references/browser-capture-waf-bypass.md": "b649043f2cad785f6980f720bf58081ad40ad3d688c2af0af8abf671b9be6822",
         "references/gateway-network-wait-fix-2026-08-30.md": "11f0f6199c8515fb107f50afed0dc6c9b525a912bbb91f918945f56c3d6da794",
-        "references/launchd-env-not-shell-env.md": "113b4d6fc17792d078cd632794db61b3e63d14b9e123c1af8dcadd2d8868e954",
+        "references/launchd-env-not-shell-env.md": "9819e71b72605ba42cad407af9ff1554f4f9468a4c894215ea59bcc598a7b9bc",
         "references/services-inventory.md": "8380ce32f37e8166b4e64b978b51a3414e9df6ec7131c5982ec7716f79619cec",
         "scripts/wait-for-network.sh": "1af243c93b6e462b692d3a0ce303ad87733403c8005d36e573138aca6ae63a66",
         "templates/9router-sync.plist": "6aa395c91ea87e6e5ce807d06f8c73a0137257603736b0f77151fa037212eb63",
@@ -880,10 +880,10 @@
       }
     },
     "ecosystem/ecosystem-tool-adoption": {
-      "bundleHash": "3c2e87d78dc1c37c3515b5c29ba5bb3a9d742ebc783a65153dd5e64752b894f8",
+      "bundleHash": "6fa19523472b71c7b8b85d32829f2a176b4506a662b6428035ed523562ceb89a",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "61cbfc659a0b5fd5b62129b10ffeb353cab69ce182f55f0aaea41fb1b5152034"
+        "SKILL.md": "04726064ad9818cfaa7197e963337955c8e5ed3126be3f797719ef067ce97744"
       }
     },
     "ecosystem/ecosystem/a2a-configuration": {
@@ -910,10 +910,10 @@
       }
     },
     "ecosystem/ecosystem/documentation-reconciliation": {
-      "bundleHash": "491c93f7c65dccceef11d1d38a18303053df5fa9f891dd5993a8b495e5920d00",
+      "bundleHash": "2c23f38298590516a1b8769fb2111c25d476884e51b1d0a912caaa948f0e6b44",
       "domain": "ecosystem/ecosystem",
       "files": {
-        "SKILL.md": "93d8413316654a7ba12c75054f57c81b94aa247c6cfba826f5507c96b7744159"
+        "SKILL.md": "f1b45bedb7d87aa19fe832c7eb9b7f52ac106cc92a40699cd8fa5e09c88c67b4"
       }
     },
     "ecosystem/ecosystem/earning-opportunity-feasibility": {
@@ -988,10 +988,10 @@
       }
     },
     "ecosystem/ecosystem/scheduled-job-delivery-routing": {
-      "bundleHash": "69c7211bd3dbaddbda9b1759f63b1fa02e8e8056cf370a7d2a3c7579b9bca470",
+      "bundleHash": "51a8258a2395194ab52848c1a86207099698a057cdd80d87553fd9f7b2d0e250",
       "domain": "ecosystem/ecosystem",
       "files": {
-        "SKILL.md": "ab4b25b2c65892899970b0be4de055df75274c301d7c54b9ae2ccf4f8bb49d6e"
+        "SKILL.md": "57b7fc2d3aa3365c75e1548c83f018d5d1498d168f71786e1bfb5b8fada61825"
       }
     },
     "ecosystem/ecosystem/sealed-evidence-bundle-production": {
@@ -1166,10 +1166,10 @@
       }
     },
     "ecosystem/integration-verification": {
-      "bundleHash": "21a8a9c6f18264dc0357631960ec0e28945389d6cc9c806a6960953481d5ed1c",
+      "bundleHash": "a999d0ca957ffbb7cf692a961f309a2cf5c54b957591ba0d066cb4220c3c97aa",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "303a25ad30e1646f10759b0cebfbaaa02ae527409e2b21ef299d349ee0f419a4",
+        "SKILL.md": "abbf43eb6b6d1ac8579e6eac831ca344f93127dcd8db3f57b72cf38aa052c53b",
         "references/composio-sdk-patterns.md": "ffb3347558e5aeee5a26b13ba08d6387939b88b800f6f97f8a4baa7d15d5fe69",
         "references/github-token-probe.md": "8ce9efb33d65ba5d24898534f7615d4c9f29d7d65142d32de386d7b52f45540c",
         "references/hermes-config-inspection.md": "c5133cd1001f4465e0b26e39a769c22c4ce77ea9025a0229212f71e43d0c1230"
@@ -1244,10 +1244,10 @@
       }
     },
     "ecosystem/niu-9router-maintain": {
-      "bundleHash": "fbbf84c51dd54e8a728203667984815579b21e4ef83aa11666133438c447cf66",
+      "bundleHash": "e56f01301e0b2c89eeef58d81eac1a2f4f723452b3a02f18ba2646f61c1487ae",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "f6da78dc64a2c52843d52666486c17baf6fe7c92659efbdaed173c93ebc35646",
+        "SKILL.md": "9ad52a77d4c7bb9ac151150e587c00c8d993e4d38d9ff5b6a21e0053cd5af39d",
         "references/9router-catalog-2026-08-31.md": "48506b9e9e36830576be69dc4acb7dd394e85b17727b429e4e0a33822d8a6f43",
         "references/9router-models-and-connectivity.md": "d3126f43b651ca8907b5ad5a1c1162971cad86d044f8a7afa325881ac6a05dcb",
         "scripts/audit_models.py": "8ea34505f9286e4abd6439d1b0ab219e805c5d3b79f8f33cc782f67aa9a16742"
@@ -2338,10 +2338,10 @@
       }
     },
     "software-development/niumination-repo-commit-discipline": {
-      "bundleHash": "2a973f14e9979fe6822a447d28ae22f0cb4574fe9bd59655e3269829f8961f12",
+      "bundleHash": "f7d1051ce79072a6495728d84dededa7c8711d468a50f78d103865b2db5b04a0",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "646689b573409c5a9a17efbfc32261a76854dfb53cbc475fbd02a8c157d6d3db",
+        "SKILL.md": "525811bdfd0bbbff7c3cb5c580cb0feed8e8296ceda8e16e25083abaa937df5e",
         "references/approval-gate-for-history-rewrites.md": "2a271454490706615e752c41821e582395a60f16bd9b86533c8171c2533b8b71"
       }
     },
