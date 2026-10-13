@@ -118,6 +118,8 @@
 | Desktop | Tauri 2 + Rust |
 | AI Agent | Hermes Agent v0.16.0 — opencode/hy3-free/nemotron-3-ultra-free |
 
+**Catatan Profile (13 Okt 2026):** Ekosistem menggunakan **1 profile saja: `default`** (model: Atria-Dawn-Preview, provider: atria). Profile `research` sudah dihapus — lihat insiden di `BACKLOG.md`. Script `mirai/fleet/scripts/create-fleet.sh` tidak boleh dieksekusi (membuat profile research/writer/developer yang dilarang).
+
 ### 📝 Output
 - Bahasa Indonesia untuk semua output
 - Terstruktur (tabel, layer breakdown, data-driven)

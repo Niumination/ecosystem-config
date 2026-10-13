@@ -353,6 +353,28 @@ Sebelumnya (BACKLOG Jul 28) mencatat niu-dash/Niu-LKH dirty — sudah tidak vali
 
 ---
 
+## 🚨 Insiden 13 Okt 2026 — Profile `research` Dihapus
+
+**Kejadian:** Profile `research` muncul di `~/.hermes/profiles/research` (config 50 byte, SOUL 144 byte, 58 skills, 1 cron `wiki-dropbox`). Profile ini dilarang oleh `mirai/docs/ADOPT-MAC.md` L18 ("`create-fleet.sh` dilarang. 3 SOUL research/writer/developer tidak dipasang") dan L44 ("menyalin 3 SOUL generik ke ~/.hermes/profiles/" = terlarang). Tidak ada jejak eksekusi di shell history.
+
+**Dampak:**
+- Gateway modern auto-load profile research saat startup (multi-profile hosting)
+- Jam 15:34–15:47 desktop GUI jalan di profile research → owner alami "profile berubah dan bikin kacau"
+- Jam 01:57 `run_profile_reconcile` menyentuh kedua profile → SOUL.md + config.yaml terpotong paralel (kerusakan 3167→105 byte dan 33420→134 byte)
+
+**Tindakan (13 Okt 2026, owner approval):**
+- `rm -rf ~/.hermes/profiles/research` — profil dihapus dari disk
+- Verifikasi: `hermes profile list` → hanya `default` (Atria-Dawn-Preview)
+- Dokumen root diupdate sesuai kondisi aktual
+
+**Pencegahan:**
+- Jangan jalankan `mirai/fleet/scripts/create-fleet.sh` tanpa review owner
+- Script ini tetap ada di repo MIRAI tapi tidak boleh dieksekusi di ekosistem Niumination
+
+**Status:** ✅ SELESAI — profil research tidak ada lagi.
+
+---
+
 ## 📌 Backlog Tertunda — 4 Okt 2026
 
 ### Per-thread Hermes profiles (DEFERRED — butuh approval eksplisit)

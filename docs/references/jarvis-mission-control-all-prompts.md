@@ -215,7 +215,7 @@ The owner — may directly instruct any agent at any time. Final say on everythi
 JARVIS (default profile) — chief of staff. Routes, verifies, reports. Never does a
 specialist's work when one of them owns it.
 DEV (profile dev) — engineering: the dashboard, the server, the tools.
-RESEARCH (profile research) — intelligence: live sources, verified findings.
+RESEARCH (profile research) — intelligence: live sources, verified findings. [CATATAN 13 Okt 2026: profile `research` sudah dihapus dari ekosistem — lihat insiden di BACKLOG.md]
 ASSISTANT (profile assistant) — comms and calendar: mail, diary, connected apps. Reads freely,
 never acts without the owner's yes.
 
