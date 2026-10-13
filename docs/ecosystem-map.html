@@ -1448,7 +1448,98 @@ One line per page, each a link. Agents read this FIRST.
   <p><strong>Summary:</strong> 7 inactive repos total. All clean (no uncommitted changes). All have GitHub remotes under Niumination org.</p>
 </div>
 
-<h2 id="masalah">40. Masalah Teridentifikasi &amp; Rekomendasi</h2>
+<h2 id="docs-architecture">40. docs/architecture/ (4 files)</h2>
+<div class="section">
+  <table>
+    <tr><th>File</th><th>Lines</th><th>Summary</th></tr>
+    <tr><td><code>autoskills-pattern-adoption.md</code></td><td>299</td><td>Plan to adopt 3 security/architecture patterns from midudev/autoskills (CC BY-NC 4.0) into Niumination Skill Bank: Manifest SHA-256, anti-injection content audit, canonical + symlink + lockfile. Gap: sync-to-agents.sh only copied SKILL.md (8 of 40 skills broken, 213 non-SKILL files). 4 phases, all SELESAI 2026-08-22.</td></tr>
+    <tr><td><code>dual-zone-skill-coexistence.md</code></td><td>101</td><td>Active architecture: Hermes runtime (~/.hermes/skills/, non-git, ephemeral) + Central Bank Vault (~/Desktop/Niumination/skills/, git, source of truth). Two-way convergence via promote-skills.py + sync-guard.py + nightly pipeline. Verified 19 Sep 2026: 159 skills / 789 files bank, 213 target skills, 0 conflict.</td></tr>
+    <tr><td><code>personal-ai-os-concept.md</code></td><td>49</td><td>Concept for autonomous personal AI OS. Layer: input (Voice/routine) → Second Brain → Agent Orchestration Engine (Hermes) → 2 loops → Jarvis-style Command Center → AI Agency output. Missing: /routine, Second Brain PKM, Voice Input, AI Agency output layer, Jarvis Command Center.</td></tr>
+    <tr><td><code>trio-watch.md</code></td><td>91</td><td>Hermes × OpenCode passive awareness. Read-only collector scripts/trio-watch.sh → shared memory core/runtime/trio-status.json. JCode removed Sep 2026. Read-only, no spawn/delegation.</td></tr>
+  </table>
+</div>
+
+<h2 id="docs-dox">41. docs/dox/ (INDEX.md + 3 files)</h2>
+<div class="section">
+  <p><strong>INDEX.md</strong> (52 lines) — Single map of docs/ (142 files, 135 tracked; updated 2026-09-16). Key decisions: model authority = D-0004 (sealed, only Zen *-free + Nous :free); constitution = sealed v2.1 (in core/).</p>
+  <table>
+    <tr><th>File</th><th>Lines</th><th>Summary</th></tr>
+    <tr><td><code>joy-connect-for-mac.md</code></td><td>56</td><td>macOS Swift app bridging Mac ↔ Infinix GT 30 Pro via ADB. Features: device discovery, file browser/transfer, screen mirroring, app mgmt, screenshots, WiFi, queue, dark/light.</td></tr>
+    <tr><td><code>niu-cast.md</code></td><td>62</td><td>NIU CAST — cross-platform Android manager (Python 3.8+, PyQt5, ADB), v3.5.0 (TCCP Server — Joy Connect mode). Source: core.py (1,603 LOC).</td></tr>
+    <tr><td><code>trancast-protocol-analysis.md</code></td><td>500</td><td>Full reverse-engineering of Transsion PC Connect (tranCast/TCCP) protocol — status: FULLY DECODED. From pcapng (278s, 1825 packets) + 2 decompiled APKs. Documents mDNS, TCCP frame format, native libs, ports.</td></tr>
+  </table>
+</div>
+
+<h2 id="docs-trio-watch">42. docs/trio-watch/governance.md (98 lines)</h2>
+<div class="section">
+  <p>Trio Governance v2, effective 26 Aug 2026. Principles: Human = rule source (agent doesn't restrict location, understands context), Agent = executor + reporter (no assertive action without clarification), Team = 2 agents (Hermes=ecosystem, OpenCode=labs; JCode removed Sep 2026). Domain = expertise, not folder. Defines trio-watch mechanism, pre-execution DAMPAK EKSEKUSI template, mandatory clarification triggers, file-handling contract, escalation (stop → log → human).</p>
+</div>
+
+<h2 id="docs-audit">43. docs/audit/ (1 file)</h2>
+<div class="section">
+  <p><code>AGENTS.md.pre-slim-53k.bak</code> — 725 lines, 55 KB (dated 26 Aug 2026). Historic backup of root AGENTS.md before slimming. Contains: DOX Framework v4.0, Core Contract, Master Direction Protocol (Phase 0 Foundation, all done), Read Before Editing, Directory Structure, AI Agent Instructions, Project Catalog, AI Ecosystem, Deployment Status, Global Conventions, DOX Chain Rules, Hermes MCP &amp; Plugin Config, VAULT section, Prioritas Aktivitas, Maintenance Rules.</p>
+</div>
+
+<h2 id="docs-notebooklm">44. docs/notebooklm/ (2 files)</h2>
+<div class="section">
+  <table>
+    <tr><th>File</th><th>Lines</th><th>Summary</th></tr>
+    <tr><td><code>README.md</code></td><td>46</td><td>NotebookLM as ecosystem knowledge base. 2 active notebooks: Niumination Ecosystem (18 sources) and Zhall-Pemdi (19 sources). Connection status: TERHUBUNG (20 Aug 2026). Hermes MCP notebooklm registered, 43 tools.</td></tr>
+    <tr><td><code>RECONNECT_GUIDE.md</code></td><td>152</td><td>Diagnosis of disconnect (migration portable→native): nlm resolves auth profile from $HOME. Fix: export HOME=/Users/zaryu. 3 reconnect options, verification steps, troubleshooting table.</td></tr>
+  </table>
+</div>
+
+<h2 id="docs-references">45. docs/references/ (jarvis-mission-control-all-prompts.md)</h2>
+<div class="section">
+  <p><code>jarvis-mission-control-all-prompts.md</code> (2,322 lines / 132 KB) — "Build a JARVIS Mission Control — Voice-Driven AI Dashboard with a 4-Agent Crew." Total 48 prompts (98 heading lines). Usage: personal + commercial OK; reselling/redistributing forbidden. Organized as ## Prompt N / ### Prompt N — &lt;title&gt; sections. Flow: onboarding → 4-agent crew planning → channel/lane wiring → data layer → dashboard/template → agent models &amp; voice → comms/dictation/mail → verification → Home Assistant → troubleshooting T1-T4.</p>
+</div>
+
+<h2 id="dotfiles-tree">46. Dotfiles Tree (zaryu-terminal-dotfiles)</h2>
+<div class="section">
+  <p><strong>Repo:</strong> <code>git@github.com:Niumination/zaryu-terminal-dotfiles.git</code>, branch main, 30 commits, last <code>bdda7db</code>.</p>
+  <p><strong>README.md</strong> (826 lines) — macOS Zsh/Starship/Tmux dotfiles via GNU Stow (17 packages), inspired by joshukraine/dotfiles.</p>
+  <h4>Top-level packages (17):</h4>
+  <p><code>asdf/</code> (.asdfrc, .default-gems, .default-npm-packages, .tool-versions), <code>brew/Brewfile</code>, <code>fzf/.fzf.zsh</code>, <code>git/</code> (.gitconfig, .gitignore_global, .gitmessage), <code>markdown/.markdownlint-cli2.yaml</code>, <code>node/.npmrc</code>, <code>nvim/SHORTCUTS.md</code>, <code>rc/</code> (.hushlogin, .ripgreprc, .shellcheckrc), <code>ruby/</code> (.gemrc, .irbrc, .pryrc), <code>shared/environment.sh</code>, <code>spell/.stow-local-ignore</code>, <code>terminfo/</code> (2 files), <code>zsh/</code> (.zshenv, .zshrc)</p>
+  <p><strong>Total:</strong> 39 tracked entries (files) + .git/</p>
+  <h4>hermes/ (1 file):</h4>
+  <p><code>SOUL.md</code> (3,167 bytes, v2.2-final, 27 lines). No other config files present.</p>
+</div>
+
+<h2 id="auth-structure">47. auth.json Structure (keys only)</h2>
+<div class="section">
+  <p>13,405 bytes, mtime 13 Okt 20:36. Top-level dict, 5 keys:</p>
+  <table>
+    <tr><th>Key</th><th>Type</th><th>Description</th></tr>
+    <tr><td><code>active_provider</code></td><td>null</td><td>Currently no active provider</td></tr>
+    <tr><td><code>credential_pool</code></td><td>dict</td><td>6 provider keys (opencode-go, opencode-zen, openrouter, gemini, nous, anthropic), each 1-item list</td></tr>
+    <tr><td><code>providers</code></td><td>dict</td><td>1 key: nous (17 keys: access_token, refresh_token, client_id, portal_base_url, inference_base_url, token_type, scope, obtained_at, expires_at, agent_key, tls, etc.)</td></tr>
+    <tr><td><code>updated_at</code></td><td>str</td><td>Last update timestamp</td></tr>
+    <tr><td><code>version</code></td><td>int</td><td>Schema version</td></tr>
+  </table>
+  <p><strong>Standard credential_pool entry keys:</strong> auth_type, base_url, id, label, last_error_code, last_error_message, last_error_reason, last_error_reset_at, last_status, last_status_at, priority, request_count, secret_fingerprint, source, failure_reason. The nous entry additionally carries OAuth fields.</p>
+</div>
+
+<h2 id="env-counts">48. .env Variable Counts (34 variables, 72 lines)</h2>
+<div class="section">
+  <table>
+    <tr><th>Prefix</th><th>Count</th><th>Prefix</th><th>Count</th></tr>
+    <tr><td><code>OPENCODE_*</code></td><td>4</td><td><code>COMPOSIO_*</code></td><td>1</td></tr>
+    <tr><td><code>CAMOFOX_*</code></td><td>3</td><td><code>FAL_*</code></td><td>1</td></tr>
+    <tr><td><code>TELEGRAM_*</code></td><td>3</td><td><code>GOOGLE_*</code></td><td>1</td></tr>
+    <tr><td><code>A2A_*</code></td><td>3</td><td><code>HASS_*</code></td><td>1</td></tr>
+    <tr><td><code>SUPABASE_*</code></td><td>2</td><td><code>HERMES_*</code></td><td>1</td></tr>
+    <tr><td><code>NEXT_*</code></td><td>2</td><td><code>HUANCHENG_*</code></td><td>1</td></tr>
+    <tr><td><code>GH_*</code></td><td>1</td><td><code>AEROLINK_*</code></td><td>1</td></tr>
+    <tr><td><code>ATRIA_*</code></td><td>1</td><td><code>AUXILIARY_*</code></td><td>1</td></tr>
+    <tr><td><code>NINE_*</code></td><td>1</td><td><code>NVIDIA_*</code></td><td>1</td></tr>
+    <tr><td><code>OPENROUTER_*</code></td><td>1</td><td><code>OFFICE_*</code></td><td>1</td></tr>
+    <tr><td><code>TAVILY_*</code></td><td>1</td><td><code>TERMINAL_*</code></td><td>1</td></tr>
+    <tr><td><code>VERCEL_*</code></td><td>1</td><td></td><td></td></tr>
+  </table>
+  <p><strong>Total:</strong> 34 KEY=VALUE variables, 7 blank lines, 31 comment lines.</p>
+</div>
+
+<h2 id="masalah">49. Masalah Teridentifikasi &amp; Rekomendasi</h2>
 <div class="section">
   <h3>17.1. Masalah Kritis (Sudah Diperbaiki)</h3>
   <table>
