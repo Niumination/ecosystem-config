@@ -1296,7 +1296,159 @@ One line per page, each a link. Agents read this FIRST.
   <p><strong>Data directory:</strong> <code>mirai.db</code> (4 KB), <code>mirai.db-shm</code> (32 KB), <code>mirai.db-wal</code> (157 KB), <code>mission-control.err.log</code> (1.3 KB), <code>mission-control.log</code> (42.7 KB), <code>roles.json</code> (15.2 KB), plus 7 subdirs (archive, docs-deleted, docs, file-backups, avatars, chat-files, .gitkeep)</p>
 </div>
 
-<h2 id="masalah">29. Masalah Teridentifikasi &amp; Rekomendasi</h2>
+<h2 id="apps-detail">30. Apps Detail (17 directories)</h2>
+<div class="section">
+  <table>
+    <tr><th>#</th><th>Directory</th><th>.git</th><th>README</th><th>package.json</th><th>Framework/Stack</th><th>Notes</th></tr>
+    <tr><td>1</td><td><code>PemdiAcehTengah</code></td><td>✅</td><td>✅ 12.5KB</td><td>✅</td><td>Next.js</td><td>next.config.js, jsconfig.json, .vercel, 9 test files, REPOSISI-PEMDI.md, RENCANA_PERUBAHAN_LENGKAP.md, CHANGELOG.md, .eslintrc.json, .github</td></tr>
+    <tr><td>2</td><td><code>abstract-studio</code></td><td>✅</td><td>✅ 2.9KB</td><td>❌</td><td>Static/Content Studio</td><td>MANIFEST.md, docs/ (7 docs), scripts/ (5 py/sh), templates/ (8 templates), brand/, voice/, output/, .githooks, .gitattributes</td></tr>
+    <tr><td>3</td><td><code>ai-file-manager-android</code></td><td>✅</td><td>✅ 3.8KB</td><td>❌</td><td>Android (Gradle/Kotlin)</td><td>build.gradle.kts, settings.gradle.kts, .github/workflows, apk/ (v1.0.13-debug.apk), play-store/</td></tr>
+    <tr><td>4</td><td><code>ai-first-os</code></td><td>✅</td><td>✅ 2.4KB</td><td>❌</td><td>Shell/ISO Builder</td><td>master_build_iso.sh, hermes_os_buildkit/ (packages.x86_64, setup_hermes_os.sh)</td></tr>
+    <tr><td>5</td><td><code>arch-web-dashboard</code></td><td>✅</td><td>✅ 5.6KB</td><td>✅</td><td>Next.js + Tailwind</td><td>next.config.js, tsconfig.json, postcss.config.js, src/app, src/components</td></tr>
+    <tr><td>6</td><td><code>cc-switch</code></td><td>✅</td><td>✅ 19KB</td><td>✅</td><td>Tauri + React + Vite</td><td>src-tauri/Cargo.toml, flatpak/, pnpm-lock.yaml, tests/, docs/, 4-language READMEs (EN/DE/JA/ZH), .github (workflows, CODEOWNERS, dependabot), .node-version, tailwind.config.cjs</td></tr>
+    <tr><td>7</td><td><code>kopi-aceh-app-android</code></td><td>❌</td><td>❌</td><td>✅ 204B</td><td>Android (stub)</td><td>rancangan_app_kopi_aceh.md, .github/workflows, src/screens — minimal scaffold</td></tr>
+    <tr><td>8</td><td><code>kune-ya.com</code></td><td>✅</td><td>❌</td><td>✅ 927B</td><td>Next.js + Prisma</td><td>middleware.ts, prisma/ (schema, migrations, dev.db), memory/, content/, .opencode/, branding/, vercel.json, eslint.config.mjs, .prettierrc</td></tr>
+    <tr><td>9</td><td><code>mac-web-dashboard</code></td><td>✅</td><td>✅ 5.7KB</td><td>✅ 796B</td><td>Next.js + Tailwind</td><td>hexstrike/ (Python venv, launch_server.py, manage.sh, repo/), tsconfig.tsbuildinfo, .mimocode-project-id in .git</td></tr>
+    <tr><td>10</td><td><code>niu-dash</code></td><td>✅</td><td>✅ 10.3KB</td><td>❌</td><td>Static HTML/JS (GitHub Pages)</td><td>index.html, ecosystem.html, development.html, manifest.json, data/released.json, hooks/pre-commit, .github/workflows, .nojekyll, icons (svg), PRODUCT.md, DESIGN.md, AGENTS.md, BACKLOG.md, PLAN-v2.14.0.md</td></tr>
+    <tr><td>11</td><td><code>niu-gayo-agroclimate</code></td><td>✅</td><td>✅ 1.1KB</td><td>✅ 520B</td><td>Vite + React</td><td>vite.config.js, dist/ (built), prototype.html, node_modules present</td></tr>
+    <tr><td>12</td><td><code>niu-lkh</code></td><td>✅</td><td>✅ 3.0KB</td><td>✅ 1.3KB</td><td>Vite + React</td><td>vite.config.js, tsconfig.json, dist/ (built), .vercel, .github</td></tr>
+    <tr><td>13</td><td><code>niu-vermilion</code></td><td>✅</td><td>✅ 1.5KB</td><td>✅ 1.4KB</td><td>Next.js + Supabase</td><td>supabase/ (migrations, config.toml, seed-ecosystem.sql), eslint.config.mjs, next.config.ts, src/middleware.ts, src/app, src/components, src/lib, CLAUDE.md, AGENTS.md, BACKLOG.md</td></tr>
+    <tr><td>14</td><td><code>niumination-restore</code></td><td>✅</td><td>✅ 12.3KB</td><td>❌</td><td>Shell/Restore Toolkit</td><td>restore.sh, verify.sh, integrity.sha256, .githooks, docs/ (PREMORTEM.md, UPDATE.md), scripts/, hermes/ (SOUL.md, APPLY.md, patches/), credentials/ (encrypted .enc files), l2-data/ (encrypted tarball)</td></tr>
+    <tr><td>15</td><td><code>pabrik-aplikasi-gas</code></td><td>❌</td><td>✅ 3.3KB</td><td>❌</td><td>Docs/Planning (non-code)</td><td>KATALOG_PRODUK.md, ROADMAP.md, RENCANA_EKSEKUSI.md, AGENTS.md, BACKLOG.md, 01_Gems/, 00_SOP/, 04_Factory_Log/, 05_Apps/ (N1/N5/N9), _blueprints/, _harness/, docs/ (7 files), USER_BAGIAN_SAYA.md</td></tr>
+    <tr><td>16</td><td><code>pi-app-studio-mata</code></td><td>✅</td><td>❌</td><td>✅ (server/)</td><td>Node.js + HTML/CSS/JS</td><td>server/ (server.js, package.json, .env), web/ (index.html, app.js, data.js, styles.css), data/, assets/, docs/ (3 files), AGENTS.md, BACKLOG.md</td></tr>
+  </table>
+  <p><strong>Summary:</strong> 17 app dirs. 14 have .git. 12 have README.md. 10 have package.json. Frameworks: Next.js (5), Vite/React (3), Android (2), Tauri (1), Static HTML (1), Shell/ISO (1), Docs/Planning (1), Node.js (1), Pi App Studio hybrid (1), Content Studio (1), Restore toolkit (1).</p>
+</div>
+
+<h2 id="sites-detail">31. Sites Detail (8 directories)</h2>
+<div class="section">
+  <table>
+    <tr><th>#</th><th>Directory</th><th>.git</th><th>README</th><th>package.json</th><th>Framework/Stack</th><th>Notes</th></tr>
+    <tr><td>1</td><td><code>audit-ti-at</code></td><td>✅</td><td>✅ 1.6KB</td><td>✅ 615B</td><td>Vite + React</td><td>vite.config.js, eslint.config.js, src/ (App.jsx, main.jsx, App.css, index.css), AUDIT-UX.md, .github/workflows, .gitattributes</td></tr>
+    <tr><td>2</td><td><code>kelas</code></td><td>✅</td><td>✅ 13KB</td><td>✅ 1.3KB</td><td>Next.js</td><td>next.config.mjs, tsconfig.json, postcss.config.mjs, app/ (12+ routes: verify, auth, kebijakan, dashboard, harga, belajar, kelas, api, kuis, masuk), .pre-commit-config.yaml, .github</td></tr>
+    <tr><td>3</td><td><code>landing-web-id</code></td><td>❌</td><td>✅ 1.2KB</td><td>❌</td><td>Static HTML</td><td>index.html, SUMMARY.md, DEPLOYMENT.md, FINAL-SUMMARY.md</td></tr>
+    <tr><td>4</td><td><code>niu-dash-fullstack</code></td><td>✅</td><td>✅ 3.3KB</td><td>✅ 902B</td><td>Next.js + Prisma</td><td>prisma/schema.prisma, components/ (DashboardClient, TeamStatusCard, ui, layout), lib/ (validation, projects, utils, motion, types), scripts/ (extract-data.mjs, deploy.sh), .github/workflows, ASSIGNMENT.md, AGENTS.md</td></tr>
+    <tr><td>5</td><td><code>niu-kanban-dash</code></td><td>✅</td><td>✅ 1.7KB</td><td>✅ 820B</td><td>Vite + React + pnpm</td><td>pnpm-lock.yaml, pnpm-workspace.yaml, eslint.config.js, src/ (App.jsx, main.jsx, components, assets), server.js, vercel.json</td></tr>
+    <tr><td>6</td><td><code>niu-oss-dashboard</code></td><td>✅</td><td>✅ 25.8KB</td><td>✅ 1.7KB</td><td>Next.js</td><td>Dockerfile, out/ (exported static), app/ (20+ routes: status, changelog, studies, repositories, system, now, developers, api, services, repo, share, offline), .github, CHANGELOG.md</td></tr>
+    <tr><td>7</td><td><code>spatial-vision</code></td><td>✅</td><td>✅ 2.9KB</td><td>❌</td><td>Rust (Full Stack)</td><td>Cargo.toml (root), frontend/Cargo.toml, backend/Cargo.toml, frontend/ (index.html, style.css, vendor/, src/), backend/src, uploads/, TESTING.md, BUILD_STATUS.md, AGENTS.md</td></tr>
+    <tr><td>8</td><td><code>tedeo-kanban</code></td><td>✅</td><td>✅ 4.1KB</td><td>✅ 886B</td><td>Vite + TypeScript + Tailwind</td><td>vite.config.ts, tsconfig.json, postcss.config.js, src/ (App.tsx, main.tsx, index.css, components, lib, store), .github/workflows</td></tr>
+  </table>
+  <p><strong>Summary:</strong> 8 site dirs. All 8 have .git. 7 have README.md. 6 have package.json. Frameworks: Vite/React (3), Next.js (3), Rust (1), Static (1).</p>
+</div>
+
+<h2 id="services-detail">32. Services Detail (4 directories)</h2>
+<div class="section">
+  <table>
+    <tr><th>#</th><th>Directory</th><th>.git</th><th>README</th><th>Config</th><th>Stack</th><th>Notes</th></tr>
+    <tr><td>1</td><td><code>latticesend</code></td><td>✅</td><td>✅ 5.4KB</td><td>❌</td><td>Proto/gRPC + Docker</td><td>SPECIFICATION.md, api/openapi.yaml, proto/latticesend, database/migrations, infra/docker-compose.yml, ui/ (wireframes.html, design-tokens.json), docs/ (20 docs), .github/workflows, CONTRIBUTING.md</td></tr>
+    <tr><td>2</td><td><code>niu-cast</code></td><td>✅</td><td>✅ 2.7KB</td><td>requirements.txt</td><td>Python + Swift (macOS)</td><td>niu_cast/ (15 Python modules: core, tccp_server, adb_controller, video_stream, file_browser, etc.), macos/ (NIU CAST.app), apk_extract/, App/ (Swift), vnc_adapter.py, vnc_adapter_v2.py, install.sh, mac_install.sh, project.yml, Tests/, docs/TCCP_PROTOCOL.md, CHANGELOG.md, ROADMAP_VNC_MODE.md</td></tr>
+    <tr><td>3</td><td><code>sapa-ai</code></td><td>✅</td><td>✅ 8.2KB</td><td>package.json, tsconfig</td><td>Next.js + React</td><td>next.config.ts, eslint.config.mjs, postcss.config.mjs, .githooks/pre-commit, .github, CHANGELOG.md, vercel.json, node_modules present</td></tr>
+    <tr><td>4</td><td><code>uacc</code></td><td>✅</td><td>✅ 12KB</td><td>pyproject.toml, requirements.txt</td><td>Python (MCP)</td><td>uacc/ (core, tasks, tools, config, memory, planning, workflows, safety, actions, apps, mcp), uacc_mcp/ (server.py, utils.py), tests/ (4 test files), examples/ (3 demos), .github (workflows, CODEOWNERS, dependabot), .cursorrules, .env.example, AGENTS.md, CONTRIBUTING.md, MODEL_LICENSE.md, uv.lock</td></tr>
+  </table>
+  <p><strong>Summary:</strong> 4 service dirs. All 4 have .git and README.md. Frameworks: Python (2), Next.js (1), Proto/gRPC + Docker (1).</p>
+</div>
+
+<h2 id="labs-detail">33. Labs Detail (4 directories)</h2>
+<div class="section">
+  <table>
+    <tr><th>#</th><th>Directory</th><th>.git</th><th>README</th><th>Notes</th></tr>
+    <tr><td>1</td><td><code>eKinerja-AfrizalMunthe</code></td><td>✅</td><td>✅</td><td>SKP-Print_Teken-Semester-1-2026/ (13 PDF files: SKP, DEKP, CV, PAK), SKP-BuktiDukung-Semester-1-2026/ (zip, txt, pdf, docx, manifest_upload.csv, README)</td></tr>
+    <tr><td>2</td><td><code>edu-content</code></td><td>❌</td><td>❌</td><td>pemdi-dasar/ (book.pdf, chapters/, content/, site/), .piper-voices/ (id_ID-news_tts-medium.onnx + .json)</td></tr>
+    <tr><td>3</td><td><code>mata-aihackfest-2026</code></td><td>✅</td><td>✅</td><td>mata/ (run.py, setup_vps.sh, requirements.txt, config.json, .venv, deploy/, output/, grafana/, scripts/, hermes/, data/), snapshot/ (3 HTML), screenshots/ (4 PNG), docs/ (7 docs), uploads/, scripts/ (secret_scan.py, make_snapshot.py), .codex/hooks.json, .github/workflows, .gitmodules, DESIGN.md, AGENTS.md, BACKLOG.md</td></tr>
+    <tr><td>4</td><td><code>maze-3d</code></td><td>✅</td><td>❌</td><td>index.html (single-file 3D maze), .gitignore, .gitattributes</td></tr>
+  </table>
+  <p><strong>Summary:</strong> 4 lab dirs. 3 have .git. 1 has README.md. Content: government performance docs (1), educational content (1), AI hackathon project (1), 3D maze demo (1).</p>
+</div>
+
+<h2 id="desktop-detail">34. Desktop Detail (4 directories)</h2>
+<div class="section">
+  <table>
+    <tr><th>#</th><th>Directory</th><th>.git</th><th>README</th><th>Stack</th><th>Notes</th></tr>
+    <tr><td>1</td><td><code>didong-code</code></td><td>✅</td><td>✅</td><td>Tauri + React + Vite + TypeScript</td><td>tsconfig.json, tsconfig.node.json, tsconfig.main.json, vite.config.ts, tailwind.config.js, postcss.config.js, src/ (renderer, ai, main), SPEC.md, FEATURES_COMPARISON.md, AGENTS.md</td></tr>
+    <tr><td>2</td><td><code>flame-ade</code></td><td>✅</td><td>✅</td><td>Tauri + React + Vite</td><td>src-tauri/ (Cargo.toml, tauri.conf.json, main.rs, capabilities, tests, gen, icons), opencode.json, components.json, .opencode/ (agents, commands, skills, package.json), vitest.config.ts, ARCHITECTURE.md, LAUNCH.md, WORKFLOW.md, FLAME.md, PLAN.md, DESIGN.md, CONTRIBUTING.md, CHANGELOG.md, .github/workflows</td></tr>
+    <tr><td>3</td><td><code>joy-connect-for-mac</code></td><td>✅</td><td>✅</td><td>Swift (Xcode macOS)</td><td>InfinixJoyConnect/ (App, ViewModels, Views, Models, Services, Config, Resources), InfinixJoyConnectTests/ (4 Swift test files), InfinixJoyConnectUITests/ (2 Swift test files), Scripts/ (5 shell scripts: build, bundle_dependencies, create_dmg, notarize, validate), project.yml, .github/workflows, skill.md, FINAL_VERIFICATION_REPORT.md, build/, AGENTS.md, .editorconfig</td></tr>
+    <tr><td>4</td><td><code>x-downloader</code></td><td>✅</td><td>✅</td><td>Tauri + Next.js + Python</td><td>frontend/ (Next.js: app, components, public), backend/ (main.py, requirements.txt, .venv), tauri-app/ (package.json, src-tauri/), src-tauri/ (Cargo.toml, tauri.conf.json), nsfw-dl/ (Linux installer: PKGBUILD, install.sh, uninstall.sh, nsfw-dl binary, assets), original/original-nsfw-dl.py, docs/ (5 analysis MDs), tsconfig.json, tsconfig.node.json, vite.config.ts, index.html, package.json, AGENTS.md</td></tr>
+  </table>
+  <p><strong>Summary:</strong> 4 desktop dirs. All 4 have .git and README.md. Frameworks: Tauri (3), Swift/Xcode (1).</p>
+</div>
+
+<h2 id="sandbox-detail">35. Sandbox Detail (6 directories)</h2>
+<div class="section">
+  <table>
+    <tr><th>#</th><th>Directory</th><th>.git</th><th>README</th><th>Notes</th></tr>
+    <tr><td>1</td><td><code>aistudio-google</code></td><td>❌</td><td>✅ (in sub)</td><td>street-racer-offline/ (Android project: build.gradle.kts, settings.gradle.kts, gradle/, app/, assets/, .build-outputs/, metadata.json, debug.keystore.base64, README.md), street-racer-offline.zip</td></tr>
+    <tr><td>2</td><td><code>arena.ai</code></td><td>❌</td><td>❌</td><td>ultra-automation-system/ (StrukturProject.md, ArsitekturSistem.md, package.json, .env), dashboard.html</td></tr>
+    <tr><td>3</td><td><code>niude</code></td><td>✅</td><td>✅</td><td>Tauri app: src-tauri/ (Cargo.toml, tauri.conf.json, capabilities, gen, icons), src/ (index.html, styles.css, main.js, assets), package.json, pnpm-lock.yaml, package-lock.json, .vscode/ext.json</td></tr>
+    <tr><td>4</td><td><code>niutui</code></td><td>✅</td><td>❌</td><td>Rust TUI: Cargo.toml, Cargo.lock, src/main.rs, .env.local</td></tr>
+    <tr><td>5</td><td><code>remotion-studio</code></td><td>❌</td><td>❌</td><td>out/hello.mp4, node_modules/ (many packages: webpack, eslint, prismjs, mediabunny, etc.), skills-lock.json</td></tr>
+    <tr><td>6</td><td><code>x-downloader-backup</code></td><td>❌</td><td>✅</td><td>Full copy of desktop/x-downloader: tauri-app/, frontend/, backend/ (with .venv), src-tauri/, nsfw-dl/, original/, docs/, .config/, .claude/, bin/ffprobe, Videos/nsfw-dl, package.json, tsconfig.json, vite.config.ts</td></tr>
+  </table>
+  <p><strong>Summary:</strong> 6 sandbox dirs. 2 have .git. 3 have README.md. Content: Android game (1), ultra-automation (1), Tauri app (1), Rust TUI (1), Remotion video (1), x-downloader backup (1).</p>
+</div>
+
+<h2 id="archive-detail">36. Archive Detail (14 items, ~1.8 GB)</h2>
+<div class="section">
+  <table>
+    <tr><th>#</th><th>Item</th><th>Type</th><th>Size</th></tr>
+    <tr><td>1</td><td><code>01-updates/</code></td><td>DIR</td><td>12 KB</td></tr>
+    <tr><td>2</td><td><code>2026-06-11-RAPI-RAPI-BESAR.md</code></td><td>FILE</td><td>4.0 KB</td></tr>
+    <tr><td>3</td><td><code>Belum disentuh/</code></td><td>DIR</td><td>23 MB</td></tr>
+    <tr><td>4</td><td><code>Welcome.md</code></td><td>FILE</td><td>4.0 KB</td></tr>
+    <tr><td>5</td><td><code>backup/</code></td><td>DIR</td><td>293 MB</td></tr>
+    <tr><td>6</td><td><code>docs/</code></td><td>DIR</td><td>12 KB</td></tr>
+    <tr><td>7</td><td><code>labs/</code></td><td>DIR</td><td>5.4 MB</td></tr>
+    <tr><td>8</td><td><code>media-lib/</code></td><td>DIR</td><td>4.0 KB</td></tr>
+    <tr><td>9</td><td><code>niu-flow-logs/</code></td><td>DIR</td><td>0 B</td></tr>
+    <tr><td>10</td><td><code>ocmux/</code></td><td>DIR</td><td>4.0 KB</td></tr>
+    <tr><td>11</td><td><code>projects/</code></td><td>DIR</td><td>647 MB</td></tr>
+    <tr><td>12</td><td><code>projects-scan.json</code></td><td>FILE</td><td>8.0 KB</td></tr>
+    <tr><td>13</td><td><code>sapa-ai.bak/</code></td><td>DIR</td><td>892 MB</td></tr>
+    <tr><td>14</td><td><code>.DS_Store</code></td><td>FILE</td><td>12 KB</td></tr>
+  </table>
+  <p><strong>Total archive size:</strong> ~1.8 GB. Largest: sapa-ai.bak (892 MB), projects (647 MB), backup (293 MB).</p>
+</div>
+
+<h2 id="tools-detail">37. Tools Detail (3 directories)</h2>
+<div class="section">
+  <table>
+    <tr><th>#</th><th>Directory</th><th>.git</th><th>README</th><th>Notes</th></tr>
+    <tr><td>1</td><td><code>camofox-browser</code></td><td>❌</td><td>❌</td><td>Node.js stealth browser: server.js, plugin.ts, bin/camofox-browser.js, plugins/ (vnc, youtube, persistence), Dockerfile, Makefile, jest.config.e2e.cjs, changelog/1.4.0.md, node_modules/ (many), x-banner.png</td></tr>
+    <tr><td>2</td><td><code>pdf-inspector</code></td><td>✅</td><td>✅</td><td>Python: pdf-inspector.py, README.md</td></tr>
+    <tr><td>3</td><td><code>ponytail</code></td><td>✅</td><td>✅</td><td>MCP agent tool: ponytail-mcp/ (index.js, instructions.js, package.json, test/), hooks/ (10 JS files), tests/ (8 test files), examples/ (10 examples + README), docs/ (2 docs), .agents/, .opencode/, .openclaw/, .cursor/, .windsurf/, gemini-extension.json, package.json, README.es.md</td></tr>
+  </table>
+  <p><strong>Summary:</strong> 3 tool dirs. 2 have .git. 2 have README.md.</p>
+</div>
+
+<h2 id="dinas-detail">38. Dinas Detail (1 subdirectory)</h2>
+<div class="section">
+  <table>
+    <tr><th>Directory</th><th>.git</th><th>README</th><th>Notes</th></tr>
+    <tr><td><code>asn-admin</code></td><td>✅</td><td>✅</td><td>Python tool: .venv/, scripts/, templates/, data/, assets/, logs/, output/, inbox/, references/, docs/, .githooks/, .github/, AGENTS.md, SECURITY.md</td></tr>
+  </table>
+  <p><strong>Summary:</strong> 1 sub-directory (asn-admin). Has .git, README.md. Python virtual environment present.</p>
+</div>
+
+<h2 id="inactive-detail">39. Inactive Submodules (7 directories, all clean)</h2>
+<div class="section">
+  <h3>inactive-2026-09/ (5 subdirectories)</h3>
+  <table>
+    <tr><th>Directory</th><th>Git Status</th><th>Remote</th></tr>
+    <tr><td><code>JHermUSB-portable</code></td><td>Clean</td><td><code>git@github.com:Niumination/JHermUSB-portable.git</code></td></tr>
+    <tr><td><code>Ultra</code></td><td>Clean</td><td><code>git@github.com:Niumination/ultra-automation.git</code></td></tr>
+    <tr><td><code>niu-studio</code></td><td>Clean</td><td><code>git@github.com:Niumination/niu-studio.git</code></td></tr>
+    <tr><td><code>niumination-workspace</code></td><td>Clean</td><td><code>git@github.com:Niumination/niumination-workspace.git</code></td></tr>
+    <tr><td><code>zen</code></td><td>Clean</td><td><code>git@github.com:Niumination/zen.git</code></td></tr>
+  </table>
+  <h3>inactive-2026-10/ (2 subdirectories)</h3>
+  <table>
+    <tr><th>Directory</th><th>Git Status</th><th>Remote</th></tr>
+    <tr><td><code>niu-mission-control</code></td><td>Clean</td><td><code>git@github.com:Niumination/niu-mission-control.git</code></td></tr>
+    <tr><td><code>orchestrator</code></td><td>Clean</td><td><code>git@github.com:Niumination/ecosystem-config.git</code></td></tr>
+  </table>
+  <p><strong>Summary:</strong> 7 inactive repos total. All clean (no uncommitted changes). All have GitHub remotes under Niumination org.</p>
+</div>
+
+<h2 id="masalah">40. Masalah Teridentifikasi &amp; Rekomendasi</h2>
 <div class="section">
   <h3>17.1. Masalah Kritis (Sudah Diperbaiki)</h3>
   <table>
