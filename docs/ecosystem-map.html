@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peta Ekosistem Niumination — Kondisi Aktual (v4)</title>
+<style>
+  :root{--bg:#0d1117;--bg2:#161b22;--bg3:#21262d;--border:#30363d;--text:#e6edf3;--text2:#8b949e;--accent:#58a6ff;--green:#3fb950;--yellow:#d29922;--red:#f85149;--purple:#bc8cff;--orange:#ffa657}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:2rem;max-width:1400px;margin:0 auto}
+  h1{font-size:2rem;margin-bottom:.5rem;color:var(--accent)}
+  h2{font-size:1.5rem;margin:2rem 0 1rem;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:.5rem}
+  h3{font-size:1.2rem;margin:1.5rem 0 .75rem;color:var(--purple)}
+  h4{font-size:1rem;margin:1rem 0 .5rem;color:var(--orange)}
+  p{margin-bottom:.75rem}
+  code{background:var(--bg3);padding:.15rem .4rem;border-radius:4px;font-size:.9em}
+  pre{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem;overflow-x:auto;margin:1rem 0;font-size:.85em}
+  .meta{color:var(--text2);font-size:.9rem;margin-bottom:2rem}
+  .section{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin:1rem 0}
+  .card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:1rem}
+  .card h4{margin-top:0}
+  .badge{display:inline-block;padding:.2rem .6rem;border-radius:12px;font-size:.8rem;font-weight:600;margin-right:.5rem}
+  .badge-green{background:rgba(63,185,80,.15);color:var(--green);border:1px solid rgba(63,185,80,.3)}
+  .badge-yellow{background:rgba(210,153,34,.15);color:var(--yellow);border:1px solid rgba(210,153,34,.3)}
+  .badge-red{background:rgba(248,81,73,.15);color:var(--red);border:1px solid rgba(248,81,73,.3)}
+  ul{margin-left:1.5rem;margin-bottom:.75rem}
+  li{margin-bottom:.3rem}
+  .tree{font-family:'SF Mono','Fira Code',monospace;font-size:.82em;white-space:pre;overflow-x:auto;color:var(--text2);line-height:1.4}
+  .tree .dir{color:var(--accent)}.tree .bad{color:var(--red)}.tree .good{color:var(--green)}.tree .note{color:var(--yellow)}
+  table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.9em}
+  th,td{padding:.5rem .75rem;border:1px solid var(--border);text-align:left}
+  th{background:var(--bg3);color:var(--accent)}
+  .toc{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.5rem;margin:1.5rem 0}
+  .toc a{color:var(--accent);text-decoration:none}.toc a:hover{text-decoration:underline}
+  .alert{background:rgba(248,81,73,.1);border:1px solid rgba(248,81,73,.3);border-radius:8px;padding:1rem;margin:1rem 0}
+  .alert-yellow{background:rgba(210,153,34,.1);border-color:rgba(210,153,34,.3)}
+  .alert-green{background:rgba(63,185,80,.1);border-color:rgba(63,185,80,.3)}
+  .port{font-family:monospace;background:var(--bg3);padding:.1rem .4rem;border-radius:4px;color:var(--green)}
+  .status-ok{color:var(--green)}.status-warn{color:var(--yellow)}.status-bad{color:var(--red)}
+  .kpi{display:inline-block;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:.5rem 1rem;margin:.25rem;font-size:.9em}
+  .kpi .num{font-size:1.4em;font-weight:700;color:var(--accent)}.kpi .label{color:var(--text2);font-size:.85em}
+  .svg-container{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:1rem;margin:1rem 0;overflow-x:auto;text-align:center}
+  .svg-container svg{max-width:100%;height:auto}
+</style>
+</head>
+<body>
+
+<h1>Peta Ekosistem Niumination</h1>
+<p class="meta">Dokumen pemetaan kondisi aktual seluruh ekosistem &mdash; 13 Okt 2026, 19:05 WIB &mdash; Diverifikasi langsung dari disk, git, running processes, Hermes CLI, MIRAI API, macOS system</p>
+
+<div class="alert alert-yellow">
+  <strong>Catatan Kerahasiaan:</strong> Dokumen ini sengaja <strong>tidak memuat</strong> kredensial, API key, token, password, atau nilai .env. Semua kredensial direferensikan sebagai <code>VARIABLE_NAME</code> atau filename saja. Data PII (NIK, nomor hp, dll) tidak dicantumkan.
+</div>
+
+<div class="toc">
+  <strong>Daftar Isi</strong>
+  <ol>
+    <li><a href="#ringkasan">Ringkasan Eksekutif</a></li>
+    <li><a href="#macos">macOS System Layer</a></li>
+    <li><a href="#arsitektur">Arsitektur Keseluruhan (SVG Diagram)</a></li>
+    <li><a href="#workflow">Workflow Map</a></li>
+    <li><a href="#hermes">Hermes Agent &mdash; Detail Konfigurasi</a></li>
+    <li><a href="#profiles">Profile &amp; State Database (39 Tables)</a></li>
+    <li><a href="#providers">AI Providers &amp; Models</a></li>
+    <li><a href="#telegram">Telegram Integration (10 Channels)</a></li>
+    <li><a href="#cron">Cron Jobs (14 Total) &mdash; Detail</a></li>
+    <li><a href="#mirai">MIRAI Mission Control</a></li>
+    <li><a href="#a2a">A2A Protocol</a></li>
+    <li><a href="#9router">9router</a></li>
+    <li><a href="#niumination">Folder Desktop/Niumination &mdash; Detail</a></li>
+    <li><a href="#github">GitHub Repositories</a></li>
+    <li><a href="#launchd">LaunchAgents (12 Total)</a></li>
+    <li><a href="#services">Services &amp; Ports</a></li>
+    <li><a href="#masalah">Masalah Teridentifikasi &amp; Rekomendasi</a></li>
+    <li><a href="#kesimpulan">Kesimpulan</a></li>
+  </ol>
+</div>
+
+<h2 id="ringkasan">1. Ringkasan Eksekutif</h2>
+<div class="section">
+  <p>Ekosistem Niumination adalah lingkungan AI agent yang kompleks di atas macOS, terdiri dari <strong>Hermes Agent</strong> sebagai AI gateway, <strong>MIRAI Mission Control</strong> sebagai mission control dashboard, <strong>9router</strong> sebagai local model router, <strong>A2A</strong> sebagai peer-to-peer agent protocol, dan berbagai integrasi lain (Telegram, GitHub, Composio, dsb).</p>
+  <h3>KPI Utama</h3>
+  <div>
+    <span class="kpi"><span class="num">3.6 GB</span><br><span class="label">Total ~/.hermes/</span></span>
+    <span class="kpi"><span class="num">500 MB</span><br><span class="label">state.db (95.212 messages)</span></span>
+    <span class="kpi"><span class="num">14</span><br><span class="label">Cron Jobs</span></span>
+    <span class="kpi"><span class="num">10</span><br><span class="label">Telegram Channels</span></span>
+    <span class="kpi"><span class="num">3</span><br><span class="label">AI Providers</span></span>
+    <span class="kpi"><span class="num">30</span><br><span class="label">Skill Categories</span></span>
+    <span class="kpi"><span class="num">284</span><br><span class="label">Total Skills</span></span>
+    <span class="kpi"><span class="num">67</span><br><span class="label">Scripts</span></span>
+    <span class="kpi"><span class="num">7</span><br><span class="label">Git Submodules</span></span>
+    <span class="kpi"><span class="num">20/20</span><br><span class="label">MIRAI Health</span></span>
+    <span class="kpi"><span class="num">47</span><br><span class="label">Python Scripts</span></span>
+    <span class="kpi"><span class="num">324</span><br><span class="label">Sessions</span></span>
+    <span class="kpi"><span class="num">17</span><br><span class="label">Apps</span></span>
+    <span class="kpi"><span class="num">8</span><br><span class="label">Sites</span></span>
+    <span class="kpi"><span class="num">12</span><br><span class="label">LaunchAgents</span></span>
+    <span class="kpi"><span class="num">122</span><br><span class="label">Report Files</span></span>
+    <span class="kpi"><span class="num">68</span><br><span class="label">Config Keys</span></span>
+    <span class="kpi"><span class="num">37</span><br><span class="label">Env Variables</span></span>
+  </div>
+  <h3>Status Layanan</h3>
+  <div class="grid">
+    <div class="card"><h4><span class="badge badge-green">OK</span> Hermes Gateway</h4><p>PID 34470. Profile: <code>default</code>. Model: <code>Atria-Dawn-Preview</code>. 34 active sessions.</p></div>
+    <div class="card"><h4><span class="badge badge-green">OK</span> MIRAI :8800</h4><p>Health 20/20. LaunchAgent <code>com.mirai.mission-control</code>. 10 persona agents.</p></div>
+    <div class="card"><h4><span class="badge badge-green">OK</span> 9router :20128</h4><p>Local router, 176 models. Cost optimization layer.</p></div>
+    <div class="card"><h4><span class="badge badge-green">OK</span> huancheng</h4><p>API key valid, 12 models. Provider untuk thread ASN.</p></div>
+    <div class="card"><h4><span class="badge badge-green">OK</span> A2A :9900</h4><p>Agent-to-Agent protocol, 1 peer node. Audit log aktif.</p></div>
+    <div class="card"><h4><span class="badge badge-green">OK</span> Telegram</h4><p>10 channels configured. Channel overrides, prompts, skill bindings.</p></div>
+    <div class="card"><h4><span class="badge badge-yellow">WARN</span> Profile research</h4><p>Sudah dihapus 13 Okt 2026. Folder residual dibersihkan.</p></div>
+    <div class="card"><h4><span class="badge badge-red">CRITICAL</span> Load avg 23.72</h4><p>System load sangat tinggi. Perlu investigasi proses yang memakan CPU.</p></div>
+  </div>
+</div>
+
+<h2 id="macos">2. macOS System Layer</h2>
+<div class="section">
+  <h3>2.1. System Info</h3>
+  <table>
+    <tr><th>Properti</th><th>Nilai</th></tr>
+    <tr><td>OS</td><td>macOS 26.7.1 (Build 25G241)</td></tr>
+    <tr><td>Hostname</td><td>Zhalls-MacBook-Pro.local</td></tr>
+    <tr><td>Uptime</td><td>20 menit (saat investigasi)</td></tr>
+    <tr><td>Load Average</td><td><span class="status-bad">23.72 / 15.81 / 11.79</span> (sangat tinggi)</td></tr>
+    <tr><td>Users</td><td>3</td></tr>
+    <tr><td>Shell</td><td>/bin/zsh (zsh 5.9 x86_64-apple-darwin25.0)</td></tr>
+    <tr><td>Node.js</td><td>v26.7.0</td></tr>
+    <tr><td>npm</td><td>11.19.0</td></tr>
+    <tr><td>Python</td><td>3.14.7</td></tr>
+    <tr><td>Bash</td><td>3.2.57 (system bash)</td></tr>
+  </table>
+
+  <h3>2.2. Disk Volumes</h3>
+  <table>
+    <tr><th>Volume</th><th>Size</th><th>Used</th><th>Avail</th><th>Capacity</th><th>Status</th></tr>
+    <tr><td><code>/Volumes/Niumination</code></td><td>171 GiB</td><td>112 GiB</td><td>59 GiB</td><td>66%</td><td><span class="status-ok">Mounted</span></td></tr>
+    <tr><td><code>/Volumes/Mac</code></td><td>--</td><td>--</td><td>--</td><td>--</td><td><span class="status-warn">Not mounted</span></td></tr>
+    <tr><td><code>/Volumes/Windows</code></td><td>--</td><td>--</td><td>--</td><td>--</td><td><span class="status-warn">Not mounted</span></td></tr>
+  </table>
+
+  <h3>2.3. Shell Profiles</h3>
+  <table>
+    <tr><th>File</th><th>Status</th><th>Size</th></tr>
+    <tr><td><code>~/.zshrc</code></td><td><span class="status-ok">EXISTS</span></td><td>63 B</td></tr>
+    <tr><td><code>~/.zprofile</code></td><td><span class="status-warn">MISSING</span></td><td>--</td></tr>
+    <tr><td><code>~/.bashrc</code></td><td><span class="status-ok">EXISTS</span></td><td>110 B</td></tr>
+    <tr><td><code>~/.bash_profile</code></td><td><span class="status-warn">MISSING</span></td><td>--</td></tr>
+    <tr><td><code>~/.zshenv</code></td><td><span class="status-ok">EXISTS</span></td><td>64 B</td></tr>
+  </table>
+
+  <h3>2.4. SSH Config</h3>
+  <table>
+    <tr><th>File</th><th>Status</th><th>Size</th></tr>
+    <tr><td><code>~/.ssh/config</code></td><td><span class="status-ok">EXISTS</span></td><td>83 B</td></tr>
+    <tr><td><code>~/.ssh/known_hosts</code></td><td><span class="status-ok">EXISTS</span></td><td>1.849 B</td></tr>
+  </table>
+
+  <h3>2.5. Environment Variables (37 variables di .env, names only)</h3>
+  <p><code>A2A_BEARER_TOKEN</code>, <code>A2A_HOST</code>, <code>A2A_TRUSTED_PEERS</code>, <code>AEROLINK_API_KEY</code>, <code>ATRIA_API_KEY</code>, <code>AUXILIARY_VISION_API_KEY</code>, <code>CAMOFOX_ACCESS_KEY</code>, <code>CAMOFOX_ADMIN_KEY</code>, <code>CAMOFOX_API_KEY</code>, <code>COMPOSIO_API_KEY</code>, <code>FAL_KEY</code>, <code>GH_TOKEN</code>, <code>GOOGLE_API_KEY</code>, <code>HASS_URL</code>, <code>HERMES_CUA_DRIVER_CMD</code>, <code>HUANCHENG_API_KEY</code>, <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code>, <code>NEXT_PUBLIC_SUPABASE_URL</code>, <code>NINE_ROUTER_API_KEY</code>, <code>NVIDIA_NIM_API_KEY</code>, <code>OFFICE_MAC_TOKEN</code>, <code>OPENCODE_API_KEY</code>, <code>OPENCODE_GO_API_KEY</code>, <code>OPENCODE_ZEN_API_KEY</code>, <code>OPENCODE_ZEN_BASE_URL</code>, <code>OPENROUTER_API_KEY</code>, <code>SUPABASE_DB_PASS</code>, <code>SUPABASE_SERVICE_ROLE_KEY</code>, <code>TAVILY_API_KEY</code>, <code>TELEGRAM_ALLOWED_USERS</code>, <code>TELEGRAM_BOT_TOKEN</code>, <code>TELEGRAM_HOME_CHANNEL</code>, <code>TERMINAL_ENV</code>, <code>VERCEL_TOKEN</code></p>
+  <p><strong>Process env (50+):</strong> 37 HERMES_* variables + A2A_TRUSTED_PEERS + ATRIA_API_KEY + COMPOSIO_API_KEY + HUANCHENG_API_KEY + AI_AGENT + CREW_WIKI_DIR + TERMINAL_* + _HERMES_GATEWAY</p>
+
+  <h3>2.6. Chrome Extensions</h3>
+  <table>
+    <tr><th>Extension ID</th><th>Name</th></tr>
+    <tr><td><code>ghbmnnjooekpmoecnnnilnnbdlolhkhi</code></td><td>Google Docs Offline</td></tr>
+    <tr><td><code>mjnbclmflcpookeapghfhapeffmpodij</code></td><td><strong>UltraSurf Security, Privacy &amp; Freedom VPN</strong></td></tr>
+    <tr><td><code>ngpampappnmepgilojfohadhhmbhlaek</code></td><td>IDM Integration Module</td></tr>
+    <tr><td><code>nmmhkkegccagdldgiimedpiccmgmieda</code></td><td>Google Hangouts</td></tr>
+  </table>
+  <p><em>Chrome CDP tidak running di port 9222.</em></p>
+
+  <h3>2.7. User Crontab</h3>
+  <p><strong>Tidak ada.</strong> Semua scheduling melalui launchd.</p>
+</div>
+
+<h2 id="arsitektur">3. Arsitektur Keseluruhan (SVG Diagram)</h2>
+<div class="section">
+  <h3>3.1. Diagram Arsitektur SVG</h3>
+  <div class="svg-container">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" font-family="monospace" font-size="11">
+      <rect width="1200" height="800" fill="#0d1117"/>
+      <text x="600" y="30" fill="#58a6ff" text-anchor="middle" font-size="16" font-weight="bold">Peta Arsitektur Ekosistem Niumination</text>
+      <text x="600" y="50" fill="#8b949e" text-anchor="middle" font-size="11">13 Okt 2026, 19:05 WIB</text>
+      <rect x="20" y="70" width="1160" height="710" rx="8" fill="none" stroke="#30363d" stroke-width="2"/>
+      <text x="40" y="90" fill="#8b949e" font-size="12">macOS Zhalls-MacBook-Pro (Darwin 25.6.0) | macOS 26.7.1 | Load avg: 23.72 (HIGH)</text>
+      <rect x="40" y="110" width="500" height="200" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+      <text x="60" y="130" fill="#58a6ff" font-size="13" font-weight="bold">Hermes Gateway (PID 34470)</text>
+      <text x="60" y="148" fill="#8b949e" font-size="10">Port :4152 (WebSocket) | Profile: default</text>
+      <text x="60" y="163" fill="#8b949e" font-size="10">Model: Atria-Dawn-Preview | 34 sessions</text>
+      <rect x="60" y="175" width="140" height="50" rx="4" fill="#21262d" stroke="#30363d"/>
+      <text x="130" y="195" fill="#e6edf3" text-anchor="middle" font-size="10">default</text>
+      <text x="130" y="208" fill="#8b949e" text-anchor="middle" font-size="9">profile</text>
+      <rect x="220" y="175" width="140" height="50" rx="4" fill="#21262d" stroke="#30363d"/>
+      <text x="290" y="195" fill="#e6edf3" text-anchor="middle" font-size="10">telegram</text>
+      <text x="290" y="208" fill="#8b949e" text-anchor="middle" font-size="9">adapter (10 chans)</text>
+      <rect x="380" y="175" width="140" height="50" rx="4" fill="#21262d" stroke="#30363d"/>
+      <text x="450" y="195" fill="#e6edf3" text-anchor="middle" font-size="10">cron ticker</text>
+      <text x="450" y="208" fill="#8b949e" text-anchor="middle" font-size="9">(14 jobs)</text>
+      <rect x="40" y="330" width="500" height="120" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+      <text x="60" y="350" fill="#3fb950" font-size="13" font-weight="bold">AI Providers</text>
+      <rect x="60" y="365" width="140" height="50" rx="4" fill="#21262d" stroke="#30363d"/>
+      <text x="130" y="385" fill="#e6edf3" text-anchor="middle" font-size="10">atria</text>
+      <text x="130" y="398" fill="#8b949e" text-anchor="middle" font-size="9">1 model</text>
+      <rect x="220" y="365" width="140" height="50" rx="4" fill="#21262d" stroke="#30363d"/>
+      <text x="290" y="385" fill="#e6edf3" text-anchor="middle" font-size="10">9router</text>
+      <text x="290" y="398" fill="#8b949e" text-anchor="middle" font-size="9">176 models</text>
+      <rect x="380" y="365" width="140" height="50" rx="4" fill="#21262d" stroke="#30363d"/>
+      <text x="450" y="385" fill="#e6edf3" text-anchor="middle" font-size="10">huancheng</text>
+      <text x="450" y="398" fill="#8b949e" text-anchor="middle" font-size="9">12 models</text>
+      <rect x="580" y="110" width="280" height="120" rx="6" fill="#161b22" stroke="#bc8cff" stroke-width="2"/>
+      <text x="600" y="130" fill="#bc8cff" font-size="13" font-weight="bold">MIRAI Mission Control</text>
+      <text x="600" y="148" fill="#8b949e" font-size="10">Port :8800 | PID 561</text>
+      <text x="600" y="163" fill="#8b949e" font-size="10">Health: 20/20 PASS</text>
+      <text x="600" y="178" fill="#8b949e" font-size="10">10 persona agents</text>
+      <text x="600" y="193" fill="#8b949e" font-size="10">Dashboard, kanban, wiki</text>
+      <rect x="580" y="250" width="280" height="100" rx="6" fill="#161b22" stroke="#ffa657" stroke-width="2"/>
+      <text x="600" y="270" fill="#ffa657" font-size="13" font-weight="bold">A2A Peer</text>
+      <text x="600" y="288" fill="#8b949e" font-size="10">Port :9900 | 1 peer node</text>
+      <text x="600" y="303" fill="#8b949e" font-size="10">Audit log: 20.857 B</text>
+      <text x="600" y="318" fill="#8b949e" font-size="10">29 ctx files</text>
+      <rect x="580" y="370" width="280" height="100" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+      <text x="600" y="390" fill="#3fb950" font-size="13" font-weight="bold">9router</text>
+      <text x="600" y="408" fill="#8b949e" font-size="10">Port :20128 | 176 models</text>
+      <text x="600" y="423" fill="#8b949e" font-size="10">Cost optimization</text>
+      <text x="600" y="438" fill="#8b949e" font-size="10">Sync: every 30m</text>
+      <rect x="900" y="110" width="280" height="200" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+      <text x="920" y="130" fill="#58a6ff" font-size="13" font-weight="bold">Telegram Bot API</text>
+      <text x="920" y="148" fill="#8b949e" font-size="10">10 threads configured</text>
+      <text x="920" y="163" fill="#8b949e" font-size="10">channel_overrides</text>
+      <text x="920" y="178" fill="#8b949e" font-size="10">channel_prompts</text>
+      <text x="920" y="193" fill="#8b949e" font-size="10">channel_skill_bindings</text>
+      <text x="920" y="215" fill="#e6edf3" font-size="9">1=Triage, 802=Researcher</text>
+      <text x="920" y="228" fill="#e6edf3" font-size="9">803=Builder, 804=QA</text>
+      <text x="920" y="241" fill="#e6edf3" font-size="9">1172=Kreator, 7402=Serbaguna</text>
+      <text x="920" y="254" fill="#e6edf3" font-size="9">8853=ASN, 12595=Cron</text>
+      <text x="920" y="267" fill="#e6edf3" font-size="9">12707=Edu, 13902=Orkestrator</text>
+      <rect x="900" y="330" width="280" height="120" rx="6" fill="#161b22" stroke="#d29922" stroke-width="2"/>
+      <text x="920" y="350" fill="#d29922" font-size="13" font-weight="bold">LaunchAgents (12)</text>
+      <text x="920" y="368" fill="#e6edf3" font-size="9">ai.hermes.gateway</text>
+      <text x="920" y="381" fill="#e6edf3" font-size="9">ai.hermes.camofox</text>
+      <text x="920" y="394" fill="#e6edf3" font-size="9">com.9router.autostart</text>
+      <text x="920" y="407" fill="#e6edf3" font-size="9">com.mirai.mission-control</text>
+      <text x="920" y="420" fill="#e6edf3" font-size="9">com.niu.missioncontrol</text>
+      <text x="920" y="433" fill="#e6edf3" font-size="9">com.niumination.* (4 more)</text>
+      <rect x="40" y="470" width="500" height="120" rx="6" fill="#161b22" stroke="#8b949e" stroke-width="2"/>
+      <text x="60" y="490" fill="#8b949e" font-size="13" font-weight="bold">External Services</text>
+      <text x="60" y="510" fill="#e6edf3" font-size="10">GitHub (repos, PRs, issues)</text>
+      <text x="60" y="525" fill="#e6edf3" font-size="10">Composio (10 accounts, 9 active)</text>
+      <text x="60" y="540" fill="#e6edf3" font-size="10">Vercel (4 live, 8 paused)</text>
+      <text x="60" y="555" fill="#e6edf3" font-size="10">Cloudflare (DNS, Pages)</text>
+      <text x="60" y="570" fill="#e6edf3" font-size="10">OpenHue (smart home)</text>
+      <rect x="580" y="470" width="280" height="120" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+      <text x="600" y="490" fill="#3fb950" font-size="13" font-weight="bold">Desktop/Niumination</text>
+      <text x="600" y="510" fill="#e6edf3" font-size="9">17 apps | 8 sites | 4 services</text>
+      <text x="600" y="523" fill="#e6edf3" font-size="9">5 labs | 4 desktop | 6 sandbox</text>
+      <text x="600" y="536" fill="#e6edf3" font-size="9">67 scripts | 284 skills</text>
+      <text x="600" y="549" fill="#e6edf3" font-size="9">7 submodules | 122 reports</text>
+      <text x="600" y="562" fill="#e6edf3" font-size="9">vault/ | brain/ | wiki/</text>
+      <rect x="900" y="470" width="280" height="120" rx="6" fill="#161b22" stroke="#f85149" stroke-width="2"/>
+      <text x="920" y="490" fill="#f85149" font-size="13" font-weight="bold">Network Listeners</text>
+      <text x="920" y="510" fill="#3fb950" font-size="10">:8800 MIRAI (localhost)</text>
+      <text x="920" y="525" fill="#3fb950" font-size="10">:9900 A2A (Tailscale)</text>
+      <text x="920" y="540" fill="#3fb950" font-size="10">:20128 9router (localhost)</text>
+      <text x="920" y="555" fill="#f85149" font-size="10">:4152 Hermes (NOT listening)</text>
+      <text x="920" y="570" fill="#8b949e" font-size="10">:9377 Camofox | :20241 cloudflared</text>
+      <line x1="900" y1="210" x2="540" y2="210" stroke="#58a6ff" stroke-width="2" marker-end="url(#arrow)"/>
+      <line x1="290" y1="310" x2="290" y2="330" stroke="#3fb950" stroke-width="2" marker-end="url(#arrow)"/>
+      <line x1="540" y1="170" x2="580" y2="170" stroke="#bc8cff" stroke-width="2" marker-end="url(#arrow)"/>
+      <line x1="540" y1="200" x2="580" y2="300" stroke="#ffa657" stroke-width="2" marker-end="url(#arrow)"/>
+      <line x1="540" y1="230" x2="580" y2="420" stroke="#3fb950" stroke-width="2" marker-end="url(#arrow)"/>
+      <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L0,6 L9,3 z" fill="#8b949e"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <h3>3.2. Matriks Integrasi</h3>
+  <table>
+    <tr><th>Dari</th><th>Ke</th><th>Port</th><th>Protokol</th><th>Status</th></tr>
+    <tr><td>Telegram</td><td>Hermes Gateway</td><td><span class="port">4152</span></td><td>WebSocket</td><td><span class="status-ok">OK</span></td></tr>
+    <tr><td>Hermes Gateway</td><td>MIRAI</td><td><span class="port">8800</span></td><td>HTTP/WS</td><td><span class="status-ok">OK</span></td></tr>
+    <tr><td>Hermes Gateway</td><td>A2A Peer</td><td><span class="port">9900</span></td><td>A2A</td><td><span class="status-ok">OK</span></td></tr>
+    <tr><td>Hermes Gateway</td><td>9router</td><td><span class="port">20128</span></td><td>HTTP/REST</td><td><span class="status-ok">OK</span></td></tr>
+    <tr><td>Hermes Gateway</td><td>huancheng</td><td>443</td><td>HTTPS</td><td><span class="status-ok">OK</span></td></tr>
+    <tr><td>Hermes Gateway</td><td>atria</td><td>443</td><td>HTTPS</td><td><span class="status-ok">OK</span></td></tr>
+    <tr><td>MIRAI</td><td>Hermes Gateway</td><td><span class="port">4152</span></td><td>WebSocket</td><td><span class="status-ok">OK</span></td></tr>
+    <tr><td>Composio</td><td>Hermes Gateway</td><td>--</td><td>API</td><td><span class="status-ok">OK</span></td></tr>
+    <tr><td>Cron</td><td>Hermes Gateway</td><td>--</td><td>Internal</td><td><span class="status-ok">OK</span></td></tr>
+    <tr><td>Dotfiles Symlink</td><td>Niumination Repo</td><td>--</td><td>Symlink</td><td><span class="status-ok">OK</span></td></tr>
+  </table>
+</div>
+
+<h2 id="workflow">4. Workflow Map</h2>
+<div class="section">
+  <h3>4.1. Message Flow: Telegram -> Hermes -> AI Provider</h3>
+  <div class="svg-container">
+    <svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg" font-family="monospace" font-size="11">
+      <rect width="1200" height="300" fill="#0d1117"/>
+      <rect x="50" y="100" width="150" height="80" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+      <text x="125" y="130" fill="#58a6ff" text-anchor="middle" font-size="12" font-weight="bold">Telegram</text>
+      <text x="125" y="148" fill="#8b949e" text-anchor="middle" font-size="10">User Message</text>
+      <text x="125" y="163" fill="#8b949e" text-anchor="middle" font-size="9">10 channels</text>
+      <line x1="200" y1="140" x2="280" y2="140" stroke="#58a6ff" stroke-width="2" marker-end="url(#arrow2)"/>
+      <rect x="280" y="80" width="200" height="120" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+      <text x="380" y="105" fill="#58a6ff" text-anchor="middle" font-size="12" font-weight="bold">Hermes Gateway</text>
+      <text x="380" y="125" fill="#8b949e" text-anchor="middle" font-size="10">Profile: default</text>
+      <text x="380" y="140" fill="#8b949e" text-anchor="middle" font-size="10">Model: Atria-Dawn</text>
+      <text x="380" y="155" fill="#8b949e" text-anchor="middle" font-size="10">Channel Override</text>
+      <text x="380" y="170" fill="#8b949e" text-anchor="middle" font-size="10">Skill Binding</text>
+      <line x1="480" y1="140" x2="560" y2="140" stroke="#3fb950" stroke-width="2" marker-end="url(#arrow2)"/>
+      <rect x="560" y="60" width="200" height="160" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+      <text x="660" y="85" fill="#3fb950" text-anchor="middle" font-size="12" font-weight="bold">AI Provider</text>
+      <text x="660" y="105" fill="#e6edf3" text-anchor="middle" font-size="10">8853 -> huancheng</text>
+      <text x="660" y="120" fill="#e6edf3" text-anchor="middle" font-size="10">12595 -> 9router</text>
+      <text x="660" y="135" fill="#e6edf3" text-anchor="middle" font-size="10">12707 -> 9router</text>
+      <text x="660" y="150" fill="#e6edf3" text-anchor="middle" font-size="10">13902 -> 9router</text>
+      <text x="660" y="165" fill="#e6edf3" text-anchor="middle" font-size="10">default -> atria</text>
+      <text x="660" y="185" fill="#8b949e" text-anchor="middle" font-size="9">Model mapping per channel</text>
+      <line x1="760" y1="140" x2="840" y2="140" stroke="#3fb950" stroke-width="2" marker-end="url(#arrow2)"/>
+      <rect x="840" y="100" width="150" height="80" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+      <text x="915" y="130" fill="#3fb950" text-anchor="middle" font-size="12" font-weight="bold">Response</text>
+      <text x="915" y="148" fill="#8b949e" text-anchor="middle" font-size="10">Telegram</text>
+      <text x="915" y="163" fill="#8b949e" text-anchor="middle" font-size="9">Thread</text>
+      <rect x="50" y="220" width="150" height="60" rx="6" fill="#161b22" stroke="#d29922" stroke-width="2"/>
+      <text x="125" y="245" fill="#d29922" text-anchor="middle" font-size="11" font-weight="bold">Cron (14 jobs)</text>
+      <text x="125" y="262" fill="#8b949e" text-anchor="middle" font-size="9">Every 30m to daily</text>
+      <line x1="200" y1="250" x2="280" y2="250" stroke="#d29922" stroke-width="2" marker-end="url(#arrow2)"/>
+      <rect x="280" y="220" width="200" height="60" rx="6" fill="#161b22" stroke="#d29922" stroke-width="2"/>
+      <text x="380" y="245" fill="#d29922" text-anchor="middle" font-size="11" font-weight="bold">Cron Ticker</text>
+      <text x="380" y="262" fill="#8b949e" text-anchor="middle" font-size="9">model=opencode-combo</text>
+      <line x1="480" y1="250" x2="560" y2="250" stroke="#d29922" stroke-width="2" marker-end="url(#arrow2)"/>
+      <rect x="560" y="220" width="200" height="60" rx="6" fill="#161b22" stroke="#d29922" stroke-width="2"/>
+      <text x="660" y="245" fill="#d29922" text-anchor="middle" font-size="11" font-weight="bold">Deliver</text>
+      <text x="660" y="262" fill="#8b949e" text-anchor="middle" font-size="9">telegram:12595 or local</text>
+      <line x1="760" y1="250" x2="840" y2="250" stroke="#d29922" stroke-width="2" marker-end="url(#arrow2)"/>
+      <rect x="840" y="220" width="150" height="60" rx="6" fill="#161b22" stroke="#d29922" stroke-width="2"/>
+      <text x="915" y="245" fill="#d29922" text-anchor="middle" font-size="11" font-weight="bold">Output</text>
+      <text x="915" y="262" fill="#8b949e" text-anchor="middle" font-size="9">Telegram / Local</text>
+      <defs>
+        <marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L0,6 L9,3 z" fill="#8b949e"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <h3>4.2. Cron Job Routing</h3>
+  <table>
+    <tr><th>Job Type</th><th>Count</th><th>Route</th><th>Status</th></tr>
+    <tr><td>Telegram delivery</td><td>9</td><td>telegram:12595</td><td><span class="status-ok">OK</span></td></tr>
+    <tr><td>Local script</td><td>5</td><td>local</td><td><span class="status-warn">Mixed</span></td></tr>
+    <tr><td>Wiki jobs</td><td>5</td><td>local</td><td><span class="status-bad">4 error</span></td></tr>
+    <tr><td>Security/Health</td><td>3</td><td>telegram:12595</td><td><span class="status-bad">2 error</span></td></tr>
+    <tr><td>Model sync</td><td>1</td><td>telegram+local</td><td><span class="status-ok">OK</span></td></tr>
+  </table>
+</div>
+<h2 id="hermes">5. Hermes Agent &mdash; Detail Konfigurasi</h2>
+<div class="section">
+  <h3>5.1. Identitas</h3>
+  <table>
+    <tr><th>Properti</th><th>Nilai</th></tr>
+    <tr><td>Versi</td><td><code>v0.16.0</code> (OpenCode/hy3-free/nemotron-3-ultra-free)</td></tr>
+    <tr><td>Install Path</td><td><code>/Users/zaryu/src/hermes-agent</code></td></tr>
+    <tr><td>Profile Aktif</td><td><code>default</code> (built-in, tidak ada di disk)</td></tr>
+    <tr><td>State DB</td><td><code>~/.hermes/state.db</code> -- 500 MB (39 tables)</td></tr>
+    <tr><td>Config</td><td><code>~/.hermes/config.yaml</code> -- 35.497 byte, 68 top-level keys</td></tr>
+    <tr><td>SOUL</td><td><code>~/.hermes/SOUL.md</code> -- 3.167 byte (symlink ke dotfiles)</td></tr>
+    <tr><td>Skills</td><td>30 categories, 284 total di <code>~/.hermes/skills/</code></td></tr>
+    <tr><td>Python</td><td><code>~/.hermes/tools/python-3.14.7+20260901-darwin-x64</code></td></tr>
+    <tr><td>Sessions</td><td>34 active</td></tr>
+    <tr><td>MCP Servers</td><td>filesystem, github, context7, composio (all enabled)</td></tr>
+    <tr><td>Plugins</td><td>rtk-rewrite, niu-core-fence (enabled); hermes-achievements (disabled)</td></tr>
+    <tr><td>Auth</td><td>Nous Portal (logged in, expires 13 Okt 17:18 WIB)</td></tr>
+    <tr><td>API Keys</td><td>OpenRouter, Google/Gemini, Tavily, FAL (others not set)</td></tr>
+  </table>
+
+  <h3>5.2. Config.yaml Structure (68 keys)</h3>
+  <table>
+    <tr><th>Key</th><th>Value/Description</th></tr>
+    <tr><td><code>model</code></td><td>provider=custom:atria, default=Atria-Dawn-Preview, api_mode=chat_completions</td></tr>
+    <tr><td><code>providers</code></td><td>3 providers: 9router (176), huancheng (12), atria (1)</td></tr>
+    <tr><td><code>agent</code></td><td>max_turns=150, gateway_timeout=1800, api_max_retries=3</td></tr>
+    <tr><td><code>terminal</code></td><td>backend=local, timeout=180, persistent_shell=true</td></tr>
+    <tr><td><code>browser</code></td><td>cdp_url=http://localhost:9222, engine=auto, cloud_provider=camofox</td></tr>
+    <tr><td><code>platforms.telegram</code></td><td>enabled=true, home_channel=2077300493, 10 channel_overrides</td></tr>
+    <tr><td><code>cron</code></td><td>model=opencode-combo, provider=9router</td></tr>
+    <tr><td><code>kanban</code></td><td>dispatch_in_gateway=true, dispatch_interval_seconds=60, auto_decompose=true</td></tr>
+    <tr><td><code>skills</code></td><td>create_dir=/Users/zaryu/Desktop/Niumination/skills/ecosystem</td></tr>
+    <tr><td><code>curator</code></td><td>enabled=false, interval_hours=168</td></tr>
+    <tr><td><code>timezone</code></td><td>Asia/Jakarta</td></tr>
+    <tr><td><code>_config_version</code></td><td>50</td></tr>
+    <tr><td><code>mcp_servers</code></td><td>4 servers: filesystem, github, context7, composio</td></tr>
+    <tr><td><code>a2a_agents.cloud</code></td><td>url=http://100.65.20.34:9900, auth.type=bearer</td></tr>
+    <tr><td><code>image_gen</code></td><td>model=gpt-image-2-medium, provider=openai-codex</td></tr>
+    <tr><td><code>env</code></td><td>HERMES_CUA_DRIVER_CMD, AUXILIARY_VISION_API_KEY</td></tr>
+  </table>
+  <p><strong>Other keys:</strong> toolsets, web, checkpoints, file_read_max_chars, tool_output, tool_loop_guardrails, compression, prompt_caching, bedrock, auxiliary, display, dashboard, privacy, tts, stt, voice, human_delay, context, memory, delegation, goals, slack, discord, mattermost, matrix, approvals, command_allowlist, plugins, hooks, hooks_auto_accept, security, code_execution, tools, logging, model_catalog, network, gateway, streaming, sessions, onboarding, updates, lsp, x_search, secrets, paste_collapse_threshold, paste_collapse_threshold_fallback, paste_collapse_char_threshold, computer_use, known_plugin_toolsets, platform_toolsets, session_reset, a2a, telemetry, known_builtin_toolsets</p>
+
+  <h3>5.3. auth.json Structure</h3>
+  <pre><code>{
+  "version": "...",
+  "providers": "dict",
+  "credential_pool": "dict",
+  "updated_at": "...",
+  "active_provider": "..."
+}</code></pre>
+
+  <h3>5.4. provider_models_cache.json (10 providers)</h3>
+  <table>
+    <tr><th>Provider</th><th>Models</th><th>Fallback</th></tr>
+    <tr><td>openrouter</td><td>63</td><td>--</td></tr>
+    <tr><td>copilot</td><td>17</td><td>Yes</td></tr>
+    <tr><td>opencode-zen</td><td>118</td><td>--</td></tr>
+    <tr><td>opencode-go</td><td>47</td><td>--</td></tr>
+    <tr><td>opencode-free</td><td>12</td><td>--</td></tr>
+    <tr><td>gemini</td><td>15</td><td>--</td></tr>
+    <tr><td>anthropic</td><td>14</td><td>Yes</td></tr>
+    <tr><td>custom:agent-router.org</td><td>4</td><td>--</td></tr>
+    <tr><td>custom:hcnsec.cn</td><td>19</td><td>--</td></tr>
+    <tr><td>custom:atria-asi.ai</td><td>1</td><td>--</td></tr>
+  </table>
+
+  <h3>5.5. Backups (25 files)</h3>
+  <table>
+    <tr><th>Date</th><th>Files</th></tr>
+    <tr><td>2026-08-27</td><td>1 bak</td></tr>
+    <tr><td>2026-08-28</td><td>3 bak</td></tr>
+    <tr><td>2026-09-07</td><td>5 bak</td></tr>
+    <tr><td>2026-09-08</td><td>1 bak</td></tr>
+    <tr><td>2026-09-09</td><td>4 bak</td></tr>
+    <tr><td>2026-09-10 to 2026-10-08</td><td>6 pre-setup</td></tr>
+    <tr><td>2026-10-13</td><td>1 broken + 5 good</td></tr>
+  </table>
+  <p><strong>Latest good:</strong> <code>config.yaml.good.20261013-190001</code> (35 KB)</p>
+  <p><strong>Latest broken:</strong> <code>config.yaml.broken.20261013-105622</code> (134 bytes)</p>
+
+  <h3>5.6. Cache (15 subdirectories, ~441 MB)</h3>
+  <table>
+    <tr><th>Directory</th><th>Size</th></tr>
+    <tr><td><code>uv</code></td><td><span class="bad">425 MB</span> (96% of cache)</td></tr>
+    <tr><td><code>web</code></td><td>8.1 MB</td></tr>
+    <tr><td><code>terminal-output</code></td><td>6.6 MB</td></tr>
+    <tr><td><code>exec</code></td><td>632 KB</td></tr>
+    <tr><td><code>delegation</code></td><td>324 KB</td></tr>
+    <tr><td><code>computer_use</code></td><td>116 KB</td></tr>
+    <tr><td><code>scratch</code></td><td>8.0 KB</td></tr>
+    <tr><td><code>blocked-scripts</code></td><td>12 KB</td></tr>
+    <tr><td><code>audio</code>, <code>browser-use</code>, <code>documents</code>, <code>images</code>, <code>partials</code>, <code>screenshots</code>, <code>spillover</code>, <code>videos</code>, <code>vision</code></td><td>0 B each</td></tr>
+  </table>
+</div>
+
+<h2 id="profiles">6. Profile &amp; State Database (39 Tables)</h2>
+<div class="section">
+  <h3>6.1. Profile</h3>
+  <table>
+    <tr><th>Profile</th><th>Model</th><th>Path</th><th>Status</th></tr>
+    <tr><td><code>default</code></td><td>Atria-Dawn-Preview</td><td><code>~/.hermes/</code> (built-in)</td><td><span class="badge badge-green">AKTIF</span></td></tr>
+    <tr><td><code>research</code></td><td>gpt-5.4-mini</td><td><code>~/.hermes/profiles/research/</code></td><td><span class="badge badge-red">DIHAPUS 13 Okt</span></td></tr>
+  </table>
+
+  <h3>6.2. State Database -- 39 Tables dengan Row Counts</h3>
+  <table>
+    <tr><th>Table</th><th>Rows</th><th>Purpose</th></tr>
+    <tr><td><code>messages</code></td><td><strong>95.212</strong></td><td>Message history</td></tr>
+    <tr><td><code>messages_fts</code></td><td>95.212</td><td>Full-text search index</td></tr>
+    <tr><td><code>messages_fts_trigram</code></td><td>48.593</td><td>Trigram index</td></tr>
+    <tr><td><code>messages_fts_trigram_data</code></td><td>46.625</td><td>Trigram data</td></tr>
+    <tr><td><code>messages_fts_trigram_idx</code></td><td>30.853</td><td>Trigram index</td></tr>
+    <tr><td><code>messages_fts_data</code></td><td>11.354</td><td>FTS data</td></tr>
+    <tr><td><code>messages_fts_idx</code></td><td>9.490</td><td>FTS index</td></tr>
+    <tr><td><code>delivery_obligations</code></td><td>214</td><td>Delivery tracking</td></tr>
+    <tr><td><code>system_prompts</code></td><td>192</td><td>System prompts cache</td></tr>
+    <tr><td><code>session_model_usage</code></td><td>610</td><td>Token usage per session</td></tr>
+    <tr><td><code>sessions</code></td><td>324</td><td>Session metadata</td></tr>
+    <tr><td><code>gateway_routing</code></td><td>34</td><td>Message routing</td></tr>
+    <tr><td><code>async_delegations</code></td><td>10</td><td>Async delegation</td></tr>
+    <tr><td><code>conversation_generations</code></td><td>10</td><td>Generation tracking</td></tr>
+    <tr><td><code>gateway_heartbeats</code></td><td>4</td><td>Gateway heartbeat</td></tr>
+    <tr><td><code>state_meta</code></td><td>6</td><td>State metadata</td></tr>
+    <tr><td><code>session_turn_leases</code></td><td>2</td><td>Turn lease</td></tr>
+    <tr><td><code>schema_version</code></td><td>1</td><td>Schema version</td></tr>
+    <tr><td><code>sqlite_sequence</code></td><td>1</td><td>SQLite sequence</td></tr>
+    <tr><td><code>compression_locks</code></td><td>0</td><td>Compression state</td></tr>
+    <tr><td><code>gateway_hygiene_state</code></td><td>0</td><td>Hygiene state</td></tr>
+    <tr><td><code>hosted_room_*</code> (14 tables)</td><td>0</td><td>Hosted room (unused)</td></tr>
+  </table>
+
+  <h3>6.3. Skills (30 Categories, 284 total)</h3>
+  <table>
+    <tr><th>Category</th><th>Count</th><th>Category</th><th>Count</th></tr>
+    <tr><td><code>ecosystem</code></td><td>95</td><td><code>remotion-project</code></td><td>12</td></tr>
+    <tr><td><code>software-development</code></td><td>55</td><td><code>productivity</code></td><td>17</td></tr>
+    <tr><td><code>creative</code></td><td>22</td><td><code>content</code></td><td>10</td></tr>
+    <tr><td><code>github</code></td><td>7</td><td><code>design</code></td><td>10</td></tr>
+    <tr><td><code>devops</code></td><td>7</td><td><code>apple</code></td><td>4</td></tr>
+    <tr><td><code>research</code></td><td>7</td><td><code>note-taking</code></td><td>4</td></tr>
+    <tr><td><code>autonomous-ai-agents</code></td><td>7</td><td><code>media</code></td><td>3</td></tr>
+    <tr><td><code>mlops</code></td><td>5</td><td><code>security</code></td><td>3</td></tr>
+    <tr><td><code>email</code></td><td>2</td><td><code>governance</code></td><td>2</td></tr>
+    <tr><td><code>web</code></td><td>1</td><td><code>wiki</code></td><td>1</td></tr>
+    <tr><td><code>social-media</code></td><td>1</td><td><code>smart-home</code></td><td>1</td></tr>
+    <tr><td><code>camofox-browser</code></td><td>1</td><td><code>content-remotion-video</code></td><td>1</td></tr>
+    <tr><td><code>credential-vault-backup</code></td><td>1</td><td><code>development</code></td><td>1</td></tr>
+    <tr><td><code>polling-script-management</code></td><td>1</td><td><code>repo-zip-overlay</code></td><td>1</td></tr>
+    <tr><td><code>firefox-tab-stash</code></td><td>0</td><td></td><td></td></tr>
+  </table>
+  <p><strong>Archived skills (12):</strong> bridge-migration, cc-acehtengah-maintenance, cc-acehtengah-ops, ecosystem-bulk-push, env-doctor, hermes-desktop-launcher, safe-branch-refactor, skp-e-kinerja, surgical-refactor, swift-cli-development, vnc-rfb-debugging, vnc-server-python</p>
+</div>
+
+<h2 id="providers">7. AI Providers &amp; Models</h2>
+<div class="section">
+  <table>
+    <tr><th>Provider</th><th>Base URL</th><th>Models</th><th>Auth</th><th>Status</th></tr>
+    <tr><td><code>atria</code></td><td><code>api.atria-asi.ai</code></td><td>1</td><td><code>ATRIA_API_KEY</code></td><td><span class="status-ok">OK</span></td></tr>
+    <tr><td><code>9router</code></td><td><code>localhost:20128</code></td><td>176</td><td><code>NINE_ROUTER_API_KEY</code></td><td><span class="status-ok">OK</span></td></tr>
+    <tr><td><code>huancheng</code></td><td><code>api.hcnsec.cn</code></td><td>12</td><td><code>HUANCHENG_API_KEY</code></td><td><span class="status-ok">OK</span></td></tr>
+  </table>
+  <h3>Model Mapping per Channel</h3>
+  <table>
+    <tr><th>Channel ID</th><th>Persona</th><th>Model</th><th>Provider</th></tr>
+    <tr><td>1</td><td>Triage</td><td><code>gemini/gemini-3.5-flash-lite</code></td><td>9router</td></tr>
+    <tr><td>802</td><td>Researcher</td><td><code>combo-delegasi</code></td><td>9router</td></tr>
+    <tr><td>803</td><td>Builder</td><td><code>combo-delegasi</code></td><td>9router</td></tr>
+    <tr><td>804</td><td>Pengawas/QA</td><td><code>combo-delegasi</code></td><td>9router</td></tr>
+    <tr><td>1172</td><td>Kreator</td><td><code>combo-delegasi</code></td><td>9router</td></tr>
+    <tr><td>7402</td><td>Serbaguna</td><td><code>combo-delegasi</code></td><td>9router</td></tr>
+    <tr><td>8853</td><td>Admin ASN</td><td><code>DeepSeek-V4.1-Flash</code></td><td>huancheng</td></tr>
+    <tr><td>12595</td><td>Cron &amp; Otomasi</td><td><code>combo-delegasi</code></td><td>9router</td></tr>
+    <tr><td>12707</td><td>Edu Content</td><td><code>combo-delegasi</code></td><td>9router</td></tr>
+    <tr><td>13902</td><td>Orkestrator</td><td><code>combo-gateway</code></td><td>9router</td></tr>
+  </table>
+</div>
+
+<h2 id="telegram">8. Telegram Integration (10 Channels)</h2>
+<div class="section">
+  <table>
+    <tr><th>Channel ID</th><th>Persona</th><th>Purpose</th><th>Model</th><th>Skills</th></tr>
+    <tr><td>1</td><td>Triage</td><td>Triage/routing</td><td>gemini-3.5-flash-lite</td><td>--</td></tr>
+    <tr><td>802</td><td>Researcher</td><td>Riset, live sources</td><td>combo-delegasi</td><td>--</td></tr>
+    <tr><td>803</td><td>Builder</td><td>Engineering, dashboard</td><td>combo-delegasi</td><td>ponytail, requesting-code-review</td></tr>
+    <tr><td>804</td><td>Pengawas/QA</td><td>Audit, code review</td><td>combo-delegasi</td><td>code-audit</td></tr>
+    <tr><td>1172</td><td>Kreator</td><td>Konten, video, kreatif</td><td>combo-delegasi</td><td>ghost, humanizer, remotion-video</td></tr>
+    <tr><td>7402</td><td>Serbaguna</td><td>General/flex</td><td>combo-delegasi</td><td>--</td></tr>
+    <tr><td>8853</td><td>Admin ASN</td><td>ASN, naskah dinas, laporan</td><td>DeepSeek-V4.1-Flash</td><td>skp-e-kinerja, document-to-action-items, meeting-action-items, weekly-review-planning</td></tr>
+    <tr><td>12595</td><td>Cron &amp; Otomasi</td><td>Cron output, notifikasi</td><td>combo-delegasi</td><td>--</td></tr>
+    <tr><td>12707</td><td>Edu Content</td><td>Pendidikan, video, buku digital</td><td>combo-delegasi</td><td>document-content-pipeline, markitdown, remotion-video, ghost, humanizer</td></tr>
+    <tr><td>13902</td><td>Orkestrator</td><td>Orkestrasi lintas-thread</td><td>combo-gateway</td><td>subagent-driven-development, delegated-output-verification, kanban-ecosystem-management, telegram-router-orchestration</td></tr>
+  </table>
+</div>
+
+<h2 id="cron">9. Cron Jobs (14 Total) -- Detail</h2>
+<div class="section">
+  <table>
+    <tr><th>ID</th><th>Name</th><th>Schedule</th><th>Model</th><th>Deliver</th><th>Status</th><th>Runs</th></tr>
+    <tr><td><code>6789760172b1</code></td><td>Daily Tab Stash Update</td><td><code>0 22 * * *</code></td><td>combo-delegasi/9router</td><td>telegram:12595</td><td><span class="badge badge-green">OK</span></td><td>43</td></tr>
+    <tr><td><code>69fe96da4c90</code></td><td>Daily Brain Top 10 URL</td><td><code>0 8 * * *</code></td><td>combo-delegasi/9router</td><td>telegram:12595</td><td><span class="badge badge-red">BLOCKED</span></td><td>9</td></tr>
+    <tr><td><code>15d9127ab8b0</code></td><td>Model Status Probe</td><td><code>0 9 * * *</code></td><td>script (no_agent)</td><td>telegram+local</td><td><span class="badge badge-green">OK</span></td><td>29</td></tr>
+    <tr><td><code>525b540c1e86</code></td><td>DR Snapshot Refresh</td><td><code>0 21 * * 0</code></td><td>script (no_agent)</td><td>telegram:12595</td><td><span class="badge badge-red">ERROR</span></td><td>--</td></tr>
+    <tr><td><code>e439b66b40b4</code></td><td>up-eco-lightfix</td><td><code>30 23 * * *</code></td><td>script (no_agent)</td><td>telegram:12595</td><td><span class="badge badge-green">OK</span></td><td>23</td></tr>
+    <tr><td><code>d0ab0fde1b2e</code></td><td>Ecosystem Health Check</td><td><code>0 */2 * * *</code></td><td>script (no_agent)</td><td>telegram:12595</td><td><span class="badge badge-green">OK</span></td><td>53</td></tr>
+    <tr><td><code>524a941977dd</code></td><td>Dettack Security Check</td><td><code>0 9 * * *</code></td><td>opencode-combo/custom</td><td>telegram:12595</td><td><span class="badge badge-red">ERROR</span></td><td>--</td></tr>
+    <tr><td><code>f431f7c358b1</code></td><td>A2A Cloud Health Check</td><td><code>0 10 * * *</code></td><td>combo-a2a/9router</td><td>telegram:12595</td><td><span class="badge badge-red">BLOCKED</span></td><td>--</td></tr>
+    <tr><td><code>6bef77289daf</code></td><td>wiki-dropbox</td><td><code>*/30 * * * *</code></td><td>(agent)</td><td>local</td><td><span class="badge badge-red">ERROR</span></td><td>16 streak</td></tr>
+    <tr><td><code>0c82a4b64495</code></td><td>wiki-librarian</td><td><code>30 2 * * *</code></td><td>(agent)</td><td>local</td><td><span class="badge badge-red">ERROR</span></td><td>--</td></tr>
+    <tr><td><code>59f3d966b912</code></td><td>wiki-lint</td><td><code>50 2 * * *</code></td><td>(agent)</td><td>local</td><td><span class="badge badge-red">ERROR</span></td><td>--</td></tr>
+    <tr><td><code>67400ef79e74</code></td><td>wiki-opening-snapshot</td><td><code>20 2 * * *</code></td><td>script (no_agent)</td><td>local</td><td><span class="badge badge-green">OK</span></td><td>3</td></tr>
+    <tr><td><code>b5fdcff7dcd3</code></td><td>wiki-closing-snapshot</td><td><code>10 3 * * *</code></td><td>script (no_agent)</td><td>local</td><td><span class="badge badge-red">ERROR</span></td><td>2 streak</td></tr>
+    <tr><td><code>034116abd040</code></td><td>Sync 9router models</td><td>every 30m</td><td>script (no_agent)</td><td>telegram+local</td><td><span class="badge badge-green">OK</span></td><td>42</td></tr>
+  </table>
+  <div class="alert alert-yellow">
+    <strong>Error Analysis:</strong>
+    <ul>
+      <li><strong>3 jobs BLOCKED</strong> -- provider '9router' missing dari config (gejala config rusak, sudah diperbaiki)</li>
+      <li><strong>3 jobs ERROR 401</strong> -- API key expired/tidak valid</li>
+      <li><strong>1 job ERROR 16-streak</strong> -- wiki-dropbox: model tidak tersedia</li>
+      <li><strong>1 job ERROR SQLite</strong> -- DR Snapshot: SQLite copy failed</li>
+      <li><strong>1 job ERROR wiki busy</strong> -- wiki-closing-snapshot: lock contention</li>
+    </ul>
+  </div>
+</div>
+
+<h2 id="mirai">10. MIRAI Mission Control</h2>
+<div class="section">
+  <table>
+    <tr><th>Properti</th><th>Nilai</th></tr>
+    <tr><td>Service</td><td>MIRAI Mission Control</td></tr>
+    <tr><td>Port</td><td><span class="port">8800</span></td></tr>
+    <tr><td>LaunchAgent</td><td><code>com.mirai.mission-control</code></td></tr>
+    <tr><td>PID</td><td>561</td></tr>
+    <tr><td>Bind</td><td><code>127.0.0.1:8800</code> (localhost only)</td></tr>
+    <tr><td>Health</td><td><span class="badge badge-green">20/20 PASS</span></td></tr>
+    <tr><td>Processes</td><td>619 total, CPU 22.7%, RAM 0.46 GB</td></tr>
+    <tr><td>Dashboard</td><td>Console showreel MAX (ink field, mosaic, i18n id)</td></tr>
+    <tr><td>Wiki</td><td><code>~/Desktop/Niumination/wiki</code></td></tr>
+    <tr><td>Repo</td><td><code>github.com:Niumination/mirai</code> (public)</td></tr>
+  </table>
+  <h3>Roster: 1 profile + 10 persona topic</h3>
+  <ul>
+    <li>4 project-curated skills di <code>.agents/skills/</code></li>
+    <li>mac-verify: 22 PASS / 0 FAIL</li>
+  </ul>
+</div>
+
+<h2 id="a2a">11. A2A Protocol</h2>
+<div class="section">
+  <table>
+    <tr><th>Properti</th><th>Nilai</th></tr>
+    <tr><td>Port</td><td><span class="port">9900</span></td></tr>
+    <tr><td>Protocol</td><td>A2A (Agent-to-Agent)</td></tr>
+    <tr><td>Peers</td><td>1 node</td></tr>
+    <tr><td>Audit Log</td><td><code>~/.hermes/a2a_audit.jsonl</code> (20.857 B)</td></tr>
+    <tr><td>Conversations</td><td><code>~/.hermes/a2a_conversations/</code> (29 ctx-*.jsonl files)</td></tr>
+    <tr><td>Bearer Token</td><td><code>A2A_BEARER_TOKEN</code> (di .env, mode 600)</td></tr>
+    <tr><td>Cloud URL</td><td><code>http://100.65.20.34:9900</code></td></tr>
+  </table>
+</div>
+
+<h2 id="9router">12. 9router</h2>
+<div class="section">
+  <table>
+    <tr><th>Properti</th><th>Nilai</th></tr>
+    <tr><td>Port</td><td><span class="port">20128</span></td></tr>
+    <tr><td>Base URL</td><td><code>http://localhost:20128/v1</code></td></tr>
+    <tr><td>Total Models</td><td>176</td></tr>
+    <tr><td>API Mode</td><td>chat_completions</td></tr>
+    <tr><td>Auth</td><td><code>NINE_ROUTER_API_KEY</code> (env var)</td></tr>
+  </table>
+  <p><strong>Purpose:</strong> Local model router untuk cost optimization. Model murah di-route ke 9router, model mahal tetap ke atria.</p>
+  <p><strong>Sync:</strong> Cron job <code>034116abd040</code> (every 30m) sync model list dari 9router ke Hermes config.</p>
+</div>
+<h2 id="niumination">13. Folder Desktop/Niumination &mdash; Detail</h2>
+<div class="section">
+  <h3>13.1. AGENTS.md (287 lines, 23 KB)</h3>
+  <p>DOX Framework v4.0 root contract. Owner: Afrizal Munthe. 50 git repos measured (2 Okt 2026). Global rules: selective git add, WaitNetwork for launchd, skill sync via official tools only, model mapping via auto-discovery, CSS theme tokens, one-home rule, external work adoption gate, docs structure mandatory, credential/git add -f prohibition. Skill system: Level 1 Ponytail (always active), Level 2 trigger-keyword skills (25+), Level 3 future (empty), Level 4 Hermes self-management.</p>
+
+  <h3>13.2. .gitignore (112 lines)</h3>
+  <p>Ignores: vault/, **/vault/, *.env, *.env.local, *.env.production, .env.*, secrets.zsh, api-key.md, sub-project dirs (apps/, services/, sites/, desktop/, agents/profile/, labs/, sandbox/), private dirs (brain/, rekap/, tools/, dotfiles/), security audit reports (SECURITY-AUDIT-*.md), PII, build artifacts, IDE, binary files, .folder-icons/, sync artifacts, Hermes runtime state, archive subdirs, dinas/ (private ASN repo).</p>
+
+  <h3>13.3. .gitleaks.toml (50 lines)</h3>
+  <p>Extends default gitleaks config. Rules: generic-api-key, private-key, github-pat. Allowlist: test fixtures, __tests__, mocks, testdata, examples, *.test.*, README.md, AGENTS.md, BACKLOG.md, MASTERPLAN.md, CHANGELOG.md, brain/, .git/, lock files.</p>
+
+  <h3>13.4. Struktur Root</h3>
+  <div class="tree">Niumination/
+├── AGENTS.md                  [GOVERNANCE]  287 lines, 23 KB
+├── BACKLOG.md                 [PLANNING]   671 lines, 57 KB
+├── .gitmodules                [GIT]        7 submodules
+├── .gitignore                 [GIT]        112 lines
+├── .gitleaks.toml             [SECURITY]   50 lines
+├── .githooks/                 [GIT]        Git hooks
+├── .git/                      [GIT]        Git repo
+├── .git-backup-20260823-175257 [BACKUP]  Git backup
+├── .9router-state.json        [STATE]      9router state
+├── .env.example               [CONFIG]     Environment template
+├── .folder-icons/             [CONFIG]     Folder icons
+├── .hermes/                   [SYMLINK]    → ~/.hermes (dot-prefixed)
+├── .hermes-memory/            [MEMORY]     Hermes memory
+├── .sync-log/                 [LOG]        Sync log
+├── .vscode/                   [EDITOR]     VS Code config
+│
+├── mirai/                     [SUBMODULE]  MIRAI Mission Control
+│
+├── agents/                    [AGENTS]     2 items
+│   └── profile/               [GIT REPO]   Full git repo (AGENTS.md, PROMPT.md, README.md, profile.config.json, profile.schema.json, scripts/, assets/, docs/, .github/)
+│
+├── apps/                      [PROJECTS]   17 app projects (NOT a git repo)
+├── archive/                   [ARCHIVE]    14 items
+├── brain/                     [GIT REPO]   Obsidian knowledge base (DIRTY)
+├── desktop/                   [DESKTOP]    4 projects
+├── dinas/                     [DINAS]      Dinas projects (asn-admin)
+├── docs/                      [DOCS]
+│   ├── architecture/          [ARCH]       4 files
+│   ├── audit/                 [AUDIT]      1 file
+│   ├── dox/                   [DOX]        4 files
+│   ├── notebooklm/            [NOTEBOOK]   2 files
+│   ├── references/            [REFS]       1 file
+│   ├── reports/               [REPORTS]    122 files (2026-05 to 2026-10)
+│   ├── registry/              [REGISTRY]   10 files
+│   └── trio-watch/            [GOVERNANCE] 1 file
+│
+├── dotfiles/                  [SUBMODULE]  zaryu-terminal-dotfiles
+├── inactive-2026-09/          [INACTIVE]   5 archived submodules
+├── inactive-2026-10/          [INACTIVE]   1 archived submodule
+├── labs/                      [LABS]       5 lab projects
+├── logs/                      [LOGS]       3 files
+├── sandbox/                   [SANDBOX]    6 items
+├── scripts/                   [SCRIPTS]    67 scripts + hooks/ (12) + dr-restore/ (9)
+├── services/                  [SERVICES]   4 services
+├── sites/                     [SITES]      8 web projects
+├── skills/                    [SKILLS]     28 categories, 249 total skills (central bank)
+├── tools/                     [TOOLS]      3 tools
+├── vault/                     [VAULT]      37 items
+└── wiki/                      [GIT REPO]   LLM Wiki (no remote)</div>
+
+  <h3>13.5. Git Submodules (7 Total)</h3>
+  <table>
+    <tr><th>Path</th><th>Remote</th><th>Commit</th><th>Status</th></tr>
+    <tr><td><code>mirai/</code></td><td><code>github.com:Niumination/mirai</code></td><td><code>051843b</code></td><td><span class="badge badge-green">CLEAN</span></td></tr>
+    <tr><td><code>inactive-2026-09/Ultra</code></td><td><code>github.com:Niumination/ultra-automation</code></td><td><code>bc8fd35</code></td><td><span class="badge badge-green">CLEAN</span></td></tr>
+    <tr><td><code>inactive-2026-09/niu-studio</code></td><td><code>github.com:Niumination/niu-studio</code></td><td><code>1fc7196</code></td><td><span class="badge badge-green">CLEAN</span></td></tr>
+    <tr><td><code>inactive-2026-09/zen</code></td><td><code>github.com:Niumination/zen</code></td><td><code>4ba4723</code></td><td><span class="badge badge-green">CLEAN</span></td></tr>
+    <tr><td><code>inactive-2026-09/niumination-workspace</code></td><td><code>github.com:Niumination/niumination-workspace</code></td><td><code>3deb602</code></td><td><span class="badge badge-green">CLEAN</span></td></tr>
+    <tr><td><code>inactive-2026-10/niu-mission-control</code></td><td><code>github.com:Niumination/niu-mission-control</code></td><td><code>85f9923</code></td><td><span class="badge badge-green">CLEAN</span></td></tr>
+    <tr><td><code>inactive-2026-09/JHermUSB-portable</code></td><td><code>github.com:Niumination/JHermUSB-portable</code></td><td><code>d7f5703</code></td><td><span class="badge badge-green">CLEAN</span></td></tr>
+  </table>
+
+  <h3>13.6. Standalone Git Repos</h3>
+  <table>
+    <tr><th>Repo</th><th>Path</th><th>Commit</th><th>Remote</th><th>Status</th></tr>
+    <tr><td>brain</td><td><code>brain/</code></td><td><code>3160613</code></td><td><code>github.com:Niumination/brain</code></td><td><span class="badge badge-yellow">DIRTY</span></td></tr>
+    <tr><td>wiki</td><td><code>wiki/</code></td><td><code>5a58f0f</code></td><td>No remote</td><td><span class="badge badge-green">CLEAN</span></td></tr>
+    <tr><td>agents/profile</td><td><code>agents/profile/</code></td><td>--</td><td>--</td><td><span class="badge badge-green">GIT REPO</span></td></tr>
+  </table>
+
+  <h3>13.7. Top-Level Dotfiles (15)</h3>
+  <p><code>.9router-state.json</code>, <code>.env.example</code>, <code>.folder-icons</code>, <code>.git/</code>, <code>.git-backup-20260823-175257</code>, <code>.githooks/</code>, <code>.gitignore</code>, <code>.gitleaks.toml</code>, <code>.gitmodules</code>, <code>.hermes/</code>, <code>.hermes-memory/</code>, <code>.sync-log/</code>, <code>.vscode/</code></p>
+
+  <h3>13.8. Apps (17 projects, NOT a git repo)</h3>
+  <table>
+    <tr><th>Dir</th><th>README</th></tr>
+    <tr><td><code>PemdiAcehTengah/</code></td><td>Dashboard Pemerintah Digital -- Aceh Tengah</td></tr>
+    <tr><td><code>abstract-studio/</code></td><td>ZARYU ABSTRACT STUDIO</td></tr>
+    <tr><td><code>ai-file-manager-android/</code></td><td>AI File Organizer -- Android</td></tr>
+    <tr><td><code>ai-first-os/</code></td><td>AI First OS</td></tr>
+    <tr><td><code>arch-web-dashboard/</code></td><td>Arch Linux Pro Max - Web Dashboard</td></tr>
+    <tr><td><code>cc-switch/</code></td><td>switching tool</td></tr>
+    <tr><td><code>kopi-aceh-app-android/</code></td><td>(no README)</td></tr>
+    <tr><td><code>kune-ya.com/</code></td><td>(no README)</td></tr>
+    <tr><td><code>mac-web-dashboard/</code></td><td>macOS Pro Max Dashboard</td></tr>
+    <tr><td><code>niu-dash/</code></td><td>NIU-DASH</td></tr>
+    <tr><td><code>niu-gayo-agroclimate/</code></td><td>Niu Gayo Agro-Climate</td></tr>
+    <tr><td><code>niu-lkh/</code></td><td>Niu-LKH</td></tr>
+    <tr><td><code>niu-vermilion/</code></td><td>Next.js project</td></tr>
+    <tr><td><code>niumination-restore/</code></td><td>niumination-restore</td></tr>
+    <tr><td><code>pablik-aplikasi-gas/</code></td><td>Pabrik Aplikasi -- Workspace Induk</td></tr>
+    <tr><td><code>pi-app-studio-mata/</code></td><td>(no README)</td></tr>
+  </table>
+
+  <h3>13.9. Sites (8 projects)</h3>
+  <table>
+    <tr><th>Dir</th><th>README</th></tr>
+    <tr><td><code>audit-ti-at/</code></td><td>Audit Pengadaan IT -- Kabupaten Aceh Tengah</td></tr>
+    <tr><td><code>kelas/</code></td><td>Kelas Niumination</td></tr>
+    <tr><td><code>landing-web-id/</code></td><td>Niumination Landing Page -- Indonesian Version</td></tr>
+    <tr><td><code>niu-dash-fullstack/</code></td><td>NIU-DASH FULLSTACK</td></tr>
+    <tr><td><code>niu-kanban-dash/</code></td><td>Kanban Ekosistem</td></tr>
+    <tr><td><code>niu-oss-dashboard/</code></td><td>OSS Dashboard</td></tr>
+    <tr><td><code>spatial-vision/</code></td><td>Spatial Vision -- Full-stack Rust/WASM</td></tr>
+    <tr><td><code>tedeo-kanban/</code></td><td>TEDEO Kanban Board</td></tr>
+  </table>
+
+  <h3>13.10. Services (4)</h3>
+  <table>
+    <tr><th>Dir</th><th>README</th></tr>
+    <tr><td><code>latticesend/</code></td><td>LatticeSend</td></tr>
+    <tr><td><code>niu-cast/</code></td><td>niu-cast v4.0 -- Android to macOS Mirror</td></tr>
+    <tr><td><code>sapa-ai/</code></td><td>SAPA Smart AI -- Asisten Data Statistik Kabupaten Aceh Tengah</td></tr>
+    <tr><td><code>uacc/</code></td><td>UACC</td></tr>
+  </table>
+
+  <h3>13.11. Labs (5)</h3>
+  <p><code>eKinerja-AfrizalMunthe/</code>, <code>edu-content/</code>, <code>mata-aihackfest-2026/</code>, <code>maze-3d/</code>, <code>.DS_Store</code></p>
+
+  <h3>13.12. Desktop (4)</h3>
+  <p><code>didong-code/</code>, <code>x-downloader/</code>, <code>flame-ade/</code>, <code>joy-connect-for-mac/</code></p>
+
+  <h3>13.13. Sandbox (6)</h3>
+  <p><code>arena.ai/</code>, <code>x-downloader-backup/</code>, <code>aistudio-google/</code>, <code>niutui/</code>, <code>remotion-studio/</code>, <code>niude/</code></p>
+
+  <h3>13.14. Archive (14)</h3>
+  <p><code>labs/</code>, <code>01-updates/</code>, <code>projects/</code>, <code>sapa-ai.bak/</code>, <code>docs/</code>, <code>Belum disentuh/</code>, <code>niu-flow-logs/</code>, <code>ocmux/</code>, <code>backup/</code>, <code>media-lib/</code>, <code>Welcome.md</code>, <code>2026-06-11-RAPI-RAPI-BESAR.md</code>, <code>projects-scan.json</code></p>
+
+  <h3>13.15. Tools (3)</h3>
+  <p><code>ponytail/</code> (33 items), <code>camofox-browser/</code> (44 items), <code>pdf-inspector/</code> (5 items)</p>
+
+  <h3>13.16. Vault (37 items)</h3>
+  <p><strong>Secrets files (chmod 600):</strong> <code>9router-cli-secret.txt</code>, <code>9router-jwt-secret.txt</code>, <code>9router-machine-id.txt</code>, <code>a2a-token.txt</code>, <code>agentrouter-key.md</code>, <code>api-key.md</code>, <code>cc-acehtengah.env</code>, <code>composio-key.md</code>, <code>explabs-key.md</code>, <code>github-pat.md</code>, <code>hermes-auth.json.bak</code>, <code>hermes.env.bak</code>, <code>home-env-local.bak</code>, <code>pi-api-key-mata-watchdog.md/txt</code>, <code>pi-wallet-mata-watchdog.md/txt</code>, <code>secrets.zsh</code>, <code>sudo-pass.md</code>, <code>token-lightvela.md</code>, <code>token-niu-oss.md</code></p>
+  <p><strong>Directories:</strong> <code>_arsip-audit-eksternal/</code>, <code>_arsip-sensitif/</code>, <code>_backup-credentials/</code>, <code>_konflik-skill/</code>, <code>android-signing/</code>, <code>hermes-backup/</code>, <code>tab-stash/</code></p>
+  <p><strong>Other:</strong> <code>9router-model-catalog-raw.json</code> (530 KB), <code>README.md</code>, <code>credentials-backup.zip</code> (9.7 KB), <code>agentrouter-api.md</code>, <code>atria-api.md</code>, <code>niu-oss-token.md</code></p>
+
+  <h3>13.17. Logs (3)</h3>
+  <table>
+    <tr><th>File</th><th>Size</th></tr>
+    <tr><td><code>up-eco-lightfix.log</code></td><td>77 KB</td></tr>
+    <tr><td><code>mission-control.stdout.log</code></td><td>17 KB</td></tr>
+    <tr><td><code>mission-control.stderr.log</code></td><td>288 KB</td></tr>
+  </table>
+
+  <h3>13.18. Agents (2)</h3>
+  <p><code>.DS_Store</code>, <code>profile/</code> (full git repo dengan AGENTS.md, PROMPT.md, README.md, profile.config.json, profile.schema.json, scripts/, assets/, docs/, .github/)</p>
+
+  <h3>13.19. Wiki (git repo, no remote)</h3>
+  <p><code>WIKI.md</code>, <code>index.md</code>, <code>log.md</code>, <code>_wiki-health.md</code>, <code>.gitignore</code>, <code>drafts/.gitkeep</code></p>
+
+  <h3>13.20. Brain (Obsidian vault, git repo)</h3>
+  <p><code>Backup Tab Stash - Firefox.md</code>, <code>.DS_Store</code>, <code>infra/</code> (hermes-config-fix, cc-acehtengah-ai-model, cc-acehtengah-db), <code>inbox/</code> (~30+ daily brain notes 2026-06 to 2026-10), <code>archive/inbox/</code> (~35+ older daily notes)</p>
+
+  <h3>13.21. Scripts</h3>
+  <h4>Root scripts/ (67 files)</h4>
+  <table>
+    <tr><th>Script</th><th>Size</th><th>Purpose</th></tr>
+    <tr><td><code>up-eco.sh</code></td><td>62 KB</td><td>Ecosystem health check</td></tr>
+    <tr><td><code>trio-watch.sh</code></td><td>12 KB</td><td>Trio watch</td></tr>
+    <tr><td><code>model-checker-data.json</code></td><td>21 KB</td><td>Model checker data</td></tr>
+    <tr><td><code>model-checker.py</code></td><td>14 KB</td><td>Model checker</td></tr>
+    <tr><td><code>skill-detect.py</code></td><td>17 KB</td><td>Skill detection</td></tr>
+    <tr><td><code>skill-audit.py</code></td><td>21 KB</td><td>Skill audit</td></tr>
+    <tr><td><code>scan-env-writers.py</code></td><td>15 KB</td><td>Scan env writers</td></tr>
+    <tr><td><code>dispatch-to-thread.py</code></td><td>--</td><td>Cross-thread message routing</td></tr>
+    <tr><td><code>ecosystem-health.py</code></td><td>--</td><td>Health monitoring</td></tr>
+    <tr><td><code>sync-models-to-config.py</code></td><td>--</td><td>Model sync</td></tr>
+    <tr><td><code>dr-restore/sync-all.sh</code></td><td>--</td><td>Disaster recovery sync</td></tr>
+    <tr><td><code>check-hermes-mcp.py</code></td><td>--</td><td>MCP health check</td></tr>
+  </table>
+  <h4>scripts/hooks/ (12 files)</h4>
+  <p><code>antigravity-hook.sh</code>, <code>claude-hook.sh</code>, <code>codex-hook.sh</code>, <code>command-code-hook.sh</code>, <code>copilot-hook.sh</code>, <code>cursor-hook.sh</code>, <code>devin-hook.sh</code>, <code>droid-hook.sh</code>, <code>gemini-hook.sh</code>, <code>grok-hook.sh</code>, <code>kimi-hook.sh</code>, <code>openclaude-hook.sh</code></p>
+  <h4>scripts/dr-restore/ (9 files)</h4>
+  <p><code>README.md</code>, <code>build-credentials.sh</code>, <code>build-l1-release.sh</code>, <code>build-l2.sh</code>, <code>build-services.sh</code>, <code>drill-local.sh</code>, <code>drill.sh</code>, <code>make-integrity.sh</code>, <code>sync-all.sh</code></p>
+
+  <h3>13.22. docs/ Subdirectories</h3>
+  <table>
+    <tr><th>Dir</th><th>Files</th><th>Contents</th></tr>
+    <tr><td><code>architecture/</code></td><td>4</td><td>autoskills-pattern, dual-zone, personal-ai-os, trio-watch</td></tr>
+    <tr><td><code>audit/</code></td><td>1</td><td>AGENTS.md.pre-slim backup</td></tr>
+    <tr><td><code>dox/</code></td><td>4</td><td>INDEX.md, joy-connect, trancast-protocol, niu-cast</td></tr>
+    <tr><td><code>notebooklm/</code></td><td>2</td><td>README, RECONNECT_GUIDE</td></tr>
+    <tr><td><code>references/</code></td><td>1</td><td>jarvis-mission-control-all-prompts.md</td></tr>
+    <tr><td><code>reports/</code></td><td>122</td><td>Audit reports, plans, research docs (2026-05 to 2026-10)</td></tr>
+    <tr><td><code>registry/</code></td><td>10</td><td>deployment-status.md, model-mapping.md, dll</td></tr>
+    <tr><td><code>trio-watch/</code></td><td>1</td><td>governance.md</td></tr>
+  </table>
+
+  <h3>13.23. docs/reports/ (122 files)</h3>
+  <p>Date range: 2026-05-21 to 2026-10-12. Largest: <code>AGENTS.md.bak-2026-08-30</code> (40 KB), <code>DIAGNOSIS-PROVIDER-HUANCHENG-9ROUTER-2026-10-10</code> (38 KB), <code>LAPORAN-AUDIT-EKOSISTEM-LENGKAP-2026-09-24</code> (19 KB). Categories: audits, DR plans, security, content/reels, Pi app studio, ecosystem status, research, plans, threads, weekly audits.</p>
+
+  <h3>13.24. docs/registry/ (10 files)</h3>
+  <table>
+    <tr><th>File</th><th>Size</th><th>Modified</th></tr>
+    <tr><td><code>a2a-hermes-mac-vps.md</code></td><td>7.3 KB</td><td>4 Okt</td></tr>
+    <tr><td><code>ai-ecosystem.md</code></td><td>3.6 KB</td><td>11 Okt</td></tr>
+    <tr><td><code>composio-free-tier-tools.md</code></td><td>6.8 KB</td><td>18 Sep</td></tr>
+    <tr><td><code>composio-integration-plan.md</code></td><td>7.2 KB</td><td>18 Sep</td></tr>
+    <tr><td><code>deployment-status.md</code></td><td>20.9 KB</td><td>13 Okt</td></tr>
+    <tr><td><code>hermes-cron-routing.md</code></td><td>7.5 KB</td><td>11 Okt</td></tr>
+    <tr><td><code>model-mapping.md</code></td><td>15.1 KB</td><td>12 Okt</td></tr>
+    <tr><td><code>project-catalog.md</code></td><td>18.2 KB</td><td>12 Okt</td></tr>
+    <tr><td><code>skill-registry.md</code></td><td>46.6 KB</td><td>12 Okt</td></tr>
+    <tr><td><code>telegram-threads.md</code></td><td>12.3 KB</td><td>11 Okt</td></tr>
+  </table>
+</div>
+
+<h2 id="github">14. GitHub Repositories</h2>
+<div class="section">
+  <table>
+    <tr><th>Repo</th><th>Visibility</th><th>Purpose</th><th>Status</th></tr>
+    <tr><td><code>Niumination/ecosystem-config</code></td><td>Private</td><td>Root config + docs</td><td><span class="status-ok">OK</span></td></tr>
+    <tr><td><code>Niumination/mirai</code></td><td>Public</td><td>MIRAI Mission Control</td><td><span class="status-ok">OK</span></td></tr>
+    <tr><td><code>Niumination/zaryu-terminal-dotfiles</code></td><td>--</td><td>Dotfiles</td><td><span class="status-ok">OK</span></td></tr>
+    <tr><td><code>Niumination/niumination-restore</code></td><td>Private</td><td>Disaster recovery</td><td><span class="status-ok">OK</span></td></tr>
+    <tr><td><code>Niumination/Niumination</code></td><td>--</td><td>Profile README</td><td><span class="status-ok">OK</span></td></tr>
+    <tr><td><code>Niumination/brain</code></td><td>--</td><td>Obsidian knowledge base</td><td><span class="status-warn">DIRTY</span></td></tr>
+  </table>
+</div>
+
+<h2 id="launchd">15. LaunchAgents (12 Total)</h2>
+<div class="section">
+  <table>
+    <tr><th>Label</th><th>Service</th><th>KeepAlive</th><th>RunAtLoad</th><th>WorkingDir</th></tr>
+    <tr><td><code>ai.hermes.gateway</code></td><td>Hermes Gateway</td><td>Yes</td><td>Yes</td><td><code>~/.hermes</code></td></tr>
+    <tr><td><code>ai.hermes.gateway-marker</code></td><td>Gateway marker</td><td>--</td><td>Yes</td><td>--</td></tr>
+    <tr><td><code>ai.hermes.camofox</code></td><td>Camofox Browser</td><td>Yes</td><td>Yes</td><td><code>Desktop/Niumination/tools/camofox-browser</code></td></tr>
+    <tr><td><code>com.9router.autostart</code></td><td>9router</td><td>Yes</td><td>Yes</td><td>--</td></tr>
+    <tr><td><code>com.mirai.mission-control</code></td><td>MIRAI Mission Control</td><td>Yes</td><td>Yes</td><td><code>Desktop/Niumination/mirai/mission-control/server</code></td></tr>
+    <tr><td><code>com.niu.missioncontrol</code></td><td>Niu Mission Control</td><td>Yes</td><td>Yes</td><td><code>Desktop/Niumination/services/niu-mission-control</code></td></tr>
+    <tr><td><code>com.niumination.9router-sync</code></td><td>9router Sync</td><td>--</td><td>Yes</td><td>--</td></tr>
+    <tr><td><code>com.niumination.nosleep</code></td><td>No Sleep</td><td>Yes</td><td>Yes</td><td>--</td></tr>
+    <tr><td><code>com.niumination.office-relay</code></td><td>Office Relay</td><td>Yes</td><td>Yes</td><td>--</td></tr>
+    <tr><td><code>com.google.GoogleUpdater.wake</code></td><td>Google Updater</td><td>--</td><td>--</td><td>--</td></tr>
+    <tr><td><code>com.google.keystone.agent</code></td><td>Keystone Agent</td><td>--</td><td>--</td><td>--</td></tr>
+    <tr><td><code>com.google.keystone.xpcservice</code></td><td>Keystone XPC</td><td>--</td><td>--</td><td>--</td></tr>
+  </table>
+  <p><strong>7 ecosystem agents</strong> + 3 Google updaters + 2 unnamed. Semua enabled, none disabled.</p>
+</div>
+
+<h2 id="services">16. Services &amp; Ports</h2>
+<div class="section">
+  <table>
+    <tr><th>Service</th><th>Port</th><th>Bind</th><th>PID</th><th>Status</th></tr>
+    <tr><td>MIRAI Mission Control</td><td><span class="port">8800</span></td><td>localhost</td><td>562</td><td><span class="status-ok">Running</span></td></tr>
+    <tr><td>A2A Peer</td><td><span class="port">9900</span></td><td>Tailscale</td><td>969</td><td><span class="status-ok">Running</span></td></tr>
+    <tr><td>9router</td><td><span class="port">20128</span></td><td>localhost</td><td>1118</td><td><span class="status-ok">Running</span></td></tr>
+    <tr><td>Hermes Gateway</td><td><span class="port">4152</span></td><td>--</td><td>--</td><td><span class="status-warn">NOT listening</span></td></tr>
+    <tr><td>Camofox Browser</td><td><span class="port">9377</span></td><td>IPv6</td><td>--</td><td><span class="status-ok">Running</span></td></tr>
+    <tr><td>OpenMausBot</td><td><span class="port">8799-8812</span></td><td>--</td><td>--</td><td><span class="status-ok">Running</span></td></tr>
+    <tr><td>cloudflared</td><td><span class="port">20241</span></td><td>--</td><td>--</td><td><span class="status-ok">Running</span></td></tr>
+    <tr><td>Raycast</td><td><span class="port">7265</span></td><td>--</td><td>--</td><td><span class="status-ok">Running</span></td></tr>
+  </table>
+  <div class="alert">
+    <strong>Port 4152 NOT listening:</strong> Hermes gateway tidak listening di port 4152. Kemungkinan gateway menggunakan port lain atau tidak running. Perlu investigasi.
+  </div>
+</div>
+
+<h2 id="masalah">17. Masalah Teridentifikasi &amp; Rekomendasi</h2>
+<div class="section">
+  <h3>17.1. Masalah Kritis (Sudah Diperbaiki)</h3>
+  <table>
+    <tr><th>#</th><th>Masalah</th><th>Dampak</th><th>Status</th></tr>
+    <tr><td>1</td><td>Profile <code>research</code> tidak sengaja ada</td><td>Gateway crash, file korup (SOUL + config)</td><td><span class="badge badge-green">FIXED</span></td></tr>
+    <tr><td>2</td><td>SOUL.md terpotong 3167->105 byte</td><td>Semua aturan kerja hilang</td><td><span class="badge badge-green">FIXED</span></td></tr>
+    <tr><td>3</td><td>config.yaml terpotong 33420->134 byte</td><td>Semua provider hilang, /model kosong</td><td><span class="badge badge-green">FIXED</span></td></tr>
+  </table>
+
+  <h3>17.2. Masalah Aktif (Perlu Perhatian)</h3>
+  <table>
+    <tr><th>#</th><th>Masalah</th><th>Dampak</th><th>Rekomendasi</th></tr>
+    <tr><td>1</td><td><strong>Load avg 23.72</strong></td><td>System sangat lambat</td><td>Investigasi proses yang memakan CPU (duetexpertd 98.8%, WindowServer 43.2%)</td></tr>
+    <tr><td>2</td><td><strong>Port 4152 NOT listening</strong></td><td>Hermes gateway mungkin tidak running</td><td>Cek status gateway, restart jika perlu</td></tr>
+    <tr><td>3</td><td><strong>6 cron jobs error</strong></td><td>Wiki &amp; security jobs tidak berjalan</td><td>Fix API key, model availability</td></tr>
+    <tr><td>4</td><td><strong>state.db 500 MB</strong> (95.212 messages)</td><td>Disk usage besar, performa menurun</td><td>VACUUM atau archive sessions lama</td></tr>
+    <tr><td>5</td><td><strong>installs/ + tools/ + cache/ = 2.7 GB</strong></td><td>Disk usage tidak perlu</td><td>Cleanup file development yang tidak dipakai</td></tr>
+    <tr><td>6</td><td><strong>40+ Python scripts di root ~/.hermes/</strong></td><td>Tidak terorganisir</td><td>Pindah ke ~/.hermes/scripts/ atau docs/</td></tr>
+    <tr><td>7</td><td><strong>39 markdown reports di root ~/.hermes/</strong></td><td>Tidak terorganisir</td><td>Pindah ke docs/reports/</td></tr>
+    <tr><td>8</td><td><strong>270 session dump files</strong></td><td>Disk usage, sulit audit</td><td>Archive atau hapus sessions lama</td></tr>
+    <tr><td>9</td><td><strong>94 cron output files</strong></td><td>Disk usage</td><td>Cleanup output lama</td></tr>
+    <tr><td>10</td><td><strong>brain/ repo dirty</strong></td><td>Uncommitted changes</td><td>Commit atau stash</td></tr>
+    <tr><td>11</td><td><strong>up-eco.sh 496 lines</strong></td><td>Output berisiko, sulit dibaca</td><td>Refactor ke modular script</td></tr>
+    <tr><td>12</td><td><strong>Token Copilot ghp_* tidak didukung</strong></td><td>Warning di log</td><td>Rotate ke token fine-grained PAT</td></tr>
+    <tr><td>13</td><td><strong>UltraSurf VPN terinstall</strong></td><td>Keamanan &amp; privacy risk</td><td>Evaluasi apakah perlu, pertimbangkan uninstall</td></tr>
+    <tr><td>14</td><td><strong>3 apps tanpa README</strong></td><td>Dokumentasi kurang</td><td>Buat README untuk kopi-aceh-app-android, kune-ya.com, pi-app-studio-mata</td></tr>
+    <tr><td>15</td><td><strong>hermes symlink tidak ada</strong></td><td>Desktop/Niumination/hermes tidak ada</td><td>Buat symlink atau dokumentasikan bahwa .hermes/ adalah path yang benar</td></tr>
+    <tr><td>16</td><td><strong>uv cache 425 MB</strong></td><td>Disk usage</td><td>Cleanup uv cache yang tidak dipakai</td></tr>
+    <tr><td>17</td><td><strong>14 empty directories</strong></td><td>Disk usage tidak perlu</td><td>Hapus directory kosong</td></tr>
+  </table>
+
+  <h3>17.3. Rekomendasi Struktural</h3>
+  <ol>
+    <li><strong>Freeze scope:</strong> Pilih 1-2 prioritas utama, sisanya masuk parking lot.</li>
+    <li><strong>Single source of truth:</strong> Semua config di <code>~/.hermes/</code>, docs di <code>~/Desktop/Niumination/docs/</code>.</li>
+    <li><strong>Backup otomatis:</strong> Cron job backup config + state.db sebelum setiap perubahan.</li>
+    <li><strong>Monitoring:</strong> Health check up-eco dijadwalkan harian, alert ke Telegram.</li>
+    <li><strong>Cleanup:</strong> Schedule bulanan untuk hapus file cache/session yang tidak perlu.</li>
+    <li><strong>state.db maintenance:</strong> VACUUM berkala, archive sessions > 30 hari.</li>
+    <li><strong>File organization:</strong> Pindah 40+ Python scripts dan 39 markdown reports dari root ~/.hermes/ ke lokasi yang proper.</li>
+    <li><strong>Load investigation:</strong> Cari tahu proses apa yang menyebabkan load avg 23.72.</li>
+  </ol>
+</div>
+
+<h2 id="kesimpulan">18. Kesimpulan</h2>
+<div class="section">
+  <p>Ekosistem Niumination saat ini <strong>berfungsi</strong> dengan 1 profile (<code>default</code>), 3 AI provider, 14 cron jobs (8 OK, 6 error), dan 10 Telegram channels. Semua kritis issue sudah diperbaiki.</p>
+  <p>Namun, ada <strong>masalah struktural</strong> yang membuat ekosistem tidak solid:</p>
+  <ul>
+    <li>File tersebar di banyak lokasi tanpa standard yang jelas</li>
+    <li>state.db 500 MB dan 2.7 GB file development/cache yang tidak di-cleanup</li>
+    <li>40+ Python scripts dan 39 markdown reports di root ~/.hermes/ (tidak seharusnya di sana)</li>
+    <li>Script up-eco terlalu besar dan perlu refactor</li>
+    <li>Perlu monitoring dan backup yang lebih baik</li>
+    <li>Load avg 23.72 -- perlu investigasi proses yang memakan CPU</li>
+    <li>Port 4152 NOT listening -- perlu cek status gateway</li>
+  </ul>
+  <p><strong>Rekomendasi utama:</strong> Fokus ke 1 hal, selesaikan, lalu berhenti. Jangan tambah kompleksitas sampai ekosistem stabil.</p>
+</div>
+
+<div class="alert alert-green">
+  <strong>Dokumen ini dihasilkan:</strong> 13 Okt 2026, 19:05 WIB<br>
+  <strong>Metode:</strong> Investigasi langsung ke disk, git, running processes, Hermes CLI, MIRAI API, macOS system<br>
+  <strong>Sensitivitas:</strong> Kredensial dan data PII tidak dicantumkan<br>
+  <strong>Path:</strong> <code>~/Desktop/Niumination/docs/ecosystem-map.html</code>
+</div>
+
+</body>
+</html>
