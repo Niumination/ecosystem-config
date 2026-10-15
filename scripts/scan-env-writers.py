@@ -17,6 +17,7 @@ MENULIS `.env` tanpa mengambil salinan lebih dulu.
 
 Exit 0 = aman. Exit 1 = ditolak. Nilai kredensial tidak pernah dicetak.
 """
+import os
 import re
 import subprocess
 import sys
@@ -131,6 +132,8 @@ SKIP_DIRS = {
     "node_modules", ".git", ".venv", "venv", "dist", "build", ".next",
     "__pycache__", ".cache", "target", "vendor", ".tox", "coverage",
     "credentials", "l2-data", "archive", "sandbox", "inactive-2026-09",
+    ".hermes", ".local", "Library", "Applications", "Pictures", "Movies",
+    "Music", "Public", "Applications", "Go", "Rust", "Cargo", "npm",
 }
 
 
@@ -317,13 +320,20 @@ def main(argv):
     findings = []
     for t in targets:
         if t.is_dir():
-            for f in sorted(t.rglob("*")):
-                if SKIP_DIRS & set(f.relative_to(t).parts[:-1]):
+            # Batasi kedalaman scanning agar tidak mengiterasi direktori besar
+            for root, dirs, files in os.walk(t):
+                # Prune SKIP_DIRS
+                dirs[:] = [d for d in dirs if d not in SKIP_DIRS]
+                # Batasi kedalaman maksimal 3 level
+                depth = root.replace(str(t), '').count(os.sep)
+                if depth > 3:
+                    dirs[:] = []
                     continue
-                if f.is_file() and (f.suffix in SUFFIXES or f.name.startswith(".")):
-                    label = scan(f)
-                    if label:
-                        findings.append((str(f), label))
+                for f in sorted(files):
+                    if f.endswith(SUFFIXES) or f.startswith("."):
+                        label = scan(Path(root) / f)
+                        if label:
+                            findings.append((str(Path(root) / f), label))
         elif t.is_file():
             label = scan(t)
             if label:

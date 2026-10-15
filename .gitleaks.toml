@@ -38,8 +38,6 @@ paths = [
     '''(?i).*BACKLOG\.md$''',
     '''(?i).*MASTERPLAN\.md$''',
     '''(?i).*CHANGELOG\.md$''',
-    # Brain
-    '''(?i)brain/.*''',
     # Git
     '''\.git/.*''',
     '''\.gitignore''',
