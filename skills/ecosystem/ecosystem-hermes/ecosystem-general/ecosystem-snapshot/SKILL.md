@@ -151,6 +151,28 @@ Jangan pernah menulis "ini riwayatnya" tanpa minimal satu sumber filesystem di a
 - **Verifikasi RTK:** `rtk rewrite "git status"` → exit code 3 = rewritten (plugin aktif); exit 1 = pass-through (tidak ada equivalen). `rtk gain` = bukti token saving (68.6% di mesin ini). Cek juga `plugins.enabled` di config (hanya `rtk-rewrite` yang wajib enabled).
 - **Model ID case-sensitive (huancheng & distributor new-api lain):** config bisa pakai lowercase (`deepseek-v4-flash`) tapi server menolak `model_not_found`. Selalu `GET /v1/models` dulu untuk ID persis (`DeepSeek-V4-Flash`). Fix lewat `hermes config set providers.<nama>.default_model <ID>`, bukan edit file (write-protected).
 - **Config Hermes write-protected:** agent tidak bisa edit `config.yaml` langsung (ditolak). Satu-satunya jalur: `hermes config set` / `hermes fallback` / `hermes cron` / `hermes model`.
+- **Profile research sudah dihapus 13 Okt 2026** — jangan buat profile tambahan tanpa approval eksplisit. `create-fleet.sh` dari MIRAI dilarang dieksekusi. Multi-profile hosting auto-load semua profile di `~/.hermes/profiles/`.
+- **HTML ecosystem map** tersedia di `docs/ecosystem-map.html` — dokumentasi visual arsitektur + integrasi. Generate ulang saat ada perubahan struktural.
+
+### Iterative ecosystem map workflow
+
+When the user asks for a comprehensive ecosystem map ("petakan seluruh ekosistem", "jangan melewatkan sesuatu", "lakukan berulang sampai N kali untuk hasil maksimal"), produce the document in 5 iterations:
+
+1. **Iteration 1:** Write the full HTML skeleton with SVG architecture diagram + workflow map + whatever data is already known from the session. Use a `<!-- CONT-MARK-1 -->` comment as a patch anchor. Commit.
+2. **Iterations 2-5:** Gather additional detail via `delegate_task` subagents (one per iteration, targeting specific data domains). Insert new sections into the HTML by replacing the continuation marker. Commit after each iteration.
+3. Final iteration: replace the last marker with closing sections (findings, conclusion) and remove the marker.
+4. Use the `architecture-diagram` skill for SVG diagram generation and theming.
+
+**Data domains to cover across iterations:**
+- Iteration 1: System layer, core config, providers, channels, cron jobs, services, git status, known issues
+- Iteration 2: Full cron prompts, deployment platforms (Vercel/Cloudflare), knowledge base (brain/wiki), vault, model cache
+- Iteration 3: Hooks, scripts, session files, cron output, A2A conversations, cache tree, tool directories
+- Iteration 4: Per-project detail for all apps/sites/services/labs/desktop/sandbox/archive
+- Iteration 5: Docs subdirectories, dotfiles tree, auth structure, env variable counts
+
+**Pitfall:** Do NOT try to gather all data in one pass — the user explicitly wants iterative refinement. Each iteration should produce a meaningful, committable increment.
+
+**HTML format preference:** The user prefers HTML with inline SVG diagrams, dark theme, and CSS variables for ecosystem maps. Use semantic colors (green=OK, yellow=warn, red=error, blue=primary, purple=orchestration, orange=protocol).
 
 ## Reference Files
 - `references/snapshot-template.md` — exact Markdown template for the snapshot document

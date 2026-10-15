@@ -50,6 +50,12 @@ It correlates with length and with dense technical prose, and it can hit a `writ
 - Redact credentials, tokens, and personal numbers by shape (prefix + last characters + length), never by value.
 - Keep documents in their designated home; do not invent new folders under `docs/`.
 
+## Pitfalls
+
+- **HTML closing tag duplication when patching:** When using `patch` to insert content before `</body></html>`, the replacement text often includes its own `</body></html>` while the original closing tags remain, producing duplicate closing tags. Always check the tail of the file after patching (`tail -5 <file>`) and remove duplicates before committing.
+- **Large HTML files with many sections:** When building a multi-section HTML document iteratively, use a `<!-- CONT-MARK-N -->` comment as a patch anchor. Replace it with new content + a new marker for the next iteration. This avoids rewriting the entire file each time.
+- **SVG in HTML:** Inline SVG diagrams work well in self-contained HTML files. Use CSS variables for theming and semantic colors (green=OK, yellow=warn, red=error) for status indicators. Keep SVG viewBox proportional to content.
+
 ## Boundaries
 
 Emoji, box-drawing, arrows, and checkmarks are legitimate in these documents — the scanner deliberately ignores them. Widen the scanner's ranges only if the documents genuinely contain CJK text, not because a scan came back noisy.
