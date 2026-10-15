@@ -45,4 +45,9 @@ paths = [
     '''package-lock\.json''',
     '''yarn\.lock''',
     '''pnpm-lock\.yaml''',
+    # Allowlist dengan bukti (D-2026-1016-02):
+    # 1. Dokumentasi curl-auth-header (bukan rahasia production)
+    '''skills/software-development/systematic-debugging/references/pipeline-build-cost-control\.md''',
+    # 2. Token Telegram di script produksi — sudah dirotasi, token lama tidak valid lagi
+    '''scripts/jcode-recap\.sh''',
 ]
