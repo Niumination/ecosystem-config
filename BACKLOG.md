@@ -1,6 +1,6 @@
 # 📋 BACKLOG — Niumination Ecosystem — MASTER DOCUMENTATION
 
-> **UPDATE: October 11, 2026** — Sync real filesystem + GitHub state. Major: provider & katalog model (2 akar masalah `/model` + otomasi sync mati 6 hari + cron baru `034116abd040`), orkestrasi Hermes 5 fase (Fase 1-4 done, Fase 5 deferred), 10 thread Telegram aktif (1 · 802 · 803 · 804 · 1172 · 7402 · 8853 · 12595 · 12707 · 13902), A2A Mac↔Cloud verified, mac-relay online, Skill Bank 238 skill/1176 file, 14 cron job aktif. macOS 26.7.1.
+> **UPDATE: October 17, 2026** — Registrasi **hypr-rust** (`labs/hypr-rust/`, repo publik `github.com/Niumination/hypr-rust`) — override sekali pakai freeze D-1013-05 via `D-2026-1017-01`. Sync sebelumnya: October 11, 2026 — provider & katalog model (2 akar masalah `/model` + otomasi sync mati 6 hari + cron baru `034116abd040`), orkestrasi Hermes 5 fase (Fase 1-4 done, Fase 5 deferred), 10 thread Telegram aktif (1 · 802 · 803 · 804 · 1172 · 7402 · 8853 · 12595 · 12707 · 13902), A2A Mac↔Cloud verified, mac-relay online, Skill Bank 238 skill/1176 file, 14 cron job aktif. macOS 26.7.1.
 >
 > ⚠️ **Key `huancheng` hidup (probe 12 Okt 2026: HTTP 200)** — tapi model `sensenova-6.8-flash-lite` ditarik provider (503). Thread 8853 (ASN) sudah dipindahkan ke `DeepSeek-V4.1-Flash` @ huancheng. Lihat seksi Provider & Katalog Model.
 
@@ -218,7 +218,7 @@ Desktop/Niumination/
 | **characters/** | ⚪ | 🟢 Active | 4 herdr agents (arsitek, pembangun, pengawas, penjaga) |
 | **_shared/** | ⚪ | 🟢 Active | Incident & path registry (INCIDENT.md, PATHS.md) |
 
-### 🔬 labs/ — 3 Experiments
+### 🔬 labs/ — 5 Experiments
 
 | Proyek | Priority | Status | Notes |
 |--------|:--------:|:------:|-------|
@@ -226,6 +226,8 @@ Desktop/Niumination/
 | ~~**niumination-workspace**~~ | **Archived** | → inactive-2026-09 | Next.js 16 |
 | **eKinerja-AfrizalMunthe** | ⚪ Minor | 🟢 Active | Bukti dukung eKinerja Sem 1 2026 — 🔒 private repo |
 | **edu-content** | P2 | 🟢 Active | Pipeline PDF→web book (Papermorph Edu) — 4/4 bab selesai (ch01-04), 1.5 MB site, deploy pending |
+| **mata-aihackfest-2026** | P2 | 🟢 Active | Watchdog akuntabilitas pengadaan — AI HackFest Batch 3 (11–15 Sep 2026) |
+| **hypr-rust** | P3 🆕 | 🆕 **Registered** | **17 Okt 2026** — riset Rust tiling WM/controller (Windows 11 x64 & Intel macOS 13+). Repo publik `Niumination/hypr-rust`, lokal `labs/hypr-rust/`. Fase: dokumentasi + scaffold `layout-core`; cargo belum pernah dijalankan. Override freeze D-1013-05 → `D-2026-1017-01` |
 
 ### 🧪 sandbox/ — 5 Dormant (ex-incubator)
 
@@ -691,3 +693,17 @@ Sprint 11–15 Sep selesai. Deadline 15 Sep sudah lewat. Saat ini menunggu penil
 - 🔒 **Audit pasca-cron menemukan tiga celah**, semuanya ditutup: repo restore sama sekali **tidak punya gate anti-rahasia** (`git add -f` adalah satu-satunya jalan rahasia lolos ke riwayat) → `.githooks/pre-commit` baru, diuji 5 kasus, `sync-all.sh` mengaktifkannya otomatis; **kredensial tak dikenal dulu dilewati diam-diam** (restore tetap "sukses" padahal rahasia hilang) → kini restore berhenti + penjaga kontrak di sisi build (7/7 kredensial terpetakan); gate baru saya sempat **memblokir commit sendiri** karena README yang mendokumentasikan pola dianggap kebocoran → pola kini menuntut nilai realistis ≥20 karakter.
 - 🧰 **Autoskills (manifest SHA-256) di repo restore:** `integrity.sha256` (40 berkas) + `scripts/integrity-check.sh`; `restore.sh` menjalankannya sebagai **langkah 0** sebelum menyentuh apa pun. Dua bug implementasi tertangkap pengujian: manifest berbasis berkas-di-disk menuduh klon sehat sebagai rusak (atribut `eol` di `.gitattributes`) → kini hash **blob git** dari index + deteksi perubahan lokal; `tr` gagal pada berkas biner → `LC_ALL=C`.
 - 🧠 **Premortem** (`apps/niumination-restore/docs/PREMORTEM.md`): 10 cara restore gagal di device lain + tanda peringatan dini + status mitigasi. Tiga langsung ditutup: **klon bisa menggantung selamanya** (terukur 0 KB/30 detik, proses hidup, tanpa error) → timeout 120s ×2 + fallback HTTPS + tarball API; **`--apply` bisa menimpa mesin hidup** (`TARGET_HOME` default `$HOME`) → `live_guard` menolaknya; dan integritas tooling. Tripwire yang belum tertutup: **passphrase dari salinan cloud belum pernah diuji** — semua drill membaca Keychain.
+
+---
+
+## 🔴 Perubahan — 17 Okt 2026 — Registrasi hypr-rust (override freeze D-1013-05)
+
+*Dokumen diverifikasi langsung dari tool output (unzip, grep audit rahasia, git, gh) 2026-10-17.*
+
+- 🆕 **hypr-rust terdaftar di ekosistem** — riset Rust tiling window manager/controller untuk **Windows 11 x64 & Intel macOS Ventura 13+** (bukan port Wayland compositor). Sumber: `~/Downloads/hypr-rust-full-workspace.zip` (27 berkas, 93 KB) → diekstrak utuh.
+- 📁 **Penempatan: `labs/hypr-rust/`** — kategori labs karena kondisi sekarang fase riset/spike: dokumentasi lengkap (PRD, ARCHITECTURE, ROADMAP, QUALITY, RESEARCH-PLAN, PLATFORM-SPIKES, REFERENCES, ADR×3, AGENT-HANDOFF, AGENT-WORKFLOW) + satu crate `crates/layout-core` (geometry + layout deterministik, tanpa OS deps). Target akhirnya aplikasi desktop — dipindah ke `desktop/` kalau sudah fungsional.
+- 🌐 **Repo baru: `github.com/Niumination/hypr-rust` (PUBLIK)** — branch `main`, commit awal `5740cd5`, visibility publik mengikuti workflow handoff yang diminta docs proyek itu sendiri ("share the public repo URL").
+- 📜 **Override freeze D-1013-05 (larangan #5)** — klarifikasi pemilik 17 Okt 2026 memilih "override pemilik": pengecualian **sekali pakai** untuk registrasi ini; freeze tetap berlaku untuk proyek lain. Tercatat sebagai keputusan `D-2026-1017-01` di `docs/DECISIONS.md` (ledger hidup dibuat ulang di path kanonik; ledger lama D-2026-1013-xx s.d. D-2026-1016-02 tetap sebagai snapshot `docs/audit-2026-10-13/kit/docs/DECISIONS.md`).
+- 🔐 **Audit rahasia sebelum push: 0 temuan** — grep pola api-key/token/secret/password/bearer/sk-/ghp- atas seluruh tree hanya menyentuh kalimat dokumentasi.
+- ⚠️ **Status build jujur:** `cargo fmt/clippy/test` **belum pernah dijalankan** (workspace dibuat di lingkungan tanpa rustc — per README repo). Tidak ada klaim kompilasi. Task lanjutan: jalankan toolchain + isi `docs/PLATFORM-SPIKES.md` di mesin target asli.
+- 📚 **Dokumen terkait yang diupdate:** `README.md` root (peta labs 2 → 5 + tabel Labs baru), `docs/registry/project-catalog.md` (seksi baru "Riset Window Manager"), `docs/DECISIONS.md` (keputusan D-2026-1017-01), tabel `labs/` di dokumen ini.

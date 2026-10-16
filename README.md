@@ -18,7 +18,7 @@ Niumination/
 ├── sites/             🌐 5 FRONTEND — web applications
 ├── desktop/           🖥️ 4 NATIVE — desktop & mobile
 ├── agents/            🤖 4 AI — agents & automation
-├── labs/              🔬 2 EXPERIMENTS — active research
+├── labs/              🔬 5 EXPERIMENTS — active research
 ├── sandbox/           🧪 7 DORMANT — experiments (ex-incubator)
 │
 ├── docs/              📚 DOKUMENTASI TERPADU
@@ -105,6 +105,18 @@ Niumination/
 | **orchestrator** | Python/Multi-agent | ⏸️ Stale |
 | **ultra** | Puppeteer/Node | ⏸️ Stale |
 | **characters/** | herdr agents (6) | 🟢 Active |
+
+---
+
+## 🔬 Labs — Experiments (5)
+
+| Project | Stack | Status |
+|---------|-------|:------:|
+| **maze-3d** | HTML/JS | 🟢 Live (GH Pages) |
+| **mata-aihackfest-2026** | Python/SQLite | 🟢 Active |
+| **edu-content** | PDF→web pipeline | 🟢 Active |
+| **eKinerja-AfrizalMunthe** | Documents | 🔒 Private |
+| **hypr-rust** | Rust (layout-core) | 🆕 Registered 17 Okt 2026 — [github.com/Niumination/hypr-rust](https://github.com/Niumination/hypr-rust) |
 
 ---
 

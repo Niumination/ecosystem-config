@@ -88,6 +88,12 @@
 | **agsv1-hyprpanel** | `github.com/Niumination/agsv1-hyprpanel` | TS — AGSv1 panel | 9 Jan 2025 |
 | **(+ ~20 fork lain)** | — | hyprfloat, Windots, dll | — |
 
+### 🧪 Riset Window Manager — labs/ (proyek asli, bukan fork)
+
+| Projek | Path | Stack | GitHub | Status |
+|--------|------|-------|--------|--------|
+| **hypr-rust** | `labs/hypr-rust/` | Rust workspace — `crates/layout-core` (geometry + layout deterministik, tanpa OS deps) | `github.com/Niumination/hypr-rust` 🟢 **PUBLIC** | 🆕 **Registered 17 Okt 2026** — riset tiling WM/controller untuk **Windows 11 x64 & Intel macOS Ventura 13+** (bukan port Wayland compositor). Kondisi awal: dokumentasi lengkap (PRD, ARCHITECTURE, ROADMAP, QUALITY, RESEARCH-PLAN, PLATFORM-SPIKES, ADR×3, AGENT-HANDOFF/WORKFLOW) + scaffold layout-core; `cargo fmt/clippy/test` **belum pernah dijalankan** (menunggu CI/mesin dev — per README repo). Override freeze D-1013-05: keputusan `D-2026-1017-01` (`docs/DECISIONS.md`) |
+
 ### 📚 Knowledge & Notes
 
 | Projek | Path | GitHub | Deskripsi |
