@@ -1,6 +1,6 @@
 {
-  "fileCount": 1178,
-  "generatedAt": "2026-10-15T16:30:31.351793+00:00",
+  "fileCount": 1180,
+  "generatedAt": "2026-10-16T16:31:05.622817+00:00",
   "skillCount": 238,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -707,10 +707,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/ecosystem-snapshot": {
-      "bundleHash": "320efd5c8b0bd11aaf81f6b9a1caa7a7bc552383e5b440d3cd98d13cee216f46",
+      "bundleHash": "d69b47577c6e12faba3bfe283aaf4027a3d63de08ce25eb4578a407f5dfc3a25",
       "domain": "ecosystem/ecosystem-hermes/ecosystem-general",
       "files": {
-        "SKILL.md": "325c262dd55c22a6be3d41f8b57c77d6535e13fcc75b920ceb10ccef9d6a1f37",
+        "SKILL.md": "41339a35f071fde93961518af920ce3ef3950d6c15bfc4344c29cec68296c586",
         "references/anomaly-audit-playbook.md": "7d339fb09a612d3c420acbcbcf160915c3dfee1bfeb2438a1c11751cc0ce92fb",
         "references/mass-repo-sync.md": "ffb6231c8d0b7a15d0710b2b3db169e91c758e991a2cca7aaf0e69b5e00a972d",
         "references/niumination-core-v2.md": "99073530fb00fe93f2ee9716559e5efbd2a8716be4b004dcf74165362de8ee26",
@@ -803,10 +803,11 @@
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/long-form-markdown-deliverables": {
-      "bundleHash": "047412097e876951284ef2075e147f091b85de9dbbe42466c93f56bfc0eed8aa",
+      "bundleHash": "70ce9cc162e4c63cc2d2b54510582748430d386117251989925dbfb8f72cd4ed",
       "domain": "ecosystem/ecosystem-hermes/ecosystem-general/ecosystem",
       "files": {
-        "SKILL.md": "a7013153adc6648a89507d207649edae54e167d4c4f8425b8e1d62a0cf6b19d5"
+        "SKILL.md": "a7013153adc6648a89507d207649edae54e167d4c4f8425b8e1d62a0cf6b19d5",
+        "references/deliverable-lifecycle.md": "c17f8e99689d407863c79604164b259d26f3fe868bdec832939a1a4f1702d95c"
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/macos-hackintosh-opencore": {
@@ -1139,10 +1140,11 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/external-report-verification": {
-      "bundleHash": "9dc950dd505cb9fa4d772bed3a0b8fba60931e923c6282d746061ba26a08beaf",
+      "bundleHash": "0c158e14fb33c73bfd93df615edb3a5ba47bfcbd3ab9451908c096379872f323",
       "domain": "ecosystem/ecosystem-hermes/hermes-misc",
       "files": {
-        "SKILL.md": "08c142a98d08c9df17ad92de8853f26ef015b8868f6a2561e6c3bdfb9cb4864d",
+        "SKILL.md": "63cd7e940763c0a7243c412f6f74144e2f2cbfeba761906232fc2b08b173b22e",
+        "references/live-verification-probes.md": "8e3de30e6d2c5a84b1aeae4cae8f8fd3a2c20fcb5850a2967feef2abc6c8125b",
         "references/verifying-a-handed-down-fix-plan.md": "d5169fa1bd0e6f99d9809e088f00f5fa5b30b1365b0633e207bcd80b9865954f"
       }
     },
@@ -2219,10 +2221,10 @@
       }
     },
     "software-development/delegated-output-verification": {
-      "bundleHash": "7f66b727158d63d8ed1887e5c6f7f655eb16c0e6e1a190da7c86b7c04fb4f045",
+      "bundleHash": "bb8a6955e55eea65b3fd3ae3f926285481b87d530a5e24eec8c996a9f54f5f77",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "2b41c9991104ed2d86709abd8e1e2ade9396a843ae29ef6387331ae84d25715b",
+        "SKILL.md": "452058d7a84cb549dbdb89c3338f9683a80ea6fa573287978f0a5a54dc4008bd",
         "references/rebuild-gutted-dashboard.md": "0c091ed37796287a49f5edee71ec92eaa1f7c75163e31cf1a2be7aaa44111a33"
       }
     },

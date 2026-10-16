@@ -68,7 +68,7 @@
 | `ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/hermes-fork-reconciliation` | ecosystem | 5 | Bank Pusat | Use when rebasing a diverged fork onto upstream. |
 | `ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/hermes-model-catalog-management` | ecosystem | 2 | Bank Pusat | Manage Hermes model catalog and free-only provider filtering. |
 | `ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/hermes-tool-runtime-failure-triage` | ecosystem | 1 | Bank Pusat | Use when a Hermes tool errors or times out mid-session. |
-| `ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/long-form-markdown-deliverables` | ecosystem | 1 | Bank Pusat | Use when writing reports, plans, or backlog docs. |
+| `ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/long-form-markdown-deliverables` | ecosystem | 2 | Bank Pusat | Use when writing reports, plans, or backlog docs. |
 | `ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/macos-hackintosh-opencore` | ecosystem | 3 | Bank Pusat | Use when upgrading Intel Hackintosh/OpenCore. |
 | `ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/macos-system-health` | ecosystem | 1 | Bank Pusat | Use when auditing macOS disk, RAM, or service health. |
 | `ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/scheduled-job-delivery-routing` | ecosystem | 1 | Bank Pusat | Use when cron output is misrouted or must be routed. Fixes deliver targets. |
@@ -106,7 +106,7 @@
 | `ecosystem/ecosystem-hermes/hermes-misc/ekosistem-content-verification` | ecosystem | 2 | Bank Pusat | Verify web/JSON content accuracy against source documents (DOCX/XLSX) for Niumination ecosystem projects — extract, compare, report, fix. Covers Pemdi data verification and general content audit patterns. |
 | `ecosystem/ecosystem-hermes/hermes-misc/ekosistem-scaffold` | ecosystem | 1 | Bank Pusat | Scaffold new or missing projects in the Niumination ecosystem. Creates AGENTS.md + BACKLOG.md + brain/projects/ entry with standardized templates. Validates git, deploy, and DOX completeness. |
 | `ecosystem/ecosystem-hermes/hermes-misc/external-pr-audit` | ecosystem | 1 | Bank Pusat | Use when an external-agent PR/branch/artifact arrives for an ecosystem repo (Arena/designarena/agen luar lain). Audit before merge — CI truth, rahasia, dampak runtime, import mati, sisa sisi provider — lapor temuan, JANGAN merge tanpa perintah eksplisit pemilik. |
-| `ecosystem/ecosystem-hermes/hermes-misc/external-report-verification` | ecosystem | 2 | Bank Pusat | Use for external audit reports. Verify claims live. |
+| `ecosystem/ecosystem-hermes/hermes-misc/external-report-verification` | ecosystem | 3 | Bank Pusat | Use for external audit reports. Verify claims live. |
 | `ecosystem/ecosystem-hermes/hermes-misc/github/github-upstream-pr-from-fork` | ecosystem | 1 | Bank Pusat | Use when a fix must reach upstream from a diverged clone. |
 | `ecosystem/ecosystem-hermes/hermes-misc/integration-verification` | ecosystem | 4 | Bank Pusat | Verify whether external services, APIs, or toolkits are actually connected and working end-to-end. Use when checking Composio, API keys, providers, webhooks, or local gateways. |
 | `ecosystem/ecosystem-hermes/hermes-misc/mata-ops` | ecosystem | 1 | Bank Pusat | Pull repo MATA dari GitHub & jalankan dashboard lokal :8080. |
@@ -242,6 +242,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-10-15 23:30:48_
+_Last sync: 2026-10-16 23:31:37_
 
 <!-- SKILL_REGISTRY_END -->

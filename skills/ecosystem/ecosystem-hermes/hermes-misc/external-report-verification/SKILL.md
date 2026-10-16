@@ -137,6 +137,22 @@ the owner's local copy of the source still contains it.
    claims to have decayed and budget verification time for it rather than treating each as a surprise.
 8. **Never bake a live figure from the report into a registry or DOX.** Counts go in with a
    "count live" instruction and the command that produces the number, never as a remembered value.
+9. **A state with an in-between phase must be probed for its terminal state, never its progress.**
+   Encryption, migration, reindexing, replication, and rekeying all pass through partial states. A
+   progress reading in the report's own log (`ON (12%)`) is evidence the process *started*; a summary
+   that promotes it to `ON (100%)` is the report laundering its own progress note into a completion
+   claim. Probe the terminal condition and require the finished wording, not a percentage or a start
+   timestamp.
+10. **A "retired" or "decommissioned" claim needs two independent probes: runtime registration and
+   the on-disk artifact.** The loaded state and the will-load-again state are separate facts, and a
+   report can clear one while leaving the other. A unit still registered with its plist deleted, or a
+   plist present with the unit unloaded, is half-retired — say which half survived rather than
+   accepting the claim.
+11. **A scheduled job that exists has not necessarily ever run.** Presence in the job list proves
+   configuration, not execution. Read each job's own last-run field: a job that never fired has no
+   last run at all. And compare the artifact's timestamp against the declared schedule before
+   crediting automation — a snapshot taken hours off the cron expression is a manual run, and the
+   report's "runs automatically" is then unproven.
 
 ## Related skills
 - `external-pr-audit` — same discipline applied to a code artifact (PR/branch) instead of a report

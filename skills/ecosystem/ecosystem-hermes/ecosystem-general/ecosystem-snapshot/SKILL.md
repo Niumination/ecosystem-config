@@ -139,6 +139,24 @@ Saat user minta "rekap perubahan dari awal sampai sekarang" (mis. perubahan Herm
 
 Jangan pernah menulis "ini riwayatnya" tanpa minimal satu sumber filesystem di atas. Kalau backup config ada 10+, tabel timeline (tanggal → provider → model → catatan) adalah format paling informatif.
 
+### Sweep lintas-repo "apa saja yang berubah beberapa hari terakhir"
+
+Saat user bertanya apakah kamu bisa melihat perubahan beberapa hari terakhir, jawab dari bukti yang bisa dibaca ulang — **bukan** dari ingatan sesi. Urutannya:
+
+1. **Cari catatan serahan lebih dulu.** Pekerjaan besar di ekosistem ini sering dikerjakan agent lain (mis. OpenCode CLI) dan diringkas ke satu dokumen riwayat di `docs/`. Cek `git log --since` root dulu; commit yang menambahkan dokumen riwayat akan langsung terlihat. Dokumen itu memuat tabel sebelum/sesudah per fase — pakai sebagai peta, **jangan** sebagai kebenaran.
+2. **Sweep git semua repo, bukan hanya root.** `find . -maxdepth 3 -name .git -type d` lalu `git log --since` per repo. Perubahan tersebar: workspace audit, `wiki/`, `brain/`, repo restore, dan submodule masing-masing punya commit sendiri. Root saja akan melewatkan sebagian besar kerja.
+3. **Hitung commit per hari** (`git log --pretty=format:'%ad' --date=short | sort | uniq -c`) untuk menunjukkan ritme kerja dan menemukan hari yang tidak tercatat.
+4. **Verifikasi setiap klaim state yang bisa diuji — jangan ulangi klaim dokumen.** Dokumen riwayat adalah snapshot yang menua; beberapa klaimnya pasti sudah tidak berlaku. Jalankan probe live (skill `external-report-verification`, bagian "Live verification probes by subsystem") dan laporkan dalam tiga ember: **terkonfirmasi / sudah tidak berlaku / tidak bisa diverifikasi**.
+
+**Pitfall khas dari sweep ini — klaim state yang paling sering rusak:**
+- **Enkripsi/FileVault.** Log pelaksana bisa mencatat `ON (12%)` (proses baru mulai) sementara ringkasan eksekutif menaikkannya jadi `ON (100%)`. Probe kondisi akhir: `fdesetup status` + `diskutil apfs list`. "Encryption/Decryption in progress" = belum selesai, bukan selesai.
+- **Unit launchd "dipensiunkan".** Perlu DUA probe: `launchctl list | grep <label>` (terdaftar sekarang?) dan `ls ~/Library/LaunchAgents/ | grep <label>` (akan dimuat lagi saat login?). Satu ada satu tidak = setengah pensiun; sebutkan bagian mana yang tersisa.
+- **Job terjadwal "berjalan otomatis".** Kehadiran job membuktikan konfigurasi, bukan eksekusi. Baca `Last run` per job; job yang belum pernah jalan tidak punya last run. Bandingkan timestamp artefak dengan jadwal cron — snapshot di jam yang tidak cocok dengan cron = jalan manual yang diklaim otomatis.
+- **Backup restic.** `restic snapshots` tanpa env repo gagal dengan `Please specify repository location` — itu argumen kurang, bukan backup rusak. Ambil path repo + password file dari isi script backup, ekspor keduanya, probe ulang.
+- **Jumlah cron.** Jumlah job berubah cepat; hitung live (`grep -c '\[active\]'`), jangan pakai angka di dokumen.
+
+**Laporkan temuan tanpa mengeksekusi.** Sweep ini adalah tugas verifikasi: hasilnya laporan tiga ember + temuan tambahan (mis. artefak audit yang belum di-commit = bukti satu `rm` dari hilang). Tawarkan satu langkah perbaikan paling ringan dalam satu baris, lalu berhenti — jangan commit, jangan hapus, jangan aktifkan apa pun tanpa trigger eksplisit.
+
 ## Pitfalls
 - Do not claim backend work is complete without visual/browser verification
 - Do not invent deployment status; rely on `up-eco.sh` output
@@ -171,6 +189,10 @@ When the user asks for a comprehensive ecosystem map ("petakan seluruh ekosistem
 - Iteration 5: Docs subdirectories, dotfiles tree, auth structure, env variable counts
 
 **Pitfall:** Do NOT try to gather all data in one pass — the user explicitly wants iterative refinement. Each iteration should produce a meaningful, committable increment.
+
+**Pitfall — jangan `rm` file lama sebelum versi baru tertulis.** Menghapus `ecosystem-map.html` lalu menulis penggantinya di langkah terpisah membuat commit yang tercatat **hanya berisi penghapusan**: dokumennya hilang dan riwayatnya terbaca seperti penghapusan yang disengaja. Tulis penggantinya dulu (atau timpa langsung), pastikan file ada dan panjangnya wajar, baru commit. Kalau commit berisi-hanya-penghapusan sudah terlanjur mendarat, perbaikannya adalah commit baru yang menulis file itu — bukan revert, karena penghapusan itulah seluruh isi commit tersebut.
+
+**Pitfall — verifikasi tulis dengan membaca ulang file, bukan dari suksesnya panggilan tulis.** Panggilan tulis yang melaporkan sukses dan file yang berisi konten yang dimaksud adalah dua fakta berbeda; selisihnya muncul satu langkah kemudian sebagai file kosong atau tidak ada. Setelah setiap tulis yang menjadi satu-satunya salinan konten, cek panjang file dan baca ulang bagian akhirnya.
 
 **HTML format preference:** The user prefers HTML with inline SVG diagrams, dark theme, and CSS variables for ecosystem maps. Use semantic colors (green=OK, yellow=warn, red=error, blue=primary, purple=orchestration, orange=protocol).
 

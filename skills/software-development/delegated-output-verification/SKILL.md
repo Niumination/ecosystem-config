@@ -78,6 +78,18 @@ curl -s http://localhost:PORT/ | grep -c "marker-khas-file-refactor"   # 0 = ser
 
 ## Aturan integrasi
 
+### Minta anak melaporkan ANGKA TERUKUR vs ANGKA YANG DIASUMSIKAN
+
+Saat task ke subagent menyebut sebuah angka ("47 Python scripts", "39 markdown reports", "94 cron output"), perintahkan anak melaporkan **angka yang benar-benar diukur** di samping angka yang disebut task, dan menandai kalau berbeda. Alasan mekanisnya: angka di prompt task berasal dari ingatan orchestrator yang sudah basi, sedangkan anak membaca filesystem saat ini — **ketika berbeda, anak hampir selalu yang benar**. Tanpa instruksi eksplisit, anak cenderung "menemukan" angka yang diharapkan agar laporannya cocok, dan drift itu lolos ke dokumen.
+
+Bentuk instruksi yang bekerja: minta anak menutup laporannya dengan tabel `Item | Diharapkan | Aktual` untuk setiap angka yang disebut task. Tabel ini yang membuat drift terlihat dalam satu pandangan, alih-alih terkubur di prosa.
+
+- **Angka yang lebih kecil dari dugaan sering berarti ruang lingkup yang salah, bukan kehilangan data.** Dua Python script padahal prompt menyebut 47 = orchestrator menghitung file di direktori lain (root `~/.hermes/` vs `~/.hermes/scripts/`). Sebelum melaporkan "data hilang", periksa apakah probe-nya menunjuk direktori yang benar.
+- **Angka yang jauh lebih besar dari dugaan berarti task-nya memakai definisi yang lebih sempit.** Ratusan berkas output padahal prompt menyebut puluhan = anak menghitung seluruh direktori, prompt menghitung satu jenis berkas. Sebutkan definisi mana yang dipakai saat melaporkan.
+- **Jangan pakai angka dari laporan anak langsung ke dokumen final.** Angka itu snapshot satu waktu; kalau dokumen akan dibaca lain hari, sertakan perintah yang menghasilkannya, bukan angkanya saja.
+
+### Aturan umum
+
 - **File rusak → tulis ulang sendiri** (orchestrator punya konteks penuh) atau re-dispatch dengan model lebih tinggi. JANGAN integrasikan file rusak demi "menghargai kerja agent".
 - **Refactor gutted → bangun ulang dari backup** dengan builder script (ekstrak section via regex → inject elemen DOM yang JS referensikan tanpa null-check → wrap). Konten halaman tetap INLINE di DOM (jangan pindah ke iframe/stub) supaya semua `getElementById` + polling WS tetap jalan.
 - **`git add -A` trap:** folder backup berisi ribuan file vendored (fontawesome dll) → `git reset --soft HEAD~1` + `git reset`, tambah folder backup ke `.gitignore`, stage HANYA file yang dimaksud, baru commit ulang.
