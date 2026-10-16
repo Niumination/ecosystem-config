@@ -1,0 +1,50 @@
+# Gitleaks config — Niumination ecosystem
+# Extended allowlist for projects and test fixtures
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "generic-api-key"
+description = "Generic API Key"
+regex = '''(?i)(api[_-]?key|apikey|secret[_-]?key|secretkey|access[_-]?key|accesskey|auth[_-]?token|authtoken)[\s:=]+['"][0-9a-zA-Z_.\-]{16,}['"]'''
+tags = ["key", "API", "generic"]
+
+[[rules]]
+id = "private-key"
+description = "Private Key"
+regex = '''-----BEGIN\s?(RSA|DSA|EC|OPENSSH|PGP|PRIVATE)\s?KEY-----'''
+tags = ["key", "private"]
+
+[[rules]]
+id = "github-pat"
+description = "GitHub Personal Access Token"
+regex = '''ghp_[0-9a-zA-Z]{36}'''
+tags = ["github", "token"]
+
+[allowlist]
+description = "Allowlisted files and paths — test fixtures, mock data, docs"
+paths = [
+    # Test fixtures and mocks
+    '''(?i).*test.*fixture.*''',
+    '''(?i).*__tests__/.*''',
+    '''(?i).*mocks?/.*''',
+    '''(?i).*testdata/.*''',
+    '''(?i).*examples/.*''',
+    '''(?i).*\.test\.(ts|js|tsx|jsx)$''',
+    # Documentation and config
+    '''(?i).*README\.md$''',
+    '''(?i).*AGENTS\.md$''',
+    '''(?i).*BACKLOG\.md$''',
+    '''(?i).*MASTERPLAN\.md$''',
+    '''(?i).*CHANGELOG\.md$''',
+    # Brain
+    '''(?i)brain/.*''',
+    # Git
+    '''\.git/.*''',
+    '''\.gitignore''',
+    # Lock files
+    '''package-lock\.json''',
+    '''yarn\.lock''',
+    '''pnpm-lock\.yaml''',
+]
