@@ -143,7 +143,7 @@ Dua gelombang perubahan: **(1) 13–15 Okt** = audit eksternal + OpenCode CLI v2
 | Gitleaks | 2 leaks | 0 | **0** ✅ |
 | Disk Data | — | 8,2 GiB bebas | **11 GiB bebas (91%)** ✅ |
 | Skill manifest | 305 | 305 | **239 skill / 1.182 file** |
-| eco-guard | — | — | **2 masalah, 14 perhatian** (00:19) |
+| eco-guard | — | — | **1 masalah, 15 perhatian** (01:08, setelah backup ditutup) |
 
 ---
 
@@ -153,9 +153,11 @@ Ini yang penting: beberapa klaim di dokumen OpenCode **tidak cocok dengan penguk
 
 1. **FileVault: dokumen bilang ON, live = OFF.** `fdesetup status` → `FileVault is Off.` dan `diskutil apfs list` → `FileVault: No` untuk semua volume. Dokumen 17 Okt mencatat pemilik sempat aktifkan lalu terkendala login (perlu recovery key + reset sandi) — kemungkinan dinonaktifkan lagi saat pemulihan. **Ini regresi dari target G9.8.**
 2. **`~/Backups/hermes` tidak punya backup Hermes valid.** Isi hari ini: 2 file `.zip.…partial` (135 MB + 239 MB, tidak selesai) + `pre-vacuum-state.db` 510 MB. `eco-guard` menandai `[MASALAH] belum ada file backup di /Users/zaryu/Backups/hermes`. **Namun backup Hermes SAH tetap ada** di `/Volumes/Mac Win/Backups/hermes-dr-zips-20261014/` — 3 zip, semua `unzip -t` rc=0 (4455, 4483 file; ±494 MB), terverifikasi hari ini. Jadi keadaannya: backup valid ada, tapi **di luar jalur yang dipantau eco-guard**, dan yang ada di jalur itu justru sisa `.partial`.
+   - **Akar masalah (ditemukan saat eksekusi 18 Okt):** `eco-guard.sh backup` **tidak pernah dijadwalkan**. Tidak ada cron job untuk itu, dan `crontab` user kosong — itulah sebabnya isi `~/Backups/hermes` beku sejak 14 Okt. Jalur backup Hermes yang hidup sebenarnya adalah **Restic Backup Harian** (`restic-backup.sh`, snapshot 18 Okt 00:23) dan **DR Snapshot Refresh** (mingguan, `dr-restore-sync.sh` → release L1 harian `l1-2026-10-17`).
+   - **Sudah ditutup 18 Okt:** `post-soul-fix-20261014-1704.zip` (471 MB) disalin ke `~/Backups/hermes/`, sha256 identik (`56db939d…9d9b`), `unzip -t` rc=0. eco-guard turun dari **2 masalah → 1 masalah**.
 3. **Kategori skill `ecosystem` = 98**, bukan ≤40 seperti ditulis di `LAPORAN-AKHIR.md`. Pemecahan jadi 3 subkategori sudah dilakukan, tapi angka totalnya justru naik (skill baru terus masuk).
 4. **`muse-spark-1.3-contributor-free` deprecated** → job `Env Writers Scan` (`87b9519fd58d`) gagal HTTP 410 pada 17 Okt 21:30. Belum dipin.
-5. **`eco-guard` 2 masalah** (hitungan historis 17 baris error + backup Hermes) — keduanya sudah dikenal, bukan temuan baru.
+5. **`eco-guard` 1 masalah** (hitungan historis 17 baris error cron) — sudah dikenal, bukan temuan baru. Masalah backup sudah ditutup 18 Okt (lihat §5.2).
 6. **Working tree root belum bersih**: 4 file termodifikasi (`skill-registry.md`, `INDEX.md`, `manifest.json`, `.promotion-ledger.json`) + `?? 0000` (berkas 0 byte, mtime **26 Agu 2027** — sisa artefak, belum di-commit sejak awal).
 7. **`docs/audit-2026-10-13` = submodule tanpa remote** — 22.981 B log perbaikan hanya ada lokal; belum ada cadangan eksternal. (eco-guard juga menandai `inactive-2026-10/orchestrator` = checkout kedua repo ecosystem-config.)
 
@@ -165,6 +167,8 @@ Ini yang penting: beberapa klaim di dokumen OpenCode **tidak cocok dengan penguk
 
 **Yang benar-benar berubah dan terbukti:** model routing (5 job terpin, akar combo tanpa fallback), state.db (VACUUM), restic (3 snapshot + restore terbukti), unit launchd (12+→7), CamoFox loopback, MCP scope 1 project, PAT fine-grained, arsip age-encrypted, gitleaks 0, AGENTS.md ramping, skill bank terhubung, 8 proyek tanpa git ditutup, dan satu proyek baru (hypr-rust) masuk dengan proses klarifikasi + keputusan tertulis.
 
-**Yang masih terbuka:** FileVault (klaim vs live), backup Hermes di `~/Backups/hermes`, kategori skill 98 (>40), pin job `Env Writers Scan`, push 7 commit root (sudah 0 ahead sekarang), bersihkan 4 file dirty + `0000`, dan backup remote untuk submodule audit.
+**Yang masih terbuka:** FileVault (klaim vs live), backup Hermes kini **hanya salinan 14 Okt** (perlu `eco-guard.sh backup` dijadwalkan — akar masalah di §5.2), kategori skill 98 (>40), pin job `Env Writers Scan`, push 7 commit root (sudah 0 ahead sekarang), bersihkan 4 file dirty + `0000`, dan backup remote untuk submodule audit.
 
-**Saran satu langkah paling berguna:** salin salah satu zip sah ke jalur yang dipantau — `mkdir -p ~/Backups/hermes && cp -p "/Volumes/Mac Win/Backups/hermes-dr-zips-20261014/post-soul-fix-20261014-1704.zip" ~/Backups/hermes/` — lalu verifikasi `unzip -l | tail -3`. Itu menutup [MASALAH] #2 tanpa perlu backup baru, dan memulihkan jalur DR yang dipantau eco-guard.
+**Sudah ditutup 18 Okt 01:08:** `~/Backups/hermes` kini punya zip sah (sha256 identik, `unzip -t` rc=0) → `[MASALAH] belum ada file backup` hilang, eco-guard **2 → 1 masalah**.
+
+**Saran satu langkah paling berguna (sudah dijalankan 18 Okt 01:08):** `cp -p "/Volumes/Mac Win/Backups/hermes-dr-zips-20261014/post-soul-fix-20261014-1704.zip" ~/Backups/hermes/` → menutup [MASALAH] #2 tanpa backup baru. **Langkah berikutnya yang benar-benar diperlukan:** jadwalkan `eco-guard.sh backup` (mis. `hermes cron create` no-agent harian 05:30) supaya isi `~/Backups/hermes` tidak beku lagi — karena tanpa penjadwalan itu, titik kembali terbaru selalu tertinggal.
