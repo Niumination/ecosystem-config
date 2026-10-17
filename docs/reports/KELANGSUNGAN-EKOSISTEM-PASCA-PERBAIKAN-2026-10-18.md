@@ -108,12 +108,29 @@ Jangan salin ke `roadmap/` saja — `docs/registry/` yang dibaca `eco-guard` dan
 
 > **Catatan cakupan backup (ditemukan saat R1):** `hermes backup` **tidak memuat `~/Desktop/Niumination`** — ia hanya mengarsipkan `~/.hermes`. Jalur off-site untuk repo ekosistem adalah (a) **push GitHub** (`origin/main`) dan (b) **restic** (memuat `docs/`, `vault/`, `brain/`, `wiki/`). Keduanya sudah diverifikasi membawa berkas ini.
 
-### R2 — Beri penjaga pada Eco Guard Verify [S, ~5 menit]
-Ubah `failure_streak` jadi tidak lagi menambah noise: kirim hanya bila **isi temuan berubah**, bukan setiap kali gagal.
+### R2 — Beri penjaga pada Eco Guard Verify [S, ~5 menit] — **SELESAI 18 Okt 03:15**
+
+**Masalah:** `eco-guard.sh verify` keluar `code 1` setiap kali ada temuan → cron menandai job "failed" → stdout terkirim **tiap tick**, isi yang sama. Akibatnya `failure_streak` 7+ dan 10 insiden `be7dc5154b2c` menumpuk.
+
+**Yang dikerjakan:**
 ```
-Uji    : hermes cron list | grep be7dc5154b2c
-Target : pesan hanya saat jenis temuan berubah; selain itu [SILENT]
+1. Wrapper baru ~/.hermes/scripts/eco-guard-notify.sh
+2. eco-guard-verify.sh diarahkan ke wrapper (backup: .bak-20261018-024031)
+3. State: ~/.hermes/eco-guard-state.sha (+ .sha.prev) — fingerprint temuan
 ```
+Dedup memakai **fingerprint temuan ternormalisasi** (bukan stdout mentah), jadi:
+- hitung-mundur `'nous' kedaluwarsa dalam 0.4 jam` → dinormalisasi ke `<N>`
+- `N baris error/blocked (OK: N)` → dinormalisasi ke `<N>`
+- daftar alat menganggur → dinormalisasi ke satu kelas
+
+**Verifikasi:**
+- `bash eco-guard-notify.sh` run ke-2 → **stdout kosong** (cron tidak mengirim)
+- run pertama (baseline) → menampilkan daftar temuan
+- job cron utuh: `0 8,20 * * *`, `no_agent: True`, `deliver: telegram:…:12595` — tidak berubah
+
+**Temuan bug nyata (bukan cacat saya):** `check_dormant_tools()` di `eco-guard.sh` (baris 515–531) memakai `grep -q "$t" "$HERMES_HOME/cron/jobs.json"` untuk menentukan apakah sebuah alat terjadwal. Karena keluaran `[PERIKSA] alat ini ada tapi TIDAK dipanggil penjadwal mana pun: …` disimpan ke `last_error` job **yang sama**, maka begitu alat dilaporkan menganggur, **laporan itu sendiri membuat dirinya dianggap terjadwal**. Baris hilang → fingerprint berubah → lapor lagi → `jobs.json` berubah lagi → loop. Ini menjelaskan mengapa baris itu berflap dan mengapa `jobs.json` berubah setiap run (mtime 03:12:29 = saat job berjalan). Perlu perbaikan terpisah: pemeriksaan harus mengabaikan `last_error` job sendiri (atau membaca hanya field `script`/`prompt`).
+
+> **Catatan:** dedup tetap berfungsi dengan benar di atas flapping ini — ia melapor saat ada perubahan, dan berhenti saat stabil. Yang belum selesai adalah **bug deteksi alat menganggur** di `eco-guard.sh`, yang merupakan pekerjaan terpisah (menyentuh `eco-guard.sh`, penulis tunggal `Hermes`).
 
 ### R3 — Tambahkan pemilik pada Presence relay [K]
 `Ecosystem Health Check` melapor `Presence: FAIL (401)` tapi tidak ada yang memeriksa. Perlu salah satu: (a) perbaiki token relay, atau (b) matikan pemeriksaannya dan catat alasannya. **Laporan tanpa pemilang = alarm mati.**
