@@ -227,7 +227,7 @@ Desktop/Niumination/
 | **eKinerja-AfrizalMunthe** | ⚪ Minor | 🟢 Active | Bukti dukung eKinerja Sem 1 2026 — 🔒 private repo |
 | **edu-content** | P2 | 🟢 Active | Pipeline PDF→web book (Papermorph Edu) — 4/4 bab selesai (ch01-04), 1.5 MB site, deploy pending |
 | **mata-aihackfest-2026** | P2 | 🟢 Active | Watchdog akuntabilitas pengadaan — AI HackFest Batch 3 (11–15 Sep 2026) |
-| **hypr-rust** | P3 🆕 | 🆕 **Registered** | **17 Okt 2026** — riset Rust tiling WM/controller (Windows 11 x64 & Intel macOS 13+). Repo publik `Niumination/hypr-rust`, lokal `labs/hypr-rust/`. Fase: dokumentasi + scaffold `layout-core`; cargo belum pernah dijalankan. Override freeze D-1013-05 → `D-2026-1017-01` |
+| **hypr-rust** | P3 🆕 | 🆕 **Spike + core tiling** | **17 Okt 2026** — riset Rust tiling WM/controller (Windows 11 x64 & Intel macOS 13+). Repo publik `Niumination/hypr-rust`, lokal `labs/hypr-rust/`. Toolchain terverifikasi (fmt/clippy/test hijau); spike macOS #1 PASS (AX window control), workspace native DISABLED (public API only); core tiling: min-size constraints + overflow policy (13/13 test). PR #1 (spike) & #2 (core) terbuka. Override freeze D-1013-05 → `D-2026-1017-01` |
 
 ### 🧪 sandbox/ — 5 Dormant (ex-incubator)
 
@@ -707,3 +707,14 @@ Sprint 11–15 Sep selesai. Deadline 15 Sep sudah lewat. Saat ini menunggu penil
 - 🔐 **Audit rahasia sebelum push: 0 temuan** — grep pola api-key/token/secret/password/bearer/sk-/ghp- atas seluruh tree hanya menyentuh kalimat dokumentasi.
 - ⚠️ **Status build jujur:** `cargo fmt/clippy/test` **belum pernah dijalankan** (workspace dibuat di lingkungan tanpa rustc — per README repo). Tidak ada klaim kompilasi. Task lanjutan: jalankan toolchain + isi `docs/PLATFORM-SPIKES.md` di mesin target asli.
 - 📚 **Dokumen terkait yang diupdate:** `README.md` root (peta labs 2 → 5 + tabel Labs baru), `docs/registry/project-catalog.md` (seksi baru "Riset Window Manager"), `docs/DECISIONS.md` (keputusan D-2026-1017-01), tabel `labs/` di dokumen ini.
+
+## 🔴 Perubahan — 17 Okt 2026 (sesi 2) — Toolchain terverifikasi, spike macOS, core tiling
+
+*Dokumen diverifikasi langsung dari tool output (cargo, swiftc, git, gh) 2026-10-17.*
+
+- ✅ **Toolchain hijau di main `d2fc8ed`** — `cargo fmt` diterapkan, 2 clippy error diperbaiki, `cargo test --workspace` 6/6 PASS. Status "belum pernah di-compile" di README repo diperbarui.
+- ✅ **Spike macOS #1 (branch `spike/macos-spike-1` @ `a2d899b`, PR #1)** — mesin Intel macOS 26.7.1 (25G241), i5-10310U, 1 display 1920×1080 @1.0x, AX GRANTED. Spike 1 (ordinary window management via AX): **PASS** (discovery/read/move×3/resize/AXRaise/stale-handle). Spike 2 (native workspaces): **DISABLED** — detect/switch/cross-Space move NOT AVAILABLE via public API; `activeSpaceDidChangeNotification` terdaftar, tidak terbukti live. Tanpa CGS/SkyLight, tanpa API private, target uji window sendiri.
+- ✅ **Spike rerun (`fb120d9`)** — semua hasil reproducible identik; tidak ada perubahan keputusan. Laporan verifikasi: `docs/reports/MACOS-SPIKE-1-2026-10-17.md` (format house: environment + tool output + checklist reproduksi).
+- ✅ **Core tiling (branch `core/tiling-constraints` @ `51cfced`, PR #2)** — Phase 1 increment: per-window minimum-size constraints + kebijakan overflow clamp+report (ARCHITECTURE §6, QUALITY §2), tanpa dependensi baru. Golden + property-style tests (LCG deterministik, 400×5 kinds). `fmt`/`clippy -D warnings` hijau, **13/13 test PASS**.
+- 🔗 **Semua perubahan ter-push ke repo publik** — `main` @ `d2fc8ed`, `spike/macos-spike-1` @ `ea50040`, `core/tiling-constraints` @ `51cfced`; PR #1 & #2 terbuka. Dapat diverifikasi dari arena.ai.
+- ⏭️ **Berikutnya:** review PR #1/#2 → merge; task inti berikutnya (adapter AX terisolasi / reducer lifecycle) sesuai `docs/ROADMAP.md` + `docs/AGENT-HANDOFF.md`; spike ulang di mesin multi-Space/multi-display bila ada.
