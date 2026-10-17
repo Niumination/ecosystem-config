@@ -83,22 +83,30 @@ Keempatnya bukan masalah teknis — semuanya masalah **jejak**:
 
 ## 5. Rekomendasi (urut prioritas, semua read-only / murah)
 
-### R1 — Kembalikan `KEPUTUSAN-TETAP.md` ke ekosistem [S, ~5 menit]
+### R1 — Kembalikan `KEPUTUSAN-TETAP.md` ke ekosistem [S, ~5 menit] — **SELESAI 18 Okt 02:20**
 Ini perbaikan paling tinggi rasio manfaat/biayanya, dan mencegah kesalahan yang baru saja saya lakukan terulang.
 
 **Catatan penting:** sumber aslinya **sudah tidak ada** di disk — `/private/var/folders/.../T/opencode/eco-map-study/` sudah hilang, dan tidak ada di `eco-map.zip`, `/Volumes/Mac Win`, maupun backup zip Hermes. **Satu-satunya salinan yang tersisa ada di `~/.local/share/opencode/opencode.db`** (7 baris sesi `ses_ebb37d5f9ffe7W4f9otoiKJJZB`, termasuk satu compaction 71 KB). DB itu sendiri adalah target backup restic, tapi ia **bukan tempat yang boleh diandalkan sebagai arsip keputusan** — ia bisa dikosongkan/dipangkas kapan saja.
 
-Langkah:
+**Yang dikerjakan (sudah dieksekusi):**
 ```
-1. Ekstrak isi K-01 & K-05 dari opencode.db (read-only):
-   sqlite3 opencode.db "select data from session_message where data like '%## K-01%'"
-2. Tulis ke docs/registry/KEPUTUSAN-TETAP.md
-3. Uji: grep -c 'K-01' docs/registry/KEPUTUSAN-TETAP.md   # harus >= 1
-4. Commit + push (sekaligus masukkan ke backup Hermes berikutnya)
+1. Ekstrak teks asli K-01 & K-05 dari opencode.db (read-only, sesi ses_ebb37d5f9ffe7W4f9otoiKJJZB)
+2. Tulis ke docs/registry/KEPUTUSAN-TETAP.md  (7.698 B) — isi ASLI, bukan ringkasan
+3. Catat di docs/DECISIONS.md sebagai D-2026-1018-01
+4. Commit c3a8406 + PUSH ke GitHub
+5. Snapshot restic 77eac8e1 (02:20)
 ```
 Jangan salin ke `roadmap/` saja — `docs/registry/` yang dibaca `eco-guard` dan agen setiap sesi. Sekaligus: catat K-01 & K-05 sebagai entri di `docs/DECISIONS.md` (ledger hidup) supaya ada dua salinan di dua tempat dengan peran berbeda.
 
+**Verifikasi (diambil ulang):**
+- `grep -c 'K-01' docs/registry/KEPUTUSAN-TETAP.md` → **3** · `'K-05'` → **2**
+- `git log --oneline -1` → `c3a8406` · `git status -sb` → `## main...origin/main` (0 ahead → sudah ter-push)
+- `restic dump latest …/KEPUTUSAN-TETAP.md | grep -c 'K-01'` → **3** (berkas benar-benar terbaca dari snapshot)
+- snapshot restic `77eac8e1` 02:20:55 · `bash eco-guard.sh verify` → **1 masalah** (FileVault tidak lagi disebut sebagai temuan)
+
 > Ini juga membuktikan poin di Lubang 1: sebuah keputusan penting **hampir hilang sepenuhnya** karena hanya hidup di tempat sementara. DB sesi bukan arsip.
+
+> **Catatan cakupan backup (ditemukan saat R1):** `hermes backup` **tidak memuat `~/Desktop/Niumination`** — ia hanya mengarsipkan `~/.hermes`. Jalur off-site untuk repo ekosistem adalah (a) **push GitHub** (`origin/main`) dan (b) **restic** (memuat `docs/`, `vault/`, `brain/`, `wiki/`). Keduanya sudah diverifikasi membawa berkas ini.
 
 ### R2 — Beri penjaga pada Eco Guard Verify [S, ~5 menit]
 Ubah `failure_streak` jadi tidak lagi menambah noise: kirim hanya bila **isi temuan berubah**, bukan setiap kali gagal.
