@@ -227,7 +227,7 @@ Desktop/Niumination/
 | **eKinerja-AfrizalMunthe** | ⚪ Minor | 🟢 Active | Bukti dukung eKinerja Sem 1 2026 — 🔒 private repo |
 | **edu-content** | P2 | 🟢 Active | Pipeline PDF→web book (Papermorph Edu) — 4/4 bab selesai (ch01-04), 1.5 MB site, deploy pending |
 | **mata-aihackfest-2026** | P2 | 🟢 Active | Watchdog akuntabilitas pengadaan — AI HackFest Batch 3 (11–15 Sep 2026) |
-| **hypr-rust** | P3 🆕 | 🆕 **Spike + core tiling** | **17 Okt 2026** — riset Rust tiling WM/controller (Windows 11 x64 & Intel macOS 13+). Repo publik `Niumination/hypr-rust`, lokal `labs/hypr-rust/`. Toolchain terverifikasi (fmt/clippy/test hijau); spike macOS #1 PASS (AX window control), workspace native DISABLED (public API only); core tiling: min-size constraints + overflow policy (13/13 test). PR #1 (spike) & #2 (core) terbuka. Override freeze D-1013-05 → `D-2026-1017-01` |
+| **hypr-rust** | P3 🆕 | 🆕 **Spike + core tiling + M1 AX adapter** | **18 Okt 2026** — riset Rust tiling WM/controller (Windows 11 x64 & Intel macOS 13+). Repo publik `Niumination/hypr-rust`, lokal `labs/hypr-rust/`. Spike macOS #1 PASS (AX window control), workspace native DISABLED (public API only); core tiling: min-size constraints + overflow policy (13/13 test); **M1: Rust AX adapter `crates/platform-macos` native-verified (frame/move×3/resize/raise/stale exit 4, 8/8 test, fmt/clippy hijau) — PR #3 terbuka**; Dock mutation di-swift spike di-remove (`669e178`); label host direkonsiliasi (sistem `MacBookPro16,2` vs owner ThinkPad X13 Yoga — spike report + M1 report §1). PR #1/#2/#3 terbuka. Override freeze D-1013-05 → `D-2026-1017-01` |
 
 ### 🧪 sandbox/ — 5 Dormant (ex-incubator)
 
