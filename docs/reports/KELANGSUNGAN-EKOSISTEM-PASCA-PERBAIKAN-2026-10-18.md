@@ -132,8 +132,50 @@ Dedup memakai **fingerprint temuan ternormalisasi** (bukan stdout mentah), jadi:
 
 > **Catatan:** dedup tetap berfungsi dengan benar di atas flapping ini — ia melapor saat ada perubahan, dan berhenti saat stabil. Yang belum selesai adalah **bug deteksi alat menganggur** di `eco-guard.sh`, yang merupakan pekerjaan terpisah (menyentuh `eco-guard.sh`, penulis tunggal `Hermes`).
 
-### R3 — Tambahkan pemilik pada Presence relay [K]
-`Ecosystem Health Check` melapor `Presence: FAIL (401)` tapi tidak ada yang memeriksa. Perlu salah satu: (a) perbaiki token relay, atau (b) matikan pemeriksaannya dan catat alasannya. **Laporan tanpa pemilang = alarm mati.**
+### R3 — Pin model cron ke model hidup [K] — **SELESAI 18 Okt 20:30**
+
+**Akar masalah (dibuktikan probe langsung, bukan asumsi):**
+
+`config.yaml:636` memakai `cron.model: opencode-combo` — default untuk **17 dari 23 job**.
+Combo itu isinya **sudah mati total**:
+
+| Model | Kode | Arti |
+|---|---|---|
+| `oc/muse-spark-1.3-contributor-free` | 410 | ModelDeprecated (permanen) |
+| `oc/muse-spark-1.2-contributor-free` | 403 | FreeTierError (kuota gateway habis) |
+| `oc/fledge-alpha-free`, `oc/mimo-v2.5-free` | 410 | ModelDeprecated |
+| `oc/mimo-v2.6-flash-free`, `oc/longcat-2.5-preview-free`, `oc/space-bunny-free`, `oc/big-pickle`, `oc/nemotron-3-ultra-free` | 403 | FreeTierError |
+| `oc/ling-3.1-flash-free`, `oc/union-alpha`, `oc/ling-3.0-flash-fin-free` | 400 | Upstream menolak |
+
+Tidak ada satu pun anggota sehat. `opencode-combo` balas **HTTP 410**. 3 job gagal: `wiki-librarian`,
+`Env Writers Scan`, `Dettack Daily Security Check`.
+
+> **Koreksi asumsi awal saya:** hipotesis pertama ("job menunjuk `muse-spark` langsung") **salah**.
+> `wiki-librarian` dan `Env Writers Scan` **tidak** punya field `model` — mereka memakai default
+> `cron.model`. Sumber `muse-spark` ada di **isi combo**, bukan di job. Ini ditemukan dengan probe
+> langsung (`combo-delegasi` = HTTP 200, `opencode-combo` = HTTP 410), bukan dengan membaca config saja.
+
+**Yang dikerjakan:**
+```
+backup   : ~/.hermes/config.yaml.bak-r3-20261018-202555
+jalur    : python3 exact-string replace (BUKAN `hermes config set` — lossy)
+ubahan   : cron.model: opencode-combo -> kr/deepseek-3.2
+alasan   : sudah dipakai 4 job cron lain + probe stabil 2x HIDUP
+```
+
+**Verifikasi (diambil ulang):**
+```
+diff vs backup  : tepat 1 baris (636c636) — 0 hapus tak diinginkan
+ukuran config   : 35126 -> 35127 byte (+1)
+YAML valid      : struktur blok cron terverifikasi (model/provider/wrap utuh)
+```
+
+**Belum selesai (perlu keputusan owner):** membersihkan isi `opencode-combo` di
+`~/.9router/db/data.sqlite`. Combos dikelola lewat **dashboard 9router**, bukan config Hermes;
+semua endpoint API balas 401. Mengedit sqlite langsung berisiko ditimpa 9router yang memegang DB sama.
+
+> `HC Heartbeat Wiki` exit 1 **sengaja** (CHAIN pattern: tidak ping healthchecks.io bila wiki gagal).
+> Bukan bug — tapi alarm tidak pernah pulih selama `wiki-librarian` mati.
 
 ### R4 — Tambahkan jalur `[SILENT]` pada 4 job agent [S]
 Agar peringatan penting tidak tenggelam. `eco-guard` sudah menyediakan polanya.
