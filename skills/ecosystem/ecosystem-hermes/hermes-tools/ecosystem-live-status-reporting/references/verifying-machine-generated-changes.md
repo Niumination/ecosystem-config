@@ -56,6 +56,52 @@ wrong endpoint is a symptom; the cause is that the code looked for a credential
 in a file that never contained it. Fixing only the prose leaves tomorrow's run
 to regenerate the same error.
 
+## The author leaves a report that contradicts the machine — re-probe, do not inherit
+
+An agent's own post-work report is a CLAIM in the same category as a log line: it
+was written against the machine, by something that could not verify it. The
+danger is directional — the report reads as the author's honest summary, so it is
+the one document you are tempted to copy without probing.
+
+Rule: **probe every protection and state the report asserts, and list the
+divergences as their own section.** The highest-value output of this kind of
+review is often exactly the list of things the prior report got wrong, because
+those are the claims a reader will act on.
+
+Typical divergence classes, each with the probe that settles it:
+
+| Report says | Probe | Why it drifts |
+|---|---|---|
+| "FileVault ON / encryption enabled" | `fdesetup status`, `diskutil apfs list \| grep -i filevault` | the owner toggled it back after a login recovery; the report describes the moment of enabling |
+| "backups valid" | `ls -la <backup dir>`, then `unzip -t` each artifact | a dir can hold only `.partial` siblings while the real archives live on an external volume |
+| "backup is kept fresh" | read the artifact's mtime, then find what regenerates it and whether that is scheduled | a valid archive copied in by hand satisfies the monitor while the directory stays frozen — a closed alert is not a working protection |
+| "N categories fixed" | count live from the manifest/index | the split was done, but growth outran it — the total went UP |
+| "no leaks / gate green" | re-run the gate (`gitleaks detect --no-banner --redact`) | the gate is a point-in-time result, not a property |
+| "M model paths in use" | read the live config/model listing | a pin references a model the upstream has since deprecated |
+
+## Reading an agent's session history for what it actually did
+
+The artifacts (commits, docs) show what was written; the agent's session store
+shows what was decided and why. For an agent with a SQLite session store, probe
+it read-only and extract the per-session message rows:
+
+```
+sqlite3 "file:<agent-db>?mode=ro" \
+  "select session_id, type, data from session_message where session_id=? order by seq"
+```
+
+Messages are stored as JSON blobs, so filter them in Python (unwrap `content[]`,
+keep `type == 'text'`) rather than trying to `grep` readable prose out of raw
+JSON. Then verify each extracted claim against the machine before repeating it:
+the session text is intent, not evidence.
+
+## A "fixed" state is a claim about a moment, not a property
+
+Anything that can be toggled, split, rotated, or pinned drifts between the
+report and your read. Re-probe it. State the divergence with the probe command
+that settled it, and keep the prior report's wording visible next to your
+correction so the reader can see which version to trust.
+
 ## Dynamic sources are not stable enough to transcribe
 
 Live catalogues, quotas, and endpoint listings change between runs, sometimes

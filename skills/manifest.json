@@ -1,7 +1,7 @@
 {
-  "fileCount": 1180,
-  "generatedAt": "2026-10-16T16:31:05.622817+00:00",
-  "skillCount": 238,
+  "fileCount": 1185,
+  "generatedAt": "2026-10-19T16:33:33.221906+00:00",
+  "skillCount": 240,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -581,14 +581,15 @@
       }
     },
     "devops/macos-launchd-services": {
-      "bundleHash": "021a32cc3f4f6dee8daa99ac3a68c7ca754b12473517904a7a8c6f0198a1787a",
+      "bundleHash": "33328762a38abf4d5f8c4f01b60b9c908a8b4a16bfcc80605371870dc1232595",
       "domain": "devops",
       "files": {
-        "SKILL.md": "ae9beb80d2d68c5a83366f60c628185c9363fe55b5af7dae073ef814fd7a6eb2",
+        "SKILL.md": "e7d364bfeda035f1274d5e87f5814de5e6e92a3ebc0fcbbe7e8988837bab9334",
         "references/browser-capture-waf-bypass.md": "b649043f2cad785f6980f720bf58081ad40ad3d688c2af0af8abf671b9be6822",
         "references/gateway-network-wait-fix-2026-08-30.md": "11f0f6199c8515fb107f50afed0dc6c9b525a912bbb91f918945f56c3d6da794",
         "references/launchd-env-not-shell-env.md": "9819e71b72605ba42cad407af9ff1554f4f9468a4c894215ea59bcc598a7b9bc",
         "references/services-inventory.md": "8380ce32f37e8166b4e64b978b51a3414e9df6ec7131c5982ec7716f79619cec",
+        "scripts/eco-guard-backup.sh": "7780fa636842a5bae52b59ab330462cd874b8a0db29ca34817245c00141eea3e",
         "scripts/wait-for-network.sh": "1af243c93b6e462b692d3a0ce303ad87733403c8005d36e573138aca6ae63a66",
         "templates/9router-sync.plist": "6aa395c91ea87e6e5ce807d06f8c73a0137257603736b0f77151fa037212eb63",
         "templates/network-wait-launchagent.plist.xml": "65de20059123fc7f4a54780928d6ee93b60d9445526a1702cc3f340707e6fe11",
@@ -987,10 +988,11 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-config/hermes-runtime-credential-resolution": {
-      "bundleHash": "8b317857017f99e2e83330da91095bd450789a5f3531cd34d053f2048e9be3b7",
+      "bundleHash": "01b82afdccfef98441309c71bfa9b7234f0aa8238dce17b2e3a538c47378d3e0",
       "domain": "ecosystem/ecosystem-hermes/hermes-config",
       "files": {
-        "SKILL.md": "8efb8f27cc1d734d3834d879994bcaf8b9445c3c0b2f98785864986307e2f0c2"
+        "SKILL.md": "c335250178eec496d15a5e37463a79d017d7e306a74a386be74a2f82a6f894bf",
+        "references/credential-removal.md": "e7f276c441270816b7507166d473163b26df7f34773db2ba6417d4bb7b5cbeca"
       }
     },
     "ecosystem/ecosystem-hermes/hermes-config/hermes-tool-backend-triage": {
@@ -1140,11 +1142,11 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/external-report-verification": {
-      "bundleHash": "0c158e14fb33c73bfd93df615edb3a5ba47bfcbd3ab9451908c096379872f323",
+      "bundleHash": "402d9d1dbbd390dfd26a2ffeb66df478912270a9cc6ebac382ce970f8023a3de",
       "domain": "ecosystem/ecosystem-hermes/hermes-misc",
       "files": {
-        "SKILL.md": "63cd7e940763c0a7243c412f6f74144e2f2cbfeba761906232fc2b08b173b22e",
-        "references/live-verification-probes.md": "8e3de30e6d2c5a84b1aeae4cae8f8fd3a2c20fcb5850a2967feef2abc6c8125b",
+        "SKILL.md": "43313ed5e72ad37d3b2a00d89fd35cd8873b110ca2343a914ec711452cae619e",
+        "references/live-verification-probes.md": "d61fa9cbd4a9bcfdad7fdce5a4dd8d31194bc8f0ec79c62fbe3b9291d11eadab",
         "references/verifying-a-handed-down-fix-plan.md": "d5169fa1bd0e6f99d9809e088f00f5fa5b30b1365b0633e207bcd80b9865954f"
       }
     },
@@ -1173,10 +1175,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/niu-9router-maintain": {
-      "bundleHash": "e56f01301e0b2c89eeef58d81eac1a2f4f723452b3a02f18ba2646f61c1487ae",
+      "bundleHash": "a3606342c22bf6afac000f8c7e879a2893c1810a99bf9b3d86c60776b828012f",
       "domain": "ecosystem/ecosystem-hermes/hermes-misc",
       "files": {
-        "SKILL.md": "9ad52a77d4c7bb9ac151150e587c00c8d993e4d38d9ff5b6a21e0053cd5af39d",
+        "SKILL.md": "1accfe3963b2b86e28782f6843ec134c1cccdaec20bf59556b0f4f6b91abc7e1",
         "references/9router-catalog-2026-08-31.md": "48506b9e9e36830576be69dc4acb7dd394e85b17727b429e4e0a33822d8a6f43",
         "references/9router-models-and-connectivity.md": "d3126f43b651ca8907b5ad5a1c1162971cad86d044f8a7afa325881ac6a05dcb",
         "scripts/audit_models.py": "8ea34505f9286e4abd6439d1b0ab219e805c5d3b79f8f33cc782f67aa9a16742"
@@ -1365,13 +1367,13 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-tools/ecosystem-live-status-reporting": {
-      "bundleHash": "28ce5bd17eeefa5f197376f7add069612e1aa4987c6507d9557701073ce64637",
+      "bundleHash": "ffb3b45951126b6a9e4e795edd37c00512859dd6f70296f45adccfa78afb7978",
       "domain": "ecosystem/ecosystem-hermes/hermes-tools",
       "files": {
-        "SKILL.md": "7df20e036f1ba2a19ddee6b4db71c1f26db8989b7e9b97c1f9309a67e7287a73",
+        "SKILL.md": "8d9097adb9af32ec0af40d9dc5398551251a9471cfd01d6b9e8c4013c12b6117",
         "references/deployment-status-verification.md": "fb94ee3bf481ef7992fc362ba882af7980cc8e387294c77ea25239fccf301186",
         "references/resource-attribution.md": "f25ee3daf403f5e4665dfedcb0cc7be70a9e5e0cea665e74743e1129e0d3380b",
-        "references/verifying-machine-generated-changes.md": "90707defa792fc0d6a3ff0160fb460fbfce33ef2b9ff7255cd991e153fbf486e"
+        "references/verifying-machine-generated-changes.md": "daae098ac82fae168b4476e50a6efd931a055a15b4fb3b13ea2ddc222e9f76ee"
       }
     },
     "ecosystem/ecosystem-hermes/hermes-tools/model-checker": {
@@ -1472,6 +1474,21 @@
       "domain": "ecosystem/ecosystem-wiki/creative",
       "files": {
         "SKILL.md": "4579f2fbd9088a804427752b46b3c7b1e1807c90b9321951d52caf41ee94c0c2"
+      }
+    },
+    "ecosystem/opencode-troubleshooting": {
+      "bundleHash": "c6f91c6a8deac0152a7fc1c176f2add64490b480611e8d056f9cf274a9cbc186",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "1235114305a5440baaba107db12917a3df8f51555cb0f382ebcdc0d6880f6711",
+        "references/9router-config.md": "802c572a814916b903fd3805cb9cfec80d25663f1a03805762484451a553b3a7"
+      }
+    },
+    "ecosystem/wiki": {
+      "bundleHash": "49b822879d0af4903f9c751887af8cd689ea88b26932167fcd0af84700c4c5cf",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "6f0c03b3996dc51e22ad374f81dd7d581fd6a5fc0f6a1d4e3f72860e3690bc61"
       }
     },
     "github/github-auth": {

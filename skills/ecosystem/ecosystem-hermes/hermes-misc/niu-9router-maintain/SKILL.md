@@ -89,6 +89,167 @@ con.commit()
 # lalu restart server
 ```
 
+## Job Sinkronisasi Bisa Menghapus Pembersihan Anda dalam 30 Menit
+
+Pola kegagalan yang sunyi: Anda membuang model `oc/*` dari `config.yaml`, verifikasi bersih, lalu
+**kembali sendiri**. Penyebabnya job `Sync 9router models to config` — ia membaca katalog 9router
+dan **menulis ulang** `providers.<nama>.models` dari katalog, tanpa tahu model itu mau dilarang.
+
+**Gejala:** `config.yaml` berubah padahal tidak ada yang menyentuhnya; cek `stat -f '%Sm'` untuk
+melihat waktu perubahan, lalu cocokkan dengan `last_run_at` job sync di `cron/jobs.json`.
+
+**Urutan yang benar:** pause job sync **lebih dulu**, baru bersihkan config. Kalau dibersihkan dulu,
+hasilnya terhapus di tick berikutnya.
+```bash
+hermes cron pause <job-id-sync>     # bukan `disable` — perintah itu tidak ada
+hermes cron resume <job-id>         # untuk mengembalikan
+```
+Setelah pause, verifikasi `enabled: false` dan `paused_at` terisi di `jobs.json`.
+
+**Katalog ≠ jalur trafik.** Menghapus entri dari `kv`/`model-catalog.json` bukan cara menghentikan
+permintaan; yang menghentikan adalah (a) tidak ada combo yang memakai model itu, dan (b) tidak ada
+`model:` di config/job yang merujuknya. Biarkan entri katalog apa adanya.
+
+## Combo yang Isinya 100% Model Mati Harus DITANDAI, Bukan Dibiarkan Kosong
+
+Membuang anggota mati dari combo bisa membuat combo **kosong** — dan combo kosong tetap terdaftar,
+sehingga config yang merujuknya menjadi rusak diam-diam. Dua langkah:
+
+1. **Baca dulu, tulis belakangan.** Jangan `UPDATE` di dalam loop yang membaca dari cursor yang sama —
+   snapshot di memori dulu, baru tulis:
+   ```python
+   rows = list(cur.execute('select name, models from combos'))   # baca SEMUA dulu
+   plan = [(n, [m for m in json.loads(md) if not m.startswith('oc/')]) for n, md in rows]
+   plan = [(n, k) for n, k in plan if len(k) != len(json.loads(dict(rows)[n]))]
+   for n, k in plan:
+       cur.execute('update combos set models=?, updatedAt=datetime("now") where name=?', (json.dumps(k), n))
+   con.commit()
+   ```
+   Verifikasi dengan **koneksi baru** (`mode=ro`), bukan cursor lama — cursor lama masih memegang
+   snapshot pra-tulis dan akan melaporkan "sudah bersih" padahal belum.
+
+2. **Tandai combo hantu dengan prefix `off-`** supaya tidak ada yang merujuknya, lalu **ganti semua
+   rujukan di config** ke combo/model hidup. Meninggalkan combo kosong tanpa memperbaiki rujukan
+   berarti `model.default`, `delegation.model`, dan `x_search.model` menunjuk ke tempat yang tidak
+   menyediakan apa pun.
+
+**Koreksi rujukan harus menyeluruh.** `grep` untuk setiap nama combo mati di config **dan**
+`jobs.json`; ganti ke model hidup yang sudah diuji (probe dulu — jangan menebak). Lalu restart 9router
+(`launchctl kickstart -k gui/$(id -u)/com.9router.autostart`) dan verifikasi `/v1/models` balas 200.
+Catatan: setelah kickstart, port butuh ~15–20 detik sebelum `200`; jangan menyimpulkan crash dari
+beberapa `000` pertama.
+
+## Blokir "Abuse Traffic" itu per-IP, BUKAN per-Kredensial
+
+Kesalahan diagnosa yang mahal: saat model gratis `oc/*` balas 403, mudah disimpulkan "kredensial
+salah/habis" lalu menghapus key. **Salah.** Pesan aslinya:
+
+> *"OpenCode's free models aren't available from your current network because we've detected abusive
+> traffic from this IP address. This isn't related to your account."*
+
+**Uji penentu — probe dengan dan tanpa kredensial:**
+```bash
+# keduanya 403 = blokir IP (hapus key tidak menolong)
+curl -s -o /dev/null -w '%{http_code}\n' https://opencode.ai/zen/v1/models
+curl -s -o /dev/null -w '%{http_code}\n' -H "Authorization: Bearer $KEY" https://opencode.ai/zen/v1/models
+```
+Kode `403 error code: 1010` dari Cloudflare = edge block, sebelum request menyentuh akun.
+
+**Cek skala lalu lintas sebelum menyalahkan kredensial:**
+```sql
+SELECT min(timestamp), max(timestamp), count(*) FROM usageHistory WHERE provider='opencode';
+```
+Pada 18 Okt 2026: **6.386 request** dalam ~26 hari (22 Sep → 18 Okt). Itu volume tier gratis yang
+mudah memicu abuse detection. IP publik keluar bisa dicek dengan `curl -s https://api.ipify.org`.
+
+**Yang benar:** hentikan jalur trafik `oc/*` (matikan combo/job yang merujuknya), bukan menghapus key.
+Blokir dicabut berdasarkan waktu tanpa trafik, bukan berdasarkan kredensial baru.
+
+## Membersihkan Kredensial OpenCode (CLI + Desktop) tanpa Merusak yang Lain
+
+Kredensial OpenCode hidup di **empat** tempat, dan hanya satu yang terlihat di UI:
+
+| Lokasi | Isi |
+|---|---|
+| `~/.hermes/.env` | `OPENCODE_API_KEY`, `OPENCODE_GO_API_KEY`, `OPENCODE_ZEN_API_KEY`, `OPENCODE_ZEN_BASE_URL` |
+| `~/.local/share/opencode/auth.json` | `{"opencode": {"type":"api","key":...}}` — `zenmux` adalah layanan BEDA, jangan dihapus |
+| `~/.config/opencode/opencode.json` | `provider.<nama>.options.apiKey` |
+| `~/.local/share/opencode/opencode.db` → tabel `credential` | baris `integration_id='opencode'`, `label='Personal'` = **OAuth Desktop** |
+
+**Cek dulu, jangan asumsikan:** `opencode auth list` menampilkan `OpenCode Console  Personal  stored`
+(itu baris `credential` di db) plus entri `environment` (dari env). Setelah menghapus baris db,
+`Personal` hilang dari daftar — itu konfirmasi yang benar.
+
+**Jangan matikan `opencode serve`.** Ia sering bukan unit launchd (`launchctl list` kosong) sehingga
+restart harus manual; dan bisa ada pekerjaan yang sedang jalan. Cek dulu `pgrep -fl 'opencode serve'`.
+
+**Proses yang sudah berjalan tetap memegang env lama di RAM.** Setelah menghapus key dari `.env`,
+`ps eww <pid>` masih menampilkan `OPENCODE_API_KEY=…`. Verifikasi dengan **hash, bukan nilai**:
+```python
+import hashlib, re, subprocess
+pk = re.search(r'OPENCODE_API_KEY=(\S+)', subprocess.run(['ps','eww',pid],capture_output=True,text=True).stdout).group(1)
+print(hashlib.sha256(pk.encode()).hexdigest()[:10])
+```
+Bandingkan dengan hash key di backup — kalau **berbeda**, itu key lain dari sesi interaktif, bukan
+yang dihapus. Lalu cari di file: `pk.encode() in open(p,'rb').read()`; kalau nol kecocokan, key itu
+hanya ada di memori dan butuh restart proses untuk lepas.
+
+**Backup sebelum menghapus.** Simpan salinan `.env`, `auth.json`, `opencode.json`, plus snapshot tabel
+`credential` ke satu direktori berstempel — pemulihan harus mungkin tanpa menebak.
+
+## Combo Bisa Mati TOTAL — dan Kronologinya Menipu
+
+Sebuah combo (`combos.models`) bisa berisi **hampir semua anggota mati** dan tetap terlihat
+"normal" di dashboard. Gejalanya muncul jauh dari penyebabnya: job cron gagal dengan pesan
+menyebut **satu** model (`ModelDeprecated: muse-spark-1.3-contributor-free`), sehingga mudah
+disalahkan ke "job menunjuk model mati" — padahal job itu **tidak punya field `model`** dan
+memakai default `cron.model`.
+
+**Urutan diagnosis yang benar (probe, jangan baca config):**
+1. Baca `cron.model` di `~/.hermes/config.yaml` (mis. `opencode-combo`) — itu default untuk
+   SEMUA job agen tanpa field `model`.
+2. Cek isi combo di `~/.9router/db/data.sqlite` → `SELECT models FROM combos WHERE name=?`.
+3. **Probe tiap anggota** langsung, jangan percaya katalog:
+   ```bash
+   curl -s -o /dev/null -w '%{http_code}' -X POST http://127.0.0.1:20128/v1/chat/completions \
+     -H 'Content-Type: application/json' -H "Authorization: Bearer $NINE_ROUTER_API_KEY" \
+     -d '{"model":"oc/<nama>","messages":[{"role":"user","content":"hi"}],"max_tokens":64}'
+   ```
+4. Baca **kode di dalam body**, bukan kode luar (503 bisa membungkus 403/410):
+   `410 ModelDeprecated` = mati permanen · `403 FreeTierError` = kuota gateway habis (bukan mati) ·
+   `400 ... Model is unavailable` = combo tidak punya anggota yang bisa melayani.
+
+**Penting:** `403 FreeTierError` (kuota habis) bisa membuat **seluruh combo** gagal walau sebagian
+anggota hidup — combo berputar antar anggota dan akhirnya menyerah. Jadi "combo balas 410" tidak
+berarti semua anggotanya mati; periksa per anggota.
+
+**Beda sifat dari 410/403/400 pada gateway `oc/*`:** 410 = upstream menarik model (permanen, ganti model),
+403 = kuota akun habis (menunggu reset bisa pulih), 400 = upstream menolak bentuk permintaan.
+
+## Cara Memperbaiki Default Cron
+
+Ganti `cron.model` ke **model tunggal yang terbukti hidup**, bukan combo (model tunggal tidak punya
+anggota mati yang bisa meracuni seluruh job):
+```bash
+python3 -c "
+from pathlib import Path
+p=Path('$HOME/.hermes/config.yaml')
+s=p.read_text()
+old='cron:\n  model: opencode-combo\n'
+new='cron:\n  model: kr/deepseek-3.2\n'
+assert s.count(old)==1, 'MATCH %d' % s.count(old)
+p.write_text(s.replace(old,new))
+"
+```
+Jalur `python3 exact-string replace` — **bukan** `hermes config set` (lossy: membuang blok komentar).
+Setelah itu **jalankan ulang job** dan baca statusnya, jangan hanya memeriksa config:
+`hermes cron run <id>` lalu `last_status` + `failure_streak` di `cron/jobs.json`.
+Job agen butuh 1–3 menit; jangan vonis "belum bekerja" dari satu percobaan singkat.
+
+**Kombinasi dengan `enabled: false` tanpa `paused_reason`:** job seperti ini tidak akan pernah jalan
+lagi, dan `hermes cron run` balas `Job is paused/disabled; resume it before running.` — artinya
+kegagalannya bukan soal model. Cek `enabled` sebelum menyalahkan model.
+
 ## Restart Setelah Perubahan
 ```bash
 launchctl kickstart -k gui/$(id -u)/com.9router.autostart

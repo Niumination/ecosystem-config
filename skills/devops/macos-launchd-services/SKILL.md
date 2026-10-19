@@ -93,6 +93,73 @@ Verify fix: run the script twice within 30s — the second run should print "cha
 - `com.niumination.9router-sync` → running (single watcher)
 - `com.niumination.9router-watch` → removed
 
+## Script-Job Cron: Kenapa `--script` Polos Sering Tidak Melakukan Apa-Apa
+
+Job `no_agent` menjalankan `--script` **tanpa argumen**. Skrip yang memparse subperintah lewat
+`case "${1:-}"` (pola `eco-guard.sh` v3) akan jatuh ke cabang `usage` lalu `exit 2` — job
+laporkan `ok`, tidak ada error, dan **tidak ada pekerjaan yang terjadi**. Ini bentuk paling halus dari
+"job jalan tapi tidak berbuat apa-apa": tidak ada baris error untuk ditangkap.
+
+**Aturan:** sebelum menjadwalkan skrip sebagai `--script`, uji tanpa argumen dari shell polos:
+```bash
+bash <skrip>            # harus benar-benar mengerjakan tugasnya, bukan menampilkan usage
+```
+Kalau skrip butuh subperintah, bungkus:
+```bash
+# wrapper: paksakan subperintah, tidak mengubah skrip asli (satu file = satu penulis)
+exec bash "$HOME/.hermes/scripts/eco-guard.sh" backup
+```
+
+**Bukti kasus nyata (18 Okt 2026):** `hermes cron create ... --script eco-guard.sh --no-agent`
+membuat job yang hanya mencetak usage tiap tick. Gejalanya justru kelihatan sebagai *kegagalan*:
+`hermes backup` ditinggalkan di tengah jalan meninggalkan arsip sementara `*.zip.<pid>-<n>.partial`
+(135 MB + 239 MB) yang bukan zip valid (`unzip -t` rc=9), sementara `eco-guard.sh verify`
+melaporkan `[MASALAH] belum ada file backup di ...`. Dua gejala yang tampak tidak berhubungan itu
+berakar pada satu hal: subperintah `backup` tidak pernah benar-benar dipanggil.
+
+Setelah wrapper dipasang (`~/.hermes/scripts/eco-guard-backup.sh`), job harus **dijalankan manual sekali**
+(`hermes cron run <job_id>`) dan hasilnya diverifikasi dari luar — file zip benar-benar muncul,
+`unzip -t` bersih, sha256 cocok — bukan hanya membaca `Last run: ok`.
+
+## Deteksi "Alat Menganggur" yang Merujuk ke Diri Sendiri (self-referential check)
+
+Jebakan saat memeriksa "apakah skrip X sudah dijadwalkan": mencari nama `X` di dalam **`cron/jobs.json`**. Masalahnya, keluaran pemeriksaan itu sendiri (`[PERIKSA] alat ini ada tapi TIDAK dipanggil penjadwal mana pun: X …`) disimpan ke `last_error` job **yang sama**, sehingga:
+1. Alat dilaporkan menganggur → teks laporan masuk `jobs.json`.
+2. Run berikutnya `grep` menemukan nama itu di `last_error` → alat dianggap **terjadwal**.
+3. Baris hilang → daftar temuan berubah → lapor lagi → `jobs.json` berubah lagi → loop.
+
+Gejala: satu baris temuan **berflap** (muncul-hilang) dan `jobs.json` berubah setiap kali job pemeriksa berjalan.
+
+**Aturan:** saat memeriksa penjadwalan, baca hanya field yang memang mendefinisikan penjadwal (`script`, `prompt`, `schedule`), **jangan** seluruh JSON. Atau abaikan `last_error`/`last_status` secara eksplisit:
+```bash
+python3 -c "import json;d=json.load(open('$HOME/.hermes/cron/jobs.json'));jobs=d['jobs'] if isinstance(d,dict) else d;print(any(j.get('script')=='trio-watch.sh' or 'trio-watch.sh' in str(j.get('prompt','')) for j in jobs))"
+```
+
+**Pelajaran terkait (dedup laporan):** jangan membandingkan stdout mentah untuk memutuskan "ada perubahan". Hitung-mundur (`kedaluwarsa dalam 0.4 jam`) dan angka kotor (`17 baris error/blocked (OK: 38)`) membuat fingerprint berubah tiap tick. Normalisasi dulu: buang timestamp, bulatkan angka ke kelas `<N>`, dan jadikan daftar nama satu kelas. Tanpa itu, wrapper "laporkan hanya bila berubah" akan berisik selamanya.
+
+## Cakupan Backup: `hermes backup` TIDAK Memuat Repo Ekosistem
+
+`hermes backup` mengarsipkan **`~/.hermes` saja** — ia **tidak** memuat `~/Desktop/Niumination` (repo, `docs/`, `vault/`, `skills/`). Jangan pernah menganggap "sudah `hermes backup`" berarti seluruh ekosistem aman.
+
+Jalur off-site untuk repo ekosistem (dua-duanya wajib diperiksa setelah menulis berkas penting):
+1. **Push GitHub** — `git -C ~/Desktop/Niumination status -sb` harus `## main...origin/main` tanpa `[di depan N]`. Cek dengan `git log --oneline @{u}..HEAD | wc -l` (harus 0).
+2. **Restic** — `restic-backup.sh` memuat `~/.hermes/config.yaml`, `auth.json`, `SOUL.md`, `cron/`, `Niumination/vault`, `Niumination/docs`, `Niumination/brain`, `Niumination/wiki`. Jalankan manual lalu **verifikasi isinya**, bukan hanya snapshot-nya dibuat:
+```bash
+restic -r '/Volumes/Mac Win/Backups/restic' --password-file "$HOME/.config/restic/pass" dump latest <path-berkas> | grep -c '<kata-kunci>'
+```
+
+**Jebakan:** menjalankan backup lalu melaporkan "sudah tercadangan" tanpa memeriksa isi. Pada 18 Okt 2026, berkas keputusan baru yang sudah di-commit **tidak ada** di zip `hermes backup` terbaru (karena memang bukan cakupannya) dan belum ada di restic (snapshot terakhir lebih tua dari berkas itu). Kedua jalur harus ditutup eksplisit.
+
+## Keputusan yang Sengaja: Cari Registry Dulu, Jangan Ukur Dulu
+
+Keadaan yang **disengaja dipilih** terlihat identik dengan kerusakan saat diperiksa mentah. Dua contoh nyata di ekosistem ini:
+- **K-01** — FileVault OFF. `fdesetup status` → `FileVault is Off.` Tampak seperti regresi keamanan. Nyatanya keputusan sadar: pada Hackintosh (macOS Tahoe + OpenCore) FileVault menyebabkan sandi akun ditolak di layar boot; bug resmi `acidanthera/bugtracker#2499` punya gejala sama dan penyelesaiannya justru mematikan enkripsi.
+- **K-05** — error cron bukan masalah struktural (penyebab: model rate-limit / combo tanpa fallback).
+
+**Aturan:** sebelum melaporkan keadaan sebagai temuan, periksa registry keputusan (`docs/DECISIONS.md`, `docs/registry/KEPUTUSAN-TETAP.md`). Bila keadaan itu ada di sana → **bukan temuan**, dan jangan diangkat sebagai alarm. Menyalakan FileVault di mesin Hackintosh = membuat pemilik terkunci di layar boot.
+
+**Kesalahan yang pernah terjadi (18 Okt 2026):** agen menjalankan `fdesetup status`, melihat `FileVault is Off.`, lalu menulisnya sebagai "regresi dari target G9.8" di laporan — tanpa menelusuri sesi agen lain yang memuat keputusan aslinya. Koreksi ditemukan hanya karena pemilik menegur. Gejala khasnya: **laporan berisi kata "regresi"/"celah" untuk keadaan yang sebenarnya sudah diputuskan.** Bila ragu, tanya pemilik dulu; jangan ubah keadaan yang tampak seperti keputusan.
+
 ## Pitfalls
 - **PATH is an inherited value too, and a missing binary fails SILENTLY inside a pipeline.** launchd's PATH is minimal — `sha256sum` (in `/sbin`) is typically absent. The `cmd_a || cmd_b` idiom does **not** rescue it, because a pipeline's exit status comes from its LAST command, so the `||` never fires and the variable ends up empty; a script comparing that empty value to a stored empty value takes the "nothing changed" branch forever. Probe with `command -v`, guard the empty result with `exit 1`, and test under `env -i PATH=<plist PATH>`. Full mechanism + correct `_hash_ids()` pattern in `references/launchd-env-not-shell-env.md`.
 - **A job that runs but does nothing is harder to notice than one that fails.** A self-perpetuating silent no-op (exit 0, no output, no error) leaves no trace in logs or notifications. When a scheduled job appears healthy but its effect never appears, check whether the state/hash file it should be writing is zero bytes or frozen — that is the signature of a pipeline that never produced output, not of a job with nothing to do.

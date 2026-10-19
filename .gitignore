@@ -93,6 +93,9 @@ docs/reports/SECURITY-AUDIT-*.md
 # Logs / runtime artifacts
 logs/
 
+# Lockfile sementara dari skrip (mis. sync/promote) — jangan pernah di-commit.
+*LOCKFILE
+
 # IDE local
 .vscode/
 skills-lock.json

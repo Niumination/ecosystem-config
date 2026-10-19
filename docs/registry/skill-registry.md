@@ -44,7 +44,7 @@
 | `devops/env-doctor` | devops | 8 | Bank Pusat | Recover dotfiles and shell after Stow or bulk delete. |
 | `devops/gh-pages-build-fix` | devops | 1 | Bank Pusat | Fix GitHub Pages Jekyll checkout failures. |
 | `devops/github-pages-deploy` | devops | 2 | Bank Pusat | Deploy static HTML to GitHub Pages via clean branch. |
-| `devops/macos-launchd-services` | devops | 9 | Bank Pusat | Keep macOS always-on services alive; recover launchd plists. |
+| `devops/macos-launchd-services` | devops | 10 | Bank Pusat | Keep macOS always-on services alive; recover launchd plists. |
 | `devops/production-env-vars` | devops | 1 | Bank Pusat | Use when changing or rotating env vars on a live app (Vercel). Decode pulled values, verify functionally, keep a rollback path. |
 | `devops/snapshot-verification` | devops | 3 | Bank Pusat | Verify static snapshot deployment and content. |
 | `ecosystem/ecosystem-hermes/ecosystem-general/arena-patch-adoption` | ecosystem | 5 | Bank Pusat | Use when applying arena.ai zip patch stacks to a repo. |
@@ -87,7 +87,7 @@
 | `ecosystem/ecosystem-hermes/hermes-config/hermes-agent-skill-authoring` | ecosystem | 1 | Bank Pusat | Author in-repo SKILL.md: frontmatter, validator, structure, and writing-quality principles. |
 | `ecosystem/ecosystem-hermes/hermes-config/hermes-gateway-dm-troubleshooting` | ecosystem | 2 | Bank Pusat | Diagnose Hermes gateway errors and Telegram DM delays |
 | `ecosystem/ecosystem-hermes/hermes-config/hermes-provider-config` | ecosystem | 22 | Bank Pusat | Understand and manage Hermes Agent model provider configuration. Covers: API-key providers (config.yaml), OAuth2 providers (hermes auth), model_catalog.json, provider status investigation, and cleanup of disabled/broken providers. Use when: configuring new providers, debugging "provider not found" or auth errors, investigating why a provider works in one context but not another, or cleaning up provider config. |
-| `ecosystem/ecosystem-hermes/hermes-config/hermes-runtime-credential-resolution` | ecosystem | 1 | Bank Pusat | Use when a provider looks broken; prove its real credential. |
+| `ecosystem/ecosystem-hermes/hermes-config/hermes-runtime-credential-resolution` | ecosystem | 2 | Bank Pusat | Use when a provider looks broken; prove its real credential. |
 | `ecosystem/ecosystem-hermes/hermes-config/hermes-tool-backend-triage` | ecosystem | 1 | Bank Pusat | Use when a Hermes tool reports unavailable or timeout. |
 | `ecosystem/ecosystem-hermes/hermes-configuration` | ecosystem | 12 | Bank Pusat | Configure Hermes for Niumination: model mapping, hooks, MCP. |
 | `ecosystem/ecosystem-hermes/hermes-misc/9router-custom-provider-integration` | ecosystem | 1 | Bank Pusat | Use when adding a custom provider to 9router. |
@@ -144,6 +144,8 @@
 | `ecosystem/ecosystem-wiki/content/reels-motion-render` | ecosystem | 1 | Bank Pusat | Use when rendering a Reels/TikTok video with HyperFrames. |
 | `ecosystem/ecosystem-wiki/creative/ffmpeg-ken-burns-motion` | ecosystem | 1 | Bank Pusat | Use when making still cards move: FFmpeg zoompan + mux VO. |
 | `ecosystem/ecosystem-wiki/creative/revideo-motion-graphic` | ecosystem | 1 | Bank Pusat | ARSIF — jalur motion-graphic Revideo ini DITOLAK (macet 7,4 jam, 0 output, 23 Sep 2026). BACA DULU banner penolakan di atas. Pakai HyperFrames atau Remotion. |
+| `ecosystem/opencode-troubleshooting` | ecosystem | 2 | Bank Pusat | Fix OpenCode CLI/Desktop errors and config issues. |
+| `ecosystem/wiki` | ecosystem | 1 | Bank Pusat | Use when the owner, the business, or anything the crew has read is in play. |
 | `github/github-auth` | github | 3 | Bank Pusat | GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login. |
 | `github/github-auth-recovery` | github | 1 | Bank Pusat | Recover broken GitHub auth and rotate compromised keys. |
 | `github/github-code-review` | github | 2 | Bank Pusat | Review PRs: diffs, inline comments via gh or REST. |
@@ -242,6 +244,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-10-16 23:31:37_
+_Last sync: 2026-10-19 23:31:47_
 
 <!-- SKILL_REGISTRY_END -->

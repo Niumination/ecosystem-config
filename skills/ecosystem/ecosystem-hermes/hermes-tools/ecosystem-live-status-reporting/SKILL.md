@@ -32,7 +32,7 @@ Produce a report of the Niumination ecosystem that matches CURRENT live conditio
 ## Always-on rules
 
 - Verification-first: do not claim success from docs, transcripts, or memory — only from commands you just ran, with evidence attached.
-- Stale numbers are the #1 failure. Every count must have a capture timestamp.
+- Stale numbers are the #1 failure. Every count must have a capture timestamp. Never quote a figure from a skills file, an earlier report, or this skill's own text — count live even when a documented value looks recent.
 - Report the truth even when it is uncomfortable (server down, idle threads, failed cron). Owner values honest status over optimistic gloss.
 - When you find a doc that contradicts the machine, the MACHINE wins; note the drift, never "fix" the doc silently.
 
@@ -40,11 +40,28 @@ Produce a report of the Niumination ecosystem that matches CURRENT live conditio
 
 - 9router catalog count: parse JSON with python3 and count `data[]` — `grep -o '"id"'` counts nested ids and inflates (718 vs real 252).
 - Skill counts: THREE distinct numbers exist and all three are correct for different definitions — manifest `skillCount`, live `SKILL.md` count minus `.archive`, and Hermes target `~/.hermes/skills` (which adds bundled skills). A fourth number from a status script may use yet another definition. **Report the three SOURCES you counted, never hardcoded values** — the numbers drift weekly, and a value baked into this skill is wrong by the next sync. Same rule for repo counts and folder sizes: count live, never quote a remembered figure.
-- Cron jobs: `hermes cron list` shows up to FIVE (Tab Stash, Brain Top-10, Model Probe, DR Snapshot, up-eco-lightfix). Check EACH job's Last run / Dispatch — one can be "late" (1h6m) and one GAGAL exit 1 while others run fine.
+- Cron jobs: `hermes cron list` renders only a FEW entries per invocation, so a job showing "active" is not one that ran. Check EACH job's Last run / Dispatch ("late", "catch-up after missed fire", "GAGAL") and its `last_error`, then cross-read `~/.hermes/cron/jobs.json` for the model/pin each job actually carries. Historical `Last failure` lines are NOT open incidents — a "recovered since" suffix is the tell.
 - MC health: HTTP 000 + LaunchAgent absent = down. ALSO verify `start.sh` runs `npx next start` from a directory that HAS package.json — MC app lives in `apex-ui/`; root has none, so the LaunchAgent path fails structurally.
 - Timestamps/PIDs/message counts drift minute-to-minute — always fresh `date`; a PID captured in one session is not the running PID later.
 - `.env` can contain a key twice (AUXILIARY_VISION_API_KEY duplicate) — check `grep -oE '^[A-Z_]+=' ~/.hermes/.env | sort | uniq -d`.
 - When a docs folder recurs, expect it to hide diff collisions: skills/... names exist in BOTH `~/Desktop/Niumination/skills/` and `~/.hermes/skills/`, so `skill_view(name)` can be ambiguous. Prefer absolute paths, and if a tool refuses to guess, read the BANK copy directly at `~/Desktop/Niumination/skills/...`.
+
+## Before/after (sebelum vs sesudah) reports
+
+When the ask is "what changed, and what is different now", the anchor is the **pre-change backup copy**, not a remembered baseline. Ecosystem projects routinely sit next to their own backup — `AGENTS.md.bak-<ts>`, `config.yaml.good.<ts>`, `.gitleaks.toml.bak-<ts>`, `jobs.json.bak-<ts>`. `diff <backup> <current>` yields the exact before/after table; a paragraph describing the old state from memory yields nothing quotable and usually gets one row wrong.
+
+- **"Re-run N times" is a batching directive, not repetition.** Interpret it as N sweeps over different evidence sources, each appended to one accumulating file, then a single synthesized report — never N identical full re-runs. Identical calls cost the same as one and produce nothing new.
+- **Mining an agent's session history for what it changed.** An agent's own SQLite (`~/.local/share/<agent>/…db`, or the Hermes `state.db`) is read-only probeable: `sqlite3 "file:<db>?mode=ro" "select … from session_message"`. Session records reveal intent and reasoning the artifacts cannot. Treat what you extract as a CLAIM to verify against the machine, not as evidence — see `references/verifying-machine-generated-changes.md`.
+- **Every state protection drifts, so re-probe it before asserting it.** FileVault, a service loopback binding, a permission bit, an allowlist entry: a report that asserted one of these last week is evidence about last week. Re-run the probe (`fdesetup status`, `diskutil apfs list | grep -i filevault`, `lsof -nP -iTCP:<port> -sTCP:LISTEN`) and report the current value.
+- **A drifted doc goes in the report as its own numbered section**, headed something like "penyimpangan dokumen vs kondisi live", not as a footnote. A reader who trusts the earlier report will act on it; the divergence list is the most actionable part of the deliverable.
+
+## Verification tools
+
+- `scripts/eco-guard-verify.sh` — the ecosystem's own composite health probe (services, ports, secrets hygiene, DR paths, repo duplication). Run it FIRST for any status/health ask; it classifies findings as MASALAH / PERIKSA / OK and surfaces what the docs do not mention. Same probe as `bash ~/.hermes/scripts/eco-guard.sh verify` when the cron wrapper path will not resolve.
+- `hermes cron list` — job inventory + last-run status (render is truncated; see the cron pitfall above).
+- `gitleaks detect --no-banner --redact` — confirm the secret gate's own "no leaks found" claim instead of inheriting it from a prior report.
+- `sqlite3 "file:<db>?mode=ro" "pragma integrity_check;"` — a DB that must not be written (live `state.db`, an agent's session db) is probed read-only this way.
+- `unzip -t <archive> >/dev/null; echo $?` — proves a backup artifact is intact before reporting it as a valid restore path; a `.partial` sibling file is NOT a completed backup.
 
 ## Arithmetic and attribution gates
 
@@ -64,3 +81,4 @@ Corrections get their own visible table, not silent edits. Add a short "correcti
 
 - `references/deployment-status-verification.md` — deriving deploy status from live probes: 503 vs paused, hostname ≠ project name, never-deployed as its own state, hosted-vs-deployed credential risk.
 - `references/resource-attribution.md` — turning a bare usage percentage into an addressable finding: rank-then-drill, config bounds vs measured size, unrotated logs, read-only probing.
+- `references/verifying-machine-generated-changes.md` — auditing changes an agent or job made that you did not: split into verified-true / verified-false / untestable before touching git; never paraphrase a failure cause you did not reproduce; run the changed program before trusting the change.

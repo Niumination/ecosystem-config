@@ -147,8 +147,7 @@ Combo itu isinya **sudah mati total**:
 | `oc/mimo-v2.6-flash-free`, `oc/longcat-2.5-preview-free`, `oc/space-bunny-free`, `oc/big-pickle`, `oc/nemotron-3-ultra-free` | 403 | FreeTierError |
 | `oc/ling-3.1-flash-free`, `oc/union-alpha`, `oc/ling-3.0-flash-fin-free` | 400 | Upstream menolak |
 
-Tidak ada satu pun anggota sehat. `opencode-combo` balas **HTTP 410**. 3 job gagal: `wiki-librarian`,
-`Env Writers Scan`, `Dettack Daily Security Check`.
+Tidak ada satu pun anggota sehat. `opencode-combo` balas **HTTP 410**.
 
 > **Koreksi asumsi awal saya:** hipotesis pertama ("job menunjuk `muse-spark` langsung") **salah**.
 > `wiki-librarian` dan `Env Writers Scan` **tidak** punya field `model` — mereka memakai default
@@ -167,8 +166,27 @@ alasan   : sudah dipakai 4 job cron lain + probe stabil 2x HIDUP
 ```
 diff vs backup  : tepat 1 baris (636c636) — 0 hapus tak diinginkan
 ukuran config   : 35126 -> 35127 byte (+1)
-YAML valid      : struktur blok cron terverifikasi (model/provider/wrap utuh)
+struktur blok cron terverifikasi (model/provider/wrap utuh)
 ```
+
+**HASIL TERUKUR — 4 job pulih (semuanya dijalankan ulang dan dilihat statusnya):**
+```
+job                        sebelum              sesudah
+wiki-librarian             error streak 3   ->  ok  streak 0   (laporan asli terbit)
+Env Writers Scan           error streak 1   ->  ok  streak 0   ([SILENT] — benar)
+wiki-dropbox               error streak 1   ->  ok  streak 0
+HC Heartbeat Wiki          error streak 1   ->  ok  streak 0   (ping HC kembali)
+------------------------------------------------------------
+total job error            6               ->  4
+```
+Bukan sekadar exit 0: `wiki-librarian` menulis laporan nyata ("zero new pages, zero
+contradictions … Heartbeat logged, marker updated") dan `Env Writers Scan` membalas `[SILENT]`
+karena memang tidak ada yang baru — keduanya bukti job **benar-benar bekerja**.
+
+**Sisa 4 error (bukan lagi soal model):**
+- `Dettack Daily Security Check` — **kredensial tidak tersimpan** (bukan model)
+- `Eco Guard Verify` — exit 1 = "ada temuan" (desain; lihat R2)
+- `wiki-lint`, `wiki-closing-snapshot` — `enabled: false` **tanpa `paused_reason`** → jadi **R5**
 
 **Belum selesai (perlu keputusan owner):** membersihkan isi `opencode-combo` di
 `~/.9router/db/data.sqlite`. Combos dikelola lewat **dashboard 9router**, bukan config Hermes;

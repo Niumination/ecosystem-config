@@ -99,6 +99,41 @@ missing argument, not a broken backup. Read the backup script to recover the rep
 password-file location, then re-probe with both exported. One snapshot present proves the repository
 works; it does not prove the schedule runs.
 
+### A stale backup directory is usually a generator that was never scheduled
+
+A backup claim is three facts, not one: the artifact exists, the artifact is inside the path the
+monitor watches, and the path is kept fresh by a scheduled generator. The first two can be true while
+the third is false, and that combination is the common finding: a directory holding a valid archive
+from weeks ago, with nothing updating it.
+
+Read the generator's own last-run state before calling the backup stale:
+
+```bash
+grep -rln '<generator command>' ~/.hermes/scripts/ ~/Desktop/Niumination/scripts/ 2>/dev/null
+# then: does any job schedule it? if the generator hangs under a stopped gateway, its
+# absence from the schedule is the cause, not an oversight.
+hermes cron list | grep -c '<generator name>' ; crontab -l 2>&1 | tail -2
+```
+
+Then cross-read the job list for the job that produces the copy the directory holds.
+
+**Copying a good archive into the monitored path satisfies the monitor while the protection stays
+stale.** An integrity alert that greps a path closes on the copy, and the directory is still frozen —
+so state the root cause explicitly (un-scheduled generator) next to the closed alert, and recommend
+scheduling the generator rather than another copy. Verify the copy with the generator's own integrity
+check plus a byte-compare, not by its presence:
+
+```bash
+unzip -t <archive> >/dev/null; echo $?            # 0 = intact, .partial siblings are NOT
+shasum -a 256 <source> <copy>                    # must match byte for byte
+```
+
+Two more checks that usually change the verdict: a backup produced by a *different* mechanism than
+the one being audited (an encrypted release on the forge, a restic snapshot) is a live path even when
+the audited directory is empty, so confirm no valid artifact exists elsewhere before reporting the
+path as uncovered — and check the destination volume's free space before copying a large archive, and
+whether the copy lands on the same volume as the source.
+
 ## Published artifacts
 
 ```bash

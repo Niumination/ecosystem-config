@@ -153,6 +153,13 @@ the owner's local copy of the source still contains it.
    last run at all. And compare the artifact's timestamp against the declared schedule before
    crediting automation — a snapshot taken hours off the cron expression is a manual run, and the
    report's "runs automatically" is then unproven.
+12. **A backup directory whose newest artifact is old is a scheduling finding, not a backup finding.**
+   When a protection is reported valid but its newest copy predates the last change it was meant to
+   cover, the question is *what refreshes it*: find the generator script, then confirm it is actually
+   scheduled. A directory of `.partial` siblings plus one old archive is the signature of a generator
+   that was never scheduled — and satisfying the monitor by copying a good archive into the watched
+   path closes the alert while leaving the protection frozen. Report the cause; do not let a closed
+   alert read as a fixed protection. Probe detail: `references/live-verification-probes.md`.
 
 ## Related skills
 - `external-pr-audit` — same discipline applied to a code artifact (PR/branch) instead of a report

@@ -69,6 +69,8 @@ PY
 
 A `None` override means the thread inherits the default — a thread whose `config.yaml` entry names a specific model may in fact be answering on the global default. That divergence is exactly what makes a thread look misconfigured when it is not.
 
+For the *removal* half — deleting a provider's keys across every store without disturbing others — see `references/credential-removal.md`. Removal is a different job from resolution: it is destructive, it must be scoped to one provider, and a running process keeps keys in RAM that no file edit can reach.
+
 ### 4. Probe with the real credential, with a control
 
 ```python
