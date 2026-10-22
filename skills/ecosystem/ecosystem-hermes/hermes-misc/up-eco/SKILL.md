@@ -171,6 +171,31 @@ terbukti di sandbox (52 B vs 52 B, mtime sama, isi beda, tidak tersalin).
 - **up-eco hanya scan 7 thread Telegram, tidak 8.** Thread `12595` (Cron & Otomasi) dibuat 5 Okt 2026 tapi tabel di `up-eco.sh` masih hardcode 7. Kurangi kolom "Last Activity" satu baris.
 - **Skill bank 231 vs `~/.hermes/` 285** itu normal: target = bank + skill bawaan Hermes. Angka otoritatif selalu isi `manifest.json`, bukan jumlah direktori di target.
 
+### Membedakan insiden nyata dari false positive
+
+Sebelum melaporkan temuan `up-eco`, pastikan itu bukan artefak parser. **Jangan lompat ke
+kesimpulan "false positive" tanpa memverifikasi** — memvonis insiden nyata sebagai noise
+menghalangi perbaikan yang seharusnya dilakukan. Dua pola ini **selalu** muncul dan keduanya
+terbukti bukan insiden:
+
+1. **`"Folder tidak dikenal: ~/"` — tapi verifikasi dulu.** Cek apakah folder itu nyata:
+   `ls -la "$NIUMINATION/~/"`. Kalau hanya berisi artefak dari job cron (mis. `wiki/_working/…`),
+   itu **symptom bug prompt job**, bukan folder misterius — lihat
+   `scheduled-job-delivery-routing` untuk mekanismenya. Hapus artefaknya dan perbaiki prompt job.
+   Folder `~` yang kosong tanpa sumber job baru boleh disebut artefak parser.
+2. **`"BACKLOG: 'UPDATE: …' tercantum tapi folder tidak ditemukan"` — SELALU salah.**
+   `check_backlog_sync()` mengambil `**bold**` pertama di setiap baris
+   (`grep -oE '\*\*[^*]+\*\*'`), jadi baris changelog yang diawali `> **UPDATE: …**` terbaca
+   sebagai nama proyek. **Jangan pernah menghapus baris itu atas rekomendasi ini.** Verifikasi
+   dulu: `grep -n '<nama yang dilaporkan>' BACKLOG.md` — kalau yang cocok adalah baris kutipan/
+   changelog, abaikan.
+3. **`"Audit konten skill: N finding"`** — warning-only. Sebagian besar adalah fixture keamanan
+   yang sengaja ada (`evil.example`, `localhost.evil.com`), contoh `~/.ssh`, dan dokumen instalasi
+   `curl | bash`. Jangan "diperbaiki" otomatis.
+
+**Aturan umum:** sebuah temuan yang berulang di setiap run dengan nilai yang sama adalah
+kandidat false positive — tapi konfirmasi lewat satu perintah baca, bukan lewat ingatan.
+
 ### Pelajaran dari perbaikan 2026-09-26 — Phase 5a Vercel (jangan diulang)
 - **Status deployment yang ditulis dari ingatan akan meleset diam-diam.** Registry klaim "Vercel 5 Live"; probe riil 26 Sep 2026 membuktikan **7 dari 13 status salah**, termasuk 2 yang bukan sekadar paused: `kms-spbe` diklaim 200 padahal tidak terdaftar di akun Vercel sama sekali (DNS mati, 000), dan `virtual-assistance` diklaim 200 lewat hostname `virtual-assistance.vercel.app` yang tidak pernah ada — yang sebenarnya `virtual-assistance-pi` dan PAUSED. Satu-satunya obat: probe tiap run, bandingkan dengan registry, laporkan yang beda.
 - **Vercel CLI 59.x menulis banner + tabel proyek ke STDERR, bukan stdout.** `vercel project ls > file` menghasilkan file **0 byte** walau exit 0. Harus `vercel project ls 2>&1`.

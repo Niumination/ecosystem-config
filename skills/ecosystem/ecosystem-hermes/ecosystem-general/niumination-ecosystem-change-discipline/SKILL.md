@@ -31,6 +31,29 @@ How to change files in the Niumination ecosystem without breaking repo boundarie
 
 ## Pitfalls
 
+- **A stop command means stop probing, not "finish the thought."** When the user interrupts
+  with "stop", "berhenti", or "cukup" mid-diagnosis, the correct response is to halt and report
+  what is already established — not to run one more probe so the answer is complete. A user who
+  has solved the problem themselves is telling you the investigation is over; continuing to
+  gather evidence reads as ignoring them and costs trust even when the finding would have been
+  right. State the confirmed cause, name anything still unknown as `UNCHECKED`, and stop.
+- **Never blame the user's own action for a failure you cannot trace to it.** When a tool fails and
+  the user has just changed something nearby (quit an app, toggled a service), the tempting
+  explanation is causation — and it is often wrong. Establish the mechanism before naming a
+  cause: check what actually owns the resource, not what changed most recently. Report the
+  mechanism you proved and the alternative you ruled out; a confident wrong cause sends the next
+  session chasing the wrong component.
+- **Diagnose resource contention by what holds it, not by what the port reports.** A "port already
+  in use" error can come from a socket that no process owns: `lsof -iTCP:<port>` and `netstat -anv`
+  may disagree, and `netstat` names the real holder in its owner column. Cross-read both, then
+  bind-test the port yourself (`socket.bind`) — a successful bind proves it free and overrules
+  both tools. Never conclude "port free" from `lsof` returning nothing when `netstat` shows a
+  `LISTEN` row.
+- **A random port is a shared resource: two independent services can both pick it.** A service
+  that picks its own ephemeral port can collide with another service doing the same, and the
+  collision is intermittent by construction. When a failure looks like bad luck on a port, check
+  whether the OS ephemeral range is the common cause and whether the service can be pinned to a
+  fixed port instead.
 - **Nested repos under `apps/`, `sites/`, and the other v4.0 top dirs are independent and ignored by the root.** `apps/` is gitignored at the root, so nothing under it ever enters the root history, and a nested `.git` does not inherit the parent's staging. A change spanning both needs two commits, in two repos, in two commands. Confirm the ignore rule first with `git check-ignore -v <path>` rather than assuming — a missing ignore entry means your nested work lands in the wrong repo silently.
 - **`git ls-remote` compares false on identical trees.** Piping through `cut -d' ' -f1` leaves a trailing `\t` on the SHA, so `[ "$local" = "$remote" ]` reports divergence when both ends are byte-identical. Split and strip whitespace explicitly before comparing, then trust the result. This has produced two separate false "DIVERGED" alarms.
 - **False-divergence bugs are worth one clean re-verification, not a retry loop.** Diagnose the comparison itself; the repo is almost always correct.

@@ -379,6 +379,20 @@ promotion, not a compliment. Do all four, in order:
 6. Every on-screen figure traced to a same-day source.
 7. Package doc committed in `docs/reports/`; work project outside the repo.
 
+## Frame QA pattern (proven this session)
+
+Extract scene midpoints, build contact sheet, **look at it**:
+
+```bash
+for t in 2 4 10 17 25 32 40 52 62; do
+  ffmpeg -y -i video.mp4 -ss $t -vframes 1 frame_${t}.png
+done
+```
+
+Use `vision_analyze` on each frame to verify: text legible, no overlap, correct scene content at
+boundary times. A scene showing wrong content means GSAP timeline was not rewritten to match
+`data-start` values — fix boundaries and timeline together in one pass.
+
 ## Support files
 
 - `templates/reels-9x16-composition.html` — known-good starter composition (inner wrappers + hard kills).

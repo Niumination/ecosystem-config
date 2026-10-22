@@ -1,6 +1,6 @@
 {
   "fileCount": 1185,
-  "generatedAt": "2026-10-19T16:33:33.221906+00:00",
+  "generatedAt": "2026-10-22T07:48:01.304630+00:00",
   "skillCount": 240,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -69,10 +69,10 @@
       }
     },
     "content/content-script": {
-      "bundleHash": "4ed6d9bbe45ab3d335e5e6f31561ecf6a92ded3f882a9ab3a5d64e9782071806",
+      "bundleHash": "1ab2bb6051977fd6d7634031feb6a4d28f5b315d7c2b16e846a2b6ca6b2a614f",
       "domain": "content",
       "files": {
-        "SKILL.md": "9b1960496c795344ca201ba44f456d85f3413a7e0eca3b239f250209f62bd039"
+        "SKILL.md": "7d54bd1b70d393236ae7781ffd1133918321adf7dd765a2d7e5568815ccea341"
       }
     },
     "content/content-studio": {
@@ -177,10 +177,10 @@
       }
     },
     "creative/gemini-vo-narration": {
-      "bundleHash": "21dc6c87442f19ebe6ff7cadaf2690d5f9322bf81aa9c903b7673febf678d158",
+      "bundleHash": "fb20d2a8031232a8d22bc63bd976990faa34b40647eb2e3c8de67705efe5c654",
       "domain": "creative",
       "files": {
-        "SKILL.md": "ca31c3ceda0b2ad6bbe39ca32da5dece4c0cb59a2e2036b0a576b93a7de80329",
+        "SKILL.md": "9c654dcd248d8113071896e593e38af0528223d720dbbe78178ff66405fe99c4",
         "references/kasus-gagal.md": "99dd5e0b6ca459bb3c6aa4382825c973b6c81bfc4af578d58cc79222c55f09cd",
         "references/prompt-dan-tag.md": "d0e9ee39a5f86e9ba2b420bad9b5f3a7638760a1f5240be7eb03dfceaf9baf1c",
         "scripts/gemini_vo.py": "2fba45a276ad55a8d6d370c9f59dd89822a02a65d2f479c24967d6ee4f2d76a4",
@@ -212,10 +212,10 @@
       }
     },
     "creative/short-form-video-production": {
-      "bundleHash": "ba19b7aa1cf29a465bc237357bfa0ff4ff111793d4bdc7394b334c43a3d0c3fe",
+      "bundleHash": "0c68292e2c96b30f60f8116ebfea896ea287ad72555bb1207b02977bb4c5aada",
       "domain": "creative",
       "files": {
-        "SKILL.md": "d5be11ddd5468bf69231a66a39d7a2622a15f55aebe6e25b5a68c75253665794",
+        "SKILL.md": "c1dc29ecb3d8541f2579d65c03b1bda5051fd53ff0e46ad4c08089caf8540828",
         "references/content-strategy-and-hooks.md": "fcca8637f2d55c8b66718875c521c6efa6064e952e57586a2ffcab8b88c43b7f",
         "references/free-toolchain-verification.md": "60f000c8159a647195d4841ea60c789467b37616d58c1ebb48bc5b4ae7f4b8f3",
         "references/voiceover-delivery.md": "c575de338d77544c4943a8fb44e41474be5d23ca7a67cda4191c328e2d79e602",
@@ -913,10 +913,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/niumination-ecosystem-change-discipline": {
-      "bundleHash": "b984308fa90da415e8d4df9bffe18b96e950d17fd12133a2b5cf859d4ddb6598",
+      "bundleHash": "cd8c44277ec0c7313e6acb178bf075c7e1e7f4c47d029ce0db0c2f6ceaea6843",
       "domain": "ecosystem/ecosystem-hermes/ecosystem-general",
       "files": {
-        "SKILL.md": "5735aff290f4148bfaa3ac825e329b3457e8c54ae98c4322ccfe96b8808ec8ad",
+        "SKILL.md": "6efc5dd66b5b4601a67bfeeee05a3c5133b5ffa232bce3b870f4cb0cb44ec228",
         "references/shared-repo-commits.md": "7eab705051201cfba498e6eea4b1d2cf056650804c0c99166d39ad9e8229b08e"
       }
     },
@@ -1175,10 +1175,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/niu-9router-maintain": {
-      "bundleHash": "a3606342c22bf6afac000f8c7e879a2893c1810a99bf9b3d86c60776b828012f",
+      "bundleHash": "9480f9a6d440a6a85313baf02d4b448e57efe172d9204ea3966050f9f5202668",
       "domain": "ecosystem/ecosystem-hermes/hermes-misc",
       "files": {
-        "SKILL.md": "1accfe3963b2b86e28782f6843ec134c1cccdaec20bf59556b0f4f6b91abc7e1",
+        "SKILL.md": "aaaa1020c179cf51f9d5fb72c3ac363392e307d4baa7d3e0a987c64d4e654527",
         "references/9router-catalog-2026-08-31.md": "48506b9e9e36830576be69dc4acb7dd394e85b17727b429e4e0a33822d8a6f43",
         "references/9router-models-and-connectivity.md": "d3126f43b651ca8907b5ad5a1c1162971cad86d044f8a7afa325881ac6a05dcb",
         "scripts/audit_models.py": "8ea34505f9286e4abd6439d1b0ab219e805c5d3b79f8f33cc782f67aa9a16742"
@@ -1345,10 +1345,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/up-eco": {
-      "bundleHash": "b41e0fbf3bb325c24d8a4d166c0443e80b720d6508a375817384cb7832242fb1",
+      "bundleHash": "af81117a6a85ac630907df28d1d419892b27f4562f2701e994164b22a0f40027",
       "domain": "ecosystem/ecosystem-hermes/hermes-misc",
       "files": {
-        "SKILL.md": "2fc6e7c23c40648e2fdd3a4a2c0a7892b612438fbea65bc12b49f863a3b6c760"
+        "SKILL.md": "199ac01e4e74e604658c2c8605be826fb7fcb9728e97c936572bdbdf30761d02"
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/weathernext-gayo": {
@@ -1477,10 +1477,10 @@
       }
     },
     "ecosystem/opencode-troubleshooting": {
-      "bundleHash": "c6f91c6a8deac0152a7fc1c176f2add64490b480611e8d056f9cf274a9cbc186",
+      "bundleHash": "e44ccc56eaa4ce0276f7deb4f24da32632e3b6712aeb069c91aea38c7d66c37c",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "1235114305a5440baaba107db12917a3df8f51555cb0f382ebcdc0d6880f6711",
+        "SKILL.md": "8142e75f01233ff31d2988569e551e7cbd8a43ba3510d096d4a6b3e22de82e2a",
         "references/9router-config.md": "802c572a814916b903fd3805cb9cfec80d25663f1a03805762484451a553b3a7"
       }
     },
@@ -2357,10 +2357,10 @@
       }
     },
     "software-development/niumination-repo-commit-discipline": {
-      "bundleHash": "f7d1051ce79072a6495728d84dededa7c8711d468a50f78d103865b2db5b04a0",
+      "bundleHash": "eb527c06bdb21176f28e24d89bbb705db817b7b11beb052c13008861f6567366",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "525811bdfd0bbbff7c3cb5c580cb0feed8e8296ceda8e16e25083abaa937df5e",
+        "SKILL.md": "a05cdc17de7b6383228943b3f9a9d96c21332cdc48afe2990dbe4b463bbe8f5c",
         "references/approval-gate-for-history-rewrites.md": "2a271454490706615e752c41821e582395a60f16bd9b86533c8171c2533b8b71"
       }
     },

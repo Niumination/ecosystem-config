@@ -91,6 +91,13 @@ bukan hanya satu suara untuk semua. 14 suara lain tersedia lewat `--daftar-suara
 `narator` · `pengumuman` · `edukasi` · `story` — lihat `references/prompt-dan-tag.md`
 untuk isi lengkap dan cara menambah preset baru.
 
+## Output format
+
+Keluaran selalu dinormalkan ke standar MATA: **44,1 kHz · stereo · 192 kbps**.
+
+File provenance `<nama>.provenance.txt` mencatat: model, suara, preset, nama naskah, panjang naskah,
+durasi, dan tanggal produksi.
+
 ## Verifikasi WAJIB sebelum menyatakan selesai
 
 1. **Dengar sendiri kalau bisa.** Penilaian telinga pemilik adalah ukuran akhir.

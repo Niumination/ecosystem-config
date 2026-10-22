@@ -62,6 +62,29 @@ remote_sha=$(git ls-remote origin refs/heads/main | tr -d '\t' | cut -d' ' -f1)
 
 The `tr -d '\t'` is not optional cosmetics. Without it, identical trees report as diverged because `git ls-remote` emits a trailing tab. Then confirm `git status --porcelain` is empty — and check each repo separately, since the root `git status` cannot see ignored nested repos.
 
+## What the pre-commit gate rejects (and what to do)
+
+Every commit in this ecosystem runs gates that fail **before** the commit is created. A failed
+gate looks like an unexplained "nothing committed": check `git log --oneline -1` — if it still
+points at the previous commit, the gate refused, not git. Read the gate output and fix in place;
+do not work around it.
+
+| Gate | Trigger | Fix |
+|---|---|---|
+| `stray-glyphs` | A CJK / non-Latin script character anywhere in the staged files — including text you pasted into prose | Replace with an ASCII/Latin word. **Never bypass with a no-verify flag** |
+| `skill-manifest.py --check` | `skills/manifest.json` stale after any edit to a skill body | `python3 scripts/skill-manifest.py` (regenerates), then commit |
+| `manifest sinkron` | Same as above | Same |
+
+- **Scan for foreign-script glyphs in your own prose before committing.** The gate flags characters
+  in *any* staged file, so a CJK word that slipped into a skill body or a commit message fails the
+  whole commit. Catch it with a quick `grep -lP` over the staged paths rather than waiting for the
+  gate to name the file and line.
+- **A skill-body edit forces a manifest regeneration, so do them together.** Editing a SKILL.md
+  leaves `skills/manifest.json` stale and the gate refuses; regenerate in the same pass. A commit that
+  only touched a skill body is never complete until the manifest is current.
+- **Never use a no-verify / `--no-verify` flag on this repo.** The gates exist to keep the public repo
+  clean; skipping them publishes the defect permanently.
+
 ### Ambiguous push states
 
 On this machine pushes commonly fail with `The remote end hung up unexpectedly` or `failed to read response body from server`. Those messages describe the connection dropping, not the push being rejected — the ref update may already be on the server.
@@ -94,6 +117,23 @@ If your commit appears in `origin/main`, the transfer succeeded and the local si
 - **Stage by explicit path, never `git add -A` or `git add .`, whenever aggregates are dirty.**
   `git add <your paths>` then read `git diff --cached --name-only` back is the only way to keep a
   whole-tree regeneration from riding along.
+- **Pushing directly to a protected branch is rejected, and the fix is a PR — not a flag.** A repo
+  whose `main` is protected answers `GH006: Protected branch update failed ... Changes must be made
+  through a pull request`, or `remote rejected ... (protected branch hook declined)`. Create a branch,
+  push it, open a PR, and merge it. Check the protection first — when `required_approving_review_count`
+  is 0 the merge can go straight through, so a PR round-trip is not the same as waiting for review:
+  ```bash
+  gh api repos/<owner>/<repo>/branches/main/protection \
+    --jq '{reviews: .required_pull_request_reviews.required_approving_review_count, enforce_admins: .enforce_admins.enabled}'
+  ```
+  Then branch → push → `gh pr create` → `gh pr merge <n> --merge` → `git checkout main && git pull --ff-only`.
+- **A local commit with no remote is not a push failure to retry.** When `git remote -v` prints
+  nothing, there is nothing to push and `fatal: Tidak dapat membaca dari repositori remote` is expected.
+  Creating the GitHub repo is an assertive external action — ask before doing it. The local history is
+  safe; the commit exists regardless of whether a remote ever gets attached.
+- **`git add -A` is the wrong tool when a concurrent thread has left unrelated untracked files.**
+  Stage by explicit path and read `git diff --cached --name-only` back. Untracked scratch files in the
+  working tree (a stray `*LOCKFILE`, a zero-byte artifact) ride along with `-A` and land in the commit.
 - **Never copy a sibling file's value just because it looks like precedent.** Existing files sometimes record values that no longer match the artifact they describe. Confirm the sibling's value against what it describes; if it is wrong, record the correct value and report the discrepancy.
 - **Prefer `patch` over `write_file` for edits.** `write_file` overwrites the whole file. On a file you have only partially read, re-read it before any full rewrite.
 

@@ -111,6 +111,52 @@ for it in files (`val.encode() in open(p,'rb').read()`) — no match means it ex
 the process must be restarted to release it. Never edit a process's memory; restart it, and only
 when the user's work in it is done.
 
+### Step 6a: IP-Level Abuse Blocks (Not Account, Not Config)
+
+Error string: `"This isn't related to your account"` or `"detected abusive traffic from this IP address"`.
+This is an **IP-level block** on OpenCode's free gateway — shared NAT IPs get flagged by other
+users. Config and credentials are irrelevant. Diagnosis:
+
+1. Confirm the error string in logs contains `abusive traffic` / `isn't related to your account`.
+2. Check if other tools work from the same IP (e.g., 9router local, other APIs) — if they do, it's IP-specific to OpenCode.
+3. Check if a VPN/proxy is active: `env | grep -iE "proxy|vpn"`.
+4. Check current public IP: `curl -sS https://api.ipify.org`.
+
+Solutions (in order of preference):
+- Use a local provider (9router) — bypasses the block entirely.
+- Restart router for a new IP (if ISP is dynamic).
+- Wait — blocks can last hours to days with no guarantee.
+- Subscribe to OpenCode Go for IP-independent access.
+
+**Do not** waste time re-checking config or re-validating credentials when this error appears.
+
+### Step 6b: Credential Cleanup Procedure
+
+When the user asks to purge all API keys and OAuth tokens from OpenCode:
+
+```bash
+# 1. Delete all credential rows from the DB
+sqlite3 ~/.local/share/opencode/opencode.db "delete from credential;"
+
+# 2. Remove the auth.json file (contains zenmux API key)
+rm -f ~/.local/share/opencode/auth.json
+
+# 3. Remove any apiKey from provider config
+#    (edit opencode.json — delete the "apiKey" line under provider options)
+
+# 4. Grep for any remaining token strings in config
+grep -rl "sk-\|zenmux" ~/.config/opencode/ 2>/dev/null
+
+# 5. Verify environment has no OPENCODE/ZENMUX vars
+env | grep -iE "OPENCODE|ZENMUX" || echo "(clean)"
+```
+
+After cleanup, verify with:
+```bash
+sqlite3 ~/.local/share/opencode/opencode.db "select count(*) from credential;"
+# should be 0
+```
+
 ### Step 7: Check Snapshot Errors
 - Symlink paths cause `failed to capture snapshot` errors: `pathspec '...' is beyond a symbolic link`
 - Add problematic paths to `ignore` array in config
@@ -127,6 +173,7 @@ when the user's work in it is done.
 - **A listed provider is not a credential**: `opencode auth list` reports definitions. Rows survive deletion of every credential. Check `credential` table and the environment instead of treating the list as evidence.
 - **The port error is usually not your fault**: "Managed service port ... already in use" is most often a Tailscale system extension holding the port. Confirm the owner via `netstat -anv` before changing anything, and tell the user the change was unrelated to your earlier cleanup.
 - **A running service keeps old env in RAM**: `ps eww <pid>` can show a key the files no longer contain. Hash-compare, and restart the service to release it rather than hunting the key in files that never had it.
+- **OpenCode config does NOT interpolate env vars**: `"apiKey": "${VAR}"`, `"apiKey": "env:VAR"`, and `"apiKey": "VAR"` all send the literal string to the provider. The AI SDK `@ai-sdk/openai-compatible` reads `apiKey` directly from options, not from `process.env`. Setting `OPENAI_API_KEY` in the shell does NOT help when `apiKey` is absent from config. The only working approach is to write the literal key value into `opencode.json` — there is no env-var indirection. If the user refuses plaintext keys in config, the alternative is a shell wrapper that sets `OPENAI_API_KEY` AND the config has no `apiKey` field, but this only works if the SDK version supports env fallback (verify with a test call before assuming).
 
 ## Verification
 After fixing config, verify with:

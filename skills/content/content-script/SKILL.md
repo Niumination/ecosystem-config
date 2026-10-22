@@ -76,7 +76,20 @@ Subjek ≤ 45 karakter, tanpa clickbait kosong. Struktur: satu ide → cerita/bu
 4. Patuhi batasan: tidak boleh klaim kesehatan/finansial tanpa dasar; disclosure bila perlu; tidak menjelekkan kompetitor dengan klaim palsu.
 5. Output ke `project/<slug>/NASKAH.md` + `SHOTLIST.csv` untuk approval klien sebelum produksi.
 
-### H. Caption/deskripsi (pola tetap)
+### H. Laporan pemerintah → konten sosial
+Gunakan pola ini bila sumber adalah dokumen resmi (SKPD, BPK, dinas): ambil angka kunci, hubungkan dengan foto bukti dukung, arahkan ke pejabat terkait, gunakan bahasa formal-informatif.
+Struktur: hook angka → konteks dokumen + tanggal → 3 beat (selesai/proses/tunda) → payoff komitmen → CTA ajukan laporan lengkap.
+Foto dokumentasi wajib disebut di shot list dan caption.
+Tone: profesional, akuntabel, tidak promosi diri — fokus transparansi anggaran.
+
+### I. Laporan pemerintah → konten sosial
+Gunakan pola ini bila sumber adalah dokumen resmi (SKPD, BPK, dinas): ambil angka kunci, hubungkan dengan foto bukti dukung, arahkan ke pejabat terkait, gunakan bahasa formal-informatif.
+Struktur: hook angka → konteks dokumen + tanggal → 3 beat (selesai/proses/tunda) → payoff komitmen → CTA ajukan laporan lengkap.
+Foto dokumentasi wajib disebut di shot list dan caption.
+Tone: profesional, akuntabel, tidak promosi diri — fokus transparansi anggaran.
+Template lengkap: `references/template-government-report.md`.
+
+### J. Caption/deskripsi (pola tetap)
 ```
 Baris 1: hook/klaim (muncul sebelum "...more")
 Baris 2: konteks atau angka bukti

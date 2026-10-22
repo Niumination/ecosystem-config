@@ -223,7 +223,7 @@ memakai default `cron.model`.
 anggota hidup — combo berputar antar anggota dan akhirnya menyerah. Jadi "combo balas 410" tidak
 berarti semua anggotanya mati; periksa per anggota.
 
-**Beda sifat dari 410/403/400 pada gateway `oc/*`:** 410 = upstream menarik model (permanen, ganti model),
+**BedaBeda sifat dari 410/403/400 pada gateway `oc/*`:** 410 = upstream menarik model (permanen, ganti model),
 403 = kuota akun habis (menunggu reset bisa pulih), 400 = upstream menolak bentuk permintaan.
 
 ## Cara Memperbaiki Default Cron
