@@ -1262,6 +1262,9 @@ main() {
   check_git_status "$PROFILE" "Profile README"
 
   # ── Phase 2: Dirty repos dalam ekosistem ──
+  # ── Upstream Sync Check
+  check_upstream_sync
+
   section "🔍 Dirty Repos (uncommitted changes)"
   local dirty_count=0
   local dirty_expected_count=0
@@ -1385,3 +1388,56 @@ main() {
 ROOT="$NIUMINATION"  # legacy compat (older callers reference $ROOT)
 
 main "$@"
+# ── Check upstream sync untuk semua repo ─────────────────────────────────────
+check_upstream_sync() {
+  section "🔄 Upstream Sync Status"
+  
+  local behind_count=0
+  local ahead_count=0
+  local total_repos=0
+  
+  while IFS= read -r repo; do
+    [ ! -d "$repo" ] && continue
+    total_repos=$((total_repos + 1))
+    
+    local rel rel_short
+    rel=${repo#$NIUMINATION/}
+    rel_short=${rel##*/}  # ambil nama folder terakhir
+    
+    # Skip jika bukan git repo valid
+    [ ! -f "$repo/.git" ] && [ ! -f "$repo/.git" ] && continue
+    
+    local branch upstream_ref ahead behind
+    branch=$(git -C "$repo" rev-parse --abbrev-ref HEAD 2>/dev/null || echo "?")
+    
+    # Dapatkan upstream reference
+    upstream_ref=$(git -C "$repo" rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>/dev/null || true)
+    if [ -z "$upstream_ref" ] && git -C "$repo" rev-parse --verify -q "origin/$branch" >/dev/null 2>&1; then
+      upstream_ref="origin/$branch"
+    fi
+    
+    [ -z "$upstream_ref" ] && continue
+    
+    ahead=$(git -C "$repo" rev-list --count "HEAD..$upstream_ref" 2>/dev/null || echo "0")
+    behind=$(git -C "$repo" rev-list --count "$upstream_ref..HEAD" 2>/dev/null || echo "0")
+    
+    # Normalisasi angka
+    ahead=${ahead:-0}
+    behind=${behind:-0}
+    
+    if [ "$behind" -gt 0 ]; then
+      warn "$rel_short: $behind commit di belakang upstream — perlu pull"
+      rec "→ $rel: git pull origin $branch ($behind behind)"
+      behind_count=$((behind_count + 1))
+    elif [ "$ahead" -gt 0 ]; then
+      info "$rel_short: $ahead commit di atas local — perlu push"
+      ahead_count=$((ahead_count + 1))
+    fi
+  done < <(find "$NIUMINATION" -maxdepth 4 -name ".git" -type d -not -path "*/node_modules/*" 2>/dev/null | sort)
+  
+  if [ "$behind_count" -eq 0 ] && [ "$ahead_count" -eq 0 ]; then
+    pass "Semua repo sinkron dengan upstream ($total_repos repo diperiksa)"
+  else
+    info "Ringkasan: $behind_count repo perlu pull, $ahead_count repo perlu push"
+  fi
+}
