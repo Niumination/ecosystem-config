@@ -94,7 +94,7 @@
 | Service | Port | Status | Last Verified | Catatan |
 |---------|------|--------|---------------|---------|
 | Mission Control apex-ui | :3000 | 🔴 **Tidak aktif** | 8 Okt 2026 | Tidak berjalan. Perlu di-start manual |
-| **MIRAI Mission Control** | :8800 | ✅ **Running — health 20/20** | 12 Okt 2026 | PID 561, bind `127.0.0.1:8800` only. `/api/health` **20/20**. Roster **11 agent** = 1 profile + 10 persona topic. Console showreel MAX (ink field, mosaic, i18n id). **AGENTS.md + 4 project-curated skill** (`.agents/skills/` — bukan midudev autoskills). **mac-verify 22 PASS / 0 FAIL**. Repo publik `github.com/Niumination/mirai`. Di `mirai/` (root ekosistem) |
+| **MIRAI Mission Control** | :8800 | ✅ **Running — patch arena #7 ter-deploy** | 22 Okt 2026 | PID baru, bind `127.0.0.1:8800` only. **Avatar WebP animated** (`{kode}.webp` + `{kode}-still.webp`, ~600 KB total — turun dari ~19 MB PNG). **`/api/house`** (BARU): jendela Niumination, 10 kursi Telegram + thread id, status wiki/gateway/cron, read-only. 5 docs riset + skill `mirai-window`. `smoke.sh` + `prove.sh` exit 0. Repo `github.com/Niumination/mirai` @ `85c5a11`. Di `mirai/` (root ekosistem). **DITAHAN**: `.hermes/` paket (config gpt-5.4-mini + SOUL "Executor" = konten palsu), `_new/` (master PNG). **Bug pra-existent**: `/api/traffic` 500 (`AS to` reserved word, `traffic.py:98`) |
 | 9router | :20128 | ✅ Running | 8 Okt 2026 | Model router lokal |
 | Camofox | :9377 | ✅ Running | 8 Okt 2026 | Stealth browser |
 
