@@ -351,7 +351,7 @@ Sebelumnya (BACKLOG Jul 28) mencatat niu-dash/Niu-LKH dirty — sudah tidak vali
 |--------|:------:|--------|
 | GH Pages (lokal) | 5/5 ✅ | Niu-LKH, niu-dash, maze-3d, AuditTI-AT, DiskominfoAT |
 | GH Pages (remote) | 5/5 ✅ | Niu-Startpage, niu-private, NiuHomePage, zaryu.startpage, SPBE-DevOps-Academy |
-| Vercel | **4/14 🟢 live** | Verified 12 Okt 2026 via `vercel project ls` (14 proyek) + probe HTTP per hostname. **Live (4):** niu-oss (200), kelas (`kelas-hazel.vercel.app`, 200), pemdi-aceh-tengah (308→/dashboard), sapa-ai (307). **⏸️ PAUSED (8):** niu-vermilion, cc-acehtengah, kune-ya-com, landing, niu-dash-fullstack, virtual-assistance, tedeo-web, niu-private (semua 503 `DEPLOYMENT_PAUSED`). **⚪ Never deployed (2):** rekapitulasi-pemdi, niutui. Detail + bukti di `docs/registry/deployment-status.md` |
+| Vercel | **3/13 🟢 live** | Verified 28 Okt 2026 via `vercel project ls` (14 proyek) + probe HTTP per hostname. **Live (3):** kelas (`kelas-hazel.vercel.app`, 200), pemdi-aceh-tengah (308→/dashboard), sapa-ai (307). **⏸️ PAUSED (8):** niu-vermilion, cc-acehtengah, kune-ya-com, landing, niu-dash-fullstack, virtual-assistance, tedeo-web, niu-private (semua 503 `DEPLOYMENT_PAUSED`). **⚪ Never deployed (2):** rekapitulasi-pemdi, niutui. niu-oss tidak lagi terdaftar di akun (14→13; dulu live 200 pada 12 Okt). Detail + bukti di `docs/registry/deployment-status.md` |
 
 ---
 
