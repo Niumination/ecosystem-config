@@ -52,6 +52,26 @@ description: Manage Vercel deployments — status, deploys, pause/unpause.
 2. Wait for deployment: `vercel inspect <deployment-url> --wait`
 3. Verify: `curl -sI https://<domain>.vercel.app | head -5`
 
+## Workflow: Recover a Deleted Project
+
+When `vercel project ls` no longer lists a project but its DNS zone still exists (domain still resolves to Vercel), the project was **deleted** — not paused. Recover it without re-provisioning DNS:
+
+1. **Confirm deletion vs pause** — project absent from `vercel project ls` + `curl -sI https://<domain>` returns 404 (not 503 `DEPLOYMENT_PAUSED`). The DNS zone survives deletion; only the project and its env vars are gone.
+2. **Remove stale link** — `.vercel/project.json` still points at the dead project ID. Back it up, then `rm -rf .vercel` so `vercel link` creates fresh (otherwise it re-links to the dead ID).
+3. **Recreate + re-link** — `vercel link --yes` from the project dir. Creates a new project (auto-named from the repo), connects the GitHub repo, enables auto-deploy on `main`. Confirm the project name printed by the CLI.
+4. **Redeploy** — `vercel deploy --prod --yes`. An env-less build succeeds if the code degrades gracefully (defaults + fallback snapshot); live data falls back to the bundled snapshot until the token is restored.
+5. **Re-attach the domain** — `vercel domains add <domain> <project> --scope <team>`. Since the DNS zone already exists (account-level), verification is instant (`attached:true, verified:true`, 0 conflicts).
+6. **Restore env vars** — they are **gone** with the deleted project. Re-add from backup/vault via `vercel env add <name> <env> --yes --force` (pipe the value via stdin so it never appears in a command string or log). If no backup exists, re-create from the provider dashboards. Verify with `vercel env ls` (not the exit code — RC 1 after saving is common for `NEXT_PUBLIC_*`).
+7. **Trigger a redeploy** so the new env takes effect, then verify live data: `curl https://<domain>/api/...` → expect `live: true, source: github-api` (or equivalent).
+8. **Update docs** — project name, production URL, and env status in AGENTS.md, deployment-status.md, BACKLOG.md.
+
+**Pitfalls**
+- `.vercel/` and `.env.local` (OIDC token) are usually gitignored — prove with `git check-ignore -v .env.local .vercel` before committing, so the new link is not leaked.
+- A stale `.vercel/project.json` pointing at a dead ID causes `vercel link` to fail or re-link to nothing; always remove it first.
+- Do not assume env vars survived — they did not. Check `vercel env ls` on the new project; if empty, restore from backup or recreate.
+- The first deploy of an env-less project succeeds only if the code degrades gracefully (defaults + fallback snapshot). If the build requires a non-optional env, it fails — fix the code or set the env first.
+- Env vars pushed to Vercel from a shared credential (e.g. a classic PAT reused from `~/.hermes/.env`) couple rate limits; prefer a dedicated token when restoring fully.
+
 ## Pitfalls
 
 - **CLI timeout** — `vercel --prod --yes` can take 2-5 minutes. Use `timeout=120` or higher, or run in background.
