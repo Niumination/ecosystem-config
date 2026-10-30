@@ -351,7 +351,7 @@ Sebelumnya (BACKLOG Jul 28) mencatat niu-dash/Niu-LKH dirty — sudah tidak vali
 |--------|:------:|--------|
 | GH Pages (lokal) | 5/5 ✅ | Niu-LKH, niu-dash, maze-3d, AuditTI-AT, DiskominfoAT |
 | GH Pages (remote) | 5/5 ✅ | Niu-Startpage, niu-private, NiuHomePage, zaryu.startpage, SPBE-DevOps-Academy |
-| Vercel | **5/16 🟢 live** | Verified 30 Okt 2026 via `vercel project ls` (16 proyek) + probe HTTP per hostname. **Live (5):** niu-oss-dashboard (`niumination.web.id`, 200), zb-humanoid (`zb-humanoid.vercel.app`, 200), kelas (`kelas-hazel.vercel.app`, 200), pemdi-aceh-tengah (308→/dashboard), sapa-ai (307). **⏸️ PAUSED (8):** niu-vermilion, cc-acehtengah, kune-ya-com, landing, niu-dash-fullstack, virtual-assistance, tedeo-web, niu-private (semua 503 `DEPLOYMENT_PAUSED`). **⚪ Never deployed (2):** rekapitulasi-pemdi, niutui. **Lain-lain (1):** niu-humanoid (HTTP 302 = Deployment Protection, bukan error). Detail + bukti di `docs/registry/deployment-status.md` |
+| Vercel | **5/15 🟢 live** | Verified 30 Okt 2026 via `vercel project ls` (15 proyek) + probe HTTP per hostname. **Live (5):** niu-oss-dashboard (`niumination.web.id`, 200), zb-humanoid-clean (`zb-humanoid-clean.vercel.app`, 200), kelas (`kelas-hazel.vercel.app`, 200), pemdi-aceh-tengah (308→/dashboard), sapa-ai (307). **⏸️ PAUSED (8):** niu-vermilion, cc-acehtengah, kune-ya-com, landing, niu-dash-fullstack, virtual-assistance, tedeo-web, niu-private (semua 503 `DEPLOYMENT_PAUSED`). **⚪ Never deployed (2):** rekapitulasi-pemdi, niutui. **Lain-lain (1):** niu-humanoid (HTTP 302 = Deployment Protection, bukan error). Detail + bukti di `docs/registry/deployment-status.md` |
 
 ---
 
