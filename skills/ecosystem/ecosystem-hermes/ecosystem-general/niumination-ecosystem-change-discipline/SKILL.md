@@ -34,6 +34,12 @@ How to change files in the Niumination ecosystem without breaking repo boundarie
 
 ## Pitfalls
 
+- **A stray glyph in one file blocks the whole commit.** The pre-commit gate runs `scan-stray-glyphs.py` which rejects CJK, Cyrillic, and Hangul characters in staged files. A single foreign-script character (e.g., a CJK character in a term) in one skill file blocks the entire commit. Fix in place: replace with the ASCII equivalent, re-run the scan, then commit. Do not use `--no-verify`.
+- **A repo can be archived (read-only) without warning.** `git push` fails with "repository is archived" and `gh pr merge` fails with permission errors. Check `gh api repos/<owner>/<repo> --jq '.archived'` before assuming push access. Unarchive via `gh api -X PATCH repos/<owner>/<repo> -f archived=false` if needed.
+- **Applying a zip requires file-by-file verification, not just count.** Extract the zip, compare every file with `cmp -s` or `diff -rq`, and report any missing or differing files. A matching file count does not guarantee content match. Runtime artifacts (DB, logs, __pycache__) will differ — ignore those, but flag everything else.
+- **Vercel projects can be renamed, changing the hostname.** `vercel project ls` may show a different name than what's in the registry. Always probe the hostname returned by the CLI, not a guessed `project-name.vercel.app`. Update the registry when a rename is detected.
+- **Branch protection + pre-existing CI failure = unmergeable PR.** When a PR is blocked because CI fails on a pre-existing issue (not the PR's changes), fix the pre-existing issue on the base branch first, then re-run CI on the PR. Do not merge with `--admin` if you lack admin permission — unarchive or fix the root cause instead.
+
 - **A stop command means stop probing, not "finish the thought."** When the user interrupts
   with "stop", "berhenti", or "cukup" mid-diagnosis, the correct response is to halt and report
   what is already established — not to run one more probe so the answer is complete. A user who
