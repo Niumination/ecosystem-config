@@ -156,6 +156,40 @@ COPY failed: file not found in build context
 
 ---
 
+### Doc-Claim Mismatch (check-docs.py pattern)
+
+**Signatures in logs:**
+```
+FAIL: 1 of 104 documentation claims do not match
+  - scripts/check-contrast.py did not report a pair count, so the number both READMEs advertise cannot be verified.
+```
+
+**Diagnosis:**
+1. A documentation verification script compares claims in README/docs against actual code behavior.
+2. The failure is often pre-existing on the base branch, not caused by the PR.
+3. Verify by running the same check on main: `git checkout main && python3 scripts/check-docs.py`.
+
+**Common fixes:**
+- Fix the code so it reports the claimed value (e.g., add pair count output to check-contrast.py).
+- Or update the docs to match what the code actually produces.
+- If pre-existing on main, the PR is safe to merge — the failure is not a regression.
+
+### Vercel Deployment Blocked on Paused Projects
+
+**Signatures in logs:**
+```
+Deployment was blocked
+```
+
+**Diagnosis:**
+1. The Vercel project is paused (Deployment Protection enabled or project paused).
+2. This is a project-state issue, not a PR defect.
+
+**Common fixes:**
+- Check if the Vercel project is paused: `vercel project ls`.
+- The build check passing is what matters for the PR; Vercel deployment failure on a paused project is not a blocker.
+- Resume the project if deployment is needed.
+
 ## Auto-Fix Decision Tree
 
 ```

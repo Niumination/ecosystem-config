@@ -1,7 +1,7 @@
 {
-  "fileCount": 1185,
-  "generatedAt": "2026-10-30T12:46:40.339063+00:00",
-  "skillCount": 240,
+  "fileCount": 1196,
+  "generatedAt": "2026-11-01T14:35:46.776398+00:00",
+  "skillCount": 250,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -770,11 +770,12 @@
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/hermes-fork-maintenance": {
-      "bundleHash": "25da1dfd6b75a2353165c3315d4afa18454ffb54e02c1bb4da66d46a069ee2ff",
+      "bundleHash": "a15168b58bb14e75dfbec63ee77d64a374f231664666e3f16be2d228f9ad65a0",
       "domain": "ecosystem/ecosystem-hermes/ecosystem-general/ecosystem",
       "files": {
         "SKILL.md": "199d97a1c534588a5aa2fdf7cb57518037297f80982690fc7221e450e4f1bd57",
-        "references/fork-reconciliation-safety.md": "fccdf0d4cb501a066d37382a99001ea92a71b774f40f08f83f0f5e8231f6eedc"
+        "references/fork-reconciliation-safety.md": "fccdf0d4cb501a066d37382a99001ea92a71b774f40f08f83f0f5e8231f6eedc",
+        "references/proving-a-release-feature-list.md": "acbbd74de11fcbc5a3812876c94a6848b963049f4345af06e9692b7bf564cf96"
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/hermes-fork-reconciliation": {
@@ -906,17 +907,17 @@
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/mirai-mission-control-adoption": {
-      "bundleHash": "e041490aa776d4919814ae24a0af1e535f1f038eba45aa49e98deaf9bf74c073",
+      "bundleHash": "574fa03b2831f7dc4c7ca08e166c9700c4ec6f3eb9e1ee7ca1ce5cdfda51d3bb",
       "domain": "ecosystem/ecosystem-hermes/ecosystem-general",
       "files": {
-        "SKILL.md": "00a3eccb97c35dcef9c93704ce6a750be96456e531b1497e8c9f8be160c5af8a"
+        "SKILL.md": "8225d346ae92e4a11f6996a6a2cbc2bf48bfac813ba6a2b2cc9124d756684cdb"
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/niumination-ecosystem-change-discipline": {
-      "bundleHash": "cd8c44277ec0c7313e6acb178bf075c7e1e7f4c47d029ce0db0c2f6ceaea6843",
+      "bundleHash": "df42a49c81961c3c43bc25ee920fa364067c20646a205793fb3c3f849a12ef28",
       "domain": "ecosystem/ecosystem-hermes/ecosystem-general",
       "files": {
-        "SKILL.md": "6efc5dd66b5b4601a67bfeeee05a3c5133b5ffa232bce3b870f4cb0cb44ec228",
+        "SKILL.md": "3215d2d10cbc307fc77b1745ae969d9540fcdd1c51880c61e5c7c27fa66af5cf",
         "references/shared-repo-commits.md": "7eab705051201cfba498e6eea4b1d2cf056650804c0c99166d39ad9e8229b08e"
       }
     },
@@ -938,10 +939,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-config-mutation-safety": {
-      "bundleHash": "db95b2f8264132e7f8378bb72527579657e717e3a8537b7a3b760a834d9846e5",
+      "bundleHash": "bcab7ddcb5c51e2e186627602b37a27dff98d95faab7cbde1a7e8e779f2cb1f6",
       "domain": "ecosystem/ecosystem-hermes",
       "files": {
-        "SKILL.md": "3f61696de9c0ba2c79aa08b6df4935967d7b82491b358550b3ad6867a9c5e407"
+        "SKILL.md": "e193ad794f0c283494715e25cc4cb8a961e3f57f44362e4847606e05915a4924"
       }
     },
     "ecosystem/ecosystem-hermes/hermes-config/hermes-agent-skill-authoring": {
@@ -1142,10 +1143,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/external-report-verification": {
-      "bundleHash": "402d9d1dbbd390dfd26a2ffeb66df478912270a9cc6ebac382ce970f8023a3de",
+      "bundleHash": "4bcd59093bd0d2a84cd67ec3b6752244ec1b64e80b7982477fda17040a515e91",
       "domain": "ecosystem/ecosystem-hermes/hermes-misc",
       "files": {
-        "SKILL.md": "43313ed5e72ad37d3b2a00d89fd35cd8873b110ca2343a914ec711452cae619e",
+        "SKILL.md": "8e9aab514c7f5070596c10f966b2f39e5561c7299d8ff475d13d23812083c471",
         "references/live-verification-probes.md": "d61fa9cbd4a9bcfdad7fdce5a4dd8d31194bc8f0ec79c62fbe3b9291d11eadab",
         "references/verifying-a-handed-down-fix-plan.md": "d5169fa1bd0e6f99d9809e088f00f5fa5b30b1365b0633e207bcd80b9865954f"
       }
@@ -1175,12 +1176,12 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/niu-9router-maintain": {
-      "bundleHash": "9480f9a6d440a6a85313baf02d4b448e57efe172d9204ea3966050f9f5202668",
+      "bundleHash": "ce9f08b9d8b59a0e1653f5788287205c03c8f8db08276ca42d19097428663014",
       "domain": "ecosystem/ecosystem-hermes/hermes-misc",
       "files": {
-        "SKILL.md": "aaaa1020c179cf51f9d5fb72c3ac363392e307d4baa7d3e0a987c64d4e654527",
+        "SKILL.md": "92775f71cc8f2e8f4cbfda0138c36081037837aced5ff3b56d3172d83a76754f",
         "references/9router-catalog-2026-08-31.md": "48506b9e9e36830576be69dc4acb7dd394e85b17727b429e4e0a33822d8a6f43",
-        "references/9router-models-and-connectivity.md": "d3126f43b651ca8907b5ad5a1c1162971cad86d044f8a7afa325881ac6a05dcb",
+        "references/9router-models-and-connectivity.md": "c4fdb0645b044c6b644df33b3f366e144708048150d0003be0e0bf868cac71fd",
         "scripts/audit_models.py": "8ea34505f9286e4abd6439d1b0ab219e805c5d3b79f8f33cc782f67aa9a16742"
       }
     },
@@ -1226,10 +1227,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/provider-vetting": {
-      "bundleHash": "677e3f0b24b438fece3aa760186450c05a35a6821217155ee4d0e76508cb0712",
+      "bundleHash": "5c353977fb9ee8d2d8ae4896df895a1e361e61b22de62852cf0be7b52b10a9d8",
       "domain": "ecosystem/ecosystem-hermes/hermes-misc",
       "files": {
-        "SKILL.md": "8b740c2791bc47b7165f815841ccee9526ea50a82b62b8ae3319545df91c2696"
+        "SKILL.md": "5305ebd870a3c9aa2373dd7449141b4bda9504f875f36256072e1694d91eed08"
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/relay-provider-client-wiring": {
@@ -1345,10 +1346,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/up-eco": {
-      "bundleHash": "af81117a6a85ac630907df28d1d419892b27f4562f2701e994164b22a0f40027",
+      "bundleHash": "9efd17071475a8866f287fc8cdeeb79a8c13eddc5cd55ab0433933ed9ee8522f",
       "domain": "ecosystem/ecosystem-hermes/hermes-misc",
       "files": {
-        "SKILL.md": "199ac01e4e74e604658c2c8605be826fb7fcb9728e97c936572bdbdf30761d02"
+        "SKILL.md": "18c4fbcb4a443ac27d30f4f0d35d27270f81016f154b9361b4df601184a95274"
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/weathernext-gayo": {
@@ -1367,13 +1368,13 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-tools/ecosystem-live-status-reporting": {
-      "bundleHash": "ffb3b45951126b6a9e4e795edd37c00512859dd6f70296f45adccfa78afb7978",
+      "bundleHash": "4753e601252846bb63e47cd5b679305ab429a72c56d9ebdb0401ea16ec248570",
       "domain": "ecosystem/ecosystem-hermes/hermes-tools",
       "files": {
-        "SKILL.md": "8d9097adb9af32ec0af40d9dc5398551251a9471cfd01d6b9e8c4013c12b6117",
+        "SKILL.md": "b57a91e33329321dffecc13f06091037d0dff2a1db6e7067bc9d93e78dc532e2",
         "references/deployment-status-verification.md": "fb94ee3bf481ef7992fc362ba882af7980cc8e387294c77ea25239fccf301186",
         "references/resource-attribution.md": "f25ee3daf403f5e4665dfedcb0cc7be70a9e5e0cea665e74743e1129e0d3380b",
-        "references/verifying-machine-generated-changes.md": "daae098ac82fae168b4476e50a6efd931a055a15b4fb3b13ea2ddc222e9f76ee"
+        "references/verifying-machine-generated-changes.md": "da1fb8694e6819ce292342a27986ce07310ab12bd1974669db0f4bc2b6432d4e"
       }
     },
     "ecosystem/ecosystem-hermes/hermes-tools/model-checker": {
@@ -1476,12 +1477,82 @@
         "SKILL.md": "4579f2fbd9088a804427752b46b3c7b1e1807c90b9321951d52caf41ee94c0c2"
       }
     },
-    "ecosystem/opencode-troubleshooting": {
-      "bundleHash": "e44ccc56eaa4ce0276f7deb4f24da32632e3b6712aeb069c91aea38c7d66c37c",
+    "ecosystem/egm-bootstrap": {
+      "bundleHash": "47ceec247d196f6cd4f41226fff61d1e63c6b921442f63922dc46c99ebbeb096",
       "domain": "ecosystem",
       "files": {
-        "SKILL.md": "8142e75f01233ff31d2988569e551e7cbd8a43ba3510d096d4a6b3e22de82e2a",
-        "references/9router-config.md": "802c572a814916b903fd3805cb9cfec80d25663f1a03805762484451a553b3a7"
+        "SKILL.md": "454ed71471288624097878fa7c751654b3caaa0abaf03db00df0342dfd745872"
+      }
+    },
+    "ecosystem/egm-codebase-auditor": {
+      "bundleHash": "054a38d9afd7f929b5328c270a255dc8d56e5364e7197676c6b303a576347990",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "e62ffd4d9e4ee218b9aafdd5c54778052be0cb9ec1c009a46c6e6b325d6c10e5"
+      }
+    },
+    "ecosystem/egm-comprehension": {
+      "bundleHash": "d7c80e121fbd983b72de993ebb80ac2da8f93332bfe472fac81cdd57726f1d4e",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "5d3901e9649f10616dee45fb104517aeaa0bca158d0b19fc2fb58e01815c24a4"
+      }
+    },
+    "ecosystem/egm-critic": {
+      "bundleHash": "0564bcf1e062b6fc414170de73e6cf5e8942b3db8d2ef3281a2ffda48ae8edfd",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "6578292f56d2ffd37198642958081de0eab27f78aa68d429d7c29c4c774b2499"
+      }
+    },
+    "ecosystem/egm-drift-report": {
+      "bundleHash": "5a048a72fbc64fe00a037b213ac494c8348feefb0c30a5fc902e529939dcd173",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "8497e17195fc37e669e0f25e43a5f0f7f8e8eac87d83f7be33d7ffc3483c89c8"
+      }
+    },
+    "ecosystem/egm-structural-validator": {
+      "bundleHash": "8504d1f01ca628b99c011bb964a3855069edcd7e1a837ac5c8d88832308a8617",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "12636e25c1f8f0d72db063d3ea9dab9aa688e48ca9a1521a537ee52509030be2"
+      }
+    },
+    "ecosystem/egm-style-editor": {
+      "bundleHash": "c2187676593833f083897baa4f1c7b37c54ff1cc509e2322e0b7bf603c190d79",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "62d0b0e985f01d2495ec0267a30e4551191381462916e1731583edd03842cf3f"
+      }
+    },
+    "ecosystem/egm-tech-lead": {
+      "bundleHash": "e16293da875fca06501a47e86ad4ae102f1bc0aa8cca7e637c2780037f37004d",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "89c6de01baf52a0b3262d50f0cd409de88668360f957bec595794ba1a40e039f"
+      }
+    },
+    "ecosystem/egm-zoom-out-architect": {
+      "bundleHash": "b42dac4368e8e37a74534e7f2d5af1c250c3cd86f0a74279f570c09e04c79f21",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "31d8496dcfef333a59628e497773b40e75c9915f3013c8772a7b859a042ad3ff"
+      }
+    },
+    "ecosystem/hermes-release-and-update-forensics": {
+      "bundleHash": "d0cf4d6de21c74f27e26ad594950090ffb04a01c0e006ed65f9441797a91b013",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "b531624df0f7f2bb6d5822957b217105f1a4b2aa04f9082c4ecb231bd08ba055"
+      }
+    },
+    "ecosystem/opencode-troubleshooting": {
+      "bundleHash": "256f7625e2fd0599ef22d6a310f0238fd6ae3126e841e4bcb4fdfbc761c20c49",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "a68094994d9c18c6a6dfaf0468cada987788266cc8cb1dc8b7fe9345fc6f6ff9",
+        "references/9router-config.md": "500011642b44609af99ac8f460ae7b70dd7b64ef76ec11579938b855adfc01f2"
       }
     },
     "ecosystem/wiki": {
@@ -1532,21 +1603,21 @@
       }
     },
     "github/github-pr-workflow": {
-      "bundleHash": "534629393033f76e6c934338ce3ad6fd465a17ff16fd9587d9be74d77cc6606d",
+      "bundleHash": "40819cad186123075cbd5833166e425fab28adf80710eb6940369d94b443b3f8",
       "domain": "github",
       "files": {
-        "SKILL.md": "d752ffa2993cb64edee12b5be89030e007aaebffc5bdd0032466ef7a57dd1c8c",
-        "references/ci-troubleshooting.md": "c72b2301e9b85c545c4960722dbd4c0d49c5d883e6d86438e932bd47b1d8eee0",
+        "SKILL.md": "9655ba851de54fc406f5e949c76eb0510a6128ea11970cf881e3487107dd7344",
+        "references/ci-troubleshooting.md": "2b86b87bfab637bee2675c81540e08fab254a5f65f448a7a77cf21ebe22217f1",
         "references/conventional-commits.md": "2d71a3b701b08c2e5ed5248d17928eb11e27d7b357f9e2dca27caee9cc017aab",
         "templates/pr-body-bugfix.md": "e8c31915b87dba0454d7520a3aa45ef8650fd0e50e48e277db855ff919e6251a",
         "templates/pr-body-feature.md": "875e815da6e0e3df2763a85c9c2a56a776461da39d4181a1487333c0bf5b9276"
       }
     },
     "github/github-repo-management": {
-      "bundleHash": "a3526202a7758096a36e1caffc1f365adca4b23300519d8cdb0a753d20c2dabd",
+      "bundleHash": "7f8b749837992329552bae7cf0055d0c10d175755333d7f4355ad88554f1ab08",
       "domain": "github",
       "files": {
-        "SKILL.md": "dc4544a5b4a47b6851b21666b38587a3fa3a5e8e00ae8c37ddb3f6dd761f042f",
+        "SKILL.md": "6550aa4074c1788fd82a18df766915930bcec5f933b26c2637a080e5c2a5cc21",
         "references/github-api-cheatsheet.md": "a9081d4a108b67b4edd3c92c73d823fd1730e37e23be6f069d9bd67dd3b32486"
       }
     },

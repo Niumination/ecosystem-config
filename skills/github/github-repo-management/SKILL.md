@@ -241,6 +241,26 @@ for r in json.load(sys.stdin)['items']:
     print(f\"  {r['full_name']:40}  ★{r['stargazers_count']:6}  {r['description'][:60] if r['description'] else ''}\")"
 ```
 
+## 4.5 Unarchiving a Repository
+
+When `git push` fails with "This repository was archived so it is read-only" or all writes are rejected, the repo is archived. Unarchive via API:
+
+```bash
+# Check archive status first
+gh repo view OWNER/REPO --json isArchived --jq '.isArchived'
+
+# Unarchive (gh)
+gh api -X PATCH repos/OWNER/REPO -f archived=false
+
+# Unarchive (curl)
+curl -s -X PATCH \
+  -H "Authorization: token $GITHUB_TOKEN" \
+  https://api.github.com/repos/OWNER/REPO \
+  -d '{"archived": false}'
+```
+
+Verify with `gh repo view OWNER/REPO --json isArchived` → `false`. Then retry push.
+
 ## 5. Repository Settings
 
 **With gh:**

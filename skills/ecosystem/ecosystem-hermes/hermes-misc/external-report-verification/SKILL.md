@@ -160,6 +160,8 @@ the owner's local copy of the source still contains it.
    that was never scheduled — and satisfying the monitor by copying a good archive into the watched
    path closes the alert while leaving the protection frozen. Report the cause; do not let a closed
    alert read as a fixed protection. Probe detail: `references/live-verification-probes.md`.
+13. **When the owner says work was "just done", prove the window from artifact mtimes before naming it.** "An agent just did a thorough fix to X" is a claim about time, and the machine answers it with `stat -f "%Sm"` on the artifacts. If every candidate file carries a date days before the claim, no session in the window exists, and the correct output is an explicit "nothing found in the claimed window, here is what exists and when" — never a narrative that names a fix you cannot point to. The owning session is located by querying the agent's SQLite for sessions whose `time_updated` falls in the window, and the ecosystem's own numbered logbook is the more quotable record of what changed and why.
+14. **A file that exists and a fix that was applied are different claims.** An artifact's presence proves the file is there, not that it was authored by the session you found, and not that it still works. Probe coverage (e.g. catalog entries vs the live provider listing) and run the entry point before repeating any of it.
 
 ## Related skills
 - `external-pr-audit` — same discipline applied to a code artifact (PR/branch) instead of a report

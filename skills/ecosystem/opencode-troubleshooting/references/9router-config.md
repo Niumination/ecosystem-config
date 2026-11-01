@@ -47,6 +47,25 @@
 - Config file: `~/.config/opencode/opencode.json`
 - If `opencode.jsonc` exists, it overrides `opencode.json` — disable it with `mv opencode.jsonc opencode.jsonc.disabled`
 
+## Keeping the model catalog in sync
+
+The generic OpenAI-compatible package has no `/v1/models` discovery, so the provider block in
+`opencode.json` only lists what is hand-written into it — a stale, partial catalog. The fix is a
+**plugin** in `~/.config/opencode/plugins/<id>/index.ts` that polls the gateway every ~30 s and
+publishes every model under the provider, so CLI and Desktop share one live catalog.
+
+Verify the catalog is actually in sync rather than assuming the config covers it:
+
+```bash
+opencode models | grep -c '^9router/'          # models OpenCode knows about
+curl -s http://localhost:20128/v1/models | python3 -c 'import sys,json;print(len(json.load(sys.stdin)["data"]))'   # gateway truth
+opencode plugin list                            # plugin registered and loaded
+```
+
+Equal counts mean the integration works; a config-only catalog will show a much smaller number.
+Confirm with `opencode plugin list` that the plugin is present, and with `opencode reload` after
+editing the plugin file.
+
 ## Verification
 
 ```bash

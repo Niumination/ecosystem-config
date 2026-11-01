@@ -64,7 +64,7 @@
 | `ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/documentation-reconciliation` | ecosystem | 1 | Bank Pusat | Use when docs, BACKLOG, or registry drift from measured truth. |
 | `ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/earning-opportunity-feasibility` | ecosystem | 1 | Bank Pusat | Use when the user asks what can make money from their setup. |
 | `ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/hermes-a2a-setup` | ecosystem | 1 | Bank Pusat | Set up or troubleshoot A2A between Hermes instances. |
-| `ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/hermes-fork-maintenance` | ecosystem | 2 | Bank Pusat | Use when auditing a forked Hermes install's updates. |
+| `ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/hermes-fork-maintenance` | ecosystem | 3 | Bank Pusat | Use when auditing a forked Hermes install's updates. |
 | `ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/hermes-fork-reconciliation` | ecosystem | 5 | Bank Pusat | Use when rebasing a diverged fork onto upstream. |
 | `ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/hermes-model-catalog-management` | ecosystem | 2 | Bank Pusat | Manage Hermes model catalog and free-only provider filtering. |
 | `ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/hermes-tool-runtime-failure-triage` | ecosystem | 1 | Bank Pusat | Use when a Hermes tool errors or times out mid-session. |
@@ -115,7 +115,7 @@
 | `ecosystem/ecosystem-hermes/hermes-misc/pi-app-studio-development` | ecosystem | 1 | Bank Pusat | Build Pi Network apps via Pi App Studio or Pi SDK payments. |
 | `ecosystem/ecosystem-hermes/hermes-misc/pi-solohost-development` | ecosystem | 7 | Bank Pusat | Build and submit apps to Pi Network SoloHost. |
 | `ecosystem/ecosystem-hermes/hermes-misc/provider-fallback` | ecosystem | 8 | Bank Pusat | Handle AI provider failures and fallback to working providers |
-| `ecosystem/ecosystem-hermes/hermes-misc/provider-vetting` | ecosystem | 1 | Bank Pusat | Use when vetting a third-party AI model before adopting it. |
+| `ecosystem/ecosystem-hermes/hermes-misc/provider-vetting` | ecosystem | 1 | Bank Pusat | Use when vetting a third-party AI model or API provider. |
 | `ecosystem/ecosystem-hermes/hermes-misc/relay-provider-client-wiring` | ecosystem | 1 | Bank Pusat | Use when wiring a client to a relay with WAF UA whitelist. |
 | `ecosystem/ecosystem-hermes/hermes-misc/research/official-regulation-extraction` | ecosystem | 1 | Bank Pusat | Use when research needs official Indonesian regulation text. |
 | `ecosystem/ecosystem-hermes/hermes-misc/sapa-ai` | ecosystem | 3 | Bank Pusat | Use when working on sapa-ai. |
@@ -144,6 +144,16 @@
 | `ecosystem/ecosystem-wiki/content/reels-motion-render` | ecosystem | 1 | Bank Pusat | Use when rendering a Reels/TikTok video with HyperFrames. |
 | `ecosystem/ecosystem-wiki/creative/ffmpeg-ken-burns-motion` | ecosystem | 1 | Bank Pusat | Use when making still cards move: FFmpeg zoompan + mux VO. |
 | `ecosystem/ecosystem-wiki/creative/revideo-motion-graphic` | ecosystem | 1 | Bank Pusat | ARSIF — jalur motion-graphic Revideo ini DITOLAK (macet 7,4 jam, 0 output, 23 Sep 2026). BACA DULU banner penolakan di atas. Pakai HyperFrames atau Remotion. |
+| `ecosystem/egm-bootstrap` | ecosystem | 1 | Bank Pusat | 'Use when onboarding new repo. Generates bottom-up docs.' |
+| `ecosystem/egm-codebase-auditor` | ecosystem | 1 | Bank Pusat | 'Use when auditing design vs code. Checks consistency.' |
+| `ecosystem/egm-comprehension` | ecosystem | 1 | Bank Pusat | 'Use when reviewing design doc. Flags undefined terms, gaps.' |
+| `ecosystem/egm-critic` | ecosystem | 1 | Bank Pusat | 'Use when stress-testing design. Finds flaws, gaps.' |
+| `ecosystem/egm-drift-report` | ecosystem | 1 | Bank Pusat | 'Use when checking spec vs code drift. Scans for divergence.' |
+| `ecosystem/egm-structural-validator` | ecosystem | 1 | Bank Pusat | 'Use when validating doc structure. Checks completeness.' |
+| `ecosystem/egm-style-editor` | ecosystem | 1 | Bank Pusat | 'Use when editing doc style. Fixes prose, formatting.' |
+| `ecosystem/egm-tech-lead` | ecosystem | 1 | Bank Pusat | 'Use when reviewing architecture. Assesses trade-offs.' |
+| `ecosystem/egm-zoom-out-architect` | ecosystem | 1 | Bank Pusat | 'Use when macro-reviewing design. Checks big picture.' |
+| `ecosystem/hermes-release-and-update-forensics` | ecosystem | 1 | Bank Pusat | Use when auditing a Hermes release or update. |
 | `ecosystem/opencode-troubleshooting` | ecosystem | 2 | Bank Pusat | Fix OpenCode CLI/Desktop errors and config issues. |
 | `ecosystem/wiki` | ecosystem | 1 | Bank Pusat | Use when the owner, the business, or anything the crew has read is in play. |
 | `github/github-auth` | github | 3 | Bank Pusat | GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login. |
@@ -244,6 +254,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-10-30 19:47:21_
+_Last sync: 2026-11-01 21:33:08_
 
 <!-- SKILL_REGISTRY_END -->

@@ -1,14 +1,15 @@
 ---
 name: provider-vetting
-version: 1.0.0
-last_updated: "2026-09-23"
-description: "Use when vetting a third-party AI model before adopting it."
+version: 1.1.0
+last_updated: "2026-10-26"
+description: "Use when vetting a third-party AI model or API provider."
 tags:
   - provider
   - model
   - vetting
   - license
   - tts
+  - api
 ---
 
 # Provider & Model Vetting — Niumination
@@ -82,6 +83,16 @@ jelaskan mengapa — jangan menebak akses tersedia.
 secret-scan harus menampilkan countnya (`MARKER_MATCHES=0`), bukan berkaca dari
 ketiadaan pesan gagal. Kalau `|| echo LOLOS` tak muncul di output, uji belum jalan
 benar dan wajib diulang dengan counter eksplisit.
+
+## Provider API / hosting (selain model weight)
+
+Untuk provider **API** (bukan model yang diunduh), dua hal wajib dibaca dari halaman pricing/rate-limit resmi sebelum rekomendasi: **model apa yang benar-benar tersedia lewat jalur publik** dan **rate limit per tingkat akun**. Model yang hanya bisa dipakai lewat deployment berbayar tidak setara dengan model di katalog publik.
+
+**Uji endpoint sebelum menulis config.** Satu `curl` ke `/v1/models` membedakan "provider punya katalog" dari "provider hanya punya endpoint per-model": katalog 200/202 = bisa didaftar sebagai provider terpadu; 403/404 = setiap model harus didaftar terpisah, dan penambahan key baru tidak menyelesaikan apa pun. Ulangi dengan beberapa kandidat base URL dan beberapa `User-Agent` sebelum menyimpulkan edge block — kode yang sama untuk semua UA berarti blokir di level edge, bukan soal kredensial.
+
+**Jangan tebak base URL.** Coba beberapa bentuk (`/v1/models`, `/models`, host inference terpisah) dan catat kode + body untuk tiap kandidat. Respons `202` tanpa body JSON adalah antrean edge, bukan katalog; `401 No Authorization header` menandakan endpoint per-model yang butuh key.
+
+**Cek lisensi layanan, bukan hanya lisensi model.** Halaman pricing adalah sumber untuk batas rate, ketentuan komersial, dan klaim "no platform fee". Angka yang diambil dari agregator pihak ketiga menyebut harga berbeda untuk provider yang sama — pakai halaman vendor, dan catat tanggal baca karena rate bergerak.
 
 ## Hasil vetting — kandidat yang pernah diverifikasi
 

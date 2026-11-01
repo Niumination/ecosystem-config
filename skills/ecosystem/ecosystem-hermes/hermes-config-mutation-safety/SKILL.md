@@ -58,6 +58,94 @@ there, so a routine route change can delete reference material a later session d
 after using it.** If the diff shows a lost block, restore from backup and redo the edit with the
 exact-string replace path.
 
+## Detecting a truncated or overwritten config (not just a bad edit)
+
+A config that was never edited by you can still arrive in a broken state. Symptom pair: `/model`
+lists nothing, and some other service reports the ecosystem wrongly (a monitor reading
+`channel_prompts` finds one entry instead of ten). **Check file size and the live model default
+before concluding anything is broken** — a healthy file here is tens of KB; a truncated one is
+under ~1 KB and holds only a `model:` block.
+
+```bash
+wc -c ~/.hermes/config.yaml
+cat ~/.hermes/config.yaml
+```
+
+Read the whole file when it is small; a five-line dump tells you more than any parse.
+
+**A stub config naming a provider and model this install does not use is a smoking gun.** Compare the
+names against the install's real provider (a local router on a high port, with its key in the env
+file) and probe both endpoints: the local router answers 200 while the stub's provider answers 401.
+Report that contrast as evidence rather than an opinion.
+
+**Beware the same text arriving from an unrelated source.** An applied zip can carry a `.hermes/`
+stub whose contents match the truncated file byte for byte. Treat a match as *correlation to report*,
+not as proof of causation — the stub is not necessarily what wrote the file, and naming it as the
+cause is a claim you have not tested.
+
+**The stub is still a fingerprint: hash-match it against every candidate writer.** Even though the
+match proves nothing by itself, it is a cheap discriminator. Collect SHA-256 of the damaged file and of
+each candidate source (zip entry, backup, cron job output, DB record), then compare:
+
+```bash
+shasum -a 256 ~/.hermes/config.yaml
+shasum -a 256 /tmp/<quarantine>/.hermes/config.yaml
+```
+
+A byte-identical hit narrows the field to whoever had those exact bytes — including an agent session
+whose own model block you can read back out of a `sessions/request_dump_*.json` (the runtime
+environment block states `Model:` / `Provider:` / `Home directory:`). Combine the hash with the
+mtime and with that session's tool-call trail before naming a cause.
+
+**Find the writer from the session trail, not from suspicion.** Two sources, in order:
+
+1. `~/.hermes/sessions/request_dump_*.json` — one file per failed request, named with the session id
+   and a timestamp, carrying `reason` and `error`. Sort by `timestamp`; the dumps bracketing the
+   damaged file's mtime are the sessions active at the moment.
+2. `state.db` `messages` — `timestamp` is a **unix epoch float**, not an ISO string, so a string
+   comparison against the file's mtime silently returns zero rows. Convert first:
+
+```python
+import sqlite3, datetime
+tz = datetime.timezone(datetime.timedelta(hours=7))          # owner's TZ
+ts = datetime.datetime(2026,10,22,15,29,52,tzinfo=tz).timestamp()
+rows = con.execute("select session_id, role, tool_name, substr(content,1,200), timestamp "
+                   "from messages where timestamp between ? and ? order by timestamp",
+                   (ts-600, ts+300)).fetchall()
+```
+
+Group by `session_id` over the window to see every session that was live, then read its `tool_name`
+values — a writer shows up as `write_file` / `patch` / `execute_code`, not as `None`.
+
+**Before blaming an agent, audit other writers of the same path.** A monitoring panel or companion
+service with a file-write endpoint is a more common cause than a rogue edit. Grep the writing
+endpoint's guard conditions before assuming an agent caused the damage, and check whether the
+permissions you are reading actually cover the profile you care about:
+
+- An allowlist of editable paths (`SOUL.md`, `config.yaml`, `memories/USER.md`, ...) plus a
+  **profile resolved from the caller's own code** means any code the panel knows can write any
+  profile's `config.yaml` — not just its own.
+- Check the guard exists *for the write*, not merely for the read. An endpoint that refuses an
+  unparseable stub config on one path may accept a minimal valid one on another.
+
+Establish this with a real call, then revert it in the same turn and state that you did.
+
+**Damage assessment — separate the live parts from the damaged part:**
+
+```bash
+stat -f "%Sm  %z bytes  %N" -t "%Y-%m-%d %H:%M:%S" ~/.hermes/config.yaml
+stat -f "%Sm  %z bytes  %N" -t "%Y-%m-%d %H:%M:%S" ~/.hermes/.env
+python3 -c "import os,time;p=os.path.expanduser('~/.hermes/cron/ticker_heartbeat');print(round(time.time()-os.path.getmtime(p)),'s')"
+```
+
+Env file intact and a fresh cron heartbeat mean the process is still alive and executing jobs — so
+report a *narrow* break (routing/provider resolution) rather than "Hermes is broken", which would
+send the owner chasing a phantom outage.
+
+**Restore only on the owner's explicit go-ahead**, and never before confirming the backup differs:
+`ls -lat ~/.hermes/backups/config/ | head`. The file is guarded so agent writes are refused, and
+this kind of repair is one the owner may prefer to perform or review.
+
 ## Thread-scoped vs global model routing
 
 A Telegram thread maps to `platforms.telegram.channel_overrides.<channel_id>`. Editing only that entry
@@ -153,7 +241,8 @@ signature file (mtime/size), bukan dimuat sekali saat start.
 11. **`hermes cron --no-agent` memakai interpreter Hermes sendiri — tidak ada PyYAML.** Script yang berjalan fine dari shell (yang punya PyYAML) bisa gagal total di cron job `--no-agent` dengan `ModuleNotFoundError: No module named 'yaml'`. Kalau script diedarkan sebagai cron `--no-agent`, tulis parser string murni (`re`, `json`, `urllib`) dan validasi struktur dengan assert — jangan pernah impor paket eksternal. Uji dengan `hermes cron run <job-id>` sekalipun pengujian manual tadi lolos dari shell.
 12. **Jangan asumsi indentasi list item YAML adalah `key_indent + 4`.** YAML mengizinkan sequence di kolom yang sama dengan key-nya (`models:` diikuti langsung `    - item` dengan indentasi sama). Parser yang mengasumsikan +4 akan gagal diam-diam. Baca indentasi aktual dari item pertama. Juga: cek parent section sebelum replace — config ini punya dua `  9router:` (providers dan model_catalog) dan hanya satu yang boleh disentuh.
 13. **Uji script yang menulis config pada SALINAN, bukan config asli.** Arahkan `CONFIG`/`CACHE` ke file `/tmp` lewat variabel yang bisa di-override, lalu buktikan config asli tidak tersentuh (`grep -c` untuk nilai uji = 0) sesudahnya. Menjalankan script penulis config pertama kali langsung ke file produksi adalah cara kehilangan config.
-
+14. **JANGAN membuktikan "service X bisa menimpa config" dengan menulis ke config asli.** Ini adalah kesalahan yang nyata: dua tulis uji ke `~/.hermes/config.yaml` dan ke config sebuah profil, lalu dipulihkan. Ujinya sah sebagai bukti, tetapi ia **menambah** kerusakan pada berkas yang sedang Anda selidiki, dan berkas itu dilindungi guard sehingga pemulihan manual adalah satu-satunya jalan kembali. Ganti tulis sungguhan dengan **pembacaan kode saja**: baca `_resolve`/`_profile_for_code`/`ALLOWED` dan simpulkan cakupannya dari sana. Kalau panggilan nyata tetap mutlak diperlukan, tulis ke **salinan** di `/tmp` (`HOME=/tmp/... ` atau override path), dan pulihkan berkas asli dengan menulis balik byte persisnya (pertahankan mode `0600`) — lalu sebutkan secara eksplisit di laporan bahwa Anda menulis dan sudah memulihkannya.
+15. **Cek SEMUA berkas config di bawah `~/.hermes`, bukan hanya yang di root.** Pemutusan yang sama bisa mengenai `~/.hermes/profiles/<nama>/config.yaml` — keduanya bisa berubah pada detik yang sama dengan isi yang identik. Periksa ukuran+SHA kedua-duanya; kalau keduanya identik, itu bukti penulis yang sama dan juga tanda bahwa sebuah profil mungkin **dibuat** oleh proses yang sama (cek `stat -f %SB` untuk waktu pembuatan profil, bukan hanya mtime isinya).
 
 ## Related skills
 - `hermes-configuration` — Hermes model mapping, hooks, MCP (if reachable in your skill set)

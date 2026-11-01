@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 240 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 250 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 240 ✅ Aktif
+> **Status:** 250 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -209,6 +209,16 @@
 | **mirai-mission-control-adoption** | ✅ Aktif | Bank Pusat | 5.4 KB | Adopt the MIRAI mission-control pack. |
 | **opencode-troubleshooting** | ✅ Aktif | Bank Pusat | 3.1 KB | Fix OpenCode CLI/Desktop errors and config issues. |
 | **wiki** | ✅ Aktif | Bank Pusat | 5.6 KB | Use when the owner, the business, or anything the crew has read is in play. |
+| **egm-bootstrap** | ✅ Aktif | Bank Pusat | 1.7 KB | Use when onboarding new repo. Generates bottom-up docs. |
+| **egm-codebase-auditor** | ✅ Aktif | Bank Pusat | 1.3 KB | Use when auditing design vs code. Checks consistency. |
+| **egm-comprehension** | ✅ Aktif | Bank Pusat | 2.0 KB | Use when reviewing design doc. Flags undefined terms, gaps. |
+| **egm-critic** | ✅ Aktif | Bank Pusat | 1.3 KB | Use when stress-testing design. Finds flaws, gaps. |
+| **egm-drift-report** | ✅ Aktif | Bank Pusat | 1.7 KB | Use when checking spec vs code drift. Scans for divergence. |
+| **egm-structural-validator** | ✅ Aktif | Bank Pusat | 1.2 KB | Use when validating doc structure. Checks completeness. |
+| **egm-style-editor** | ✅ Aktif | Bank Pusat | 1.1 KB | Use when editing doc style. Fixes prose, formatting. |
+| **egm-tech-lead** | ✅ Aktif | Bank Pusat | 1.4 KB | Use when reviewing architecture. Assesses trade-offs. |
+| **egm-zoom-out-architect** | ✅ Aktif | Bank Pusat | 1.3 KB | Use when macro-reviewing design. Checks big picture. |
+| **hermes-release-and-update-forensics** | ✅ Aktif | Bank Pusat | 4.3 KB | Use when auditing a Hermes release or update. |
 
 ## Domain: Security
 
@@ -391,8 +401,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **240** |
-| **Total** | **240** |
+| ✅ Aktif | **250** |
+| **Total** | **250** |
 
 ## Catatan Penting — Potensi Konflik
 

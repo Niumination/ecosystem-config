@@ -232,224 +232,304 @@
       "bundleHash": "49b822879d0af4903f9c751887af8cd689ea88b26932167fcd0af84700c4c5cf",
       "source": "/Users/zaryu/.hermes/skills/wiki",
       "promotedAt": "2026-10-18T16:30:18.733809+00:00"
+    },
+    "ecosystem/egm-bootstrap": {
+      "name": "egm-bootstrap",
+      "domain": "ecosystem",
+      "files": 1,
+      "bundleHash": "47ceec247d196f6cd4f41226fff61d1e63c6b921442f63922dc46c99ebbeb096",
+      "source": "/Users/zaryu/.hermes/skills/ecosystem/egm-bootstrap",
+      "promotedAt": "2026-11-01T14:31:56.112876+00:00"
+    },
+    "ecosystem/egm-drift-report": {
+      "name": "egm-drift-report",
+      "domain": "ecosystem",
+      "files": 1,
+      "bundleHash": "5a048a72fbc64fe00a037b213ac494c8348feefb0c30a5fc902e529939dcd173",
+      "source": "/Users/zaryu/.hermes/skills/ecosystem/egm-drift-report",
+      "promotedAt": "2026-11-01T14:31:56.112876+00:00"
+    },
+    "ecosystem/hermes-release-and-update-forensics": {
+      "name": "hermes-release-and-update-forensics",
+      "domain": "ecosystem",
+      "files": 1,
+      "bundleHash": "d0cf4d6de21c74f27e26ad594950090ffb04a01c0e006ed65f9441797a91b013",
+      "source": "/Users/zaryu/.hermes/skills/ecosystem/hermes-release-and-update-forensics",
+      "promotedAt": "2026-11-01T14:31:56.112876+00:00"
+    },
+    "ecosystem/egm-codebase-auditor": {
+      "name": "egm-codebase-auditor",
+      "domain": "ecosystem",
+      "files": 1,
+      "bundleHash": "054a38d9afd7f929b5328c270a255dc8d56e5364e7197676c6b303a576347990",
+      "source": "/Users/zaryu/.hermes/skills/egm-codebase-auditor",
+      "promotedAt": "2026-11-01T14:31:56.112876+00:00"
+    },
+    "ecosystem/egm-comprehension": {
+      "name": "egm-comprehension",
+      "domain": "ecosystem",
+      "files": 1,
+      "bundleHash": "d7c80e121fbd983b72de993ebb80ac2da8f93332bfe472fac81cdd57726f1d4e",
+      "source": "/Users/zaryu/.hermes/skills/egm-comprehension",
+      "promotedAt": "2026-11-01T14:31:56.112876+00:00"
+    },
+    "ecosystem/egm-critic": {
+      "name": "egm-critic",
+      "domain": "ecosystem",
+      "files": 1,
+      "bundleHash": "0564bcf1e062b6fc414170de73e6cf5e8942b3db8d2ef3281a2ffda48ae8edfd",
+      "source": "/Users/zaryu/.hermes/skills/egm-critic",
+      "promotedAt": "2026-11-01T14:31:56.112876+00:00"
+    },
+    "ecosystem/egm-structural-validator": {
+      "name": "egm-structural-validator",
+      "domain": "ecosystem",
+      "files": 1,
+      "bundleHash": "8504d1f01ca628b99c011bb964a3855069edcd7e1a837ac5c8d88832308a8617",
+      "source": "/Users/zaryu/.hermes/skills/egm-structural-validator",
+      "promotedAt": "2026-11-01T14:31:56.112876+00:00"
+    },
+    "ecosystem/egm-style-editor": {
+      "name": "egm-style-editor",
+      "domain": "ecosystem",
+      "files": 1,
+      "bundleHash": "c2187676593833f083897baa4f1c7b37c54ff1cc509e2322e0b7bf603c190d79",
+      "source": "/Users/zaryu/.hermes/skills/egm-style-editor",
+      "promotedAt": "2026-11-01T14:31:56.112876+00:00"
+    },
+    "ecosystem/egm-tech-lead": {
+      "name": "egm-tech-lead",
+      "domain": "ecosystem",
+      "files": 1,
+      "bundleHash": "e16293da875fca06501a47e86ad4ae102f1bc0aa8cca7e637c2780037f37004d",
+      "source": "/Users/zaryu/.hermes/skills/egm-tech-lead",
+      "promotedAt": "2026-11-01T14:31:56.112876+00:00"
+    },
+    "ecosystem/egm-zoom-out-architect": {
+      "name": "egm-zoom-out-architect",
+      "domain": "ecosystem",
+      "files": 1,
+      "bundleHash": "b42dac4368e8e37a74534e7f2d5af1c250c3cd86f0a74279f570c09e04c79f21",
+      "source": "/Users/zaryu/.hermes/skills/egm-zoom-out-architect",
+      "promotedAt": "2026-11-01T14:31:56.112876+00:00"
     }
   },
   "ignored": {
     "apple-notes": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "apple-reminders": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "findmy": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "imessage": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "claude-code": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "codex": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "computer-use": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "hermes-agent": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "opencode": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "architecture-diagram": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "ascii-video": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "baoyu-infographic": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "claude-design": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "design-md": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "humanizer": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "manim-video": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "p5js": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "popular-web-designs": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "songwriting-and-ai-music": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "sdlc-review": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "email-inbox-triage": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "himalaya": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "gif-search": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "songsee": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "youtube-content": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "obsidian": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "airtable": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "box": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "document-to-action-items": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "docx": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "google-workspace": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "maps": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "meeting-action-items": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "notion": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "pdf": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "powerpoint": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "product-price-monitor": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "teams-meeting-pipeline": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "weekly-review-planning": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "xlsx": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "arxiv": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "competitor-news-monitor": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "grounded-citations": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "llm-wiki": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "xurl": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "codebase-inspection": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "dogfood": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "github": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "inspecting-hermes-desktop-dom": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "node-inspect-debugger": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "python-debugpy": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "spike": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "test-driven-development": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "blocked-page-recovery": {
       "reason": "bundled",
-      "checkedAt": "2026-10-21T16:30:32.447531+00:00"
+      "checkedAt": "2026-11-01T14:31:56.112876+00:00"
     },
     "ecosystem-recovery/references/9router-3agent-hybrid-2026-08-28.md": {
       "reason": "rejected: pola kredensial: openai-style key",
@@ -461,5 +541,5 @@
     }
   },
   "tombstones": [],
-  "updatedAt": "2026-10-21T16:30:32.447531+00:00"
+  "updatedAt": "2026-11-01T14:31:56.112876+00:00"
 }

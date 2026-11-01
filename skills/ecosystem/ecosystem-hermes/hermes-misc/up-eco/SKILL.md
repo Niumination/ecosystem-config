@@ -7,9 +7,11 @@ tags:
   - git
   - status
   - niumination
-last_updated: "2026-09-26"
-version: 2.2.0
+last_updated: "2026-10-28"
+version: 2.4.0
 changes:
+  - Recovery procedure for a DELETED Vercel project: recreate (vercel link --yes), redeploy, re-attach the surviving account-level domain, re-add env vars gone-with-the-project
+  - Reconciliation: Vercel project can be DELETED from account (count drops, distinct from ghost); untracked folder = both dirty-file and unknown-folder findings, dedupe recommendations
   - Added Phase 5a: Vercel — `vercel project ls` + probe riil per hostname vs registry
   - Added Phase 6: Skill Bank Integrity (frontmatter, INDEX sync, duplicates)
   - Added Phase 7: Skill Sync Status (sync-to-agents.sh, Hermes/USB targets)
@@ -110,6 +112,8 @@ After presenting the report, ask the user (if not already instructed):
 - "Gas/lanjut?" to execute ALL recommendations
 - Or individually approve each action
 
+**Dedupe rekomendasi sebelum bertanya.** Folder BARU yang belum tracked muncul sebagai DUA finding sekaligus: `N file(s) uncommitted` (fase Git Status) DAN `Folder tidak dikenal: <nama>/` (fase Folder Asing) — path-nya sama. Baris rekomendasi #commit dan #folder rujuk SATU keputusan (daftar di BACKLOG / `.gitignore` / biarkan). Tanyakan satu approval, jangan empat; satu izin mengikat semuanya.
+
 ### Command Rules
 - `/up-eco` → run script, report
 - `/up-eco --fix` → run script + execute all non-destructive fixes (commit, push, register projects)
@@ -163,7 +167,18 @@ terbukti di sandbox (52 B vs 52 B, mtime sama, isi beda, tidak tersalin).
 
 **up-eco memelihara dirinya sendiri.** Fase "🪄 Lightfix & Cron" memverifikasi skrip + wrapper, memastikan job cron terdaftar, dan **membuat ulang keduanya bila hilang** — satu kali `/up-eco` cukup setelah cron terhapus.
 
-### Pelajaran dari perbaikan 2026-10-05 — `TIMEOUT_BIN` salah (jangan diulang)
+### Manifest drift sebelum commit (2026-10-22)
+- **Gejala:** `skill-manifest.py --check` melaporkan `1 ketidaksesuaian` → commit ditolak pre-commit hook.
+- **Akar:** edit manual pada SKILL.md mengubah checksum tapi manifest belum disinkronkan.
+- **Fix:** jalankan `python3 scripts/skill-manifest.py` (tanpa flag) untuk regenerate, baru commit. Jangan langsung commit saat manifest drift.
+- **Konfirmasi:** setelah regenerate, `--check` harus kembali `[ok]` sebelum commit.
+
+### gh CLI: syntax list PR per repo (2026-10-22)
+- **Salah:** `gh pr list --owner Niumination --state open` → `unknown flag: --owner`.
+- **Benar:** `gh pr list --repo Niumination/<nama-repo> --state open` atau `gh search prs --repo Niumination/* --state open`.
+- Flag `--owner` tidak ada; gunakan `--repo` dengan format `owner/name`.
+
+### Membedakan insiden nyata dari false positive
 - **`timeout` tidak ada di macOS, dan fallback lama justru MENYEBABKAN bug.** `TIMEOUT_BIN="$(command -v timeout || command -v gtimeout || echo timeout)"` menghasilkan string literal `timeout` yang tidak executable. Setiap call site `"$TIMEOUT_BIN" 25 cmd` jadi `timeout 25 cmd` → `command not found`, `set -e` atau `|| echo "?"` conviertennya jadi **false negative**, bukan error yang terlihat.
 - **Gejala yang muncul (semua false negative, bukan crash):** cron `up-eco-lightfix` dilaporkan "tidak ada" padahal ada (up-eco mencoba membuat job duplikat); `skill-audit.py` dilaporkan "gagal dijalankan" padahal exit 0; `gh auth status` selalu gagal. Tidak ada yang crash, jadi bug ini bertahan lama tanpa terdeteksi.
 - **Fix:** `TIMEOUT_BIN` fallback jadi string kosong (`|| echo ''`), dan setiap call site guard `[ -n "$TIMEOUT_BIN" ]` dengan fallback ke command polos. Jangan pakai nama binary yang tidak ada sebagai fallback.
@@ -192,9 +207,94 @@ terbukti bukan insiden:
 3. **`"Audit konten skill: N finding"`** — warning-only. Sebagian besar adalah fixture keamanan
    yang sengaja ada (`evil.example`, `localhost.evil.com`), contoh `~/.ssh`, dan dokumen instalasi
    `curl | bash`. Jangan "diperbaiki" otomatis.
+4. **`Vercel → HTTP 302/308`** — deployment **LIVE**, bukan anomali. Vercel memaksa HTTPS, jadi
+   probe ke `http://<host>/` menjawab redirect 3xx ke `https://<host>/` (bukan error). Skrip yang
+   hanya probe HTTP dan membaca status code saja akan melaporkannya sebagai `302` dan membunyikan
+   alarm palsu. Verifikasi dengan `curl -s -o /dev/null -w '%{http_code} %{url_effective}'` —
+   `308 ... https://...` berarti LIVE via HTTPS. Jangan laporkan 302/308 sebagai masalah tanpa
+   probe HTTPS-nya.
+5. **`Vercel → 302 ke vercel.com/sso-api` / `/login`** — Deployment Protection, BUKAN error. Kalau
+   alias `<proj>-<slug>.vercel.app` menjawab 302 ke `https://vercel.com/sso-api?...` atau
+   `vercel.com/login`, situs **tetap LIVE**; proteksi Vercel hanya mengunci alias `.vercel.app`,
+   situs publik disajikan lewat domain custom. Verifikasi di domain custom-nya, bukan di alias:
+   `curl -s -o /dev/null -w '%{http_code}' https://<custom-domain>/` → 200 berarti sehat. Jangan
+   laporkan 302 SSO sebagai "situs down" — itu beda dari 308 HTTPS-upgrade di atas.
 
 **Aturan umum:** sebuah temuan yang berulang di setiap run dengan nilai yang sama adalah
 kandidat false positive — tapi konfirmasi lewat satu perintah baca, bukan lewat ingatan.
+
+### Vercel deployment `● Error` — diagnosis & perbaikan lockfile
+Saat sebuah proyek menunjukkan deretan deployment `● Error` beruntun (dulunya `● Ready`, lalu
+semua gagal dalam ~1 menit) setelah pembaruan dependensi, akar masalah biasanya **bukan kode**.
+
+- **Diagnosis (wajib, berurutan):** `vercel ls <proj>` mendaftarkan semua deployment + status
+  teranyar; ambil URL deployment paling baru, lalu `vercel inspect https://<url-deploy> --logs`
+  untuk baca log build riil. Log menunjukkan kegagalan sebenarnya — contoh `npm error network
+  request to http://mirrors.tencentyun.com/... failed, reason: getaddrinfo ENOTFOUND`. `vercel
+  inspect <proj>` tanpa `--logs` tidak menampilkan log build.
+- **Akar umum:** `package-lock.json` punya `resolved` URL ke registry mirror non-publik (mirror
+  China seperti `mirrors.tencentyun.com`, mirror korporat) yang tak terjangkau build server Vercel
+  (AS) → `npm install` ENOTFOUND, gagal cepat. Proyek "dulu Ready" karena lock rusak itu di-commit
+  oleh dev/CI yang menjalankan `npm install` dengan mirror registry di mesin lokalnya.
+- **FIX — jebakan `--package-lock-only`:** `npm install --package-lock-only --registry=<npmjs>`
+  **tidak** menuliskan ulang URL `resolved` yang sudah ada; npm melaporkannya "up to date" dan
+  meninggalkan URL mirror yang rusak. **Wajib `rm package-lock.json` dulu**, baru
+  `npm install --package-lock-only --registry=https://registry.npmjs.org/` untuk regenerasi lock
+  bersih dari nol. Verifikasi: `grep -c <mirror> package-lock.json` → 0 dan `grep -c
+  registry.npmjs.org package-lock.json` → N. Backup lock lama sebelum regenerate.
+- **Verifikasi perbaikan:** commit + push ke `main` memicu auto-deploy; poll `vercel ls <proj>`
+  sampai deployment termuda berubah jadi `● Ready` (build ~1 menit). Probe **domain custom**, bukan
+  alias `.vercel.app` (lihat false-positive #5).
+
+### Vercel proyek TERHAPUS — pemulihan (recreate + redeploy)
+Sebuah proyek bisa hilang sepenuhnya dari akun (dihapus manual / salah hapus), bukan hanya
+PAUSED. Gejalanya: hostname yang dulu LIVE 200 lenyap dari `vercel project ls` DAN total proyek
+turun; `curl` ke domain custom menjawab **404** (bukan 503 `DEPLOYMENT_PAUSED`).
+`<proj>/.vercel/project.json` masih menunjuk ke `prj_…` yang sudah tidak ada. Ini beda dari
+PAUSED (proyek masih ada, deploy di-pause) dan dari ghost (hostname yang tak pernah ada).
+Reconciliation-nya (turunkan angka BACKLOG, catat penghapusan) ada di pelajaran Phase 5a;
+prosedur PULIHKAN berikut untuk saat pemilik meminta redeploy.
+
+**Langkah pemulihan (berurutan):**
+1. **Konfirmasi penghapusan, bukan pause.** `vercel project ls 2>&1` — proyek tidak terdaftar
+   sama sekali + total count turun. `curl` domain custom → 404 (pause = 503 body
+   `DEPLOYMENT_PAUSED`).
+2. **Repo lokal WAJIB sinkron upstream dulu.** Redeploy menarik kode dari repo; lokal kotor/berubah
+   = hasil tidak sesuai upstream. `git status -sb` → `## main...origin/main` seimbang, tanpa
+   berkas kotor, sebelum redeploy.
+3. **Recreate proyek.** Backup `.vercel/` lama, lalu `mv .vercel .vercel.stale-<ts>` (jangan
+   di-delete — cadangan metadata). `vercel link --yes` → buat proyek BARU (nama otomatis dari
+   repo, BUKAN nama lama yang terhapus), hubungkan ke repo GitHub, auto-deploy `main` langsung
+   aktif kembali. `.vercel/` + `.env.local` hasil link di-ignore repo — tree tertrek tetap bersih.
+4. **Picu deploy.** `vercel deploy --prod --yes` membangun di server Vercel (~1–2 mnt) dan
+   mencetak URL `…vercel.app`. Proyek baru masih kosong env-nya.
+5. **Domain TIDAK ikut terhapus.** Zona DNS / domain bersifat account-level, bertahan walau
+   proyek dihapus. Pasangkan ulang ke proyek baru: `vercel domains add <domain>` (ke team) lalu
+   `vercel domains add <domain> <project> --scope <team>` (tempel ke proyek). `--team` pada
+   `domains add` sudah deprecated → pakai `--scope`. Verifikasi `vercel domains verify <domain>
+   --scope <team>` → `attached:true, verified:true`, 0 konflik (DNS sudah ke Vercel sejak awal,
+   jadi verifikasi instan).
+6. **Verifikasi di domain custom, BUKAN alias `.vercel.app`.** Alias `.vercel.app` terlindungi
+   Deployment Protection → 302 ke `vercel.com/sso-api` (lihat false-positive #5). Situs publik
+   disajikan lewat domain custom: `curl -s -o /dev/null -w '%{http_code}' https://<domain>/` →
+   200 berarti pulih.
+
+**Pitfall — env produksi ikut hilang bersama proyek yang dihapus.** Semua env var (token, secret
+pembayaran, DSN) ada di proyek lama dan LENYAP saat proyek dihapus; nilainya sering sengaja tidak
+disimpan di repo. Konsekuensi: situs tetap **bisa** di-deploy dan hidup memakai default di kode +
+snapshot statis yang sudah di-bundle, tapi fitur berbasis secret (data API live, pembayaran, chat)
+**mati** sampai secret dipasang ulang lewat `vercel env set <KEY> <val>` di proyek baru, lalu
+redeploy. Jangan klaim "pulih penuh" sebelum secret dikembalikan — laporkan sebagai follow-up
+terpisah dengan daftar key yang perlu dipasang (jangan tempel nilai secret di chat/doc).
+
+### Sinkronisasi skill ke Hermes (2026-10-22)
+- **Wajib dijalankan setelah commit up-eco**, bukan sebelum. Urutan:
+  1. Commit + push perubahan root
+  2. Jalankan `bash skills/sync-to-agents.sh`
+  3. Commit hasil sync (skill-registry.md berubah)
+  4. Push lagi
+- Sync memakan ~30 detik. Gunakan timeout 120s agar tidak timeout diam-diam.
+- Jika sync timeout, jalankan ulang secara terpisah: `bash skills/sync-to-agents.sh`.
 
 ### Pelajaran dari perbaikan 2026-09-26 — Phase 5a Vercel (jangan diulang)
 - **Status deployment yang ditulis dari ingatan akan meleset diam-diam.** Registry klaim "Vercel 5 Live"; probe riil 26 Sep 2026 membuktikan **7 dari 13 status salah**, termasuk 2 yang bukan sekadar paused: `kms-spbe` diklaim 200 padahal tidak terdaftar di akun Vercel sama sekali (DNS mati, 000), dan `virtual-assistance` diklaim 200 lewat hostname `virtual-assistance.vercel.app` yang tidak pernah ada — yang sebenarnya `virtual-assistance-pi` dan PAUSED. Satu-satunya obat: probe tiap run, bandingkan dengan registry, laporkan yang beda.
@@ -204,6 +304,7 @@ kandidat false positive — tapi konfirmasi lewat satu perintah baca, bukan lewa
 - **`*)` di dalam `case` match APA SAJA.** Filter baris tabel Vercel dengan `case "$name" in ...|*) continue` membuang **seluruh** baris data karena `*` adalah wildcard universal. Pakai daftar-tolak eksplisit plus guard positive `[a-z0-9]*`.
 - **`a && b || c` bukan if-else di shell.** Kalau `b` (mis. penambahan array) ternyata return non-zero, `c` ikut jalan dan baris terduplikasi. Pakai `if` eksplisit.
 - **Anchor pola `grep` ke awal baris saat membandingkan registry.** `| Vercel |` tanpa anchor juga kena baris proyek yang kebetulan punya sel "Vercel" (mis. PemdiAcehTengah). Pakai `^\| Vercel \|`.
+- **Proyek Vercel bisa DIHAPUS dari akun, bukan cuma paused/ghost — total count turun.** Sebuah hostname yang dulu diverifikasi LIVE bisa hilang dari `vercel project ls` dan jumlah total proyek turun (14→13). Beda dari ghost: ghost = hostname diklaim registry tapi TIDAK PERNAH ada; proyek terhapus = dulu nyata & live, sekarang tidak terdaftar. Rekonsiliasi = turunkan angka total + live di BACKLOG, catat penghapusannya, JANGAN ubah jadi catatan "ghost/hostname salah". Pembeda: hostname yang sebelumnya tercatat live (bukan coretan changelog) = hapusan, bukan ghost.
 - **Saat registry sudah BERISI catatan koreksi, ghost-detectionreporting bohong.** Baris yang menjelaskan kesalahan masa lalu (memuat "tidak pernah ada" / "salah tulis") bukan klaim aktif — hitung begitu akan melaporkan hostname yang memang sudah dikoreksi sebagai ghost. Filter baris koreksi sebelum dibandingkan.
 - **`while read` di dalam pipe = subshell; variabel tidak kembali ke caller.** Pakai `<<< "$var"` (here-string) supaya counter bisa dihitung setelah loop. Dan `set -euo pipefail` aktif di skrip ini: **setiap** `grep`/`grep -c` dalam command substitution wajib `|| true`, karena 0-match adalah state yang legal.
 
@@ -226,6 +327,8 @@ From a real `/up-eco` run on macOS, these additional checks and fixes are now pa
 - **SOUL.md style section:** `up-eco` now checks for a `## Gaya jawab` section in `~/.hermes/SOUL.md`. If missing, add a concise 3-5 line section covering: answer style, language default, structure preference.
 - **Hermes display config:** Verify `display.compact=true`, `agent.task_completion_guidance=false`, `display.turn_completion_explainer=false`, `display.personality=""`. These suppress verbose Telegram output.
 - **SOUL/dotfiles drift check:** `up-eco` compares SHA-256 of `~/.hermes/SOUL.md` vs `dotfiles/zaryu-terminal-dotfiles/hermes/SOUL.md`. If they differ, or if the symlink target is missing, report a drift incident and recommend repair before any session restart.
+  - **Repair = re-point as symlink, NOT edit the file.** The active `~/.hermes/SOUL.md` is a SYMLINK to the dotfiles source; SOUL.md's single writer is the human editing the dotfiles copy, and the active file is downstream. A drift means the symlink was replaced by a plain file (a tool wrote 105 B of identity stub over the real 3167 B soul). Fix: back up the plain file, then `ln -sf <dotfiles source> ~/.hermes/SOUL.md`. Verify with `ls -la` (shows `->`) and `wc -c` (matches source). Before creating the symlink, confirm the SOURCE is not itself behind a symlink — walk each path component with `os.path.islink` (larangan #3: never put config under a symlink path).
+  - **Never "fix" drift by copying the small file over the source.** That propagates the loss upstream and makes it unrecoverable; the source is authoritative, the active file is the mirror.
 - **`.gitignore` hygiene:** Ensure root `.gitignore` covers runtime/local artifacts: `logs/`, `.vscode/`, `.9router-state.json`, `skills-lock.json`, `.sync-log`, `.git-backup-*/`. Missing entries cause `up-eco` to flag them as unknown folders.
 - **Skill sync mismatch:** After `sync-to-agents.sh`, Hermes may show mismatch skills even when target is clean. Known non-fatal divergence; do not block on it.
 - **Mission Control v3.0 (Next.js-only):** Legacy `server.py` (FastAPI port 5200) DELETED. Modern MC = `services/niu-mission-control/apex-ui/` (Next.js 15 + React 19). Dev: `npm run dev` (port 3000). Production: `npm run build && npm start`. `HTTP 404` on `/api/*` while UI returns `HTTP 200` is NORMAL — Next.js frontend only, no FastAPI backend. Not a failure.

@@ -95,6 +95,30 @@ keep `type == 'text'`) rather than trying to `grep` readable prose out of raw
 JSON. Then verify each extracted claim against the machine before repeating it:
 the session text is intent, not evidence.
 
+## Proving when the work was done: timestamps beat session logs
+
+When the owner says an agent "just did a thorough fix" to something and asks for a report on it,
+the artifacts' own timestamps are the primary evidence and the session store is only corroboration.
+
+Rule: **establish the real date range from `stat -f "%Sm"` on the artifacts, then locate the session
+that produced them.** A session whose last activity predates the artifacts cannot be the author, and
+reporting its prompt text as the fix is inventing content the machine does not show.
+
+Order of evidence:
+
+1. `stat -f "%Sm %N"` on every candidate artifact (plugin files, config, generated docs) — the mtime
+   is the ground truth for *when*.
+2. The owning session: query the agent's SQLite for sessions whose `time_updated` falls in that
+   window, then read its `session_message` rows to see what was actually asked.
+3. Cross-check with the ecosystem's own logbook — a numbered, append-only per-change record with
+   `UBAH`/`SEBELUM`/`PERINTAH`/`BUKTI`/`STATUS` fields is the ecosystem's memory of what it did and
+   is more quotable than prose.
+
+If no artifact and no session fall in the claimed window, say so plainly: list what you probed, the
+dates they carry, and the coverage you verified. A report that states "no change found in the claimed
+window, here is what does exist and when" is honest and actionable; a report that names a fix it
+cannot point to is a fabrication the owner will act on.
+
 ## A "fixed" state is a claim about a moment, not a property
 
 Anything that can be toggled, split, rotated, or pinned drifts between the

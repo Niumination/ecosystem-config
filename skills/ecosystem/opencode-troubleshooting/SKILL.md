@@ -163,6 +163,9 @@ sqlite3 ~/.local/share/opencode/opencode.db "select count(*) from credential;"
 
 ## Pitfalls
 
+- **Upgrading replaces the binary but not the running service — check all three surfaces before calling the version settled.** `opencode upgrade` swaps the Cellar version and the `/usr/local/bin/opencode` symlink, while a long-lived `opencode serve --service` keeps running the binary path it was started with, and a bundled Desktop app keeps its own bundle version. Probe them separately: `opencode --version` (symlink target), `ps -p <service-pid> -o command=` (which Cellar version the daemon holds), and the app's `CFBundleShortVersionString`. Report the desync and the `opencode service restart` that resolves it; an upgrade is not complete until the service is restarted.
+- **Rollback needs the old version, and the package manager may have already deleted it.** After an upgrade the previous Cellar version is often gone, so "just downgrade" is not always available — before upgrading, note the current version and where its bottle/tap lives. State this in the disclosure so the owner knows the cost of reversal.
+- **`opencode` with no subcommand opens an interactive TUI, it is not a health probe.** Diagnosing from a shell call means reading logs, DB rows, and the service status — never launching the TUI. Same for any CLI whose bare invocation is interactive; the `serve`/`models`/`auth`/`session` subcommands are the non-interactive surface.
 - **JSONC overrides JSON**: If both `opencode.json` and `opencode.jsonc` exist, only `.jsonc` is used. Disable one to use the other.
 - **Free tier is Desktop-only**: CLI rejects free tier models. Use a local provider (9router) for CLI usage.
 - **Dummy keys rejected**: OpenCode validates API key format even if the provider doesn't enforce it. Always use the real key.

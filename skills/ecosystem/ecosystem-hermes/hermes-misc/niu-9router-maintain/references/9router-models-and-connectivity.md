@@ -21,6 +21,14 @@ unavailable. Picking a model the upstream doesn't serve → `404` from upstream 
 `gemini-3.5-flash-low` → "models/gemini-3.5-flash-low is not found"). Always pick a model that
 actually exists in the live catalog above.
 
+**Combos are not models.** `channel_overrides` can name a combo (`combo-delegasi`, `combo-gateway`).
+A combo that has been removed from the `combos` table is invisible until a channel that
+references it is used — then it fails as `404 No active credentials for provider: <last upstream
+member>`. Cross-check the name before reporting a broken channel or a dead credential:
+```bash
+python3 -c "import sqlite3;con=sqlite3.connect('file:$HOME/.9router/db/data.sqlite?mode=ro',uri=True);print(con.execute(\"select name, models from combos where name='combo-delegasi'\").fetchone())"
+```
+
 ## Connectivity Verification Recipe (test each provider with a real chat)
 
 ```bash
@@ -60,3 +68,5 @@ Parse with: split lines, skip `data: [DONE]`, `json.loads(line[6:])['choices'][0
 | chat → `404` upstream "model not found" | wrong model ID | use a catalog-real model |
 | direct Gemini `403` "no established identity" | key not actually passed (empty env) | read key from `.env` file, not `$var` |
 | `503 high demand` | key OK, model overloaded | use lighter model (3.5-flash-lite) |
+| chat → `404 No active credentials for provider: openai` (HTTP 404) | the requested name is not a registered combo — the message names the last upstream member, not the real cause | check `select name, models from combos where name=?` before blaming any credential |
+| chat → `503` wrapping `[402] ... MONTHLY_REQUEST_COUNT (reset after 1m 50s)` | upstream quota exhausted on that model, reset timer in body | retry after the stated reset; not a dead key |

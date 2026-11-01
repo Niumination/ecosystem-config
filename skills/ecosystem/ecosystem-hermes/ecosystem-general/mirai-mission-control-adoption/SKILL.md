@@ -169,6 +169,32 @@ langkah 0-12. Yang diminta: diff → apply file berubah → restart service → 
    + project-catalog (PID baru, angka health, versi zip).
 
 ### Peringatan update
+- **Zip arena bisa membawa `.hermes/` di root paket — itu jebakan, bukan milik ekosistem.**
+  `mirai-last.zip` memuat `.hermes/config.yaml` (`model: gpt-5.4-mini, provider: openai`),
+  `.hermes/SOUL.md` ("Your name is Executor"), dan profile `research/`. Konten itu
+  PALSU untuk ekosistem Niumination: providernya bukan milik kita dan SOUL-nya
+  menamai agent "Executor". Kalau ikut tersalin, ia menimpa identitas agent.
+  Sebelum apply, `unzip -l` root zip dan pisahkan entri `.hermes/`; apply hanya
+  `mirai/` (atau folder proyek). Aturan yang sama untuk entri `.opencode/`,
+  `.claude/`, `AGENTS.md` di root zip bila isinya bukan versi repo kita.
+- **Aset produksi vs aset sumber: jangan salin folder master.** Zip avatar memuat
+  `mission-control/web/avatars/_new/` (20 PNG master, ~2 MB/buah). Itu sumber
+  produksi, bukan aset runtime — server hanya butuh `{kode}.webp` + `{kode}-still.webp`.
+  Salin folder runtime, tahan folder `_new/`; kalau ikut, repo membengkak ~40 MB.
+- **Traceback di log test belum tentu regresi — buktikan di baseline sebelum menyalahkan patch.**
+  `tests/prove.sh` memunculkan `sqlite3.OperationalError: near "to": syntax error`
+  dari `traffic.py:98` (alias SQL `AS to` tanpa quote; `to` reserved word SQLite).
+  Ternyata pra-existent: file itu identik di HEAD dan di zip, dan `prove.sh` di
+  worktree baseline (`git worktree add --detach ... HEAD`) memunculkan traceback
+  yang sama dengan RC=0. Cara cepatnya: `git worktree add --detach /tmp/base HEAD`,
+  jalankan test di sana, bandingkan. Jangan perbaiki di luar scope patch — satu
+  commit = satu perubahan; catat di pesan commit.
+- **`/api/agents` menampilkan profil Hermes, bukan 10 kursi Telegram — dan itu benar.**
+  `roster.agents()` mengiterasi `profiles()` dari `~/.hermes/profiles/`, jadi hanya
+  `default` + `research` yang muncul (2 kursi, avatar `null` karena kode `DE`/`RE`
+  bukan kode pack `TR`…`OR`). 10 kursi Niumination hidup di `/api/house` (`house.py`),
+  yang sumbernya `SEATS` statis di kode, bukan profil. Jangan pakai `/api/agents`
+  untuk memverifikasi avatar pack.
 - **`restart.sh` arena diblokir self-termination guard Hermes.** Skripnya
   `launchctl bootout` LaunchAgent gateway juga → gateway bunuh command sebelum selesai.
   BUKAN bug restart.sh. Restart MIRAI langsung: `launchctl kickstart -k
