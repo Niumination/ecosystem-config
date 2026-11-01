@@ -1,6 +1,6 @@
 {
   "fileCount": 1196,
-  "generatedAt": "2026-11-01T14:38:31.539499+00:00",
+  "generatedAt": "2026-11-01T17:00:41.131178+00:00",
   "skillCount": 250,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -914,10 +914,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/niumination-ecosystem-change-discipline": {
-      "bundleHash": "b6797784217d5d5ee7001752c4c8c5f45dbe52a7dbebf3dac5988924b29a9944",
+      "bundleHash": "df42a49c81961c3c43bc25ee920fa364067c20646a205793fb3c3f849a12ef28",
       "domain": "ecosystem/ecosystem-hermes/ecosystem-general",
       "files": {
-        "SKILL.md": "58857783e829542fb21e4a0ba3f802d3fcdbbaa6eaecb644c1a5d6f38255036e",
+        "SKILL.md": "3215d2d10cbc307fc77b1745ae969d9540fcdd1c51880c61e5c7c27fa66af5cf",
         "references/shared-repo-commits.md": "7eab705051201cfba498e6eea4b1d2cf056650804c0c99166d39ad9e8229b08e"
       }
     },
