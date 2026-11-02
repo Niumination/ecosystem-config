@@ -1,6 +1,6 @@
 {
-  "fileCount": 1197,
-  "generatedAt": "2026-11-02T05:36:05.066157+00:00",
+  "fileCount": 1198,
+  "generatedAt": "2026-11-02T06:44:20.426519+00:00",
   "skillCount": 251,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -106,7 +106,7 @@
       }
     },
     "creative/comfyui": {
-      "bundleHash": "59539b6f6005c1396614794a9e2addbdfb8005b4e758e3242ea2abd12a204e81",
+      "bundleHash": "221e827940ab9b9cdfe6a4f17c18110241d0a85c6e515bc507955bc28bc385fa",
       "domain": "creative",
       "files": {
         "SKILL.md": "1013a06bf6accc0cbcb43a7dbb6e31130ed7e692b4db454877ccb38fbe66815e",
@@ -133,9 +133,10 @@
         "tests/test_common.py": "c760a68c53f12e54609a9330dbbe2f378d06b4d107f7acb9b8ac83ff22abd517",
         "tests/test_extract_schema.py": "d5624eaf8cf912d094a108188475de82bd4ae834597fc275a32f8082e6cce898",
         "tests/test_run_workflow.py": "52da38afde5b9f2f03252c3478612a5caaf6f8225373c2a2ce5e43885ddc8c78",
-        "workflows/README.md": "2e1cd819ff6da81b1c41daa74f95f3c4df564bf512d18a63e566890cea4c6bbd",
+        "workflows/README.md": "5493e19ea2c8a6a4a44d1abc83d20a52c151460a73cce7c4869ff262cd3add42",
         "workflows/animatediff_video.json": "96742617937e0294d421e1b3dc53c44c431081577598257bfd6121abe1c3ada2",
         "workflows/flux_dev_txt2img.json": "db0afca70c46f552b7bc4c4b9d63761da81232f6ce78e3dd98b2af0488bfb16c",
+        "workflows/ltx25_t2v.json": "fdc935f4c91217bcd70fa501c4fe46f1808d67f5f5728b1f458494d7bd714e96",
         "workflows/sd15_txt2img.json": "db6ef4f9bf3b8e0f0c88c08ab8f0a45ae3816fb2ea2ad4460443b1ac424052a5",
         "workflows/sdxl_img2img.json": "0b6888ec7e55310020d6d12f6af32502eb3374b7ebefaad3734df8b5596bdac5",
         "workflows/sdxl_inpaint.json": "c9cd10adb7ce9e3c17df3c38c1a597229dc939ff5ae6f8a24d505ea8a053b54c",

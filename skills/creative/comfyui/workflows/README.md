@@ -14,6 +14,7 @@ cloud access to) the listed models.
 | `upscale_4x.json` | Standalone 4× ESRGAN upscale | `4x-UltraSharp.pth` (or any upscaler) | 4 GB |
 | `animatediff_video.json` | AnimateDiff text-to-video (16 frames) | SD1.5 checkpoint, `mm_sd_v15_v2.ckpt` motion module | 8 GB |
 | `wan_video_t2v.json` | Wan 2.x text-to-video (~33 frames) | `wan2.2_t2v_1.3B_fp16.safetensors`, `umt5_xxl_fp16.safetensors`, `wan_2.1_vae.safetensors` | 24 GB |
+| `ltx25_t2v.json` | LTX 2.5 text-to-video (distilled, 48 frames / 2s @ 24fps) | `ltx2_5_text_encoder.safetensors`, `ltx2_5_vae.safetensors` (atau ComfyCloud preinstalled) | 24 GB lokal / ComfyCloud |
 
 ## Quick start
 
@@ -61,7 +62,9 @@ python3 ../scripts/check_deps.py wan_video_t2v.json
 - **Video workflows** can take many minutes. The skill auto-detects video
   output nodes and bumps the default timeout to 900s. Override with `--timeout 1800`.
 
-- These JSON files are deliberately **API format** (top-level keys are node IDs
+- **LTX 2.5** (`ltx25_t2v.json`): distilled T2V, 8 steps, guidance=1.0. Community License — komersial gratis untuk entitas <$10M/year (Niumination qualifies). VRAM 24 GB lokal, atau gunakan ComfyCloud. Node: `LTXVideoSampler` + `LTXVScheduler` + `EmptyLTXVLatentVideo`. Lihat `references/template-integrity.md` untuk cloud compatibility notes.
+
+These JSON files are deliberately **API format** (top-level keys are node IDs
   with `class_type`), not editor format. To open them in ComfyUI's web UI for
   visual editing, use `Workflow → Load (API Format)` or `Workflow → Open` and
   follow the prompt.

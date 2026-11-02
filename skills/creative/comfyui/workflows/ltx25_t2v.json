@@ -1,0 +1,129 @@
+{
+  "_comment": "LTX 2.5 text-to-video (distilled, few-step). Cloud: use LTX-2.5 models. Local: needs LTX-2.5 model + LTXV custom nodes. Min VRAM: 24 GB local or use ComfyCloud. License: LTX-2.x Community — commercial OK for <$10M revenue entities. Niumination qualifies.",
+  "6": {
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Prompt"
+    },
+    "inputs": {
+      "text": "A cinematic drone shot slowly flying over turquoise ocean waves at golden hour, gentle waves breaking on a remote beach, warm light, no people",
+      "clip": [
+        "38",
+        0
+      ]
+    }
+  },
+  "7": {
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "Negative Prompt"
+    },
+    "inputs": {
+      "text": "static, blurry, watermark, low quality, distorted, warped",
+      "clip": [
+        "38",
+        0
+      ]
+    }
+  },
+  "8": {
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    },
+    "inputs": {
+      "samples": [
+        "3",
+        0
+      ],
+      "vae": [
+        "39",
+        0
+      ]
+    }
+  },
+  "37": {
+    "class_type": "LTXVideoSampler",
+    "_meta": {
+      "title": "LTX 2.5 Video Sampler"
+    },
+    "inputs": {
+      "model": [
+        "38",
+        0
+      ],
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "latent": [
+        "40",
+        0
+      ],
+      "scheduler": [
+        "36",
+        0
+      ],
+      "seed": 42,
+      "steps": 8,
+      "cfg": 1.0,
+      "sampler_name": "euler",
+      "denoise": 1.0,
+      "max_shift": 1.0,
+      "base_shift": 0.5
+    }
+  },
+  "38": {
+    "class_type": "LTXAVTextEncoderLoader",
+    "_meta": {
+      "title": "LTX AV Text Encoder"
+    },
+    "inputs": {
+      "model_name": "ltx2_5_text_encoder.safetensors",
+      "vae_name": "ltx2_5_vae.safetensors"
+    }
+  },
+  "39": {
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "LTX VAE"
+    },
+    "inputs": {
+      "vae_name": "ltx2_5_vae.safetensors"
+    }
+  },
+  "40": {
+    "class_type": "EmptyLTXVLatentVideo",
+    "_meta": {
+      "title": "Latent Video (48 frames @ 24fps = 2s)"
+    },
+    "inputs": {
+      "width": 768,
+      "height": 512,
+      "length": 48,
+      "batch_size": 1
+    }
+  },
+  "9": {
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "Video Combine"
+    },
+    "inputs": {
+      "frame_rate": 24.0,
+      "loop_count": 0,
+      "filename_prefix": "ltx25_t2v",
+      "format": "video/h264-mp4",
+      "pingpong": false,
+      "save_output": true,
+      "images": [
+        "8",
+        0
+      ]
+    }
+  }
+}
