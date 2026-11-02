@@ -14,14 +14,9 @@ agent-desktop version
 ```
 
 ## Permissions (macOS)
-Accessibility permission wajib: `agent-desktop permissions --guide` → System Settings → Privacy & Security → Accessibility → tambahkan Terminal/iTerm/Codex.
-Screen Recording juga dibutuhkan untuk screenshot.
+Accessibility permission wajib. Binary native berada di `/usr/local/lib/node_modules/agent-desktop/bin/agent-desktop` — permission Terminal/iTerm TIDAK otomatis menutupi binary ini (macOS per-binary). Grant manual via System Settings → Privacy & Security → Accessibility → tambahkan binary tersebut (drag dari Finder, path di atas). Screen Recording juga dibutuhkan untuk screenshot.
 
-**Pitfall per-binary:** Binary native berada di `/usr/local/lib/node_modules/agent-desktop/bin/agent-desktop` — permission Terminal/iTerm TIDAK otomatis menutupi binary ini (macOS per-binary). Grant manual via System Settings → drag binary dari Finder.
-
-**Pitfall TCC stale:** Jika `permissions` melaporkan denied padahal TCC database menunjukkan auth_value=2 (allowed), kemungkinan TCC entry stale karena perubahan signature binary. Fix: `osascript -e 'do shell script "tccutil reset Accessibility" with administrator privileges'` (bisa pakai Touch ID), lalu re-grant manual.
-
-**Pitfall tccutil:** `tccutil reset Accessibility <path>` gagal dengan OSStatus -10814 — tccutil butuh bundle ID, bukan path. Gunakan reset tanpa argumen.
+Jika password prompt terhalang: coba drag binary langsung ke daftar (biasanya tidak perlu password untuk menambah entry), atau gunakan `tccutil reset Accessibility` lalu jalankan binary sekali untuk trigger prompt baru.
 
 ## Quick start
 ```bash

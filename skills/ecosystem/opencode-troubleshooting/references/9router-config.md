@@ -66,6 +66,14 @@ Equal counts mean the integration works; a config-only catalog will show a much 
 Confirm with `opencode plugin list` that the plugin is present, and with `opencode reload` after
 editing the plugin file.
 
+## Filtering inactive models in the plugin
+
+The plugin publishes **every** model from `/v1/models`, including inactive `off-*` combos and models from dead provider connections. To show only usable models:
+
+1. In `loadModels()`, filter `raw.id.startsWith("off-")` → return [] (skip)
+2. 9router does not expose per-model health status — upstream 404s (e.g., `nous/meituan/longcat-2.5-preview:free`) are provider-side, not filterable via the API
+3. After editing the plugin: `opencode reload`, then verify `opencode models | grep -c '^9router/'` dropped by the filtered count
+
 ## Verification
 
 ```bash
