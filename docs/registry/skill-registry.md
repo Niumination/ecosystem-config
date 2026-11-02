@@ -47,6 +47,7 @@
 | `devops/macos-launchd-services` | devops | 10 | Bank Pusat | Keep macOS always-on services alive; recover launchd plists. |
 | `devops/production-env-vars` | devops | 1 | Bank Pusat | Use when changing or rotating env vars on a live app (Vercel). Decode pulled values, verify functionally, keep a rollback path. |
 | `devops/snapshot-verification` | devops | 3 | Bank Pusat | Verify static snapshot deployment and content. |
+| `ecosystem/agent-desktop` | ecosystem | 1 | Bank Pusat | 'Use when operating desktop apps via accessibility tree.' |
 | `ecosystem/ecosystem-hermes/ecosystem-general/arena-patch-adoption` | ecosystem | 5 | Bank Pusat | Use when applying arena.ai zip patch stacks to a repo. |
 | `ecosystem/ecosystem-hermes/ecosystem-general/device-migration-disaster-recovery` | ecosystem | 7 | Bank Pusat | Use when planning backup, restore, or device migration. |
 | `ecosystem/ecosystem-hermes/ecosystem-general/ecosystem-architecture-adoption` | ecosystem | 2 | Bank Pusat | Adapt external architecture into existing project. |
@@ -254,6 +255,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-11-02 00:00:00_
+_Last sync: 2026-11-02 11:52:30_
 
 <!-- SKILL_REGISTRY_END -->

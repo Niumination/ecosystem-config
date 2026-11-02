@@ -1,7 +1,7 @@
 {
-  "fileCount": 1196,
-  "generatedAt": "2026-11-01T17:00:41.131178+00:00",
-  "skillCount": 250,
+  "fileCount": 1197,
+  "generatedAt": "2026-11-02T04:52:06.892703+00:00",
+  "skillCount": 251,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -610,6 +610,13 @@
         "SKILL.md": "ece4a6e3b3d5de4ff56d70f3b2cc51aca6c08d73d49d24a9d286c361e0e71922",
         "scripts/verify_landing_links.py": "6bdc00b550a862199f966ff5e4d6755d807743f726cd68f89680780be61024b8",
         "scripts/verify_snapshot.py": "cc10fcbe0d326da0b405d2517969e8d54896e1e80aee630ad250e258096fa5a4"
+      }
+    },
+    "ecosystem/agent-desktop": {
+      "bundleHash": "012b6586b09dc2cca8bdfe5e6a909bb54ea57d76e94fe865f7eb2861c93bb185",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "6fc6e03c676b9d1dc9baa8bc86c67b953f99623eeb1ee5c4235229aa252a1c5b"
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/arena-patch-adoption": {
