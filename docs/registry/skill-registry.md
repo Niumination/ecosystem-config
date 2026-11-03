@@ -17,7 +17,7 @@
 | `content/papermorph-edu` | content | 1 | Bank Pusat | Make or edit animated, narrated, interactive web books from reference PDFs (Niumination Edu Content adaptation). Use for book planning, storyboards, chapter animation and exercises, narration, and cover and contents pages, including "make the next chapter" or "fix this animation". Deliver runnable static book files. |
 | `content/remotion-video` | content | 3 | Bank Pusat | Buat video vertikal 9:16 pakai Remotion — prompt ke MP4, Mode A CPU-only, gratis (Free tier ≤3 org). SCOPE: thread Konten Kreator (1172) saja. |
 | `creative/ascii-art` | creative | 1 | Bank Pusat | ASCII art: pyfiglet, cowsay, boxes, image-to-ascii. |
-| `creative/comfyui` | creative | 33 | Bank Pusat | Generate images, video, and audio via diffusion workflows. |
+| `creative/comfyui` | creative | 34 | Bank Pusat | Generate images, video, and audio via diffusion workflows. |
 | `creative/content-pipeline-readiness` | creative | 3 | Bank Pusat | Use when checking content production & publish readiness. |
 | `creative/excalidraw` | creative | 5 | Bank Pusat | Hand-drawn Excalidraw JSON diagrams (arch, flow, seq). |
 | `creative/free-tier-reels` | creative | 6 | Bank Pusat | Free-tier Reels creation workflow. |
@@ -255,6 +255,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-11-02 12:36:33_
+_Last sync: 2026-11-02 13:49:36_
 
 <!-- SKILL_REGISTRY_END -->

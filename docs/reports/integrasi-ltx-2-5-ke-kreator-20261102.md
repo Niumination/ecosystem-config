@@ -150,3 +150,18 @@ Halaman ini adalah proof-of-capability Samson Vowles untuk LTX 2.5 vs MiniMax H3
 - Free tier hanya dapat 5 runs manual di web UI, **bukan API**
 
 **Rekomendasi baru:** Gunakan **LTX API langsung** (pay-per-second, no subscription) sebagai jalur pilot. Lihat `docs/reports/status-comfycloud-api-access-20261102.md` untuk detail.
+
+---
+
+## 6. Update: NovAI CogVideoX Flash — Gratis Tapi Ada Limitasi
+
+**Test dilakukan 2026-11-02:**
+- API key valid ✅
+- Generate sukses: 1792×1024, 5.1s, H.264, 2.5MB
+- **Limitasi:** 5 video/hari, sering 429 (concurrency cap free tier)
+- Watermark ada di output gratis
+- Quality di bawah LTX 2.5 — cocok untuk storyboard/prototyping, bukan production
+
+**Kesimpulan:** NovAI bagus untuk validasi prompt dan wireframe visual. Untuk B-roll final yang tanpa watermark, tetap butuh LTX API (top-up $5) atau ComfyCloud upgrade.
+
+Detail lengkap: `docs/reports/test-novai-cogvideox-flash-20261102.md`

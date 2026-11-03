@@ -1,6 +1,6 @@
 {
   "fileCount": 1198,
-  "generatedAt": "2026-11-02T06:44:20.426519+00:00",
+  "generatedAt": "2026-11-03T11:02:40.062707+00:00",
   "skillCount": 251,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -47,10 +47,10 @@
       }
     },
     "content/content-produce": {
-      "bundleHash": "9a72011414f95284a91295cbacf367677b4553eae8321a979bab3d96a27b6f7f",
+      "bundleHash": "5e64c4357eaf09b9015f34ec91192bb70b7fcedfd3b78831d726a1b34c9478e6",
       "domain": "content",
       "files": {
-        "SKILL.md": "d971044dfdbe03c6739c47170d1b863adf3c5bc76bca5f8e614fbbcbfeaf095d",
+        "SKILL.md": "12c5fab3d4043f98c906abaed07c01a6f3e3ebbd57b099fb68830200b204723f",
         "references/motion-graphics-engine-selection.md": "c56930e6d9f5613dacd33f7ada398a06333370e0db48b1696bbadd7658f836ce"
       }
     },
@@ -106,13 +106,13 @@
       }
     },
     "creative/comfyui": {
-      "bundleHash": "221e827940ab9b9cdfe6a4f17c18110241d0a85c6e515bc507955bc28bc385fa",
+      "bundleHash": "89a04ff7331b4387faf1bbda6f534c2e6886d6e10a42ed8ec5c0aff6cfe63de1",
       "domain": "creative",
       "files": {
-        "SKILL.md": "1013a06bf6accc0cbcb43a7dbb6e31130ed7e692b4db454877ccb38fbe66815e",
+        "SKILL.md": "d67d547e9c566818020e26143814e6130f40fb27596a561c1ab69de4f2a88458",
         "references/official-cli.md": "9d62db1d40af7a4639ede8b9ac599c4e180451342570b08b125d656f4b68e1bc",
         "references/rest-api.md": "01077c38f6d5d737e2f0ec126ccce7eceef64fc754f15c852a63dbcd58da493c",
-        "references/template-integrity.md": "746caa050d4e321b142efecf5a16c72d609e3c08cec9061ba4108781d14aa7d9",
+        "references/template-integrity.md": "18fef9e28d403a0c49f3881e2d4fe609c922dc8aee7e093de9f71a14e4dedb3f",
         "references/workflow-format.md": "c5749b962b8e438b777e7f4d6529469c53b945728cc847083110e5a742fd0af4",
         "scripts/_common.py": "9cc7cb65f7b0dd313d5271bc8b7d8eeff8a91d46dde0ffaca25fd82f2e0a78cf",
         "scripts/auto_fix_deps.py": "969a8f57e27dd836d944f29ca71ea6ed84479907f4cefcf63990ba3eac6a1186",
@@ -133,7 +133,7 @@
         "tests/test_common.py": "c760a68c53f12e54609a9330dbbe2f378d06b4d107f7acb9b8ac83ff22abd517",
         "tests/test_extract_schema.py": "d5624eaf8cf912d094a108188475de82bd4ae834597fc275a32f8082e6cce898",
         "tests/test_run_workflow.py": "52da38afde5b9f2f03252c3478612a5caaf6f8225373c2a2ce5e43885ddc8c78",
-        "workflows/README.md": "5493e19ea2c8a6a4a44d1abc83d20a52c151460a73cce7c4869ff262cd3add42",
+        "workflows/README.md": "2e1cd819ff6da81b1c41daa74f95f3c4df564bf512d18a63e566890cea4c6bbd",
         "workflows/animatediff_video.json": "96742617937e0294d421e1b3dc53c44c431081577598257bfd6121abe1c3ada2",
         "workflows/flux_dev_txt2img.json": "db0afca70c46f552b7bc4c4b9d63761da81232f6ce78e3dd98b2af0488bfb16c",
         "workflows/ltx25_t2v.json": "fdc935f4c91217bcd70fa501c4fe46f1808d67f5f5728b1f458494d7bd714e96",

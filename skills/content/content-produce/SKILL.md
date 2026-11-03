@@ -31,7 +31,7 @@ Mengubah naskah menjadi berkas jadi yang memenuhi spesifikasi platform — memak
 | Vertikal + loudnorm + caption | FFmpeg (LGPL) | `bash scripts/vertical_clip.sh in.mp4 out.mp4` |
 | Motion graphics / batch render | Motion Canvas (MIT), HyperFrames (Apache-2.0, pin `@0.8.30`), Remotion, **Motion Reel Kit (MIT)** | `npx --yes hyperframes@0.8.30 render . --low-memory-mode --workers 1` · `python reelctl.py render` (dari `~/motion-reel-kit`) · ⛔ Revideo ditolak di studio ini (macet 7,4 jam, 0 output — lihat `TOOL_DECISIONS.csv`). Pemilihan engine: `references/motion-graphics-engine-selection.md` |
 | Gambar/poster dengan teks | Qwen-Image (Apache-2.0) via ComfyUI | API `:8188` prompt → PNG |
-| B-roll generatif | Wan 2.2 (Apache-2.0), FramePack (Apache-2.0, 6GB) | ComfyUI workflow I2V/T2V |
+| B-roll generatif | LTX 2.5 (Apache-2.0 Community License) via ComfyCloud atau API LTX | Workflow `ltx25_t2v.json` di ComfyUI · 8 steps distilled, guidance=1.0. ComfyCloud ~39s/video (768×512, 2s). API: $0.09/s (720p fast) |
 | Avatar/lip-sync | LatentSync (Apache-2.0), MuseTalk (MIT), InfiniteTalk (Apache-2.0) | foto + audio → video berbicara |
 | Denoise/enhance audio | DeepFilterNet (Apache/MIT), resemble-enhance (MIT) | `deepFilter in.wav` |
 | Musik/SFX | ACE-Step, MMAudio (cek checkpoint), Freesound CC0 | generate → mix −20 dB |
@@ -156,7 +156,7 @@ Tiga aturan kit yang menentukan kualitas: (1) **musik dulu** — edit `src/audio
 > **Baca dulu sebelum kerja motion-graphics dengan kit ini:** `~/motion-reel-kit/agent/HERMES_SKILL.md` (command surface lengkap, 6 aturan, workflow standar) dan `~/motion-reel-kit/docs/08_TROUBLESHOOTING.md` (semua kegagalan yang sudah pernah terjadi + perbaikannya). Jangan improvisasi sebelum membaca 08.
 
 **Mode B — dengan footage generatif:**
-1. ComfyUI: Qwen-Image untuk thumbnail/poster; Wan 2.2/FramePack untuk B-roll; LatentSync untuk lip-sync.
+1. ComfyUI: Qwen-Image untuk thumbnail/poster; LTX 2.5 (ComfyCloud) untuk B-roll; LatentSync untuk lip-sync.
 2. Gabungkan B-roll + VO + caption di OpenCut/Kdenlive atau langsung FFmpeg.
 
 **Finishing (semua mode):**

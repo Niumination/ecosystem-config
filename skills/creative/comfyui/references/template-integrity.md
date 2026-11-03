@@ -173,6 +173,13 @@ a template:
 The full LTX 2.3 T2V template (`video_ltx2_3_t2v.json`) runs **without
 modification** on Comfy Cloud.
 
+**LTX 2.5 on ComfyCloud (November 2026):** LTX 2.5 models are preinstalled on
+Comfy Cloud alongside LTX 2.3. The distilled recipe is simpler than 2.3 — fewer
+nodes, no latent upsampler pass needed for standard quality. See
+`workflows/ltx25_t2v.json` for the studio's reference workflow. Cloud execution
+time: ~39s per 2s video at 768×512 (same as LTX 2.3). Use the same submission
+format: `{"prompt": wf, "extra_data": {}}` to `/api/prompt`.
+
 **Confirmed working on Cloud (all custom nodes available):**
 `ComfyMathExpression`, `ResizeImageMaskNode`, `ResizeImagesByLongerEdge`,
 `PrimitiveInt`, `PrimitiveStringMultiline`, `PrimitiveBoolean`, `SaveVideo`,
@@ -207,6 +214,10 @@ nodes.
   then poll history.
 - LTX 2.3 at **1920x1080 OOMs locally** (even RTX 5090) — upscaler pass
   exceeds VRAM. Prefer Cloud for 1080p; use 1280x720 locally (~90s/video).
+- LTX 2.5 distilled variant needs `guidance_scale=1.0` and explicit
+  `sigmas=` schedule — do NOT pass `num_inference_steps` (model ignores it and
+  falls back to a generic linear schedule, losing quality). Studio workflow
+  hardcodes `steps: 8, cfg: 1.0` in the node inputs.
 
 ---
 

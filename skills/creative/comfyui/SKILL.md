@@ -20,6 +20,7 @@ metadata:
       - sd3
       - wan-video
       - hunyuan-video
+      - ltx-video
       - creative
       - generative-ai
       - video-generation
@@ -74,7 +75,7 @@ SDXL inpaint, ESRGAN upscale, AnimateDiff video, Wan T2V. See
 - User wants to chain generative steps (txt2img → upscale → face restore)
 - User needs ControlNet, inpainting, img2img, or other advanced pipelines
 - User asks to manage ComfyUI queue, check models, or install custom nodes
-- User wants video/audio/3D generation via AnimateDiff, Hunyuan, Wan, AudioCraft, etc.
+- User wants video/audio/3D generation via AnimateDiff, Hunyuan, Wan, LTX 2.5, AudioCraft, etc.
 
 ## Architecture: Two Layers
 
@@ -324,7 +325,7 @@ For users without a capable GPU or who want zero setup. Hosted on RTX 6000 Pro.
 2. Generate an API key at https://platform.comfy.org/login
 3. Set the key:
    ```bash
-   export COMFY_CLOUD_API_KEY="your-comfyui-key"
+   export COMFY_CLOUD_API_KEY="<your-key-here>"
    ```
 4. Run workflows:
    ```bash
