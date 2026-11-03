@@ -1,6 +1,6 @@
 {
-  "fileCount": 1198,
-  "generatedAt": "2026-11-03T11:02:40.062707+00:00",
+  "fileCount": 1199,
+  "generatedAt": "2026-11-03T11:09:04.709917+00:00",
   "skillCount": 251,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -47,10 +47,11 @@
       }
     },
     "content/content-produce": {
-      "bundleHash": "5e64c4357eaf09b9015f34ec91192bb70b7fcedfd3b78831d726a1b34c9478e6",
+      "bundleHash": "43a1f683c25a2d4bd7541ce942b75984d2b0c3269345e31416e63c41d197060c",
       "domain": "content",
       "files": {
-        "SKILL.md": "12c5fab3d4043f98c906abaed07c01a6f3e3ebbd57b099fb68830200b204723f",
+        "SKILL.md": "d44deb760cdc2145017ce38926b1e91b44bbb90251b96429f9ee76a07487b167",
+        "references/ai-video-providers.md": "a08b1f510d041fdc4441b624d545de61562a933412ff5d984f6e84bb5cbeaca8",
         "references/motion-graphics-engine-selection.md": "c56930e6d9f5613dacd33f7ada398a06333370e0db48b1696bbadd7658f836ce"
       }
     },

@@ -31,7 +31,7 @@ Mengubah naskah menjadi berkas jadi yang memenuhi spesifikasi platform — memak
 | Vertikal + loudnorm + caption | FFmpeg (LGPL) | `bash scripts/vertical_clip.sh in.mp4 out.mp4` |
 | Motion graphics / batch render | Motion Canvas (MIT), HyperFrames (Apache-2.0, pin `@0.8.30`), Remotion, **Motion Reel Kit (MIT)** | `npx --yes hyperframes@0.8.30 render . --low-memory-mode --workers 1` · `python reelctl.py render` (dari `~/motion-reel-kit`) · ⛔ Revideo ditolak di studio ini (macet 7,4 jam, 0 output — lihat `TOOL_DECISIONS.csv`). Pemilihan engine: `references/motion-graphics-engine-selection.md` |
 | Gambar/poster dengan teks | Qwen-Image (Apache-2.0) via ComfyUI | API `:8188` prompt → PNG |
-| B-roll generatif | LTX 2.5 (Apache-2.0 Community License) via ComfyCloud atau API LTX | Workflow `ltx25_t2v.json` di ComfyUI · 8 steps distilled, guidance=1.0. ComfyCloud ~39s/video (768×512, 2s). API: $0.09/s (720p fast) |
+| B-roll generatif | LTX 2.5 via ComfyCloud/API · **NovAI cogvideox-flash** (gratis 5/hari) · fal.ai MiniMax H3 Max (top-up $1) | Workflow `ltx25_t2v.json` di ComfyUI · NovAI: `python3 scripts/ai_video.py --provider novai "prompt"` · fal: perlu top-up akun · API LTX: $0.09/s |
 | Avatar/lip-sync | LatentSync (Apache-2.0), MuseTalk (MIT), InfiniteTalk (Apache-2.0) | foto + audio → video berbicara |
 | Denoise/enhance audio | DeepFilterNet (Apache/MIT), resemble-enhance (MIT) | `deepFilter in.wav` |
 | Musik/SFX | ACE-Step, MMAudio (cek checkpoint), Freesound CC0 | generate → mix −20 dB |
@@ -201,6 +201,7 @@ Tulis `project/<slug>/output/MANIFEST.md`: daftar file, platform tujuan, rasio, 
 - **Jangan kompres dua kali.** Simpan master tanpa kompresi; export turunan dari master.
 - **Engine motion graphics dipilih dari brief, bukan dari kebiasaan.** Tiga engine setara (HyperFrames / Remotion / Motion Reel Kit); memilih yang salah membuang sesi penuh. Tabel keputusan: `references/motion-graphics-engine-selection.md`.
 - **Tool baru masuk sebagai baris tabel di sini, bukan skill standalone.** Kalau sebuah tool fungsinya dicakup pipeline studio, integrasinya = tambah baris di tabel di atas + gate QA `content-studio` + baris `apps/abstract-studio/data/TOOL_DECISIONS.csv`. Kit yang dirender dari luar ekosistem tetap tinggal di luar (`~/<kit>/`); skill bank hanya menunjuk path-nya.
+- **AI video provider selection:** lihat `references/ai-video-providers.md` untuk perbandingan provider dan status ketersediaan dari mesin ini.
 
 ## Verification
 
