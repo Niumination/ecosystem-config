@@ -201,7 +201,7 @@ check_backlog_sync() {
 
     # Skip known non-directory entries
     case "$proj" in
-          "TEDEO"|"Niu-Flow"|"ecosystem-config"|"Niumination"|"brain"|"Total"|"Ekosistem"|"Dirty"|"UPDATE") continue ;;
+          "TEDEO"|"Niu-Flow"|"ecosystem-config"|"Niumination"|"brain"|"Total"|"Ekosistem"|"Dirty"|UPDATE*) continue ;;
       # Nama berkas/folder DI DALAM proyek bukan nama proyek — mis. baris yang
       # menulis **`web/`** lalu menyebut URL GitHub, ikut terjaring regex di atas.
       # Nama proyek tidak pernah memuat '/' maupun backtick.
