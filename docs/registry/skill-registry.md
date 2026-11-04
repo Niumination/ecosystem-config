@@ -154,8 +154,10 @@
 | `ecosystem/egm-style-editor` | ecosystem | 1 | Bank Pusat | 'Use when editing doc style. Fixes prose, formatting.' |
 | `ecosystem/egm-tech-lead` | ecosystem | 1 | Bank Pusat | 'Use when reviewing architecture. Assesses trade-offs.' |
 | `ecosystem/egm-zoom-out-architect` | ecosystem | 1 | Bank Pusat | 'Use when macro-reviewing design. Checks big picture.' |
+| `ecosystem/google-colab-integration` | ecosystem | 1 | Bank Pusat | Use when integrating Google Colab. Cloud GPU/TPU notebooks. |
 | `ecosystem/hermes-release-and-update-forensics` | ecosystem | 1 | Bank Pusat | Use when auditing a Hermes release or update. |
 | `ecosystem/opencode-troubleshooting` | ecosystem | 2 | Bank Pusat | Fix OpenCode CLI/Desktop errors and config issues. |
+| `ecosystem/utcp-integration` | ecosystem | 1 | Bank Pusat | Use when integrating UTCP. Direct native endpoint calls. |
 | `ecosystem/wiki` | ecosystem | 1 | Bank Pusat | Use when the owner, the business, or anything the crew has read is in play. |
 | `github/github-auth` | github | 3 | Bank Pusat | GitHub auth setup: HTTPS tokens, SSH keys, gh CLI login. |
 | `github/github-auth-recovery` | github | 1 | Bank Pusat | Recover broken GitHub auth and rotate compromised keys. |
@@ -255,6 +257,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-11-03 18:15:36_
+_Last sync: 2026-11-04 14:49:02_
 
 <!-- SKILL_REGISTRY_END -->

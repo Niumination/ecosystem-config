@@ -66,3 +66,5 @@ lsof -ti :<port>                              # empty means NO listener
 - **`swap 0` with high RAM usage is not yet a problem.** Report pressure plus swap together; on a lightly-swapped machine the reclaim advice is "close the heavy app", not "restart".
 
 - **Quote the reclaim total honestly.** Sum only paths proven idle. If the biggest safe win is a few GB, say so plainly instead of implying the disk crisis is larger than it is.
+
+- **Verify integration before deleting.** Before listing a directory for cleanup, check whether it is referenced by any config, script, or agent tool. A folder like `tools/camofox-browser/` (169 MB) can be reinstalled via npm — but `archive/projects/niuterm/` (647 MB) has no GitHub remote and no local reference elsewhere, so deleting it is permanent. Use `grep -rl <folder-name> <config-dirs>` or a Python walk to confirm no references exist. Report "not in git, not referenced" vs "in git, can pull" vs "reinstallable via X" for each candidate.

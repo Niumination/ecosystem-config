@@ -1,7 +1,7 @@
 {
-  "fileCount": 1199,
-  "generatedAt": "2026-11-03T11:15:56.131299+00:00",
-  "skillCount": 251,
+  "fileCount": 1201,
+  "generatedAt": "2026-11-04T07:49:06.429932+00:00",
+  "skillCount": 253,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
@@ -831,10 +831,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/macos-system-health": {
-      "bundleHash": "9c178ff5b9e48f03c3f8ff7902dd5425d1963e82e1fddfa5ac27d725a02f50b9",
+      "bundleHash": "22e424a206e5b6cfad6d61d700150dd7b3ff2ab9b88a32108fb3c9e053f44633",
       "domain": "ecosystem/ecosystem-hermes/ecosystem-general/ecosystem",
       "files": {
-        "SKILL.md": "9a5bb49c572f98fa69e33886d9832627ae0bb468f1856f9c00cf313927e115d5"
+        "SKILL.md": "4630ea6416dc0cabb47b3deab812516d8cc9904688533d5575bab953c10be111"
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/scheduled-job-delivery-routing": {
@@ -923,10 +923,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/niumination-ecosystem-change-discipline": {
-      "bundleHash": "cdd96171c77936666d87ddde606d519f4d56d290bc180300fd078c1406d25ec8",
+      "bundleHash": "5f4144fe84de954a8a20e142ef19a136181e4c75cb08bb4965b070d7681799f8",
       "domain": "ecosystem/ecosystem-hermes/ecosystem-general",
       "files": {
-        "SKILL.md": "16e2d237182777f2e5e6bf2447acc46fcc3d7a1e502de93b19cd0782a2c98883",
+        "SKILL.md": "4344539764cf657bf3f4e0377c321fd49142e66fc35d15f28fc7edfba7a1eead",
         "references/shared-repo-commits.md": "7eab705051201cfba498e6eea4b1d2cf056650804c0c99166d39ad9e8229b08e"
       }
     },
@@ -1319,10 +1319,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/software-development/agent-shell-command-guards": {
-      "bundleHash": "796f7360d0c2db488e173c3cc733e8a647e24c6a0d089c45f33f8129602867bb",
+      "bundleHash": "3a9d5cb05277ac447273d938797efe9a003d66075089c73846c255e9c398fb86",
       "domain": "ecosystem/ecosystem-hermes/hermes-misc/software-development",
       "files": {
-        "SKILL.md": "d536f583d19749db8e7bfd762764acb0de8284861c9f79c29be6dd9453beb682"
+        "SKILL.md": "bda68a5ac4dbfbb5003c0ac70115f3bab94b1ebdf09e82fd806c4bb0c9fb8645"
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/software-development/measure-before-write": {
@@ -1549,6 +1549,13 @@
         "SKILL.md": "31d8496dcfef333a59628e497773b40e75c9915f3013c8772a7b859a042ad3ff"
       }
     },
+    "ecosystem/google-colab-integration": {
+      "bundleHash": "8e81161f50faf9f6e24d8bcd9526de95e6bc473c08a1b3b5f923781b12bb0082",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "ecdd3ca95742f638cd1d80843ba6c978e21f99ee0c6886ccb63e01d17b910721"
+      }
+    },
     "ecosystem/hermes-release-and-update-forensics": {
       "bundleHash": "d0cf4d6de21c74f27e26ad594950090ffb04a01c0e006ed65f9441797a91b013",
       "domain": "ecosystem",
@@ -1562,6 +1569,13 @@
       "files": {
         "SKILL.md": "a68094994d9c18c6a6dfaf0468cada987788266cc8cb1dc8b7fe9345fc6f6ff9",
         "references/9router-config.md": "3067816031c16c81c7ba9187849704de54f88ee8272727432e7c842e324bb49a"
+      }
+    },
+    "ecosystem/utcp-integration": {
+      "bundleHash": "63f17aeb30356d439cc51fd15ae5741778898124de10b63c98effd67de1a059c",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "75e178d66bee002bbdc11aee2e005ccfc84c217fe75c391d2188e490564d9542"
       }
     },
     "ecosystem/wiki": {
