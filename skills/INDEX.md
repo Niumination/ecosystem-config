@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 251 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 253 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 251 ✅ Aktif
+> **Status:** 253 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -220,6 +220,8 @@
 | **egm-zoom-out-architect** | ✅ Aktif | Bank Pusat | 1.3 KB | Use when macro-reviewing design. Checks big picture. |
 | **hermes-release-and-update-forensics** | ✅ Aktif | Bank Pusat | 4.3 KB | Use when auditing a Hermes release or update. |
 | **agent-desktop** | ✅ Aktif | Bank Pusat | 2.0 KB | Use when operating desktop apps via accessibility tree. |
+| **google-colab-integration** | ✅ Aktif | Bank Pusat | 2.3 KB | Use when integrating Google Colab. Cloud GPU/TPU notebooks. |
+| **utcp-integration** | ✅ Aktif | Bank Pusat | 2.7 KB | Use when integrating UTCP. Direct native endpoint calls. |
 
 ## Domain: Security
 
@@ -402,8 +404,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **251** |
-| **Total** | **251** |
+| ✅ Aktif | **253** |
+| **Total** | **253** |
 
 ## Catatan Penting — Potensi Konflik
 
