@@ -225,8 +225,8 @@ the one thing worth keeping. Decide file by file inside each ignored tree.
   files the archive does not contain, and overwritten files are kept nowhere. Copy the existing home aside first,
   pass the importer's force flag, and treat "restored" as unproven until the target has been inspected for leftovers.
   A drill into an empty throwaway home never exercises this path.
+- **Restic "repo already locked" means a stale lock.** When restic fails with "repo already locked by PID X", the lock is stale (the process died). Run `restic unlock` with `RESTIC_REPOSITORY` and `RESTIC_PASSWORD_FILE` env vars set. After unlock, resume the paused cron job. Do NOT delete the repo or reinitialize.
 - **Restore scripts run on the target's shell and runtime, not the author's.** macOS still ships bash 3.2 —
-  `mapfile` and other bash-4 constructs abort the script. And exit codes must be honest in both directions: `grep`
   returning 1 on "no match" kills a `set -e` script with a false failure, while a missing anti-silent gate lets a
   script that did nothing exit 0. Wrap expected no-match greps with `|| true`, and make "found nothing where
   something was expected" exit non-zero. Print which method produced each verdict, and test scripts in both

@@ -1,6 +1,6 @@
 {
   "fileCount": 1201,
-  "generatedAt": "2026-11-04T08:21:46.675743+00:00",
+  "generatedAt": "2026-11-04T16:30:37.671450+00:00",
   "skillCount": 253,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -633,10 +633,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/device-migration-disaster-recovery": {
-      "bundleHash": "83b61b21df18aee0b6f1a8abdb9b4c56b380cfd899ea0178ef4d0713391a46f0",
+      "bundleHash": "fe22186a3423ec683a32a08999f08587f0ceb315acd3c30c86d95e8e9d98b875",
       "domain": "ecosystem/ecosystem-hermes/ecosystem-general",
       "files": {
-        "SKILL.md": "77c47b72719f3b316bedaa61760c9702575a68838a9ba4e38b3bc65d88942cc0",
+        "SKILL.md": "c49608ea2b2b862d34a3e1419524bf7b118c3c8cf26f2ae52cbbb267711c4646",
         "references/cross-os-restore.md": "dbc7c0a556d50b5412181ab5aa9e8b2f0e6029ea3e30fb991cb88ccae56c830e",
         "references/hermes-home-backup.md": "5ddc76d3d2846bbd58de339c24d662e292f17a4a24a87880c9e665a7d9b5acdb",
         "references/ignored-path-sweep.md": "e2bf1131165e9e365bfc67a2cf73627a7f185f3d03f0cb88151793b4b266f23f",
@@ -1395,10 +1395,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-tools/model-mapping-repair": {
-      "bundleHash": "dc909c14ac6478c1101725d1e3ea4a6147409acee3e62471400e135fca5e1de5",
+      "bundleHash": "12d1628320e731191535b777ef7cfed6f30a837498372542e224af75557157c9",
       "domain": "ecosystem/ecosystem-hermes/hermes-tools",
       "files": {
-        "SKILL.md": "51e32830e8240e9b7cd45e30f5cc2b70e19980f80f3cf0df6b13fa5e1c37c12c",
+        "SKILL.md": "306d24424a054d8016165930031198fa731d8c849183a8414cf591782d67bab8",
         "references/free-tier-routing.md": "4c67f6d2b3f30fec50fc826ecc008a3ee68a01dd15c5c644e08af07a04159881",
         "references/mapping-repair.md": "b07649fa6c6ad6d7e4df6686e4521fe9a5a872c8f8b40538224ca5efa6051f32",
         "scripts/probe-tool-calling.py": "3a7635eb690be6ff1f28474a6477950fb086a743e06c2e1d724fcf4afd766048"

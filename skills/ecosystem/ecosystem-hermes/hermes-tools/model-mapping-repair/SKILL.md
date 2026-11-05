@@ -104,6 +104,7 @@ broken for weeks without anyone noticing.
   large `max_tokens`, and treat an empty message as *inconclusive* rather than dead — then re-run
   only that subset. Publishing probe artifacts as findings pushes the owner into a needless config
   change and burns your credibility for the real ones.
+- **Bulk cron failure is usually a model issue, not a system issue.** When 5+ cron jobs fail simultaneously with different provider errors (429, 402, 404, 502), the common cause is model provider quota/deprecation, not infrastructure. Fix: change all affected jobs' model to a working 9router combo (e.g. `combo-delegasi`) via `hermes cron edit <id> --model "combo-delegasi"`, then resume paused ones. Verify with `hermes cron list` — all should show active with no errors on next run. Do NOT restart the gateway or change config for this.
 
 ## References
 
