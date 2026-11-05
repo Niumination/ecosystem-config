@@ -54,7 +54,7 @@
 | `niu-vermilion` | `niu-vermilion-archk4lis-projects.vercel.app` | ⏸️ **PAUSED** (503) | 8 Okt 2026 | Second Brain — `DEPLOYMENT_PAUSED` |
 | `niu-dash-fullstack` | `niu-dash-fullstack-archk4lis-projects.vercel.app` | ⏸️ **PAUSED** (503) | 8 Okt 2026 | `DEPLOYMENT_PAUSED` |
 | `virtual-assistance` | `virtual-assistance-pi.vercel.app` | ⏸️ **PAUSED** (503) | 8 Okt 2026 | ⚠️ Registry lama salah tulis 200 — hostname tanpa `-pi` (`virtual-assistance.vercel.app`) tidak pernah ada |
-| `niu-private` | `niu-private.vercel.app` | ⏸️ **PAUSED** (503) | 8 Okt 2026 | `DEPLOYMENT_PAUSED` |
+| `niu-private` | `niu-private.vercel.app` | ⚪ **REMOVED** (tidak ada di akun Vercel, removed 5 Nov 2026) | 5 Nov 2026 | Proyek Vercel dihapus; site masih live via GitHub Pages (`niumination.github.io/niu-private`) |
 | `landing` | `landing-beige-theta.vercel.app` | ⏸️ **PAUSED** (503) | 8 Okt 2026 | Landing page — ⚠️ **domain kustom tetap 200** karena `niumination.web.id` diarahkan ke `niu-oss`, bukan ke `landing` |
 | `rekapitulasi-pemdi` | — | ⚪ **Never deployed** | 8 Okt 2026 | Tidak ada production URL. Node 22.x (proj lama) |
 | `niutui` | — | ⚪ **Never deployed** | 8 Okt 2026 | Tidak ada production URL |
