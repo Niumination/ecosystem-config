@@ -51,7 +51,7 @@ site/                          static output; private sources stay outside
 
 **Aturan ekosistem (WAJIB):**
 - Source PDF, page images, extracted text → **di luar `site/`** dan di-gitignore (`*.pdf`, `*/pages/`)
-- Output static → `site/` (deploy ke Cloudflare Pages)
+- Output static → `site/` (deploy ke Vercel; CF Pages blocked — token invalid)
 - Penamaan folder mengikuti DOX: `labs/edu-content/` (experimental)
 
 ## Narration — Piper TTS
@@ -81,7 +81,7 @@ $PIPER -m $VOICE -c $VOICE_CFG -i /tmp/ch01.txt -f site/<book>/ch01/audio/id/ch0
 2. **Storyboard** — beat list, visual changes, narration triggers, quiz questions. Model: `ag/claude-sonnet-4-6`.
 3. **Narration** — write `content/<book>/chNN/narration.id.json`, run Piper TTS.
 4. **Beats** — implement storyboard in `site/<book>/chNN/index.html` (SVG 1600×900 + JS controls).
-5. **Quiz** — SurveyJS embed atau custom HTML/JS quiz. Model: `agnes/agnes-3.0-flash`.
+5. **Quiz** — Custom HTML/JS quiz (lihat `references/quiz-component.md`). Model: `agnes/agnes-3.0-flash`. Minimal 3 soal per chapter, threshold lulus 70%.
 6. **Delivery pass** — check loading, blanks, cropping, text density, color consistency.
 7. **Register** — update `chapters.md`, BOOK.md, chapter notes.
 
@@ -93,6 +93,10 @@ $PIPER -m $VOICE -c $VOICE_CFG -i /tmp/ch01.txt -f site/<book>/ch01/audio/id/ch0
 - Skill terkait: `document-content-pipeline`, `markitdown`, `remotion-video`, `ghost`, `humanizer`
 - Rencana: `docs/reports/PLAN-PAPERMORPH-ADAPTASI-EDU-2026-10-05.md`
 - Thread doc: `docs/reports/THREAD-12707-EDU-CONTENT-2026-10-06.md`
+
+## References
+
+- `references/quiz-component.md` — Reusable HTML/JS quiz pattern (CSS + JS, no dependencies)
 
 ## Source
 

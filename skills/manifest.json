@@ -1,6 +1,6 @@
 {
   "fileCount": 1201,
-  "generatedAt": "2026-11-04T16:30:37.671450+00:00",
+  "generatedAt": "2026-11-05T12:48:15.321982+00:00",
   "skillCount": 253,
   "skills": {
     "autonomous-ai-agents/merge-reconciler": {
@@ -84,10 +84,10 @@
       }
     },
     "content/papermorph-edu": {
-      "bundleHash": "1ac41738790db2cfea6da64f159757f4bb7b0d2dd6ecc55843ed73888bb4909c",
+      "bundleHash": "caf31cab1b3489731dd1e8e0bb8d9be8a2ce2d43d8af60b0455e7cea940a70b9",
       "domain": "content",
       "files": {
-        "SKILL.md": "848e999a4093f6072518835b7cdfbc54aadf64c132661cdadd1b6491f31ceeea"
+        "SKILL.md": "b5c6e4bce4dff369ba846eeaf2dc9a71afcfa3a88d747212799b048d982b1954"
       }
     },
     "content/remotion-video": {
