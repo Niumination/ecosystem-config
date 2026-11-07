@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 253 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 258 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 253 ✅ Aktif
+> **Status:** 258 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -222,6 +222,8 @@
 | **agent-desktop** | ✅ Aktif | Bank Pusat | 2.0 KB | Use when operating desktop apps via accessibility tree. |
 | **google-colab-integration** | ✅ Aktif | Bank Pusat | 2.3 KB | Use when integrating Google Colab. Cloud GPU/TPU notebooks. |
 | **utcp-integration** | ✅ Aktif | Bank Pusat | 2.7 KB | Use when integrating UTCP. Direct native endpoint calls. |
+| **asn-notulensi-rapat** | ✅ Aktif | Bank Pusat | 1.2 KB | Generate notulensi rapat. Use for Diskominfo meetings. |
+| **asn-surat-dinas** | ✅ Aktif | Bank Pusat | 1.6 KB | Generate surat dinas. Use for Diskominfo Aceh Tengah. |
 
 ## Domain: Security
 
@@ -400,12 +402,20 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 | **remotion-studio** | ✅ Aktif | Bank Pusat | 1.6 KB | Preview a Remotion video |
 | **remotion-upgrade** | ✅ Aktif | Bank Pusat | 1.9 KB | Upgrade Remotion, and related packages |
 
+## Domain: Asn
+
+| Skill | Status | Source | Ukuran | Deskripsi |
+|-------|:------:|--------|-------:|-----------|
+| **asn-dinas-jurnal** | ✅ Aktif | Bank Pusat | 0.9 KB | Log kegiatan harian. Use for daily activity journal. |
+| **asn-ekinerja-upload-package** | ✅ Aktif | Bank Pusat | 1.2 KB | Paket bukti dukung eKinerja. Use for upload packages. |
+| **asn-regulasi-lookup** | ✅ Aktif | Bank Pusat | 1.4 KB | Cari pasal peraturan. Use for regulation lookup. |
+
 ## Ringkasan
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **253** |
-| **Total** | **253** |
+| ✅ Aktif | **258** |
+| **Total** | **258** |
 
 ## Catatan Penting — Potensi Konflik
 

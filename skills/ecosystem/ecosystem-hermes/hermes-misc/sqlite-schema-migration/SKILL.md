@@ -39,6 +39,7 @@ user's existing DB.
 
 ## Pitfalls
 
+- **SQLite reserved keywords used as column aliases must be double-quoted.** Aliases like `to`, `order`, `group`, `select` cause `near "to": syntax error` when unquoted in SELECT. Fix: `SELECT t.assignee AS "to"` instead of `AS to`. Applies to any dynamic SQL building column aliases from user-facing field names.
 - **`CREATE TABLE IF NOT EXISTS` is not a migration.** It silently skips a table
   that already exists, then `CREATE INDEX` later in the same file still runs
   against the OLD columns and fails with `no such column: <new col>`. The fix is

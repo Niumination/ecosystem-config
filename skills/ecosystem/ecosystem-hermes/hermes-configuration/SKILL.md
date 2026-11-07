@@ -365,7 +365,32 @@ python3 ~/Desktop/Niumination/scripts/model_status_report.py
 - **Gateway auth allowlists live in ENV, not config.yaml:** `_is_user_authorized` (`gateway/authz_mixin.py`) reads `TELEGRAM_ALLOWED_USERS` / `GATEWAY_ALLOWED_USERS` via `_platform_gate_env`. A `platforms.<name>.allowed_users` key in config.yaml is silently ignored — never set it expecting enforcement.
 - **Stale `resume_pending` with null origin `user_id`:** the startup `Skipping auto-resume ... no longer authorized` warning fires before any allowlist is checked when the stored `gateway_routing` origin lacks `user_id`. It is harmless (inbound auth uses the live source); let the freshness window expire instead of editing `state.db` under a running gateway.
 
-## Verification
+## Cron Job Troubleshooting
+
+### Fixing Model-Related Cron Failures
+
+When cron jobs fail with 429 (rate limit), 402 (quota exceeded), or 404 (no credentials) due to model issues:
+
+1. **Identify failing jobs**: `hermes cron list` — look for jobs with error status
+2. **Change model to combo-delegasi**: `hermes cron edit <job-id> --model "combo-delegasi"`
+   - combo-delegasi routes via 9router and avoids quota issues from direct provider calls
+3. **Resume paused jobs**: `hermes cron resume <job-id>`
+4. **Verify**: `hermes cron list` — all jobs should show active status
+
+**Common failure patterns:**
+- `gemini/gemini-3.8-flash` → 429 (quota exhausted) → change to combo-delegasi
+- `kiro/deepseek-3.2` → 402 (monthly limit) → change to combo-delegasi
+- `openai/...` → 404 (no credentials) → change to combo-delegasi
+
+**Bulk fix:** For multiple failing jobs, loop through job IDs:
+```bash
+for id in <id1> <id2> ...; do
+  hermes cron edit $id --model "combo-delegasi"
+  hermes cron resume $id 2>/dev/null  # only if paused
+done
+```
+
+**Verification:** After fixing, run `hermes cron list` and confirm 0 paused jobs and 0 error status.
 
 ```bash
 # Check config validity

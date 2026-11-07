@@ -93,6 +93,23 @@ min-height: 0 }` agar tautan naratif tidak ikut membesar.
 definisi) → fallback hardcoded-nya aktif di SEMUA tema. Definisikan sekali sebagai
 `var(tokenLain)` yang sudah punya nilai per tema. `var(--x)` **tanpa** fallback membuat
 seluruh deklarasi dibuang tanpa error di konsol.
+- **Class CSS dipakai di HTML tapi tidak didefinisikan di CSS → elemen tanpa styling.**
+Dalam single-file HTML (dashboard, admin panel), class seperti `.hero-inner` atau
+`.actions` yang dipakai di markup tapi tidak ada di blok `<style>` menyebabkan layout
+tanpa grid/flex — konten menumpuk vertikal, tombol tidak tersusun, panel tidak simetris.
+Audit: ekstrak semua class dari `class="..."` di HTML, bandingkan dengan selector `\.name`
+di CSS; setiap class yang ada di HTML tapi tidak di CSS adalah temuan. Terutama berisiko
+pada file yang di-edit manual tanpa build step.
+- **Split CSS/JS dari single-file HTML berisiko memperkenalkan regresi visual.** Saat
+memisahkan file, verifikasi: (1) brace balance `{` vs `}`, (2) tidak ada tag `</style>`
+stray di HTML head, (3) semua class yang dipakai di HTML masih terdefinisi di CSS.
+Jika regresi visual muncul (warna bentrok, teks tidak terlihat), jangan patch CSS yang
+rusak secara inkremental — restore dari git baseline bersih (commit sebelum perubahan),
+lalu re-apply fix secara bertahap dengan verifikasi brace balance setiap langkah.
+- **Jangan tambahkan dark mode tanpa permintaan eksplisit.** Ecosystem ini menggunakan
+light mode sebagai default. Penambahan `@media (prefers-color-scheme:dark)` tanpa
+persetujuan pengguna menyebabkan token warna terbalik dan teks tidak terlihat. Hanya
+tambahkan jika pengguna meminta secara eksplisit.
 - **Tema gelap yang membalik token**: bila tema gelap mengganti token ke warna terang,
 setiap `color:#fff !important` di atasnya gagal (putih di atas emas = 2,31) → rule
 ber-scope `[data-theme="dark"] .kelas { color: ... !important }`; selektor atribut

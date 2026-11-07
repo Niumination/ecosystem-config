@@ -110,6 +110,17 @@ Resep lengkap + checklist: `references/mobile-compact-layout.md`.
 Aturan turunannya: **temuan tanpa bukti yang bisa diulang bukan temuan** — sertakan bukti, atau tandai
 "belum terkonfirmasi".
 
+## Pitfall: ekstraksi CSS/JS dari HTML ke file eksternal
+
+Saat memisahkan CSS/JS inline dari `dashboard.html` ke file eksternal (`dashboard.css`, `dashboard.js`):
+
+1. **Ekstrak hanya isi `<style>…</style>`** — jangan menyertakan tag pembuka/penutup ke file CSS. Sisa `</style>` stray di `<head>` HTML setelah ekstraksi menyebabkan browser salah parse blok style berikutnya.
+2. **Verifikasi keseimbangan brace** setelah setiap edit: `css.count('{') == css.count('}')`. Ketidakseimbangan (bahkan 1) membuat seluruh aturan sesudah titik error tidak terpakai — teks tidak terlihat, warna bentrok.
+3. **Jangan menambahkan blok dark-mode (`@media (prefers-color-scheme:dark)`) tanpa permintaan eksplisit**. Jika pengguna melaporkan "visual chaos" setelah penambahan, hapus seluruh blok — bukan menyesuaikan.
+4. **Saat CSS rusak akibat banyak patch bertumpuk**: restore dari git (`git show <commit>:path/to/file.css > file.css`), lalu re-apply fix bersih. Lebih andal daripada patch bertahap yang bisa meninggalkan duplikat rule.
+5. **Verifikasi endpoint** setelah restart server: `curl -s -o /dev/null -w "%{http_code}"` untuk HTML, CSS, dan JS. Jangan klaim fix dari file di disk saja.
+6. **Hapus duplikat rule** yang terakumulasi dari re-apply: rule yang sama muncul 2× (misalnya `.kpi span` atau `@media (max-width:768px)`) tidak merusak rendering tetapi menambah noise — bersihkan agar diff mudah diaudit.
+
 ## Verifikasi & suntingan massal
 
 - **Suntingan massal dengan anchor fuzzy**: `patch`/replace bisa cocok di beberapa tempat sekaligus. Bila

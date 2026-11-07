@@ -1,8 +1,29 @@
 {
-  "fileCount": 1201,
-  "generatedAt": "2026-11-05T12:50:47.048482+00:00",
-  "skillCount": 253,
+  "fileCount": 1207,
+  "generatedAt": "2026-11-07T14:58:40.165211+00:00",
+  "skillCount": 258,
   "skills": {
+    "asn/asn-dinas-jurnal": {
+      "bundleHash": "b9264429eee5be0d8c5c612a7280af5e1879c83bfaec6cfa21d11e32e21ab101",
+      "domain": "asn",
+      "files": {
+        "SKILL.md": "4bf357e160a1d50f1035343aa1eab8703998196dfd07af605d85618da1d85761"
+      }
+    },
+    "asn/asn-ekinerja-upload-package": {
+      "bundleHash": "14dc495d45f152c04acc9d3131e19e09501679e8ef723b165a96282b738a5513",
+      "domain": "asn",
+      "files": {
+        "SKILL.md": "96ec772e849c6e7906bdb194a1747795913e8fd28696289741138ff67cdbbc55"
+      }
+    },
+    "asn/asn-regulasi-lookup": {
+      "bundleHash": "5fc2ed70ba18d4dc49bf08e3e561be12369d489c48e2f5c6f267d0ca92b9b9e1",
+      "domain": "asn",
+      "files": {
+        "SKILL.md": "f45ed1dd27ed44e6808e098afc70c694dfeaeaf3e8bb428c7ef2738910e8b2de"
+      }
+    },
     "autonomous-ai-agents/merge-reconciler": {
       "bundleHash": "fc175fa4b14bb61c3aa78e015f5983501b8176a902bf523c5149daa5ef117f33",
       "domain": "autonomous-ai-agents",
@@ -84,10 +105,11 @@
       }
     },
     "content/papermorph-edu": {
-      "bundleHash": "caf31cab1b3489731dd1e8e0bb8d9be8a2ce2d43d8af60b0455e7cea940a70b9",
+      "bundleHash": "e626307cc4c219e62cbebb8704e96af6a500d47cddf6b5236ae69b95891a0a34",
       "domain": "content",
       "files": {
-        "SKILL.md": "b5c6e4bce4dff369ba846eeaf2dc9a71afcfa3a88d747212799b048d982b1954"
+        "SKILL.md": "b5c6e4bce4dff369ba846eeaf2dc9a71afcfa3a88d747212799b048d982b1954",
+        "references/quiz-component.md": "f2ef237d90f8322bb81770a418d975ba262ad014f8f59a4b0cc6cf9567d7e9ca"
       }
     },
     "content/remotion-video": {
@@ -463,10 +485,10 @@
       }
     },
     "design/responsive-ui-audit": {
-      "bundleHash": "772ef32c8999d54ca7661e4bb90c24718d19ed1a5d6ed878d050b594dcb505ac",
+      "bundleHash": "dfee54f5c3f5111c9d749d5c22f5870cd6c6ddd3e0ea396f914bf52200dc0fd1",
       "domain": "design",
       "files": {
-        "SKILL.md": "09e3b1316ea5d1efddb46e3081d0caf35dc6bc53a95407e83a39926ba5753dae",
+        "SKILL.md": "d7cb09cc3f716ea1618ea6554c261b095442d962b638e993802fa049ce830bed",
         "references/mobile-compact-layout.md": "30f6eaae9db3bb9f3b088bb31ef54dbb25a7ac55177dc510796e5cf511ab28f0"
       }
     },
@@ -527,10 +549,10 @@
       }
     },
     "design/web-ui-audit-measurement": {
-      "bundleHash": "07cb3ba06e80b6ad307fcb4344f7a3184c4ea74119d41e98fd448ba2392ba7c0",
+      "bundleHash": "c78e322efc0df6704581a7a2c45883fa7e1c82727d3fc535277921a799596a5d",
       "domain": "design",
       "files": {
-        "SKILL.md": "0ec777dbdd0eaa17df0a96669356c84df2016817fb3cbca95280d8675d834dc9",
+        "SKILL.md": "13c5b5893ccd8cb9e7532b91ec10cafc5740d8f545e1bdbd926d8d89518e28fd",
         "templates/page-probe.js": "34cf67f020ac7b48ba148b384396d38ec283ca364a737b3fd1f55821a3ac4aea"
       }
     },
@@ -583,10 +605,10 @@
       }
     },
     "devops/macos-launchd-services": {
-      "bundleHash": "33328762a38abf4d5f8c4f01b60b9c908a8b4a16bfcc80605371870dc1232595",
+      "bundleHash": "e8904da6eec36203e40af61d225f4dfdd15003dadf92c5d930fa5258625ec7d6",
       "domain": "devops",
       "files": {
-        "SKILL.md": "e7d364bfeda035f1274d5e87f5814de5e6e92a3ebc0fcbbe7e8988837bab9334",
+        "SKILL.md": "325faed6a36e7b9abd3f6671d784d6d2bfff3ea018c86e4ed5bced5d48783509",
         "references/browser-capture-waf-bypass.md": "b649043f2cad785f6980f720bf58081ad40ad3d688c2af0af8abf671b9be6822",
         "references/gateway-network-wait-fix-2026-08-30.md": "11f0f6199c8515fb107f50afed0dc6c9b525a912bbb91f918945f56c3d6da794",
         "references/launchd-env-not-shell-env.md": "9819e71b72605ba42cad407af9ff1554f4f9468a4c894215ea59bcc598a7b9bc",
@@ -619,6 +641,20 @@
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "2a1552f25802d114ec058f72b2f18dccc7f854e6cd0bbfa418c5be2217c27271"
+      }
+    },
+    "ecosystem/asn-notulensi-rapat": {
+      "bundleHash": "49ccd8d8216d3d1d72a4c2e5e3546c8f916730b8878867e2841416d54e0936af",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "b2470bb2662fd854471ee7ec380b47da1e1c31c60c09229c701de0e15d28e418"
+      }
+    },
+    "ecosystem/asn-surat-dinas": {
+      "bundleHash": "6f815566ae7d3b551cd59e69b6a79b86f2e4eb92d7d69dfb8e861a2690aaeb0f",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "388b60e24a7c202ce0ecb97ebb146bb78f5810b56697e15707f30b664286f1fb"
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/arena-patch-adoption": {
@@ -916,10 +952,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/mirai-mission-control-adoption": {
-      "bundleHash": "574fa03b2831f7dc4c7ca08e166c9700c4ec6f3eb9e1ee7ca1ce5cdfda51d3bb",
+      "bundleHash": "0bf7ce63b06ae05fa93de8f65932313f78abf4e329243c70fea7a1e2d9739f8d",
       "domain": "ecosystem/ecosystem-hermes/ecosystem-general",
       "files": {
-        "SKILL.md": "8225d346ae92e4a11f6996a6a2cbc2bf48bfac813ba6a2b2cc9124d756684cdb"
+        "SKILL.md": "bf116f2b22bee33a303b64969c952d2fd0359921b804e84a6f484266be3716ee"
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/niumination-ecosystem-change-discipline": {
@@ -955,10 +991,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-config/hermes-agent-skill-authoring": {
-      "bundleHash": "ad68e0615e442da7462186f369f5818357316eab4d170424849ceda48019c651",
+      "bundleHash": "de81d0eb8bc1cdb81e806b9ab5ee0b6517c22f1d7e4e33364af2213e65fceec4",
       "domain": "ecosystem/ecosystem-hermes/hermes-config",
       "files": {
-        "SKILL.md": "7d3aa79739df5c17424869fe3c783ddeb5c340d6b4b30a993100f982b24eadd6"
+        "SKILL.md": "6233078a3027f8531cd184b45264d5e26f208a62c519b1695634f1db838add66"
       }
     },
     "ecosystem/ecosystem-hermes/hermes-config/hermes-gateway-dm-troubleshooting": {
@@ -1013,10 +1049,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-configuration": {
-      "bundleHash": "ad91ea71ab22d45b156f94da1b4358ba251d51245d8c5714d0802cb9b42c31ea",
+      "bundleHash": "c3310880f5ae57d8b1488a8e74dae656580fb81cc9432b77305b4e91e0446274",
       "domain": "ecosystem/ecosystem-hermes",
       "files": {
-        "SKILL.md": "d70aad19268adb398ea3c555074ff82fa573d969c00a14e194f4db2adbd239c8",
+        "SKILL.md": "3d8c0075bc99d2641baf81d66cc3aaba17e4e4c27655647471fe8d2b92a73c3a",
         "references/computer-use-readiness-timeout.md": "26664129e73364676161e94cea8aae52cba729d9f1a8b6033b7311a6a1b6ae31",
         "references/config-drift-restoration-2026-09-08.md": "2f4c084caa3e2831e58247213fba54e1da7d722cce974759418e0048ce64a606",
         "references/config-migration-internals.md": "2530117ce125c93b4838cdd204ba6e8effffac5284f0869980f2b575dab75677",
@@ -1333,10 +1369,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/sqlite-schema-migration": {
-      "bundleHash": "fb966366159166ea09c29dcec0121b27b0680750bbb45ec16dd06e08d46c7984",
+      "bundleHash": "df73e24347d9d2042c83f995b3c4cab17ad1e78434c5f8dbc5d79fad5df382dc",
       "domain": "ecosystem/ecosystem-hermes/hermes-misc",
       "files": {
-        "SKILL.md": "fdf23a513c8e6130b54e5452f26e2a3fee1362c10448d6ff86abd83daa93c511",
+        "SKILL.md": "dd0582c99aba6b89b5144de1b5a3e73c8adaba83e08b20a5d3cf7fda5878c92a",
         "references/conditional-migration.md": "1adf96e338afab6b3bdbc9f2881f3fb3a4d5ecc6f680deb1d45c4a52136609cc"
       }
     },

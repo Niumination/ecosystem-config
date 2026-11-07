@@ -3,6 +3,9 @@
 
 | Skill | Domain | File | Source | Description |
 |-------|--------|-----:|--------|-------------|
+| `asn/asn-dinas-jurnal` | asn | 1 | Bank Pusat | Log kegiatan harian. Use for daily activity journal. |
+| `asn/asn-ekinerja-upload-package` | asn | 1 | Bank Pusat | Paket bukti dukung eKinerja. Use for upload packages. |
+| `asn/asn-regulasi-lookup` | asn | 1 | Bank Pusat | Cari pasal peraturan. Use for regulation lookup. |
 | `autonomous-ai-agents/merge-reconciler` | autonomous-ai-agents | 1 | Bank Pusat | Neutral third-party resolution of agent merge conflicts. |
 | `autonomous-ai-agents/telegram-router-orchestration` | autonomous-ai-agents | 2 | Bank Pusat | Mengelola persona, skills, dan model override per-thread Telegram di Hermes Gateway, termasuk integrasi dengan ekosistem Niumination. |
 | `camofox-browser` | camofox-browser | 1 | Bank Pusat | Manage Camofox stealth browser at localhost:9377. |
@@ -14,7 +17,7 @@
 | `content/content-research` | content | 1 | Bank Pusat | Riset tren, keyword, audiens, dan bedah kompetitor |
 | `content/content-script` | content | 1 | Bank Pusat | Hook, naskah, storyboard, caption, dan copywriting |
 | `content/content-studio` | content | 1 | Bank Pusat | Produser studio konten: pipeline ide sampai cuan |
-| `content/papermorph-edu` | content | 1 | Bank Pusat | Make or edit animated, narrated, interactive web books from reference PDFs (Niumination Edu Content adaptation). Use for book planning, storyboards, chapter animation and exercises, narration, and cover and contents pages, including "make the next chapter" or "fix this animation". Deliver runnable static book files. |
+| `content/papermorph-edu` | content | 2 | Bank Pusat | Make or edit animated, narrated, interactive web books from reference PDFs (Niumination Edu Content adaptation). Use for book planning, storyboards, chapter animation and exercises, narration, and cover and contents pages, including "make the next chapter" or "fix this animation". Deliver runnable static book files. |
 | `content/remotion-video` | content | 3 | Bank Pusat | Buat video vertikal 9:16 pakai Remotion — prompt ke MP4, Mode A CPU-only, gratis (Free tier ≤3 org). SCOPE: thread Konten Kreator (1172) saja. |
 | `creative/ascii-art` | creative | 1 | Bank Pusat | ASCII art: pyfiglet, cowsay, boxes, image-to-ascii. |
 | `creative/comfyui` | creative | 34 | Bank Pusat | Generate images, video, and audio via diffusion workflows. |
@@ -48,6 +51,8 @@
 | `devops/production-env-vars` | devops | 1 | Bank Pusat | Use when changing or rotating env vars on a live app (Vercel). Decode pulled values, verify functionally, keep a rollback path. |
 | `devops/snapshot-verification` | devops | 3 | Bank Pusat | Verify static snapshot deployment and content. |
 | `ecosystem/agent-desktop` | ecosystem | 1 | Bank Pusat | 'Use when operating desktop apps via accessibility tree.' |
+| `ecosystem/asn-notulensi-rapat` | ecosystem | 1 | Bank Pusat | Generate notulensi rapat. Use for Diskominfo meetings. |
+| `ecosystem/asn-surat-dinas` | ecosystem | 1 | Bank Pusat | Generate surat dinas. Use for Diskominfo Aceh Tengah. |
 | `ecosystem/ecosystem-hermes/ecosystem-general/arena-patch-adoption` | ecosystem | 5 | Bank Pusat | Use when applying arena.ai zip patch stacks to a repo. |
 | `ecosystem/ecosystem-hermes/ecosystem-general/device-migration-disaster-recovery` | ecosystem | 7 | Bank Pusat | Use when planning backup, restore, or device migration. |
 | `ecosystem/ecosystem-hermes/ecosystem-general/ecosystem-architecture-adoption` | ecosystem | 2 | Bank Pusat | Adapt external architecture into existing project. |
@@ -257,6 +262,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-11-05 19:50:45_
+_Last sync: 2026-11-07 21:57:45_
 
 <!-- SKILL_REGISTRY_END -->

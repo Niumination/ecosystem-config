@@ -3,7 +3,7 @@ name: mirai-mission-control-adoption
 description: "Adopt the MIRAI mission-control pack."
 tags: [mirai, mission-control, nexora, orchestration, adoption, macos]
 version: 1.0.0
-last_updated: "2026-10-09"
+last_updated: "2026-11-06"
 ---
 
 # MIRAI Mission Control adoption
@@ -96,6 +96,10 @@ only, host asing 403.
 3. **mac-verify.sh 3 false-FAIL**: (a) `json()` helper: `eval('d'+'$2')` → shell quote clash → Python SyntaxError → stderr dilahap `2>/dev/null` → "health returned nothing usable". Fix: `eval('d'+sys.argv[1])` lewat argv. (b) `grep -q "keepalive = 1"` tak match `properties = keepalive | runatload`. Fix: `grep -qE "keepalive( = 1| \||$)"`. (c) cek loopback `awk '{print $9}'` menyertakan header `NAME` → `grep -qv` lolos → "NON-loopback address". Fix: `awk 'NR>1{print $9}'`. Setelah 3 fix: 20 PASS, 1 FAIL (mail-sweep sengaja), 3 SKIP.
 
 ### Trap yang kena
+- **LaunchAgent PATH**: macOS LaunchAgent tidak memiliki PATH yang mencakup `/usr/sbin` (sysctl) dan `/usr/bin` (vm_stat). Fungsi `_sysctl()` dan `_run()` yang memanggil command by name akan mengembalikan "" → nilai 0. Fix: gunakan absolute path (`/usr/sbin/sysctl`, `/usr/bin/vm_stat`) dengan fallback ke nama command. Ini menyebabkan health endpoint menampilkan memory 0.0 GB meskipun `_mac_memory()` mengembalikan nilai benar saat dijalankan dari terminal.
+- **SQLite reserved keyword `to`**: alias kolom `AS to` tanpa quote menyebabkan `sqlite3.OperationalError: near "to": syntax error`. Fix: quote alias sebagai `AS "to"` di semua SELECT. Ini pra-existent bug yang terlihat di log test tapi tidak memblokir (RC=0). Sudah diperbaiki (commit 78b6a64).
+- **Single-file dashboard missing CSS classes**: Class `.hero-inner` dan `.actions` dipakai di HTML tapi tidak didefinisikan di CSS → hero section tidak memiliki grid layout, tombol tidak tersusun. Fix: definisikan CSS rule untuk class yang missing. Selalu cek class yang digunakan di HTML vs yang didefinisikan di CSS.
+- **Dashboard split (P5)**: Memisahkan dashboard.html (228KB single file) menjadi HTML+CSS+JS memerlukan: (1) ekstrak CSS dan JS ke file terpisah, (2) update HTML untuk reference external files, (3) tambah server route `_serve_asset()` untuk `/dashboard.css` dan `/dashboard.js`, (4) sync ke `mission-control/web/`. Server membaca file per request (no restart needed untuk HTML, CSS, JS). Font-face base64 tetap inline di HTML untuk offline capability.
 - `hermes cron create --no-agent` MEMBUTUHKAN `--script` (script = the job). Buat wrapper `~/.hermes/scripts/wiki-{opening,closing}-snapshot.sh` (mode 755).
 - `patch` tool menolak `~/.hermes/config.yaml` (security guard). Bypass: edit baris via Python split/join, BUKAN ruamel — ruamel reformat seluruh file (212 baris berubah, API KEY ter-wrap). Backup dulu `config.yaml.bak-pre-mirai`, rollback, lalu string-replace block 696-710 → 1 baris (22 baris berubah, hanya block thread 1).
 - Repo `~/mirai-src` = dotfiles (zaryu-terminal-dotfiles) yang melacak seluruh $HOME (180k untracked) — JANGAN commit fix arena di sini. Fix aman di workspace. Folder `~/mirai-src` + `~/mirai` + `~/wiki` sudah dibersihkan; proyek HIDUP hanya `~/Desktop/Niumination/mirai`.
@@ -211,6 +215,14 @@ langkah 0-12. Yang diminta: diff → apply file berubah → restart service → 
   `file:///` localhost atau gitlink tanpa entry `.gitmodules` — pre-existing,
   jangan salahkan update MIRAI. Tapi setiap gitlink root baru (folder proyek baru)
   WAJIB dapat entry `.gitmodules` dengan URL publik, jika tidak CI merah baru.
+
+## Dashboard CSS maintenance (P5 split lesson)
+
+- **Gejala**: Setelah memisahkan dashboard.html (single-file 228KB) menjadi HTML+CSS+JS, warna font, design, dan teks jadi tidak terlihat — meskipun layout presisi. Akar: brace imbalance (138/137), tag `</style>` stray, dan blok dark-mode yang menimpa color tokens.
+- **Recovery**: (1) Restore CSS dari git commit bersih (`git show <commit>:dashboard.css`), (2) re-apply fixes satu per satu dengan verifikasi brace balance setelah setiap batch, (3) hapus dark mode jika user complain, (4) deduplicate rules yang terduplikasi akibat fix berulang.
+- **Pitfall**: Jangan klaim "fixed" dari file di disk saja — selalu verifikasi brace balance (`{`==`}`) dan curl endpoint 200. Browser cache bisa menyembunyikan perubahan; restart LaunchAgent jika perlu.
+- **Preferensi user**: "perbaiki keseluruhan, jangan setengah setengah" — full fix diperlukan, bukan patch parsial.
+- **Ultimate fallback**: Jika CSS split terus bermasalah (brace imbalance, dark-mode override, duplikat rules), revert ke versi single-file inline (`git show <commit>:dashboard.html`) — ini state terakhir yang diketahui berfungsi. Jangan terus patch CSS split; revert lebih cepat dan lebih aman. Setelah revert, re-apply fixes satu per satu dengan verifikasi brace balance.
 
 ## Yang harus diputuskan owner sebelum eksekusi (RESOLVED, jangan tanya ulang)
 1. Persona: 10 persona Niumination dipertahankan, 3 generic MIRAI TIDAK dipasang (workspace #2+).

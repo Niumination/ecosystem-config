@@ -179,6 +179,8 @@ Pick the closest existing category. Don't invent new top-level categories casual
 
 9. **Linking to skills that don't exist in-repo.** `related_skills: [some-user-local-skill]` works for you but breaks for other clones. Prefer only in-repo links.
 
+10. **Runtime skill descriptions must be ≤60 chars.** When creating skills via `skill_manage(action='create')`, the runtime skill index enforces a 60-character limit on descriptions — much shorter than the in-repo 1024-char limit. The index clips anything longer. Plan descriptions as: \"Use when <trigger>. <one-line behavior>.\" and count characters before submitting. If it exceeds 60, shorten the trigger or behavior phrase.
+
 ## Verification Checklist
 
 - [ ] File is at `skills/<category>/<name>/SKILL.md` (not in `~/.hermes/skills/`)
