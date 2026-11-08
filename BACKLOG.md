@@ -177,7 +177,7 @@ Desktop/Niumination/
 
 | Proyek | Priority | Status | Aktivitas Terakhir | Notes |
 |--------|:--------:|:------:|:------------------:|-------|
-| **asn-admin** | P2 | 🟢 **Active** | **2026-10-03** | Sistem administrasi ASN — format naskah dinas (Permendagri 1/2023), katalog naskah, pranata komputer. Repo **PRIVAT** `Niumination/asn-admin`. Sumber kebenaran regulasi = `dinas/asn-admin/references/` (4 katalog, VERIFIED dari PDF JDIH). Gate keamanan = `pre-commit-scan.py` (16 skenario uji, 0 gagal). PR arena `asn-admin#1` sudah **MERGED** 26 Sep 2026. **Jalur A produksi DOCX+PDF berfungsi 3 Okt 2026** (LibreOffice 26.8.0 terpasang). ✅ **5 skill asn-* [TO BUILD] selesai dibuat** (asn-surat-dinas, asn-notulensi-rapat, asn-ekinerja-upload-package, asn-dinas-jurnal, asn-regulasi-lookup) — 4 Nov 2026. Sisa: cron reminder, register harian masih kosong |
+| **asn-admin** | P2 | 🟢 **Active** | **2026-10-03** | Sistem administrasi ASN — format naskah dinas (Permendagri 1/2023), katalog naskah, pranata komputer. Repo **PRIVAT** `Niumination/asn-admin`. Sumber kebenaran regulasi = `dinas/asn-admin/references/` (4 katalog, VERIFIED dari PDF JDIH). Gate keamanan = `pre-commit-scan.py` (16 skenario uji, 0 gagal). PR arena `asn-admin#1` sudah **MERGED** 26 Sep 2026. **Jalur A produksi DOCX+PDF berfungsi 3 Okt 2026** (LibreOffice 26.8.0 terpasang). ✅ **5 skill asn-* [TO BUILD] selesai dibuat** (asn-surat-dinas, asn-notulensi-rapat, asn-ekinerja-upload-package, asn-dinas-jurnal, asn-regulasi-lookup) — 4 Nov 2026. ✅ Cron reminder harian 16:00 WIB → thread 8853 (job 130145524e03). Sisa: register harian (aktivitas-log.csv) masih kosong — isi manual oleh user |
 
 ### 🌐 sites/ — 7 Frontend
 
