@@ -150,6 +150,7 @@
 | `ecosystem/ecosystem-wiki/content/reels-motion-render` | ecosystem | 1 | Bank Pusat | Use when rendering a Reels/TikTok video with HyperFrames. |
 | `ecosystem/ecosystem-wiki/creative/ffmpeg-ken-burns-motion` | ecosystem | 1 | Bank Pusat | Use when making still cards move: FFmpeg zoompan + mux VO. |
 | `ecosystem/ecosystem-wiki/creative/revideo-motion-graphic` | ecosystem | 1 | Bank Pusat | ARSIF — jalur motion-graphic Revideo ini DITOLAK (macet 7,4 jam, 0 output, 23 Sep 2026). BACA DULU banner penolakan di atas. Pakai HyperFrames atau Remotion. |
+| `ecosystem/ecosystem-zb-vela` | ecosystem | 1 | Bank Pusat | Use when operating or referencing the zb-vela VPS node. |
 | `ecosystem/egm-bootstrap` | ecosystem | 1 | Bank Pusat | 'Use when onboarding new repo. Generates bottom-up docs.' |
 | `ecosystem/egm-codebase-auditor` | ecosystem | 1 | Bank Pusat | 'Use when auditing design vs code. Checks consistency.' |
 | `ecosystem/egm-comprehension` | ecosystem | 1 | Bank Pusat | 'Use when reviewing design doc. Flags undefined terms, gaps.' |
@@ -161,6 +162,7 @@
 | `ecosystem/egm-zoom-out-architect` | ecosystem | 1 | Bank Pusat | 'Use when macro-reviewing design. Checks big picture.' |
 | `ecosystem/google-colab-integration` | ecosystem | 1 | Bank Pusat | Use when integrating Google Colab. Cloud GPU/TPU notebooks. |
 | `ecosystem/hermes-release-and-update-forensics` | ecosystem | 1 | Bank Pusat | Use when auditing a Hermes release or update. |
+| `ecosystem/mirai-dashboard-maintenance` | ecosystem | 1 | Bank Pusat | Use when editing MIRAI dashboard styling or regressions. |
 | `ecosystem/opencode-troubleshooting` | ecosystem | 2 | Bank Pusat | Fix OpenCode CLI/Desktop errors and config issues. |
 | `ecosystem/utcp-integration` | ecosystem | 1 | Bank Pusat | Use when integrating UTCP. Direct native endpoint calls. |
 | `ecosystem/wiki` | ecosystem | 1 | Bank Pusat | Use when the owner, the business, or anything the crew has read is in play. |
@@ -212,8 +214,10 @@
 | `software-development/brainstorming` | software-development | 1 | Bank Pusat | Use BEFORE any creative work — creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation. |
 | `software-development/bridge-migration` | software-development | 3 | Bank Pusat | Migrate bridge modules lost in refactor to a new runtime. |
 | `software-development/cc-acehtengah-ops` | software-development | 18 | Bank Pusat | Operate cc-acehtengah: AI model, DTSEN sources, deploy. |
+| `software-development/commit-archaeologist` | software-development | 4 | Bank Pusat | >- |
 | `software-development/compliance-checklist-dashboard` | software-development | 3 | Bank Pusat | Build compliance/evaluation checklist dashboards from structured documents (Markdown, Excel, PermenPANRB instruments). End-to-end: parse checklist → JSON with status tracking → Next.js dashboard with filters, progress bars, grouped expandable items, and embedded document previews (iframe for HTML, PDF viewer). Covers document-to-indicator mapping, batch status updates from verified sources, and the 'lampiran' pattern for linking evidence files. Use when building dashboards for government compliance (Pemdi, SPBE, IKD, RB), audit tracking, or any scenario where a checklist of items needs status visualization with embedded source documents. |
 | `software-development/delegated-output-verification` | software-development | 2 | Bank Pusat | Verify files produced by delegated/parallel subagents BEFORE integration. Catches corrupted output (JSON-escaped quotes written literally), stub files that pass syntax checks, and self-reports that claim success. Use after every delegate_task/swarm batch that writes files, before claiming the build works. |
+| `software-development/dependency-doctor` | software-development | 4 | Bank Pusat | >- |
 | `software-development/derived-artifact-consistency` | software-development | 4 | Bank Pusat | Use when two tools report different totals for one set. |
 | `software-development/document-content-pipeline` | software-development | 9 | Bank Pusat | High-accuracy PDF extraction (opendataloader-pdf / ODL-PDF), batch markdown cleanup, and content pipeline for website injection. Covers PPT→PDF→Markdown→JSON→Next.js page workflows. |
 | `software-development/fastapi-python` | software-development | 1 | Bank Pusat | Expert in FastAPI Python development with best practices for APIs and async operations |
@@ -248,6 +252,7 @@
 | `software-development/repo-release-hygiene` | software-development | 1 | Bank Pusat | Promote hotfix branches to main and remove stale repo docs. |
 | `software-development/requesting-code-review` | software-development | 1 | Bank Pusat | Use when completing tasks, implementing major features, or before merging to verify work meets requirements — dispatches code reviewer with precise context. |
 | `software-development/safe-branch-refactor` | software-development | 3 | Bank Pusat | Safe refactor by duplicating branch and preserving UI. |
+| `software-development/scope-creep-detector` | software-development | 4 | Bank Pusat | >- |
 | `software-development/simplify-code` | software-development | 1 | Bank Pusat | Parallel 4-agent cleanup of recent code changes. |
 | `software-development/subagent-driven-development` | software-development | 1 | Bank Pusat | Use when executing implementation plans with independent tasks in the current session — dispatches fresh subagent per task with two-stage review. |
 | `software-development/surgical-refactor` | software-development | 2 | Bank Pusat | Keep UI intact, replace only data/backend logic. |
@@ -262,6 +267,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-11-07 21:57:45_
+_Last sync: 2026-11-09 23:35:00_
 
 <!-- SKILL_REGISTRY_END -->

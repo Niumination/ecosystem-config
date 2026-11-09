@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 258 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 263 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 258 ✅ Aktif
+> **Status:** 263 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -90,6 +90,9 @@
 | **pre-cleanup-artifact-preservation** | ✅ Aktif | Bank Pusat | 7.1 KB | Before deleting refs or files, preserve the only copy. |
 | **project-handover-package** | ✅ Aktif | Bank Pusat | 13.4 KB | Use when handing a project over to another team. |
 | **niumination-repo-commit-discipline** | ✅ Aktif | Bank Pusat | 7.0 KB | Committing changes to Niumination git repos. |
+| **commit-archaeologist** | ✅ Aktif | Bank Pusat | 5.4 KB | >- |
+| **dependency-doctor** | ✅ Aktif | Bank Pusat | 5.3 KB | >- |
+| **scope-creep-detector** | ✅ Aktif | Bank Pusat | 5.1 KB | >- |
 
 ## Domain: Design
 
@@ -224,6 +227,8 @@
 | **utcp-integration** | ✅ Aktif | Bank Pusat | 2.7 KB | Use when integrating UTCP. Direct native endpoint calls. |
 | **asn-notulensi-rapat** | ✅ Aktif | Bank Pusat | 1.2 KB | Generate notulensi rapat. Use for Diskominfo meetings. |
 | **asn-surat-dinas** | ✅ Aktif | Bank Pusat | 1.6 KB | Generate surat dinas. Use for Diskominfo Aceh Tengah. |
+| **ecosystem-zb-vela** | ✅ Aktif | Bank Pusat | 3.9 KB | Use when operating or referencing the zb-vela VPS node. |
+| **mirai-dashboard-maintenance** | ✅ Aktif | Bank Pusat | 3.3 KB | Use when editing MIRAI dashboard styling or regressions. |
 
 ## Domain: Security
 
@@ -414,8 +419,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **258** |
-| **Total** | **258** |
+| ✅ Aktif | **263** |
+| **Total** | **263** |
 
 ## Catatan Penting — Potensi Konflik
 

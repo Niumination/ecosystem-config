@@ -1,7 +1,7 @@
 {
-  "fileCount": 1207,
-  "generatedAt": "2026-11-07T14:58:40.165211+00:00",
-  "skillCount": 258,
+  "fileCount": 1221,
+  "generatedAt": "2026-11-09T16:34:15.476255+00:00",
+  "skillCount": 263,
   "skills": {
     "asn/asn-dinas-jurnal": {
       "bundleHash": "b9264429eee5be0d8c5c612a7280af5e1879c83bfaec6cfa21d11e32e21ab101",
@@ -105,10 +105,10 @@
       }
     },
     "content/papermorph-edu": {
-      "bundleHash": "e626307cc4c219e62cbebb8704e96af6a500d47cddf6b5236ae69b95891a0a34",
+      "bundleHash": "a4ea2bd09e45c35b98215dcb666767b90b46eb190fc1a699c8988591675b78da",
       "domain": "content",
       "files": {
-        "SKILL.md": "b5c6e4bce4dff369ba846eeaf2dc9a71afcfa3a88d747212799b048d982b1954",
+        "SKILL.md": "5e2a22961980a2851b212ceca79f6e848e19f969272e718b89e2a1e52d6578c7",
         "references/quiz-component.md": "f2ef237d90f8322bb81770a418d975ba262ad014f8f59a4b0cc6cf9567d7e9ca"
       }
     },
@@ -310,11 +310,11 @@
       }
     },
     "design/frontend-design": {
-      "bundleHash": "1d2544dd7743b6eba75d3429bee31d310472cf9192e322dce79f854e9716b95a",
+      "bundleHash": "c3df44a2567ed06afb753227a7cc00a96766646532c8546bb90390a5a8146d80",
       "domain": "design",
       "files": {
         "LICENSE.txt": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
-        "SKILL.md": "c28bc7eaef6d3e66be25b8455ffa1ce56c9f15f3cceeecdb50ee53fa9cc5f8cc"
+        "SKILL.md": "2cc2609f7172e27d3eec941ef07a0254c7673d0b79e2223567a8c9d03c92c03a"
       }
     },
     "design/impeccable": {
@@ -952,10 +952,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/mirai-mission-control-adoption": {
-      "bundleHash": "0bf7ce63b06ae05fa93de8f65932313f78abf4e329243c70fea7a1e2d9739f8d",
+      "bundleHash": "bed0577ce97e83925fec57811c6c71a406f96bca84333bb6e63ff9d7d1f3551f",
       "domain": "ecosystem/ecosystem-hermes/ecosystem-general",
       "files": {
-        "SKILL.md": "bf116f2b22bee33a303b64969c952d2fd0359921b804e84a6f484266be3716ee"
+        "SKILL.md": "c62767ffe6758f9a7b0508ceb0b16a00a79bde9aafebb0076750ec8824bc2afa"
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/niumination-ecosystem-change-discipline": {
@@ -1413,10 +1413,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-tools/ecosystem-live-status-reporting": {
-      "bundleHash": "4753e601252846bb63e47cd5b679305ab429a72c56d9ebdb0401ea16ec248570",
+      "bundleHash": "a41f8f02491a2140933db91559f6ad6bdeab8e5b6cf0f27488a43013b22da400",
       "domain": "ecosystem/ecosystem-hermes/hermes-tools",
       "files": {
-        "SKILL.md": "b57a91e33329321dffecc13f06091037d0dff2a1db6e7067bc9d93e78dc532e2",
+        "SKILL.md": "cdf27c88c62107aca83a835ef6b604b8ee4d5222f6afe3ef364b7f3542b559aa",
         "references/deployment-status-verification.md": "fb94ee3bf481ef7992fc362ba882af7980cc8e387294c77ea25239fccf301186",
         "references/resource-attribution.md": "f25ee3daf403f5e4665dfedcb0cc7be70a9e5e0cea665e74743e1129e0d3380b",
         "references/verifying-machine-generated-changes.md": "da1fb8694e6819ce292342a27986ce07310ab12bd1974669db0f4bc2b6432d4e"
@@ -1522,6 +1522,13 @@
         "SKILL.md": "4579f2fbd9088a804427752b46b3c7b1e1807c90b9321951d52caf41ee94c0c2"
       }
     },
+    "ecosystem/ecosystem-zb-vela": {
+      "bundleHash": "1168aa65473c20af5e62de559edb4c8d2526e2aaa5eed453151fa588ec5e323d",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "1aefcd1e7f245ebda5dde400dfe983e53cbe1e93bb73b14285c7d1ea9eafdfbf"
+      }
+    },
     "ecosystem/egm-bootstrap": {
       "bundleHash": "47ceec247d196f6cd4f41226fff61d1e63c6b921442f63922dc46c99ebbeb096",
       "domain": "ecosystem",
@@ -1597,6 +1604,13 @@
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "b531624df0f7f2bb6d5822957b217105f1a4b2aa04f9082c4ecb231bd08ba055"
+      }
+    },
+    "ecosystem/mirai-dashboard-maintenance": {
+      "bundleHash": "a3cbffd89327bffa0433907719786208d12e2a73159ac80dc04d1a96e6a8432c",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "89f15ac3e587db02efe38a3a378892cefbeb1b65a6ec801687c0e8de2fb37380"
       }
     },
     "ecosystem/opencode-troubleshooting": {
@@ -2165,10 +2179,10 @@
       }
     },
     "repo-zip-overlay": {
-      "bundleHash": "4d5e107a3dd3f2d35b06e9b28c2e026c0bad228a8a6c36e8a123cc3016a05fed",
+      "bundleHash": "22efa1c97d10fc4f987a6bc0320592aa1537b4e2f89b137f4584f031de639f03",
       "domain": ".",
       "files": {
-        "SKILL.md": "72c21094f6a0a0f27bca39bc726903242744a24b9e39211826afb69926afe6a5"
+        "SKILL.md": "9d7f569c9ae6fc2fc80dc7abea7844ac6b5ad73d9fa91ddcc94049933308a968"
       }
     },
     "research/blogwatcher": {
@@ -2358,6 +2372,16 @@
         "references/wp7-wiring-verification-2026-09-01.md": "02f305ddc269d9f2aac1059ff753d695d4dc292f0395852cb993b51181ad0048"
       }
     },
+    "software-development/commit-archaeologist": {
+      "bundleHash": "eb3dae6a12341945ac6342f1d1f6973d1207611ac2f1b19cd58e1dd834fbfb9e",
+      "domain": "software-development",
+      "files": {
+        "README.md": "3351a9a6c8655bf71662885a862cb0e1183e7a3fea9ab7ac4c3997a409b9b9e7",
+        "SKILL.md": "945726c335ec2553074317982b547c26d0a70a9a5a24f3c196a211ca474a3118",
+        "references/reading-git-history.md": "9fa6410a0e1a7f877710041f34af6a1f97d68773e0c91f64398c52431e935c0a",
+        "scripts/archaeologist.py": "4805c6c4e21de5d85fac2908267c933f7fc2f85ae6ff5b6623eab1e63ab4df4e"
+      }
+    },
     "software-development/compliance-checklist-dashboard": {
       "bundleHash": "d3e4f62b9c2325858f8fec54011c699aef4338c39c7687d07ec9159683830b3b",
       "domain": "software-development",
@@ -2373,6 +2397,16 @@
       "files": {
         "SKILL.md": "452058d7a84cb549dbdb89c3338f9683a80ea6fa573287978f0a5a54dc4008bd",
         "references/rebuild-gutted-dashboard.md": "0c091ed37796287a49f5edee71ec92eaa1f7c75163e31cf1a2be7aaa44111a33"
+      }
+    },
+    "software-development/dependency-doctor": {
+      "bundleHash": "5eca1fdd26b396def214e0e9d1aefcc5786337820f89f443faa71c5788aab149",
+      "domain": "software-development",
+      "files": {
+        "README.md": "458cacc34413fb5996562fe739d900d44175c32c4a6d8154c9eae4bf7333dd8b",
+        "SKILL.md": "c38918b17395ec79e9b8b427f68183ad5c8bd29eb1239dc8a5f41ceb1153fe8d",
+        "references/dependency-pitfalls.md": "ec74d2361936cf9436ce65418a4d306988a39f108e327db6bc11a6cc379ad184",
+        "scripts/dep_doctor.py": "86a2829e68b20f6fc25858e44600c55995594851faacfc1e5e17f746f7063e7d"
       }
     },
     "software-development/derived-artifact-consistency": {
@@ -2460,10 +2494,10 @@
       }
     },
     "software-development/live-ui-audit": {
-      "bundleHash": "db4ee2956b712ae250ded1b3f4ecc18a0df99627bd50de15639ae432a3b8513b",
+      "bundleHash": "e444907afaf982d9345394032b652dbbf4065a11c4db29a2367b87528715f467",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "9e52b20d9f9c9659ad2adf65b861db1931052092bc6a7eb220ac402108dae890",
+        "SKILL.md": "bb8740c849937c4ff54040971b885db3e5d01a95e8aa568a1f0835f14d045512",
         "references/measurement-recipes.md": "17e15f3c1b8942d1a2baed68247af1bd985acb1901703c89d5b4e2b7cb009f5d"
       }
     },
@@ -2654,6 +2688,16 @@
         "SKILL.md": "2c4983d7d78589a9af27e8f24ae49cf82fa81a54555d2a0dfafd981ec5c4f404",
         "references/port-diverged-branches-2026-09-03.md": "a8aec63713ce56f78b1e87032fbb57af3d5849064502c25b8883e210cccbeeca",
         "references/sapa-ai-refactor-2026-09-02.md": "c5fdfd3ecd710f165c30b0563223863f1c2e95a99f6e371a540ce7073c45efb2"
+      }
+    },
+    "software-development/scope-creep-detector": {
+      "bundleHash": "d60c1b733064376ffc573f5f33239540d4bfd7be10273c9c888363d44d4d1eed",
+      "domain": "software-development",
+      "files": {
+        "README.md": "b233cc8b6113a01f27f952f37d3bbb1aeaa6f2dda9718efd7bf57ccafb54d6a0",
+        "SKILL.md": "b853747b725f9c4be1725047a6ae9e5de34b92684f33bcae29e5a504dac6b33e",
+        "references/scope-signals.md": "c710c23e004cbc8c1e47b34eeafb41d441b8e7b4f7a37241da98f667a6e3da93",
+        "scripts/scope_creep.py": "d2b9c5f5931617b0065170b1e6a2780b1b0491e5942569acf73a2c6e2c6fb28b"
       }
     },
     "software-development/simplify-code": {
