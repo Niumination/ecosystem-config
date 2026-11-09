@@ -40,6 +40,17 @@ NEVER use generic AI-generated aesthetics like overused font families (Inter, Ro
 
 Interpret creatively and make unexpected choices that feel genuinely designed for the context. No design should be the same. Vary between light and dark themes, different fonts, different aesthetics. NEVER converge on common choices (Space Grotesk, for example) across generations.
 
-**IMPORTANT**: Match implementation complexity to the aesthetic vision. Maximalist designs need elaborate code with extensive animations and effects. Minimalist or refined designs need restraint, precision, and careful attention to spacing, typography, and subtle details. Elegance comes from executing the vision well.
+## Brand Alignment (when matching an existing site)
+
+When the user says a design is wrong/bad and references an existing live site ("sesuaikan dengan niumination.web.id", "match the main site", "ikuti design X"), do NOT guess the design system. Instead:
+
+1. **Fetch the live site's CSS** — `curl -s <url>` or `web_extract` the page, then grep for CSS custom properties (`--ink`, `--cream`, `--ember`, etc.), font-family declarations, and effect patterns (glow, dotgrid, gradients).
+2. **Extract the token set** — colors, fonts, spacing, border-radius, shadows, and animation patterns. Write them as `:root` CSS variables.
+3. **Apply consistently** — use the SAME tokens across ALL pages of the sub-site (index + every chapter/detail page). Do not mix old and new tokens.
+4. **Verify live** — deploy, then `curl` the deployed URL and grep for the token values (e.g., `#e05a1e`, `Space Grotesk`) to confirm the new theme is actually served, not cached.
+
+**Pitfall**: Partial application (only updating index.html but not chapter pages) leaves visual inconsistency. Always update every page that shares the design system.
+
+**Pitfall**: Vercel CDN may serve stale cached version. If verification shows old tokens, force redeploy with `vercel --prod --yes` and re-verify.
 
 Remember: Claude is capable of extraordinary creative work. Don't hold back, show what can truly be created when thinking outside the box and committing fully to a distinctive vision.

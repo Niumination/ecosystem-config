@@ -94,6 +94,55 @@ $PIPER -m $VOICE -c $VOICE_CFG -i /tmp/ch01.txt -f site/<book>/ch01/audio/id/ch0
 - Rencana: `docs/reports/PLAN-PAPERMORPH-ADAPTASI-EDU-2026-10-05.md`
 - Thread doc: `docs/reports/THREAD-12707-EDU-CONTENT-2026-10-06.md`
 
+## Design System — Niumination Brand (WAJIB)
+
+Semua output `site/` (index + chapter pages) **harus** menggunakan design system Niumination agar konsisten dengan niumination.web.id. Jangan gunakan tema light/cream sendiri.
+
+**Design tokens (CSS variables):**
+```css
+:root {
+  --ink: #14110d;          /* background utama */
+  --ink-2: #1b1712;        /* background hero/card */
+  --cream: #f2ecdf;        /* text utama */
+  --cream-55: rgba(242,236,223,0.55);  /* text body */
+  --cream-40: rgba(242,236,223,0.40);  /* text muted */
+  --cream-07: rgba(242,236,223,0.07);  /* background subtle */
+  --ember: #e05a1e;        /* accent primary (CTA, links, borders) */
+  --ember-soft: #f07a40;   /* accent hover */
+  --spotlight: #00e5ff;    /* accent secondary (glow) */
+  --card-bg: rgba(242,236,223,0.03);
+  --border: rgba(242,236,223,0.08);
+  --border-hover: rgba(224,90,30,0.35);
+}
+```
+
+**Font:**
+- Display/heading: `Space Grotesk` (400-700)
+- Body: `Space Grotesk` (400-500)
+- Labels/micro/mono: `JetBrains Mono` (400-600)
+
+**Pola wajib:**
+- Dark theme (#14110d background), bukan light
+- Topbar sticky dengan logo Niumination (hexagon + cyan dot) + nav links
+- Hero section: glow orbs (ember + spotlight) + dotgrid pattern (opacity 0.05)
+- Cards: border-radius 20-24px, border 1px solid var(--border), background var(--card-bg)
+- Hover: border-color → var(--border-hover), translateY(-2px)
+- Buttons: border-radius 999px, background var(--ember), color var(--ink)
+- Status badges: rounded-full, background rgba(224,90,30,0.10), color var(--ember)
+- Font labels: uppercase, letter-spacing 0.08-0.24em, JetBrains Mono
+
+**Cara ekstrak dari reference (jika perlu update):**
+1. `curl -s https://niumination.web.id/` → cari class CSS (tailwind) dan inline styles
+2. Ambil hex values dari computed styles
+3. Map ke CSS variables di atas
+4. Terapkan ke semua pages secara konsisten
+
+**Anti-pattern (JANGAN):**
+- Tema light/cream (legacy — sudah di-replace)
+- Font Plus Jakarta Sans atau Inter
+- Accent gold (#C6A75E) — sudah diganti ember
+- Cards putih dengan shadow — gunakan glassmorphism dark
+
 ## References
 
 - `references/quiz-component.md` — Reusable HTML/JS quiz pattern (CSS + JS, no dependencies)

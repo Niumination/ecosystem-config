@@ -98,7 +98,9 @@ only, host asing 403.
 ### Trap yang kena
 - **LaunchAgent PATH**: macOS LaunchAgent tidak memiliki PATH yang mencakup `/usr/sbin` (sysctl) dan `/usr/bin` (vm_stat). Fungsi `_sysctl()` dan `_run()` yang memanggil command by name akan mengembalikan "" → nilai 0. Fix: gunakan absolute path (`/usr/sbin/sysctl`, `/usr/bin/vm_stat`) dengan fallback ke nama command. Ini menyebabkan health endpoint menampilkan memory 0.0 GB meskipun `_mac_memory()` mengembalikan nilai benar saat dijalankan dari terminal.
 - **SQLite reserved keyword `to`**: alias kolom `AS to` tanpa quote menyebabkan `sqlite3.OperationalError: near "to": syntax error`. Fix: quote alias sebagai `AS "to"` di semua SELECT. Ini pra-existent bug yang terlihat di log test tapi tidak memblokir (RC=0). Sudah diperbaiki (commit 78b6a64).
-- **Single-file dashboard missing CSS classes**: Class `.hero-inner` dan `.actions` dipakai di HTML tapi tidak didefinisikan di CSS → hero section tidak memiliki grid layout, tombol tidak tersusun. Fix: definisikan CSS rule untuk class yang missing. Selalu cek class yang digunakan di HTML vs yang didefinisikan di CSS.
+- **Single-file dashboard missing CSS classes**: Class `.hero-inner` dan `.actions` dipakai di HTML tapi tidak didefinisikan di CSS → hero section tidak memiliki grid layout, tombol tidak tersusun. Fix: definisikan CSS rule untuk class yang missing. Selalu cek class yang digunakan di HTML vs yang didefinisikan di CSS — termasuk class di dalam template literal JS renderer (`RENDERERS.*`), bukan hanya markup statis.
+- **Test `smoke.sh`/`prove.sh` tidak hermetic bila `HERMES_HOME` terisi**: fixture memakai `${HERMES_HOME:-$HOME/.hermes}`, jadi env gateway yang menunjuk ke home asli membuat fixture menolak jalan / membaca state live meski `HOME=/tmp/fakehome` sudah di-set. Jalankan selalu dengan `env -u HERMES_HOME HOME=/tmp/fakehome bash mission-control/tests/smoke.sh` — jangan simpulkan test rusak sebelum meng-unset variabel itu.
+- **Audit `/api/house` untuk heartbeat wiki, bukan hanya `/api/health`**: diagnostics 20/20 bisa lolos sementara `wiki.alive` false (heartbeat basi berminggu-minggu) karena diagnostics tidak memeriksa heartbeat wiki. Selalu baca `wiki.heartbeat_s` + `wiki.alive` dari `/api/house` dan bandingkan dengan mtime `_wiki-health.md` bila `alive` false.
 - **Dashboard split (P5)**: Memisahkan dashboard.html (228KB single file) menjadi HTML+CSS+JS memerlukan: (1) ekstrak CSS dan JS ke file terpisah, (2) update HTML untuk reference external files, (3) tambah server route `_serve_asset()` untuk `/dashboard.css` dan `/dashboard.js`, (4) sync ke `mission-control/web/`. Server membaca file per request (no restart needed untuk HTML, CSS, JS). Font-face base64 tetap inline di HTML untuk offline capability.
 - `hermes cron create --no-agent` MEMBUTUHKAN `--script` (script = the job). Buat wrapper `~/.hermes/scripts/wiki-{opening,closing}-snapshot.sh` (mode 755).
 - `patch` tool menolak `~/.hermes/config.yaml` (security guard). Bypass: edit baris via Python split/join, BUKAN ruamel — ruamel reformat seluruh file (212 baris berubah, API KEY ter-wrap). Backup dulu `config.yaml.bak-pre-mirai`, rollback, lalu string-replace block 696-710 → 1 baris (22 baris berubah, hanya block thread 1).
@@ -223,6 +225,23 @@ langkah 0-12. Yang diminta: diff → apply file berubah → restart service → 
 - **Pitfall**: Jangan klaim "fixed" dari file di disk saja — selalu verifikasi brace balance (`{`==`}`) dan curl endpoint 200. Browser cache bisa menyembunyikan perubahan; restart LaunchAgent jika perlu.
 - **Preferensi user**: "perbaiki keseluruhan, jangan setengah setengah" — full fix diperlukan, bukan patch parsial.
 - **Ultimate fallback**: Jika CSS split terus bermasalah (brace imbalance, dark-mode override, duplikat rules), revert ke versi single-file inline (`git show <commit>:dashboard.html`) — ini state terakhir yang diketahui berfungsi. Jangan terus patch CSS split; revert lebih cepat dan lebih aman. Setelah revert, re-apply fixes satu per satu dengan verifikasi brace balance.
+
+## Arena PATCH-*.md application (dashboard.html edits)
+
+Arena kadang mengirim file `PATCH-F*.md` (bukan `.patch` atau zip) berisi instruksi suntingan presisi ke `dashboard.html`. Pola:
+
+- **Dua file selalu**: `~/mirai/dashboard.html` (yang dilayani `:8800`) dan `mission-control/web/dashboard.html` (salinan). Kedua harus identik setelah edit.
+- **Jangan timpa seluruh file** — CSS Mac tetap. Hanya suntingan JS/CSS yang diminta.
+- **Cari anchor exact** (string unik) → sisipkan/ganti. Jika anchor tidak ditemukan, cek whitespace (indentasi, trailing space).
+- **Pola umum yang muncul**:
+  - Unhide nav item: hapus `, hidden:true` dari baris `id:"docs"` di PAGES array. Jangan sentuh chat/integrations (tetap hidden).
+  - Mosaic tile jadi link Telegram: ubah `<div class="mosaic">` → `<a class="mosaic" href="..." target="_blank">`. Tambah `a.mosaic{text-decoration:none;color:inherit}` di CSS sebelum `button.mosaic,.mosaic{`.
+  - Search/filter: tambah `<input id="seat-q">` + `id="seat-list"` pada container, lalu event listener `input` yang filter `.card.agent` by textContent.
+- **Verifikasi**: search_files kedua file untuk memastikan edit konsisten. Restart LaunchAgent jika `/api/wiki` 404. Hard-refresh browser (cache).
+- **Pitfall**: patch tool dengan escape unicode (`\u25a4`) sering gagal — gunakan Python string replace. Selalu verifikasi dengan search_files setelah edit.
+- **Pitfall CSS display:none**: Jika `.page{display:none}` tidak ada di CSS Mac, semua section `.page` tetap terlihat bersamaan → layout pecah, klik nav "tidak buka". Fix: `.page{display:none;max-width:1100px}` + `.page.on{display:block}`. Arena PATCH-UI-8800.md.
+- **Pitfall zip overlay revert fixed files**: Zip arena bisa membawa versi LAMA dari file yang sudah kita fix (health.py `_sysctl()` absolute paths, traffic.py quoted `"to"` alias). Setelah overlay, cek `git diff` untuk file-file ini; jika regressed, `git checkout --` file tersebut lalu re-apply overlay hanya untuk file baru.
+- **Pitfall dua file identik**: `~/mirai/dashboard.html` (yang dilayani :8800) dan `mission-control/web/dashboard.html` (salinan) HARUS identik setelah edit. Selalu `cp dashboard.html mission-control/web/dashboard.html` setelah edit, lalu verifikasi dengan `diff`.
 
 ## Yang harus diputuskan owner sebelum eksekusi (RESOLVED, jangan tanya ulang)
 1. Persona: 10 persona Niumination dipertahankan, 3 generic MIRAI TIDAK dipasang (workspace #2+).

@@ -66,6 +66,7 @@ Semua ini pernah lolos ke laporan sebagai "temuan" padahal bukan cacat:
 
 - **Tangkapan `fullPage` tidak memicu IntersectionObserver** → counter animasi dan elemen reveal tampak `0` /
   `opacity:0` padahal normal. Scroll dulu, atau pakai tangkapan viewport.
+- **Screenshot headless sebelum render async selesai** → halaman yang isinya di-`fetch` setelah load (cockpit, dashboard data) tampak kosong / placeholder di screenshot, padahal API-nya 200. Tandai `UNCHECKED`, verifikasi dengan DOM count / screenshot ber-delay, jangan laporkan sebagai "halaman kosong".
 - **`input.scrollWidth` selalu sepanjang placeholder** → bukan overflow.
 - **Widget `position: fixed`** tampak menimpa konten di tangkapan full-page; di viewport nyata ia mengambang.
 - **Latar gradient** (sidebar, hero, strip berjalan) membuat hitungan kontras lapor ≈1,0, dan sintaks warna modern
