@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 263 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 265 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 263 ✅ Aktif
+> **Status:** 265 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -93,6 +93,7 @@
 | **commit-archaeologist** | ✅ Aktif | Bank Pusat | 5.4 KB | >- |
 | **dependency-doctor** | ✅ Aktif | Bank Pusat | 5.3 KB | >- |
 | **scope-creep-detector** | ✅ Aktif | Bank Pusat | 5.1 KB | >- |
+| **project-graveyard** | ✅ Aktif | Bank Pusat | 10.5 KB | >- |
 
 ## Domain: Design
 
@@ -389,6 +390,7 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 | **content-studio** | ✅ Aktif | Bank Pusat | 7.6 KB | Produser studio konten: pipeline ide sampai cuan |
 | **remotion-video** | ✅ Aktif | Bank Pusat | 3.3 KB | Buat video vertikal 9:16 pakai Remotion — prompt ke MP4, Mode A CPU-only, gratis (Free tier ≤3 org). SCOPE: th… |
 | **papermorph-edu** | ✅ Aktif | Bank Pusat | 4.5 KB | Make or edit animated, narrated, interactive web books from reference PDFs (Niumination Edu Content adaptation… |
+| **first-reader** | ✅ Aktif | Bank Pusat | 16.8 KB | Beta readers for any draft, run by simulating how a real reader experiences it, moment by moment. A skim gate,… |
 
 ## Domain: Remotion Project
 
@@ -419,8 +421,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **263** |
-| **Total** | **263** |
+| ✅ Aktif | **265** |
+| **Total** | **265** |
 
 ## Catatan Penting — Potensi Konflik
 

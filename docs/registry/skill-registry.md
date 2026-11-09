@@ -17,6 +17,7 @@
 | `content/content-research` | content | 1 | Bank Pusat | Riset tren, keyword, audiens, dan bedah kompetitor |
 | `content/content-script` | content | 1 | Bank Pusat | Hook, naskah, storyboard, caption, dan copywriting |
 | `content/content-studio` | content | 1 | Bank Pusat | Produser studio konten: pipeline ide sampai cuan |
+| `content/first-reader` | content | 13 | Bank Pusat | Beta readers for any draft, run by simulating how a real reader experiences it, moment by moment. A skim gate, a no-lookahead timed read producing an attention transcript with quit points, a recall test of what a reader remembers the next day, and a trust ledger of the implied author. Use when the user asks for a beta read, beta readers, test readers, human review, reader review, to read something like a human, to be a first reader, whether a piece holds attention or will actually get read, for a quick read of whether a busy skimmer would even open a post, what readers will remember or take away tomorrow, where readers stop reading or bounce, or why a draft still feels off or hollow after anti-slop or humanizer edits. Final gate before publishing; reports where the reading broke; never rewrites. |
 | `content/papermorph-edu` | content | 2 | Bank Pusat | Make or edit animated, narrated, interactive web books from reference PDFs (Niumination Edu Content adaptation). Use for book planning, storyboards, chapter animation and exercises, narration, and cover and contents pages, including "make the next chapter" or "fix this animation". Deliver runnable static book files. |
 | `content/remotion-video` | content | 3 | Bank Pusat | Buat video vertikal 9:16 pakai Remotion — prompt ke MP4, Mode A CPU-only, gratis (Free tier ≤3 org). SCOPE: thread Konten Kreator (1172) saja. |
 | `creative/ascii-art` | creative | 1 | Bank Pusat | ASCII art: pyfiglet, cowsay, boxes, image-to-ascii. |
@@ -245,6 +246,7 @@
 | `software-development/positive-verification` | software-development | 1 | Bank Pusat | Verify hand-edited escapes before claiming the fix correct. |
 | `software-development/pre-cleanup-artifact-preservation` | software-development | 1 | Bank Pusat | Before deleting refs or files, preserve the only copy. |
 | `software-development/premortem` | software-development | 1 | Bank Pusat | Assume a project or plan has already failed, then work backward to identify the most likely causes before committing to it. Catches failure modes that forward-looking planning misses. |
+| `software-development/project-graveyard` | software-development | 4 | Bank Pusat | >- |
 | `software-development/project-handover-package` | software-development | 2 | Bank Pusat | Use when handing a project over to another team. |
 | `software-development/project-orientation` | software-development | 1 | Bank Pusat | Establish situational awareness before working on any user-referenced project. Verify project existence, state, location, and documentation against primary sources — not memory or compressed summaries. |
 | `software-development/python-testing-patterns` | software-development | 2 | Bank Pusat | Implement comprehensive testing strategies with pytest, fixtures, mocking, and test-driven development. Use when writing Python tests, setting up test suites, or implementing testing best practices. |
@@ -267,6 +269,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-11-09 23:35:00_
+_Last sync: 2026-11-09 23:39:42_
 
 <!-- SKILL_REGISTRY_END -->

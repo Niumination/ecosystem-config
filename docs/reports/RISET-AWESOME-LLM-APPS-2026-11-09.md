@@ -97,3 +97,24 @@ Tidak direkomendasikan: menginstal katalog app mentah (Streamlit/ADK) di luar pi
 - README via web_extract + clone `/tmp/awesome-llm-apps` (HEAD shallow 2026-11-09)
 - `agent_skills/registry.json`, `agent_skills/scope-creep-detector/SKILL.md`, `.github/workflows/skill-evals.yml`, `LICENSE`
 - Padanan existing diverifikasi via `search_files` di `skills/` bank (260 skill per up-eco 2026-11-09)
+
+## Addendum Fase 2 (2026-11-09, menjalankan pilihan "Fase 1" lalu "lanjut")
+
+**Diadopsi:** `first-reader` → `skills/content/first-reader/` (gate pipeline konten, bukan standalone),
+`project-graveyard` → `skills/software-development/project-graveyard/`. Eval: first-reader script tests pass,
+graveyard 16/16, lint strict 0/0, scanner 0 CRITICAL. Bank 263 → 265. Commit `feat(skills): adopt first-reader + project-graveyard`.
+
+**Toonify — DIUJI, TIDAK DIADOPSI.** Uji di venv terisolasi `/tmp/toonify-venv` (paket benar `toonify`,
+bukan `toon` PyPI yang merupakan paket neuroscience — jebakan nama). Payload nyata ekosistem, hitung tiktoken cl100k:
+
+| Payload | JSON tok | TOON tok | Hemat | Roundtrip |
+|---|---|---|---|---|
+| skills/manifest.json (170 KB) | 77.516 | 75.920 | 2,1% | OK |
+| /api/agents (21 KB) | 8.756 | 7.742 | 11,6% | MISMATCH |
+| /api/cron (24 KB) | 8.119 | 6.229 | 23,3% | MISMATCH |
+| /api/health full (109 KB) | 39.348 | 20.167 | 48,7% | MISMATCH |
+| /api/health diagnostics (1,6 KB) | 517 | 289 | 44,1% | OK |
+
+Keputusan: hemat nyata untuk data tabular datar, tapi roundtrip tidak lossless pada struktur nested
+(agents/cron/health) — risiko data loss diam-diam. Tidak aman sebagai serializer default. Hanya layak
+untuk payload tabular yang roundtrip-nya diverifikasi per kasus.
