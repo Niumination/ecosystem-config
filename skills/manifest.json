@@ -1,7 +1,7 @@
 {
-  "fileCount": 1238,
-  "generatedAt": "2026-11-10T13:59:34.520580+00:00",
-  "skillCount": 265,
+  "fileCount": 1239,
+  "generatedAt": "2026-11-10T15:27:17.873860+00:00",
+  "skillCount": 266,
   "skills": {
     "asn/asn-dinas-jurnal": {
       "bundleHash": "b9264429eee5be0d8c5c612a7280af5e1879c83bfaec6cfa21d11e32e21ab101",
@@ -978,10 +978,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/niumination-ecosystem-change-discipline": {
-      "bundleHash": "5f4144fe84de954a8a20e142ef19a136181e4c75cb08bb4965b070d7681799f8",
+      "bundleHash": "f68727a37009d0e999ebcae735e87486af4b44fcaff767a24a2d592fd7c9b360",
       "domain": "ecosystem/ecosystem-hermes/ecosystem-general",
       "files": {
-        "SKILL.md": "4344539764cf657bf3f4e0377c321fd49142e66fc35d15f28fc7edfba7a1eead",
+        "SKILL.md": "789c7f362d1d5cdf7770d72a746b1413e813d46448ad2bba6bfa9c010942653b",
         "references/shared-repo-commits.md": "7eab705051201cfba498e6eea4b1d2cf056650804c0c99166d39ad9e8229b08e"
       }
     },
@@ -1630,6 +1630,13 @@
       "domain": "ecosystem",
       "files": {
         "SKILL.md": "89f15ac3e587db02efe38a3a378892cefbeb1b65a6ec801687c0e8de2fb37380"
+      }
+    },
+    "ecosystem/niumination-ecosystem-change-discipline": {
+      "bundleHash": "69b88e41dc77f55a025b477e901b26dc9c5f882b31bfe7d9a5d7956000bcd674",
+      "domain": "ecosystem",
+      "files": {
+        "SKILL.md": "316c0c1751a1290e5f81083c98720fb416fc33e20692d146e9a1b99a3f9a5c5e"
       }
     },
     "ecosystem/opencode-troubleshooting": {
