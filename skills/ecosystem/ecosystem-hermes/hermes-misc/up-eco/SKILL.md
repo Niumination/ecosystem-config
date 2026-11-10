@@ -129,6 +129,12 @@ Jalankan sync HANYA setelah commit+push perubahan root, baru commit hasil sync (
 buta. Cek CI per PR (`gh pr checks --repo Niumination/<repo> <nomor>`) sebelum merge.
 PR merah = TAHAN, laporkan sebagai follow-up terpisah. Lihat "PR merge gate" section.
 
+**Pitfall — PR check org-wide (halted repos):** §5b-4 memakai `gh search prs --owner Niumination`,
+yang mengembalikan PR dari SEMUA repo di org, termasuk repo yang pengembangannya
+dihentikan. Repo halted tetap muncul selama PR-nya terbuka. Filter via
+`docs/registry/halted-repos.txt` (satu nama repo per baris) di §5b-4; tambah nama repo
+baru di file itu bila ada proyek yang dihentikan — jangan edit skrip.
+
 ### Step 6: Offer to execute
 
 After presenting the report, ask the user (if not already instructed):
