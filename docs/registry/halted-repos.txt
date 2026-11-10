@@ -1,0 +1,4 @@
+# Repo yang pengembangannya dihentikan (halted).
+# Satu nama repo per baris. PR dari repo ini tidak ditampilkan di up-eco.
+# Sumber kebenaran: klarifikasi pemilik. Update file ini bila ada repo baru yang dihentikan.
+hermes-office

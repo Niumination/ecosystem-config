@@ -1,6 +1,6 @@
 {
   "fileCount": 1238,
-  "generatedAt": "2026-11-09T16:46:19.245440+00:00",
+  "generatedAt": "2026-11-10T13:56:46.858642+00:00",
   "skillCount": 265,
   "skills": {
     "asn/asn-dinas-jurnal": {
@@ -1410,10 +1410,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/up-eco": {
-      "bundleHash": "9efd17071475a8866f287fc8cdeeb79a8c13eddc5cd55ab0433933ed9ee8522f",
+      "bundleHash": "57f04c336964553200f718b28386430f44f3629c46a7422f4b7c456a097845c2",
       "domain": "ecosystem/ecosystem-hermes/hermes-misc",
       "files": {
-        "SKILL.md": "18c4fbcb4a443ac27d30f4f0d35d27270f81016f154b9361b4df601184a95274"
+        "SKILL.md": "ea2ee54d2454c454a134e2cb9d9836fd898ad1833450826695ff80950512b2e4"
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/weathernext-gayo": {

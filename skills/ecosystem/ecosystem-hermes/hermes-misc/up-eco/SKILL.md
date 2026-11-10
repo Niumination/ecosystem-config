@@ -106,6 +106,29 @@ Fix each hit:
 
 **Why purge**: Stale JCode references confuse future sessions into thinking JCode is still an active sync target, causing wasted effort on `--verify-target ~/.jcode/skills`.
 
+### Step 6a: Fix dirty repos (when up-eco finds uncommitted changes)
+
+When up-eco reports dirty repos (selain `brain` yang wajar kotor), jangan biarkan menumpuk.
+Eksekusi satu repo per commit, jangan gabungkan repo berbeda dalam satu commit:
+
+1. **Identifikasi setiap repo kotor** dari output "Dirty Repos" — catat path + jumlah berkas.
+2. **Per repo:** `cd <repo> && git status --short` untuk melihat berkas. Commit dengan pesan deskriptif
+   yang mencerminkan isi (bukan "up-eco fix" generik). Push segera setelah commit.
+3. **Repo root ecosystem:** commit skill bank churn (promosi, ledger, manifest) terpisah dari
+   perubahan konten (edu-content, wiki, dll). Gunakan `scope-creep-detector` untuk verifikasi
+   scope commit bila tersedia.
+4. **Setelah semua repo bersih:** jalankan ulang `bash scripts/up-eco.sh` untuk verifikasi.
+   Target: "Tidak ada repo yang perlu tindakan" (kecuali `brain` wajar kotor).
+5. **Sync skill:** `bash skills/sync-to-agents.sh` (commit + push hasil sync sebagai commit terpisah).
+
+**Pitfall — sync sebelum commit:** sync-to-agents.sh mengubah `docs/registry/skill-registry.md`.
+Jalankan sync HANYA setelah commit+push perubahan root, baru commit hasil sync (lihat section
+"Sinkronisasi skill ke Hermes"). Urutan terbalik = sync result hilang saat commit berikutnya.
+
+**Pitfall — PR dependabot merah:** rekomendasi "Review & merge N open PR" bukan izin merge
+buta. Cek CI per PR (`gh pr checks --repo Niumination/<repo> <nomor>`) sebelum merge.
+PR merah = TAHAN, laporkan sebagai follow-up terpisah. Lihat "PR merge gate" section.
+
 ### Step 6: Offer to execute
 
 After presenting the report, ask the user (if not already instructed):

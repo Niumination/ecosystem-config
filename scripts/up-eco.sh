@@ -503,6 +503,23 @@ check_gh_prs() {
   prs_json=$(HOME="$gh_home" ${TIMEOUT_BIN:+$TIMEOUT_BIN 20} gh search prs --owner Niumination --state open --limit 50 \
     --json number,title,repository,isDraft,author,createdAt,updatedAt 2>/dev/null || echo "[]")
 
+  # Filter repo yang dihentikan (halted) — lihat docs/registry/halted-repos.txt
+  local halted_file="$NIUMINATION/docs/registry/halted-repos.txt"
+  if [ -f "$halted_file" ]; then
+    prs_json=$(echo "$prs_json" | python3 -c "
+import sys,json
+halted=set()
+try:
+    for line in open('$halted_file'):
+        n=line.strip()
+        if n and not n.startswith('#'): halted.add(n)
+except Exception: pass
+data=json.load(sys.stdin)
+data=[p for p in data if p.get('repository',{}).get('name') not in halted]
+print(json.dumps(data))
+" 2>/dev/null || echo "[]")
+  fi
+
   local total
   total=$(echo "$prs_json" | python3 -c "import sys,json; print(len(json.load(sys.stdin)))" 2>/dev/null || echo "0")
 
