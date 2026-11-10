@@ -164,6 +164,7 @@
 | `ecosystem/google-colab-integration` | ecosystem | 1 | Bank Pusat | Use when integrating Google Colab. Cloud GPU/TPU notebooks. |
 | `ecosystem/hermes-release-and-update-forensics` | ecosystem | 1 | Bank Pusat | Use when auditing a Hermes release or update. |
 | `ecosystem/mirai-dashboard-maintenance` | ecosystem | 1 | Bank Pusat | Use when editing MIRAI dashboard styling or regressions. |
+| `ecosystem/niumination-ecosystem-change-discipline` | ecosystem | 1 | Bank Pusat | Editing Niumination files or committing to repos. |
 | `ecosystem/opencode-troubleshooting` | ecosystem | 2 | Bank Pusat | Fix OpenCode CLI/Desktop errors and config issues. |
 | `ecosystem/utcp-integration` | ecosystem | 1 | Bank Pusat | Use when integrating UTCP. Direct native endpoint calls. |
 | `ecosystem/wiki` | ecosystem | 1 | Bank Pusat | Use when the owner, the business, or anything the crew has read is in play. |
@@ -269,6 +270,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-11-10 22:23:28_
+_Last sync: 2026-11-10 22:29:01_
 
 <!-- SKILL_REGISTRY_END -->
