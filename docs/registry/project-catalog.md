@@ -6,7 +6,7 @@
 |--------|------|-------|--------|--------|-----------|--------|
 || **PemdiAcehTengah** | `apps/PemdiAcehTengah/` | Next.js 14, React 18, pure CSS (Ruang Kendali) | `github.com/Niumination/PemdiAcehTengah` | 🟢 Vercel — 52 OPD SSG, 67 pages, indeks asesor 1,24, CMS admin aktif (Neon pemdi-cms), menu Radial, rute `/asesor` | 27 Sep 2026 | ✅ **Selesai — apps/ 🏭 Patch 22 + CMS aktif + DOX sync (27 Sep 2026). Pengembangan lanjutan hanya atas instruksi pemilik** |
 ||| **LKH** | `apps/niu-lkh/` 🏭 | React 19, Vite 6, Tailwind v4, Supabase | `github.com/Niumination/Niu-LKH` | 🟢 GH Pages / Vercel — v3.2.0 | 07 Sep 2026 | ✅ **100% Done 🎉 — apps/ 🏭** |
-||| **Niu-Gayo-Agroclimate** | `apps/niu-gayo-agroclimate/` 🏭 | React 19, Vite 6, Tailwind CSS, WeatherNext pipeline | `github.com/Niumination/niu-gayo-agroclimate` | ⚪ Local / GH Pages ready | 07 Sep 2026 | 🆕 **Agro-Climate Kopi Gayo & Mitigasi Bencana — apps/ 🏭** |
+||| **Niu-Gayo-Agroclimate** | `apps/niu-gayo-agroclimate/` ~~(dihapus 10 Nov 2026)~~ | React 19, Vite 6, Tailwind CSS, WeatherNext pipeline | `github.com/Niumination/niu-gayo-agroclimate` (halted) | ⚪ Moved to zb-vela | 07 Sep 2026 | 📦 **Dipindahkan ke ekosistem zb-vela (10 Nov 2026)** — repo `Niumination/niu-gayo-agroclimate` di-halt, PR #4 ditutup, folder lokal dihapus. Pengembangan lanjutan di zb-vela. Lihat `docs/registry/halted-repos.txt`. |
 | **DiskominfoAT** | — (remote only) | HTML, CSS | `github.com/Niumination/DiskominfoAT` | 🟢 GH Pages | 13 Okt 2025 | ✅ Live |
 | **Diskominfo-Web** | — (remote only) | HTML, CSS | `github.com/Niumination/Diskominfo-Web` | 🟢 GH Pages | 9 Okt 2025 | ✅ Live |
 | **SPBE-DevOps-Academy** | — (remote only) | JS, HTML | `github.com/Niumination/SPBE-DevOps-Academy` | 🟢 GH Pages | 5 Nov 2025 | ✅ Live |

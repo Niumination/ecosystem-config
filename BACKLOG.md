@@ -196,7 +196,7 @@ Desktop/Niumination/
 
 || Proyek | Status | Deploy | Aktivitas Terakhir | Notes |
 ||--------|:------:|:------:|:------------------:|-------|
-|| **niu-gayo-agroclimate** | ⚪ Not deployed | — | 2026-09-07 | React 19/Vite 6. Tidak ada di akun Vercel (`archk4lis-projects`) per 26 Sep 2026 |
+|| **niu-gayo-agroclimate** | 📦 Moved to zb-vela | — | 2026-11-10 | Dipindahkan ke ekosistem zb-vela (10 Nov 2026). Repo `Niumination/niu-gayo-agroclimate` di-halt, PR #4 ditutup, folder lokal dihapus. Lihat `docs/registry/halted-repos.txt`. |
 || **pi-app-studio-mata** | 🟢 Active | Pi App Studio (Testnet) | 2026-09-16 | MATA Watchdog di Pi Network — `web/` repo mandiri `Niumination/mata-watchdog-pi`, `server/` Express Pi Payments |
 
 ### 🖥️ desktop/ — 4 Native
