@@ -13,7 +13,7 @@ Setiap thread = persona terisolasi. Sumber kebenaran: `~/.hermes/config.yaml` �
 | DM | Personal | `opencode-combo` | 9router | ~100 | (default, none) | — |
 | 1 | General / Command Center | `opencode-combo` | 9router | ~100 | ✅ Dispatch to 802/803/804/1172 | clarify, session_search, brainstorming, project-orientation |
 | 802 | Research | `inclusionai/ling-3.0-flash-sante:free` | nous | ~240 | ✅ Research-focused | arxiv, blogwatcher, notebooklm, llm-wiki, youtube-content |
-| 803 | Builder | `kr/deepseek-3.2` | 9router | ~15 | ✅ Coding-focused | ponytail, requesting-code-review, github-pr-workflow, dll. |
+| 803 | Builder | `kr/deepseek-3.2` | 9router | ~15 | ✅ Coding-focused | ponytail, requesting-code-review, apk-reverse (10 Nov 2026) |
 | 804 | QA | `nvidia/nemotron-3-super-120b-a12b:free` | openrouter | ~10 | ✅ Audit-focused | codebase-audit, verification, plan-compliance, redteam |
 | 1172 | Kreator | `inclusionai/ling-3.0-flash-fin:free` | nous | ~146 | ✅ Content creation | ghost, humanizer, baoyu, claude-design, manim, hyperframes |
 | 7402 | Serbaguna | `inclusionai/ling-3.0-flash-fin:free` | nous | ~3 | ✅ Flex-thread prompt (27 Sep 2026) | ❌ None |
@@ -54,7 +54,7 @@ Token dari `~/.hermes/.env`. User baca hasil langsung dari thread atau forward k
 |--------|---------|-------|----------|---------------|---------|
 | `1` | General / Command Center | `opencode-combo` | 9router | — | pusat koordinasi; dispatch ke thread lain via `python3 scripts/dispatch-to-thread.py <thread_id> "<msg>"` |
 | `802` | Research | `inclusionai/ling-3.0-flash-sante:free` | nous | — | riset, sintesis, laporan. 5 Okt 2026: renamed + icon |
-| `803` | Builder | `kr/deepseek-3.2` | 9router | `ponytail`, `requesting-code-review` | 3 Okt 2026: model diubah dari `meituan/longcat-2.0:free` (404) ke `kr/deepseek-3.2` via 9router. 5 Okt 2026: renamed + icon |
+| `803` | Builder | `kr/deepseek-3.2` | 9router | `ponytail`, `requesting-code-review`, `apk-reverse` | 3 Okt 2026: model diubah dari `meituan/longcat-2.0:free` (404) ke `kr/deepseek-3.2` via 9router. 5 Okt 2026: renamed + icon. 10 Nov 2026: + `apk-reverse` (Android APK reverse engineering, diuji pemilik di thread ini) |
 | `804` | QA | `nvidia/nemotron-3-super-120b-a12b:free` | openrouter | `codebase-audit` | 3 Okt 2026: model diubah dari `deepseek/deepseek-v4-flash-0731:free` ke `nvidia/nemotron-3-super-120b-a12b:free`. 5 Okt 2026: renamed + icon |
 | `1172` | Kreator | `inclusionai/ling-3.0-flash-fin:free` | nous | `ghost`, `humanizer` | 3 Okt 2026: model diubah dari `poolside/laguna-s-2.1:free` ke `inclusionai/ling-3.0-flash-fin:free`. 5 Okt 2026: renamed + icon |
 | `7402` | Serbaguna | `inclusionai/ling-3.0-flash-fin:free` | nous | — | 3 Okt 2026: model diubah dari `meituan/longcat-2.0:free` (404) ke `inclusionai/ling-3.0-flash-fin:free`; prompt flex-thread dipasang 27 Sep 2026. 5 Okt 2026: renamed + icon |
