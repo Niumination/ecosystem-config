@@ -206,6 +206,7 @@
 | `research/blogwatcher` | research | 1 | Bank Pusat | Monitor blogs and RSS/Atom feeds via blogwatcher-cli tool. |
 | `research/markitdown` | research | 1 | Bank Pusat | Convert office docs, HTML, ZIP, media metadata to Markdown via Microsoft MarkItDown CLI. |
 | `research/research-paper-writing` | research | 56 | Bank Pusat | Write ML papers for NeurIPS/ICML/ICLR: design→submit. |
+| `security/apk-reverse` | security | 123 | Bank Pusat | Reverse engineer, debloat, de-ad, patch, or re-sign Android APKs, and analyze their runtime and server-side behaviour. Use for an .apk/.aab/.dex/.so sample, smali or dex patching, Frida hooking, repacking, ad or SDK removal, API probing, or deciding whether a client-side patch can work. Covers recon, anti-tamper, membership limits, surgical dex patching, repack pitfalls, device setup, and a failure catalogue. |
 | `security/git-security-sanitization` | security | 18 | Bank Pusat | Clean credential/PII leaks and add secret-scanning gates. |
 | `security/production-secret-rotation` | security | 2 | Bank Pusat | Rotate a live production credential; prove the old is dead. |
 | `security/redteam` | security | 1 | Bank Pusat | Stress-test a plan, project, or system by assuming an adversarial perspective and identifying specific attack surfaces, failure modes, and blind spots before they're exploited in production. |
@@ -270,6 +271,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-11-10 22:29:01_
+_Last sync: 2026-11-11 14:55:26_
 
 <!-- SKILL_REGISTRY_END -->
