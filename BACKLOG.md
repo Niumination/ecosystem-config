@@ -169,7 +169,7 @@ Desktop/Niumination/
 | **sapa-ai** | P1 🔄 | 🔀 **Dev 0.2.0-dev siap, 7 butir lanjutan** | 2026-10-01 | SAPA Smart AI — SPLP-only. Produksi `main` `ff00eb8` 0.1.0 🟢 hidup (AI `deepseek-v4.1-flash` ON, 2.081 record). Cabang `dev` `052f2f0` = 0.2.0-dev, tag `v0.2.0-dev`, 67 komit, gerbang hijau (794 uji · uji terima exit 0 · eval 120/120 · a11y 11 rute · OWASP 10 vektor) — **belum dipromosikan, `main` utuh**. Backlog aktif: 7 butir (P8 fokus peramban · P12 eval model nyata · P13 panel penilai manusia · P14 latihan mundur · P15 top-up semantik · P16 data desa · FR-13/14 embeddings) — **keputusan pemilik 1 Okt 2026: dikerjakan semua di repo ini**. Rincian `services/sapa-ai/docs/usulan-ai-tingkat-lanjut/37-BACKLOG-TAHAP-BERIKUTNYA.md` |
 | **camofox-browser** | P3 🆕 | ⚪ Third-party | 2026-08-18 | Anti-detection browser |
 
-### 🏛️ dinas/ — 1 Sistem Profesional (kategori sendiri, di luar pipeline)
+### 🏛️ dinas/ — 2 Sistem Profesional (kategori sendiri, di luar pipeline)
 
 > Kategori terpisah karena sifat berbeda: alat kerja wajib Government, bukan produk.
 > **Tidak masuk repo induk publik** — `dinas/` di-ignore `.gitignore` root.
@@ -177,6 +177,7 @@ Desktop/Niumination/
 
 | Proyek | Priority | Status | Aktivitas Terakhir | Notes |
 |--------|:--------:|:------:|:------------------:|-------|
+| **presensi-rekon** | P2 🆕 | 🟢 **Active** | **2026-11-12** | Rekonstruksi clean-room aplikasi Presensi ASN Aceh Tengah. Flutter/Dart — Riverpod, Dio, flutter_secure_storage. MVP T1-T8 selesai (login, home absen, riwayat, profil). Lokal `presensi_rekon/` di root ekosistem. Belum ada remote GitHub — pendaftaran 12 Nov 2026. |
 | **asn-admin** | P2 | 🟢 **Active** | **2026-10-03** | Sistem administrasi ASN — format naskah dinas (Permendagri 1/2023), katalog naskah, pranata komputer. Repo **PRIVAT** `Niumination/asn-admin`. Sumber kebenaran regulasi = `dinas/asn-admin/references/` (4 katalog, VERIFIED dari PDF JDIH). Gate keamanan = `pre-commit-scan.py` (16 skenario uji, 0 gagal). PR arena `asn-admin#1` sudah **MERGED** 26 Sep 2026. **Jalur A produksi DOCX+PDF berfungsi 3 Okt 2026** (LibreOffice 26.8.0 terpasang). ✅ **5 skill asn-* [TO BUILD] selesai dibuat** (asn-surat-dinas, asn-notulensi-rapat, asn-ekinerja-upload-package, asn-dinas-jurnal, asn-regulasi-lookup) — 4 Nov 2026. ✅ Cron reminder harian 16:00 WIB → thread 8853 (job 130145524e03). Sisa: register harian (aktivitas-log.csv) masih kosong — isi manual oleh user |
 
 ### 🌐 sites/ — 7 Frontend
