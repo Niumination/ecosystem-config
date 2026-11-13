@@ -123,9 +123,10 @@ Success
 
 1. ✅ **Test login** — berhasil tangkap error dari server
 2. ✅ **Sesuaikan model** — error handling 422 sudah diperbaiki
-3. ⏳ **Hasil test:** NIP `199407272022031004` sudah terikat device lain → pesan server: "Akun Anda terikat pada perangkat lain! Silakan hubungi Admin BKPSDM untuk reset perangkat."
-4. ⏳ **Tambah fitur:** Face enrollment, halaman Izin/Cuti jika diperlukan
-5. ⏳ **Build untuk produksi:** Sign APK dengan key yang benar, distribusikan
+3. ✅ **Fix device binding** — device_id fixed dari APK original (`0d5dafd8-d08f-4093-bdbd-4e47f0fe3330`)
+4. ⏳ **Hasil test:** NIP `199407272022031004` + password → test dengan device_id tetap
+5. ⏳ **Tambah fitur:** Face enrollment, halaman Izin/Cuti jika diperlukan
+6. ⏳ **Build untuk produksi:** Sign APK dengan key yang benar, distribusikan
 
 ### Login Debug Notes
 - API endpoint: `POST https://presensi-asn.acehtengahkab.go.id/api/mobile/login`
@@ -133,6 +134,8 @@ Success
 - Response format gagal: `{"message": "...", "errors": {"nip": ["..."]}}` dengan HTTP 422
 - CSRF flow: GET `/sanctum/csrf-cookie` → POST dengan cookie yang sama
 - Device info dikoleksi via `DeviceInfo.collect()` → `device_name` + `device_id`
+- **Device ID tetap**: `0d5dafd8-d08f-4093-bdbd-4e47f0fe3330` (dari reverse engineering APK original)
+- SSO endpoint tersedia: `POST /api/mobile/sso/login` (memerlukan installation_id UUID + device_id)
 
 ---
 
