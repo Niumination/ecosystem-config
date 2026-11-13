@@ -109,6 +109,14 @@ Success
 **Masalah:** Dio library default throw exception untuk response 422 Unprocessable Entity  
 **Solusi:** Tambah `validateStatus: (status) => status < 500` di client.dart agar response 422 tetap diparse
 
+### 5. Missing Internet Permission
+**Masalah:** App tidak bisa mengakses internet karena tidak ada permission di AndroidManifest  
+**Solusi:** Tambah `<uses-permission android:name="android.permission.INTERNET" />` dan permission network lainnya
+
+### 6. Impeller Renderer Black Screen (Mali GPU)
+**Masalah:** Flutter 3.29 default pakai Impeller (Vulkan) tapi Mali GPU di HP Infinix tidak support format tertentu  
+**Solusi:** Tambah meta-data `io.flutter.embedding.android.EnableImpeller=false` di AndroidManifest untuk memaksa pakai Skia renderer
+
 ---
 
 ## Next Steps (Setelah Test Login)
