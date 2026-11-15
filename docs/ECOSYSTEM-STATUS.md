@@ -1,12 +1,12 @@
 # ZB-Vela — Status Ekosistem
 
-> Tanggal: **12 November 2026** • VPS: VM-11-184-ubuntu (Tailscale: zb-vela, 100.77.18.39)
+> Tanggal: **15 November 2026** (pembaruan backup & keamanan) • VPS: VM-11-184-ubuntu (Tailscale: zb-vela, 100.77.18.39)
 > Semua status diverifikasi langsung (systemctl / curl / DB query) pada tanggal di atas.
 > Dokumen ini menggantikan versi 6 November 2026.
 
 ---
 
-## 1. Ringkasan Kondisi (12 Nov 2026)
+## 1. Ringkasan Kondisi (15 Nov 2026)
 
 - **VPS sehat**: uptime sejak 17 Okt 2026, disk 60% (20 GB bebas dari 50 GB), RAM 4,9/7,4 GiB terpakai.
 - **9 layanan user + 5 layanan system** berjalan normal (daftar di §2).
@@ -75,13 +75,13 @@ Ingress dikelola via Composio (`CLOUDFLARE_UPDATE_TUNNEL_CONFIGURATION`, replace
 - Benchmark 40 file kecil: 7,2 s (0,18 s/file, 16× lebih cepat dari sequential).
 - Audit log `UPLOAD_FILE` tercatat untuk semua jalur upload.
 
-### Data (12 Nov, dari DB)
-- **1.523 file aktif, 481 folder, 8 akun Drive connected** (pool ±128 GB).
+### Data (15 Nov, dari DB)
+- **1.975 file aktif (±0,95 GB), 760 folder, 8 akun Drive connected** (pool ±128 GB).
 - Routing policy: mode priority → **zhallbay28@gmail.com #1**. Folder baru otomatis di-pin ke akun hasil routing (fisik + pencatatan kuota konsisten — patch folder.routes.ts, revert commit opencode `776b3a3`).
 - `archk4li@gmail.com` dikosongkan (folder `9drive` dihapus permanen).
-- Backup Mac: `~/Downloads` (37 file vault + 16 loose + APK 115 MB) dan `~/Documents` (405 file) — di `9drive/mac/...` zhallbay28, terverifikasi fisik di Drive. Script Mac: `~/backup-niudrive/backup-device.mjs` (sinkron repo ≥`3974265`: cek `failed[]` di respons 201, FormData baru per retry, `NINEDRIVE_EXCLUDE` tersedia).
+- Backup Mac (15 Nov): **mac/** ter-mirror lengkap — 336+ file di 200 folder: `Downloads` (511 file, 860 MB), `Documents`, `projects`, `.config`, `backup-niudrive`, `nvim`, `zsh`, `tmux`, `git`, `bin` — plus `vault` (37 file) & `Pemdi-Vault` (85 file, 40 MB) via folder sumber. Upload terverifikasi 452 file/0 gagal (15 Nov). Script: `~/backup-niudrive/backup-device.mjs` (sinkron repo ≥`3974265`; cek `failed[]`, FormData per retry, `NINEDRIVE_EXCLUDE` tersedia).
 - **Kebijakan user**: tidak ada exclude — kredensial/rahasia memang sengaja dibackup ke niudrive. Pencegahan (rotate/purge) hanya jika ada potensi bocor publik.
-- **Password akun backup-agent dirotasi 12 Nov** (file `~/zb/niudrive-backup-agent-NEWPASS.txt`, chmod 600; hapus setelah Mac update `.env`; 172 session lama di-invalidasi).
+- **Password akun backup-agent dirotasi 12 Nov** (172 session lama invalid). `.env` Mac & VPS (`~/niudrive/backup/.env`) sudah keduanya memakai password baru (terverifikasi login 200 + backup sukses 15 Nov). File `~/zb/niudrive-backup-agent-NEWPASS.txt` tinggal menunggu konfirmasi akhir untuk dihapus.
 
 ### Pelajaran penting (agar tidak terulang)
 1. **composio proxy GitHub memotong respons >20 KB senyap** — sinkron file repo↔lokal WAJIB: shell redirect ke file lalu verifikasi git-blob-hash per file. (PR #1 dulu gagal sync 33/68 file tanpa terdeteksi.)
@@ -112,9 +112,13 @@ Ingress dikelola via Composio (`CLOUDFLARE_UPDATE_TUNNEL_CONFIGURATION`, replace
 
 | Timer | Jadwal | Terakhir | Isi |
 |---|---|---|---|
-| `niudrive-backup.timer` | harian 01:30 | 13 Nov 01:30 | DB+config niudrive → Drive |
+| `niudrive-backup.timer` | harian 01:30 | 15 Nov manual (success: 452 upload/0 gagal) | `~/zb` → niudrive API → Drive |
 | `zb-backup.timer` | Senin 00:10 | 9 Nov | backup kecil harian → Google Drive via Composio |
-| `zb-backup-full.timer` | Minggu 02:30 | 8 Nov | full split `--secret`, keep-3, auto-cleanup Drive |
+| `zb-backup-full.timer` | Minggu 02:30 | 15 Nov GAGAL (sudah diperbaiki) | full split `--secret`, keep-3, auto-cleanup Drive |
+
+**Insiden & perbaikan backup (15 Nov):**
+1. `niudrive-backup.service` gagal 401 — `.env` VPS masih password lama pasca-rotasi 12 Nov. FIXED: password baru dipasang `~/niudrive/backup/.env`, login 200, run manual success. **Pelajaran: rotasi password wajib update SEMUA .env konsumen (Mac *dan* VPS) di sesi yang sama.**
+2. `zb-backup-full.service` crash `UnboundLocalError: arch` (cleanup line 174 berjalan sebelum arsip dibuat saat error awal). FIXED: `arch=None` + `tmpdir` di-init sebelum `try` (backup-full-zb.py). Verifikasi runtime: timer Minggu 22 Nov 02:30.
 
 Disk: **60% terpakai (20 GB bebas)** — dibersihkan 11 Nov (tick data AgenticTrade 9,8 GB + cache ±1,6 GB).
 
@@ -136,7 +140,11 @@ Disk: **60% terpakai (20 GB bebas)** — dibersihkan 11 Nov (tick data AgenticTr
 
 - **Cloudflare Bot Fight Mode: OFF** (wajib — BFM men-challenge fetch server-to-server dari Vercel, mematikan chat live site).
 - Proteksi per hostname: zbmaus (pairing), dsh (token), opencraft (gate key + sandi), ombrelay (bearer), niudrive (JWT + argon2, PWA), zb-humanoid (publik by design).
-- Rotasi password backup-agent niudrive 12 Nov + 172 session lama invalid.
+- Rotasi password backup-agent niudrive 12 Nov + 172 session lama invalid; `.env` VPS & Mac disinkronkan 15 Nov.
+- **Tailworm (Okt 2026) ditangani 13 Nov**: Tailscale SSH server OFF (vektor utama worm), client di-upgrade 1.104.5 → **1.104.7**, Tailscale Funnel publik ditutup (Mission Control dashboard sempat terekspos internet tanpa auth — kini hanya via tailnet). Peers (aperture, lightvela, Mac, HP) tidak ada yang menjalankan Tailscale SSH. Tailnet Lock belum aktif (opsional).
+- **9Router di-upgrade 0.5.111 → 0.5.119** (14 Nov), katalog model di-refresh; konsumen: Hermes (`custom:ninerouter`) & OMB (`openaiCompat`) — 22 model terverifikasi via `/v1/models`, inferensi uji OK.
+- **197 paket security-update OS backlog** (267 total upgradable) — upgrade selektif krusial direncanakan: kernel (`linux-image-generic`), `openssh-*`, `sudo`, `openssl/libssl3t64`, `systemd`, `curl`, `rsync`, `tar/xz/gzip`, `libc6`, `git`, `bind9-libs`, `python3-*` crypto/web. Non-krusial menyusul.
+- Repos baru 13 Nov: `Niumination/zbmaus-vela` (publik, paket setup OMB+9Router, 18 file + docs INSTALL-PROMPT.md) & `zbmaus-vela-secrets` (PRIVATE, 31 file: env asli, bots.json + souls 7 bot, config.json, unit systemd produksi, credentials, state routines).
 - File rahasia yang sempat bocor ke Drive sudah di-purge permanen (`niudrive-backup-agent.env`, duplikat GPG key). Audit menyeluruh 8 akun Drive: bersih dari kebocoran tak sengaja.
 - `git push` CLI exit 128 → GitHub HANYA via composio contents API. Repo `ecosystem-config` tidak boleh disentuh tanpa izin eksplisit user.
 - Dilarang push otomatis/aksi ke repo milik user tanpa approval (pelajaran insiden opencode `776b3a3`).
@@ -145,10 +153,12 @@ Disk: **60% terpakai (20 GB bebas)** — dibersihkan 11 Nov (tick data AgenticTr
 
 1. **PiPatung belum jalan** (:3100 kosong → 502). Kode `~/zb/pi-patung` v0.1.0 — start manual saat dibutuhkan.
 2. Antigravity OMB `authenticated=false` (OAuth :53727 pending sign-in).
-3. **File password backup-agent masih di VPS & Mac** — hapus keduanya setelah `.env` Mac diperbarui.
-4. Hermes Agent OS: wiki + offsite backup deployment menunggu keputusan user.
-5. Composio koneksi `cloudflare` tanpa scope DNS/zone untuk beberapa tool (`LIST_ZONES` 403) — tapi `composio proxy` ke REST CF langsung berfungsi (DNS, bot_management, rulesets).
-6. noVNC `/websockify` via HTTP/2 bisa 404 — browser nyata selalu HTTP/1.1 untuk WS, aman.
+3. **File password backup-agent masih di VPS** (`~/zb/niudrive-backup-agent-NEWPASS.txt`) — .env Mac & VPS sudah keduanya update; hapus file setelah konfirmasi akhir user. (Mac copy: hapus di sisi Mac juga.)
+4. **Routine YouTubeGrowth OMB gagal berulang** (14–15 Nov): campuran "AI reach limit" (engine) + tool operations denied (YouTube API) — cek quota/credential YouTube tool; routine utama masih sukses membalas komentar.
+5. **apt security backlog 197 paket** — upgrade selektif krusial belum dijalankan (kernel/openssh/sudo/openssl/systemd/curl dll.).
+6. Hermes Agent OS: wiki + offsite backup deployment menunggu keputusan user.
+7. Composio koneksi `cloudflare` tanpa scope DNS/zone untuk beberapa tool (`LIST_ZONES` 403) — tapi `composio proxy` ke REST CF langsung berfungsi (DNS, bot_management, rulesets).
+8. noVNC `/websockify` via HTTP/2 bisa 404 — browser nyata selalu HTTP/1.1 untuk WS, aman.
 
 ## 10. Perintah Operasi Cepat
 
