@@ -6,7 +6,7 @@ source: Zero-Breach-Toolkit — interplains
 compatibility: "Python 3.8+ via source or dist bundle; scan offline; optional --update and --collect-android; Android via AndroidQF collection, iPhone via local backup. No admin rights."
 metadata:
   version: "1.0"
-  last_reconstruction_pass: "2026-11-14"
+  last_reconstruction_pass: "2026-11-16"
   strength_labels: "observed | inferred | unverified | unknown"
 ---
 
@@ -53,6 +53,21 @@ Scanning is offline. `--update` and `--collect-android` are separate operations;
 perform them only when the user requests that operation. Do not resolve, browse,
 download from or contact indicator addresses. Do not execute evidence, jailbreak,
 wipe, reboot or alter a device as a consequence of a finding.
+
+## Field notes (v3.0.2, measured 2026-11-16)
+
+- `--collect-android` guided acquisition can fail after a successful AndroidQF run with
+  `Acquisition stopped: archive does not contain one unambiguous AndroidQF collection`
+  (exit 1). The acquisition folder is still valid. Fall back to the manual path: run
+  AndroidQF, then scan with `--phone <folder>` — verified working.
+- AndroidQF answers that keep the collection usable and small: Backup = Only SMS;
+  Download = Only non-system packages; Remove = No; Hash files = No.
+- An AndroidQF collection is large (GBs) and holds private records. Delete it after the
+  scan unless the owner keeps it deliberately.
+- Exit code: when the command is piped, the shell `$?` is the last stage of the pipe.
+  Read `exit_code` from the JSON report instead.
+- A first scan uses only the small built-in indicator set. Run `--update` before
+  scanning if the published sources are wanted.
 
 ## Interpret without overstating
 

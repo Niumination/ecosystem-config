@@ -45,9 +45,19 @@
 - Strengths: offline-first, read-only, states limits, evidence grades, training mode, guided acquisition w/ consent, GPG-signed releases, source-reproducible (SHA-256 v2.0.5 = `d3d50bda337d33536512d42f139fcb72f6c9bac212eae6b5ef8824cb06f62c96`).
 - Weaknesses: hanya indikator published; spyware baru/rebuild tidak ke-catch; Android cuma collection; iPhone cuma artifact supported.
 
+## Uji live (2026-11-16, HP Android via adb)
+- Klon `main` saat uji = **v3.0.2** (bukan v2.0.5 yang dipelajari 14 Nov) — README/v2 info di atas sudah tertinggal.
+- Alur: `--collect-android` (guided) → AndroidQF v1.8.3 terunduh & terverifikasi → koleksi jalan (backup SMS, 423 paket, bugreport, dumpsys, files.json) → **gagal di akhir**: `Acquisition stopped: archive does not contain one unambiguous AndroidQF collection` (exit 1).
+- Fallback manual: `python3 -X utf8 scan/zero-breach-toolkit.py --phone <folder> --no-menu --json ... --share-json ...` → **berhasil**, `collection_type: androidqf`.
+- Verdict: `NO_KNOWN_INDICATORS_WITH_GAPS`, exit code 3, hits 0, findings 0, references 0, 25 gap, 12 worth-a-look.
+- Gap dominan: 16 sumber indikator published hilang (hanya set bawaan) → perlu `--update`; settings/SELinux/logcat tidak ada; file hashes mati; 842 process cmdline tak terbaca.
+- Worth-a-look: 12 app sideload (termux, okx, twindesk, openmausbot, portalasn, presensi_asn, 6 wrapper webapk).
+- Koleksi mentah 7.5 GB → dihapus setelah scan.
+
 ## Rekomendasi
 - Adopted ke skill bank: `security/zero-breach-toolkit` (bank version, frontmatter source tag, manifest 268, sync OK).
-- Binding Telegram thread: belum — menunggu user saat uji HP Android.
+- Field notes v3.0.2 sudah dicatat di SKILL.md (fallback manual, jawaban AndroidQF, exit code via JSON).
+- Binding Telegram thread: belum.
 
 ## Sumber
 - https://github.com/interplains/Zero-Breach-Toolkit
