@@ -1,7 +1,7 @@
 {
-  "fileCount": 1365,
-  "generatedAt": "2026-11-16T07:45:25.495565+00:00",
-  "skillCount": 269,
+  "fileCount": 1366,
+  "generatedAt": "2026-11-16T10:50:30.009531+00:00",
+  "skillCount": 270,
   "skills": {
     "asn/asn-dinas-jurnal": {
       "bundleHash": "b9264429eee5be0d8c5c612a7280af5e1879c83bfaec6cfa21d11e32e21ab101",
@@ -334,6 +334,13 @@
       "files": {
         "LICENSE.txt": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
         "SKILL.md": "2cc2609f7172e27d3eec941ef07a0254c7673d0b79e2223567a8c9d03c92c03a"
+      }
+    },
+    "design/generative-ui-openui": {
+      "bundleHash": "dd1ffb7951699ddff5e97ce6f05b8c7a0b650c0b3f80fb6da23593c352c8e563",
+      "domain": "design",
+      "files": {
+        "SKILL.md": "7f5e4e7328c592ac6b142773d50000bff0e4fcc6723ca7266f2082a093fcb0f6"
       }
     },
     "design/impeccable": {

@@ -36,6 +36,7 @@
 | `design/accessibility` | design | 3 | Bank Pusat | Audit and improve web accessibility following WCAG 2.2 guidelines. Use when asked to "improve accessibility", "a11y audit", "WCAG compliance", "screen reader support", "keyboard navigation", or "make accessible". |
 | `design/dark-theme-a11y` | design | 1 | Bank Pusat | Accessibility pitfalls specific to dark/glassmorphism themes. Covers CSS variable fallback mismatches, computed style verification, contrast ratio checking for transparent backgrounds, and the :focus/:focus-visible interaction pattern. Use when auditing a11y on dark UIs, fixing contrast issues in glassmorphism, or when computed styles don't match CSS source. |
 | `design/frontend-design` | design | 2 | Bank Pusat | Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates creative, polished code and UI design that avoids generic AI aesthetics. |
+| `design/generative-ui-openui` | design | 1 | Bank Pusat | Use when building Generative UI (interfaces composed by a model from your own components) with OpenUI Lang. Covers when to choose it over static components or JSON, defining components with Zod, streaming rendering, and the Gateway/Autofix split. |
 | `design/impeccable` | design | 152 | Bank Pusat | Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks. |
 | `design/mobile-viewport-remediation` | design | 3 | Bank Pusat | Use when a page is not mobile-friendly on phones. |
 | `design/pick-ui-library` | design | 1 | Bank Pusat | Use when picking a frontend/UI library for a task. |
@@ -273,6 +274,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-11-16 14:47:08_
+_Last sync: 2026-11-16 17:52:12_
 
 <!-- SKILL_REGISTRY_END -->
