@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 268 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 269 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 268 ✅ Aktif
+> **Status:** 269 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -109,6 +109,7 @@
 | **mobile-viewport-remediation** | ✅ Aktif | Bank Pusat | 5.5 KB | Use when a page is not mobile-friendly on phones. |
 | **responsive-ui-audit** | ✅ Aktif | Bank Pusat | 8.6 KB | Use when auditing or fixing live web UI/UX. |
 | **web-ui-audit-measurement** | ✅ Aktif | Bank Pusat | 8.7 KB | Audit live web UI dengan bukti terukur. |
+| **pick-ui-library** | ✅ Aktif | Bank Pusat | 4.6 KB | Use when picking a frontend/UI library for a task. |
 
 ## Domain: Ecosystem
 | **device-migration-disaster-recovery** | ✅ Aktif | Bank Pusat | 23.6 KB | Use when planning backup, restore, or device migration. |
@@ -423,8 +424,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **268** |
-| **Total** | **268** |
+| ✅ Aktif | **269** |
+| **Total** | **269** |
 
 ## Catatan Penting — Potensi Konflik
 

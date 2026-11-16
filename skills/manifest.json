@@ -1,7 +1,7 @@
 {
-  "fileCount": 1364,
-  "generatedAt": "2026-11-16T07:24:39.536915+00:00",
-  "skillCount": 268,
+  "fileCount": 1365,
+  "generatedAt": "2026-11-16T07:45:25.495565+00:00",
+  "skillCount": 269,
   "skills": {
     "asn/asn-dinas-jurnal": {
       "bundleHash": "b9264429eee5be0d8c5c612a7280af5e1879c83bfaec6cfa21d11e32e21ab101",
@@ -501,6 +501,13 @@
         "SKILL.md": "703a227c392f437cfef7638499d73939d9ec4f78409d8f38c5d72257e683b344",
         "references/reflow-remediation.md": "82c3669de42ca443e5d84e91c0bb12246d1c4623c7a4b437782e0dcb208182f9",
         "scripts/viewport-audit.py": "ba0c6958cd441450290033f303f28d12d0ebdd597ba1c909837ad8879d3e4a2d"
+      }
+    },
+    "design/pick-ui-library": {
+      "bundleHash": "6c071b1896797afb9bacfe5b4a2166c872cdb500ad3e17d523616f2833e80e1b",
+      "domain": "design",
+      "files": {
+        "SKILL.md": "7bacc46d0dca7d2301244e1b168531a7ed5f453b9642eb9725a05df24ba70c70"
       }
     },
     "design/responsive-ui-audit": {
