@@ -5,9 +5,9 @@
 > **Sync:** ✅ `sync-to-agents.sh` — auto-copy ke Jcode + Hermes (local) + AGENTS.md (cron every 6h) — USB backup-only
 > **DOX Injection:** ✅ Layer 3 — 34 skill auto-loaded via trigger keyword di AGENTS.md
 > **Mission-Control Dashboard:** ✅ Layer 4 — Skill Monitor di `services/niu-mission-control/` (WebSocket, stats, stale, conflicts)
-> **Hermes Integration:** ✅ Semua 267 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
+> **Hermes Integration:** ✅ Semua 268 skill tersedia di Hermes catalog (USB: backup-only, ~/.hermes/: 198 = 144 bank + 54 bawaan Hermes)
 > **Domain-based:** Semua skill dikategorisasi per domain, BUKAN per agent.
-> **Status:** 267 ✅ Aktif
+> **Status:** 268 ✅ Aktif
 >
 > | Skill | Status | Path | Deskripsi |
 > |-------|--------|------|-----------|
@@ -239,6 +239,7 @@
 | **git-security-sanitization** | ✅ Aktif | Hermes (dipromosikan) | 3.4 KB | Clean credential/PII leaks and add secret-scanning gates. |
 | **production-secret-rotation** | ✅ Aktif | Bank Pusat | Rotate a live production credential; prove the old is dead. |
 | **apk-reverse** | ✅ Aktif | Bank Pusat | Reverse engineer, debloat, de-ad, patch, or re-sign Android APKs, and analyze their runtime and server-side be… |
+| **zero-breach-toolkit** | ✅ Aktif | Bank Pusat | Use when scanning for mercenary spyware on devices or backups. |
 
 ## Domain: Creative
 
@@ -422,8 +423,8 @@ Skill yang tidak berada dalam folder domain (langsung di `skills/`).
 
 | Status | Jumlah |
 |--------|:------:|
-| ✅ Aktif | **267** |
-| **Total** | **267** |
+| ✅ Aktif | **268** |
+| **Total** | **268** |
 
 ## Catatan Penting — Potensi Konflik
 

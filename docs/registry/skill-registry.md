@@ -210,9 +210,10 @@
 | `security/git-security-sanitization` | security | 18 | Bank Pusat | Clean credential/PII leaks and add secret-scanning gates. |
 | `security/production-secret-rotation` | security | 2 | Bank Pusat | Rotate a live production credential; prove the old is dead. |
 | `security/redteam` | security | 1 | Bank Pusat | Stress-test a plan, project, or system by assuming an adversarial perspective and identifying specific attack surfaces, failure modes, and blind spots before they're exploited in production. |
+| `security/zero-breach-toolkit` | security | 1 | Bank Pusat | Use when scanning for mercenary spyware on devices or backups. |
 | `smart-home/openhue` | smart-home | 1 | Bank Pusat | Control Philips Hue lights, scenes, rooms via OpenHue CLI. |
 | `software-development/agent-reach` | software-development | 2 | Bank Pusat | Internet capability layer for AI agents. Use when the agent needs to read/search web pages, YouTube, GitHub, RSS, or other platforms. Trigger words: search the web, read this URL, check GitHub repo, get YouTube transcript, monitor RSS, internet research. |
-| `software-development/android-adb-testing` | software-development | 2 | Bank Pusat | Use when testing Android apps on-device via ADB. |
+| `software-development/android-adb-testing` | software-development | 3 | Bank Pusat | Use when testing Android apps on-device via ADB. |
 | `software-development/audit-finding-triage` | software-development | 3 | Bank Pusat | Triage a large scanner/audit finding set. |
 | `software-development/brainstorming` | software-development | 1 | Bank Pusat | Use BEFORE any creative work — creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation. |
 | `software-development/bridge-migration` | software-development | 3 | Bank Pusat | Migrate bridge modules lost in refactor to a new runtime. |
@@ -271,6 +272,6 @@
 | `software-development/web-dashboard-maintenance` | software-development | 1 | Bank Pusat | Maintenance patterns for unified dashboards (Mission Control) using template-based generation. |
 | `software-development/writing-plans` | software-development | 1 | Bank Pusat | Use when you have a spec or requirements for a multi-step task, BEFORE touching code. Creates detailed implementation plans with bite-sized tasks. |
 
-_Last sync: 2026-11-11 14:55:26_
+_Last sync: 2026-11-16 09:42:01_
 
 <!-- SKILL_REGISTRY_END -->

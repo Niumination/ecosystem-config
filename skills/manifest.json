@@ -1,7 +1,7 @@
 {
-  "fileCount": 1362,
-  "generatedAt": "2026-11-11T07:54:47.597799+00:00",
-  "skillCount": 267,
+  "fileCount": 1364,
+  "generatedAt": "2026-11-16T02:41:24.819173+00:00",
+  "skillCount": 268,
   "skills": {
     "asn/asn-dinas-jurnal": {
       "bundleHash": "b9264429eee5be0d8c5c612a7280af5e1879c83bfaec6cfa21d11e32e21ab101",
@@ -783,10 +783,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/ecosystem-tool-adoption": {
-      "bundleHash": "db6442371fe080be9b3ca0530ec7f0ad9d503d6bad943b8f52f14b1e222f724d",
+      "bundleHash": "b7f35d8ca88a83ca89d55bbfc8651e949c4faeadff114e921d926605a5dba482",
       "domain": "ecosystem/ecosystem-hermes/ecosystem-general",
       "files": {
-        "SKILL.md": "db787dea4f145f812b120d2a2827ced7040927c942a6d8c79c1595184f636fe3"
+        "SKILL.md": "fc04bd334f0960c2766b0a9d83992ef3a87c7a2469b2347211e967b5c2f4b2a5"
       }
     },
     "ecosystem/ecosystem-hermes/ecosystem-general/ecosystem/a2a-configuration": {
@@ -1017,10 +1017,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-config/hermes-gateway-dm-troubleshooting": {
-      "bundleHash": "4de329fc5ca20cdb985d5a3f29d43a410fcccb40d50dcfd1531add903b4ba800",
+      "bundleHash": "13d053a4944fc3a5be61bcb8a18c69ba6e48fc820e66657aa976c81944bf38a2",
       "domain": "ecosystem/ecosystem-hermes/hermes-config",
       "files": {
-        "SKILL.md": "244337acf608d92b9141bfd3248f1bcb3caec0f04b03363fcd1fa82538208f1b",
+        "SKILL.md": "582b56be45c0c055dddd8eda4cc36b5e36d594550b7f60e32d439edc336b3860",
         "references/macos-gateway-lifecycle.md": "be0d62cf6040b781d5d31e231f029ef8ae56ddce325b669bb55fef0fbe124550"
       }
     },
@@ -1354,11 +1354,11 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/skill-bank-management": {
-      "bundleHash": "109624209ae993973d6363193ed13eac2bb2cec6198fd42d494f07a4dafabd43",
+      "bundleHash": "040163b7fb05e13a3a24621c0ebf35c23590243d07e62d458957a6eefaf809ac",
       "domain": "ecosystem/ecosystem-hermes/hermes-misc",
       "files": {
-        "SKILL.md": "8aab147ef3cac021a8901e4c06cf645d101ed53acd6ab7244dca7de69ae7bc90",
-        "references/adopt-external-skill.md": "2dca01c269cc3dd11ecf6d66f31159468d58fb8edb370649839e426a7358f2ec",
+        "SKILL.md": "c70a5d353c830233fc1bec243b2f8ab815b2b127377948a405b2e86fc76fd8d3",
+        "references/adopt-external-skill.md": "ed3a0bcc06cad8bdc6dd0ed6548fe569af70249819da6f226bee82377408e6c3",
         "references/autoskills-patterns.md": "7b4c14732f6874e4a6e7e2896c3845c23867d5f132f93f52af75dd1d1e7dbed8",
         "references/cases-2026-08.md": "a87f0a8f980145dbf119480097f3e851f49c1976c100a9497764f1e023e97b85",
         "references/home-pruning-f4-2026-08-20.md": "245cf99bb02a59a5a73ce617c11363db7754ba061d4b22a4be10eed736989bd9",
@@ -1410,10 +1410,10 @@
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/up-eco": {
-      "bundleHash": "bcc66496cc4871cf05236f9c4806ae4eaf0c21690ec943a94c35d0f5d7d3d3a5",
+      "bundleHash": "700167bbb71b47898eb2476fe954ed5e2f3bef5a7cad7bac4c4551d0a7eb34f4",
       "domain": "ecosystem/ecosystem-hermes/hermes-misc",
       "files": {
-        "SKILL.md": "43c7d8a11a025c2d2af3e2848741bd3fbc8a3d00058a87a68df3ad0e4f87d61a"
+        "SKILL.md": "dd67470efa77011f9fd3a59aafdfe84b29783644474d4d7226b689759e8c7fa8"
       }
     },
     "ecosystem/ecosystem-hermes/hermes-misc/weathernext-gayo": {
@@ -2455,6 +2455,13 @@
         "SKILL.md": "2b7e65c045f3b0c2efe2f939701294d1ce8f1fc1ebb169f50c5504f12f29778e"
       }
     },
+    "security/zero-breach-toolkit": {
+      "bundleHash": "30d15f723d3923d08a11f711b5468dbdbfe93e4ca3dfcddc1c8ec948b5f104f1",
+      "domain": "security",
+      "files": {
+        "SKILL.md": "cec9bcebe0d7c7d85fd3c8c3b6024a02148db15aabce202984f266df3c80d31d"
+      }
+    },
     "smart-home/openhue": {
       "bundleHash": "acd8a84a30f85215b05998da08372a65f761a7b356e48d4cba257fceacadaadd",
       "domain": "smart-home",
@@ -2471,11 +2478,12 @@
       }
     },
     "software-development/android-adb-testing": {
-      "bundleHash": "d46153853b09fd6f83483c8f02fdbcacfd8b7dee9cde9b10de333c2eb594f561",
+      "bundleHash": "2d3f25cb9c9f5ad86085c874f86a94e73d478e1f444571c87cddb91868796af0",
       "domain": "software-development",
       "files": {
         "SKILL.md": "312f27c230033a38f6d003b9e372e8941508392eff4b9756ec1e43e7b026cd7f",
-        "references/app-data-backup-restore.md": "51aeb438ffa753287bfcbd52a9b60e33f7b559891de42fddb60551fbc73d2c8e"
+        "references/app-data-backup-restore.md": "51aeb438ffa753287bfcbd52a9b60e33f7b559891de42fddb60551fbc73d2c8e",
+        "references/flutter-android-debugging.md": "73a6d37a55462c71a6b149d14d93f78c1525c0ede94a4f0bdf7b3561b942e304"
       }
     },
     "software-development/audit-finding-triage": {
