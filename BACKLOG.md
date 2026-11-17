@@ -352,7 +352,7 @@ Sebelumnya (BACKLOG Jul 28) mencatat niu-dash/Niu-LKH dirty — sudah tidak vali
 |--------|:------:|--------|
 | GH Pages (lokal) | 5/5 ✅ | Niu-LKH, niu-dash, maze-3d, AuditTI-AT, DiskominfoAT |
 | GH Pages (remote) | 5/5 ✅ | Niu-Startpage, niu-private, NiuHomePage, zaryu.startpage, SPBE-DevOps-Academy |
-| Vercel | **10/20 🟢 live** | Verified 3 Nov 2026 via `vercel project ls` (20 proyek) + probe HTTP per hostname. **Live (10):** kelas, mira-humanoid-niu, niu-humanoid, mira-humanoid-rebuild, mira-humanoid, niu-oss-dashboard (niumination.web.id), zbmaus-humanoid, zb-humanoid, pemdi-aceh-tengah (308→/dashboard), sapa-ai (307). **⏸️ PAUSED (8):** niu-dash-fullstack, niu-vermilion, cc-acehtengah, kune-ya-com, landing, virtual-assistance, tedeo-web, niu-private (semua 503 DEPLOYMENT_PAUSED). **⚪ Never deployed (2):** rekapitulasi-pemdi, niutui. Detail + bukti di `docs/registry/deployment-status.md` |
+| Vercel | **8/18 🟢 live** | Verified 17 Nov 2026 via `vercel project ls` (18 proyek) + probe HTTP per hostname. **Live (8):** niu-oss-dashboard (niumination.web.id), kelas (kelas-hazel.vercel.app), niu-humanoid, mira-humanoid-niu, sapa-ai (307), site (edu.niumination.web.id), zbmaus-humanoid, zb-humanoid. **⏸️ PAUSED (9):** pemdi-aceh-tengah, niu-dash-fullstack, niu-vermilion, cc-acehtengah, kune-ya-com, landing, virtual-assistance, tedeo-web, niu-private (semua 503 DEPLOYMENT_PAUSED). **⚪ Never deployed (1):** niutui. *Catatan: `mira-humanoid-rebuild`, `mira-humanoid`, `rekapitulasi-pemdi` sudah tidak terdaftar di akun (20 → 18 proyek).* Detail + bukti di `docs/registry/deployment-status.md` |
 
 ---
 

@@ -109,6 +109,7 @@ check_unknown_folders() {
     dinas
     mirai
     wiki
+    presensi_rekon
   )
 
   # Baca dari BACKLOG.md untuk daftar proyek yang dikenal
