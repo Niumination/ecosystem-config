@@ -78,3 +78,32 @@ Detail lengkap: `docs/ECOSYSTEM-STATUS.md`.
 | zb-vela | tailnet `100.77.18.39` (butuh tailscale up) · layanan via CF Tunnel |
 | Lightvela | tailnet `100.65.20.34` (butuh tailscale up) · **publik mati** |
 | Mac A2A | `localhost:9900` setelah tailscale up |
+
+## 8. Repo GitHub per Node
+
+Perkembangan Lightvela & zb-vela **tidak** masuk `ecosystem-config` — masing-masing punya repo sendiri di org `Niumination` (169 repo total).
+
+### Lightvela
+| Repo | Visibilitas | Isi |
+|---|---|---|
+| `omb-lightvela` | PUBLIC | deployment OMB LightVela — Docker stack aktif di `maus.abstract.biz.id` |
+| `omb-lightvela-secrets` | PRIVATE | secrets & state live stack (pasangan repo publik) |
+| `lightvela-hermes-backup` | PRIVATE | backup harian terenkripsi instance Hermes LightVela + runbook restore |
+| `lightvela-dash` | PRIVATE | LightVela Dashboard — Telegram Mini App |
+
+### zb-vela
+| Repo | Visibilitas | Isi |
+|---|---|---|
+| `zbmaus-vela` | PUBLIC | paket setup & konfigurasi OMB untuk satu VPS (OMB UI, noVNC token gate, …) |
+| `zbmaus-vela-secrets` | PRIVATE | secrets & state live stack zbmaus |
+| `zbmaus-vela-eco` | PUBLIC | snapshot ekosistem OMB (bot, routine, memory, skills, koneksi) |
+| `zbmaus-humanoid` · `zb-humanoid` | PUBLIC | interface humanoid yang terhubung OMB |
+| `niudrive` | PRIVATE | Niudrive (9Drive) |
+
+### Terkait OMB (lintas node)
+| Repo | Visibilitas | Isi |
+|---|---|---|
+| `ecosystem-omb` | PUBLIC | registry ekosistem OpenMausBot — struktur tim/bot, routine, kebijakan |
+| `contentvela` | PUBLIC | content creator workspace |
+
+> Push terakhir repo-repo ini: **18 Nov 2026** (zbmaus-vela trio) — sesuai catatan pemilik bahwa perkembangan kedua VPS selalu di-update.
