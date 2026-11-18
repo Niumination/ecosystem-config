@@ -8,7 +8,7 @@
 | # | Lokasi | Akses | Isi (per 18 Nov 2026) |
 |---|---|---|---|
 | 1 | **Mac** (lokal) | — | Hermes Agent (gateway), OpenCode, MIRAI :8800, 9router :20128, A2A :9900, Camofox :9377 |
-| 2 | **VPS Lightvela** | tailnet `100.65.20.34` · publik `103.30.146.232` | Hermes Agent, OMB (`maus.abstract.web.id`) — **TIDAK TERJANGKAU** |
+| 2 | **VPS Lightvela** | tailnet `100.65.20.34` · CF Tunnel | Hermes Agent, OMB (`maus.abstract.biz.id` — **LIVE 200**) |
 | 3 | **VPS zb-vela** | tailnet `100.77.18.39` · CF Tunnel | Hermes Agent, OMB (`zbmaus.abstract.biz.id`), DSH (`dsh.abstract.biz.id`) |
 | 4 | **VPS Cloudbaik** | SSH `vps-baik` → `103.30.146.23` | OpenCode (`oc.niumination.id`), DSH (`dsh.niumination.id`), cloudflared |
 
@@ -53,20 +53,22 @@ Tailnet: `tailec8707` · peer: Mac `100.120.57.37`, lightvela `100.65.20.34`, ap
 
 Detail lengkap: `docs/ECOSYSTEM-STATUS.md`.
 
-## 5. Node 2 — Lightvela — TIDAK TERJANGKAU
+## 5. Node 2 — Lightvela
 
-- `103.30.146.232` → **ping 100% packet loss**; port 9900/8799/8800/3000 semua **closed**
-- `maus.abstract.web.id` → **NXDOMAIN** (tidak ada record)
-- Catatan: `maus.abstract.biz.id` **ada** dan `200` (A record Cloudflare) — kemungkinan OMB Lightvela pindah ke zona `.biz.id`, atau alias zbmaus
+- **OMB: `maus.abstract.biz.id` → LIVE `200`**, judul `MausBot` (933 B) — instance berbeda dari zb-vela (`zbmaus.abstract.biz.id` → `OpenMausBot`, 859 B).
+- **IP publik `103.30.146.232` tidak merespons** — ping 100% loss; port 80/443/8080/8799/8800/9900 semua closed. Kemungkinan: IP berubah, atau server di-firewall hanya untuk Cloudflare Tunnel.
+- **A2A (tailnet `100.65.20.34:9900`) tidak terjangkau** — tailscale Mac stopped.
+- Domain `maus.abstract.web.id` **tidak ada** (NXDOMAIN) — catatan lama salah zona.
 
 ## 6. Temuan
 
-1. **Lightvela offline.** IP publik mati, domain `maus.abstract.web.id` tidak terdaftar. A2A Mac↔Lightvela ikut mati. Perlu keputusan: nyalakan lagi, ganti IP, atau arsip.
-2. **Tailscale STOPPED** di Mac → IP `100.120.57.37` tidak ada → A2A bind gagal, semua peer tailnet (lightvela, zb-vela, aperture) tak terjangkau. Konfigurasi masih benar (`bind: 100.120.57.37`, `localhost_only: False`), yang berubah hanya status tailscale.
-3. **`maus.abstract.web.id` salah zona.** NXDOMAIN; `.biz.id` yang ada.
-4. **`pipatung.abstract.biz.id` 502** — app belum dijalanakan (sudah terdocumentasi di `ECOSYSTEM-STATUS.md`).
-5. **`docs/registry/deployment-status.md` stale** — masih menulis `abstract.biz.id` = "DNS REFUSED" (8 Okt 2026); hari ini zona itu resolve normal.
-6. **Aset publik lain yang muncul:** `maus.abstract.biz.id` (200) belum terdaftar di registry mana pun.
+1. **IP publik Lightvela mati.** `103.30.146.232` tak merespons (ICMP + 6 port). OMB tetap LIVE via CF Tunnel → server kemungkinan UP; IP publik perlu diverifikasi ulang (berubah, atau firewall CF-only).
+2. **Tailscale STOPPED** di Mac → IP `100.120.57.37` tidak ada → A2A bind gagal, semua peer tailnet (lightvela, zb-vela, aperture) tak terjangkau. Konfigurasi masih benar (`bind: 100.120.57.37`, `localhost_only: False`) — yang berubah hanya status tailscale.
+3. **`maus.abstract.web.id` salah zona.** NXDOMAIN. Yang benar `maus.abstract.biz.id` (LIVE). Catatan lama di `ROADMAP-MIRAI-2026-11-04.md` memakai zona `.web.id`.
+4. **A2A health check gagal terus — tapi BUKAN bukti downtime.** 43 run: OK terakhir 29 Okt 2026; penyebab kegagalan adalah model/provider (`HTTP 403 OpenCode free tier`, `HTTP 404 No active credentials for provider: openai`), bukan konektivitas. Jangan dijadikan indikator status peer.
+5. **`pipatung.abstract.biz.id` 502** — app belum dijalanakan (sudah terdocumentasi di `ECOSYSTEM-STATUS.md`).
+6. **`docs/registry/deployment-status.md` stale** — masih menulis `abstract.biz.id` = "DNS REFUSED" (8 Okt 2026); hari ini zona itu resolve normal.
+7. **`maus.abstract.biz.id` sebelumnya tak terdaftar** di registry mana pun — sekarang tercatat di dokumen ini.
 
 ## 7. Cara Mengakses
 
