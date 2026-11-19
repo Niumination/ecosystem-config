@@ -79,9 +79,16 @@ zb-backup-full 22 Nov · zb-backup 23 Nov
 - Hermes `v0.21.5` → `v0.23.2`
 - 9router `0.5.112` → `0.5.119`
 
-## 6. Catatan verifikasi
+## 6. Catatan verifikasi & akses
 
-- **Tailscale di Mac STOPPED** → `100.65.20.34` / `100.77.18.39` **tak terjangkau dari Mac**
-  (rute keluar lewat gateway normal, HTTP 000). Laporan di dokumen ini **belum diverifikasi ulang**
-  dari sisi Mac — hanya dicatat apa adanya.
-- `nc -z` pada dua IP tailnet sempat melaporkan OPEN — **positif palsu**; `curl` membuktikan 000.
+- **Tailscale semula STOPPED** di Mac → `100.65.20.34` / `100.77.18.39` tak terjangkau
+  (rute keluar lewat gateway normal, HTTP 000). `nc -z` sempat melaporkan OPEN — **positif palsu**.
+- **Tailscale dinaikkan 20 Nov 2026** (`tailscale up`) → 6 peer terlihat, agent card A2A
+  Lightvela `200`. Pemulihan akses ini **reversibel** (`tailscale down`).
+- **SSH ke Lightvela DIBLOKIR** tailnet policy: `tailnet policy does not permit you to SSH as user "root"`.
+- **A2A Mac → Lightvela MATI (401).** `POST /` dengan `Authorization: Bearer <token>` →
+  `{"code":-32050,"message":"unauthorized"}`. Ketiga sumber token di Mac (`a2a_agents.cloud.token`
+  di config, `vault/a2a-token.txt`, `~/.hermes/.env`) **identik** (48 char) — jadi bukan token
+  usang di Mac; server Lightvela menolak token ini.
+  → mendispatch tugas ke Lightvela dari Mac **tidak mungkin** sampai token diselaraskan.
+- Laporan di dokumen ini **belum diverifikasi ulang** dari sisi Mac — dicatat apa adanya.
