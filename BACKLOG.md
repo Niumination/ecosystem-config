@@ -2,7 +2,7 @@
 
 > **UPDATE: October 17, 2026** — Registrasi **hypr-rust** (`labs/hypr-rust/`, repo publik `github.com/Niumination/hypr-rust`) — override sekali pakai freeze D-1013-05 via `D-2026-1017-01`. Sync sebelumnya: October 11, 2026 — provider & katalog model (2 akar masalah `/model` + otomasi sync mati 6 hari + cron baru `034116abd040`), orkestrasi Hermes 5 fase (Fase 1-4 done, Fase 5 deferred), 10 thread Telegram aktif (1 · 802 · 803 · 804 · 1172 · 7402 · 8853 · 12595 · 12707 · 13902), A2A Mac↔Cloud verified, mac-relay online, Skill Bank 238 skill/1176 file, 14 cron job aktif. macOS 26.7.1.
 >
-> ⚠️ **Key `huancheng` hidup (probe 12 Okt 2026: HTTP 200)** — tapi model `sensenova-6.8-flash-lite` ditarik provider (503). Thread 8853 (ASN) sudah dipindahkan ke `DeepSeek-V4.1-Flash` @ huancheng. Lihat seksi Provider & Katalog Model.
+> ⚠️ **Key `huancheng` hidup (probe 18 Nov 2026: HTTP 200, 21 model terdaftar, completion nyata OK)** — `sensenova-6.8-flash-lite` **sudah pulih** (sebelumnya 503). Check-in harian **wajib lewat mini-program WeChat**; panel tidak lagi memberi quota langsung. Thread 8853 (ASN) memakai `DeepSeek-V4.1-Flash` @ huancheng. Lihat seksi Provider & Katalog Model.
 
 ---
 
@@ -505,16 +505,22 @@ commit hash kosong.
 - **`oc-combo-2`** — TIDAK diubah. Laporan awal saya keliru ("rusak"); error 400 itu artefak probe
   `max_tokens=5`, model mensyaratkan ≥16. Dengan `max_tokens=64` modelnya **sehat**.
 
-### Temuan baru: `huancheng` key MATI (401) — butuh tindakan pemilik
+### `huancheng` — key HIDUP (diverifikasi ulang 18 Nov 2026)
 
 ```
-$ curl -w "HTTP %{http_code}" https://api.hcnsec.cn/v1/models -H "Authorization: Bearer $HUANCHENG_API_KEY"
-{"error":{"message":"Invalid token",...}}  HTTP 401
+$ curl -s -w "\nHTTP %{http_code}\n" https://api.hcnsec.cn/v1/models -H "Authorization: Bearer $HUANC..._KEY"
+{"data":[...21 model...],"object":"list","success":true}
+HTTP 200
 ```
 
-Key `sk-qCB…SDID` (len 51) di `~/.hermes/.env` dan `vault/secrets.zsh` **identik** — tidak ada
-pengganti. **Dampak: thread 8853 (ASN) kehilangan model yang bisa menjawab.**
-Tindakan: ganti key, verifikasi `GET /v1/models` → 200. Detail di `docs/registry/model-mapping.md`.
+Key `sk-qCB…SDID` (len 51) di `~/.hermes/.env` dan `vault/secrets.zsh` **identik** — **HIDUP**.
+Laporan "key MATI (401)" di sesi 10 Okt 2026 **tidak berlaku lagi**; provider pulih.
+Completion nyata: `DeepSeek-V4.1-Flash` → HTTP 200, `usage.total_tokens 21`.
+
+**Siklus quota:** check-in harian **hanya lewat mini-program WeChat** — panel tidak lagi
+memberi quota langsung (tombol check-in langsung sudah dihapus admin). 10 soal/hari →
+maks 10.000 quota. Jalur non-WeChat: `enable_task` (pusat tugas) + undangan.
+Detail: `docs/registry/model-mapping.md`.
 
 ### Otomasi baru: cron sinkronisasi `034116abd040`
 
@@ -536,8 +542,9 @@ sampel), jangan verifikasi dengan fetch ulang katalog (berlomba dengan endpoint 
 **Registry:** `docs/registry/hermes-cron-routing.md` (job + aturan routing) ·
 `docs/registry/model-mapping.md` (status provider)
 
-**Sisa untuk pemilik:** (1) ganti key huancheng; (2) pertimbangkan mengarahkan thread 8853 ke
-provider lain selama key mati.
+**Sisa untuk pemilik:** (1) jangan biarkan saldo huancheng mentok — check-in mini-program
+setiap hari; (2) kalau mini-program tidak bisa diakses dari Indonesia, pakai jalur
+`enable_task`/undangan atau alihkan thread 8853 ke provider lain.
 
 ---
 
