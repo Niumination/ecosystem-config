@@ -175,6 +175,13 @@ Disk: **60% terpakai (20 GB bebas)** — dibersihkan 11 Nov (tick data AgenticTr
 - `git push` CLI exit 128 → GitHub HANYA via composio contents API. Repo `ecosystem-config` tidak boleh disentuh tanpa izin eksplisit user.
 - Dilarang push otomatis/aksi ke repo milik user tanpa approval (pelajaran insiden opencode `776b3a3`).
 
+## 8b. Vault & Backup Kredensial (20 Nov)
+- **Vault terpusat PRIVAT**: `Niumination/zbmaus-vela-secrets/vault/` — `vault.tar.gpg` (GPG RSA-3072/AES256, 6 kredensial), `vault-public.key`, `manifest.json`, `README.md`. Blob GPG verified MATCH.
+- **Keputusan**: `ecosystem-config` PUBLIK → tidak menyimpan kredensial. Index metadata saja: `docs/VAULT-BACKUP-INDEX.md` (sha `1e0a521f25e5`).
+- Kunci privat + passphrase HANYA di VPS `~/.gnupg/` (mode 700/600), tidak pernah di-commit. Fingerprint penerima `614498AD5AF5776D61216910549F94537A2F3782`.
+- Cakupan: yt-oauth.env, yt-token.json, cf-kaggle-token, kaggle-arb/tunnel, tunnel-kaggle. Staging plaintext di-shred setelah enkripsi.
+- Aturan: jangan plaintext (walau repo privat); dekripsi → pakai → hapus; rotasi kunci → re-enkripsi → update manifest.
+
 ## 9. Known Issues / Pending
 
 1. **PiPatung belum jalan** (:3100 kosong → 502). Kode `~/zb/pi-patung` v0.1.0 — start manual saat dibutuhkan.
