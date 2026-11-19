@@ -79,7 +79,7 @@ Ingress dikelola via Composio (`CLOUDFLARE_UPDATE_TUNNEL_CONFIGURATION`, replace
   - `yt-thumbnail.py VIDEO_ID thumb.jpg`, `get_access_token.py` (auto-refresh)
 - **8 routine Kitab Surgawi sudah dialihkan** dari tool `YOUTUBE_*` Composio → helper lokal: Balasan Komentar, Laporan Performa Mingguan, Short ke playlist, Upload EP-003, Produksi Dokumenter, Monitoring Harian, Evaluasi Kualitas, Cross-post FB/IG. Panduan bot: `~/.openmausbot-ombnew/workspaces/3bbb857a-0cdc-4849-898b-a135cf3bf78c/memory/yt-oauth-helpers.md`.
 - ⚠️ **OMB write-back**: `PATCH /api/routines/:id` atau restart saat OMB hidup dapat menimpa `routines.json` dengan state lama. Urutan aman: **stop ombnew → tulis file → start ombnew**. Backup: `~/.openmausbot-ombnew/routines.json.bak-yt-oauth-20261119-1530`.
-- Job Hermes `0b257dad1a83` = **on-demand** (one-shot 2030-01-01, dipicu manual via `cronjob_manage action=run`), bukan jadwal rutin. Pemeriksaan read-only: service, health, token, scope, channel, commentThreads.
+- Job Hermes `d4165674ae2a` = **on-demand** (script-only `~/.hermes/scripts/yt-oauth-healthcheck.sh`, jadwal formal 1 Januari tiap tahun agar tidak jalan rutin; dipicu manual via `cronjob_manage action=run job_id=d4165674ae2a`). `no_agent=true` — kebal terhadap ketersediaan model LLM. Pemeriksaan read-only: service, health, token, scope, channel, commentThreads.
 
 ## 4. Niudrive (9Drive) — Kondisi Terkini
 
