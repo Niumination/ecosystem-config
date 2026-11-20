@@ -182,6 +182,14 @@ Disk: **60% terpakai (20 GB bebas)** — dibersihkan 11 Nov (tick data AgenticTr
 - Cakupan: yt-oauth.env, yt-token.json, cf-kaggle-token, kaggle-arb/tunnel, tunnel-kaggle. Staging plaintext di-shred setelah enkripsi.
 - Aturan: jangan plaintext (walau repo privat); dekripsi → pakai → hapus; rotasi kunci → re-enkripsi → update manifest.
 
+## 8c. Keputusan Update zbmaus — TUNDA (20 Nov)
+- **Versi terpasang**: `openmausbot@0.1.130` (jalankan via `~/zb/omb-new/start.sh`, `--no-pair`).
+- **Versi terbaru npm**: `0.1.173` (43 versi lebih baru, rilis terakhir 19 Nov).
+- **Keputusan user**: TUNDA update. zbmaus sehat (0 restart sejak 19 Nov, health 200, 8 routine OAuth lokal jalan).
+- **Alasan**: rilis v0.1.131–173 mayoritas fitur desktop/UI (komaksi chat, Cloud sign-in, pairing, model picker, burst mode, team files) — TIDAK menyentuh API `:8799`, routines, OAuth, atau write-back `routines.json` yang dipakai deployment headless. Lompatan 43 versi berisiko mengganggu konfigurasi stabil (pairing Chrome Mac, routing Telegram topic, 8 routine).
+- **Catatan versi menengah**: v0.1.161 (automation gagal tidak auto-mati) agak relevan tapi tidak mendesak.
+- **Prosedur bila nanti update**: backup `routines.json` + data dulu → update → verifikasi stop→write→start (write-back `PATCH` prompt diabaikan OMB). Jangan update otomatis.
+
 ## 9. Known Issues / Pending
 
 1. **PiPatung belum jalan** (:3100 kosong → 502). Kode `~/zb/pi-patung` v0.1.0 — start manual saat dibutuhkan.
