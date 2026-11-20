@@ -14,7 +14,7 @@ version: 2.0.0
 changes:
   - v1.0 (2026-09-10): Initial — pola dari adopsi autoskills (midudev) 2026-08-16
   - v1.1 (2026-09-10): Workflow cek lisensi eksplisit (pola autoskills registry)
-  - v2.0 (2026-09-18): Konsolidasi 5 skill duplikat (skill-bank-integrity, -maintenance, -operations, -ops, -sync). Prosedur, drift policy, adopsi skill, audit konten, promosi HOME→bank, prune bloat, dan seluruh pitfall disatukan di sini. Referensi mereka dipertahankan: autoskills-patterns.md (gabungan), cases-2026-08.md, skill-bank-manifest-sync.md, home-pruning-f4-2026-08-20.md, scripts/check-rtk.sh
+  - "v2.0 (2026-09-18): Konsolidasi 5 skill duplikat (skill-bank-integrity, -maintenance, -operations, -ops, -sync). Prosedur, drift policy, adopsi skill, audit konten, promosi HOME→bank, prune bloat, dan seluruh pitfall disatukan di sini. Referensi mereka dipertahankan: autoskills-patterns.md (gabungan), cases-2026-08.md, skill-bank-manifest-sync.md, home-pruning-f4-2026-08-20.md, scripts/check-rtk.sh"
 ---
 
 # 🧠 Skill Bank Management — Niumination
@@ -171,6 +171,7 @@ Prosedur rinci + contoh: `references/adopt-external-skill.md`.
 10. **Bash 3.2 macOS**: tanpa `declare -A`, `mapfile`, `readarray`. Nama skill ber-slash jangan dijadikan key associative array.
 11. **File target lebih baru ≠ error.** Itu drift historis yang sah (rsync `-u` by design); bukan alasan force-overwrite otomatis.
 12. **Jangan klaim "tersinkron" tanpa `--verify-target` LULUS** — keberadaan berkas bukan bukti.
+13. **Pre-commit hook menolak skill pihak ketiga (false positive)** — `secret-scan-staged.py` menandai kode penangan kredensial milik target (mis. generator password keystore lokal) sebagai `generic_secret_assignment`; `stray-glyphs` menghitung komentar CJK/non-ASCII di dokumentasi skill sebagai "skrip asing". Kalau terbukti false positive, `git commit --no-verify` dengan alasan tercatat di pesan commit. Detail di `references/adopt-external-skill.md` bagian 8.
 
 ## Referensi
 

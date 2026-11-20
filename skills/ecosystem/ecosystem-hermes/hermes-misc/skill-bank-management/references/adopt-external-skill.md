@@ -70,6 +70,36 @@ git push
 ```
 Commit message sertakan: lisensi, sumber asli, nilai untuk ekosistem, hasil verifikasi.
 
+## 7. Commit + push
+
+```bash
+git add -A && git commit -m "feat(skills): adopsi <skill> (lisensi, sumber)"
+git push
+```
+Commit message sertakan: lisensi, sumber asli, nilai untuk ekosistem, hasil verifikasi.
+
+## 8. Pre-commit hook bisa menolak skill pihak ketiga (false positive)
+
+Gate `.githooks/pre-commit` menjalankan `secret-scan-staged.py` + `stray-glyphs`. Dua pola
+false positive yang khas saat mengadopsi skill eksternal:
+
+- **`secret-scan-staged.py` → `generic_secret_assignment`** pada kode yang menangani kredensial
+  milik target (bukan kredensial kita). Contoh nyata: skill reverse-engineering yang membuat
+  password keystore lokal via `secrets.token_urlsafe(12)` dan menyimpannya di samping `.keystore`
+  dengan pesan "local artifact, do not commit it". Itu generator, bukan rahasia yang dikomit.
+- **`stray-glyphs` → ratusan glif CJK/non-ASCII** dari komentar dokumentasi berbahasa Mandarin di
+  references/scripts skill pihak ketiga. Itu konten sah, bukan "skrip asing" yang menyembunyikan
+  instruksi.
+
+**Aturan:** jangan memoja hook dengan sembarangan. Perbaiki dulu kalau memang ada rahasia asli.
+Kalau terbukti false positive, pakai `git commit --no-verify` dan **wajib mencantumkan alasannya di
+pesan commit** (sebutkan pola yang ditolak + mengapa itu false positive untuk skill ini). Klausa
+`--no-verify` tanpa catatan = pelanggaran yang tidak bisa diaudit.
+
+**Sebelum memutuskan false positive:** pastikan tidak ada nilai kredensial nyata (panjangnya
+>20, format key provider, atau string yang sama dengan yang ada di `~/.hermes/.env`). Kalau ragu,
+tanyakan user — jangan melewati gate atas asumsi sendiri.
+
 ## Contoh nyata (referensi cepat)
 
 - `8269787` — adopsi seo (MIT, addyosmani) → bank 43 skill, 256 file

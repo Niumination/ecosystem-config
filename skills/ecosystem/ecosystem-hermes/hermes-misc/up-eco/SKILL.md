@@ -129,12 +129,6 @@ Jalankan sync HANYA setelah commit+push perubahan root, baru commit hasil sync (
 buta. Cek CI per PR (`gh pr checks --repo Niumination/<repo> <nomor>`) sebelum merge.
 PR merah = TAHAN, laporkan sebagai follow-up terpisah. Lihat "PR merge gate" section.
 
-**Pitfall — PR check org-wide (halted repos):** §5b-4 memakai `gh search prs --owner Niumination`,
-yang mengembalikan PR dari SEMUA repo di org, termasuk repo yang pengembangannya
-dihentikan. Repo halted tetap muncul selama PR-nya terbuka. Filter via
-`docs/registry/halted-repos.txt` (satu nama repo per baris) di §5b-4; tambah nama repo
-baru di file itu bila ada proyek yang dihentikan — jangan edit skrip.
-
 ### Step 6: Offer to execute
 
 After presenting the report, ask the user (if not already instructed):
@@ -148,6 +142,14 @@ After presenting the report, ask the user (if not already instructed):
 - `/up-eco --fix` → run script + execute all non-destructive fixes (commit, push, register projects)
 - `/up-eco --dry-run` → run script without output colors (for cron/automation)
 - `/up-eco --fix-light` → jalankan `bash scripts/up-eco-lightfix.sh` sekarang (tidak menunggu cron 23:30)
+
+### PR merge gate — cek CI sebelum merge rekomendasi PR
+Rekomendasi "Review & merge N open PR" dari up-eco **bukan** izin merge buta. Dependabot bump PR yang CI-nya merah akan merusak repo saat di-merge — bump dependency yang mematahkan test adalah bug di PR itu, bukan di main.
+1. List PR dengan syntax benar: `gh pr list --repo Niumination/<repo> --state open` (flag `--owner` tidak ada, lihat pelajaran gh CLI di bawah — teks rekomendasi skrip yang menyebut `--owner` adalah salah).
+2. Cek CI per PR: `gh pr checks --repo Niumination/<repo> <nomor>`. Merge **hanya** bila semua check hijau.
+3. PR merah = TAHAN. Laporkan PR + check yang gagal + link run Actions sebagai follow-up terpisah (investigasi kenapa bump mematahkan test), jangan merge karena up-eco menyarankan.
+
+**Pitfall — PR dari repo yang dihentikan (halted) tetap muncul.** `gh search prs --owner Niumination` mengembalikan semua open PR di org, termasuk repo yang pengembangannya sudah dihentikan (mis. hermes-office, niu-gayo-agroclimate). up-eco tidak tahu mana repo aktif vs halted. Mekanisme kanonik: `docs/registry/halted-repos.txt` (satu nama repo per baris, komentar `#` diabaikan). `up-eco.sh` §5b-4 membaca file ini dan menyaring `repository.name` sebelum menghitung total & menampilkan. Saat menambah repo halted: (1) tambah nama ke file, (2) tutup open PR-nya dengan `gh pr close <n> --repo Niumination/<repo>`, (3) hapus folder lokal bila ada, (4) tandai di BACKLOG.md + project-catalog.md sebagai "Moved/Halted". Jangan laporkan PR halted sebagai rekomendasi merge — laporkan sebagai "N PR di repo halted (diabaikan)".
 
 ## 🪄 Lightfix & Cron (2026-09-19)
 
@@ -242,7 +244,12 @@ terbukti bukan insiden:
    alarm palsu. Verifikasi dengan `curl -s -o /dev/null -w '%{http_code} %{url_effective}'` —
    `308 ... https://...` berarti LIVE via HTTPS. Jangan laporkan 302/308 sebagai masalah tanpa
    probe HTTPS-nya.
-5. **`Vercel → 302 ke vercel.com/sso-api` / `/login`** — Deployment Protection, BUKAN error. Kalau
+5. **`Vercel → 000 DNS mati`** — probe up-eco tanpa `-L` = false negative. `up-eco.sh` mem-probe Vercel hostname dengan `curl` tanpa flag `-L` (follow redirect). Vercel kadang menjawab redirect HTTPS pertama sebelum 200; `curl` tanpa `-L` membaca status code awal (000 = timeout sebelum TCP connect, atau redirect yang tidak di-follow). **Verifikasi manual wajib sebelum melaporkan sebagai mati:**
+   ```bash
+   curl -s -o /dev/null -w "%{http_code} → %{url_effective}\n" -L --max-time 15 https://<hostname>
+   ```
+   Jika hasilnya `200 → https://...` maka deployment LIVE; `000` dari up-eco adalah false positive probe. Laporkan sebagai "false positive probe" dan bukan rekomendasi downtime.
+6. **`Vercel → 302 ke vercel.com/sso-api` / `/login`** — Deployment Protection, BUKAN error. Kalau
    alias `<proj>-<slug>.vercel.app` menjawab 302 ke `https://vercel.com/sso-api?...` atau
    `vercel.com/login`, situs **tetap LIVE**; proteksi Vercel hanya mengunci alias `.vercel.app`,
    situs publik disajikan lewat domain custom. Verifikasi di domain custom-nya, bukan di alias:

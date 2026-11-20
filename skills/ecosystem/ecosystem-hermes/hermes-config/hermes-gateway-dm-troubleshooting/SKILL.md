@@ -55,6 +55,7 @@ sqlite3 ~/.hermes/state.db "SELECT entry_json FROM gateway_routing WHERE session
 | Empty stream | `EmptyStreamError` | Retry or switch provider |
 | MCP connection failed | `hermes-postgres/time/sqlite.*Connection closed` | Install/localize MCP servers |
 | Telegram network | `Sticky Telegram path.*failed` | Check Telegram API endpoint routing |
+| Replies "terputus"/hilang sebagian | `ConnectTimeout` berulang ke `api.telegram.org` / `149.154.166.110`, lalu `Failed to deliver response after N retries: send_path_degraded` | Masalah jaringan ke Telegram API (ISP/route), BUKAN model/Hermes. Gateway self-heal: cari `Telegram API transport recovered via …` lalu `polling recovered`. Jangan restart gateway — tunggu 1–2 menit. Detail di "Balasan Terputus = Jaringan Telegram" di bawah.
 | Duplicate final send | `Normal final-send NOT suppressed despite active stream consumer` | Race condition: `_finalize_turn` and `_push_update` async in stream_consumer.py. Fix: `_final_response_sent` check + `has_delivered_text` fallback in run_turn.py suppression logic |
 | Gateway crash-loop (`KeyError: 'platform'`) | `gateway.error.log` shows repeated `KeyError: 'platform'` in `HomeChannel.from_dict()`, `LastExitStatus: 256` | `home_channel` config missing required `platform` field. Fix: `hermes config set platforms.telegram.home_channel.platform telegram` then `hermes gateway restart` |
 | Stale auto-resume skip | `Skipping auto-resume ... no longer authorized under the current allowlist` on every boot despite a correct allowlist | Stored `origin.user_id` is null so the check fails before any allowlist is read. Harmless: expires via freshness window, inbound auth unaffected. Never invent a config `allowed_users` key — auth reads `{PLATFORM}_ALLOWED_USERS` env. |
@@ -96,6 +97,80 @@ hermes gateway restart
 - Gateway authorization reads `{PLATFORM}_ALLOWED_USERS` from env, never a `platforms.<name>.allowed_users` config key. Verify every config key against the loader that reads it (`gateway/authz_mixin.py`) before setting it — an unread key only misleads the next diagnosis.
 - A null-`user_id` origin fails closed by design and the skip is harmless: live inbound messages carry a real `user_id` and authorize normally. Prefer letting the marker expire via the freshness window; direct `state.db` edits race the running gateway, so back it up first and touch only the `resume_pending` flag, never fabricate an origin.
 - Judge by fresh tail after restart: one skip line per boot for a stale marker is expected; new skips naming live sessions are not.
+
+## Balasan Terputus = Jaringan Telegram (bukan model)
+
+**Symptom:** user mengeluh balasan di Telegram "selalu terputus" atau tidak lengkap, padahal sesi agent berjalan normal dan log agen tidak error.
+
+**Diagnosis — baca `~/.hermes/logs/gateway.error.log`, bukan log agen:**
+```bash
+grep -c "ConnectTimeout\|send_path_degraded\|Failed to deliver" ~/.hermes/logs/gateway.error.log
+grep -E "ConnectTimeout|send_path_degraded|Failed to deliver|Connected to Telegram" ~/.hermes/logs/gateway.error.log | tail
+```
+Pola khas: `ConnectTimeout('')` ke `api.telegram.org` (dual-stack) DAN ke IP `149.154.166.110`, diselingi
+`MarkdownV2 edit failed, falling back to plain text: Timed out`, lalu `Failed to deliver response after
+2 retries: send_path_degraded`. Itu penyebab balasan terpotong/hilang.
+
+**Aturan:**
+- Ini **bukan** masalah model, prompt, atau skill — jangan debug sisi agen dulu.
+- Gateway **memulihkan diri**: ia belajar sticky IPv4 path (`Using sticky IPv4 Telegram API path
+  149.154.166.110`) dan restart polling (`polling recovered`). Tunggu 1–2 menit; jangan restart
+  gateway (aturan besi: jangan sentuh gateway saat hidup).
+- **Rute:** `route -n get 149.154.166.110` menunjukan gateway lokal (`en0`), BUKAN Tailscale — jadi
+  sumbernya koneksi ISP ke Telegram, bukan config VPN/tailnet.
+- **Verifikasi pulih:** `curl -s -o /dev/null -w "%{http_code}" --max-time 15 https://api.telegram.org/`
+  balas 302 = saat ini sehat; tapi fluktuatif, jadi gunakan log sebagai bukti utama.
+- Kalau timeout persisten dan terputus berkepanjangan, teruskan ke pemilik (bukan gejala yang bisa
+  diperbaiki agent dari sisi config).
+
+## Session Paused: `unknown_execution` — Resolve Blocked FIFO
+
+**Symptom:** Gateway log shows `WARNING gateway.session_authority: Session <id> paused: unknown_execution`. All subsequent messages in that thread queue but never execute (FIFO stuck). `session_admissions` has one row with `status='unknown'`.
+
+**Mechanism:** A turn was claimed by an owner epoch that restarted before the turn completed. The gateway fences it `unknown` and pauses the FIFO — only the person who sent it can decide whether to resend. Automated admissions (cron, automation) are auto-settled on boot; a user-submitted turn pauses until manually resolved.
+
+**Diagnosis:**
+```bash
+# 1. Identify the unknown row
+sqlite3 ~/.hermes/state.db "
+SELECT seq, admission_id, principal_id, intent, status, owner_epoch, generation,
+       substr(payload_json,1,200)
+FROM session_admissions
+WHERE target_session_id='<session_id>' AND status='unknown';"
+
+# 2. Count by status to see full FIFO shape
+sqlite3 ~/.hermes/state.db "
+SELECT status, count(*)
+FROM session_admissions
+WHERE target_session_id='<session_id>'
+GROUP BY status;"
+
+# 3. Confirm is it a user turn (principal_id starts with 'messaging:')
+# If principal starts with 'automation:' or is CRON_PRINCIPAL_ID → auto-settle on next restart
+# If principal starts with 'messaging:' → requires manual resolution
+```
+
+**Resolution — user turn (messaging: principal):**
+```bash
+# Step 1: backup state.db first (non-negotiable)
+hermes backup --quick --label "session-fix-$(date +%H%M)"
+
+# Step 2: mark unknown row as terminal
+sqlite3 ~/.hermes/state.db \
+  "UPDATE session_admissions SET status='terminal', outcome='discarded_user_resumed' \
+   WHERE target_session_id='<session_id>' AND status='unknown';"
+
+# Step 3: verify — should return 0 rows
+sqlite3 ~/.hermes/state.db \
+  "SELECT seq, status, outcome FROM session_admissions \
+   WHERE target_session_id='<session_id>' AND status='unknown';"
+```
+
+After the UPDATE the gateway's drain loop resumes on next inbound message — the queued rows behind it (`status='queued'`) run normally. No gateway restart needed.
+
+**Pitfall — do not edit state.db while gateway is under heavy load.** The SQLite WAL is live; always take `hermes backup --quick` before any UPDATE. The backup takes ~5 seconds for state.db of ~460 MB.
+
+**Pitfall — a cron turn hard-coded to a dead model causes the next drain to fail even after FIFO is unblocked.** After resolving `unknown_execution`, watch gateway.log for `RuntimeError: HTTP 404: Model '...' not found` — this means a job or cron references a model that no longer exists in the router catalog. Fix: update the cron job's model to an active one (verify with `curl -s -X POST http://localhost:20128/v1/chat/completions -H "Authorization: Bearer $NINE_ROUTER_API_KEY" -d '{"model":"<model>","messages":[...],"max_tokens":5}'`).
 
 ## User Preference
 Afrizal Munthe expects DM responses within minutes. Delays indicate upstream provider issues or hook/MCP failures.

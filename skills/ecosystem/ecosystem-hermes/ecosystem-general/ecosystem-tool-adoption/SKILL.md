@@ -93,6 +93,18 @@ Tawarkan opsi: gas semua / fase prioritas / buat dokumen dulu. Hormati pilihan u
 - Non-destruktif, reversible, verifikasi nyata sebelum klaim selesai (diff -r, exit code, output command — bukan narasi)
 - DoD harus bisa dibuktikan; audit = saran saja, bukan mutasi data (aturan user)
 
+#### Gate adopsi skill pihak ketiga (sebelum copy ke bank)
+- Jalankan eval bawaan upstream dulu di clone `/tmp`: `skill_lint.py <skill> --strict` (0 error/warning), `skill_scanner.py <skill>` (0 CRITICAL), dan `evals/<skill>/test_*.py` deterministik — angka pass-nya dicatat di laporan. Skill tanpa eval yang lolos tidak masuk bank.
+- Scan script manual untuk network/exec: `grep -rn 'requests\.|urllib|socket|subprocess|os.system' scripts/` — catat jalur network opt-in (mis. flag `--online`) dan server loopback, jangan mengandalkan klaim "offline" di README.
+- Frontmatter bank: tambah `source: <repo> — <owner>` top-level (beside `license:` yang sudah ada), lalu `skill-manifest.py` → `skill-manifest.py --check` harus `[ok]` → `gen-skill-index.py` → `sync-to-agents.sh` → commit path spesifik skill baru saja (jangan ikutkan churn skill lain yang sudah kotor).
+- **Pre-commit hook bisa menolak skill pihak ketiga dengan false positive.** Dua pola yang berulang: (1) `secret-scan-staged.py` menandai generator password lokal (mis. `secrets.token_urlsafe` untuk keystore) sebagai `generic_secret_assignment` — itu bukan kredensial asli, hanya pembuat password artefak lokal; (2) `stray-glyphs` menghitung glif CJK/aksara non-Latin di komentar dokumentasi skill sebagai "skrip asing" — sah untuk skill pihak ketiga yang dokumentasinya berbahasa Mandarin. Kalau penyebabnya false positive yang terverifikasi, commit dengan `--no-verify` dan **catat alasannya di pesan commit** (hook mewajibkan ini). Jangan menghapus/mengosongkan kode skill untuk menyenangkan hook.
+- **Binding skill ke thread Telegram = edit `~/.hermes/config.yaml` (milik manusia).** Agent hanya baca file itu. Setelah skill ada di bank + tersinkron, minta user menjalankan `hermes config set platforms.telegram.extra.channel_skill_bindings '<json>'` dengan daftar binding yang diperbarui (format: `{"<thread>": ["<skill>", ...]}`), lalu `hermes gateway restart` dari shell terpisah. Update `docs/registry/telegram-threads.md` (agent boleh tulis) supaya registry mencerminkan binding baru.
+
+#### Gate adopsi library serializer/optimizer
+- **Nama paket PyPI ≠ nama modul import.** Verifikasi dengan `pip show <pkg>` + `python -c "import <mod>; print(dir(<mod>))"` sebelum percaya `requirements.txt` — nama yang sama bisa paket tak terkait (mis. `toon` = neuroscience, yang benar `toonify` yang menyediakan modul `toon`).
+- **Ukur di venv terisolasi `/tmp`, bukan install global**, dengan payload nyata ekosistem (manifest, `/api/*`) dan hitung token (tiktoken), bukan klaim vendor.
+- **Roundtrip lossless wajib sebelum adopsi**: `decode(encode(data)) == data` pada payload nested nyata. Hemat token tanpa roundtrip = data loss diam-diam — tolak adopsi dan catat angkanya di laporan, meski persen hematnya besar.
+
 ## Konteks aktif (2026-08-16)
 
 ### Rekonstruksi ekosistem v2 (18-Ags-2026) — kebijakan model BERUBAH, jangan pakai rekomendasi v1
