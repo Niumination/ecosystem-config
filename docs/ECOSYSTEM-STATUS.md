@@ -193,7 +193,10 @@ Disk: **60% terpakai (20 GB bebas)** — dibersihkan 11 Nov (tick data AgenticTr
 ## 8d. Repo DSH mandiri (20 Nov)
 - **Repo PRIVAT baru**: `Niumination/dsh-abstract-biz-id` — setup + konfigurasi + backup lengkap `~/.dsh` (termasuk data sensitif, sesuai permintaan user untuk pindah server).
 - Arsip `~/.dsh` (124 MB, 51 MB terkompresi) dienkripsi GPG RSA-3072 (fingerprint `614498AD...`), dipecah 27 chunk @2 MB, di-upload ke `backup/parts/part-00..26`.
-- Verifikasi: **27/27 chunk MATCH** via Git blob SHA-1; arsip lokal lolos dekripsi GPG + gzip test.
+- `backup/parts/part-00..26` (27 chunk) = arsip `~/.dsh` (config/kredensial/sesi/attachments).
+- `workspace/parts/wschunk-00..wschunk-9009` (100 chunk) = arsip `~/Documents/deepseek-harness` (610 MB, workspace aktif DSH) — ditambahkan 20 Nov setelah audit menemukan workspace tidak ikut.
+- Verifikasi: **27/27 + 100/100 chunk MATCH** via Git blob SHA-1; kedua arsip lolos dekripsi GPG + gzip test. Concat chunk lokal == arsip asli (SHA-256 `90498bc9…` untuk workspace).
+- chunk 90-99 bernama `wschunk-9000..9009` (`split -d` habis digit) — urutan gabung lexicographic tetap benar.
 - Isi repo: `README.md`, `docs/SETUP.md`, `manifest.json` (SHA-256 arsip), `vault-public.key`, `systemd/deepseek-harness.service`, `backup/parts/`.
 - Alasan chunk: composio proxy membatasi body PUT 4.718.592 byte.
 - Cara restore: `cat backup/parts/part-* > dsh-full.tar.gz.gpg` (urut 00→26) → dekripsi GPG dengan private key + passphrase di `~/.gnupg/` → ekstrak ke `/home/agentuser/.dsh`.
