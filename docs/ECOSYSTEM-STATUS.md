@@ -190,6 +190,14 @@ Disk: **60% terpakai (20 GB bebas)** — dibersihkan 11 Nov (tick data AgenticTr
 - **Catatan versi menengah**: v0.1.161 (automation gagal tidak auto-mati) agak relevan tapi tidak mendesak.
 - **Prosedur bila nanti update**: backup `routines.json` + data dulu → update → verifikasi stop→write→start (write-back `PATCH` prompt diabaikan OMB). Jangan update otomatis.
 
+## 8d. Repo DSH mandiri (20 Nov)
+- **Repo PRIVAT baru**: `Niumination/dsh-abstract-biz-id` — setup + konfigurasi + backup lengkap `~/.dsh` (termasuk data sensitif, sesuai permintaan user untuk pindah server).
+- Arsip `~/.dsh` (124 MB, 51 MB terkompresi) dienkripsi GPG RSA-3072 (fingerprint `614498AD...`), dipecah 27 chunk @2 MB, di-upload ke `backup/parts/part-00..26`.
+- Verifikasi: **27/27 chunk MATCH** via Git blob SHA-1; arsip lokal lolos dekripsi GPG + gzip test.
+- Isi repo: `README.md`, `docs/SETUP.md`, `manifest.json` (SHA-256 arsip), `vault-public.key`, `systemd/deepseek-harness.service`, `backup/parts/`.
+- Alasan chunk: composio proxy membatasi body PUT 4.718.592 byte.
+- Cara restore: `cat backup/parts/part-* > dsh-full.tar.gz.gpg` (urut 00→26) → dekripsi GPG dengan private key + passphrase di `~/.gnupg/` → ekstrak ke `/home/agentuser/.dsh`.
+
 ## 9. Known Issues / Pending
 
 1. **PiPatung belum jalan** (:3100 kosong → 502). Kode `~/zb/pi-patung` v0.1.0 — start manual saat dibutuhkan.
