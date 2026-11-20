@@ -201,6 +201,13 @@ Disk: **60% terpakai (20 GB bebas)** — dibersihkan 11 Nov (tick data AgenticTr
 - Alasan chunk: composio proxy membatasi body PUT 4.718.592 byte.
 - Cara restore: `cat backup/parts/part-* > dsh-full.tar.gz.gpg` (urut 00→26) → dekripsi GPG dengan private key + passphrase di `~/.gnupg/` → ekstrak ke `/home/agentuser/.dsh`.
 
+## 8e. Plugin DSH (Plaza/SkillHub) — catatan restore (20 Nov)
+- Plugin TERSIMPAN di backup: `~/.dsh/profiles/web/node_modules` (~122 MB, masuk arsip 51 MB — dibuktikan perbandingan ukuran tar: dengan node_modules 53.680.450 vs backup 53.663.344; tanpa node_modules hanya 1.227.508).
+- **Cara aktifasi**: BUKAN lewat `cordis.yml` (sengaja `[]`), tapi `~/.dsh/profiles/web/package.json` → `dsh.profile.bundles` + `cordis.patch.yml` override. Plaza = `@cocofhu/skillhub` 0.2.16, sudah ada di bundles.
+- **Kenapa plaza hilang di VPS baru**: `pnpm install` belum dijalankan setelah restore (node_modules punya 8 symlink relatif di `.bin/` yang perlu di-resolve). Pnpm store `~/.local/share/pnpm` (~857 MB) TIDAK ikut backup → butuh network/GitHub saat install.
+- Dokumentasi: repo `dsh-abstract-biz-id/docs/PLUGINS.md` (daftar 12 plugin + cara restore) & `profiles/web/cordis.patch.yml.example` (config aktif). Blob MATCH.
+- 12 plugin: skillhub, opencode-zen-free-provider, dingtalk/lark/qqbot/wecom/weixin, file-download, media-web-preview, our-free-model, vision-router, visual-option.
+
 ## 9. Known Issues / Pending
 
 1. **PiPatung belum jalan** (:3100 kosong → 502). Kode `~/zb/pi-patung` v0.1.0 — start manual saat dibutuhkan.
