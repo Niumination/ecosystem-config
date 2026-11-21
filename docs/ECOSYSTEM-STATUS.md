@@ -247,7 +247,7 @@ curl -s https://yt.abstract.biz.id/health                  # ok
 sudo -n /opt/yt-oauth/yt-api.py channels part=snippet mine=true
 sudo -n /opt/yt-oauth/yt-manage.py --comments > /tmp/yt.json
 # re-otorisasi HANYA bila token/scope bermasalah: buka https://yt.abstract.biz.id/auth
-# cron on-demand (tidak rutin): cronjob_manage action=run job_id=0b257dad1a83
+# cron on-demand (tidak rutin): cronjob_manage action=run job_id=d4165674ae2a
 
 # Push file ke repo via composio (redirect + verifikasi hash WAJIB)
 composio proxy "https://api.github.com/repos/OWNER/REPO/contents/PATH?ref=main" -t github --skip-connection-check > /tmp/f.json
