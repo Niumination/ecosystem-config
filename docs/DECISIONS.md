@@ -47,3 +47,15 @@
 - **Yang TIDAK diregistrasi** (redundan/basi, sengaja dikecualikan): `showreel/` (18 berkas, hash beda = versi lama), `fonts/` (duplikat `engine/assets/fonts/`), aset lepas di root (3 mp4 + 3 png + PDF + `kajian.html` — **identik** dengan `govtechlab/artifacts/`), `.sudo_as_admin_successful`.
 - **Konsekuensi:** `govtechlab-aceh-tengah/engine/` **identik 100%** dengan `hermes-showreel-engine/` — dua sumber kebenaran untuk mesin yang sama. Docs govtechlab menyebut `engine/` sebagai *submodule* tapi `.gitmodules` tidak ada. **Tindak lanjut:** jadikan submodule, atau pilih satu kanonik.
 - **Verifikasi:** `check_package.py` → 41 berkas teks, 0 rahasia, 6 halaman site, 0 berkas >50 MB; scan rahasia 0 pola literal di sumber **dan** di klon ulang; 0 glif CJK; `gh repo view` → `isPrivate: true`; `git ls-files` di repo induk → 0 (tidak bocor ke publik); uji engine **belum dijalankan** (butuh `numpy`/`playwright`).
+
+## D-2026-11-22-01 — MEDIA LIBRARY TERPUSAT: katalog + rak hardlink, master TIDAK dipindah
+- **Status:** BERLAKU
+- **Keputusan:** Semua hasil produksi gambar/video/audio ekosistem dikumpulkan ke satu tempat: **`archive/media-lib/`** (sudah ada sebagai stub view Notion, kini diisi). Dua lapis: `INDEX.md` (katalog) + `deliverables/` (rak).
+- **Alasan:** Media tersebar di enam+ repo proyek tanpa satu pun yang bisa menjawab "mana saja hasil produksinya". Tanpa pusat, status aset tidak terbaca.
+- **Kenapa hardlink, bukan `cp`:** rak memakai **hardlink** ke master — inode yang sama, **nol tambahan disk** (terverifikasi `ls -i`: dua path, satu inode), dan isinya mengikuti master. Menyalin 570 MB kandidat akan menggandakan penyimpanan tanpa menambah kebenaran.
+- **Kenapa master TIDAK dipindah:** `AGENTS.md` abstract-studio aturan #1 (one-home) dan #2 (`project/<slug>/output/` = source of truth) melarang artifak proyek berada di luar `project/<slug>/`. Memindahkan master juga akan merusak repo proyek yang sedang berjalan. Rak = panduan, bukan pengganti.
+- **Generator:** `scripts/build-media-index.py` (stdlib murni, tanpa jaringan, hanya menulis di dalam `archive/media-lib/`). **Idempoten** — run kedua menghasilkan +0 hardlink.
+- **Cakupan:** 108 berkas / 176.3 MB (23 video, 75 gambar, 10 audio); 18 deliverable final / 52.6 MB di rak.
+- **Dikecualikan:** `archive/backup/`, `*/apk_extract/`, `*/_backup/`, `node_modules/`, `.git/`.
+- **Konsekuensi:** `INDEX.md` dan `deliverables/` **tidak ter-track git** (`archive/` sebagian di-gitignore) — dengan sengaja, agar media tidak bocor ke repo induk PUBLIC. Konvensi yang ter-track ada di `docs/registry/media-library.md`.
+- **Verifikasi:** inode identik pada master vs rak; `du -sh archive/media-lib` = 54 MB (data yang sama dengan master, bukan salinan baru); generator exit 0; run berulang idempoten.

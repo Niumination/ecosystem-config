@@ -18,7 +18,20 @@ Sumber: `~/Downloads/Gagasan-ASN-repo-baru.zip` (101 MB, 232 berkas) — perinta
 - **Visibilitas PRIVATE** (default aman — publik→privat sulit, sebaliknya mudah).
 - **Keduanya di-gitignore** dari repo induk PUBLIC (`labs/` baris 33, `dinas/` baris 114) → terverifikasi tidak bocor ke publik.
 - **Dikecualikan** (redundan/basi): `showreel/` (versi lama), `fonts/` (duplikat), aset lepas di root (identik dengan `artifacts/`), `.sudo_as_admin_successful`.
-- **Tindak lanjut:** `govtechlab/engine/` identik 100% dengan `hermes-showreel-engine/` → perlu dipilih satu kanonik (submodule). Uji engine belum dijalankan (butuh `numpy`/`playwright`).
+- **Tindak lanjut:** ~~`govtechlab/engine/` identik 100% dengan `hermes-showreel-engine/`~~ → **SELESAI 21 Nov 2026**: `engine/` kini submodule pada `Niumination/hermes-showreel-engine` @ `15f4d34` (commit `de451aa`, terverifikasi ter-isi saat klon `--recurse-submodules`). Uji engine **belum dijalankan** (butuh `numpy`/`playwright`).
+
+---
+
+## 🗂️ Media Library Terpusat — 21 Nov 2026
+
+Semua hasil produksi gambar/video/audio kini punya satu pintu: **`archive/media-lib/`** (di-gitignore).
+
+- `INDEX.md` — katalog **108 berkas / 176.3 MB** (23 video, 75 gambar, 10 audio) dengan proyek, ukuran, tanggal, SHA-256.
+- `deliverables/` — **18 deliverable final (52.6 MB)** di-**hardlink** ke master di repo proyek. Inode sama → **nol tambahan disk**, isi mengikuti master.
+- Generator: `scripts/build-media-index.py` (stdlib murni). Ulangi dengan `python3 scripts/build-media-index.py` — **idempoten** (run kedua: +0).
+- **Master tidak dipindah** — one-home rule abstract-studio #1/#2 tetap dijaga.
+- Dikecualikan: `archive/backup/`, `apk_extract/`, `_backup/`, `node_modules/`.
+- Konvensi: `docs/registry/media-library.md` · Keputusan: `D-2026-11-22-01`.
 
 ---
 
