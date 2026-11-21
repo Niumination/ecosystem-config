@@ -6,6 +6,22 @@
 
 ---
 
+## 📦 Registrasi 2 Proyek — 21 Nov 2026 (dari `Gagasan-ASN-repo-baru.zip`)
+
+Sumber: `~/Downloads/Gagasan-ASN-repo-baru.zip` (101 MB, 232 berkas) — perintah pemilik "pelajari dan registrasi". Override sekali pakai freeze D-1013-05: **`D-2026-11-21-01`** (`docs/DECISIONS.md`).
+
+| Proyek | Path | Repo | Isi |
+|---|---|---|---|
+| **GovTech Lab Aceh Tengah** | `dinas/govtechlab-aceh-tengah/` | 🔒 `Niumination/govtechlab-aceh-tengah` (`4582964`, 118 berkas) | Paket kerja **v1.0.0** pembentukan Klinik Inovasi Digital & AI Diskominfo AT: playbook 18 bab, 8 naskah dinas, buku kerja 7 lembar/23 aktivitas, kajian hukum ASN, 3 showreel, `site/` 6 halaman, 7 skrip build, CI |
+| **hermes-showreel-engine** | `labs/hermes-showreel-engine/` | 🔒 `Niumination/hermes-showreel-engine` (`15f4d34`, 44 berkas) | Mesin showreel deterministik `spec.json` → MP4 + poster; 27 uji; integrasi Hermes (MCP server, `tools.json`, `runner.py`, `skill.md`) |
+
+- **Visibilitas PRIVATE** (default aman — publik→privat sulit, sebaliknya mudah).
+- **Keduanya di-gitignore** dari repo induk PUBLIC (`labs/` baris 33, `dinas/` baris 114) → terverifikasi tidak bocor ke publik.
+- **Dikecualikan** (redundan/basi): `showreel/` (versi lama), `fonts/` (duplikat), aset lepas di root (identik dengan `artifacts/`), `.sudo_as_admin_successful`.
+- **Tindak lanjut:** `govtechlab/engine/` identik 100% dengan `hermes-showreel-engine/` → perlu dipilih satu kanonik (submodule). Uji engine belum dijalankan (butuh `numpy`/`playwright`).
+
+---
+
 ## 🔄 Alur Kerja Multi-Tempat — 18 Sep 2026
 
 **Klarifikasi pemilik (dikonfirmasi 18 Sep 2026):** ekosistem ini adalah platform utama, tetapi **bukan satu-satunya tempat kerja**. Proyek ekosistem juga dikerjakan di luar (arena.ai, designarena.ai) dan eksperimen berjalan di sandbox terpisah — itu **disengaja** (agar fokus per proyek; pelajaran dari insiden jcode yang merusak internal Mac), **bukan drift**.
