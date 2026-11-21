@@ -51,7 +51,8 @@ Satu connector `cloudflared` (remote-managed, token `/etc/cloudflared/token`, **
 | zbmaus.abstract.biz.id | 127.0.0.1:8799 | ✅ 200 (pairing device) |
 | zb-humanoid.abstract.biz.id | 0.0.0.0:3001 | ✅ 200 (publik) |
 | ombrelay.abstract.biz.id | 127.0.0.1:8801 | ✅ (root 404 = normal; `/health` ok) |
-| dsh.abstract.biz.id | 127.0.0.1:3080 | ✅ 401 tanpa token = benar |
+| dsh.abstract.biz.id | 127.0.0.1:3080 | ✅ 401 tanpa token = benar (domain lama) |
+| dsh.niumination.id | server baru | ✅ 401 tanpa token = token-gate aktif; diverifikasi 21 Nov (user: "Dsh baru sudah aman") |
 | opencraft.abstract.biz.id | 127.0.0.1:6081 | ✅ 401 tanpa key = benar |
 | **niudrive.abstract.biz.id** | 127.0.0.1:5173 | ✅ 200 — UI baru live |
 | **api.abstract.biz.id** | 127.0.0.1:4000 | ✅ `/health` ok |
@@ -200,6 +201,7 @@ Disk: **60% terpakai (20 GB bebas)** — dibersihkan 11 Nov (tick data AgenticTr
 - Isi repo: `README.md`, `docs/SETUP.md`, `manifest.json` (SHA-256 arsip), `vault-public.key`, `systemd/deepseek-harness.service`, `backup/parts/`.
 - Alasan chunk: composio proxy membatasi body PUT 4.718.592 byte.
 - Cara restore: `cat backup/parts/part-* > dsh-full.tar.gz.gpg` (urut 00→26) → dekripsi GPG dengan private key + passphrase di `~/.gnupg/` → ekstrak ke `/home/agentuser/.dsh`.
+- **Migrasi selesai (21 Nov)**: user konfirmasi "Dsh baru sudah aman di dsh.niumination.id". Domain baru aktif (HTTP 401 tanpa token = token-gate benar; diverifikasi 21 Nov). Domain lama `dsh.abstract.biz.id` tetap dicatat (jangan hapus). `--trusted-host` di service baru HARUS disesuaikan ke `dsh.niumination.id` (atau keduanya) — cek `systemd/deepseek-harness.service`. Repo `dsh-abstract-biz-id` tetap jadi sumber restore untuk server baru.
 
 ## 8e. Plugin DSH (Plaza/SkillHub) — catatan restore (20 Nov)
 - Plugin TERSIMPAN di backup: `~/.dsh/profiles/web/node_modules` (~122 MB, masuk arsip 51 MB — dibuktikan perbandingan ukuran tar: dengan node_modules 53.680.450 vs backup 53.663.344; tanpa node_modules hanya 1.227.508).
