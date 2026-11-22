@@ -42,6 +42,7 @@
 | **Continue-Agent** | — (remote only) | — | `github.com/Niumination/Continue-Agent` | ⚪ Not deployed | 26 Okt 2025 | ⚪ Stale |
 | **HermesV-Github** | — (remote only) | — | `github.com/Niumination/HermesV-Github` | ⚪ Codespaces | 11 Jun 2026 | 🔄 Stale |
 | **AgentRouter** | ❌ **Distop** | Go reverse proxy | lokal | 🔴 **Dibersihkan** | 16 Jun 2026 | ❌ Upstream tidak stabil |
+| **watch-fit-ai** | `labs/watch-fit-ai/` | FastAPI gateway (VAD+ASR+TTS+router), Kotlin Android (Tile+Telecom+P2P), lite-JS ES5 jam | `github.com/Niumination/watch-fit-ai` 🟢 **PUBLIC** | ⚪ VPS (menunggu deploy) | 21 Nov 2026 | 🟢 **Active — suara dua arah AI agent dari Watch Fit 5 via HFP. 5 commit zero diff, selftest 5/5 PASS. Fase 0 fisik menunggu HP+jam. Override freeze: `D-2026-1122-02`** |
 
 ### 🌐 Web Apps & Personal Tools
 

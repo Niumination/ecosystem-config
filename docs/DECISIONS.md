@@ -59,3 +59,9 @@
 - **Dikecualikan:** `archive/backup/`, `*/apk_extract/`, `*/_backup/`, `node_modules/`, `.git/`.
 - **Konsekuensi:** `INDEX.md` dan `deliverables/` **tidak ter-track git** (`archive/` sebagian di-gitignore) — dengan sengaja, agar media tidak bocor ke repo induk PUBLIC. Konvensi yang ter-track ada di `docs/registry/media-library.md`.
 - **Verifikasi:** inode identik pada master vs rak; `du -sh archive/media-lib` = 54 MB (data yang sama dengan master, bukan salinan baru); generator exit 0; run berulang idempoten.
+
+## D-2026-1122-02 — REGISTRASI watch-fit-ai: override sekali pakai freeze D-1013-05
+- **Status:** BERLAKU
+- **Keputusan:** Daftarkan `labs/watch-fit-ai/` (repo 🟢 PUBLIC `Niumination/watch-fit-ai`, HEAD `279648c`) tanpa menutup repo lama — override sekali pakai, pola `D-2026-1017-01`.
+- **Alasan:** Proyek dari pemilik langsung (zip `~/Downloads/watch-fit-ai.zip`), 5 patch upstream teraplikasi + verified (zero diff, selftest 5/5). Menutup repo lama butuh keputusan pemilik terpisah.
+- **Verifikasi:** clone anonim HTTPS exit 0, secret scan kosong, `gh repo view` PUBLIC.
