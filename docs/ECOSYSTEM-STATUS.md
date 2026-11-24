@@ -16,7 +16,7 @@
 - **DSH pindah server**: `dsh.niumination.id` aktif (401 tanpa token = token-gate benar) di **VPS baru yang terpisah**; VPS ini tetap jalankan DSH lama `dsh.abstract.biz.id` (401, tidak diubah). Repo privat `dsh-abstract-biz-id` = sumber restore (127/127 chunk MATCH).
 - **Vault kredensial** terenkripsi GPG di repo privat `zbmaus-vela-secrets/vault/`; index metadata di `ecosystem-config`.
 - **Voice gateway `watch-fit-ai` ↔ OMB LIVE (24–25 Nov)**: `https://voice.abstract.biz.id` health 200, selftest 5/5, 3 device, TTS piper Indonesia, jawaban AI sungguhan dari bot ZB via webhook (§8f).
-- **Kaggle uncensored**: notebook diaudit & diperbaiki (5 fix), push versi 5 25 Nov, kernel `QUEUED` menunggu GPU, monitor read-only `aa38b820d4b5` (§8f).
+- **Kaggle uncensored LIVE (25 Nov)**: notebook diaudit & diperbaiki (8 fix), run all manual sukses, model Gyro-S abliterated 58 GB jalan di 2× T4. `https://arbitrage-model.abstract.biz.id/health` = **200** `loaded:true, api_key:true`, `/v1/models` = 401 (auth gate). Dipakai dari Hermes Mac via 9Router `ninerouter` provider, model `strata/qwen3.8-flash-next-gyro-gyro-s` (§8f). ⚠️ Sesi tidak kekal — bisa berhenti kapan saja (kuota/idle).
 - ⚠️ **Storage 23 Nov**: disk 86% (6,7 GB bebas), `/tmp` 4 GB sisa backup gagal — cleanup menunggu konfirmasi (§8f).
 - ⚠️ **Keputusan user 15 Nov**: apt upgrade & reboot **ditunda tanpa batas** (server belum pernah reboot) — 197 paket security backlog sengaja tidak dieksekusi.
 - ⚠️ Insiden lama (dikonfes, 11 Nov): 16 file root folder `9drive` akun archk4li hilang permanen karena purge tanpa audit. Kredensial inti masih di `~/zb/`.
@@ -132,22 +132,6 @@ Ingress dikelola via Composio (`CLOUDFLARE_UPDATE_TUNNEL_CONFIGURATION`, replace
 - `routines.json`: **14 routine** (21 Nov); 8 di antaranya routine Kitab Surgawi pakai helper OAuth lokal. Update ke v0.1.173 ditunda (§8c).
 - Antigravity engine masih `authenticated=false` (OAuth :53727 pending).
 
-### watch-fit-ai / Voice Gateway (24 Nov 2026)
-
-Blok ini menambah status 24 Nov 2026 di atas audit 21 Nov; riwayat 21 Nov tidak diubah.
-
-| Item | Nilai |
-|---|---|
-| Rantai AKTIF | mic HP (Infinix X6873) → `voice.abstract.biz.id` → ASR Groq → agent **OMB** (`openmausbot`, bot ZB) → TTS piper (`id_ID`, news medium) → WAV ±450 KB → P2P Wear Engine → Watch Fit 5 |
-| Hostname | `voice.abstract.biz.id` (Cloudflare Tunnel `zb-vela`) |
-| Lokasi | VPS zb-vela — `~/zb/voice-gateway`, container `gateway-gateway-1`; upstream `c0685fb` + patch lokal port |
-| Verifikasi 24 Nov 2026 (dari Mac) | HTTP **200**; header `x-transcript-in`/`x-transcript-out` terisi; WAV **450.324 B**, **14,07 dtk**, **16 kHz mono**; latensi **11,5 dtk**; jawaban contoh: daftar jamur edible |
-| Device terdaftar | `and-5ddb4c9f`, `and-78ed6a33`, `and-zbvela-4277` |
-| Otak produksi | **omb**; OpenCode VPS v2.1.4 (`127.0.0.1:49374`) tidak dipakai lagi |
-| Belum (**UNCHECKED**) | pemutaran audio di speaker jam — butuh build HAP lite-wearable (`watch-lite/`, commit `9168ede`) + debug certificate Huawei; `sendFileToWatch` belum pernah diuji di perangkat; `@system.audio` butuh bundle masuk *control list* layanan musik Huawei (mekanisme tidak terdokumentasi) |
-
-Catatan: laporan riset OMB lama (`docs/reports/RISET-OPENMAUSBOT-2026-10-12.md`, `OPENMAUSBOT-STATUS-INTEGRASI-2026-10-12.md`) dibiarkan apa adanya.
-
 ### AgenticTrade (PAUSE bersih)
 - Repo publik `github.com/Niumination/AgenticTrade` (EA MT5 XAUUSD, transparansi penuh, angka backtest = NOT VERIFIED).
 - Sprint 1–6 selesai; kriteria STOP terpicu pada WFO v0.3 → iterasi rule-based dihentikan → **Fase 2 forward test (demo IC Markets 53134764) menunggu keputusan runtime**. Tick data 2020–2025 dihapus dari disk (re-downloadable via `fetch_years.sh`).
@@ -231,13 +215,13 @@ Disk: **72% terpakai (14 GB bebas dari 50 GB)** — dibersihkan 11 Nov (tick dat
 
 ## 8f. Voice gateway ↔ OMB & Kaggle uncensored (24–25 Nov)
 
-**Voice gateway `watch-fit-ai` terhubung ke OMB (24 Nov).** Repo `Niumination/watch-fit-ai` di `~/zb/voice-gateway`, upstream HEAD `c0685fb`; agent default = `omb` (`config/agents.json`, commit `43cf487`). Container `gateway-gateway-1`, `127.0.0.1:8091 → 8080`, domain `https://voice.abstract.biz.id`, health 200, selftest 5/5. Tiga device: `and-zbvela-4277`, `and-5ddb4c9f`, `and-78ed6a33`. Kredensial & `DEVICE_TOKENS` di `.env` mode 600 (GROQ_API_KEY, GATEWAY_SECRET, OMB webhook token — [REDACTED]). TTS piper lokal `id_ID-news.onnx` (62.950.044 byte).
-- Uji audio asli **diverifikasi ulang dari Mac 24 Nov**: HTTP 200, `x-transcript-in`/`x-transcript-out` terisi jawaban AI sungguhan dari bot ZB, WAV **450.324 byte** (14,07 dtk, pcm_s16le 16 kHz mono), latensi **11,5 dtk**. Angka 95.896 byte di catatan sebelumnya berasal dari respons ber-agent echo/beda teks; angka 450.324 byte yang terverifikasi.
-- **Bridge OMB dua listener**: `~/zb/omb-new/relay-bridge.mjs` memakai `BRIDGE_HOST` (default `127.0.0.1`) + `BRIDGE_EXTRA_HOST=172.18.0.1` (`relay-bridge.env`), dijumpai container lewat `OMB_BRIDGE_URL=http://172.18.0.1:8801`. Tidak pakai `0.0.0.0` (UFW inactive); situs humanoid tetap 200. Webhook sementara `wh_knBDiZz4DGRydSZi` (bot `ZbmausHumanoid-Vercel`) — jawaban bisa muncul juga di situs humanoid.
-- Patch lokal voice gateway: `docker-compose.yml` port `127.0.0.1:8091` (upstream masih `expose: ["8080"]`) — sengaja **tidak** di-commit upstream karena compose me-*merge* `ports:` deployer dan Caddy menghubungi service lewat network internal; bila pakai `git pull`, cek lagi baris `8091`.
-- **Status rantai (24 Nov):** mic HP → gateway → ASR Groq → OMB → TTS piper = PASS ujung-ke-ujung. Pemutaran WAV di speaker jam = **UNCHECKED** (butuh build HAP lite-wearable + debug certificate Huawei; kode pemutar ada di repo commit `9168ede`). `@system.audio` butuh bundle masuk *control list* layanan musik Huawei — mekanismya tak terdokumentasi publik.
+**Voice gateway `watch-fit-ai` terhubung ke OMB (24 Nov).** Repo `Niumination/watch-fit-ai` di `~/zb/voice-gateway`, HEAD `43cf487` (adapter OMB). Container `gateway-gateway-1`, `127.0.0.1:8091 → 8080`, domain `https://voice.abstract.biz.id`, health 200, selftest 5/5. Tiga device: `and-zbvela-4277`, `and-5ddb4c9f`, `and-78ed6a33`. Kredensial & `DEVICE_TOKENS` di `.env` mode 600 (GROQ_API_KEY, GATEWAY_SECRET, OMB webhook token — [REDACTED]). TTS piper lokal `id_ID-news.onnx` (62.950.044 byte).
+- Adapter `default_agent` = `omb` (override `.env`, karena `agents.json` sempat ditimpa). Uji audio asli → **HTTP 200 + jawaban AI sungguhan dari bot ZB** (bukan fallback "Maaf, agent tidak menjawab"), WAV 95.896 byte.
+- **Bridge OMB dua listener**: `~/zb/omb-new/relay-bridge.mjs` dipatch `BRIDGE_HOST` (default `127.0.0.1`) + `BRIDGE_EXTRA_HOST=172.18.0.1` (`relay-bridge.env`). Tidak pakai `0.0.0.0` (UFW inactive); situs humanoid tetap 200. Webhook sementara `wh_knBDiZz4DGRydSZi` (bot `ZbmausHumanoid-Vercel`) — jawaban bisa muncul juga di situs humanoid.
+- Patch lokal voice gateway: `docker-compose.yml` port `127.0.0.1:8091` (upstream masih `expose: 8080`) — needs re-apply tiap pull sampai di-upstreamkan.
 
-**Kaggle uncensored — audit & uji (25 Nov).** Kernel `ryuarch/strata-kaggle-launcher-uncensored` (Gyro-S abliterated 58 GB, tunnel `kaggle-arb` → `arbitrage-model.abstract.biz.id/v1`). Audit menemukan 5 masalah: (1) `KAGGLE_USERNAME` placeholder = penyebab ERROR lama; (2) `kaggle_env()` hanya baca Secrets, padahal batch run tak punya → fallback `arb-creds` ditambah; (3) pra-validasi cache 58 GB sebelum unduh; (4) `MONITOR_HOURS` default 6 → diubah 0; (5) `UPLOAD_CACHES=False` dipertahankan. Notebook final: `~/zb/kaggle-audit/strata-kaggle-launcher-uncensored.FIXED.ipynb` + `CARA-PAKAI.md` + `fix_notebook.py` (mode 600). **Push versi 5 berhasil 25 Nov** → kernel `QUEUED` (antrean GPU), monitor sekali-jalan `aa38b820d4b5` (~01:08 WIB) cek hasil read-only. Aturan: push = run = bakar kuota; watchdog dilarang tanpa approval eksplisit; 1 tunnel = 1 konektor. Cache GGUF terverifikasi 58.487.015.904 byte persis.
+**Kaggle uncensored — AUDIT SELESAI & LIVE (25 Nov).** Kernel `ryuarch/strata-kaggle-launcher-uncensored` (Gyro-S abliterated 58 GB, tunnel `kaggle-arb` → `arbitrage-model.abstract.biz.id/v1`). **Hasil akhir: RUN ALL MANUAL SUKSES, kernel `COMPLETE`, model LIVE.** `/health` = `200 {"status":"ok","loaded":true,"api_key":true,"model":"qwen3.8-flash-next-gyro-gyro-s","max_context":32768,"service":"strata"}`; `/v1/models` tanpa key = 401 (auth gate benar); domain `kaggle-model` = 530 (tak dipakai). Dipakai dari **Hermes Mac via 9Router**: provider `ninerouter`, model `strata/qwen3.8-flash-next-gyro-gyro-s` (terdaftar di `~/.hermes/config.yaml` baris 343). ⚠️ Katalog 9Router belum punya entri `strata` → model mungkin perlu didaftarkan lewat dashboard 9Router (`/dashboard`) agar muncul di daftar; base_url dan model id sudah benar. Sesi TIDAK kekal — mati kapan saja bila kuota/idle, endpoint kembali 530.
+- **8 bug yang ditemukan & diperbaiki** saat audit: (1) `KAGGLE_USERNAME` placeholder → `ryuarch` (penyebab ERROR lama, gagal detik ke-14); (2) `kaggle_env()` hanya baca Secrets → fallback `arb-creds`; (3) pra-validasi `PRA-UJI cache OK` sebelum unduh 58 GB; (4) `MONITOR_HOURS` 6 → 0; (5) `UPLOAD_CACHES=False`; (6) `NameError` `_g`/`_o` (di-import dalam `_fetch`, dipakai di luar) → import di scope sel; (7) **nama GGUF kanonik** — Strata cari `...-Gyro-S-TQ1_0.gguf` tanpa `-abliterated` → dibuat hardlink (nama baru, inode sama, tanpa duplikat 58 GB); (8) engine Strata 0.1.67 (593 MB) ter-install sekali, di-skipped run berikutnya. Notebook final: `~/zb/kaggle-audit/strata-kaggle-launcher-uncensored.FIXED.ipynb` + `CARA-PAKAI.md` + `fix_notebook.py` (mode 600). Push v6 via `kernels push --no-run` (quick save, aman tanpa GPU). Aturan: push = run = bakar kuota; watchdog dilarang tanpa approval; 1 tunnel = 1 konektor. Cache GGUF 58.487.015.904 byte persis. Blob repo: import fix `884b7473`, kanonik fix `4cc03302`.
 
 **Storage (23 Nov).** Disk 41/50 GB (86%), sisa 6,7 GB; `/tmp` 4,0 GB berisi 11 part backup gagal (`zb-backup-full-20261122-*`, ~3,7 GB, `zb-backup-full.service` FAIL exit 1 di part 1/11). Cleanup (hapus part + `journalctl --vacuum-size=200M` + `docker builder prune`) **menunggu konfirmasi user**.
 
