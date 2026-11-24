@@ -1,6 +1,6 @@
 # ZB-Vela — Status Ekosistem
 
-> Tanggal: **21 November 2026** (audit aktual: sistem/layanan/domain/backup/OAuth) • VPS: VM-11-184-ubuntu (Tailscale: zb-vela, 100.77.18.39)
+> Tanggal: **25 November 2026** (pembaruan: voice-gateway↔OMB, storage, Kaggle uncensored; audit dasar 21 Nov tetap berlaku) • VPS: VM-11-184-ubuntu (Tailscale: zb-vela, 100.77.18.39)
 > Semua status diverifikasi langsung via systemctl / curl / journalctl / DB pada tanggal di atas.
 > Dokumen ini menggantikan versi 19 November 2026. Riwayat keputusan lama tetap dipertahankan di seksi 8b–8e.
 
@@ -15,6 +15,9 @@
 - **Niudrive**: UI graphite/lime + Sonner/Vaul/cmdk/motion live, PR #3 merged `9d2630db32`; backup harian 21 Nov 01:30 → **1 upload, 0 gagal, 1135 dilewati, 1 file 0-byte**.
 - **DSH pindah server**: `dsh.niumination.id` aktif (401 tanpa token = token-gate benar) di **VPS baru yang terpisah**; VPS ini tetap jalankan DSH lama `dsh.abstract.biz.id` (401, tidak diubah). Repo privat `dsh-abstract-biz-id` = sumber restore (127/127 chunk MATCH).
 - **Vault kredensial** terenkripsi GPG di repo privat `zbmaus-vela-secrets/vault/`; index metadata di `ecosystem-config`.
+- **Voice gateway `watch-fit-ai` ↔ OMB LIVE (24–25 Nov)**: `https://voice.abstract.biz.id` health 200, selftest 5/5, 3 device, TTS piper Indonesia, jawaban AI sungguhan dari bot ZB via webhook (§8f).
+- **Kaggle uncensored**: notebook diaudit & diperbaiki (5 fix), push versi 5 25 Nov, kernel `QUEUED` menunggu GPU, monitor read-only `aa38b820d4b5` (§8f).
+- ⚠️ **Storage 23 Nov**: disk 86% (6,7 GB bebas), `/tmp` 4 GB sisa backup gagal — cleanup menunggu konfirmasi (§8f).
 - ⚠️ **Keputusan user 15 Nov**: apt upgrade & reboot **ditunda tanpa batas** (server belum pernah reboot) — 197 paket security backlog sengaja tidak dieksekusi.
 - ⚠️ Insiden lama (dikonfes, 11 Nov): 16 file root folder `9drive` akun archk4li hilang permanen karena purge tanpa audit. Kredensial inti masih di `~/zb/`.
 
@@ -209,6 +212,17 @@ Disk: **72% terpakai (14 GB bebas dari 50 GB)** — dibersihkan 11 Nov (tick dat
 - **Cara aktifasi**: BUKAN `cordis.yml` (sengaja `[]`), tapi `package.json` → `dsh.profile.bundles` + `cordis.patch.yml`. Plaza = `@cocofhu/skillhub` 0.2.16, sudah di bundles.
 - **Kenapa plaza hilang di VPS baru**: `pnpm install` belum dijalankan setelah restore (8 symlink relatif di `.bin/` perlu re-resolve). Pnpm store `~/.local/share/pnpm` (~857 MB) TIDAK ikut → butuh network/GitHub.
 - Dokumentasi: `dsh-abstract-biz-id/docs/PLUGINS.md` & `profiles/web/cordis.patch.yml.example` (blob MATCH). 12 plugin: skillhub, opencode-zen-free-provider, dingtalk/lark/qqbot/wecom/weixin, file-download, media-web-preview, our-free-model, vision-router, visual-option.
+
+## 8f. Voice gateway ↔ OMB & Kaggle uncensored (24–25 Nov)
+
+**Voice gateway `watch-fit-ai` terhubung ke OMB (24 Nov).** Repo `Niumination/watch-fit-ai` di `~/zb/voice-gateway`, HEAD `43cf487` (adapter OMB). Container `gateway-gateway-1`, `127.0.0.1:8091 → 8080`, domain `https://voice.abstract.biz.id`, health 200, selftest 5/5. Tiga device: `and-zbvela-4277`, `and-5ddb4c9f`, `and-78ed6a33`. Kredensial & `DEVICE_TOKENS` di `.env` mode 600 (GROQ_API_KEY, GATEWAY_SECRET, OMB webhook token — [REDACTED]). TTS piper lokal `id_ID-news.onnx` (62.950.044 byte).
+- Adapter `default_agent` = `omb` (override `.env`, karena `agents.json` sempat ditimpa). Uji audio asli → **HTTP 200 + jawaban AI sungguhan dari bot ZB** (bukan fallback "Maaf, agent tidak menjawab"), WAV 95.896 byte.
+- **Bridge OMB dua listener**: `~/zb/omb-new/relay-bridge.mjs` dipatch `BRIDGE_HOST` (default `127.0.0.1`) + `BRIDGE_EXTRA_HOST=172.18.0.1` (`relay-bridge.env`). Tidak pakai `0.0.0.0` (UFW inactive); situs humanoid tetap 200. Webhook sementara `wh_knBDiZz4DGRydSZi` (bot `ZbmausHumanoid-Vercel`) — jawaban bisa muncul juga di situs humanoid.
+- Patch lokal voice gateway: `docker-compose.yml` port `127.0.0.1:8091` (upstream masih `expose: 8080`) — needs re-apply tiap pull sampai di-upstreamkan.
+
+**Kaggle uncensored — audit & uji (25 Nov).** Kernel `ryuarch/strata-kaggle-launcher-uncensored` (Gyro-S abliterated 58 GB, tunnel `kaggle-arb` → `arbitrage-model.abstract.biz.id/v1`). Audit menemukan 5 masalah: (1) `KAGGLE_USERNAME` placeholder = penyebab ERROR lama; (2) `kaggle_env()` hanya baca Secrets, padahal batch run tak punya → fallback `arb-creds` ditambah; (3) pra-validasi cache 58 GB sebelum unduh; (4) `MONITOR_HOURS` default 6 → diubah 0; (5) `UPLOAD_CACHES=False` dipertahankan. Notebook final: `~/zb/kaggle-audit/strata-kaggle-launcher-uncensored.FIXED.ipynb` + `CARA-PAKAI.md` + `fix_notebook.py` (mode 600). **Push versi 5 berhasil 25 Nov** → kernel `QUEUED` (antrean GPU), monitor sekali-jalan `aa38b820d4b5` (~01:08 WIB) cek hasil read-only. Aturan: push = run = bakar kuota; watchdog dilarang tanpa approval eksplisit; 1 tunnel = 1 konektor. Cache GGUF terverifikasi 58.487.015.904 byte persis.
+
+**Storage (23 Nov).** Disk 41/50 GB (86%), sisa 6,7 GB; `/tmp` 4,0 GB berisi 11 part backup gagal (`zb-backup-full-20261122-*`, ~3,7 GB, `zb-backup-full.service` FAIL exit 1 di part 1/11). Cleanup (hapus part + `journalctl --vacuum-size=200M` + `docker builder prune`) **menunggu konfirmasi user**.
 
 ## 9. Known Issues / Pending
 
