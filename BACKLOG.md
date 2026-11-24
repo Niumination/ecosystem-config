@@ -216,7 +216,7 @@ Desktop/Niumination/
 || **TEDEO-Kanban** | P2 | 🟡 95% | 2026-08-18 | Vite/React/Zustand |
 || **niu-dash-fullstack** | P3 | ⏸️ Stale | 2026-07-30 | Next.js 16 |
 || **niu-kanban-dash** | P3 | ⏸️ | 2026-08-18 | Vite/React |
-||| **AuditTI-AT** | P3 | ✅ Live | 2026-08-13 | GH Pages |
+||| **AuditTI-AT** | P3 | ✅ Live | 2026-08-13 | GH Pages. UI SDK **DITAHAN** 24 Nov 2026 — kunci OpenRouter di bundle klien, tanpa auth agent, auto-deploy tanpa staging, tanpa test. Analisis: `docs/reports/UI-SDK-RISIKO-AUDIT-TI-AT-2026-11-24.md`. Sandbox terverifikasi terpisah di `docs/reports/UI-SDK-SANDBOX-2026-11-24.md` |
 ||| **landing-web-id** | P3 🆕 | ⚪ Ready | 2026-08-30 | Landing page Bahasa Indonesia — niumination.web.id — Vercel deploy ready |
 ||| **niu-oss-dashboard** | P2 🆕 | 🟢 Active | 2026-09-19 | Next.js 16.3 + React 19.2 + TS 7 + Vitest 5 — landing + dashboard OSS 91 repo, API v1, PWA, i18n id/en — repo `Niu-OSS-Dashboard` (stack 2026, CVE-2025-66478 tertutup). ✅ **Live** di niumination.web.id (HTTP 200, verified 4 Nov 2026). Fase 4 go-live selesai. |"
 ||| **spatial-vision** | P3 | 🟢 Active | 2026-08-18 | Rust/WASM 3D vision |
