@@ -41,6 +41,20 @@ A lookup skill. When invoked with a task ("I need toasts", "what should I use fo
 | One-time password / verification code inputs | [input-otp](https://input-otp.rodz.dev) |
 | Customizable GUIs / control panels | [Leva](https://github.com/pmndrs/leva) |
 
+### Agent-operable UI — beta (tambahan Niumination, bukan dari upstream)
+
+| Task | Library |
+| --- | --- |
+| Membiarkan agent AI membaca dan menggerakkan komponen kita lewat API-nya sendiri (tanpa screenshot, tanpa accessibility tree) | [UI SDK](https://ui-sdk.dev) — `@ui-sdk/core` |
+
+12 Nov 2026 Vercel Labs merilis UI SDK (`vercel-labs/ui`, Apache-2.0, npm `@ui-sdk/core`). Dua paruh: (a) 50+ perilaku teruji (roving focus, seleksi, type-ahead) dengan adapter React/Vue/Svelte/Solid/Web Components, dan (b) bridge agent — `createAgent` mengekspos `snapshot`, `query`, `act`.
+
+Pakai **hanya kalau ada agent yang harus mengoperasikan halaman**: ia memangkas yang harus dibaca agent sekitar 5x (pohon a11y 12 KB vs snapshot 5 KB pada app di video sumber) dan memberi guardrail nyata (`data-agent-confirm`, `data-agent-hidden`, redaksi `secret`, perubahan bertanda asal-agent).
+
+JANGAN pakai sebagai component library — ini lapisan di bawahnya, dan tidak berstyle. JANGAN untuk produksi dulu: masih beta (`0.1.0-beta.16` per 24 Nov 2026; beta.1 ke beta.16 dalam enam hari), dan `shadcn/ui` belum menyatakan akan dibangun ulang di atasnya.
+
+Studi lengkap: `docs/reports/RISET-UI-SDK-2026-11-24.md`.
+
 ### Motion & visuals
 
 | Task | Library |

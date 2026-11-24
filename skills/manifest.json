@@ -1,6 +1,6 @@
 {
   "fileCount": 1365,
-  "generatedAt": "2026-11-17T03:59:55.551994+00:00",
+  "generatedAt": "2026-11-24T07:47:37.127479+00:00",
   "skillCount": 269,
   "skills": {
     "asn/asn-dinas-jurnal": {
@@ -511,10 +511,10 @@
       }
     },
     "design/pick-ui-library": {
-      "bundleHash": "6c071b1896797afb9bacfe5b4a2166c872cdb500ad3e17d523616f2833e80e1b",
+      "bundleHash": "0d83ebc306f494dd5a5a84ae0d4e51e280f50dc69288aa324805f1c91c62b848",
       "domain": "design",
       "files": {
-        "SKILL.md": "7bacc46d0dca7d2301244e1b168531a7ed5f453b9642eb9725a05df24ba70c70"
+        "SKILL.md": "607f04afcff188ab0e42d7b3067387a082c7954451f9f1c8cf3c5a7f16d0d19d"
       }
     },
     "design/responsive-ui-audit": {
