@@ -6,6 +6,26 @@
 
 ---
 
+## Perubahan — 24 Nov 2026 — watch-fit-ai: voice gateway live dengan agent OMB
+
+Rantai AKTIF dan terverifikasi 24 Nov 2026 (repo publik `Niumination/watch-fit-ai`, HEAD `9168ede`): mic HP (Infinix X6873) → `voice.abstract.biz.id` → ASR Groq → agent **OMB** (`openmausbot`, bot ZB) → TTS piper (`id_ID`, news medium) → WAV ±450 KB → P2P Wear Engine → Watch Fit 5.
+
+| Pemeriksaan | Hasil |
+|---|---|
+| Endpoint dari Mac | HTTP 200; header `x-transcript-in`/`x-transcript-out` terisi |
+| WAV | 450.324 B, 14,07 dtk, 16 kHz mono |
+| Latensi | 11,5 dtk |
+| Gateway | VPS zb-vela, `~/zb/voice-gateway`, container `gateway-gateway-1`; upstream `c0685fb` + patch lokal port |
+| Device terdaftar | `and-5ddb4c9f`, `and-78ed6a33`, `and-zbvela-4277` |
+| Otak produksi | `omb`; OpenCode VPS v2.1.4 (`127.0.0.1:49374`) tidak dipakai lagi |
+
+**Backlog (item tunggal):**
+- `watch-fit-ai`: build & pasang HAP pemutar audio (DevEco Studio 3.1 + debug certificate Huawei); lalu uji kirim-WAV-P2P + playback; risiko *control list* `@system.audio` (bundle harus masuk daftar layanan musik Huawei, mekanismenya tidak terdokumentasi). Status: `sendFileToWatch` dan pemutaran speaker jam = **UNCHECKED**.
+
+Docs tersinkron: `docs/registry/project-catalog.md`, `docs/registry/deployment-status.md`, `docs/ECOSYSTEM-STATUS.md`, `docs/DECISIONS.md` (`D-2026-11-24-01`). Laporan riset OMB lama dibiarkan.
+
+---
+
 ## 📦 Registrasi 2 Proyek — 21 Nov 2026 (dari `Gagasan-ASN-repo-baru.zip`)
 
 Sumber: `~/Downloads/Gagasan-ASN-repo-baru.zip` (101 MB, 232 berkas) — perintah pemilik "pelajari dan registrasi". Override sekali pakai freeze D-1013-05: **`D-2026-11-21-01`** (`docs/DECISIONS.md`).

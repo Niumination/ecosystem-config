@@ -65,3 +65,10 @@
 - **Keputusan:** Daftarkan `labs/watch-fit-ai/` (repo 🟢 PUBLIC `Niumination/watch-fit-ai`, HEAD `279648c`) tanpa menutup repo lama — override sekali pakai, pola `D-2026-1017-01`.
 - **Alasan:** Proyek dari pemilik langsung (zip `~/Downloads/watch-fit-ai.zip`), 5 patch upstream teraplikasi + verified (zero diff, selftest 5/5). Menutup repo lama butuh keputusan pemilik terpisah.
 - **Verifikasi:** clone anonim HTTPS exit 0, secret scan kosong, `gh repo view` PUBLIC.
+
+## D-2026-11-24-01 — PINDAH OTAK AGENT voice gateway: OpenCode → OpenMausBot (OMB)
+- **Status:** BERLAKU
+- **Keputusan:** Otak agent voice gateway `watch-fit-ai` dipindah dari **OpenCode** ke **OpenMausBot (OMB)** lewat `omb-relay-bridge`. OMB menjadi agent default produksi rantai suara (mic HP → `voice.abstract.biz.id` → ASR Groq → **OMB** → TTS piper → WAV → P2P Wear Engine → Watch Fit 5); endpoint OpenCode VPS v2.1.4 (`127.0.0.1:49374`) tidak dipakai lagi.
+- **Alasan:** (1) OpenCode API v2 tidak kompatibel dengan rantai yang dibutuhkan; (2) saldo reviewer OpenCode habis; (3) OMB sudah berjalan di zb-vela dan terbukti stabil — perpindahan tidak menambah infrastruktur baru.
+- **Konsekuensi:** webhook `humanoid` kini dipakai bareng (shared) antara jalur web/humanoid dan jalur voice gateway; perubahan pada bridge/webhook berpotensi mempengaruhi dua konsumen sekaligus.
+- **Verifikasi:** rantai produksi terverifikasi dari Mac 24 Nov 2026 — HTTP 200, header `x-transcript-in`/`x-transcript-out` terisi, WAV 450.324 B / 14,07 dtk / 16 kHz mono, latensi 11,5 dtk (rincian di `docs/registry/deployment-status.md`). Pemberhentian endpoint OpenCode (`127.0.0.1:49374`) = **UNCHECKED** (tidak ada probe yang tercatat untuk keputusan ini).

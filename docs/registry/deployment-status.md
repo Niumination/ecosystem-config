@@ -4,7 +4,7 @@
 |--------|--------|---------------|---------|
 | `niumination.web.id` | ✅ **LIVE — 200 (28 Okt 2026, dipulihkan)** · ⚠️ **NS mismatch**: resolver publik → Vercel, dashboard idwebhost → NS idwebhost | 28 Okt 2026 | Dipulihkan: `niu-oss` dihapus dari Vercel pagi ini (→404), **dibuat ulang sebagai proyek baru `niu-oss-dashboard`** (linked repo `Niumination/Niu-OSS-Dashboard`, auto-deploy `main` aktif, domain `niumination.web.id` verified apex+www 200). ✅ Data GitHub **live: true, source: github-api** (classic PAT shared dari `~/.hermes/.env`, `GH_TOKEN`). Secret Midtrans/Stripe/TRTC/CS masih belum dipasang. Dulunya Niu-OSS-Dashboard |
 | `mata.niumination.web.id` | ✅ Existing (Cloudflare) | 21 Sep 2026 | |
-| `abstract.biz.id` | 🔴 **DNS REFUSED** — semua nameserver mati | 8 Okt 2026 | Tidak bisa diresolve. Perlu perbaikan NS/registrar sebelum bisa dipakai |
+| `abstract.biz.id` | 🔴 **DNS REFUSED** — semua nameserver mati | 8 Okt 2026 | Tidak bisa diresolve. Perlu perbaikan NS/registrar sebelum bisa dipakai. ⚠️ **USANG 24 Nov 2026:** zona kini diarahkan lewat Cloudflare Tunnel remote-managed (dikelola Composio) dan subdomain `*.abstract.biz.id` aktif — mis. `voice.abstract.biz.id`, `zbmaus.abstract.biz.id`. Klaim "nameserver mati" tidak lagi berlaku; baris ini sengaja dipertahankan sebagai penanggalan lama |
 | `kelas.niumination.web.id` | 🟢 **LIVE** — HTTPS 200, Supabase + **7** migrasi, OAuth aktif, sertifikat terverifikasi, patch arena #1+#2 ter-deploy | 12 Okt 2026 | T-01/T-02/T-03/T-13 selesai. Repo tetap PUBLIK (keputusan pemilik 12 Okt — belum disebar). Sisa: T-04 (Midtrans), T-08 (Ollama), T-17 (Resend SMTP), T-18 (uji visual), T-19 (uji Google di browser) |
 | `kune-ya.com` | 🔴 **DNS NXDOMAIN** | 8 Okt 2026 | Domain tidak terdaftar/expired. Cek registrar |
 
@@ -107,6 +107,24 @@
 | **MIRAI Mission Control** | :8800 | ✅ **Running — audit 9 Nov 2026: health 20/20, mac-verify 22/0/3** | 9 Nov 2026 | PID 21985 (capture 21:34 WIB, berubah tiap restart), bind `127.0.0.1:8800` only, host asing 403. **Avatar WebP animated** (`{kode}.webp` + `{kode}-still.webp`, ~600 KB total — turun dari ~19 MB PNG). **`/api/house`**: jendela Niumination, 10 kursi Telegram + thread id, status wiki/gateway/cron, read-only. `smoke.sh` + `prove.sh` exit 0. Repo `github.com/Niumination/mirai` @ `28e8ae4` (9 Nov 2026: `.hero-inner`/`.actions`, KPI contrast+wrap, hermetic smoke/prove). Di `mirai/` (root ekosistem). **DITAHAN**: `.hermes/` paket (config gpt-5.4-mini + SOUL "Executor" = konten palsu), `_new/` (master PNG). ~~Bug pra-existent: /api/traffic 500~~ — **FIXED, 200 ok (9 Nov 2026)**. Cron wiki (dropbox/librarian/lint) di-pin ulang ke `nous/stealth/crouton-alpha` 9 Nov 2026 (sebelumnya `combo-delegasi`→openai tanpa kredensial, heartbeat mati 21 hari) |
 | 9router | :20128 | ✅ Running | 8 Okt 2026 | Model router lokal |
 | Camofox | :9377 | ✅ Running | 8 Okt 2026 | Stealth browser |
+
+---
+
+### Voice Gateway (watch-fit-ai) — `voice.abstract.biz.id`
+
+Layanan di VPS **zb-vela**, bukan di Mac ini.
+
+| Item | Nilai |
+|---|---|
+| Hostname | `voice.abstract.biz.id` (Cloudflare Tunnel `zb-vela`) |
+| Lokasi | VPS zb-vela — folder `~/zb/voice-gateway`, container `gateway-gateway-1` |
+| Kode | upstream `c0685fb` + patch lokal (port) |
+| Otak agent | **OMB** (`openmausbot`, bot ZB) — agent default produksi |
+| Backend | ASR **Groq** + TTS **piper** (`id_ID`, news medium) |
+| Verifikasi 24 Nov 2026 | dari Mac: HTTP **200**, header `x-transcript-in`/`x-transcript-out` terisi, WAV **450.324 B**, **14,07 dtk**, **16 kHz mono**, latensi **11,5 dtk** |
+| Device terdaftar | `and-5ddb4c9f`, `and-78ed6a33`, `and-zbvela-4277` |
+| Belum teruji (**UNCHECKED**) | pemutaran audio di speaker jam (butuh build HAP `watch-lite/` + debug certificate Huawei); `sendFileToWatch`; `@system.audio` butuh bundle masuk *control list* layanan musik Huawei (mekanismenya tidak terdokumentasi) |
+| Tidak dipakai | OpenCode VPS v2.1.4 (`127.0.0.1:49374`) |
 
 ---
 

@@ -132,6 +132,22 @@ Ingress dikelola via Composio (`CLOUDFLARE_UPDATE_TUNNEL_CONFIGURATION`, replace
 - `routines.json`: **14 routine** (21 Nov); 8 di antaranya routine Kitab Surgawi pakai helper OAuth lokal. Update ke v0.1.173 ditunda (§8c).
 - Antigravity engine masih `authenticated=false` (OAuth :53727 pending).
 
+### watch-fit-ai / Voice Gateway (24 Nov 2026)
+
+Blok ini menambah status 24 Nov 2026 di atas audit 21 Nov; riwayat 21 Nov tidak diubah.
+
+| Item | Nilai |
+|---|---|
+| Rantai AKTIF | mic HP (Infinix X6873) → `voice.abstract.biz.id` → ASR Groq → agent **OMB** (`openmausbot`, bot ZB) → TTS piper (`id_ID`, news medium) → WAV ±450 KB → P2P Wear Engine → Watch Fit 5 |
+| Hostname | `voice.abstract.biz.id` (Cloudflare Tunnel `zb-vela`) |
+| Lokasi | VPS zb-vela — `~/zb/voice-gateway`, container `gateway-gateway-1`; upstream `c0685fb` + patch lokal port |
+| Verifikasi 24 Nov 2026 (dari Mac) | HTTP **200**; header `x-transcript-in`/`x-transcript-out` terisi; WAV **450.324 B**, **14,07 dtk**, **16 kHz mono**; latensi **11,5 dtk**; jawaban contoh: daftar jamur edible |
+| Device terdaftar | `and-5ddb4c9f`, `and-78ed6a33`, `and-zbvela-4277` |
+| Otak produksi | **omb**; OpenCode VPS v2.1.4 (`127.0.0.1:49374`) tidak dipakai lagi |
+| Belum (**UNCHECKED**) | pemutaran audio di speaker jam — butuh build HAP lite-wearable (`watch-lite/`, commit `9168ede`) + debug certificate Huawei; `sendFileToWatch` belum pernah diuji di perangkat; `@system.audio` butuh bundle masuk *control list* layanan musik Huawei (mekanisme tidak terdokumentasi) |
+
+Catatan: laporan riset OMB lama (`docs/reports/RISET-OPENMAUSBOT-2026-10-12.md`, `OPENMAUSBOT-STATUS-INTEGRASI-2026-10-12.md`) dibiarkan apa adanya.
+
 ### AgenticTrade (PAUSE bersih)
 - Repo publik `github.com/Niumination/AgenticTrade` (EA MT5 XAUUSD, transparansi penuh, angka backtest = NOT VERIFIED).
 - Sprint 1–6 selesai; kriteria STOP terpicu pada WFO v0.3 → iterasi rule-based dihentikan → **Fase 2 forward test (demo IC Markets 53134764) menunggu keputusan runtime**. Tick data 2020–2025 dihapus dari disk (re-downloadable via `fetch_years.sh`).
