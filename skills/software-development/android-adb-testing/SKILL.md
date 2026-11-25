@@ -25,6 +25,10 @@ Defects found during on-device testing get fixed in the app or CI, not handed to
 - When two consecutive fix→green-CI→device-fail cycles produce no behavior change, stop patching and re-diagnose from device evidence before the next code change — reread the persisted session JSON (mtime plus content proves whether the send path even ran), the latest runtime-output file (proves whether the guest tool answered), and the UI event-gate state; a third blind patch burns another full CI-plus-download cycle while the evidence already names the failing layer.
 14. Request a phone test run only after local rehearsal plus green CI — the on-device loop costs a multi-minute download and the user's hands, so never spend it verifying what a unit test or lint job could have caught.
 
+## Emulator UI-tree QA (Flutter)
+
+Build with `flutter build apk --debug` and install the resulting APK; drive emulator taps from the UI tree via `scripts/ui_pick.py` / `scripts/ui_tree_summarize.py`, then confirm visually with a device screenshot. Commands, scroll-retry rules and attribution: [Emulator UI-tree QA](references/emulator-ui-tree-qa.md).
+
 ## Pitfalls
 
 - `install -r` preserves data, which is wrong for from-scratch onboarding tests — use `adb shell pm clear <id>` instead, but warn it re-triggers large downloads.

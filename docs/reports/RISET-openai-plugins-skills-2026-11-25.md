@@ -127,3 +127,29 @@ Belum ada adopsi. Jika dilanjutkan, urutan yang paling masuk akal: (1) pakai CLI
 - `grep -E 'Score:|Grade:|Risk:'` pada laporan analyze → `android 72/100 C`, `evaluate-skill 95/100 A`, `accessibility 72/100 C`, bank `design/accessibility 53/100 F`
 - `find skills -type d -name web-quality-audit` → kosong; `grep -n web-quality-audit skills/design/accessibility/SKILL.md` → baris 439
 - `git -C <clone> status --short | wc -l` → `0` sebelum dan sesudah uji
+
+## Penerapan (2026-11-25 22:20 WIB)
+
+Dua langkah yang disetujui owner (`gas`, "keduanya, berurutan") sudah diterapkan. Tidak ada plugin yang dipasang lewat `hermes plugins install`, tidak ada perubahan `config.yaml`, tidak ada cron baru.
+
+### 1. Gate lokal `plugin-eval`
+- Sumber `openai/plugins` commit `981b02c`, lisensi MIT; kode hulu tidak dimodifikasi (`diff -r src` → exit 0).
+- Lokasi: `scripts/plugin-eval/` (492 KB, 71 berkas) + wrapper `scripts/skill-eval.sh` (mode 755).
+- `fixtures/` dan `skills/` ikut disalin **hanya sebagai aset uji hulu**, bukan skill bank — lihat `scripts/plugin-eval/ATTRIBUTION.md`.
+- Pakai: `./scripts/skill-eval.sh analyze <path-skill> --format markdown`.
+- Commit terpisah: `466aa27 tools: vendor plugin-eval as local skill gate (MIT)`.
+
+### 2. Adaptasi emulator QA ke skill bank yang sudah ada
+- Domain owner sudah ada: `skills/software-development/android-adb-testing/` — tidak dibuat skill standalone baru.
+- Diadaptasi dari `test-android-apps/android-emulator-qa`: helper `ui_pick.py` + `ui_tree_summarize.py` (Apache-2.0, berkas `LICENSE.txt` disertakan), panduan ringkas di `SKILL.md`, detail di `references/emulator-ui-tree-qa.md`, regression test `tests/test_ui_helpers.py`.
+- Perubahan kontekstual: perintah Gradle hulu diganti `flutter build apk --debug`; aktivitas dilokalisasi via `cmd package resolve-activity`, bukan hard-code `.MainActivity`.
+- `skill-audit.py` → 0 finding; `unittest` → 3/3 pass; manifest regenerasi → 269 skill / 1371 berkas, `--check` sinkron; runtime `~/.hermes/skills` disalin dan `diff -rq` bank vs runtime → 0 beda.
+- Skor `plugin-eval` untuk skill ini: 72/100 C sebelum → 67/100 D sesudah. Penurunan bukan regresi fungsi: alat menilai baseline Codex dan memberi bobot besar pada panjang teks; temuan tersisa adalah budget (diwariskan dari skill yang memang panjang) dan kompleksitas helper hulu yang sengaja tidak diubah.
+
+### Bukti penerapan
+- `node --test scripts/plugin-eval/tests/plugin-eval.test.js` → `pass 28, fail 0`, exit 0 (Node v26.7.0)
+- `./scripts/skill-eval.sh --help` → exit 0; `analyze skills/software-development/android-adb-testing` → exit 0, laporan markdown dihasilkan
+- `python3 -m unittest discover -s skills/software-development/android-adb-testing/tests -v` → `Ran 3 tests ... OK`, exit 0
+- `python3 scripts/skill-audit.py --bank skills/software-development --skill android-adb-testing --count` → `0`, exit 0
+- `python3 scripts/skill-manifest.py` → `[ok] 269 skill, 1371 file`; `--check` → `[ok] ... 0 mismatch`
+- `diff -rq skills/software-development/android-adb-testing ~/.hermes/skills/software-development/android-adb-testing` → kosong, exit 0

@@ -1,6 +1,6 @@
 {
-  "fileCount": 1365,
-  "generatedAt": "2026-11-24T07:47:37.127479+00:00",
+  "fileCount": 1371,
+  "generatedAt": "2026-11-25T15:17:52.055242+00:00",
   "skillCount": 269,
   "skills": {
     "asn/asn-dinas-jurnal": {
@@ -2485,12 +2485,18 @@
       }
     },
     "software-development/android-adb-testing": {
-      "bundleHash": "2d3f25cb9c9f5ad86085c874f86a94e73d478e1f444571c87cddb91868796af0",
+      "bundleHash": "0de2ce4eaa6dbd28c70ec1be6817f1ec14f01b139fae64389c943eb31fa5bced",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "312f27c230033a38f6d003b9e372e8941508392eff4b9756ec1e43e7b026cd7f",
+        "SKILL.md": "40256edd0d8d0cf0d8c7e6eca81869d57c294f9255b9d7aad56d417ebd12d8dc",
         "references/app-data-backup-restore.md": "51aeb438ffa753287bfcbd52a9b60e33f7b559891de42fddb60551fbc73d2c8e",
-        "references/flutter-android-debugging.md": "73a6d37a55462c71a6b149d14d93f78c1525c0ede94a4f0bdf7b3561b942e304"
+        "references/emulator-ui-tree-qa.md": "42009636a08628be74d90f6937c8b63008bb5d654495a81f28fd1763c8f36ec2",
+        "references/flutter-android-debugging.md": "73a6d37a55462c71a6b149d14d93f78c1525c0ede94a4f0bdf7b3561b942e304",
+        "scripts/ATTRIBUTION.md": "a5d2d62d3447e541a999732c03b6db38f2500352c819a6a3d880a044362121b2",
+        "scripts/LICENSE.txt": "4dd13869245e356246a5b770723247bbb80a8f07a181d1d3d873a1734297cdb9",
+        "scripts/ui_pick.py": "642b10a7f6a84dc456cdec703f22a542703bdc6b48e75a77511a870953b138c8",
+        "scripts/ui_tree_summarize.py": "9f3cb05ff7c67a5efa1bf29020a16b85dfb61afbac9fbe1c2dc775e01c45443b",
+        "tests/test_ui_helpers.py": "c4a4329dca968683fd7f7a6bc25c9a5a1f7de591163b215db1dfb72cefb7aeb0"
       }
     },
     "software-development/audit-finding-triage": {
