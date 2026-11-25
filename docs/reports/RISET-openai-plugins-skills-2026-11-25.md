@@ -94,3 +94,36 @@ Data live ekosistem (eco-guard verify, 2026-11-25 21:41 WIB): **bank 270 skill, 
 - Scan 535 berkas script → 140 mengandung pola network, 62 pola exec; 4 dari 31 `.mcp.json` mengandung `client_secret` (nilai tidak dikutip)
 - `eco-guard.sh verify` → `[ INFO ] runtime: 482 skill · bank: 270 skill`, exit code 1 karena temuan `PERIKSA` lain (bukan kegagalan pembacaan angka)
 - `read_file README.md` repo skills baris 1-2 → pernyataan `This repository is deprecated`
+
+## Lampiran — hasil uji 3 kandidat (2026-11-25 21:55 WIB)
+
+Mode uji: **read-only** di clone `$TMPDIR/niu-adopt-openai-20261125/`. Tidak ada `npm install`, tidak ada salinan ke bank, tidak ada perubahan config. `git status --short` clone = 0 baris sebelum dan sesudah semua uji.
+
+### Hasil per kandidat
+
+| Kandidat | Lisensi | Gate bank (`skill-audit.py`) | Uji fungsional | Nilai `plugin-eval analyze` | Verdict uji |
+|---|---|---|---|---|---|
+| `plugin-eval/evaluate-skill` | MIT (plugin) | 1 finding `self-mod` — false positive: tautan ke `../improve-skill/SKILL.md` | CLI `plugin-eval` jalan langsung dari checkout dengan Node v26.7.0, tanpa install | 95/100 A | Menjanjikan sebagai alat uji lokal; skill-nya sendiri perlu rewrite (asumsi `~/.codex/skills` dan perintah Codex) |
+| `test-android-apps/android-emulator-qa` | MIT (plugin), Apache-2.0 (skill) | 0 finding | 2 helper Python lulus compile + uji fungsional dengan UI dump sintetis | 72/100 C, risk high | Helper layak dipelajari; instruksi memakai Gradle, sedangkan `presensi_rekon/` Flutter → harus disesuaikan |
+| `build-web-data-visualization/accessibility-and-inclusive-visualization` | MIT (plugin) | 1 finding `url` (`colorbrewer2.org`) — benign | 13/13 referensi relatif ada | 72/100 C, risk high | **Skip**: tumpang tindih dengan `design/accessibility` + `web-accessibility-wcag`, description 339 char, alur approval image-generation ala Codex tidak relevan |
+
+### Detail uji
+
+- Frontmatter ketiga kandidat hanya memuat `name` + `description`, dengan panjang description masing-masing **80 / 140 / 339 karakter** — semua melebihi batas 60 karakter bank. Adopsi apa pun wajib melalui rewrite frontmatter (`license`, `source`, `metadata`, `description` baru).
+- Pemeriksaan tautan: `evaluate-skill` 2/2 dan `accessibility-and-inclusive-visualization` 13/13 referensi relatif resolve. Dua kemunculan `./gradlew` pada skill Android yang terdeteksi "missing" adalah **false positive** parser regex — itu perintah build, bukan tautan dokumen.
+- Helper Android (`ui_pick.py`, `ui_tree_summarize.py`) hanya mengimpor `re`, `sys`, `xml.etree.ElementTree`, `pathlib`; tidak ada network/exec. Uji dengan UI dump sintetis: `ui_pick.py ... Settings` → `200 230` (exit 0), ringkasan UI_tree menghasilkan 2 baris (exit 0), target tidak ada → exit 2. Catatan `plugin-eval`: helper Python tanpa `test_*.py` dan satu fungsi dengan kompleksitas tinggi.
+- CLI `plugin-eval` tersedia sebagai `scripts/plugin-eval.js` di clone (`package.json` `private: true`, bin tanpa dependency install). Perintah `analyze` dijalankan dari `$TMPDIR`, tidak menulis ke clone. Skor di atas berbasis **baseline Codex dan estimasi token statis** — berguna sebagai sinyal relatif, bukan audit definitif.
+- Perbandingan internal: skill bank kita `design/accessibility` mendapat 53/100 F dari alat yang sama karena satu tautan relatif rusak (`../web-quality-audit/SKILL.md`, direktori memang tidak ada). Ini temuan samping; **tidak diperbaiki** karena di luar permintaan uji kandidat.
+
+### Keputusan uji
+
+Belum ada adopsi. Jika dilanjutkan, urutan yang paling masuk akal: (1) pakai CLI `plugin-eval` dari checkout lokal sebagai pembantu gate, tanpa menjadikannya skill bank; (2) baru evaluasi `android-emulator-qa` setelah disesuaikan untuk Flutter; (3) `accessibility-and-inclusive-visualization` tidak diambil.
+
+### Bukti tambahan
+
+- `python3 ~/Desktop/Niumination/scripts/skill-audit.py --bank <plugin>/skills --skill <nama> --count` → `1 / 0 / 1`, exit 0 semua
+- `python3 -c "compile(...)"` kedua helper → `COMPILE_OK`; `python3 ui_pick.py ui.xml Settings` → `200 230`, exit 0; target tidak ada → exit 2
+- `node "$TMPDIR/.../plugin-eval.js" --help` → exit 0; `analyze <path> --format markdown` → exit 0 untuk 5 target (3 kandidat + `opencode-troubleshooting` + `design/accessibility`)
+- `grep -E 'Score:|Grade:|Risk:'` pada laporan analyze → `android 72/100 C`, `evaluate-skill 95/100 A`, `accessibility 72/100 C`, bank `design/accessibility 53/100 F`
+- `find skills -type d -name web-quality-audit` → kosong; `grep -n web-quality-audit skills/design/accessibility/SKILL.md` → baris 439
+- `git -C <clone> status --short | wc -l` → `0` sebelum dan sesudah uji
