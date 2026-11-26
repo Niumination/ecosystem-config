@@ -1,0 +1,15 @@
+{
+  "ecosystem": "desktop-niumination",
+  "updated": "2026-11-27",
+  "labs": {
+    "chain-forge-kit": {
+      "repo": "Niumination/chain-forge-kit",
+      "folder": "labs",
+      "version": "4.0.0",
+      "visibility": "private",
+      "protocol": "https",
+      "entry": "./plugins/chain-forge/index.ts",
+      "plugin_id": "chain-forge"
+    }
+  }
+}
