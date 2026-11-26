@@ -4,7 +4,7 @@ description: "Use when executing implementation plans with independent tasks in 
 domain: software-development
 subdomain: sdlc
 tags: [execution, subagent, parallel, review, swarm, orchestration]
-version: "1.0"
+version: "1.1"
 author: obra/superpowers + Niumination
 source: superpowers
 license: MIT
@@ -19,6 +19,24 @@ Eksekusi plan dengan dispatch fresh subagent per task, task review (spec complia
 **Core principle:** Fresh subagent per task + task review + broad final review = high quality, fast iteration.
 
 **Integrasi Niumination:** Ini adalah **layer orchestration** — melengkapi `writing-plans` (plan) dan `requesting-code-review` (review). Bekerja dengan agent swarm Hermes.
+
+## Rulings, Not Stalls — Adaptasi Niumination
+
+Upstream menyuruh agent terus bekerja antar task dan hanya berhenti pada empat kondisi. Di ekosistem ini pola itu **dimodifikasi**: keputusan teknis boleh dicatat dan dijalankan, tetapi approval gate pemilik tetap mengikat.
+
+| Situasi | Tindakan |
+|---|---|
+| Ambiguitas teknis di dalam scope yang sudah disetujui | Catat ruling, lanjut tanpa bertanya |
+| Konflik antar task yang tidak menyentuh file thread lain | Catat ruling, lanjut |
+| Perubahan desain yang sudah disetujui | STOP, minta persetujuan |
+| File kunci: `SOUL.md`, `AGENTS.md`, config, kredensial | STOP, minta persetujuan |
+| Aksi destruktif atau berisiko | STOP, tunggu trigger eksplisit: `gas`, `kerjakan`, `fix` |
+| Side effect di luar worktree: push, merge, deploy, kirim ke orang | STOP, minta izin |
+| Pemilik mengatakan `tahan dulu` | STOP. Tidak ada ruling yang boleh mengabaikannya |
+
+Format ledger: `Ruling: <keputusan> — <alasan> — <biaya bila salah> | Task: <N> | Scope: <path yang disetujui>`
+
+Ruling bukan izin keluar scope. Bila keputusan mengubah desain, menambah file di luar rencana, atau menyentuh file kunci, itu bukan ruling — itu permintaan persetujuan.
 
 ## The Process
 

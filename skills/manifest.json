@@ -1,6 +1,6 @@
 {
   "fileCount": 1371,
-  "generatedAt": "2026-11-25T15:17:52.055242+00:00",
+  "generatedAt": "2026-11-26T02:50:51.596654+00:00",
   "skillCount": 269,
   "skills": {
     "asn/asn-dinas-jurnal": {
@@ -2894,10 +2894,10 @@
       }
     },
     "software-development/subagent-driven-development": {
-      "bundleHash": "17df06a759a691a917ece5a110579321782fb9380022bfddbaae1a7d5a34fb0d",
+      "bundleHash": "55c2619fe89ad3b94a3559b3d765018b18d159cd07f8c17b75c87025dcd2ab09",
       "domain": "software-development",
       "files": {
-        "SKILL.md": "d2c5059ef726e48543385b4fe71e20842edb9b2f38d1b8d46635f7c15224e3b4"
+        "SKILL.md": "940f6e6b61e3a7f997cb61b53805ee13c077aa5ac3bfddea9bc71c7bfc440abc"
       }
     },
     "software-development/surgical-refactor": {
