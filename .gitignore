@@ -113,3 +113,6 @@ archive/sapa-ai.bak/
 # Jangan pernah di-commit ke repo publik ini.
 dinas/
 wiki/
+
+# Aset biner pihak ketiga — lisensi belum terverifikasi. JANGAN di-commit ke repo publik.
+.local-assets/

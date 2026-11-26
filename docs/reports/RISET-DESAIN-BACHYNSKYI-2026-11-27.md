@@ -102,7 +102,7 @@ Hanya jika owner memberi lisensi jelas dan memilih repo privat sebagai home. Ini
 - `gdown` dan `rclone` tidak ada; unduhan memakai `curl` ke `drive.usercontent.google.com`.
 - Figma CLI tidak ada; isi `.fig` belum bisa diekstrak otomatis.
 - Blender tidak diperiksa; file `.blend` belum dibuka.
-- Semua file berada di scratch yang bisa terhapus setelah 24 jam idle. **Tidak ada salinan permanen di repo.**
+- Salinan awal ada di scratch; salinan lokal permanen di `.local-assets/notion-design-2026-11-27/` (di-ignore git, lihat `docs/registry/design-assets.md`). **Tidak ada biner di repo.**
 
 ## 10. Rekomendasi akhir
 
@@ -119,4 +119,4 @@ Jangan terapkan ke ekosistem sekarang. Yang sudah saya lakukan hanya mengunduh d
 
 ---
 
-**Status:** unduhan dan studi selesai. Menunggu keputusan owner. Tidak ada file yang disalin ke repo atau dipasang.
+**Status:** unduhan, studi, dan penyimpanan lokal selesai. Tidak ada biner di repo; menunggu keputusan lisensi dan adopsi.
