@@ -1,6 +1,6 @@
 # 🏔️ Niumination Ecosystem
 
-> **Version:** 4.0 | **Updated:** August 27, 2026
+> **Version:** 4.1 | **Updated:** November 25, 2026 — SSOT terkini: [docs/STATUS-EKOSISTEM-2026-11-25.md](docs/STATUS-EKOSISTEM-2026-11-25.md)
 > **Master orchestrator:** [ecosystem-config](https://github.com/Niumination/ecosystem-config)
 
 ---

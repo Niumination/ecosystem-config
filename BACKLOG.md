@@ -1,5 +1,8 @@
 # 📋 BACKLOG — Niumination Ecosystem — MASTER DOCUMENTATION
 
+> **UPDATE: November 25, 2026** — SSOT segar: [docs/STATUS-EKOSISTEM-2026-11-25.md](docs/STATUS-EKOSISTEM-2026-11-25.md).
+> Sorotan: paket humanoid **P14 (plate parametrik) + P15 (napas MIRA) + P16 (jam dinding APEX) tayang produksi** — paritas APEX terukur 7,31→**6,97** MAE penuh; akar divergen `daily-hermes-backup.sh` dipatch; disk 90%→78%; plugin **superpowers** terpasang (15 skill proses); skill openai/plugins diadopsi (remotion/web-apps/notion skillhub, 15 skill). Isu terbuka utama: climateOutlook kedaluwarsa (12 Nov), hermes-office inactive+404, Composio 401, 9router `/v1/models` hang.
+
 > **UPDATE: October 17, 2026** — Registrasi **hypr-rust** (`labs/hypr-rust/`, repo publik `github.com/Niumination/hypr-rust`) — override sekali pakai freeze D-1013-05 via `D-2026-1017-01`. Sync sebelumnya: October 11, 2026 — provider & katalog model (2 akar masalah `/model` + otomasi sync mati 6 hari + cron baru `034116abd040`), orkestrasi Hermes 5 fase (Fase 1-4 done, Fase 5 deferred), 10 thread Telegram aktif (1 · 802 · 803 · 804 · 1172 · 7402 · 8853 · 12595 · 12707 · 13902), A2A Mac↔Cloud verified, mac-relay online, Skill Bank 238 skill/1176 file, 14 cron job aktif. macOS 26.7.1.
 >
 > ⚠️ **Key `huancheng` hidup (probe 18 Nov 2026: HTTP 200, 21 model terdaftar, completion nyata OK)** — `sensenova-6.8-flash-lite` **sudah pulih** (sebelumnya 503). Check-in harian **wajib lewat mini-program WeChat**; panel tidak lagi memberi quota langsung. Thread 8853 (ASN) memakai `DeepSeek-V4.1-Flash` @ huancheng. Lihat seksi Provider & Katalog Model.
