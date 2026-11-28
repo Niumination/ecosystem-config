@@ -268,7 +268,7 @@ Desktop/Niumination/
 | **characters/** | ⚪ | 🟢 Active | 4 herdr agents (arsitek, pembangun, pengawas, penjaga) |
 | **_shared/** | ⚪ | 🟢 Active | Incident & path registry (INCIDENT.md, PATHS.md) |
 
-### 🔬 labs/ — 6 Experiments
+### 🔬 labs/ — 7 Experiments
 
 | Proyek | Priority | Status | Notes |
 |--------|:--------:|:------:|-------|
@@ -281,6 +281,7 @@ Desktop/Niumination/
 
 | **deepweb-ops** | P2 🆕 | 🟢 Active | Operasi deepweb via Tor Android (ADB) — riset keamanan defensif. Repo 🔒 **PRIVATE** `Niumination/deepweb-ops`, HEAD `29c9795` sesi ini. Stack: dashboard HTML statis (`dashboard/index.html` + `data.json` + `victims-id.json`), probe Python baca-saja (`probe-tor-status.py`), Tor Browser 16.0.2 (tanpa Orbot/root, tanpa SOCKS adb). Isi: **161 korban ID via API tracker**, **ONION-LIST-001** (3 leak site .onion, 200 via Tor). Deploy privat — lokal saja, tanpa deploy publik. |
 | **watch-fit-ai** | P2 🆕 | 🟢 Active | Suara dua arah AI agent dari Huawei Watch Fit 5 via HFP. Repo 🟢 **PUBLIC** `Niumination/watch-fit-ai`, HEAD `279648c` (5 commit, zero diff). Stack: gateway FastAPI (VAD+ASR groq/openai+TTS+router), app Android Kotlin (Tile+Telecom+P2P), jam lite-JS ES5. Verifikasi: selftest 5/5 PASS, pytest 33 UNCHECKED (tanpa pytest lokal). Fase 0 fisik (S1-S7) menunggu HP+jam. Override freeze: `D-2026-1122-02`. |
+| **chain-forge-kit** | P3 🆕 | 🟢 Active | OpenCode chain-forge plugin kit V2 — depth engine, hook surface, setup scripts untuk Hermes dan DeepSeek. Repo 🔒 **PRIVATE** `Niumination/chain-forge-kit`, lokal `labs/chain-forge-kit/`, HEAD `7f49442` (27 Nov 2026). Sengaja disimpan di ekosistem untuk tracking. Tidak diubah saat registrasi. |
 ### 🧪 sandbox/ — 5 Dormant (ex-incubator)
 
 | Proyek | Last Activity | Alasan |
